@@ -1,0 +1,8 @@
+const glossary = {
+    graphql: {name: "GraphQL", definition: "GraphQL is a query language for APIs, enabling clear definitions of the structure of API requests. It allows clients to request exactly the data they need, nothing more or less, making it flexible and efficient. Developed by Facebook, GraphQL provides a more powerful and flexible way to interact with databases through APIs compared to REST."},
+    melt: {name: "Melt", definition: "\"Melting\" is a term used to describe the process of burning a MultiToken that contains an ENJ infusion. This process not only destroys the token but also releases the infused ENJ to the token holder. Note that \"melting\" is a conceptual term and does not exist as a specific function in the blockchain code."},
+    enjin_beam: {name: "Enjin Beam", definition: "Enjin Beam is a feature that uses blockchain and QR code scanning to enable users to quickly and securely receive virtual assets within the Enjin ecosystem via their mobile devices. It facilitates the distribution of assets, including NFTs (Non-Fungible Tokens), with ease."},
+    block: {name: "Block", definition: "A block is a fundamental unit of data storage in a blockchain that stores information such as transactions, timestamps, and a unique identification code called a hash. Blocks are added to the blockchain in a linear, chronological order, forming a chain of blocks, hence the name \"blockchain.\" Once a block is validated and added to the chain, it cannot be modified or deleted, ensuring the integrity and immutability of the blockchain."},
+  };
+  
+  export default glossary;
