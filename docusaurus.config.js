@@ -60,6 +60,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
+    },
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
@@ -75,10 +79,12 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/', label: 'Test', position: 'left'},
+          {to: '/api-reference', label: 'API Reference', position: 'left'},
+          {href: 'https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai', label: 'AI Assistant', position: 'left'},
+          {href: 'https://enjin.io/changelog', label: 'Changelog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://www.enjinstatus.com/',
+            label: 'Service Status',
             position: 'right',
           },
         ],
