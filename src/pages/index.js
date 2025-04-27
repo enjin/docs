@@ -10,17 +10,24 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx('hero', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          Welcome to Enjin Docs
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">
+          Start building with the world's first purpose-built blockchain for games and apps, with NFTs implemented at the protocol level.
+        </p>
         <div className={styles.buttons}>
           <Link
+            className="button button--primary button--lg margin-right--md"
+            to="/docs/quick-start">
+            Get Started
+          </Link>
+          <Link
             className="button button--secondary button--lg"
-            to="https://google.com">
-            Docusaurus Tutorial - 5min ⏱️
+            to="https://github.com/enjin">
+            View on GitHub
           </Link>
         </div>
       </div>

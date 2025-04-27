@@ -1,49 +1,40 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: 'Quick Start Guide',
+    description: 'Learn the basics and get started with Enjin blockchain development in minutes.',
+    link: '/docs/quick-start',
+    buttonText: 'Start Learning',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: 'API Reference',
+    description: 'Comprehensive API documentation for building games and apps on Enjin.',
+    link: '/docs/api-reference',
+    buttonText: 'Explore APIs',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: 'SDK Documentation',
+    description: 'Detailed guides for using Enjin SDKs in your favorite programming language.',
+    link: '/docs/sdk-documentation',
+    buttonText: 'View SDKs',
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({title, description, link, buttonText}) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+      <div className={styles.featureCard}>
+        <div className={styles.featureTitle}>{title}</div>
+        <p className={styles.featureDescription}>{description}</p>
+        <Link
+          className="button button--primary button--lg"
+          to={link}>
+          {buttonText}
+        </Link>
       </div>
     </div>
   );

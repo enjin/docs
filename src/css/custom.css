@@ -6,18 +6,23 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #6052b9;
-  --ifm-color-primary-dark: #5345ab;
-  --ifm-color-primary-darker: #4e41a2;
-  --ifm-color-primary-darkest: #413685;
-  --ifm-color-primary-light: #7165c1;
-  --ifm-color-primary-lighter: #7a6fc5;
-  --ifm-color-primary-lightest: #948bd0;
+  --ifm-color-primary: #7567ce;
+  --ifm-color-primary-dark: #6050c6;
+  --ifm-color-primary-darker: #5544c3;
+  --ifm-color-primary-darkest: #4435a4;
+  --ifm-color-primary-light: #8a7ed6;
+  --ifm-color-primary-lighter: #958ad9;
+  --ifm-color-primary-lightest: #b5ade5;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8f8f8;
+  --feature-card-bg: #f7f7fb;
+  --feature-card-border: #eeeef3;
+  --feature-card-hover-border: #e0e0e8;
+  --feature-card-shadow: rgba(0, 0, 0, 0.02);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
   --ifm-color-primary: #7567ce;
   --ifm-color-primary-dark: #6050c6;
@@ -27,6 +32,120 @@
   --ifm-color-primary-lighter: #958ad9;
   --ifm-color-primary-lightest: #b5ade5;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #13141c;
+  --ifm-background-surface-color: #1a1b26;
+  --feature-card-bg: rgba(20, 21, 30, 0.95);
+  --feature-card-border: rgba(117, 103, 206, 0.2);
+  --feature-card-hover-border: rgba(117, 103, 206, 0.5);
+  --ifm-navbar-background-color: #13141c;
+  --ifm-heading-color: #ffffff;
+  --ifm-hero-text-color: #e4e4e7;
+  --ifm-color-emphasis-600: #a1a1aa;
+}
+
+/* Hero section styles */
+.hero {
+  padding: 6rem 0;
+  background: var(--ifm-background-color);
+}
+
+.hero__title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  color: var(--ifm-hero-text-color);
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button styles */
+.button {
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.button--primary {
+  background: linear-gradient(90deg, #7567ce 0%, #6050c6 100%);
+  border: none;
+  color: white;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(117, 103, 206, 0.3);
+  opacity: 0.95;
+}
+
+.button--secondary {
+  background: rgba(117, 103, 206, 0.1);
+  border: 1px solid rgba(117, 103, 206, 0.2);
+  color: var(--ifm-color-primary);
+}
+
+.button--secondary:hover {
+  background: rgba(117, 103, 206, 0.15);
+  border-color: rgba(117, 103, 206, 0.3);
+  color: var(--ifm-color-primary-light);
+  transform: translateY(-2px);
+}
+
+.button--lg {
+  font-size: 1.1rem;
+  padding: 0.875rem 2rem;
+}
+
+.margin-right--md {
+  margin-right: 1rem;
+}
+
+.features {
+  padding: 2rem 0;
+  width: 100%;
+  background: var(--ifm-background-color);
+}
+
+.featureCard {
+  height: 100%;
+  padding: 2.5rem;
+  background: var(--feature-card-bg);
+  border: 1px solid var(--feature-card-border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px var(--feature-card-shadow);
+}
+
+.featureCard:hover {
+  border-color: var(--feature-card-hover-border);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px var(--feature-card-shadow);
+}
+
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.featureDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--ifm-background-color);
 }
 
 .video-container {
