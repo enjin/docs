@@ -385,7 +385,7 @@ query GetPendingEvents{
 ```
   </TabItem>
   <TabItem value="curl" label="cURL">
-```curl
+```
 curl --location 'https://platform.canary.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \

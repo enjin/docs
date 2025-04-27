@@ -83,7 +83,7 @@ GraphQL queries and mutations are executed by sending POST HTTP requests to the 
 :::
 Here is an example of an HTTP cURL post request to create a collection on the Canary blockchain, with the API Token provided:
 
-```curl
+```
 curl --location --request POST 'https://platform.canary.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Insert your API token here' \
