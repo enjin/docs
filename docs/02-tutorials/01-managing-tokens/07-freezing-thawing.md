@@ -69,11 +69,15 @@ In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin
 
 Choose the freeze state, and click on the "**Freeze**" button.
 
-![Freeze Collection Form](./img/freeze-collection-form.png)
+<p align="center">
+  <img src={require('./img/freeze-collection-form.png').default} alt="Freeze Collection Form" />
+</p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Freeze Collection Transaction Request Banner](./img/freeze-collection-banner.png)
+<p align="center">
+  <img src={require('./img/freeze-collection-banner.png').default} width="600" alt="Freeze Collection Transaction Request Banner" />
+</p>
 
 ![Pending Freeze Collection Transaction Request](./img/pending-freeze-collection-txn.png)
 

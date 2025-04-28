@@ -36,7 +36,9 @@ The installer will ask a few questions, such as your platform URL, the auth toke
 
 Once it's finished installing, you should be able to load up the UI by going to the path you specified for the 'default route path' step.
 
-![Choose a region](./img/setup-configuration.jpg)
+<p align="center">
+  <img src={require('./img/setup-configuration.jpg').default} alt="Choose a region" />
+</p>
 
 When logging in to the Platform, it'll ask for the `Enjin Platform URL` and `Authorization Token` you used to set up the platform, for authentication purposes.  
 Once Inserted, you will be redirected to the platform UI and you'll be able to start using it.

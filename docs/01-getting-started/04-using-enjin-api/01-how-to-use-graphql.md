@@ -129,13 +129,17 @@ Click the `Show GraphQL Explorer` button.
 
 Here, you can view a complete list of available queries and mutations, along with the associated fields and arguments for each of them.
 
-![Example of using the graphiql playground query builder](./img/using-graphql-builder.gif)
+<p align="center">
+  <img src={require('./img/using-graphql-builder.gif').default} alt="Example of using the graphiql playground query builder" />
+</p>
 
 ### Step3: Add a query or mutation to start building your operation
 
 Add a `query` or `mutation` into the "write" panel, and you'll see the list of available options in the explorer update to suit the operation type.
 
-![Example of switching to mutation in the graphiql playground query builder](./img/using-graphql-builder-mutation.gif)
+<p align="center">
+  <img src={require('./img/using-graphql-builder-mutation.gif').default} alt="Example of switching to mutation in the graphiql playground query builder" />
+</p>
 
 ### Step 4: Select which operations and datapoints you require
 
@@ -143,7 +147,9 @@ Click the required data points to automatically add them to the write column.
 
 This feature eliminates any guesswork when structuring your operations and helps you make the most of the Enjin Platform Schema.
 
-![Example of building a mutation in the graphiql playground query builder](./img/building-mutation.gif)
+<p align="center">
+  <img src={require('./img/building-mutation.gif').default} alt="Example of building a mutation in the graphiql playground query builder" />
+</p>
 
 ### Step 5: Click the play button to execute your operation
 
@@ -151,7 +157,9 @@ To execute your operation and view the response, simply click the `Execute Query
 
 You can execute any on-chain operation here. You can even mint tokens and view wallet data on [Mainnet](https://platform.enjin.io/graphiql).
 
-![Executing a query in the graphiql playground query builder](./img/execute-call.gif)
+<p align="center">
+  <img src={require('./img/execute-call.gif').default} alt="Executing a query in the graphiql playground query builder" />
+</p>
 
 ## GraphQL Operation Structures
 
@@ -392,7 +400,10 @@ query GetTokenInfo($collection_id: BigInt! $token_id: BigInt) {
 }
 ```
 
-![Example of converting query args into variables](./img/converting-query-args-into-variables.gif)
+
+<p align="center">
+  <img src={require('./img/converting-query-args-into-variables.gif').default} alt="Example of converting query args into variables" />
+</p>
 
 ### Types
 

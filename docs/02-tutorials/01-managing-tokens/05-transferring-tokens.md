@@ -48,9 +48,13 @@ Click on the "**Batch**" button, followed by "**Batch Transfer**".
 Fill in the recipient, amount, and other optional arguments in the corresponding fields.  
 Once you're satisfied with the options, click on the "**Transfer**" button at the bottom right corner to create the request.
 
-![Transfer Token Form](./img/transfer-token-form.png)
+<p align="center">
+  <img src={require('./img/transfer-token-form.png').default} alt="Transfer Token Form" />
+</p>
 
-![Transfer Token Transaction Banner](./img/transfer-token-banner.png)
+<p align="center">
+  <img src={require('./img/transfer-token-banner.png').default} width="600" alt="Transfer Token Transaction Banner" />
+</p>
 
 ![Pending Transfer Transaction](./img/pending-transfer-txn.png)
 Clicking "**View**" on the notification will take you to your Transactions List.

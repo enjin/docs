@@ -13,7 +13,9 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 Enjin Relaychain is a decentralized and scalable network built for digital assets and non-fungible tokens (NFTs). It is based on Polkadot and uses the open-source Substrate framework to provide a comprehensive and efficient ecosystem for NFT creation. With superior functionality, speed, and low costs, Enjin Blockchain is designed to enhance the creation and management of digital assets in a secure and reliable manner.
 
-![](./img/19.webp)
+<p align="center">
+  <img src={require('./img/19.webp').default} width="700" />
+</p>
 
 ## Benefits of the Enjin Relaychain:
 

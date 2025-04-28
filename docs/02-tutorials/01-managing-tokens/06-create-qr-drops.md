@@ -42,11 +42,15 @@ In the Platform menu, navigate to "**[Beams](https://platform.canary.enjin.io/be
 
 Fill in the beam settings and optional arguments in the corresponding fields.
 
-![Create Beam Form](./img/create-beam-form.png)
+<p align="center">
+  <img src={require('./img/create-beam-form.png').default} width="800" alt="Create Beam Form" />
+</p>
 
 Fill the tokens that you want to include in this Beam (You can add more tokens by adding the "**Add Token**" button)
 
-![Create Beam Form 2](./img/create-beam-form-2.png)
+<p align="center">
+  <img src={require('./img/create-beam-form-2.png').default} width="800" alt="Create Beam Form 2" />
+</p>
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.  
 If a signature request is needed, approve it.

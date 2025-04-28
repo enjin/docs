@@ -60,7 +60,9 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Create Token Transaction Request Banner](./img/create-token-banner.png)
+<p align="center">
+  <img src={require('./img/create-token-banner.png').default} width="600" alt="Create Token Transaction Request Banner" />
+</p>
 
 ![Pending Create Token Transaction](./img/pending-create-token-txn.png)
 

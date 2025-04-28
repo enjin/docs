@@ -34,7 +34,9 @@ With nomination pools, there is one account that multiple users put their funds 
 - **Receive liquid token -** a liquid token, sENJ, is received that represents the user's stake. This can be transferred or even exchanged for ENJ
 - **Immediate exit -** due to the liquid token, the user can exit immediately by exchanging their sENJ for ENJ
 
-![](./img/1.png)
+<p align="center">
+  <img src={require('./img/1.png').default} width="700" />
+</p>
 
 ### Direct Staking
 
@@ -48,7 +50,9 @@ Direct staking is not supported on Enjin. This information is just for compariso
 - **Stash / controller accounts -** multiple accounts must be created, increasing complexity
 - **28 days unbonding period -** users must wait 28 days after unbonding to receive their funds
 
-![](./img/2.png)
+<p align="center">
+  <img src={require('./img/2.png').default} width="600" />
+</p>
 
 ## Tokens Overview
 

@@ -52,14 +52,18 @@ If you already have a query or mutation in your builder, you can quickly open it
 
 - For instance, if you want to create a token with an initial supply of 10, you will need to focus on the `params` argument. This argument is of type "CreateTokenParams", a complex type.
 
-![Example of exploring an argument](./img/arg-explore-example.png)
+<p align="center">
+  <img src={require('./img/arg-explore-example.png').default} alt="Example of exploring an argument" />
+</p>
 
 - Click on `CreateTokenParams` to explore its fields:
   - **tokenId**: Of type "EncodableTokenIdInput", which specifies the token identifier.
   - **initialSupply**: Of type "BigInt", which you would set to 10.
   - **cap**: Of type "TokenMintCap", which may define the maximum supply (optional).
 
-![Example of exploring a complex type argument](./img/exploring-complex-type.png)
+<p align="center">
+  <img src={require('./img/exploring-complex-type.png').default} alt="Example of exploring a complex type argument" />
+</p>
 
 #### Constructing Your Mutation
 

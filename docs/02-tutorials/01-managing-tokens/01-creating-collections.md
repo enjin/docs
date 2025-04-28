@@ -46,7 +46,9 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Collection created banner that appears after creating a transaction request](./img/collection-created-banner.png)
+<p align="center">
+  <img src={require('./img/collection-created-banner.png').default} width="600" alt="Collection created banner that appears after creating a transaction request" />
+</p>
 
 ![Pending create collection transaction](./img/pending-create-collection-txn.png)
 

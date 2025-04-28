@@ -42,11 +42,15 @@ In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/t
 
 Insert the amount of tokens to Burn, and click on the "**Burn**" button.
 
-![Burn Token Form](./img/burn-token-form.png)
+<p align="center">
+  <img src={require('./img/burn-token-form.png').default} alt="Burn Token Form" />
+</p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Burn Transaction Request Banner](./img/burn-token-banner.png)
+<p align="center">
+  <img src={require('./img/burn-token-banner.png').default} width="600" alt="Burn Transaction Request Banner" />
+</p>
 
 ![Pending Burn Transaction](./img/pending-burn-token-txn.png)
 
@@ -72,7 +76,9 @@ While destroying a token removes the token from the blockchain, and retrieves th
 
 To destroy a token, follow the above instructions for Burning a token, but make sure to tick the `Remove Token Storage` box.
 
-![Destroying a Token](./img/remove-token-storage.png)
+<p align="center">
+  <img src={require('./img/remove-token-storage.png').default} width="600" alt="Destroying a Token" />
+</p>
 
 ### Destroying a collection
 
@@ -91,11 +97,15 @@ In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin
 
 Then, confirm by clicking the "**Destroy**" button
 
-![Destroy Collection Form](./img/destroy-collection-form.png)
+<p align="center">
+  <img src={require('./img/destroy-collection-form.png').default} alt="Destroy Collection Form" />
+</p>
 
 The Transaction Request will then appear in the "**Transactions**" menu
 
-![Destroy Collection Transaction Request Banner](./img/destroy-collection-banner.png)
+<p align="center">
+  <img src={require('./img/destroy-collection-banner.png').default} width="600" alt="Destroy Collection Transaction Request Banner" />
+</p>
 
 ![Pending Destroy Collection Transaction](./img/pending-destroy-collection-txn.png)
 

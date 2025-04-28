@@ -96,11 +96,15 @@ To add / edit an attribute, select the "**Set**" option, type in the "**Key**" t
 
 Once you're satisfied with the options, click on the "**Set Attribute**" button at the bottom right corner to create the request.
 
-![Set Attribute form](./img/set-attribute-form.png)
+<p align="center">
+  <img src={require('./img/set-attribute-form.png').default} alt="Set Attribute form" />
+</p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Set Attribute Banner](./img/set-attribute-banner.png)
+<p align="center">
+  <img src={require('./img/set-attribute-banner.png').default} width="600" alt="Set Attribute Banner" />
+</p>
 
 ![Pending Set Attribute Banner](./img/pending-set-attr-txn.png)
 

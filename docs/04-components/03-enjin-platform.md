@@ -35,7 +35,9 @@ This versatile platform offers two versions to cater to different needs. The [op
 
 How does Enjin Platform bring all these functionalities together? The answer lies in its structure. The platform comprises distinct components each designed to offer a unique solution for developers and creators. 
 
-![](./img/5.png)
+<p align="center">
+  <img src={require('./img/5.png').default} width="700" />
+</p>
 
 ### API & Schema
 

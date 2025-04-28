@@ -44,11 +44,15 @@ In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/t
 
 Set the recipient and the amount in the corresponding fields, and Click on "**Mint**"
 
-![Mint Token Form](./img/mint-token-form.png)
+<p align="center">
+  <img src={require('./img/mint-token-form.png').default} alt="Mint Token Form" />
+</p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
-![Mint Transaction Request Banner](./img/mint-token-banner.png)
+<p align="center">
+  <img src={require('./img/mint-token-banner.png').default} width="600" alt="Mint Transaction Request Banner" />
+</p>
 
 ![Pending Mint Transaction](./img/pending-mint-txn.png)
 

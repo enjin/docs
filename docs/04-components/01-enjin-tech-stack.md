@@ -20,14 +20,17 @@ The Enjin Platform is a powerful Platform as a Service (PaaS) for blockchain tec
 
 Unlike traditional blockchain game development that requires building and maintaining complex infrastructure, the Enjin Platform offers a comprehensive, and adaptable set of tools and services. With Enjin's Blockchain SDKs, Platform API, and Automation services such as the wallet Daemon, game developers can revolutionize the creation of blockchain games. The Enjin Platform also incorporates Enjin Relaychain and Enjin Matrixchain, which serve as the blockchain backbone of the entire system.
 
-![](./img/2.png)
+<p align="center">
+  <img src={require('./img/2.png').default} />
+</p>
 
 The Enjin Ecosystem provides numerous advantages, one of which is the ability to leverage innovative crowdfunding models. With this platform, you can create gaming assets such as characters, weapons, and real estate ahead of time and offer them to gamers through conventional crowdfunding platforms or a custom website powered by NFT.io. Using Beam, the world's first QR-based blockchain asset distribution service, assets can be easily shared with QR codes. Furthermore, you can facilitate user-driven value creation by enabling players to modify, craft, upgrade, build, and trade blockchain-based gaming assets, which can gain intrinsic value based on their history, stats, utility, and customization.
 
 Enjin's Ecosystem provides benefits beyond just cutting-edge crowdfunding models, including the establishment of user loyalty and trust through true ownership of digital gaming assets. This ownership leads to more loyal users who are more likely to make lost revenue by eliminating gray market trading, which can account for up to 40% of lost revenue. Furthermore, player churn can be reduced by ensuring gaming assets are owned by gamers and safely stored in their private Enjin Wallet, which requires approval for each transaction, thus making hacking or in-game fraud impossible.
 
-![](./img/3.webp)
-
+<p align="center">
+  <img src={require('./img/3.webp').default} width="700" />
+</p>
 
 The Enjin Platform's versatility extends beyond gaming to a variety of other use cases. For instance, you can transform artwork into NFTs, allowing for easy display in virtual galleries or as proof of ownership for physical pieces.
 

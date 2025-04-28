@@ -31,7 +31,9 @@ Meanwhile, setting the "**Max Token Supply**" to `1` ensures that each token in 
 Suppose you want to create a <GlossaryTerm id="collection" /> with one simple but crucial rule: Each token has a pre-defined max supply which can only be decreased.  
 Achieving this requires careful configuration of your Mint Policy:
 
-![Enforced Collapsable Supply](./img/enforce-collapsing-supply.png)
+<p align="center">
+  <img src={require('./img/enforce-collapsing-supply.png').default} width="600" alt="Enforced Collapsable Supply" />
+</p>
 
 By toggling the "**Force Collapsing Supply**", you ensure that each token in the collection will be of collapsing supply type.  
 This guarantees the immutability of each token's maximum supply in the collection, maintaining its value and scarcity over time.

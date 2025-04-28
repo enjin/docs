@@ -72,23 +72,29 @@ Chain IDs on Enjin Chains:
 To send transactions to your user, he must be connected to your dapp.  
 Clicking `Get Wallets`, followed by `Polkadot Demo 2.0`, initiates a connection between your user and your dapp.
 
-![Connect Wallet Modal](./img/connect-wallet-qr-modal.png)
+<p align="center">
+  <img src={require('./img/connect-wallet-qr-modal.png').default} width="600" alt="Connect Wallet Modal" />
+</p>
 
 Once the user scans the QR code with his Enjin wallet app (or any other wallet with WalletConnect & Enjin Blockchain support) he will be asked to approve the connection:
 
-![Approve Connection Request](./img/approve-connection-request.jpg)
-
+<p align="center">
+  <img src={require('./img/approve-connection-request.jpg').default} width="600" alt="Approve Connection Request" />
+</p>
 
 Once a connection was made, you'll receive a list of all addresses connected from your user's wallet.  
 Now you are able to send any transaction request to your user's wallet.  
 To demonstrate a sample transaction request, click the "**Submit Transaction with Polkadot.JS**" button on one of the displayed addresses.
 
-![Connected Wallets](./img/connected-wallets.png)
-
+<p align="center">
+  <img src={require('./img/connected-wallets.png').default} width="600" alt="Connected Wallets" />
+</p>
 
 A Transaction Request dialog will pop up on user's connected wallet app, asking for approval.
 
-![Confirm Transaction Request](./img/confirm-txn-request.jpg)
+<p align="center">
+  <img src={require('./img/confirm-txn-request.jpg').default} width="600" alt="Confirm Transaction Request" />
+</p>
 
 Once the transaction request is confirmed by the user, his wallet will sign and broadcast a message saying "I am signing this transaction!".
 
