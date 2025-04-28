@@ -1,15 +1,7 @@
 ---
 title: "Local Installation"
 slug: "local-installation"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Local Installation - Run Enjin Solutions Locally"
-  description: "Learn how to install Enjin's blockchain tools locally on your system, enabling you to develop and test your applications offline or in a controlled environment."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:19:46 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Dec 11 2024 19:00:02 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to install Enjin's blockchain tools locally on your system, enabling you to develop and test your applications offline or in a controlled environment."
 ---
 ## Running it locally
 

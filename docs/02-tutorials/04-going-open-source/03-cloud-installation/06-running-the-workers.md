@@ -1,15 +1,7 @@
 ---
 title: "Running the Workers"
 slug: "running-the-workers"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Running the Workers - Manage Enjin’s Platform Workers"
-  description: "Understand how to run and manage workers in the Enjin platform to handle asynchronous tasks and improve performance."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:17:20 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:40:48 GMT+0000 (Coordinated Universal Time)"
+description: "Understand how to run and manage workers in the Enjin platform to handle asynchronous tasks and improve performance."
 ---
 :::tip
 Before syncing for the first time it would be recommended to increase your droplet ram amount to at least 4GB.  You will be able to scale back afterwards for normal day-to-day use as determined by your needs.

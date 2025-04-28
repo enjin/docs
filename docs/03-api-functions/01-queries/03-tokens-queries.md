@@ -1,15 +1,7 @@
 ---
 title: "Tokens"
 slug: "tokens"
-excerpt: "Operations to help you create and manage tokens."
-hidden: false
-metadata: 
-  title: "Tokens Queries - Access Blockchain Token Information"
-  description: "Query the Enjin API to retrieve detailed information about blockchain tokens, including ownership, metadata, and transaction history."
-  image: []
-  robots: "index"
-createdAt: "Tue Nov 07 2023 19:42:46 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:37:41 GMT+0000 (Coordinated Universal Time)"
+description: "Query the Enjin API to retrieve detailed information about blockchain tokens, including ownership, metadata, and transaction history."
 ---
 
 import Tabs from '@theme/Tabs';

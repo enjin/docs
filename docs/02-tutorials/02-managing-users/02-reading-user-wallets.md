@@ -1,15 +1,7 @@
 ---
 title: "Reading User Wallets"
 slug: "reading-user-wallets"
-excerpt: "Fetch a wallet's data and see what tokens are inside."
-hidden: false
-metadata: 
-  title: "Reading User Wallets - Access Wallet Data Efficiently"
-  description: "Explore how to read user wallet data, providing insights into user transactions, holdings, and interactions within the blockchain."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 02:40:11 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 18:21:09 GMT+0000 (Coordinated Universal Time)"
+description: "Explore how to read user wallet data, providing insights into user transactions, holdings, and interactions within the blockchain."
 ---
 
 import Tabs from '@theme/Tabs';

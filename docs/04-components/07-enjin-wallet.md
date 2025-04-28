@@ -1,15 +1,7 @@
 ---
 title: "Enjin Wallet"
 slug: "enjin-wallet"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Mobile Wallet - Manage Blockchain Assets on the Go"
-  description: "Discover the Enjin Mobile Wallet, enabling users to manage blockchain assets, including tokens and NFTs, securely from their smartphones."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 23:27:25 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Oct 11 2024 08:37:36 GMT+0000 (Coordinated Universal Time)"
+description: "Discover the Enjin Mobile Wallet, enabling users to manage blockchain assets, including tokens and NFTs, securely from their smartphones."
 ---
 ## What is the Enjin Wallet?
 

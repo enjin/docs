@@ -1,15 +1,7 @@
 ---
 title: "Transactions"
 slug: "transactions"
-excerpt: "Operations to help you manage transactions."
-hidden: false
-metadata: 
-  title: "Transactions Query - Access Transaction Data"
-  description: "Use the Enjin API to query transaction data, including blockchain transactions history, status, and details."
-  image: []
-  robots: "index"
-createdAt: "Tue Nov 07 2023 19:39:35 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:36:18 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to query transaction data, including blockchain transactions history, status, and details."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

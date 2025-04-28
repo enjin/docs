@@ -1,15 +1,7 @@
 ---
 title: "Getting Started"
 slug: "getting-started"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Getting Started - Develop with the Enjin SDK"
-  description: "Learn how to get started with the Enjin SDK, your first step toward building powerful blockchain-based applications and games."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 01:08:59 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:22:36 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to get started with the Enjin SDK, your first step toward building powerful blockchain-based applications and games."
 ---
 
 import Tabs from '@theme/Tabs';

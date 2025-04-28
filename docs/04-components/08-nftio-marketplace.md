@@ -1,15 +1,7 @@
 ---
 title: "NFT.io Marketplace"
 slug: "nftio-marketplace"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "NFT.io Marketplace - Trade NFTs Securely on Enjin"
-  description: "nft-io-marketplace"
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 23:29:38 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Sep 12 2024 12:51:50 GMT+0000 (Coordinated Universal Time)"
+description: "nft-io-marketplace"
 ---
 ## What is NFT.io?
 

@@ -1,10 +1,7 @@
 ---
 title: "MultiToken Pallet"
 slug: "multitoken-pallet"
-excerpt: "The utility pallets of the Enjin Blockchain."
-hidden: false
-createdAt: "Tue Oct 31 2023 19:08:11 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Jan 07 2025 10:05:37 GMT+0000 (Coordinated Universal Time)"
+description: "The utility pallets of the Enjin Blockchain."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

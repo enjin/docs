@@ -1,15 +1,7 @@
 ---
 title: "Collections"
 slug: "collections"
-excerpt: "Operations to help you create and manage collections."
-hidden: false
-metadata: 
-  title: "Collections Query - Retrieve Blockchain Collections Data"
-  description: "Query the Enjin API to retrieve data about collections, including metadata and token information within a collection."
-  image: []
-  robots: "index"
-createdAt: "Fri Nov 10 2023 05:36:56 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:36:55 GMT+0000 (Coordinated Universal Time)"
+description: "Query the Enjin API to retrieve data about collections, including metadata and token information within a collection."
 ---
 
 import Tabs from '@theme/Tabs';

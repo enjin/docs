@@ -1,15 +1,7 @@
 ---
 title: "Brand Collab NFTs"
 slug: "brand-collab-nfts"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Brand Collab NFTs - Power Your Collaborations with Blockchain"
-  description: "Discover how to create brand collaboration NFTs, allowing for innovative partnerships that utilize blockchain to engage audiences with exclusive digital assets."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 24 2024 23:22:47 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 18:23:45 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to create brand collaboration NFTs, allowing for innovative partnerships that utilize blockchain to engage audiences with exclusive digital assets."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

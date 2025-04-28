@@ -1,10 +1,6 @@
 ---
 title: "Run a Relaychain Node"
 slug: "../run-relaychain-node"
-excerpt: ""
-hidden: false
-createdAt: "Sun Jul 14 2024 16:11:54 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Apr 09 2025 09:24:37 GMT+0000 (Coordinated Universal Time)"
 ---
 There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)).
 

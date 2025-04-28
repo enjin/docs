@@ -1,15 +1,7 @@
 ---
 title: "Enjin Platform v1.9.0 Upgrade Guide"
 slug: "enjin-platform-v190"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Enjin Platform v1.9.0 - Latest Features and Improvements"
-  description: "Learn about the latest features and improvements in Enjin Platform v1.9.0, including performance enhancements and new tools."
-  image: []
-  robots: "index"
-createdAt: "Wed Jul 24 2024 14:16:01 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:42:16 GMT+0000 (Coordinated Universal Time)"
+description: "Learn about the latest features and improvements in Enjin Platform v1.9.0, including performance enhancements and new tools."
 ---
 Every year the Laravel framework that the Platform is based on gets a major version update.  When this happens we also update the Platform code to use the new version.  This update requires a couple of extra steps as we follow the upgrade guide from the [Laravel website](https://laravel.com/docs/11.x/upgrade).
 

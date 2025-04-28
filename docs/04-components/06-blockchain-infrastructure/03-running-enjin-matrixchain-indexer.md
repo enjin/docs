@@ -1,10 +1,7 @@
 ---
 title: "Running a Matrixchain Indexer"
 slug: "running-enjin-matrixchain-indexer"
-excerpt: "The Enjin Matrixchain Indexer is a tool that processes and serves blockchain data for applications that require efficient data retrieval, filtering, and relations. This guide will walk you through setting up and running the indexer step-by-step."
-hidden: false
-createdAt: "Fri Oct 11 2024 08:50:16 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Oct 11 2024 08:51:30 GMT+0000 (Coordinated Universal Time)"
+description: "The Enjin Matrixchain Indexer is a tool that processes and serves blockchain data for applications that require efficient data retrieval, filtering, and relations. This guide will walk you through setting up and running the indexer step-by-step."
 ---
 ## Prerequisites
 

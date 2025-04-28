@@ -1,15 +1,7 @@
 ---
 title: "Enjin Beam"
 slug: "beam"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Enjin Beam - Distribute Blockchain Assets via QR Codes"
-  description: "Discover how to use Enjin Beam to distribute blockchain assets through QR codes, making it easy to send and receive NFTs and tokens."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 03:02:37 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 01:05:46 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to use Enjin Beam to distribute blockchain assets through QR codes, making it easy to send and receive NFTs and tokens."
 ---
 ## What is Enjin Beam?
 

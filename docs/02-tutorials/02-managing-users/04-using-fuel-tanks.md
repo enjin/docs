@@ -1,15 +1,7 @@
 ---
 title: "Using Fuel Tanks"
 slug: "using-fuel-tanks"
-excerpt: "Subsidize fees for your players while reducing overall costs."
-hidden: false
-metadata: 
-  title: "Using Fuel Tanks - Power Blockchain Transactions Without Fees"
-  description: "Discover how to use fuel tanks to cover blockchain transaction fees, creating a seamless and cost-free experience for users within your application."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 03:58:03 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Mar 24 2025 16:38:17 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to use fuel tanks to cover blockchain transaction fees, creating a seamless and cost-free experience for users within your application."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

@@ -1,15 +1,7 @@
 ---
 title: "Extending the Platform"
 slug: "extending-the-platform"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Extending the Platform - Add New Features to Enjin"
-  description: "Learn how to extend the Enjin platform by adding custom features and integrations to meet the unique needs of your blockchain projects."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:48:06 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:50:07 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to extend the Enjin platform by adding custom features and integrations to meet the unique needs of your blockchain projects."
 ---
 Our platform lets you add your own code to customize it without changing the original code. For example, you can use the `adhocRules` feature in the Beam Mutation to set custom rules. 
 

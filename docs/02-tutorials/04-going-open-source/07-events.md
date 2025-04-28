@@ -1,15 +1,7 @@
 ---
 title: "Events"
 slug: "events"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Events - Handle Blockchain Events in the Enjin Platform"
-  description: "Explore how to handle blockchain events within the Enjin platform, enabling real-time updates and interactions in your application."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:46:15 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Nov 06 2024 15:33:33 GMT+0000 (Coordinated Universal Time)"
+description: "Explore how to handle blockchain events within the Enjin platform, enabling real-time updates and interactions in your application."
 ---
 
 import Tabs from '@theme/Tabs';

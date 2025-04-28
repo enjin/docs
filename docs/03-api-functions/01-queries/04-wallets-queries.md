@@ -1,15 +1,7 @@
 ---
 title: "Wallets"
 slug: "wallets"
-excerpt: "Operations to help you create and manage wallets."
-hidden: false
-metadata: 
-  title: "Wallets Queries - Retrieve Wallet Data and Balances"
-  description: "Use the Enjin API to perform wallets queries, including retrieving balances, transaction history, and associated blockchain assets."
-  image: []
-  robots: "index"
-createdAt: "Tue Nov 07 2023 20:26:57 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:37:57 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to perform wallets queries, including retrieving balances, transaction history, and associated blockchain assets."
 ---
 
 import Tabs from '@theme/Tabs';

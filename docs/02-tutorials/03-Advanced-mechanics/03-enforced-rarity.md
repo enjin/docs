@@ -1,15 +1,7 @@
 ---
 title: "Enforced Rarity"
 slug: "enforced-rarity"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Enforced Rarity - Control Scarcity in Blockchain Assets"
-  description: "Learn how to enforce rarity in your blockchain assets using Enjin's features, ensuring controlled distribution and enhanced value of rare tokens."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 08 2023 18:48:55 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:09:19 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to enforce rarity in your blockchain assets using Enjin's features, ensuring controlled distribution and enhanced value of rare tokens."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

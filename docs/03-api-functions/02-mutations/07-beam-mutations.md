@@ -1,15 +1,7 @@
 ---
 title: "Beam"
 slug: "beam"
-excerpt: "Operations to help you create and manage QR Drops."
-hidden: false
-metadata: 
-  title: "Beam Mutations - Manage Beam QR Code Asset Distribution"
-  description: "Perform Beam mutations in the Enjin API to manage QR code activations, enabling blockchain asset distribution via QR code scans."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:15:10 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:40:00 GMT+0000 (Coordinated Universal Time)"
+description: "Perform Beam mutations in the Enjin API to manage QR code activations, enabling blockchain asset distribution via QR code scans."
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,15 +1,7 @@
 ---
 title: "Using WalletConnect"
 slug: "using-wallet-connect"
-excerpt: "Learn how to send transaction request to user's wallet using WalletConnect"
-hidden: false
-metadata: 
-  title: "Using WalletConnect - Enable Easy Wallet Connections"
-  description: "Find out how to use WalletConnect to seamlessly connect user wallets to your application, enhancing blockchain integration and accessibility."
-  image: []
-  robots: "index"
-createdAt: "Tue Apr 30 2024 14:54:55 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Nov 05 2024 15:38:15 GMT+0000 (Coordinated Universal Time)"
+description: "Find out how to use WalletConnect to seamlessly connect user wallets to your application, enhancing blockchain integration and accessibility."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

@@ -1,10 +1,7 @@
 ---
 title: "Enjin Relaychain"
 slug: "../enjin-relaychain"
-excerpt: "Layer 0: The security layer of the Enjin Blockchain."
-hidden: false
-createdAt: "Tue Oct 31 2023 03:28:27 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
+description: "Layer 0: The security layer of the Enjin Blockchain."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

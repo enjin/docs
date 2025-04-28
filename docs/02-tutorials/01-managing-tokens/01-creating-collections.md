@@ -1,15 +1,7 @@
 ---
 title: "Creating Collections"
 slug: "creating-collections"
-excerpt: "Deploy a collection that you can fill with tokens."
-hidden: false
-metadata: 
-  title: "Creating Collections - Organize Your Blockchain Assets"
-  description: "Discover how to create and manage collections in the Enjin ecosystem, allowing you to organize blockchain assets efficiently."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 01:05:27 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sat Feb 08 2025 21:09:14 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to create and manage collections in the Enjin ecosystem, allowing you to organize blockchain assets efficiently."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

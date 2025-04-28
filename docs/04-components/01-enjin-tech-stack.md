@@ -1,15 +1,7 @@
 ---
 title: "Enjin Tech-Stack"
 slug: "enjin-tech-stack"
-excerpt: "The world's most robust set of Web3 game development tools."
-hidden: false
-metadata: 
-  title: "Enjin Techstack - Blockchain Solutions for Games and Apps"
-  description: "Explore the Enjin Ecosystem, providing innovative blockchain solutions for developers, enabling the integration of NFTs, tokens, and decentralized applications."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 18:40:55 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Mar 21 2025 02:54:21 GMT+0000 (Coordinated Universal Time)"
+description: "Explore the Enjin Ecosystem, providing innovative blockchain solutions for developers, enabling the integration of NFTs, tokens, and decentralized applications."
 ---
 Enjin is the ideal blockchain platform for your game or business due to its gaming roots and the powerful Relaychain infrastructure that it's built upon. The Enjin ecosystem comprises the Enjin Platform, NFT.io, Enjin Wallet 2.0, Beam, SDKs, and other tools and services that allow game and app developers to boost their revenue, gain a competitive advantage, and innovate in ways that were previously impossible.
 

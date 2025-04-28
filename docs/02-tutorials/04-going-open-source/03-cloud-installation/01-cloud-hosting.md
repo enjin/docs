@@ -1,15 +1,7 @@
 ---
 title: "Cloud Hosting"
 slug: "cloud-hosting"
-excerpt: "The Open-Source Platform is a Laravel application and can be hosted on a cloud provider without using Docker. In this tutorial, we will be setting up the Enjin Platform on [DigitalOcean](https://digitalocean.com/)."
-hidden: false
-metadata: 
-  title: "Cloud Hosting - Host Your Blockchain Solutions in the Cloud"
-  description: "Discover how to host Enjin’s blockchain platform in the cloud, ensuring high availability and scalability for your blockchain applications."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:09:36 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:17:08 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to host Enjin’s blockchain platform in the cloud, ensuring high availability and scalability for your blockchain applications."
 ---
 ## Setting up a Droplet
 

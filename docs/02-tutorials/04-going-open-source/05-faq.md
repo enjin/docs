@@ -1,15 +1,7 @@
 ---
 title: "FAQ"
 slug: "faq"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "FAQ - Frequently Asked Questions About Enjin Platform"
-  description: "Find answers to frequently asked questions about the Enjin platform, including setup, integration, and troubleshooting tips."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 20 2023 23:13:25 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:48:22 GMT+0000 (Coordinated Universal Time)"
+description: "Find answers to frequently asked questions about the Enjin platform, including setup, integration, and troubleshooting tips."
 ---
 ## Q: How often is the Enjin Platform Updated?
 

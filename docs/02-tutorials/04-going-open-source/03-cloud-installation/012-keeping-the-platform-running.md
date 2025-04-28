@@ -1,15 +1,7 @@
 ---
 title: "Keeping the Platform Running"
 slug: "keeping-the-platform-running"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Keeping the Platform running - Ensure Continuous Improvement"
-  description: "Ensure that your Enjin platform is always running the latest version with this guide to keeping the platform running."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 02 2024 01:55:17 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Nov 12 2024 09:52:02 GMT+0000 (Coordinated Universal Time)"
+description: "Ensure that your Enjin platform is always running the latest version with this guide to keeping the platform running."
 ---
 Rather than running the various workers and other long running commands in `tmux` you can instead use `supervisor` to launch and monitor your processes.  The big advantage of using `supervisor` is that it will restart your commands should they stop running.
 

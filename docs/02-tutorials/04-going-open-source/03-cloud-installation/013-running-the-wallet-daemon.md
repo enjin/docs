@@ -1,15 +1,7 @@
 ---
 title: "Running the Wallet Daemon"
 slug: "running-the-wallet-daemon"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Running the Wallet Daemon - Secure Blockchain Transactions"
-  description: "Learn how to run the Wallet Daemon for managing blockchain transactions securely within the Enjin platform."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:24:35 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Nov 13 2024 15:48:13 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to run the Wallet Daemon for managing blockchain transactions securely within the Enjin platform."
 ---
 Along with running the Platform natively on your own cloud service, you can also build and run the wallet daemon natively too.  This requires just a few steps to configure and build the app which can then be run from the same server as the platform or on a completely different server.  It would be highly recommended to run the wallet daemon app on a separate server, and ideally one which is is configured to only allow connections to and from your platform server, or at least not generally accessible directly from the internet.  Please note that 2GB of ram would be recommended when building the wallet daemon from source locally.
 

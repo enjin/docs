@@ -1,15 +1,7 @@
 ---
 title: "Using the Enjin API"
 slug: "../using-the-enjin-api"
-excerpt: "Harness the full power of the Enjin Platform."
-hidden: false
-metadata: 
-  title: "Using the Enjin API - Connect to the Enjin Blockchain"
-  description: "Explore the Enjin API and learn how to easily interact with the Enjin blockchain, mint tokens, and manage digital assets programmatically."
-  image: []
-  robots: "index"
-createdAt: "Tue Nov 07 2023 18:35:25 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:05:02 GMT+0000 (Coordinated Universal Time)"
+description: "Explore the Enjin API and learn how to easily interact with the Enjin blockchain, mint tokens, and manage digital assets programmatically."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

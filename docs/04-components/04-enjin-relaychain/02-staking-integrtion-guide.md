@@ -1,10 +1,7 @@
 ---
 title: "Staking Integration Guide"
 slug: "staking-integration"
-excerpt: "This page will cover the basic integration of Enjin Blockchain Staking functionality, enabling you and your users to get started with staking on the Enjin Blockchain."
-hidden: false
-createdAt: "Mon Feb 26 2024 13:37:22 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Wed Feb 12 2025 11:14:24 GMT+0000 (Coordinated Universal Time)"
+description: "This page will cover the basic integration of Enjin Blockchain Staking functionality, enabling you and your users to get started with staking on the Enjin Blockchain."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

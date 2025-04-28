@@ -1,10 +1,6 @@
 ---
 title: "Validator Staking"
 slug: "validator-staking"
-excerpt: ""
-hidden: false
-createdAt: "Tue Oct 31 2023 03:27:35 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 01:03:34 GMT+0000 (Coordinated Universal Time)"
 ---
 This is an overview of staking on Enjin Relaychain, known as liquid staking.
 

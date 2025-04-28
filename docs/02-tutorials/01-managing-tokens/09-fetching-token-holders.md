@@ -1,15 +1,7 @@
 ---
 title: "Fetching Token Holders"
 slug: "fetching-token-holders"
-excerpt: "Fetching token holders is a vital process that allows you to obtain a list of all wallets addresses that hold a specific token."
-hidden: false
-metadata: 
-  title: "Fetching Token Holders - Retrieve Token Ownership Data"
-  description: "Learn how to fetch token holder data using the Enjin API, giving you insights into who holds your blockchain assets."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 08 2023 17:58:28 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:20:15 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to fetch token holder data using the Enjin API, giving you insights into who holds your blockchain assets."
 ---
 
 import Tabs from '@theme/Tabs';

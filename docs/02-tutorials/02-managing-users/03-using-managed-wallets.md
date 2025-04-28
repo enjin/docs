@@ -1,15 +1,7 @@
 ---
 title: "Using Managed Wallets"
 slug: "using-managed-wallets"
-excerpt: "Create player wallets that you can manage for them, improving UX while offering full transparency."
-hidden: false
-metadata: 
-  title: "Using Managed Wallets - Simplify Wallet Management for Users"
-  description: "Learn how to use managed wallets within the Enjin ecosystem, allowing for user-friendly blockchain wallet management and asset handling."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 03:58:40 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 17:58:00 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to use managed wallets within the Enjin ecosystem, allowing for user-friendly blockchain wallet management and asset handling."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

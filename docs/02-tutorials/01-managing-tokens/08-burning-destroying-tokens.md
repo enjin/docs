@@ -1,15 +1,7 @@
 ---
 title: "Burning / Destroying Tokens and Collections"
 slug: "burning-destroying-tokens"
-excerpt: "Managing the Removal and Burning of Tokens and Collections"
-hidden: false
-metadata: 
-  title: "Burning / Destroying Tokens - Permanently Remove Blockchain Assets"
-  description: "Understand the process of burning or destroying tokens in the Enjin ecosystem, allowing you to permanently remove assets from circulation."
-  image: []
-  robots: "index"
-createdAt: "Sun May 05 2024 15:44:36 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Dec 09 2024 11:59:59 GMT+0000 (Coordinated Universal Time)"
+description: "Understand the process of burning or destroying tokens in the Enjin ecosystem, allowing you to permanently remove assets from circulation."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

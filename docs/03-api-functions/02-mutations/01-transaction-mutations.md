@@ -1,15 +1,7 @@
 ---
 title: "Transactions"
 slug: "transactions"
-excerpt: "Operations to help you create and manage transactions."
-hidden: false
-metadata: 
-  title: "Transactions Mutations - Create and Modify Blockchain Transactions"
-  description: "Use the Enjin API to perform transactions mutations, enabling the creation and modification of blockchain transactions, including asset transfers."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:14:17 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:38:42 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to perform transactions mutations, enabling the creation and modification of blockchain transactions, including asset transfers."
 ---
 
 import Tabs from '@theme/Tabs';

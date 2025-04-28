@@ -1,15 +1,7 @@
 ---
 title: "Creating Tokens"
 slug: "../creating-tokens"
-excerpt: "Before minting any token supply, you must first design the token itself."
-hidden: false
-metadata: 
-  title: "Creating Tokens - Generate Blockchain Assets with Enjin"
-  description: "A step-by-step guide on how to create custom tokens using the Enjin Platform, enabling developers to mint blockchain assets with ease."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 01:12:51 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Oct 28 2024 13:40:23 GMT+0000 (Coordinated Universal Time)"
+description: "A step-by-step guide on how to create custom tokens using the Enjin Platform, enabling developers to mint blockchain assets with ease."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

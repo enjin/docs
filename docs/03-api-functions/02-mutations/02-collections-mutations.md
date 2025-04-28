@@ -1,15 +1,7 @@
 ---
 title: "Collections"
 slug: "collections"
-excerpt: "Operations to help you create and manage collections."
-hidden: false
-metadata: 
-  title: "Collections Mutations - Manage Blockchain Collections"
-  description: "Perform collections mutations in the Enjin API to manage your blockchain collections, including creating, modifying, and updating assets."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:14:45 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:38:58 GMT+0000 (Coordinated Universal Time)"
+description: "Perform collections mutations in the Enjin API to manage your blockchain collections, including creating, modifying, and updating assets."
 ---
 
 import Tabs from '@theme/Tabs';

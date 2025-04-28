@@ -1,15 +1,7 @@
 ---
 title: "GraphQL Requests"
 slug: "graphql-requests"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "GraphQL Requests - Query the Enjin Platform Efficiently"
-  description: "Learn how to use GraphQL requests to interact with the Enjin platform, allowing you to query and mutate blockchain data efficiently."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 01:17:26 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:51:17 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to use GraphQL requests to interact with the Enjin platform, allowing you to query and mutate blockchain data efficiently."
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,15 +1,7 @@
 ---
 title: "Platform Installation"
 slug: "platform-installation"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Platform Installation - Installing the Enjin Blockchain Platform"
-  description: "A complete guide to installing the Enjin blockchain platform, from prerequisites to deployment on cloud servers."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:14:26 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:18:31 GMT+0000 (Coordinated Universal Time)"
+description: "A complete guide to installing the Enjin blockchain platform, from prerequisites to deployment on cloud servers."
 ---
 ## Install the Enjin Platform package dependencies
 

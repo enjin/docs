@@ -1,15 +1,7 @@
 ---
 title: "Laravel Horizon"
 slug: "laravel-horizon"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Laravel Horizon - Manage Queue Workloads in Enjin"
-  description: "Discover how to use Laravel Horizon to manage and monitor queue workloads for the Enjin platform, ensuring smooth operations."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:46:42 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:49:24 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to use Laravel Horizon to manage and monitor queue workloads for the Enjin platform, ensuring smooth operations."
 ---
 The Enjin Platform's new architecture has improved how data is handled, including retrieval, processing, and storage.
 

@@ -1,15 +1,7 @@
 ---
 title: "Setting up Redis"
 slug: "setting-up-redis"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Setting up Redis - In-memory Data Storage for Enjin"
-  description: "Learn how to configure Redis for in-memory data storage, improving the performance of the Enjin blockchain platform."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 02 2024 01:08:49 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:41:34 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to configure Redis for in-memory data storage, improving the performance of the Enjin blockchain platform."
 ---
 Redis is an open source, advanced key-value store that supports various data structures such as strings, hashes, lists, sets, and sorted sets. It is widely used for caching, session management, job queueing, and real-time updates in web applications.
 

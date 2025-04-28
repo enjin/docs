@@ -1,15 +1,7 @@
 ---
 title: "Platform Events"
 slug: "platform-events"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Platform Events - Monitor and Handle Enjin Events"
-  description: "Explore how to monitor and handle platform events in the Enjin SDK, ensuring real-time updates for your blockchain applications."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 01:27:19 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:51:34 GMT+0000 (Coordinated Universal Time)"
+description: "Explore how to monitor and handle platform events in the Enjin SDK, ensuring real-time updates for your blockchain applications."
 ---
 
 import Tabs from '@theme/Tabs';

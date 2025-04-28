@@ -1,15 +1,7 @@
 ---
 title: "Beam"
 slug: "beam"
-excerpt: "Operations to help you create and manage QR Drops."
-hidden: false
-metadata: 
-  title: "Beam Queries - Access Beam QR Code Data"
-  description: "Query the Enjin API for Beam data, including the status and details of QR code activations for blockchain assets distribution."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 08 2023 02:48:11 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:38:30 GMT+0000 (Coordinated Universal Time)"
+description: "Query the Enjin API for Beam data, including the status and details of QR code activations for blockchain assets distribution."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

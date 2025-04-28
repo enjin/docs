@@ -1,10 +1,6 @@
 ---
 title: "Stake Exchange Pallet"
 slug: "stake-exchange-pallet"
-excerpt: ""
-hidden: false
-createdAt: "Tue Oct 31 2023 21:23:54 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Feb 22 2024 15:17:36 GMT+0000 (Coordinated Universal Time)"
 ---
 :::info The Enjin Blockchain Console
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.

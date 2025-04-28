@@ -1,10 +1,6 @@
 ---
 title: "Creating a Currency Token"
 slug: "../creating-a-currency-token"
-excerpt: ""
-hidden: false
-createdAt: "Sun Oct 20 2024 17:52:53 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Oct 28 2024 13:34:34 GMT+0000 (Coordinated Universal Time)"
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

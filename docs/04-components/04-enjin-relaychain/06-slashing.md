@@ -1,10 +1,7 @@
 ---
 title: "Slashing"
 slug: "slashing"
-excerpt: "Slashing is a mechanism designed to ensure the integrity, security and reliability of the Enjin Blockchain network by penalizing validators for malicious or negligent behavior. This mechanism is crucial to maintaining trust and fairness within the network by discouraging actions that could compromise its safety or availability."
-hidden: false
-createdAt: "Fri Oct 11 2024 08:07:17 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Oct 11 2024 08:30:01 GMT+0000 (Coordinated Universal Time)"
+description: "Slashing is a mechanism designed to ensure the integrity, security and reliability of the Enjin Blockchain network by penalizing validators for malicious or negligent behavior. This mechanism is crucial to maintaining trust and fairness within the network by discouraging actions that could compromise its safety or availability."
 ---
 ## Causes of Slashing
 

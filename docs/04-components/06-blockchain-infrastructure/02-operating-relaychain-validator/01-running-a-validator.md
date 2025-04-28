@@ -1,10 +1,6 @@
 ---
 title: "Running a Validator"
 slug: "run-a-validator"
-excerpt: ""
-hidden: false
-createdAt: "Sun Jul 14 2024 16:10:29 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Apr 11 2025 11:53:30 GMT+0000 (Coordinated Universal Time)"
 ---
 ## Preliminaries​
 

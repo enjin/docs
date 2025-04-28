@@ -1,15 +1,7 @@
 ---
 title: "TokenID Structure"
 slug: "tokenid-structure"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "TokenID Structure - Understanding Enjin’s Unique Token Identification"
-  description: "Learn about the Enjin TokenID structure, its format, and how to utilize it effectively to create and manage blockchain-based assets in your projects."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:49:29 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Dec 05 2024 20:27:39 GMT+0000 (Coordinated Universal Time)"
+description: "Learn about the Enjin TokenID structure, its format, and how to utilize it effectively to create and manage blockchain-based assets in your projects."
 ---
 # Token ID Structure
 

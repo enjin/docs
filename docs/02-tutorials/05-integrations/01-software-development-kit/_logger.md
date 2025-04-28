@@ -1,10 +1,6 @@
 ---
 title: "Logger"
 slug: "logger"
-excerpt: ""
-hidden: true
-createdAt: "Wed Nov 01 2023 01:42:04 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 ---
 
 import Tabs from '@theme/Tabs';

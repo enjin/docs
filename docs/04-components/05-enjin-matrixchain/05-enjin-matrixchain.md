@@ -1,10 +1,7 @@
 ---
 title: "Enjin Matrixchain"
 slug: "../enjin-matrixchain"
-excerpt: "Layer 1: The utility layer of the Enjin Blockchain."
-hidden: false
-createdAt: "Tue Oct 31 2023 03:29:30 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Sep 12 2024 12:47:19 GMT+0000 (Coordinated Universal Time)"
+description: "Layer 1: The utility layer of the Enjin Blockchain."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

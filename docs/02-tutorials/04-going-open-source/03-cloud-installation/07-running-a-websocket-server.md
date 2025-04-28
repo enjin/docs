@@ -1,15 +1,7 @@
 ---
 title: "Running a Websocket Server"
 slug: "running-a-websocket-server"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Running a Websocket Server - Real-time Communication for Enjin"
-  description: "Set up and run a websocket server to enable real-time communication and updates within the Enjin blockchain platform."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:17:51 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:41:10 GMT+0000 (Coordinated Universal Time)"
+description: "Set up and run a websocket server to enable real-time communication and updates within the Enjin blockchain platform."
 ---
 For the platform to be able to broadcast events and for your client apps to receive them you will need to connect to a websocket server.  The websocket server handles connections from your platform and client apps and facilitates the transfer of data from the events to your clients apps. There are several option available, including open source solutions as well as paid for services (e.g. [Pusher](https://pusher.com/channels/)).  Here we will show how to setup the open source [Laravel Reberb](https://laravel.com/docs/11.x/reverb) package to run a server locally.  The Laravel Reverb package is made by the same people as the Laravel framework and works seamlessly with Laravel’s existing suite of event broadcasting tools, so should you decide to scale to a paid for solution via Pusher in future there would be minimal work involved in making the switch.
 

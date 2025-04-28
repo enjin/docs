@@ -1,15 +1,7 @@
 ---
 title: "Create QR Drops"
 slug: "create-qr-drops"
-excerpt: "Send tokens to your players via QR codes."
-hidden: false
-metadata: 
-  title: "Create QR Drops - Distribute Blockchain Assets with Ease"
-  description: "Discover how to create QR drops, allowing for simple distribution of blockchain tokens to users via scannable QR codes."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 03:58:17 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 17:46:51 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to create QR drops, allowing for simple distribution of blockchain tokens to users via scannable QR codes."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

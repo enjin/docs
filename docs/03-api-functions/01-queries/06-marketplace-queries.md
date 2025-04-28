@@ -1,15 +1,7 @@
 ---
 title: "Marketplace"
 slug: "marketplace"
-excerpt: "Operations to help you create and manage a marketplace."
-hidden: false
-metadata: 
-  title: "Marketplace Queries - Retrieve Marketplace Data"
-  description: "Query the Enjin API for marketplace data, including listing information, token trades, and transaction details."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 08 2023 02:47:50 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:38:18 GMT+0000 (Coordinated Universal Time)"
+description: "Query the Enjin API for marketplace data, including listing information, token trades, and transaction details."
 ---
 
 import Tabs from '@theme/Tabs';

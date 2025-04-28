@@ -1,15 +1,7 @@
 ---
 title: "Enjin Discord Bot"
 slug: "enjin-discord-bot"
-excerpt: "Use the Enjin Discord Bot to automatically assign user's roles based on the tokens they own"
-hidden: false
-metadata: 
-  title: "Enjin Discord Bot - Integrate Blockchain Features into Discord"
-  description: "Discover how to use the Enjin Discord Bot to integrate blockchain functionality within Discord servers, enhancing community interaction."
-  image: []
-  robots: "index"
-createdAt: "Tue May 07 2024 17:34:32 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:51:51 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how to use the Enjin Discord Bot to integrate blockchain functionality within Discord servers, enhancing community interaction."
 ---
 <div class="video-container">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/n4pUAWuPiS0?si=-fKbdXA25kQSmvUR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -1,10 +1,6 @@
 ---
 title: "How to Use GraphQL"
 slug: "../how-to-use-graphql"
-excerpt: ""
-hidden: false
-createdAt: "Sun Apr 20 2025 17:02:21 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Apr 20 2025 18:07:44 GMT+0000 (Coordinated Universal Time)"
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

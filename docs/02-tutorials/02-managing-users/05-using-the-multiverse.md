@@ -1,15 +1,7 @@
 ---
 title: "Using the Multiverse"
 slug: "using-the-multiverse"
-excerpt: "How to onboard and retain players using Enjin's Multiverse Items."
-hidden: false
-metadata: 
-  title: "Using the Multiverse - Unlock Cross-Game Blockchain Assets"
-  description: "Learn how to integrate the multiverse into your game or application, allowing users to access cross-game blockchain assets and experiences."
-  image: []
-  robots: "index"
-createdAt: "Sat Jul 13 2024 00:49:11 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 18:06:14 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to integrate the multiverse into your game or application, allowing users to access cross-game blockchain assets and experiences."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

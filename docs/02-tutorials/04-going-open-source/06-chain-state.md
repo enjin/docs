@@ -1,15 +1,7 @@
 ---
 title: "Chain State"
 slug: "chain-state"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Chain State - Monitor and Manage Blockchain States"
-  description: "Learn how to monitor and manage the chain state for your Enjin blockchain platform, ensuring optimal performance and data integrity."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:40:02 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:48:50 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to monitor and manage the chain state for your Enjin blockchain platform, ensuring optimal performance and data integrity."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

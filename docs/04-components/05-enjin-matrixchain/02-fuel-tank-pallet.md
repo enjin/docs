@@ -1,10 +1,7 @@
 ---
 title: "Fuel Tanks Pallet"
 slug: "fuel-tank-pallet"
-excerpt: "Subsidize fees for your players while reducing overall costs."
-hidden: false
-createdAt: "Tue Oct 31 2023 20:06:58 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Dec 19 2024 15:54:07 GMT+0000 (Coordinated Universal Time)"
+description: "Subsidize fees for your players while reducing overall costs."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

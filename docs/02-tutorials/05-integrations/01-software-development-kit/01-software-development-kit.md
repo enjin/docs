@@ -1,15 +1,7 @@
 ---
 title: "Software Development Kits (SDKs)"
 slug: "software-development-kit"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Software Development Kit (SDK) - Build with Enjin’s Developer Tools"
-  description: "Get started with the Enjin SDK, offering comprehensive developer tools to integrate blockchain technology into your apps and games with ease."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 03:15:20 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:50:43 GMT+0000 (Coordinated Universal Time)"
+description: "Get started with the Enjin SDK, offering comprehensive developer tools to integrate blockchain technology into your apps and games with ease."
 ---
 The Enjin Platform SDKs provide an API for communicating with the Enjin Platform.
 

@@ -1,15 +1,7 @@
 ---
 title: "Installing Additional Packages"
 slug: "installing-additional-packages"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Installing Additional Packages - Expand Your Platform’s Functionality"
-  description: "Learn how to install additional packages to enhance the functionality of your Enjin blockchain platform and meet your project’s needs."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:15:18 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:20:36 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to install additional packages to enhance the functionality of your Enjin blockchain platform and meet your project’s needs."
 ---
 Run the composer require command from the root of your Laravel folder for each of the Enjin Platform packages you wish to install.  Remember to run the migrations with `php artisan migrate` after the installations have completed.
 

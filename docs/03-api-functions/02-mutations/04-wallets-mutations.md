@@ -1,15 +1,7 @@
 ---
 title: "Wallets"
 slug: "wallets"
-excerpt: "Operations to help you create and manage wallets."
-hidden: false
-metadata: 
-  title: "Wallets Mutations - Manage Wallet Data and Assets"
-  description: "Perform wallets mutations in the Enjin API to manage wallet data, transfer assets, and update balances securely on the blockchain."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:15:02 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:39:25 GMT+0000 (Coordinated Universal Time)"
+description: "Perform wallets mutations in the Enjin API to manage wallet data, transfer assets, and update balances securely on the blockchain."
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,15 +1,7 @@
 ---
 title: "Tokens"
 slug: "tokens"
-excerpt: "Operations to help you create and manage tokens."
-hidden: false
-metadata: 
-  title: "Tokens Mutations - Create and Modify Blockchain Tokens"
-  description: "Use the Enjin API to perform tokens mutations, including minting new tokens, burning existing ones, and modifying token metadata."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:14:57 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:39:15 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to perform tokens mutations, including minting new tokens, burning existing ones, and modifying token metadata."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

@@ -1,15 +1,7 @@
 ---
 title: "Fuel Tanks"
 slug: "fuel-tanks"
-excerpt: "Operations to help you create and manage fuel tanks."
-hidden: false
-metadata: 
-  title: "Fuel Tanks Queries - Query Blockchain Fuel Tanks Data"
-  description: "Query the Enjin API for fuel tanks data, which helps cover transaction costs for users within the blockchain ecosystem."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 08 2023 00:39:06 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:38:10 GMT+0000 (Coordinated Universal Time)"
+description: "Query the Enjin API for fuel tanks data, which helps cover transaction costs for users within the blockchain ecosystem."
 ---
 
 import Tabs from '@theme/Tabs';

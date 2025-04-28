@@ -1,15 +1,7 @@
 ---
 title: "Metadata Example"
 slug: "metadata-example"
-excerpt: "An example of a Collection & Token metadata."
-hidden: false
-metadata: 
-  title: "Metadata Example - Implement Metadata in Blockchain Tokens"
-  description: "View detailed examples of how to implement metadata within your blockchain tokens, following Enjin’s guidelines for token structure and data representation."
-  image: []
-  robots: "index"
-createdAt: "Wed Jul 24 2024 13:29:44 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Dec 09 2024 12:50:47 GMT+0000 (Coordinated Universal Time)"
+description: "View detailed examples of how to implement metadata within your blockchain tokens, following Enjin’s guidelines for token structure and data representation."
 ---
 In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 

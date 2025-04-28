@@ -1,15 +1,7 @@
 ---
 title: "Restarting the Platform"
 slug: "restarting-the-platform"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Restarting the Platform - Manage Enjin Platform Downtime"
-  description: "Learn how to safely restart the Enjin platform to ensure smooth operation and minimal downtime for your blockchain applications."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:24:02 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:42:32 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to safely restart the Enjin platform to ensure smooth operation and minimal downtime for your blockchain applications."
 ---
 Every time you change .env variables / [update the platform version](/02-tutorials/04-going-open-source/03-cloud-installation/09-updating-the-platform.md) / [install a package](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md), for any changes to take effect, the workers need to be restarted:
 

@@ -1,10 +1,7 @@
 ---
 title: "How to Stop Validating"
 slug: "stop-validating"
-excerpt: "If you are currently operating a validator node on the Enjin Blockchain and wish to stop validating, follow the steps outlined below."
-hidden: false
-createdAt: "Fri Oct 11 2024 08:17:48 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Fri Oct 11 2024 09:13:39 GMT+0000 (Coordinated Universal Time)"
+description: "If you are currently operating a validator node on the Enjin Blockchain and wish to stop validating, follow the steps outlined below."
 ---
 Stopping validation may be necessary for various reasons, including switching roles, maintaining the node, upgrading the node, or withdrawing from the network as a validator. This guide will walk you through the process to ensure your transition out of the active set of validators is smooth and efficient. If you only wish to stop validating temporarily for maintenance, Step 1 is all you need to perform. If you wish to unbond funds and reap an account, Steps 1-3 should be followed.
 

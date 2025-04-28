@@ -1,10 +1,6 @@
 ---
 title: "Collator Staking Pallet"
 slug: "collator-staking-pallet"
-excerpt: ""
-hidden: false
-createdAt: "Sun Jul 14 2024 16:14:01 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Jul 14 2024 16:27:16 GMT+0000 (Coordinated Universal Time)"
 ---
 :::info The Enjin Blockchain Console
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.

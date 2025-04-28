@@ -1,15 +1,7 @@
 ---
 title: "Setting up the UI"
 slug: "setting-up-the-ui"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Setting up the UI - Configure the User Interface for Enjin"
-  description: "Find out how to set up and customize the user interface for Enjin’s platform, improving user experience and functionality."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:16:10 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:20:49 GMT+0000 (Coordinated Universal Time)"
+description: "Find out how to set up and customize the user interface for Enjin’s platform, improving user experience and functionality."
 ---
 :::warning This steps are required only if the UI package is installed
 If you want to use the Enjin Platform with a User Interface, make sure to [install the platform-ui package first](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md)

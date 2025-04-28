@@ -1,15 +1,7 @@
 ---
 title: "Transferring Tokens"
 slug: "transferring-tokens"
-excerpt: "Start moving tokens between wallets."
-hidden: false
-metadata: 
-  title: "Transferring Tokens - Move Blockchain Assets Securely"
-  description: "Find out how to securely transfer tokens between users or platforms using the Enjin Platform, ensuring safe and efficient asset movement."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 04:21:29 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Oct 28 2024 07:30:43 GMT+0000 (Coordinated Universal Time)"
+description: "Find out how to securely transfer tokens between users or platforms using the Enjin Platform, ensuring safe and efficient asset movement."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

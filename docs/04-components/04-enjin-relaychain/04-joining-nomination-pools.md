@@ -1,10 +1,6 @@
 ---
 title: "Joining Nomination Pools"
 slug: "joining-nomination-pools"
-excerpt: ""
-hidden: false
-createdAt: "Tue Oct 31 2023 22:24:02 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 ---
 :::info The Enjin Blockchain Console
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.

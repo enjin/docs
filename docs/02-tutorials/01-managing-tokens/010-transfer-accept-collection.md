@@ -1,15 +1,7 @@
 ---
 title: "Transfer / Accept collection ownership"
 slug: "transfer-accept-collection"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Transfer / Accept Collection - Securely Move Blockchain Collections"
-  description: "Explore how to transfer and accept entire blockchain collections, allowing for seamless movement of grouped assets within the Enjin ecosystem."
-  image: []
-  robots: "index"
-createdAt: "Wed Apr 17 2024 15:02:20 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Nov 04 2024 12:51:42 GMT+0000 (Coordinated Universal Time)"
+description: "Explore how to transfer and accept entire blockchain collections, allowing for seamless movement of grouped assets within the Enjin ecosystem."
 ---
 
 import Tabs from '@theme/Tabs';

@@ -1,10 +1,7 @@
 ---
 title: "Marketplace Pallet"
 slug: "marketplace-pallet"
-excerpt: "Create secure peer-to-peer economies."
-hidden: false
-createdAt: "Tue Oct 31 2023 21:02:54 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 18:29:37 GMT+0000 (Coordinated Universal Time)"
+description: "Create secure peer-to-peer economies."
 ---
 :::info The Enjin Blockchain Console
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.

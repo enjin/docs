@@ -1,15 +1,7 @@
 ---
 title: "Verifying Wallets"
 slug: "verifying-wallets"
-excerpt: "Substantiate each wallet address before sending it tokens and requests."
-hidden: false
-metadata: 
-  title: "Verifying Wallets - Ensure Secure Blockchain Transactions"
-  description: "Learn how to verify user wallets to ensure secure and trustworthy transactions within the Enjin platform, enhancing security and reliability."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 03:32:26 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 17:36:17 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to verify user wallets to ensure secure and trustworthy transactions within the Enjin platform, enhancing security and reliability."
 ---
 
 import Tabs from '@theme/Tabs';

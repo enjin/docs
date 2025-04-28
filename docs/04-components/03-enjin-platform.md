@@ -1,15 +1,7 @@
 ---
 title: "Enjin Platform"
 slug: "enjin-platform"
-excerpt: "Making it easy to build profitable Web3 games."
-hidden: false
-metadata: 
-  title: "Enjin Platform - Build and Manage Blockchain Assets"
-  description: "Discover the Enjin Platform, a comprehensive suite of tools for building, managing, and integrating blockchain-based assets in your projects."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 23:13:01 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:15:22 GMT+0000 (Coordinated Universal Time)"
+description: "Discover the Enjin Platform, a comprehensive suite of tools for building, managing, and integrating blockchain-based assets in your projects."
 ---
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io/login), connected to Enjin Canary Testnet

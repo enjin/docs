@@ -1,10 +1,7 @@
 ---
 title: "Arguments"
 slug: "important-arguments"
-excerpt: "A quick reference for some important arguments used in the Enjin API Schema."
-hidden: false
-createdAt: "Mon Nov 13 2023 03:12:54 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:40:41 GMT+0000 (Coordinated Universal Time)"
+description: "A quick reference for some important arguments used in the Enjin API Schema."
 ---
 :::info Please note: This is an introductory reference
 For the most up-to-date information, refer to the [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md).\

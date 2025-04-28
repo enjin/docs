@@ -1,10 +1,6 @@
 ---
 title: "Build Node From Source"
 slug: "../build-node-from-source"
-excerpt: ""
-hidden: false
-createdAt: "Sun Jul 14 2024 16:29:00 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Jul 14 2024 16:30:06 GMT+0000 (Coordinated Universal Time)"
 ---
 :::info This is an advanced guide
 For pre-compiled binaries or for information on running a node via Docker, visit [Running a Node](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/01-running-a-node.md).

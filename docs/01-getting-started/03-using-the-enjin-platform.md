@@ -1,15 +1,7 @@
 ---
 title: "Using the Enjin Platform"
 slug: "using-the-enjin-platform"
-excerpt: "Making it easy to build profitable Web3 games."
-hidden: false
-metadata: 
-  title: "Using the Enjin Platform - Blockchain Asset Management Made Easy"
-  description: "Discover how the Enjin Platform simplifies blockchain asset management for developers, enabling seamless integration of tokenized assets in games and applications."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 17:45:30 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:07:04 GMT+0000 (Coordinated Universal Time)"
+description: "Discover how the Enjin Platform simplifies blockchain asset management for developers, enabling seamless integration of tokenized assets in games and applications."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
@@ -17,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.\
+Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
@@ -56,7 +48,7 @@ Transactions can be approved in 2 different ways:
 - **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md).
 
 :::tip Start by manually approving transactions
-If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)\
+If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)  
 Enjin wallet app is available on both [iOS](https://enj.in/ios-wallet) and [Android](https://enj.in/android-wallet).
 :::
 
@@ -88,8 +80,8 @@ In this example we will be creating a <GlossaryTerm id="collection" />.
 - [Using the GraphQL API](#option-b-using-the-enjin-api--sdks)
 
 :::info Which approach should I use?
-Everything that can be done via the Platform's User Interface, can be done programmatically via the <GlossaryTerm id="graphql" /> API or any of the Platform <GlossaryTerm id="sdk" />s.\
-If you are just starting out, we recommend using the Platform User Interface as it's more user friendly.\
+Everything that can be done via the Platform's User Interface, can be done programmatically via the <GlossaryTerm id="graphql" /> API or any of the Platform <GlossaryTerm id="sdk" />s.  
+If you are just starting out, we recommend using the Platform User Interface as it's more user friendly.  
 However, if you need to make a Platform request programmatically, you can do that via the <GlossaryTerm id="enjin_platform_api" /> / <GlossaryTerm id="sdk" />s.
 :::
 

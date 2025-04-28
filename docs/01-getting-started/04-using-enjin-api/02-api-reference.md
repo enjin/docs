@@ -1,10 +1,6 @@
 ---
 title: "API Reference"
 slug: "/api-reference"
-excerpt: ""
-hidden: false
-createdAt: "Thu Oct 24 2024 19:31:22 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:07:15 GMT+0000 (Coordinated Universal Time)"
 ---
 The Enjin API provides a robust GraphQL interface for interacting with the Enjin Platform. This guide will demonstrate how to explore available queries and mutations using the GraphiQL Playground.
 

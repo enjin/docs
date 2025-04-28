@@ -1,10 +1,7 @@
 ---
 title: "NFT Support for Enjin Matrixchain"
 slug: "nft-support-for-enjin-matrixchain"
-excerpt: "This guide provides three approaches to integrate NFT support on the Enjin Matrixchain."
-hidden: false
-createdAt: "Fri Oct 11 2024 08:54:04 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:11:24 GMT+0000 (Coordinated Universal Time)"
+description: "This guide provides three approaches to integrate NFT support on the Enjin Matrixchain."
 ---
 1. **Using Enjin Platform Cloud or Self-hosted Enjin Platform:** Utilizing the [Enjin Platform Cloud](https://enjin.io/technology/platform) or deploying a [self-hosted Enjin Platform](/02-tutorials/04-going-open-source/01-self-hosting.md) instance.
 2. **Native Integration:** Direct interaction with the Enjin Matrixchain node using RPC and libraries like `@polkadotjs/api`.

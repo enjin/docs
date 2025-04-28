@@ -1,15 +1,7 @@
 ---
 title: "Metadata Standard"
 slug: "metadata-standard"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Metadata Standard - Define Data for Your Blockchain Assets"
-  description: "Explore Enjin’s metadata standards, enabling you to define the characteristics of your blockchain tokens and enhance their utility within decentralized applications."
-  image: []
-  robots: "index"
-createdAt: "Sun Nov 12 2023 18:05:47 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 18:09:38 GMT+0000 (Coordinated Universal Time)"
+description: "Explore Enjin’s metadata standards, enabling you to define the characteristics of your blockchain tokens and enhance their utility within decentralized applications."
 ---
 ## Best Practices for Collection/Token Metadata
 

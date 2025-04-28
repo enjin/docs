@@ -1,10 +1,6 @@
 ---
 title: "Enjin Blockchain Nodes"
 slug: "../nodes"
-excerpt: ""
-hidden: false
-createdAt: "Sun Jul 14 2024 16:06:28 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Jul 14 2024 16:51:45 GMT+0000 (Coordinated Universal Time)"
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

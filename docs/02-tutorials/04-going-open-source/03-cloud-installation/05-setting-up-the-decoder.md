@@ -1,15 +1,7 @@
 ---
 title: "Setting up the Decoder"
 slug: "setting-up-the-decoder"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Setting up the Decoder - Configure Enjin’s Blockchain Decoder"
-  description: "Learn how to set up the blockchain decoder for the Enjin platform, ensuring accurate and efficient data processing."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:16:44 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 15:50:33 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to set up the blockchain decoder for the Enjin platform, ensuring accurate and efficient data processing."
 ---
 The native platform decoder is a robust and fast tool for decoding blockchain transactions and is recommended to be run with the platform. This doesn't have to be hosted on the same Droplet as the platform, but would be recommended for performance. To get started we need to ensure the dart compiler is installed and ready to build the tool by running these commands:
 

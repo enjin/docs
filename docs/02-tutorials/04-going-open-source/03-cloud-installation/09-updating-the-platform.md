@@ -1,15 +1,7 @@
 ---
 title: "Updating the Platform"
 slug: "updating-the-platform"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Updating the Platform - Keep Enjin Up-to-Date"
-  description: "Find out how to update the Enjin platform, ensuring that your blockchain solutions are running the latest features and improvements."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:18:23 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:41:53 GMT+0000 (Coordinated Universal Time)"
+description: "Find out how to update the Enjin platform, ensuring that your blockchain solutions are running the latest features and improvements."
 ---
 Keeping your Platform up to date is very straightforward.  To do so SSH into your Droplet and run the following command from your installation folder to install the latest versions of the packages:
 

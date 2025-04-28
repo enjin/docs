@@ -1,15 +1,7 @@
 ---
 title: "Adding Metadata"
 slug: "adding-metadata"
-excerpt: "Personalize your token, make it unique, give it life."
-hidden: false
-metadata: 
-  title: "Creating a Currency Token - Build Your Custom Digital Currency"
-  description: "Learn how to create currency tokens using Enjin's platform, perfect for powering blockchain economies within games and applications."
-  image: []
-  robots: "index"
-createdAt: "Fri Nov 10 2023 05:11:10 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 17:47:18 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to create currency tokens using Enjin's platform, perfect for powering blockchain economies within games and applications."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

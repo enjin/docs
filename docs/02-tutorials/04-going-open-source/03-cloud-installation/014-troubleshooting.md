@@ -1,15 +1,7 @@
 ---
 title: "Troubleshooting"
 slug: "troubleshooting"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Troubleshooting"
-  description: "A guide to troubleshooting common issues within the Enjin blockchain platform, ensuring minimal disruptions and smooth operations."
-  image: []
-  robots: "index"
-createdAt: "Wed Jan 31 2024 10:25:01 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Sep 10 2024 00:47:22 GMT+0000 (Coordinated Universal Time)"
+description: "A guide to troubleshooting common issues within the Enjin blockchain platform, ensuring minimal disruptions and smooth operations."
 ---
 ### How to fix the Enjin Platform "Permission Denied" error?
 

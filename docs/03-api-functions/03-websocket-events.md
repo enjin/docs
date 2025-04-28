@@ -1,10 +1,6 @@
 ---
 title: "Websocket Events"
 slug: "websocket-events"
-excerpt: ""
-hidden: false
-createdAt: "Sun Dec 10 2023 16:40:45 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Jan 19 2025 15:55:00 GMT+0000 (Coordinated Universal Time)"
 ---
 :::info Websocket URLs
 Enjin Platform Cloud **Canary**: `wss://ws-us2.pusher.com:443/app/76b7604dabc23c62be75?protocol=7`\

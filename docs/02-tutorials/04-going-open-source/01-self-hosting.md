@@ -1,15 +1,7 @@
 ---
 title: "Self Hosting"
 slug: "self-hosting"
-excerpt: "Taking complete control of the Enjin Platform."
-hidden: false
-metadata: 
-  title: "Self Hosting - Host Your Blockchain Solutions Independently"
-  description: "Find out how to set up self-hosting for your blockchain infrastructure, giving you control over your environment and data security."
-  image: []
-  robots: "index"
-createdAt: "Wed Nov 01 2023 00:15:25 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Thu Nov 07 2024 15:13:35 GMT+0000 (Coordinated Universal Time)"
+description: "Find out how to set up self-hosting for your blockchain infrastructure, giving you control over your environment and data security."
 ---
 :::info Choosing the right platform for you
 There are two version of the Enjin Platform

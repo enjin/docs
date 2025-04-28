@@ -1,15 +1,7 @@
 ---
 title: "Fuel Tanks"
 slug: "fuel-tanks"
-excerpt: "Operations to help you create and manage fuel tanks."
-hidden: false
-metadata: 
-  title: "Fuel Tanks Mutations - Manage Blockchain Fuel Tanks"
-  description: "Use the Enjin API to perform fuel tanks mutations, including setting up and managing transaction cost coverage for users on the blockchain."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:15:05 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:39:39 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to perform fuel tanks mutations, including setting up and managing transaction cost coverage for users on the blockchain."
 ---
 
 import Tabs from '@theme/Tabs';

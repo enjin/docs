@@ -1,15 +1,7 @@
 ---
 title: "Using the Wallet Daemon"
 slug: "using-wallet-daemon"
-excerpt: ""
-hidden: false
-metadata: 
-  title: "Using the Enjin Wallet Daemon - Secure Blockchain Asset Handling"
-  description: "Get started with the Enjin Wallet Daemon, an automated tool for managing blockchain transactions and assets securely and efficiently."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 03:46:23 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Jan 12 2025 12:04:20 GMT+0000 (Coordinated Universal Time)"
+description: "Get started with the Enjin Wallet Daemon, an automated tool for managing blockchain transactions and assets securely and efficiently."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

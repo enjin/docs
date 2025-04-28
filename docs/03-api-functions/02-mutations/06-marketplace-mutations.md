@@ -1,15 +1,7 @@
 ---
 title: "Marketplace"
 slug: "marketplace"
-excerpt: "Operations to help you create and manage a marketplace."
-hidden: false
-metadata: 
-  title: "Marketplace Mutations - Create and Manage Marketplace Listings"
-  description: "Use the Enjin API to perform marketplace mutations, including creating and modifying token listings, managing trades, and marketplace transactions."
-  image: []
-  robots: "index"
-createdAt: "Fri Feb 09 2024 00:15:08 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Apr 21 2025 16:39:48 GMT+0000 (Coordinated Universal Time)"
+description: "Use the Enjin API to perform marketplace mutations, including creating and modifying token listings, managing trades, and marketplace transactions."
 ---
 
 import Tabs from '@theme/Tabs';

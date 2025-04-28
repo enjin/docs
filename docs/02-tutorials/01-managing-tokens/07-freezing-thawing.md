@@ -1,15 +1,7 @@
 ---
 title: "Freezing & Thawing"
 slug: "freezing-thawing"
-excerpt: "Put a temporary or permanent stop to token transfers."
-hidden: false
-metadata: 
-  title: "Freezing & Thawing - Manage the Availability of Your Tokens"
-  description: "Learn how to freeze and thaw tokens, controlling when your blockchain assets can be transferred or used, for added flexibility."
-  image: []
-  robots: "index"
-createdAt: "Mon Nov 06 2023 04:00:50 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Tue Dec 10 2024 13:30:12 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to freeze and thaw tokens, controlling when your blockchain assets can be transferred or used, for added flexibility."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

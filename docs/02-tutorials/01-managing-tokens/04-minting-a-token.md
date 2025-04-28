@@ -1,15 +1,7 @@
 ---
 title: "Minting Tokens"
 slug: "minting-a-token"
-excerpt: "Start minting your token's supply. You can mint it straight into your players' wallets."
-hidden: false
-metadata: 
-  title: "Adding Metadata - Enhance Your Tokens with Custom Data"
-  description: "Enhance your blockchain assets by adding custom metadata, providing additional details and functionalities to your tokens."
-  image: []
-  robots: "index"
-createdAt: "Fri Nov 10 2023 05:24:18 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Oct 27 2024 17:47:10 GMT+0000 (Coordinated Universal Time)"
+description: "Enhance your blockchain assets by adding custom metadata, providing additional details and functionalities to your tokens."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

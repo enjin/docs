@@ -1,10 +1,6 @@
 ---
 title: "Creating Nomination Pools"
 slug: "creating-nomination-pools"
-excerpt: ""
-hidden: false
-createdAt: "Mon Nov 27 2023 13:30:04 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 ---
 ## Creating nomination pools
 

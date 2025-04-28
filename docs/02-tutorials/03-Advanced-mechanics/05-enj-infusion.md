@@ -1,10 +1,6 @@
 ---
 title: "ENJ Infusion"
 slug: "enj-infusion"
-excerpt: ""
-hidden: false
-createdAt: "Tue Aug 06 2024 15:33:34 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Mon Nov 04 2024 12:42:07 GMT+0000 (Coordinated Universal Time)"
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';

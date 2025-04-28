@@ -1,15 +1,7 @@
 ---
 title: "Using Enjin Coin"
 slug: "using-enjin-coin"
-excerpt: "The fuel that powers the Enjin Ecosystem."
-hidden: false
-metadata: 
-  title: "Using Enjin Coin - A Guide to the Enjin Ecosystem"
-  description: "Learn how to use Enjin Coin, the cryptocurrency powering the Enjin ecosystem, for creating, managing, and integrating blockchain-based assets in games and apps."
-  image: []
-  robots: "index"
-createdAt: "Tue Oct 31 2023 18:07:43 GMT+0000 (Coordinated Universal Time)"
-updatedAt: "Sun Apr 20 2025 17:49:08 GMT+0000 (Coordinated Universal Time)"
+description: "Learn how to use Enjin Coin, the cryptocurrency powering the Enjin ecosystem, for creating, managing, and integrating blockchain-based assets in games and apps."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
