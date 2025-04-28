@@ -16,7 +16,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
 :::
 
 This is useful for several reasons:
@@ -27,11 +27,11 @@ This is useful for several reasons:
 - **Engage Power Users:** Recognize and engage with influential power users who hold a significant amount of tokens.
 - **Improved User Experience:** By retrieving token holder data, you can enhance the overall user experience and make informed, data-driven decisions.
 
-## Fetching Token Holders with the [Enjin API](docs:creating-tokens)
+## Fetching Token Holders with the [Enjin API](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)
 
 :::warning Fetching Tokens Limitations
 Please note that the `GetToken` query is limited to tokens from collections that were created via the auth-ed Enjin Platform account.  
-To get a token that was created elsewhere (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.  
+To get a token that was created elsewhere (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.  
 Learn more about tracking a collection in the [Tracking Collections section below](#tracking-collections).
 :::
 
@@ -351,10 +351,10 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](doc:using-graphql#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
-## Fetching Collection Holders with the [Enjin API](https://docs.enjin.io/docs/creating-tokens)
+## Fetching Collection Holders with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
 
 :::warning Fetching Collections Limitations
 Please note that the `GetCollections` query is limited to collections that were created via the auth-ed Enjin Platform Cloud account.  
@@ -362,7 +362,7 @@ To get a collection that was created elsewhere (via a different Enjin Platform C
 Learn more about tracking a collection in the [Tracking Collections section below](#tracking-collections).
 :::
 
-For an [NFT collection](doc:enforced-token-economics#nft-colllection), we can use the `GetCollection` query and include the the `accounts` in the query response to find out how many NFTs from the collection are owned by each address.
+For an [NFT collection](/02-tutorials/03-advanced-mechanics/03-enforced-rarity.md#nft-collection), we can use the `GetCollection` query and include the the `accounts` in the query response to find out how many NFTs from the collection are owned by each address.
 
 **Query:**
 
@@ -659,16 +659,16 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](doc:using-graphql#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
 
 ## Tracking Collections
 
-The `GetToken`, `GetTokens`, `GetCollection`, and `GetCollections` queries are limited only to collections and tokens that were created via the auth-ed Enjin Platform account. To use these queries with collections / tokens created externally (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
+The `GetToken`, `GetTokens`, `GetCollection`, and `GetCollections` queries are limited only to collections and tokens that were created via the auth-ed Enjin Platform account. To use these queries with collections / tokens created externally (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
 
 To track a collection, head over to the collections page on Enjin Platform: https://platform.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
 

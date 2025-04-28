@@ -11,7 +11,7 @@ metadata:
 createdAt: "Wed Jan 31 2024 10:09:36 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Tue Sep 10 2024 00:17:08 GMT+0000 (Coordinated Universal Time)"
 ---
-# Setting up a Droplet
+## Setting up a Droplet
 
 1. Sign up for a [DigitalOcean](https://digitalocean.com/) account.
 
@@ -47,7 +47,7 @@ updatedAt: "Tue Sep 10 2024 00:17:08 GMT+0000 (Coordinated Universal Time)"
 
 11. Click 'Create Droplet' to start provisioning. After a few minutes your droplet will be ready to log in to ready for the next stage.
 
-# Configure the Droplet
+## Configure the Droplet
 
 1. Open a terminal window and SSH into your Droplet using the command:
 
@@ -84,7 +84,7 @@ sudo nano /etc/php/8.2/fpm/php.ini
 sudo service php8.2-fpm restart
 ```
 
-# Adding a new non super-user
+## Adding a new non super-user
 
 :::tip
 Your Droplet will be setup with a root 'super' user by default.  It would be recommended to create a non-super user for everyday use.
@@ -137,4 +137,4 @@ nano ~/.ssh/authorized_keys
 
 Finally log out and then log back in as the new user: `ssh platform@server_ip_address`.  
 
-Now the droplet is configured, it's time to [Install the Enjin Platform](doc:platform-installation)
+Now the droplet is configured, it's time to [Install the Enjin Platform](/02-tutorials/04-going-open-source/03-cloud-installation/02-platform-installation.md)

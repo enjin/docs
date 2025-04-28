@@ -14,7 +14,7 @@ updatedAt: "Tue Sep 10 2024 01:01:41 GMT+0000 (Coordinated Universal Time)"
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-# What is Enjin Coin?
+## What is Enjin Coin?
 
 Enjin Coin (ENJ) is the native coin of the Enjin Blockchain and plays a vital role in facilitating transactions on the network. It serves as the primary currency for paying transaction fees, as well as the voting mechanism for network <GlossaryTerm id="governance" />, consensus, and block nomination facilitated through ENJ staking.
 

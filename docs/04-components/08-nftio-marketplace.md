@@ -11,7 +11,7 @@ metadata:
 createdAt: "Tue Oct 31 2023 23:29:38 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Thu Sep 12 2024 12:51:50 GMT+0000 (Coordinated Universal Time)"
 ---
-# What is NFT.io?
+## What is NFT.io?
 
 [NFT.io](http://nft.io/) is the latest innovation from the Enjin team, a global NFT Marketplace fully integrated with the Enjin Blockchain. As the next-generation NFT blockchain, Enjin provides a robust and secure foundation for [NFT.io](http://nft.io/), offering a smart, user-friendly, and ad-free platform for all NFT enthusiasts.
 
@@ -19,7 +19,7 @@ updatedAt: "Thu Sep 12 2024 12:51:50 GMT+0000 (Coordinated Universal Time)"
 
 At [NFT.io](http://nft.io/), you can easily explore digital art, crypto-collectibles, and other NFTs through a simple and accessible marketplace. Whether you're listing your favorite NFTs, bidding on special edition assets, or creating your own collections, NFT.io offers a seamless experience. Our vision is to empower you to discover, showcase, and trade NFTs in a way that reflects your unique passions and interests. So join us on [NFT.io](https://nft.io/) and experience the future of NFT marketplaces today.
 
-# Key Benefits & Features
+## Key Benefits & Features
 
 - **Connect using your very own wallet: **The platform is seamlessly integrated with the Enjin Wallet.  
   No Ads: Enjoy an ad-free experience on NFT.io. You can explore the platform without any interruption from pesky promotions, dangerous scams, or annoying ads.

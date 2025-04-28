@@ -12,7 +12,7 @@ createdAt: "Wed Jan 31 2024 10:16:10 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Tue Sep 10 2024 00:20:49 GMT+0000 (Coordinated Universal Time)"
 ---
 :::warning This steps are required only if the UI package is installed
-If you want to use the Enjin Platform with a User Interface, make sure to [install the platform-ui package first](doc:installing-additional-packages)
+If you want to use the Enjin Platform with a User Interface, make sure to [install the platform-ui package first](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md)
 :::
 
 If you would like to use the Platform UI package then there is a separate install process to run through as follows, and make sure you have your authentication token handy to paste in.

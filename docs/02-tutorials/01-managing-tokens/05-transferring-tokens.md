@@ -23,16 +23,16 @@ You will need to transfer tokens for:
 - Providing a seamless user experience by allowing token transfers without leaving the game environment.
 
 :::info What you'll need:
-- Some [ Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
+- Some [ Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) and a [Token](doc:creating-tokens) to mint.
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) and a [Token](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
 :::
 
 **There are two ways to transfer a token:**
 
-1. [Using the Platform User Interface](#option-a-using-the-platform-user-interface)
-2. [Using the GraphQL API](#option-b-using-the-graphql-api--sdks)
+1. [Using the Enjin Dashboard](#option-a-using-the-enjin-dashboard)
+2. [Using the GraphQL API & SDKs](#option-b-using-the-enjin-api--sdks)
 
 ## Option A. Using the Enjin Dashboard
 
@@ -61,7 +61,7 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 - If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
 
 If you're looking to distribute tokens to your community or players, but don't have their account addresses, don't worry! Our solution is Enjin Beam.  
-Proceed to the [Distributing Tokens via QR](doc:create-qr-drops) tutorial to learn more.
+Proceed to the [Distributing Tokens via QR](/02-tutorials/01-managing-tokens/06-create-qr-drops.md) tutorial to learn more.
 
 ## Option B. Using the Enjin API & SDKs
 
@@ -496,7 +496,7 @@ print(response.json())
     In the example above, an `amount` of `5000000000000000000` will actually send 5 ENJ. Keep this in mind when specifying the `amount` in your mutations.
 - `keepAlive` argument
   - Set to true if you want to make sure the account doesn't get reaped.  
-    Learn more about keepAlive argument [here](doc:important-arguments#keepalive)
+    Learn more about keepAlive argument [here](/03-api-functions/04-important-arguments.md#keepalive)
 :::
 
 ### Batch Transferring ENJ token
@@ -713,15 +713,15 @@ A WebSocket event will also be fired so you can pick up the transfer transaction
 
 :::tip Need to send a transaction request to user's wallet?
 This can be done using Enjin Platform API & WalletConnect!  
-To learn more, check out the [Using WalletConnect page](doc:using-walletconnect).
+To learn more, check out the [Using WalletConnect page](/02-tutorials/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
 :::What's next?
 Distribute tokens to your players, even if they don't have wallets!
-Proceed to the [Distributing Tokens via QR](doc:create-qr-drops) tutorial to learn more.
+Proceed to the [Distributing Tokens via QR](/02-tutorials/01-managing-tokens/06-create-qr-drops.md) tutorial to learn more.
 :::

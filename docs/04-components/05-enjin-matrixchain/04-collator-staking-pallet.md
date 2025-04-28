@@ -10,11 +10,11 @@ updatedAt: "Sun Jul 14 2024 16:27:16 GMT+0000 (Coordinated Universal Time)"
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
 :::
 
-# Overview
+## Overview
 
 The Collator Staking pallet is responsible for managing the collators of the Enjin Matrixchain. This pallet handles the selection and rewarding of block producers for each round of block production.
 
-# Terminology
+## Terminology
 
 - **Collator:** A Matrixchain block producer.
 - **Stake: **An amount of Balance reserved for candidate registration.
@@ -23,7 +23,7 @@ The Collator Staking pallet is responsible for managing the collators of the Enj
 - **Nominator:** An account that is voting for the collator to get selected for a specific round of block production.
 - **Candidates:** Accounts that have bonded some balance to be selected as a collator.
 
-# Implementation
+## Implementation
 
 Participants can join the candidate set by invoking the join_candidate extrinsic. This action involves reserving a specified stake, which must be equal to or greater than the minimum amount required by the runtime. The participant's account is then added to the Candidates pool, signifying their participation in the candidate set.
 
@@ -32,7 +32,7 @@ New collators are selected every session by aggregating from two individual list
 1. **Invulnerables -** A set of collators appointed by governance. These accounts will always be collators.
 2. **Candidates -** These are candidates for the collation task and are selected according to the highest amount of total_stake.
 
-# Rewards
+## Rewards
 
 For every block created, two types of rewards are generated, which are collected from the transaction tips and fees. These fees are transferred to the fee distribution account at the end of every block. The `Pools` pallet then distributes the accumulated fees at the end of every session from the fee distribution account to registered pools. The collator pool currently receives a 70% share from the fee distribution. At the end of every session, the collator staking pallet distributes these rewards to collators using the funds received into the collator pool account.
 
@@ -43,7 +43,7 @@ The rewards are distributed depending on the type of collator:
 - **Invulnerable Collators:** the fees are transferred back to the fee distribution account
 - **Other Collators:** fees are transferred to collator accounts
 
-# Extrinsics
+## Extrinsics
 
 **`set_invulnerables` -** This extrinsic can only be called by the Root or governance and allows the caller to specify the list of invulnerables. These accounts will always be in the collator set and do not require a stake.
 
@@ -57,9 +57,9 @@ The rewards are distributed depending on the type of collator:
 
 **`force_set_current_max_candidates` -** This extrinsic can only be called by the Root or governance and sets the maximum limit of candidates for the pallet.
 
-# Data types
+## Data types
 
-## Collator
+### Collator
 
 Stores the information of every candidate.
 
@@ -77,7 +77,7 @@ Collator {
 }\`
 ```
 
-## CandidateSet
+### CandidateSet
 
 A set of candidates where the order is maintained according to the total staked amount.
 

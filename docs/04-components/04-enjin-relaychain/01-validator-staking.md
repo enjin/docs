@@ -12,7 +12,7 @@ This is an overview of staking on Enjin Relaychain, known as liquid staking.
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
 :::
 
-# Concepts
+## Concepts
 
 - **Direct staking -** A user stakes directly to one or more validators and is paid directly by them.
 - **Nomination Pool (indirect staking) -** One account stakes funds that represent a group of users. This account handles the nominating and receives the rewards.
@@ -21,11 +21,11 @@ Use [console.enjin.io](https://console.enjin.io/) to use the user interface refe
 - **Nominator -** The account that chooses a validator to stake with. In the case of Enjin, this is the nomination pool's account.
 - **Commission - **A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the holder of the Degen NFT.
 
-# Nomination Pools vs Direct Staking
+## Nomination Pools vs Direct Staking
 
 On Enjin, we use nomination pools to handle staking due to the increased simplicity and lower minimums. Another type of staking supported on substrate is direct staking, where a user stakes directly to a validator, but it has several disadvantages.
 
-## Nomination Pools with liquid staking
+### Nomination Pools with liquid staking
 
 With nomination pools, there is one account that multiple users put their funds into. This account acts as the nominator and receives the rewards. The liquid token, sENJ, is used to represent a user's stake in the pool.
 
@@ -36,7 +36,7 @@ With nomination pools, there is one account that multiple users put their funds 
 
 ![](./img/1.png)
 
-## Direct Staking
+### Direct Staking
 
 :::note
 Direct staking is not supported on Enjin. This information is just for comparison.
@@ -50,7 +50,7 @@ Direct staking is not supported on Enjin. This information is just for compariso
 
 ![](./img/2.png)
 
-# Tokens Overview
+## Tokens Overview
 
 There are three tokens relevant to staking:
 
@@ -60,7 +60,7 @@ There are three tokens relevant to staking:
 
 ![](./img/3.png)
 
-# Deposit
+## Deposit
 
 A deposit is reserved when the pool is created. This deposit will be released to the holder of the degen token when the pool is destroyed. Here's an example:
 
@@ -77,13 +77,13 @@ A deposit is reserved when the pool is created. This deposit will be released to
 
 ![](./img/4.png)
 
-# ENJ & sENJ
+## ENJ & sENJ
 
 Here's an example to show the relationship between ENJ and sENJ. The important thing to understand is that although the number of sENJ does not change as rewards are distributed, its value increases because it represents a proportion of the total ENJ in the pool.
 
 ![](./img/5.jpg)
 
-# Bonus Cycle
+## Bonus Cycle
 
 There are two balances in a pool.
 
@@ -98,7 +98,7 @@ Each era, some amount of bonus is distributed from each pool's bonus account to 
 
 ![](./img/7.png)
 
-# Payouts
+## Payouts
 
 Payouts do not happen automatically. The payout_rewards extrinsic should be called once per validator per era. This extrinsic does two things:
 
@@ -113,11 +113,11 @@ Payouts do not happen automatically. The payout_rewards extrinsic should be call
 
 ![](./img/8.png)
 
-# Extrinsics Overview
+## Extrinsics Overview
 
 Here's an overview of the extrinsics (operations) in pallet-nomination-pools.
 
-## Administration
+### Administration
 
 These extrinsics are for creating or modifying pools and require special permissions. Some must be called directly by the owner of the degen NFT, and a few can be called if assigned to a specific role.
 
@@ -127,7 +127,7 @@ These extrinsics are for creating or modifying pools and require special permiss
 - **`nominate`** - nominates validators for the pool
 - **`mutate`** - makes changes to the pool
 
-## Members
+### Members
 
 These are the extrinsics that will be called by users (members) of the pool.
 
@@ -135,7 +135,7 @@ These are the extrinsics that will be called by users (members) of the pool.
 - **`unbond`** - Unbonds sENJ. The user burns sENJ.
 - **`withdraw_unbonded`** - The ENJ is received from unbonding after the unbonding period has passed.
 
-## Permissionless
+### Permissionless
 
 These extrinsics can be called by anyone. Some of them can only be called when the pool is in the `Destroying` state.
 

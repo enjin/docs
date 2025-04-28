@@ -11,7 +11,7 @@ metadata:
 createdAt: "Wed Jul 24 2024 13:29:44 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Mon Dec 09 2024 12:50:47 GMT+0000 (Coordinated Universal Time)"
 ---
-In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](doc:metadata-standard).
+In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
 You may set the collection/token `uri` on-chain attribute to a resource containing the collection's/token's metadata in JSON format, or set each individual metadata with an on-chain attribute, using the metadata type as the attribute key.  
 For example, to set the token's description individually, set the token's on-chain attribute key to `description`, and provide the description as the attribute's value.  
@@ -21,7 +21,7 @@ If both on-chain and off-chain attributes are set, the on-chain attributes will 
 Ensure you use the correct casing when defining attributes to avoid errors.
 :::
 
-# Collection Metadata
+## Collection Metadata
 
 ```json
 {
@@ -51,7 +51,7 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 - `fallback_image`: A link to an alternative image file to be used when the media provided in the `media` list fails to load.
 - `external_url`: A link to the collection's website.
 
-# Token Metadata
+## Token Metadata
 
 ```json
 {

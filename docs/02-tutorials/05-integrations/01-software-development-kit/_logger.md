@@ -10,7 +10,7 @@ updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Logger Interface
+## Logger Interface
 
 The SDK provides a simple logger interface to facilitate logging within its classes and whichever logging framework we choose to use in our application. An example of this interface's implementation can be seen in the block below:
 
@@ -58,7 +58,7 @@ public:
   </TabItem>
 </Tabs>
 
-# Log Levels
+## Log Levels
 
 The `ILogger` interface uses log levels to communicate the type of message being logged. These levels are represent within the `LogLevel` enums and are summarized in the table below:
 
@@ -72,7 +72,7 @@ The `ILogger` interface uses log levels to communicate the type of message being
 | Critical    | For issues that require immediate attention.                                                  |
 | None        | Specifies no messages are to be logged.                                                       |
 
-# Platform Client Logging
+## Platform Client Logging
 
 To setup logging for the `PlatformClient` we may pass an `ILogger` instance to its builder as shown below:
 
@@ -101,7 +101,7 @@ builder.SetLogger(logger);
   </TabItem>
 </Tabs>
 
-# Logging HTTP Traffic
+## Logging HTTP Traffic
 
 The SDK also offers HTTP logging options for its built-in platform client. There are four log levels to choose from for HTTP traffic.
 
@@ -144,7 +144,7 @@ builder.SetLogger(logger)
   </TabItem>
 </Tabs>
 
-## Event Service Logging
+### Event Service Logging
 
 To setup logging for the `PusherEventService` we may pass an `ILogger` instance to its builder as shown below:
 

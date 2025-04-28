@@ -15,11 +15,11 @@ updatedAt: "Tue Sep 10 2024 00:51:34 GMT+0000 (Coordinated Universal Time)"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Event Listeners
+## Event Listeners
 
 To allow our application to receive events from the platform the SDK comes with an `IEventListener` interface for us to use to receive events for processing.
 
-## Creating a Listener
+### Creating a Listener
 
 To use the `IEventListener` interface on a listener class we create we must implement its `OnEvent` method. This method accepts a `PlatformEven`t, which contains the name of the event, the channel it was broadcasted on, the raw event message, and the parsed JSON data representing the message. A generic listener implementing this interface is shown in the code block below:
 
@@ -68,7 +68,7 @@ public:
   </TabItem>
 </Tabs>
 
-## Registering a Listener
+### Registering a Listener
 
 To make use of the event listener we have created, we will need to register it with the event service so that the service may pass any cloud events it receives to the listener. To do so, we may make a call to the registration method, passing our listener as an argument as can be seen below:
 
@@ -98,7 +98,7 @@ By registering our listener this way, the service will pass along any event it r
 
 We may also use the registration the service returned to a way to monitor or validate our listener's state within the service. The registration comes with a getter for the matcher used by the service to filter events, as well as a property indicating whether the listener's registration with the service is still active or not.
 
-### Filter Events with Registration
+#### Filter Events with Registration
 
 The event service also provides means for registering listeners while filter out events for the given registration. This may help in the creation of listeners with narrower scopes, such as a dedicated wallet listener. Without using one of the follow methods of registration, a given listener will be notified of all events the service receives.
 
@@ -179,7 +179,7 @@ service->RegisterListenerExcludingEvents(listener, events);
   </TabItem>
 </Tabs>
 
-### Filter Events with Attribute
+#### Filter Events with Attribute
 
 Event listeners may also have an attribute attached to them that the service may refer to for filtering. The attribute takes two arguments: a Boolean stating whether the events are allowed and a list of the event names.
 
@@ -208,7 +208,7 @@ Once the class has been instantiated, we may then register it using the standard
 If a listener with the filter attribute is registered using any of the registration methods that accept filter arguments, then the event service may throw an exception.
 :::
 
-### The Events to Filter
+#### The Events to Filter
 
 The SDK contains utility classes which have constants representing the names of events broadcasted by the platform. These classes allow us to programmatically set which events we want to filter or even act as a simple reference when making branch statements for the different events we receive. An example of usage for one of these utility classes, `SubstrateEvents` can be seen below:
 
@@ -241,7 +241,7 @@ service->RegisterListenerIncludingEvents(listener, events);
   </TabItem>
 </Tabs>
 
-### Unregistering a Listener
+#### Unregistering a Listener
 
 To unregister a listener from the event service, we need only pass the listener instance to the service's unregister method as shown below:
 
@@ -277,11 +277,11 @@ service->UnregisterAllListeners();
 
 After a listener is unregistered, the service will also update the `IEventRegistration` we received while registering our listener, so that the registration now returns `false` for its `IsRegistered` getter.
 
-## Event Subscription
+### Event Subscription
 
 After setting up our event listener we now need to manage which event channels we want our service to listen to for it to pull events from. This enables us to have our service only listen in on channels necessary for our application's current needs, such as the wallet channel for a connected user, updates to a particular collection, or the progression of a transaction.
 
-### Subscribing
+#### Subscribing
 
 To subscribe to an event channel, we need to pass the channel name to the subscribe method, as shown below:
 
@@ -309,7 +309,7 @@ future<void> fut = service->SubscribeAsync(channelName);
 
 Once subscribed, the event service will pass along any event broadcasted on the given channel to our registered listeners, so long as said listeners do not exclude the events.
 
-### Unsubscribing
+#### Unsubscribing
 
 To unsubscribe from an event channel, we may pass the same channel name we used to subscribe, as shown below:
 
@@ -356,7 +356,7 @@ future<void> fut = service->UnsubscribeAllAsync();
   </TabItem>
 </Tabs>
 
-### Monitoring the Service
+#### Monitoring the Service
 
 The event service also provides means to monitor its state through events. The following code shows the different events that may be used to receive notifications regarding state changes within the service.
 

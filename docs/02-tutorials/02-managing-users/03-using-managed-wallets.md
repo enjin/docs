@@ -21,13 +21,13 @@ Managed wallets offer a seamless user experience by allowing you to create block
 This transparency lets users easily track the movement of items in and out of their wallets, aiding in user onboarding and providing clear, immutable on-chain data to track their tokens.
 
 :::info What you'll need:
-- Some [Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) and a [Token](doc:creating-tokens) to add to the wallet.
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) and a [Token](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add to the wallet.
 :::
 
-# Create Managed Wallets
+## Create Managed Wallets
 
 To create a Managed wallet, run the `CreateWallet` mutation, with a unique ID as a parameter.
 
@@ -195,11 +195,11 @@ Recreate the Managed wallets by running `CreateWallet` mutation again for each o
 Make sure to use the same Daemon wallet seed and password used to create Managed wallets prior, as Managed wallets are derived with the following derivation path: `walletSeed/externalId///password`
 :::
 
-# Interact with Managed Wallets
+## Interact with Managed Wallets
 
 Once the Managed wallet is created, you can provide the `externalId` field of the Wallet object to any query or mutation that accepts a `Wallet.externalId` parameter, in order to use a Managed wallet instead of any other wallet.
 
-Lets look at the `GetWallet` query as an example, to [get the Public Key of an account](doc:fetching-token-holders), we use the account's address. `account: "address_here"`
+Lets look at the `GetWallet` query as an example, to [get the Public Key of an account](/02-tutorials/01-managing-tokens/09-fetching-token-holders.md), we use the account's address. `account: "address_here"`
 
 However, to get the Public Key of a `Managed wallet`, we provide the `Wallet.externalId` parameter instead.
 
@@ -412,7 +412,7 @@ print(response.json())
 }
 ```
 
-# Minting tokens to Managed wallets
+## Minting tokens to Managed wallets
 
 With the acquired Managed wallet address, you can mint tokens directly to the Managed wallet.
 
@@ -676,7 +676,7 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-# Transferring tokens from managed wallets
+## Transferring tokens from managed wallets
 
 If you followed along the previous snippets of code, you should have a Managed wallet with a token in it. To transfer it out to another wallet, we can use the `BatchTransfer` mutation.
 
@@ -967,5 +967,5 @@ print(response.json())
 Make sure that `signingAccount` is set to the Managed Wallet address that owns that token.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::

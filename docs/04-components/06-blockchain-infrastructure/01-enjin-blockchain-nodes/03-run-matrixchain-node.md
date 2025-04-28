@@ -6,17 +6,17 @@ hidden: false
 createdAt: "Sun Jul 14 2024 16:14:36 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Fri Aug 09 2024 10:54:59 GMT+0000 (Coordinated Universal Time)"
 ---
-There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/docs/building-from-source)).
+There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)).
 
 :::warning Currently, it is not possible to run a Enjin Matrixchain collator node.
 This guide will be updated once that option is available.
 :::
 
-# Docker
+## Docker
 
 :::info
 The Docker Image can be found on Docker Hub at: [enjin/matrixchain](https://hub.docker.com/r/enjin/matrixchain)  
-In this example, we demonstrate using the version `latest`. However, in practice, we recommend statically setting this to a specific version (such as `v100`) and then performing manual upgrades to your nodes as and when appropriate. This is to ensure that your node doesn't inadvertently differ from one restart to the next. See the [Upgrading using Docker](https://docs.enjin.io/docs/matrixchain-nodes#upgrading-using-docker) section for more information.
+In this example, we demonstrate using the version `latest`. However, in practice, we recommend statically setting this to a specific version (such as `v100`) and then performing manual upgrades to your nodes as and when appropriate. This is to ensure that your node doesn't inadvertently differ from one restart to the next. See the [Upgrading using Docker](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-docker) section for more information.
 :::
 
 You can use the following `docker-compose.yml` file:
@@ -49,23 +49,23 @@ services:
 
 Simply run the command `docker-compose up -d` to run the container.
 
-# Binary
+## Binary
 
-## Command
+### Command
 
 ```bash
 $ ./matrix --name "enjin-matrix-docker" --rpc-external --chain mainnet  
     -- --name="enjin-matrix-docker" --port 30334 --chain enjin
 ```
 
-## Connecting to your node
+### Connecting to your node
 
 Depending on the use case, there are a couple of ways to connect to the node:
 
 - WebSocket Connection: `ws://localhost:9944`
 - HTTP Connection: `http://localhost:9944`
 
-# Archive Node
+## Archive Node
 
 In order to run an archive node, the following argument needs to be passed to either the binary or added to the command section of the `docker-compose.yml` file:
 
@@ -73,7 +73,7 @@ In order to run an archive node, the following argument needs to be passed to ei
 
 These two arguments should be appended after line 19 in the `docker-compose.yml` file, or just before the backslash (`\`) on line 1 (end of line) of the Binary execution command.
 
-# Upgrading
+## Upgrading
 
 :::warning It is not always possible to downgrade a node.
 In the event the node incurred a database upgrade, it is no longer possible to downgrade the node to an older version without first re-syncing the node.
@@ -86,7 +86,7 @@ In order to ensure compatibility with the chain at all times, and to ensure the 
 
 We recommend that node operators subscribe to our mailing list [mailing-list-node-operators@enjin.io](https://groups.google.com/a/enjin.io/g/mailing-list-node-operators)  in order to be informed when we publish a new node version. However, for those who don't want to subscribe, you can query our [Docker Hub repository](https://hub.docker.com/r/enjin/matrixchain/tags) to check for new versions. All versions are automatically pushed to Docker Hub, so you will always be able to find the latest version there.
 
-## Upgrading using Docker
+### Upgrading using Docker
 
 Open your `docker-compose.yml` in a text editor and locate the `image` line, in the below example it is line 4:
 
@@ -115,18 +115,18 @@ services:
 
 Once updated, simply restart the node by first stopping the existing node and then repeating the steps to start the node using the command `docker-compose up -d` in the directory where the `docker-compose.yml`file is located.
 
-## Upgrading using Binary
+### Upgrading using Binary
 
-Simply download the latest binary and run it as you have always done as per the [Binary, Command](https://docs.enjin.io/docs/matrixchain-nodes#command) section. It's as simple as that!
+Simply download the latest binary and run it as you have always done as per the [Binary, Command](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#command) section. It's as simple as that!
 
-### Upgrading from Source
+#### Upgrading from Source
 
-If you are upgrading based on a build you've produced from the source code, you must navigate to the directory containing the source code in a terminal. Once you have built the binary, simply follow the instruction [Upgrading using Binary](https://docs.enjin.io/docs/matrixchain-nodes#upgrading-using-binary) to complete the upgrade. 
+If you are upgrading based on a build you've produced from the source code, you must navigate to the directory containing the source code in a terminal. Once you have built the binary, simply follow the instruction [Upgrading using Binary](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-binary) to complete the upgrade. 
 
-#### Git-cloned Repository
+##### Git-cloned Repository
 
-You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](https://docs.enjin.io/docs/building-from-source)) to produce a new binary using the latest version.
+You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary using the latest version.
 
-#### Downloaded Repository
+##### Downloaded Repository
 
-In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](https://docs.enjin.io/docs/building-from-source)) to produce a new binary.
+In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary.

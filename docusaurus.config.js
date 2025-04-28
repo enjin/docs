@@ -24,9 +24,8 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Enjin', // Usually your GitHub org/user name.
   projectName: 'enjin-docs', // Usually your repo name.
-
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -44,10 +43,6 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/enjin/docs/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: false,
         theme: {
@@ -62,7 +57,7 @@ const config = {
     ({
       tableOfContents: {
       minHeadingLevel: 2,
-      maxHeadingLevel: 4,
+      maxHeadingLevel: 5,
     },
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',

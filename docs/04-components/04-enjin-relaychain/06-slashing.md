@@ -6,7 +6,7 @@ hidden: false
 createdAt: "Fri Oct 11 2024 08:07:17 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Fri Oct 11 2024 08:30:01 GMT+0000 (Coordinated Universal Time)"
 ---
-# Causes of Slashing
+## Causes of Slashing
 
 Slashing occurs when a validator commits an offense that goes against the Enjin Blockchain’s rules. Offenses that could lead to slashing on the Enjin Blockchain include:
 
@@ -14,7 +14,7 @@ Slashing occurs when a validator commits an offense that goes against the Enjin 
 - **Unresponsiveness:** A validator is offline or fails to produce blocks or participate in consensus rounds over a defined period, negatively impacting network performance and security.
 - **Invalid State Transitions:** Proposing blocks containing invalid state transitions or transactions that do not comply with network rules can result in slashing.
 
-# Slashing Levels
+## Slashing Levels
 
 Slashing penalties are categorized into different levels depending on the severity of the offense:
 
@@ -22,7 +22,7 @@ Slashing penalties are categorized into different levels depending on the severi
 - **Major Offense:** Encompasses more serious behaviors, such as repeated equivocation or failure to validate correctly over extended periods.These offenses carry harsher penalties, potentially resulting in moderately medium reductions in staked ENJ (1 - 10%) and possible exclusion from validator duties.
 - **Critical Offense:** Involves malicious actions, such as double signing or producing invalid blocks, that directly threaten network security. Validators committing critical offenses may face severe penalties, including the loss of a substantial portion or all of their staked ENJ (10 - 100%) and immediate removal from the active validator set.
 
-# Slashing Process
+## Slashing Process
 
 When a validator is found to have committed an offense, the slashing process is initiated:
 
@@ -30,7 +30,7 @@ When a validator is found to have committed an offense, the slashing process is 
 - **Verification:** The detected offense is verified through consensus among the active validator set or via automated checks performed by the network.
 - **Execution:** Once the offense is verified, the slashing is executed automatically by the network. The validator’s staked ENJ is reduced according to the severity of the offense, and the validator may be temporarily or permanently removed from the active validator set.
 
-## Slashed Tokens
+### Slashed Tokens
 
 When slashing occurs, a portion of the validator’s staked ENJ tokens, including those of the nominators who have delegated their tokens to the validator, is forfeited. This forfeited amount is then transferred to the [Enjin Treasury](https://enjin.subscan.io/account/enD9wdMEaQa3MEDUc7dtsCC86JYGMN5JBE2NBRoMyC37dX4iA). The rationale for transferring slashed tokens to the Treasury rather than burning them or redistributing them as rewards is twofold:
 
@@ -39,14 +39,14 @@ When slashing occurs, a portion of the validator’s staked ENJ tokens, includin
 
 It’s important to note that slashing only affects active nominations for a given nominator. Slashes are not mitigated by having other inactive or waiting nominations. Furthermore, slashing penalties apply independently to each validator node operated by a validator, with each node being considered a separate entity for slashing purposes.
 
-### Impact on Nominators
+#### Impact on Nominators
 
 Nominators who delegate their ENJ tokens to a validator are also at risk of slashing if the chosen validator commits an offense. The slashing penalty is distributed proportionally across the validator’s own stake and the stake of their nominators. Therefore, nominators should carefully choose validators with a proven track record of reliability and adherence to network rules.
 
-# Good Practices to Avoiding Slashing
+## Good Practices to Avoiding Slashing
 
-Validators on the Enjin Blockchain must follow best practices to avoid slashing penalties and ensure the security and reliability of nodes. You can refer to the [Security Best Practices for Validators](https://docs.enjin.io/docs/security-best-practices-for-validators) article for more information.
+Validators on the Enjin Blockchain must follow best practices to avoid slashing penalties and ensure the security and reliability of nodes. You can refer to the [Security Best Practices for Validators](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/02-security-best-practices-for-validators.md) article for more information.
 
-# Conclusion
+## Conclusion
 
 Slashing on the Enjin Blockchain is an essential mechanism to maintain network security, integrity and reliability by discouraging malicious or negligent behaviors of validators. By understanding the causes, levels and process, validators and nominators can better navigate the network, manage risk and contribute to a healthy and secure ecosystem.

@@ -24,7 +24,7 @@ In the Enjin Platform context, the Wallet Daemon is a utility tool that manages 
 
 The diagram above provides insight into the interaction between the Enjin Wallet Daemon and the Enjin Platform. This illustrates how the Wallet Daemon can communicate with the API in both directions, automatically signing and broadcasting transactions to the blockchain. This helps developers better understand how the two components work together seamlessly to provide a streamlined experience.
 
-# Wallet Daemon Events
+## Wallet Daemon Events
 
 ![A diagram of the wallet daemon](./img/wallet-daemon-diagram.png)
 
@@ -55,7 +55,7 @@ There are two ways to run the Wallet Daemon, each suitable for different user pr
 Choose the approach that best fits your technical proficiency and the needs of your project.
 :::
 
-# Wallet Daemon Executable
+## Wallet Daemon Executable
 
 ![The wallet daemon executable app](./img/wallet-daemon-executable-welcome.png)
 
@@ -65,7 +65,7 @@ Follow the on-screen instructions to set it up and make sure to insert your Enji
 
 ![Configuring the Wallet Daemon Executable with Enjin Platform](./img/daemon-exec-overview.gif)
 
-# Setting up Wallet Daemon via Docker
+## Setting up Wallet Daemon via Docker
 
 :::note Code repository
 The code repository can be found at https://github.com/enjin/platform
@@ -74,7 +74,7 @@ The code repository can be found at https://github.com/enjin/platform
 It is recommended that the Enjin Wallet Daemon is installed and ran in isolation. This means running it on a dedicated server. The daemon itself is incredibly light-weight and does not require any extensive resources.
 
 :::tip Have Docker installed?
-If you don't have Docker installed, please review the [Platform Local Installation Guide](doc:self-hosting) for more information.
+If you don't have Docker installed, please review the [Platform Local Installation Guide](/02-tutorials/04-going-open-source/01-self-hosting.md) for more information.
 :::
 
 You can do this by first cloning the `enjin/platform` repository from GitHub with the submodules:
@@ -83,7 +83,7 @@ You can do this by first cloning the `enjin/platform` repository from GitHub wit
 git clone --recurse-submodules https://github.com/enjin/platform.git
 ```
 
-## Configure Daemon
+### Configure Daemon
 
 You will want to update the `configs/daemon/.env` file with the `PLATFORM_KEY` (which is an API Token generated within the Settings page of the Enjin Platform Cloud). In addition to this, you'll want to specify a unique `KEY_PASS`.
 
@@ -116,13 +116,13 @@ The final configuration is to update the `configs/daemon/config.json` file to co
   </TabItem>
 </Tabs>
 
-## Starting the Daemon
+### Starting the Daemon
 
 Finally, you can spin up the daemon using the following command from the platform directory:
 
 `docker compose up -d daemon`
 
-## Importing Daemon Wallet From Existing Seed
+### Importing Daemon Wallet From Existing Seed
 
 :::info Daemon Wallets Encryption
 Daemon wallets may be encrypted with a password specified in the `KEY_PASS` env var located in `configs/daemon/.env`.  

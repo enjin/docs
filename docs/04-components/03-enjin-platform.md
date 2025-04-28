@@ -17,7 +17,7 @@ updatedAt: "Thu Nov 07 2024 15:15:22 GMT+0000 (Coordinated Universal Time)"
 - The [Self-Hosted Enjin Platform](https://github.com/enjin/platform) that you can connect to either network.
 :::
 
-# What is the Enjin Platform?
+## What is the Enjin Platform?
 
 The Enjin Platform is the world’s most powerful and advanced open-source framework for building NFT platforms and integrations. It allows developers and their projects to easily communicate with the Enjin Blockchain, forming a light-weight and modular layer between the blockchain, and their applications.
 
@@ -31,13 +31,13 @@ This versatile platform offers two versions to cater to different needs. The [op
 
 ![](./img/4.png)
 
-# How does it work?
+## How does it work?
 
 How does Enjin Platform bring all these functionalities together? The answer lies in its structure. The platform comprises distinct components each designed to offer a unique solution for developers and creators. 
 
 ![](./img/5.png)
 
-## API & Schema
+### API & Schema
 
 The [Open-Source Enjin Platform](https://github.com/enjin/platform) also provides a ready-made application that simplifies blockchain actions for developers by removing the need for encoding, signing transactions, and understanding complex technical details. 
 
@@ -46,21 +46,21 @@ The project has two key components:
 - **Enjin API:** Our GraphQL API provides a server-based interface that allows you to execute a range of queries and mutations. In other words, you can easily retrieve necessary information or execute transactions on the blockchain.
 - **Events:** With the Enjin Platform, developers can subscribe to events and receive real-time updates on any on-chain activities, eliminating the need to constantly poll the API for changes.
 
-## Wallet Daemon
+### Wallet Daemon
 
 The [Wallet Daemon](https://github.com/enjin/wallet-daemon) is the component responsible for automatically signing and broadcasting transactions to the Enjin Blockchain. Running on your own secure server, the Wallet Daemon removes the need for manual signing of each transaction by polling the Enjin Platform in 6-second intervals, fetching new transaction requests, signing them with your private key, and submitting them to a blockchain node. As the Wallet Daemon keeps track of the nonce locally, it can process and submit more than one transaction per block.
 
-## SDKs
+### SDKs
 
 With the release of the Enjin Platform, we’re preparing multiple SDKs to further streamline integration into your projects. Our first release includes the open-source [C# SDK](https://github.com/enjin/platform-csharp-sdk) for connecting and interacting with the Enjin Platform.
 
-Want to learn more about our SDKs? Dive into our documentation [here](https://docs.enjin.io/sdks/enjin-platform-sdks).
+Want to learn more about our SDKs? Dive into our documentation [here](/02-tutorials/05-integrations/01-software-development-kit/01-software-development-kit.md).
 
-# Notable Platform Features
+## Notable Platform Features
 
 The Enjin Platform is packed with features designed to make your life as a developer easier. Here's a glimpse of what's in store:
 
-## Enabled Automation
+### Enabled Automation
 
 - **User-validation requests: **A swift way to establish user identities
 - **Authentication requests: **Seamless process to secure sessions
@@ -72,23 +72,23 @@ The Enjin Platform is packed with features designed to make your life as a devel
 - **Marketplace support: **Create and manage marketplace listings with ease
 - **Relaychain auto-teleport:** Any Relaychain ENJ mistakenly sent to managed wallet will be automatically teleported to Matrixchain
 
-## Data Management Tool
+### Data Management Tool
 
 Simplify data organization with our Data Management Tool. Provided by Indexers, it structures and organizes blockchain data by creating a centralized database from blockchain inputs. This means you, as a developer, can access specific data without sifting through the entire blockchain database.
 
-## Quick Sync Method
+### Quick Sync Method
 
 The Enjin Platform offers a quick sync method that enables developers to fetch and store the most recent state of the blockchain in a pre-packaged index. This saves time and effort that would otherwise be spent on syncing the entire blockchain. The "Worker" service oversees and manages all the blocks produced in the blockchain and parses all extrinsic events in each block.
 
-## Auto-Healing Feature
+### Auto-Healing Feature
 
 The Enjin Platform includes an auto-healing feature that continuously monitors the health of the database. If any issues arise, such as corruption or a saving mismatch, the platform automatically re-syncs with the current chain state to ensure that all data is correct and up-to-date.
 
-## Relaychain ENJ Auto-teleport
+### Relaychain ENJ Auto-teleport
 
 The Enjin Ecosystem is composed of two distinct chains: the Enjin Relaychain, which handles Staking and Governance, and the Enjin Matrixchain, a hub for NFTs and marketplace functionalities. There can be a potential misunderstanding when users purchase ENJ on an exchange and deposit it into a Dapp's managed wallet on the Relaychain. This is because the Dapp creator anticipates the deposit on the Matrixchain, not the Relaychain. To address this, we've introduced the Auto-Teleport feature. This feature automatically teleports any Relaychain ENJ received in a managed wallet to the corresponding Matrixchain. It streamlines the process, eliminates room for error and the need for manual teleportation.
 
-## Modular Design
+### Modular Design
 
 The Enjin Platform is designed with a light, modular structure, allowing developers to custom-fit the integration depending on their requirements and design philosophy. The Platform and Platform Core provide fundamental functionality, while multiple optional packages are available to expand your integration. You can enhance the Platform's capabilities without modifying the core codebase.
 
@@ -96,7 +96,7 @@ Developers may further augment their Enjin Platform configuration by integrating
 
 Everyone is welcome to contribute to the codebase and build upon the framework. Don’t forget to [Follow Enjin on GitHub](https://github.com/enjin)!
 
-## Platform User Interface
+### Platform User Interface
 
 The Enjin Platform comes with a lightweight and easy-to-use user interface. The graphical interface comes with GUI forms for creating, viewing, managing collections & NFTs. You can also extend the UI with additional components like Beams and Fuel Tanks, depending on their availability and installation.
 
@@ -104,7 +104,7 @@ The Enjin Platform comes with a lightweight and easy-to-use user interface. The 
 
 The user interface is available as a [standalone application](https://github.com/enjin/platform-ui) for the self-hosted Enjin Platform, but comes standard when using the Enjin-hosted implementation of the [Enjin Platform](https://platform.enjin.io/).
 
-# Enjin Platform Cloud
+## Enjin Platform Cloud
 
 The modularity and flexibility of the Enjin Platform can be daunting for first-timers - which is exactly why we’ve rolled out the Enjin Platform Cloud!
 

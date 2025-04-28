@@ -20,7 +20,7 @@ Enjin <GlossaryTerm id="coin" /> can come in three different forms:
 
 - **<GlossaryTerm id="enj" />: **This is the native version of Enjin Coin. You can buy it on cryptocurrency exchanges and use it for each <GlossaryTerm id="blockchain" /> <GlossaryTerm id="transaction" /> or use it to create new <GlossaryTerm id="multitoken" />s on the Enjin Blockchain <GlossaryTerm id="mainnet" />.
 - **cENJ: **This is the <GlossaryTerm id="testnet" /> version of Enjin Coin. It's available for free from the [cENJ faucet](https://faucet.canary.enjin.io/) and can be used just like ENJ for transactions and minting <GlossaryTerm id="multitoken" />s, but on the Enjin Canary Testnet.
-- **sENJ: **sENJ represents staked ENJ. It's issued to you when you [stake your ENJ](doc:joining-nomination-pools) and is destroyed when you unstake. You can <GlossaryTerm id="stake" /> your ENJ into a <GlossaryTerm id="validator" /> or <GlossaryTerm id="collator" />. Once you've received your sENJ from staking, it can be [traded for ENJ](doc:stake-exchange-pallet).
+- **sENJ: **sENJ represents staked ENJ. It's issued to you when you [stake your ENJ](/04-components/04-enjin-relaychain/04-joining-nomination-pools.md) and is destroyed when you unstake. You can <GlossaryTerm id="stake" /> your ENJ into a <GlossaryTerm id="validator" /> or <GlossaryTerm id="collator" />. Once you've received your sENJ from staking, it can be [traded for ENJ](/04-components/04-enjin-relaychain/05-stake-exchange-pallet.md).
 
 ## ENJ Infusion
 

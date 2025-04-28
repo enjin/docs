@@ -9,17 +9,17 @@ updatedAt: "Wed Feb 12 2025 11:14:24 GMT+0000 (Coordinated Universal Time)"
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-# Background
+## Background
 
 [Enjin Blockchain](https://enjin.io/enjin-blockchain) is the world's first purpose-built blockchain for games and apps. Enjin is a Proof-of-Stake dual-layer chain with NFT-specific functions at the protocol level.
 
 Enjin Blockchain is built on-top of [Substrate](https://substrate.io/) and inherits similar staking functionalities to other Relaychains running on Substrate, with a few key differences which will be covered throughout this Integration Guide.
 
-# Definitions
+## Definitions
 
 There are a series of definitions that’ll be used throughout this document.
 
-“**[Validator](doc:validator-staking)**” refers to a blockchain node that is setup to produce and validate block production.
+“**[Validator](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md)**” refers to a blockchain node that is setup to produce and validate block production.
 
 “**Era**” refers to a Validator session. During this session, a set of Validators are elected and work together for the integrity of the blockchain. An Era, on the Enjin Relaychain, is 14,400 blocks — it is commonly considered to be “_an era is one (1) full day._”
 
@@ -27,15 +27,15 @@ There are a series of definitions that’ll be used throughout this document.
 
 “**ENJ**” refers to the native token of the Enjin Blockchain: [Enjin Coin](https://enjin.io/enjin-coin).
 
-**<GlossaryTerm id="multi_unit_token" />** refers to a <GlossaryTerm id="multitoken" /> with multiple quantities, created using the [multiToken pallet](doc:multitoken-pallet).
+**<GlossaryTerm id="multi_unit_token" />** refers to a <GlossaryTerm id="multitoken" /> with multiple quantities, created using the [multiToken pallet](/04-components/05-enjin-matrixchain/01-multitoken-pallet.md).
 
-“**NFT**” refers to a Non-Fungible Token created using the [multiToken pallet](doc:multitoken-pallet).
+“**NFT**” refers to a Non-Fungible Token created using the [multiToken pallet](/04-components/05-enjin-matrixchain/01-multitoken-pallet.md).
 
 “**Staking**” refers to the process of bonding (locking) ENJ on the Enjin Relaychain for a minimum of twenty-eight (28) eras. Staking is used to select Active Validators who will be responsible for maintaining the integrity of the blockchain.
 
 “**sENJ**” refers to Staked Enjin Coin, an <GlossaryTerm id="multi_unit_token" />. This represents ENJ that is locked into a Nomination Pool. The collection identifier for this token is **1**.
 
-“**Liquid Staking**” refers to a concept which allows users to use their sENJ for purposes such as governance or [exchanging](doc:stake-exchange-pallet).
+“**Liquid Staking**” refers to a concept which allows users to use their sENJ for purposes such as governance or [exchanging](/04-components/04-enjin-relaychain/05-stake-exchange-pallet.md).
 
 “**Nomination Pool”** refers to a mechanism that allows a group of users to stake their ENJ and nominate a set of Validators that represents the group. Specifically, the nominationPools pallet.
 
@@ -57,9 +57,9 @@ There are a series of definitions that’ll be used throughout this document.
 
 “**Pool State**” refers to the status associated with a Nomination Pool. This could be one of the following two: “_Open_” or “_Destroying_”
 
-# Getting Started
+## Getting Started
 
-## Unaltered Behaviors
+### Unaltered Behaviors
 
 The Enjin Blockchain extends upon the implementation of the basic [staking pallet](https://crates.parity.io/pallet_staking/index.html) and [nomination pool pallet](https://wiki.polkadot.network/docs/learn-nomination-pools) to enable functionality such as Liquid Staking. Because it is an extension to an existing set of pallets, there are some queries and extrinsics that remain unaltered.
 
@@ -85,9 +85,9 @@ The Enjin Blockchain extends upon the implementation of the basic [staking palle
 
 11. [Destroying a Pool](#destroying-a-nomination-pool)
 
-## Enjin Relaychain RPC Endpoints
+### Enjin Relaychain RPC Endpoints
 
-It is strongly recommended that you operate your own Enjin Relaychain node. You can read more about this in our documentation: [Running Relaychain Nodes](https://docs.enjin.io/docs/relaychain-nodes)
+It is strongly recommended that you operate your own Enjin Relaychain node. You can read more about this in our documentation: [Running Relaychain Nodes](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/02-run-relaychain-node.md)
 
 However, you may also use our official RPC endpoints:
 
@@ -97,43 +97,43 @@ However, you may also use our official RPC endpoints:
 
 Please note that our officially operated RPC endpoints are not archive nodes. This is non-essential to this integration guide unless you intentionally want to look at the historical state.
 
-## Polkadot.js API Library
+### Polkadot.js API Library
 
 This Integration Guide uses the [@polkadot/api](https://github.com/polkadot-js/api) library, and assumes that the client has been defined in a variable named: api
 
-## About Degens
+### About Degens
 
 [Degens](https://degens.io/) are a powerful NFT that are the backbone of staking on the Enjin Blockchain. These NFTs are essential to staking as they are a **requirement** for creating a Nomination Pool. 
 
 Each Degen can be assigned to a single Nomination Pool (this occurs during the Nomination Pool creation process) and then cannot be disassociated from the Nomination Pool unless it is destroyed. A Degen cannot be allocated to multiple Nomination Pools at the same time. Whoever holds the Degen is the “owner” of the Nomination Pool.
 
-Degens are built on-top of Enjin Blockchain’s incredibly powerful and versatile [multiToken pallet](doc:multitoken-pallet).
+Degens are built on-top of Enjin Blockchain’s incredibly powerful and versatile [multiToken pallet](/04-components/05-enjin-matrixchain/01-multitoken-pallet.md).
 
-## About sENJ and Liquid Staking
+### About sENJ and Liquid Staking
 
-sENJ is an <GlossaryTerm id="multi_unit_token" />. Due to it being a multi-token, this is what enables the concept of Liquid Staking. Liquid Staking, simply put, means that the sENJ is not locked to a specific account and it can in fact be used in processes such as governance or the [Stake Exchange](doc:stake-exchange-pallet).
+sENJ is an <GlossaryTerm id="multi_unit_token" />. Due to it being a multi-token, this is what enables the concept of Liquid Staking. Liquid Staking, simply put, means that the sENJ is not locked to a specific account and it can in fact be used in processes such as governance or the [Stake Exchange](/04-components/04-enjin-relaychain/05-stake-exchange-pallet.md).
 
-### Difference Between ENJ and sENJ
+#### Difference Between ENJ and sENJ
 
-ENJ is the native token of the Enjin Blockchain. Whereas, sENJ is an <GlossaryTerm id="multi_unit_token" /> created with the [multiToken pallet](doc:multitoken-pallet). When [bonding (staking)](doc:joining-nomination-pools) ENJ to a nomination pool, sENJ is created at a 1:1 ratio. During the time that you are in the pool, holding sENJ, a Stake Factor accrues as the nomination pool accrues ENJ. This Stake Factor is a multiplier to the value of sENJ the user holds. This means that when the user then proceeds with unbonding, they in-turn can withdraw up to the amount factoring in the Stake Factor multiplier.
+ENJ is the native token of the Enjin Blockchain. Whereas, sENJ is an <GlossaryTerm id="multi_unit_token" /> created with the [multiToken pallet](/04-components/05-enjin-matrixchain/01-multitoken-pallet.md). When [bonding (staking)](/04-components/04-enjin-relaychain/04-joining-nomination-pools.md) ENJ to a nomination pool, sENJ is created at a 1:1 ratio. During the time that you are in the pool, holding sENJ, a Stake Factor accrues as the nomination pool accrues ENJ. This Stake Factor is a multiplier to the value of sENJ the user holds. This means that when the user then proceeds with unbonding, they in-turn can withdraw up to the amount factoring in the Stake Factor multiplier.
 
 The Stake Factor can decrease if the nominated Validators misbehave. Therefore, it is not possible to guarantee that the user would definitely receive, at minimum, their original ENJ balance or, at best, an amount greater than their original ENJ balance.
 
-# Integration Guide
+## Integration Guide
 
-## Queries
+### Queries
 
-### Listing All Nomination Pools
+#### Listing All Nomination Pools
 
 **This query is unaltered from the original.** This query can be used to retrieve an exhaustive list of all Nomination Pools, along with details about each of the Nomination Pools.
 
-#### State Storage Query
+##### State Storage Query
 
 ```javascript
 nominationPools.bondedPools
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pools = (await api.query.nominationPools.bondedPools.entries())
@@ -142,7 +142,7 @@ const pools = (await api.query.nominationPools.bondedPools.entries())
 console.log(Object.fromEntries(pools))
 ```
 
-#### Example Response
+##### Example Response
 
 ```json
 {
@@ -174,24 +174,24 @@ console.log(Object.fromEntries(pools))
 }
 ```
 
-### Listing a Single Nomination Pool
+#### Listing a Single Nomination Pool
 
 **This query is unaltered from the original.** This query can be used to retrieve details about a specific Nomination Pool.
 
-#### State Storage Query
+##### State Storage Query
 
 ```javascript
 nominationPools.bondedPools(poolId : u32)
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool = await api.query.nominationPools.bondedPools(0)
 console.log(pool)
 ```
 
-#### Example Response
+##### Example Response
 
 ```json
 {
@@ -224,11 +224,11 @@ console.log(pool)
 }
 ```
 
-### Listing Members of a Nomination Pool
+#### Listing Members of a Nomination Pool
 
 This query can be used to retrieve an exhaustive list of members who are currently staked into a specific Nomination Pool.
 
-#### State Storage Query
+##### State Storage Query
 
 ```javascript
 multiTokens.tokenAccounts(
@@ -238,7 +238,7 @@ multiTokens.tokenAccounts(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -248,7 +248,7 @@ const members = (await api.query.multiTokens.tokenAccounts.entries(1, pool_id))
 console.log(Object.fromEntries(members))
 ```
 
-#### Example Response
+##### Example Response
 
 ```json
 {
@@ -265,11 +265,11 @@ console.log(Object.fromEntries(members))
 }
 ```
 
-### Listing Unbonding Members of a Nomination Pool
+#### Listing Unbonding Members of a Nomination Pool
 
 **This query is unaltered from the original.** This query can be used to retrieve an exhaustive list of members who are currently unbonding from a specific pool.
 
-#### State Storage Query
+##### State Storage Query
 
 ```javascript
 nominationPools.unbondingMembers(
@@ -278,7 +278,7 @@ nominationPools.unbondingMembers(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -289,7 +289,7 @@ const unbondingMembers = (await api.query.nominationPools.unbondingMembers.entri
 console.log(Object.fromEntries(unbondingMembers))
 ```
 
-#### Example Response
+##### Example Response
 
 ```json
 {
@@ -304,13 +304,13 @@ console.log(Object.fromEntries(unbondingMembers))
 }
 ```
 
-### Reading a User’s ENJ Balance of a Nomination Pool
+#### Reading a User’s ENJ Balance of a Nomination Pool
 
 This query can be used to read the _true_ ENJ Balance of an account for a specific Nomination Pool. There is a necessary distinction between reading the value of sENJ and the _true_ ENJ Balance that the user currently holds through the sENJ token. Refer to [Difference Between ENJ and sENJ](#difference-between-enj-and-senj) for more information.
 
 This query is more complicated as it requires first retrieving the Nomination Pool’s stash account, calculating the Stake Factor, retrieving the user’s sENJ balance in the Nomination Pool, and finally multiply their sENJ balance by the Stake Factor to derive their final balance.
 
-#### Example Request
+##### Example Request
 
 ```javascript
 import { bnToU8a, stringToU8a, u8aConcat, BN } from '@polkadot/util'
@@ -343,19 +343,19 @@ console.log(balance)
 
 Technically, the Stake Factor also considers the Nomination Pool’s reward account as part of the calculation. However, during each payout the funds are automatically reinvested into the Nomination Pool’s stash account, leaving the reward account empty (barring its existential deposit).
 
-#### Example Response
+##### Example Response
 
 ```
 4.266220452892553e+22
 ```
 
-## Extrinsics
+### Extrinsics
 
-### Bonding into a Nomination Pool
+#### Bonding into a Nomination Pool
 
 **This extrinsic is unaltered from the original.** This extrinsic can be called for the user to join a Nomination Pool and bond a given amount of ENJ into that Nomination Pool.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.bond(
@@ -364,7 +364,7 @@ nominationPools.bond(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -380,15 +380,15 @@ const tx = api.tx.nominationPools.bond(pool_id, {"amount": "10000000000000000000
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Unbonding and Withdrawing from a Nomination Pool
+#### Unbonding and Withdrawing from a Nomination Pool
 
 **These extrinsics are unaltered from the original.** These extrinsics are permissionless only when the Pool State is _Destroying_.
 
-#### Unbonding
+##### Unbonding
 
 This extrinsic can be used to initiate the unbonding process of a given amount of sENJ back to ENJ from a specific Nomination Pool. If the amount being unbonded is the complete amount of sENJ, the user is said to be leaving the Nomination pool. The unbonding process takes twenty-eight (28) eras.
 
-##### Extrinsic
+###### Extrinsic
 
 ```javascript
 nominationPools.unbond(
@@ -398,7 +398,7 @@ nominationPools.unbond(
 )
 ```
 
-##### Example Request
+###### Example Request
 
 ```javascript
 const pool_id = 0
@@ -412,11 +412,11 @@ const tx = api.tx.nominationPools.unbond(pool_id, account, amount)
 await tx.signAndSend(account, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-#### Withdrawing
+##### Withdrawing
 
 This extrinsic can be used to withdraw sENJ that has successfully completed the unbonded period of twenty-eight (28) eras. The user will receive the amount unbonded in the form of ENJ.
 
-##### Extrinsic
+###### Extrinsic
 
 ```javascript
 nominationPools.withdrawUnbonded(
@@ -426,7 +426,7 @@ nominationPools.withdrawUnbonded(
 )
 ```
 
-##### Example Request
+###### Example Request
 
 ```javascript
 const pool_id = 0
@@ -439,17 +439,17 @@ const tx = api.tx.nominationPools.withdrawUnbonded(pool_id, account, 0)
 await tx.signAndSend(account, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Creating a Nomination Pool
+#### Creating a Nomination Pool
 
 This extrinsic is used to create a new Nomination Pool. The duration must be at least 30 eras, and must not exceed 1,000 eras.
 
-#### Requirements
+##### Requirements
 
 - User must own an Inactive Degen.
 
 - User must bond an 2,500 ENJ pool deposit.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.create(
@@ -461,7 +461,7 @@ nominationPools.create(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const token_id = 1 // id of the Inactive Degen
@@ -484,15 +484,15 @@ const tx = api.tx.nominationPools.create(
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Mutating a Nomination Pool
+#### Mutating a Nomination Pool
 
 This extrinsic is used to update (mutate) an existing Nomination Pool.
 
-#### Requirements
+##### Requirements
 
 - User must be the Pool Owner.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.mutate(
@@ -501,7 +501,7 @@ nominationPools.mutate(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -529,15 +529,15 @@ const tx = api.tx.nominationPools.mutate(
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Nominating Validators for a Nomination Pool
+#### Nominating Validators for a Nomination Pool
 
 **This extrinsic is unaltered from the original.** This extrinsic is used to modify which Validators the Nomination Pool has nominated. It is also used to unchill a Nomination Pool.
 
-#### Requirements
+##### Requirements
 
 - User must be the Pool Owner.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.nominate(
@@ -546,7 +546,7 @@ nominationPools.nominate(
 )
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -564,21 +564,21 @@ const tx = api.tx.nominationPools.nominate(pool_id, validators)
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Chilling a Nomination Pool
+#### Chilling a Nomination Pool
 
 **This extrinsic is unaltered from the original.** This extrinsic is used to chill the Nomination Pool — a chilled Nomination Pool refers to one that does not actively contribute its stake to the Validator selection process. Chilling the Nomination Pool takes effect in the next era.
 
-#### Requirements
+##### Requirements
 
 - User must be the Pool Owner.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.chill(poolId : u32 (PoolId))
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -591,7 +591,7 @@ const tx = api.tx.nominationPools.chill(pool_id)
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Destroying a Nomination Pool
+#### Destroying a Nomination Pool
 
 **This extrinsic is unaltered from the original.** This sets the Pool State to _Destroying_.
 
@@ -599,17 +599,17 @@ await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* ha
 This process cannot be reversed!
 :::
 
-#### Requirements
+##### Requirements
 
 - User must be the Pool Owner.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.destroy(poolId : u32 (PoolId))
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -622,27 +622,27 @@ const tx = api.tx.nominationPools.destroy(pool_id)
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-### Unbonding and Withdrawing a Pool Deposit from a Nomination Pool
+#### Unbonding and Withdrawing a Pool Deposit from a Nomination Pool
 
 **These extrinsics are unaltered from the original.** These extrinsics are permissionless.
 
-#### Unbonding
+##### Unbonding
 
 This extrinsic will initiate a twenty-eight (28) era unbonding period.
 
-##### Requirements
+###### Requirements
 
 - The Pool State must be _Destroying_.
 
 - There must be no remaining Pool Members for the Nomination Pool being destroyed.
 
-#### Extrinsic
+##### Extrinsic
 
 ```javascript
 nominationPools.unbondDeposit(poolId : u32 (PoolId))
 ```
 
-#### Example Request
+##### Example Request
 
 ```javascript
 const pool_id = 0
@@ -655,21 +655,21 @@ const tx = api.tx.nominationPools.unbondDeposit(pool_id)
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-#### Withdrawing
+##### Withdrawing
 
 This extrinsic will withdraw the Pool Deposit which will subsequently destroy the Nomination Pool. The Degen assigned to the Nomination Pool will become an Inactive Degen and will **not** be destroyed alongside the Nomination Pool.
 
-##### Requirements
+###### Requirements
 
 - The Pool Deposit unbonding period (twenty-eight (28) eras)  must have passed.
 
-##### Extrinsic
+###### Extrinsic
 
 ```javascript
 nominationPools.withdrawDeposit(poolId : u32 (PoolId))
 ```
 
-##### Example Request
+###### Example Request
 
 ```javascript
 const pool_id = 0
@@ -682,16 +682,16 @@ const tx = api.tx.nominationPools.withdrawDeposit(pool_id)
 await tx.signAndSend(signer, ({ events = [], status, dispatchError }) => { /* handle */ })
 ```
 
-# Data Indexing
+## Data Indexing
 
 It is recommended to index data pertaining to Staking and Nomination Pools as this enables a more performant and richer experience. However, it is **not essential** for a basic integration, as illustrated through this Integration Guide.
 
 Indexing this data enables you to monitor the change over time and infer the increase or decrease in sENJ holdings over time. This enables your integration to visually show payouts and their associated amounts per Pool Member.
 
-# Extra Resources / Further Reading
+## Extra Resources / Further Reading
 
 - [Subscan](https://www.subscan.io/), a Blockchain Explorer, has useful pages on [Validators](https://enjin.subscan.io/validator) and [Nomination Pools](https://enjin.subscan.io/nomination_pool).
 
 - [Enjin Console](https://console.enjin.io/) has a dedicated page for [Staking](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking) and [Nomination Pools](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking/pools).
 
-- For more in-depth information, feel free to explore other topics within the [Enjin Relaychain](doc:blockchain-infrastructure) section.
+- For more in-depth information, feel free to explore other topics within the [Enjin Relaychain](/04-components/04-enjin-relaychain/04-enjin-relaychain.md) section.

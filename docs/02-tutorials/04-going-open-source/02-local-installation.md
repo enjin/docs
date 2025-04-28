@@ -11,17 +11,17 @@ metadata:
 createdAt: "Wed Nov 01 2023 00:19:46 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Wed Dec 11 2024 19:00:02 GMT+0000 (Coordinated Universal Time)"
 ---
-# Running it locally
+## Running it locally
 
 The [Open-Source Enjin Platform](https://github.com/enjin/platform) was made to be as simple as possible to run, you will be able to have a full running environment in less than 5 minutes.
 
-## 1\. Install Dependencies
+### 1\. Install Dependencies
 
 We have two dependencies that must be installed in your server or computer, git, a command line version control system, you can download it here: https://git-scm.com/downloads
 
 And docker, you may install either the [docker engine](https://docs.docker.com/engine/install/) or [docker desktop](https://www.docker.com/products/docker-desktop), though for people that have never used docker before we recommend using docker desktop: https://www.docker.com/products/docker-desktop
 
-## 2\. Clone the Repository
+### 2\. Clone the Repository
 
 In order for this to work you have to clone the repository, please note that downloading it as a zip will generate problems with the submodules.
 
@@ -35,17 +35,17 @@ git clone https://github.com/enjin/platform
 You login by editing the `configs/core/.env file`. Here, you use the `DAEMON_ACCOUNT` and `BASIC_AUTH_TOKEN` environment variables for the wallet account and API token, respectively.
 :::
 
-## 3\. Run the Start Script
+### 3\. Run the Start Script
 
 In the main folder of the platform, there are two start scripts: `start.bat` for Windows and `start.sh` for macOS and Linux. 
 
 Running either script sets everything up automatically. 
 
-### Running the Start script on Windows
+#### Running the Start script on Windows
 
 To run the Start script on windows, simply double click the `start.bat` file.
 
-### Running the Start script on MacOS / Linux
+#### Running the Start script on MacOS / Linux
 
 To run the Start script on MacOS / Linux, open your Terminal application on MacOS, or establish an SSH connection to your Linux server.  
 Then, navigate to the platform's root directory using the `cd platform` command, and start the script using the following command:
@@ -107,7 +107,7 @@ y
 Your Enjin Platform is now running, please visit: http://localhost:8000/graphiql
 ```
 
-## 4\. Choose Your Network
+### 4\. Choose Your Network
 
 For the Enjin Platform Starter, the default network is set to `enjin-matrixchain` (mainnet). You can switch different networks by editing NETWORK variable in the `configs/core/.env` file.  
 Accepted values are `enjin-matrixchain` / `canary-matrixchain` / `local-matrixchain`.
@@ -116,7 +116,7 @@ Accepted values are `enjin-matrixchain` / `canary-matrixchain` / `local-matrixch
 When starting the Enjin Platform using the start script, it builds the Docker image with caching. If you've modified the `.env` variables, rebuild using `docker compose build --no-cache` to apply these changes.
 :::
 
-## 5\. Access the Platform
+### 5\. Access the Platform
 
 There are two ways of interacting with Enjin Platform, through the GraphQL API. For testing you can use the GraphiQL playground that will be accessible at http://localhost:8000/graphiql
 
@@ -130,7 +130,7 @@ But you can also use the Enjin Platform UI which you can access at `http://local
 
 After that, you will be able to navigate through the UI and create collections, tokens, fuel tanks, and everything that the Enjin Platform provides to you.
 
-## 6\. Make the platform publicly accessible
+### 6\. Make the platform publicly accessible
 
 Creating a public URL using ngrok
 
@@ -162,7 +162,7 @@ Once you have run the command from above, the example should appear as the follo
 
 In case you want to access the GraphQL playground, you would just need to add /graphiql at the end of your HTTP
 
-## 7\. Upgrade to latest version
+### 7\. Upgrade to latest version
 
 ** Step 1:** **Update the submodules** by navigating to each of the `platform-decoder` and `wallet-daemon` folders and run:
 
@@ -182,7 +182,7 @@ docker compose build --no-cache
 docker compose up -d
 ```
 
-## 8\. Configure Collections (Optional)
+### 8\. Configure Collections (Optional)
 
 By default, the Enjin Platform syncs token data from all of the collections in the Blockchain.  
 To save storage and sync time, you can configure the Enjin Platform to sync only selected collections.  

@@ -8,7 +8,7 @@ updatedAt: "Fri Oct 11 2024 09:13:39 GMT+0000 (Coordinated Universal Time)"
 ---
 Stopping validation may be necessary for various reasons, including switching roles, maintaining the node, upgrading the node, or withdrawing from the network as a validator. This guide will walk you through the process to ensure your transition out of the active set of validators is smooth and efficient. If you only wish to stop validating temporarily for maintenance, Step 1 is all you need to perform. If you wish to unbond funds and reap an account, Steps 1-3 should be followed.
 
-# Step 1: Chill Your Validator
+## Step 1: Chill Your Validator
 
 “Chilling” your validator means that it will no longer be an active participant in the validator set, effectively stopping it from validating blocks and earning rewards. Chilling does not affect your staked tokens immediately, it simply signals to the network that you wish to stop validation. It’s a few simple steps to chill your validator.
 
@@ -18,23 +18,23 @@ If your validator node is part of the active validator set, it is imperative tha
 You may need to wait up to the conclusion of 7 epochs (28 hours) to be removed from being an active validator.
 :::
 
-## Enjin Console
+### Enjin Console
 
 - Open the [Enjin Console](https://console.enjin.io/#/staking/actions) with your validator account.
 - Navigate to Network \> Staking \> Account.
 - Click “Stop” next to your validator.
 
-## Programmatically
+### Programmatically
 
 - Connect to the Enjin RPC node with your validator account.
 - Send the `staking.chill()` extrinsic.
 
 Once your validator is chilled, it will no longer be eligible for selection in future staking sessions and it will stop producing blocks.
 
-# Step 2: Purge Validator Session Keys
+## Step 2: Purge Validator Session Keys
 
 :::danger Important
-Purging session keys is a permanent action. Once completed, your validator will no longer be able to participate in validation activities unless new keys are generated and [set up again](https://docs.enjin.io/docs/running-a-validator).
+Purging session keys is a permanent action. Once completed, your validator will no longer be able to participate in validation activities unless new keys are generated and [set up again](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md).
 
 This step is crucial for security, as it prevents any accidental or unauthorized activation of your validator.
 :::
@@ -45,22 +45,22 @@ After chilling your validator, the next crucial step is to purge the session key
 - Navigate to Developer \> Extrinsics.
 - Select the Correct Account. It should be the same account that was used to set the keys in the first place.Call the `session.purge_keys()` extrinsic.
 
-# Step 3: Unbond Your Tokens
+## Step 3: Unbond Your Tokens
 
 Unbonding will release your ENJ staked as a validator. Once unbonded, your tokens will become freely transferable. You can follow the below steps to unbond your staked ENJ.
 
-## Enjin Console
+### Enjin Console
 
 - Open the Enjin Console with your stash account.
 - Navigate to Network \> Staking \> Account actions.
 - Click the corresponding stash account dropdown and select “Unbond funds”.
 
-## Programmatically
+### Programmatically
 
 - Connect to the Enjin RPC node with your stash account.
 - Send `staking.unbond()` extrinsic.
 
-# Conclusion
+## Conclusion
 
 To temporarily stop validating on the Enjin Blockchain you have only to chill your validator.
 

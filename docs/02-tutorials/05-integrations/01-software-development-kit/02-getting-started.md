@@ -21,11 +21,11 @@ To have the SDK connect with the Enjin Platform we must use its platform clients
 Direct integration of the SDKs into game clients, which can be decompiled, is strictly not recommended due to potential security risks and exposure of your keys.
 :::
 
-# Platform Clients
+## Platform Clients
 
 For communicating with the platform's GraphQL API, the SDK defines an `IPlatformClient` interface that works with GraphQL objects for sending requests and receiving responses from the platform.
 
-## Creating the Client
+### Creating the Client
 
 The built-in `PlatformClient` class, which implements `IPlatformClient`, utilizes a builder pattern for instantiating new instances. When using this builder, one of the essential inputs we must set is the base address of the platform we will be using.
 
@@ -55,7 +55,7 @@ unique_ptr<PlatformClient> client = PlatformClient::Builder()
   </TabItem>
 </Tabs>
 
-## Authenticating the Client
+### Authenticating the Client
 
 Once we have our client instance we may now authenticate it using an authentication token for our platform.
 
@@ -72,7 +72,7 @@ client->Auth("<platform-authentication-token>");
   </TabItem>
 </Tabs>
 
-## Disposing of the Client
+### Disposing of the Client
 
 When we no longer need our platform client, we may dispose of it to free up any system resources it may be using with the appropriate method as shown:
 
@@ -92,11 +92,11 @@ client.reset();
   </TabItem>
 </Tabs>
 
-# Event Services
+## Event Services
 
 The platform broadcasts events that we may respond to or gather information from. For interfacing with an event broadcasting service the SDK offers the `IEventService` interface. Whether we decide to use a free, paid, self-hosted, or any such framework as the driver for broadcasting platform events, the `IEventService` interface defines what operations we may use for working with it.
 
-## Creating the Service
+### Creating the Service
 
 The default framework used by the Enjin Platform Cloud and platforms using the Enjin Platform - Starter Template for broadcasting cloud events is [Pusher Channels](https://pusher.com/channels). To work with this framework the SDK has its own `PusherEventService` which implements `IEventService` and serves as an abstraction between us and Pusher for subscribing and listening for events and is a useful tool for those just getting started.
 
@@ -151,7 +151,7 @@ If you wish to change the key (websocket), you can do so in the platform config 
 For developers who opt to utilize Pusher's own Channels service for broadcasting events, then instead of `SetHost()` we may use the builder's `SetCluster()` method to connect our event service to the appropriate Pusher cluster.
 :::
 
-## Managing the Connection
+### Managing the Connection
 
 Before we can use our event service, we must connect it to the designated server host through its ConnectAsync method as shown below:
 
@@ -195,7 +195,7 @@ future<void> fut = service->DisconnectAsync();
   </TabItem>
 </Tabs>
 
-# Disposing of the Service
+## Disposing of the Service
 
 When we no longer need our event service, we may dispose of it to free up any system resources it may be using with the appropriate method as shown:
 

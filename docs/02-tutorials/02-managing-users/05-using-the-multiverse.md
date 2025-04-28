@@ -36,7 +36,7 @@ This creates an self-sustaining cycle that powers your game's growth:
 
 This cycle—driven by consistent player engagement, developer involvement, and expanding item utility—creates a powerful loop that forms a self-reinforcing growth engine.
 
-# Using the Primythical Chest to Acquire Players
+## Using the Primythical Chest to Acquire Players
 
 The <GlossaryTerm id="primythical_chest" /> is an infinite supply promotional tool and Enjin's primary funnel for onboarding new players into your game. 
 
@@ -54,7 +54,7 @@ This will lead them to participate in <GlossaryTerm id="multiverse_quests" />, w
 
 ![](./img/using-the-multiverse-3.jpg)
 
-## How to Add Your Game
+### How to Add Your Game
 
 To add your game to the [Multiverse Codex](https://enjin.io/multiverse), follow these steps:
 
@@ -65,7 +65,7 @@ In return, your game will be promoted on the [Multiverse Codex](https://enjin.io
 
 Your placement on each item's codex will depend on the quality of your utility and the video content you provide.
 
-# Using Multiverse Quests to Retain Players
+## Using Multiverse Quests to Retain Players
 
 Multiverse Items are designed as powerful tokens with <GlossaryTerm id="utility" /> across multiple games. Both new and existing players are always eager to collect these items, especially as they see their utility expand with adoption by more games.
 
@@ -130,9 +130,9 @@ Here is the yearly release schedule for Multiverse Items & Quests:
 | The Epoch of the Epochrome | August 1st to August 15th | 400 x Epochrome Swords |
 | The Siege of Stormwall | September 1st to September 15th | 250 x Stormwalls |
 
-# How to Add Multiverse Items into Your Game
+## How to Add Multiverse Items into Your Game
 
-## Step 1: Download the 3D Multiverse Models
+### Step 1: Download the 3D Multiverse Models
 
 Visit [Enjin's public resource repository](https://drive.google.com/drive/folders/1ijlDn_f9PN8GsT9kQfGZR0ObrUgEL2ge) to download 3D models for Unity and Unreal Engine. 
 
@@ -140,22 +140,22 @@ These ready-to-integrate models will streamline your multiverse integration proc
 
 You are also welcome to design your own 3D or 2D models to better suit your game's aesthetic, provided they are recognizable to players as the Multiverse Items.
 
-## Step 2: Add Utility to the Multiverse Tokens.
+### Step 2: Add Utility to the Multiverse Tokens.
 
 To add utility to multiverse items, your game will need to:
 
-1. [Link player wallets to your game](doc:using-wallet-connect).
-2. [Read the inventory from player wallets](doc:reading-user-wallets).
+1. [Link player wallets to your game](/02-tutorials/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+2. [Read the inventory from player wallets](/02-tutorials/02-managing-users/02-reading-user-wallets.md).
 3. Validate ownership of the [multiverse items](#the-multiverse-collection).
 4. Provide an in-game benefit for each multiverse item.
 
 Once you have completed these steps, [contact Enjin](https://enjin.io/contact) to get listed on [The Multiverse Codex](https://enjin.io/multiverse) and collaborate on Multiverse marketing initiatives aimed at driving players into your game.
 
-# The Multiverse Collection
+## The Multiverse Collection
 
 Collection ID: `2967`
 
-To see if a user owns a multiverse item, use the [GetTokens query](doc:token-data#gettokens) and filter based on Collection ID or Token IDs.
+To see if a user owns a multiverse item, use the [GetTokens query](/03-api-functions/01-queries/03-tokens-queries.md#gettokens) and filter based on Collection ID or Token IDs.
 
 | Token Name | Token IDs (Ranging From) | TokenIDs (Ranging To) |
 | :--- | :--- | :--- |

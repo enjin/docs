@@ -6,11 +6,11 @@ hidden: false
 createdAt: "Fri Oct 11 2024 08:50:16 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Fri Oct 11 2024 08:51:30 GMT+0000 (Coordinated Universal Time)"
 ---
-# Prerequisites
+## Prerequisites
 
 Before you begin, ensure that you have [installed Docker](https://docs.docker.com/get-started/get-docker/) on a machine you will use to host the Indexer.
 
-# Quick Start
+## Quick Start
 
 1. Begin by creating three files (`docker-compose.yml`, `.env` and `init.sql`):
 
@@ -127,7 +127,7 @@ CREATE INDEX IF NOT EXISTS metadata_uri ON "metadata"."metadata" (uri);
 
 You can read the [GraphQL Documentation](https://graphql.org/learn/) for more information about how to construct queries for the GraphQL interface.
 
-## Advanced Configuration
+### Advanced Configuration
 
 1. Clone and Enter the Repository
    ```bash
@@ -141,23 +141,23 @@ You can read the [GraphQL Documentation](https://graphql.org/learn/) for more in
 ```text
 NODE_ENV=production # Node.js environment (supported values: development, production) 
 
-# Required - Blockchain
+## Required - Blockchain
 CHAIN_ENDPOINT=wss://archive.matrix.blockchain.enjin.io # WebSocket endpoint to connect to the Enjin Matrixchain. It is recommended to be set to your Enjin Archive Node.  
 CHAIN_PREFIX=1110 # The chain prefix for Enjin Matrixchain
 ARCHIVE_ENDPOINT=<https://v2.archive.subsquid.io/network/enjin-matrix> # Subsquid archive endpoint for historical blockchain data
 
-# Required - Database
+## Required - Database
 DB_NAME=postgres # Name of your PostgreSQL database. If you  
 DB_HOST=indexer_db # PostgreSQL host  
 DB_PORT=5432 # PostgreSQL port  
 DB_PASS=postgres # Postgres password  
 REDIS_URL=redis://indexer_redis:6379/1 # Redis URL for caching
 
-# Optional - Prometheus Monitoring
+## Optional - Prometheus Monitoring
 PROMETHEUS_PORT=7364 # Port for Prometheus metrics
 PROCESSOR_PROMETHEUS_ENDPOINT=http://localhost:7364 # Prometheus endpoint for the processor
 
-# Optional - Error Reporting and Debugging
+## Optional - Error Reporting and Debugging
 SQD_DEBUG=INFO # Debugging flag for Subsquid. More info can be found <https://docs.sqd.dev/sdk/reference/logger/>  
 SENTRY_DSN=your_sentry_dsn # Sentry DSN for error tracking
 ```
@@ -166,7 +166,7 @@ SENTRY_DSN=your_sentry_dsn # Sentry DSN for error tracking
 If you are using your own Redis or PostgresSQL instances (instead of the ones provided by Docker Compose), remember to remove the `indexer_db` and `indexer_redis` services from the `docker-compose.yml`, and set the database connection details (like `DB_HOST`, `DB_PORT` and `REDIS_URL`) in the `.env` file to match your external services.
 :::
 
-# Troubleshooting
+## Troubleshooting
 
 - Ensure Docker is installed and running with sufficient resources.
 - Use docker `compose logs -f <service_name>` to view logs and diagnose issues.

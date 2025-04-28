@@ -6,7 +6,7 @@ hidden: false
 createdAt: "Sun Jul 14 2024 16:10:29 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Fri Apr 11 2025 11:53:30 GMT+0000 (Coordinated Universal Time)"
 ---
-# Preliminaries​
+## Preliminaries​
 
 Operating a Validator carries significant responsibility. You're responsible for both your stake and that of your nominators. Errors can lead to a loss of tokens and harm your reputation. Despite this, being a Validator can be fulfilling as you help secure a decentralized network and increase your holdings.
 
@@ -14,7 +14,7 @@ Operating a Validator carries significant responsibility. You're responsible for
 You should have strong system administration skills before trying to run your own Validator. You'll need to address technical problems with your node independently. Being a Validator is more than just running the Enjin Relaychain binary.
 :::
 
-## How much ENJ do I need to become an Active Validator?
+### How much ENJ do I need to become an Active Validator?
 
 There's a distinction between becoming a Validator, and becoming an Active Validator. In order to become a Validator, you need to bond a minimum of 15,000 ENJ. However, becoming an Active Validator requires further economical backing. There is currently a maximum of 13 Active Validators, and so your total stake must be within the top 13. The total stake of a Validator consists of the Validator's own stake, along with the collective stake of all nominators that nominate it. Outside of the top 13, your Validator will remain waiting.
 
@@ -28,13 +28,13 @@ The minimum backing required to become an Active Validator on Enjin Relaychain, 
 It is important to acknowledge that any ENJ that you stake for your Validator is liable to being slashed. If you are not confident in your ability to run a Validator, it is recommended to nominate your ENJ to a trusted Validator instead.
 :::
 
-# Initial Set-up
+## Initial Set-up
 
-## Requirements
+### Requirements
 
 To run a Validator, most people use a cloud server with Linux. It's recommended to use a recent version of Debian Linux. This guide uses `Ubuntu 22.04 LTS`, but steps should be similar for other operating systems.
 
-## Reference Hardware
+### Reference Hardware
 
 Enjin Relaychain's transaction weights are based on specific hardware benchmarks. These were tested on Amazon's `m6id.xlarge`. Validators should use hardware that matches or exceeds these benchmarks to process blocks efficiently.
 
@@ -53,11 +53,11 @@ It is not necessary to use an excessive number of CPU cores as operating a node 
 
 The above hardware specifications are not the minimum specifications. However, they should be considered as best practice. Operating a Validator requires the use of professional hardware. Using inferior hardware can lead to performance problems, fewer era points, and even potential slashing.
 
-## Install a Network Time Protocol (NTP) Client
+### Install a Network Time Protocol (NTP) Client
 
 [NTP](https://en.wikipedia.org/wiki/Network_Time_Protocol) is a networking protocol designed to synchronize the clocks of computers over a network. NTP allows you to synchronize the clocks of all the systems within the network. Currently it is required that the local clocks of Validators stay reasonably in-sync. Therefore, you should be running a NTP. Most modern Linux installations include an NTP client installed out-of-the-box for time synchronisation.
 
-### Checking System Clock Synchronization
+#### Checking System Clock Synchronization
 
 You can check whether you currently have a NTP client installed by running the following command:
 
@@ -67,23 +67,23 @@ In the event that you have a NTP client installed, and is running, you should se
 
 `System clock synchronized: yes`
 
-### Install an NTP Client
+#### Install an NTP Client
 
 If you do not see the message, you can install a NTP client using the following command:
 
 `sudo apt-get install ntp`
 
-Once installed, `ntpd` (the NTP client daemon) will start automatically. You can then query to ensure that system clock has synchronized by repeating the steps under [Checking System Clock Synchronization](https://docs.enjin.io/enjin-blockchain/validator-staking/running-a-relaychain-validator#checking-system-clock-synchronization).
+Once installed, `ntpd` (the NTP client daemon) will start automatically. You can then query to ensure that system clock has synchronized by repeating the steps under [Checking System Clock Synchronization](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md#checking-system-clock-synchronization).
 
 :::danger
 If you skip this step, your Validator may miss chances to author blocks. If the clock isn't accurate, the network may not accept the blocks you produce. This will result in ImOnline heartbeats making it on chain, but zero allocated blocks making it on chain.
 :::
 
-## Running a Relaychain Node
+### Running a Relaychain Node
 
-You can refer to the page on [Running a Relaychain Node](/docs/relaychain-nodes) in order to get setup.
+You can refer to the page on [Running a Relaychain Node](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/02-run-relaychain-node.md) in order to get setup.
 
-### Synchronize Chain State
+#### Synchronize Chain State
 
 In order to validate, you must first have a node that has fully synchronized. This is simply a matter of running your node and allowing it sufficient time to complete its synchronization. It may take several hours to complete this process.
 
@@ -110,7 +110,7 @@ You will know when it has synced, as you will no longer see lines as illustrated
 2023-10-18 14:33:14 💤 Idle (9 peers), best: #1971893 (0xb933…472d), finalized #1971890 (0x7065…145e), ⬇ 8.6kiB/s ⬆ 10.7kiB/s
 ```
 
-### Session Keys
+#### Session Keys
 
 If you're uncertain about your node's current session keys after the setKeys transaction, you can check using two RPC methods: hasKey for a specific key or hasSessionKeys for the entire session key string.
 
@@ -133,7 +133,7 @@ You will know if this was successful as you will see an output during startup in
 2023-10-10 19:38:55 👶 Starting BABE Authorship worker
 ```
 
-### Generating Session Keys
+#### Generating Session Keys
 
 :::tip
 If you do not have curl installed, you can install it using the following command: `sudo apt-get install curl`
@@ -164,7 +164,7 @@ If you ran this successfully, you will receive a successful response and the res
 
 **Make sure to remove the options exposing the RPC interface (`--rpc-external`, `--rpc-cors=all`, `--rpc-methods=unsafe`) that was added earlier as they are incompatible when running a node with `--validator`.**
 
-### Bond ENJ, Set Session Keys and Begin Validating
+#### Bond ENJ, Set Session Keys and Begin Validating
 
 To become a Validator on the Enjin Relaychain, you initially need 15,000 ENJ. However, to become an Active Validator and earn rewards, you need a total stake that meets or exceeds a certain amount of ENJ. 
 
@@ -204,12 +204,12 @@ All that remains is to verify everything was set correctly. You can do this by n
 
 Congratulations! If you've followed everything correctly, you're now officially a Validator! Make sure that you have enough total stake backing your Validator be selected for the next Validator Set.
 
-# FAQ
+## FAQ
 
-## Validator Set - when are new Validators selected?
+### Validator Set - when are new Validators selected?
 
 Validators are selected at the start of the final epoch in a given era. For the Enjin Relaychain, this means on the 6th epoch (20th hour) of the era. In order to be selected, you must be one of the top 13 Validators based on total stake and not currently chilled or slashed.
 
-## When will my Validator become active?
+### When will my Validator become active?
 
 If you were selected to be part of the next Validator Set, your Validator will become active in the next era. For the Enjin Relaychain, this means 4 hours after your Validator was selected for inclusion within the next Validator Set.

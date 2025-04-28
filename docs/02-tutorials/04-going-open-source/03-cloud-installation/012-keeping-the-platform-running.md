@@ -1,11 +1,11 @@
 ---
 title: "Keeping the Platform Running"
-slug: "keeping-the-platform-updated"
+slug: "keeping-the-platform-running"
 excerpt: ""
 hidden: false
 metadata: 
-  title: "Keeping the Platform Updated - Ensure Continuous Improvement"
-  description: "Ensure that your Enjin platform is always running the latest version with this guide to keeping the platform updated."
+  title: "Keeping the Platform running - Ensure Continuous Improvement"
+  description: "Ensure that your Enjin platform is always running the latest version with this guide to keeping the platform running."
   image: []
   robots: "index"
 createdAt: "Fri Feb 02 2024 01:55:17 GMT+0000 (Coordinated Universal Time)"

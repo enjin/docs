@@ -11,7 +11,7 @@ metadata:
 createdAt: "Wed Jan 31 2024 10:24:02 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Tue Sep 10 2024 00:42:32 GMT+0000 (Coordinated Universal Time)"
 ---
-Every time you change .env variables / [update the platform version](doc:updating-the-platform) / [install a package](doc:installing-additional-packages), for any changes to take effect, the workers need to be restarted:
+Every time you change .env variables / [update the platform version](/02-tutorials/04-going-open-source/03-cloud-installation/09-updating-the-platform.md) / [install a package](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md), for any changes to take effect, the workers need to be restarted:
 
 1. attach to your workers tmux sessions:
 

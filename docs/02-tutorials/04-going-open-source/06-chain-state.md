@@ -22,7 +22,7 @@ It's regularly updated through the network's consensus algorithm to maintain dat
 
 To query this state, there are several methods, but let's focus on using the Enjin Console and the Enjin Platform:
 
-# Enjin Platform
+## Enjin Platform
 
 The Enjin Platform uses a blockchain indexer to gather transactions, aiming to provide the latest chain state as quickly as possible. 
 
@@ -81,15 +81,15 @@ query GetCollection {
 It's important to know that the Enjin Platform only keeps track of the current state of the chain. This means you can't check what happened in the past blocks. The platform is designed for giving you up-to-date information about the chain's current state, not for looking at its history.
 :::
 
-# Enjin Console
+## Enjin Console
 
-## Connecting to the Enjin Console
+### Connecting to the Enjin Console
 
 Open the Enjin Console, you can connect to the network by clicking on the following URL: https://console.enjin.io/
 
 ![Enjin Console Chain State](./img/enjin-console-chain-state.png)
 
-# Querying the data
+## Querying the data
 
 To look up data from a specific module (called a <GlossaryTerm id="pallet" />) on the Chainstate page of the Enjin Console, you just need to pick the pallet you're interested in and then select the data item you need from that pallet.
 

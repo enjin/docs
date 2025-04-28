@@ -15,7 +15,7 @@ This guide is intended for users who are new to GraphQL. If you're already famil
 
 For everyone else, this page will walk you through the essentials of working with GraphQL so you can confidently interact with our API.
 
-# Understanding GraphQL vs. RESTful API Calls
+## Understanding GraphQL vs. RESTful API Calls
 
 To illustrate the differences between GraphQL and RESTful API calls, let's consider an example of creating a token.
 
@@ -92,7 +92,7 @@ With GraphQL, the client controls what data is returned by explicitly specifying
 
 GraphQL's ability to query multiple resources in a single request, its strong type system, and its flexibility in querying data make it a powerful tool for interacting with the Enjin Blockchain, providing a seamless experience for developers building with NFTs.
 
-# GraphiQL Playground
+## GraphiQL Playground
 
 The <GlossaryTerm id="graphiql_playground" /> serves three purposes:
 
@@ -102,7 +102,7 @@ The <GlossaryTerm id="graphiql_playground" /> serves three purposes:
 
 ![A breakdown of the GraphiQL Playground](./img/graphiql-explorer-breakdown.png)
 
-## Step 1: Open GraphiQL Playground
+### Step 1: Open GraphiQL Playground
 
 Choose between [Testnet](https://platform.canary.enjin.io/graphiql) or [Mainnet](https://platform.enjin.io/graphiql).
 
@@ -110,20 +110,20 @@ Explore "[Core Operations](https://platform.canary.enjin.io/graphiql)" for core 
 
 :::info GraphiQL Playground:
 Please be aware that the provided links below are specifically for the GraphiQL Playground, which is a graphical user interface designed for exploring and interacting with the Enjin Platform GraphQL APIs directly from a web browser.  
-If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](doc:using-enjin-api#overview-of-graphql-endpoints)  
-### Testnet:
+If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md#overview-of-graphql-endpoints)  
+#### Testnet:
 - [Core Operations](https://platform.canary.enjin.io/graphiql)
 - [Marketplace](https://platform.canary.enjin.io/graphiql/marketplace)
 - [Beam](https://platform.canary.enjin.io/graphiql/beam)
 - [Fuel Tanks](https://platform.canary.enjin.io/graphiql/fuel-tanks)
-### Mainnet:
+#### Mainnet:
 - [Core Operations](https://platform.enjin.io/graphiql)
 - [Marketplace](https://platform.enjin.io/graphiql/marketplace)
 - [Beam](https://platform.enjin.io/graphiql/beam)
 - [Fuel Tanks](https://platform.enjin.io/graphiql/fuel-tanks)
 :::
 
-## Step 2: Open the explorer
+### Step 2: Open the explorer
 
 Click the `Show GraphQL Explorer` button.
 
@@ -131,13 +131,13 @@ Here, you can view a complete list of available queries and mutations, along wit
 
 ![Example of using the graphiql playground query builder](./img/using-graphql-builder.gif)
 
-## Step3: Add a query or mutation to start building your operation
+### Step3: Add a query or mutation to start building your operation
 
 Add a `query` or `mutation` into the "write" panel, and you'll see the list of available options in the explorer update to suit the operation type.
 
 ![Example of switching to mutation in the graphiql playground query builder](./img/using-graphql-builder-mutation.gif)
 
-## Step 4: Select which operations and datapoints you require
+### Step 4: Select which operations and datapoints you require
 
 Click the required data points to automatically add them to the write column. 
 
@@ -145,7 +145,7 @@ This feature eliminates any guesswork when structuring your operations and helps
 
 ![Example of building a mutation in the graphiql playground query builder](./img/building-mutation.gif)
 
-## Step 5: Click the play button to execute your operation
+### Step 5: Click the play button to execute your operation
 
 To execute your operation and view the response, simply click the `Execute Query` button. 
 
@@ -153,13 +153,13 @@ You can execute any on-chain operation here. You can even mint tokens and view w
 
 ![Executing a query in the graphiql playground query builder](./img/execute-call.gif)
 
-# GraphQL Operation Structures
+## GraphQL Operation Structures
 
 The Enjin API features an intricately crafted <GlossaryTerm id="platform_schema" /> that is finely tuned to empower the development of scalable and high-speed blockchain-based games, ensuring an immersive experience for players.
 
 To interface with it directly, you will need to understand how GraphQL operations are structured.
 
-## Operation Name
+### Operation Name
 
 The Operation Name such as `GetTokenInfo` is a user-defined identifier for a specific operation. 
 
@@ -191,7 +191,7 @@ query GetTokenInfo { #'GetTokenInfo' is the Operation Name that distinguishes th
   </TabItem>
 </Tabs>
 
-## Fields
+### Fields
 
 Fields serve as a means to precisely specify the data you want to retrieve in the response of an operation. 
 
@@ -227,7 +227,7 @@ query {
   </TabItem>
 </Tabs>
 
-## Arguments
+### Arguments
 
 You can pass data into an operation by using arguments.  
 
@@ -263,7 +263,7 @@ Sometimes arguments will be required, sometimes they will be optional, and some 
 
 The API will tell you if you try to run an operation without a required argument.
 
-## Aliases
+### Aliases
 
 The alias, such as `TokenInfo` and `CurrentSupply` in the queries provided below, serve as a custom labels for specific fields within the operation. 
 
@@ -333,7 +333,7 @@ query GetTokenInfo {
   </TabItem>
 </Tabs>
 
-## Variables
+### Variables
 
 Various code blocks in the Enjin Documentation use variables instead of hardcoding arguments. This allows the dynamic insertion of data as you run mutations and queries.
 
@@ -394,7 +394,7 @@ query GetTokenInfo($collection_id: BigInt! $token_id: BigInt) {
 
 ![Example of converting query args into variables](./img/converting-query-args-into-variables.gif)
 
-## Types
+### Types
 
 Types in GraphQL serve as blueprints for defining the shape and composition of the data available through the API, encompassing a collection of fields representing specific pieces of information. 
 
@@ -577,7 +577,7 @@ In this batch mutation, we have two separate `MintToken` mutations, labeled usin
 
 Both mutations are minting two different tokens into two separate addresses.
 
-## Pagination
+### Pagination
 
 Some GraphQL queries returns results in multiple pages. In GraphQL, these are called "Connections", and each of the elements in the connection is called "Edge".
 

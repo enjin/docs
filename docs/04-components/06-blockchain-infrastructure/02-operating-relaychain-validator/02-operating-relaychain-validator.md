@@ -8,8 +8,8 @@ updatedAt: "Fri Oct 11 2024 08:31:46 GMT+0000 (Coordinated Universal Time)"
 ---
 This section takes you on the journey of operating a Relaychain Validator Node.
 
-# [Running a Validator](https://docs.enjin.io/docs/running-a-validator)
+## [Running a Validator](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md)
 
-# [Security Best Practices for Validators](https://docs.enjin.io/docs/security-best-practices-for-validators)
+## [Security Best Practices for Validators](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/02-security-best-practices-for-validators.md)
 
-# [How to Stop Validating](https://docs.enjin.io/docs/how-to-stop-validating)
+## [How to Stop Validating](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/03-how-to-stop-validating.md)

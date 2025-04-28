@@ -28,22 +28,22 @@ When dispatching a transaction via a Fuel Tank, the following checks must pass:
 - The Fuel Tank allows dispatching this transaction.
 
 :::info What you'll need:
-- Some [Enjin Coin](doc:using-enjin-coin) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.  
+- Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
 :::
 
-# Tank Rules
+## Tank Rules
 
 Fuel Tanks offer versatile rules for various use cases, allowing customization.
 
-## Dispatch Rules
+### Dispatch Rules
 
-### Rule Set
+#### Rule Set
 
 When a call is made to a fuel tank (also known as "Dispatching"), it must be made in accordance with a set of rules. These rules, known as rule sets, can include multiple individual Dispatch Rules that determine the validity of the call. A fuel tank can have multiple rule sets, each of which controls access and permissions to the fuel tank's functionality and resources.
 
-### Types of Dispatch Rules:
+#### Types of Dispatch Rules:
 
 - **`Whitelisted Callers`**: Subsidize <GlossaryTerm id="transaction" />s dispatched from certain <GlossaryTerm id="wallet_account" />s.
 - **`Whitelisted Collections`**: Subsidize <GlossaryTerm id="transaction" />s involving specific <GlossaryTerm id="collection" />.
@@ -58,11 +58,11 @@ When a call is made to a fuel tank (also known as "Dispatching"), it must be mad
 
 These rules enhance the Enjin Blockchain experience, sparking new products and business models.
 
-### RequireAccount Parameter
+#### RequireAccount Parameter
 
 In addition to Dispatch Rules, a Rule Set may require the dispatching account to have an existing Fuel Tank User Account in order to dispatch a call. This is configured by setting the Rule Set's `requireAccount` parameter to true.
 
-## Account Rules
+### Account Rules
 
 Adding an account to the Fuel Tank User Accounts can be done in two ways:
 
@@ -73,12 +73,12 @@ In both ways, the account is added to the tank's User Accounts only if it's succ
 
 Note: if the dispatcher is not the tank owner, he may add itself to the User Accounts only if [UserAccountManagement](#user-account-management) is configured
 
-### Types of Account Rules:
+#### Types of Account Rules:
 
 - **`Whitelisted Callers`**: Only listed accounts are able to add their account to the Fuel Tank's User Accounts.
 - **`Require Token`**: Only accounts that hold the specified token are able to add their account to the Fuel Tank's User Accounts.
 
-## User Account Management
+### User Account Management
 
 By default, only the Fuel Tank owner has the permission to add accounts to the Fuel Tank User Accounts. However, the Fuel Tank can be configured to allow accounts to add themselves by setting the `tankReservesAccountCreationDeposit` argument.
 
@@ -86,12 +86,12 @@ By default, only the Fuel Tank owner has the permission to add accounts to the F
 - **Self-Addition without Deposit Funding**: If the `tankReservesAccountCreationDeposit` argument is set to `false`, the Fuel Tank allows accounts to add themselves to the Fuel Tank User Accounts. However, the Fuel Tank will not provide the funds required for the Tank User Account <GlossaryTerm id="storage_deposit" />.
 - **Self-Addition with Deposit Funding**: If the `tankReservesAccountCreationDeposit` argument is set to `true`, the Fuel Tank allows accounts to add themselves to the Fuel Tank User Accounts, and it also covers the necessary funds required for the Tank User Account <GlossaryTerm id="storage_deposit" />.
 
-## Coverage Policy
+### Coverage Policy
 
 By default, the fuel tank will subsidize only <GlossaryTerm id="transaction_fees" />.  
 To cover both <GlossaryTerm id="transaction_fees" /> and any <GlossaryTerm id="storage_deposit" /> the dispatched call may require, set the Coverage Policy to `FEES_AND_DEPOSIT`
 
-# Creating Fuel Tanks
+## Creating Fuel Tanks
 
 Now that we have a basic understanding of how Fuel Tanks are structured, let's go through setting up some Fuel Tanks with specific functionality, including creating rules and customizing it to fit your needs, enabling you to reduce transaction costs for your users.
 
@@ -119,7 +119,7 @@ Code snippets with these arguments are provided for illustrative purposes only. 
 - Mainnet: http://platform.enjin.io/graphiql/fuel-tanks
 :::
 
-## Subsidize Token Transfers For A Collection
+### Subsidize Token Transfers For A Collection
 
 The following mutation will set up a fuel tank that only subsidizes transactions that contain a `BatchTransfer` extrinsic, and only if it involves a token from the collection with ID 36,105.
 
@@ -321,7 +321,7 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-## Subsidize Any Transaction Involving <GlossaryTerm id="multitoken" />s From A Certain Collection
+### Subsidize Any Transaction Involving <GlossaryTerm id="multitoken" />s From A Certain Collection
 
 :::warning Upcoming Feature Notice: `WhitelistedPallets` Option
 The `WhitelistedPallets` argument is not yet supported on the Enjin Platform.  
@@ -542,7 +542,7 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-## Subsidize All Transactions For Whitelisted Accounts With Budget Limitations
+### Subsidize All Transactions For Whitelisted Accounts With Budget Limitations
 
 The following mutation will set up a fuel tank that subsidizes any transaction, the tank is allowed to subsidize up to 5 ENJ per 30 days for each User Account in the tank, which can be created only if the account is within the whitelisted callers list.
 
@@ -797,10 +797,10 @@ print(response.json())
 A WebSocket event will also be fired so you can pick up the Fuel Tank creation in real time by listening to the app channel on the WebSocket.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
 
-# Dispatching a Call Using a Fuel Tank
+## Dispatching a Call Using a Fuel Tank
 
 To broadcast a transaction call using a fuel tank, use the `Dispatch`/`DispatchAndTouch` mutation.
 
@@ -809,10 +809,10 @@ Use the `DispatchAndTouch` mutation to create a `UserAccount` and `Dispatch` at 
 :::
 
 :::tip Not sure which Fuel Tank to select?
-If you need help figuring out the best fuel tank to use for a transaction, check out this page: [Selecting a fuel tank to dispatch with](doc:fuel-tank-pallet#selecting-a-fuel-tank-to-dispatch-with).
+If you need help figuring out the best fuel tank to use for a transaction, check out this page: [Selecting a fuel tank to dispatch with](/04-components/05-enjin-matrixchain/02-fuel-tank-pallet.md#selecting-a-fuel-tank-to-dispatch-with).
 :::
 
-## Step #1: Prepare The Mutation
+### Step #1: Prepare The Mutation
 
 First, prepare the mutation you wish to dispatch, with the `id` and `encodedData` fields in the response.  
 In this example, we'll dispatch a call to send a <GlossaryTerm id="multitoken" /> from one account to another:
@@ -834,7 +834,7 @@ mutation TransferNFT{
 }
 ```
 
-## Step #2: Prepare The Dispatch Mutation
+### Step #2: Prepare The Dispatch Mutation
 
 Next, you need to convert the mutation call into a String. Remove all new lines and escape double quotation marks:
 
@@ -844,7 +844,7 @@ mutation TransferNFT{SimpleTransferToken(collectionId: 3298 recipient: \"efQh8Fz
 
 To escape quotation marks you can use online tools such as https://tools.knowledgewalls.com/online-escape-single-or-double-quotes-from-string.
 
-## Step #3: Send the Dispatch Call
+### Step #3: Send the Dispatch Call
 
 Insert the mutation String from Step #2 into a Dispatch mutation call "query" parameter and send it:
 
@@ -1040,7 +1040,7 @@ print(response.json())
 Once the mutation is sent, signed and broadcasted, If the transaction is eligible, the fuel tank will subsidize the transaction fees; otherwise, the transaction will fail.
 
 :::info Need to broadcast from Managed Wallet?
-To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](#using-managed-wallets#transferring-tokens-from-managed-wallets) page.  
+To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](/02-tutorials/02-managing-users/03-using-managed-wallets.md#transferring-tokens-from-managed-wallets) page.  
 It's important to note that the `signingAccount` argument should be added on the `Dispatch` mutation level, and **NOT** in the dispatch argument.  
 In the above example, to transfer the token from a managed wallet via a fuel tank:
 

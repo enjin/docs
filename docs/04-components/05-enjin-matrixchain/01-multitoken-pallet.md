@@ -13,7 +13,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
 :::
 
-# What is the MultiTokens <GlossaryTerm id="pallet" />?
+## What is the MultiTokens <GlossaryTerm id="pallet" />?
 
 The Enjin Blockchain has a token standard called MultiTokens. The standard is compatible with matrixchains, parachains, parathreads and smart contracts, so it’s interoperable with the entire Enjin, Polkadot and Kusama ecosystem.
 
@@ -34,7 +34,7 @@ This page will be updated once it is.
 
 ![](./img/3.png)
 
-# Terminology
+## Terminology
 
 - **Collection - ** A group of tokens. Also holds data for those tokens and the policies that govern their behavior.
 - **Token - **A unique asset with a balance
@@ -46,7 +46,7 @@ This page will be updated once it is.
 - **Freeze/Thaw - **If a collection, token, or account is frozen, it cannot transfer tokens
 - **Descriptor -** Used to create something. For example, a CollectionDescriptor creates a Collection.
 
-# Collections
+## Collections
 
 A collection must be created before tokens may be minted. A collection is somewhat akin to an ERC-1155 smart contract - both <GlossaryTerm id="nft" /> and <GlossaryTerm id="multi_unit_token" /> tokens can be created in a single collection, and its creator has certain privileges, such as minting new tokens or setting metadata for the collection and its tokens.
 
@@ -60,7 +60,7 @@ A <GlossaryTerm id="storage_deposit" /> of 6.25 ENJ is required to create a coll
 
 ![](./img/6.png)
 
-# Tokens
+## Tokens
 
 Each token must belong to a Collection, and is created using the mint extrinsic.
 
@@ -68,7 +68,7 @@ In the Enjin Blockchain there is no distinction between <GlossaryTerm id="multi_
 
 ![](./img/7.png)
 
-# How to Create a Collection
+## How to Create a Collection
 
 A collection is created by using the `create_collection` extrinsic. The only required parameter is a descriptor which allows customizing the collection's behavior. The descriptor contains all of the policies and some additional settings. Some settings can be changed later using the `mutate_collection` extrinsic, but the policies currently cannot be changed, so think carefully before choosing the policies.
 
@@ -78,17 +78,17 @@ By default, the policies are flexible, but you can make them more strict. For ex
 
 - Max Token Count: The maximum number of unique tokens that can exist within the collection, regardless of the supply of each token. Setting this to `None` allows for the creation of unlimited number of unique tokens within the collection.
 - Max Token Supply: The maximum supply limit for each individual token within the collection. Setting this to 1 will ensure each token within the collection is an NFT.
-- Force Collapsing Supply: Whether all tokens within the collection should have a collapsing supply. Read more on the available supply types in the [#Create Token Parameters](###create-token-parameters) section below.
-- Market Policy: Whether each token within the collection should have forced marketplace royalties. Read more in the [#Create Token Parameters](###create-token-parameters) section below.
+- Force Collapsing Supply: Whether all tokens within the collection should have a collapsing supply. Read more on the available supply types in the [#Create Token Parameters](#create-token-parameters) section below.
+- Market Policy: Whether each token within the collection should have forced marketplace royalties. Read more in the [#Create Token Parameters](#create-token-parameters) section below.
 - Explicit Royalty Currencies: List of tokens that will be allowed to be used as a royalty currency for each filled listing of a token withing the collection. If no tokens are provided, all tokens will be allowed to be used as a royalty currency.  
-  Read more in the [#Create Token Parameters](###create-token-parameters) section below.
-- Attributes: The collection's attributes such as `name`, `description`, `media`, etc. These should be structured according to the [metadata standard](doc:metadata-standard).
+  Read more in the [#Create Token Parameters](#create-token-parameters) section below.
+- Attributes: The collection's attributes such as `name`, `description`, `media`, etc. These should be structured according to the [metadata standard](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
 When the collection is created, it will emit a `CollectionCreated` event. This event contains the collection id that is used to access the collection.
 
 ![](./img/8.png)
 
-# How to create a Token
+## How to create a Token
 
 :::info Some deposits are required.
 A single <GlossaryTerm id="storage_deposit" /> of 0.01 ENJ is required to store the token on-chain. This deposit also covers the first <GlossaryTerm id="token_account_deposit" />.  
@@ -100,18 +100,18 @@ Tokens are created using the `mint` extrinsic. It only contains three parameters
 `CreateToken` is used to create a new token and set its configuration such as cap, metadata, royalty, etc.  
 `Mint` is used to mint additional units to an existing token.
 
-## CreateToken
+### CreateToken
 
 This must be used the first time a token is created. The provided token id must not already exist. Some additional settings can be chosen when creating a token, such as setting a cap on the supply or giving it a royalty for the marketplace.  
 Some of these settings can be changed later by using the `mutate_token` extrinsic.
 
 To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 
-### Create Token Parameters
+#### Create Token Parameters
 
-- <GlossaryTerm id="token_id" />: A unique token identifier for the new <GlossaryTerm id="multitoken" />. View the [TokenID Structure](doc:tokenid-structure) page for more information.
+- <GlossaryTerm id="token_id" />: A unique token identifier for the new <GlossaryTerm id="multitoken" />. View the [TokenID Structure](/02-tutorials/03-advanced-mechanics/01-tokenid-structure.md) page for more information.
 - Initial Supply: The amount of token supply to initially <GlossaryTerm id="mint" /> to the recipient account.
-- Account Deposit Count: The number of accounts to reserve ENJ to, for <GlossaryTerm id="token_account_deposit" /> required for future `mint`/`transfer` operations. More info in the [#Account Deposit](#account-deposit) section below.
+- Account Deposit Count: The number of accounts to reserve ENJ to, for <GlossaryTerm id="token_account_deposit" /> required for future `mint`/`transfer` operations. More info in the [#Account Deposit](#token-account-deposit) section below.
 - Supply Cap
   - None: Infinite Supply
   - Supply: Set a maximum supply amount for the token. Burned units may be re-minted.
@@ -139,23 +139,23 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 
 ![](./img/9.png)
 
-## Mint
+### Mint
 
 This is used when minting additional units to an already existing token, as long as the circulating token supply didn't reach its cap.
 
 ![](./img/10.png)
 
-# Transferring tokens and NFTs
+## Transferring tokens and NFTs
 
 To perform a transfer, use the `transfer` extrinsic. There are two types of transfers:
 
-## Simple Transfer
+### Simple Transfer
 
 A simple transfer is when the `origin` of the extrinsic is also the sender. i.e. when the account that calling the extrinsic is also the token holder.
 
 ![](./img/11.png)
 
-## Operator Transfer
+### Operator Transfer
 
 An operator transfer is when an account makes transfers on behalf of another account. This is also known as `transfer_from`. 
 
@@ -164,7 +164,7 @@ An operator transfer is when an account makes transfers on behalf of another acc
 In the example above, Alice is creating a transaction call to transfer a MultiToken to Bob's account from Charlie's account.  
 For the transaction to be successful, Bob must approve Alice to transfer this token in advance.
 
-### Transfer Approvals
+#### Transfer Approvals
 
 Approvals can be set for entire collections, or they can be set for specific tokens. They can have expiration times, and specific balances can be set for token approvals. The following extrinsics are used for approvals:
 
@@ -173,7 +173,7 @@ Approvals can be set for entire collections, or they can be set for specific tok
 - **unapprove_collection -** Revokes a collection approval.
 - **unapprove_token -** Revokes a token approval.
 
-# Burning Tokens
+## Burning Tokens
 
 Burning a <GlossaryTerm id="multitoken" /> refers to the act of destroying token units. Tokens can be burned by invoking the `burn` extrinsic.
 
@@ -197,90 +197,90 @@ When a <GlossaryTerm id="multitoken" /> is removed from storage, the <GlossaryTe
 
 ![](./img/13.png)
 
-# Setting/Removing Attributes
+## Setting/Removing Attributes
 
 To add or update metadata for a token or a collection, use the `set_attribute` extrinsic. Providing `token_id` sets the attribute to the token, otherwise it sets it directly to the collection. It's only callable by the collection's owner.
 
 To remove an `attribute`, use `remove_attribute` extrinsic. It's only callable by the collection owner. If the `token_id` is provided, the attribute will be removed from the token. Otherwise, it will be removed from the collection.
 
-## Setting Collection Attributes
+### Setting Collection Attributes
 
 This is done by clicking the `Manage Attributes` button under the expanded collection. Use the toggle to switch between setting and removing attributes.
 
 ![](./img/14.webp)
 
-## Setting Token Attributes
+### Setting Token Attributes
 
 This is done by clicking the `Manage Attributes` button on the token page. Use the toggle to switch between setting and removing attributes.
 
 ![](./img/15.webp)
 
-# Freezing
+## Freezing
 
 Accounts, collections, and tokens can be frozen to prevent transfers. This is done using the `freeze` extrinsic, which expects freezing `info` to be provided. The `info` specifies whether the <GlossaryTerm id="collection" />, <GlossaryTerm id="multitoken" />, Collection Account or <GlossaryTerm id="token_account" /> should be frozen.
 
-## Freeze a collection or a collection account
+### Freeze a collection or a collection account
 
 This is done by clicking on Freeze button under expanded collection.  
 Use the toggle to switch between freezing a specific collection account and the whole collection.
 
 ![](./img/16.png)
 
-## Freeze a token or a token account
+### Freeze a token or a token account
 
 This is done by clicking on Freeze button on the token page.  
 Use the toggle to switch between freezing a specific token account and the whole token.
 
 ![](./img/17.png)
 
-# Thawing
+## Thawing
 
 To unfreeze either collection, token, collection account or token account, use the thaw extrinsic. It expects the same `info` as the `freeze` extrinsic.
 
-## Thaw a collection or a collection account
+### Thaw a collection or a collection account
 
 This is done by clicking on the `Thaw` button under expanded collection.  
 Use the toggle to switch between thawing a specific collection account and the whole collection.
 
 ![](./img/18.png)
 
-## Thaw a token or a token account
+### Thaw a token or a token account
 
 This is done by clicking on the `Thaw` button on the token page.  
 Use the toggle to switch between thawing a specific token account and the whole token.
 
 ![](./img/19.png)
 
-# Batch operations
+## Batch operations
 
 It is also possible to perform certain operations in batch. The following operations are supported:
 
-## Batch Transfer
+### Batch Transfer
 
 Using `batch_transfer` you can batch [transfer](#transferring-tokens-and-nfts) operations, allowing to transfer multiple tokens from a single collection, to a list of `recipients` with different `amount` of tokens.
 
 ![](./img/20.png)
 
-## Batch Mint
+### Batch Mint
 
 Using `batch_mint` you can batch [mint](#how-to-create-a-token) operations, allowing minting new or existing tokens, each with it's own `recipient` and `amount`.
 
 ![](./img/21.png)
 
-## Batch Set Attribute
+### Batch Set Attribute
 
 Using `batch_set_attribute` you can batch set attribute operations, allowing to set multiple attributes to a single collection / token. If `token_id` is `None`, the attribute is set on the collection. If it is `Some`, the attribute is set on the token.
 
 ![](./img/22.png)
 
-## Remove All Attributes
+### Remove All Attributes
 
 Removes all attributes from the given `collection_id` or `token_id`.  
 If `token_id` is `None`, it removes all attributes of the collection. If `token_id` is `Some`, it removes all attributes of the token. `attributeCount` must match the number of attributes set in the collection/token, or the transaction will fail.
 
 ![](./img/23.png)
 
-# ENJ Infusion
+## ENJ Infusion
 
 The ENJ Infusion of a token represents the backing value of each unit in ENJ, which is returned to the token holder when it's <GlossaryTerm id="burn" />ed.
 
@@ -295,7 +295,7 @@ In addition, the token creator can choose to allow anyone to add ENJ infusion to
 
 ![](./img/25.png)
 
-# Token Account Deposit
+## Token Account Deposit
 
 On top of the <GlossaryTerm id="storage_deposit" /> required to store the token on-chain, a Storage Deposit of 0.01 ENJ is required to store each Token Account on-chain.  
 A Token Account is created when an account has a <GlossaryTerm id="multitoken" /> balance of 1 or more, and it is destroyed when that balance becomes zero.

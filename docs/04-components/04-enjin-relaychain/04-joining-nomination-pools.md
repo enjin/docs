@@ -16,7 +16,7 @@ For a more user friendly staking interface, we suggest to use the [Enjin Wallet]
 
 Enjin Relaychain operates using Nominated Proof of Stake (NPoS) consensus algorithm. NPoS is a variation of Proof of Stake (PoS) consensus algorithm, where the right to produce blocks is delegated to a set of validators. Validators are selected by nominators, who delegate their stake to validators. Validators are rewarded for producing blocks and are sharing the rewards with their nominators.
 
-# Find a nomination pool that satisfies your needs
+## Find a nomination pool that satisfies your needs
 
 ![](./img/20.png)
 
@@ -30,7 +30,7 @@ You should look out for the following criteria when choosing a nomination pool:
 
 ![](./img/21.png)
 
-# Stake ENJ in a nomination pool
+## Stake ENJ in a nomination pool
 
 The pool with `ID 0` is nominating `Alice_STASH` validator and has 3 pool members (including the pool account). To stake 100 ENJ in this pool, click on the `Join` button.
 
@@ -48,19 +48,19 @@ This will return Dave's `sENJ-poolID` balance for this specific pool with ID 0, 
 
 ![](./img/25.png)
 
-## Rewards
+### Rewards
 
 Rewards accrue every era (24h) for validators and subsequently to nominators. They can be claimed using n`ominationPools.payoutRewards()` extrinsic, which is easily accessible under each pool when expanded. This can be called by any member of the pool and will distribute rewards to all members of the pool including validators.
 
 ![](./img/26.png)
 
-## Inflation
+### Inflation
 
 Every era the rewards are generated for NPoS participants, creating inflation. The inflation rate is fixed at `5% per year`. So every era, `~0.0134%` of the total ENJ supply on chain is generated and distributed to NPoS participants. Calculation takes compounding effect into consideration. The rewards are distributed proportionally to the amount of stake each participant has in the network.
 
 ![](./img/27.png)
 
-# Leaving a nomination pool
+## Leaving a nomination pool
 
 If you wish to leave a nomination pool, you can do so by clicking on the `Unbond` button that is displayed under each expanded pool. Please note that unbonding period is not immediate and the bonus cycle needs to completely pass before funds can be withdrawn using `Withdraw unbonded` button.
 

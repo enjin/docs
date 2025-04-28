@@ -8,7 +8,7 @@ updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 ---
 ## Creating nomination pools
 
-Enjin Relaychain uses Nominated Proof of Stake (NPoS) to secure the network. Nominators can select which validators to delegate the stake to. A nomination pool acts as a single nominator and lowers the entry barrier for the user to participate in NPoS. Learn more about NPoS [here](https://github.com/enjin/enjin-blockchain-docs/blob/master/relaychain/user-manuals/staking/staking.md).
+Enjin Relaychain uses Nominated Proof of Stake (NPoS) to secure the network. Nominators can select which validators to delegate the stake to. A nomination pool acts as a single nominator and lowers the entry barrier for the user to participate in NPoS.
 
 ## Degen NFT
 

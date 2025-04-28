@@ -18,18 +18,18 @@ import TabItem from '@theme/TabItem';
 The Enjin Platform offers a Wallet verifying process that you can use to verify the authenticity of a user's blockchain address. 
 
 :::tip
-If you need to send requests to user wallets, use [WalletConnect](doc:using-wallet-connect) instead.
+If you need to send requests to user wallets, use [WalletConnect](/02-tutorials/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md) instead.
 :::
 
 :::info What you'll need:
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
 :::
 
 By using wallet verification, you can receive the user's wallet address with 100% certainty that this wallet is owned by the user.
 
-# Verify Wallet with the [Enjin API](https://docs.enjin.io/docs/using-enjin-api)
+## Verify Wallet with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
 
-## Step 1. Initiate an Account Request
+### Step 1. Initiate an Account Request
 
 To initiate the account request process, run the following query:
 
@@ -220,11 +220,11 @@ print(response.json())
 
 This will generate a linking code from the Enjin Platform, which the user can scan with their Enjin Wallet. The wallet will then send their address to the Enjin Platform, allowing you to retrieve it
 
-## Step 2: Verify Account
+### Step 2: Verify Account
 
 Once the user has scanned the QR code using the Enjin Wallet, you can retrieve the account using two methods.
 
-### Option A: `GetWallet`
+#### Option A: `GetWallet`
 
 Using `GetWallet` and passing the `verificationId` from step 1, you will be able to get any information related to his wallet if the verification process succeeded.
 
@@ -470,7 +470,7 @@ to get decimal value, divide the value by 10^18.
 }
 ```
 
-### Option B: `GetAccountVerified`
+#### Option B: `GetAccountVerified`
 
 This query can be used to fetch the status of the verification, while you are showing the QR code to the player, for example, when the query returns `"verified": true` you could hide the QR code and proceed with your onboarding workflow.
 
@@ -709,5 +709,5 @@ print(response.json())
 ![Verify Flow Diagram](./img/verify-flow-diagram.png)
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::

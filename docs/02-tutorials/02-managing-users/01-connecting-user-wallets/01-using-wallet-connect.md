@@ -24,7 +24,7 @@ Using the Platform API and WalletConnect you can send any transaction request di
 - A mobile device with [Enjin Wallet app](https://enjin.io/wallet) installed
 - A Canary wallet with at least 6.5 ENJ in it to cover for <GlossaryTerm id="storage_deposit" /> and <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform) (Canary).
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md) (Canary).
 :::
 
 ## Install and configure the sample project

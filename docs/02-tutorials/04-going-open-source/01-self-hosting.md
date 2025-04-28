@@ -21,7 +21,7 @@ There are two version of the Enjin Platform
   - Best for those who are more tech-savvy. It gives you full control over the data and source code, allowing you to customize the platform extensively, including adding new features, writing your own Beam conditions or creating custom events. However, running it requires systems administration skills. You'll need to handle backups, updates, server maintenance, and set up internet access and SSL certificates for the platform.
 :::
 
-# Advantages of Self-Hosting the Enjin Platform
+## Advantages of Self-Hosting the Enjin Platform
 
 Self-hosting offers significant benefits for app development:
 
@@ -33,23 +33,23 @@ Self-hosting offers significant benefits for app development:
 - **Automated Processes**: Supports automated wallet management and asset transfers, streamlining user interactions.
 - **Enhanced Data Integrity**: Includes quick sync and auto-healing features for maintaining up-to-date and accurate database information.
 
-# Real-time Platform Architecture
+## Real-time Platform Architecture
 
 The package consists of three main components:
 
-## Indexer
+### Indexer
 
 Our package includes a blockchain indexer that quickly retrieves blockchain data, speeding up the process compared to direct chain queries. It also allows for creating relationships and filtering data in ways not possible with direct queries.
 
-## APIs
+### APIs
 
 Our GraphQL API offers a server-based interface for a variety of queries and mutations, enabling easy access to information and transaction execution on the blockchain.
 
-## Events
+### Events
 
 The Enjin Platform allows developers to subscribe to events for real-time updates on blockchain activities, reducing the need for constant API checks. This simplifies blockchain interactions by eliminating complex tasks like encoding and transaction signing.
 
-# Understandig the API and Indexer
+## Understandig the API and Indexer
 
 The Enjin Platform uses an indexer for fast blockchain data retrieval, bypassing slower direct queries. It employs GraphQL as its main API, allowing developers to efficiently access only the data they need, which enhances performance and reduces bandwidth.
 

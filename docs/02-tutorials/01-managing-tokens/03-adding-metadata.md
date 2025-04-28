@@ -19,18 +19,18 @@ import TabItem from '@theme/TabItem';
 Adding <GlossaryTerm id="metadata" /> to a token enables games and apps to import detailed information and showcase your token's data. Usually, digital assets are identified just by its <GlossaryTerm id="token_id" />. Metadata adds extra details to these assets, giving them properties such as a title, a narrative, and visuals.
 
 :::info What you'll need:
-- Some [ Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
+- Some [ Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) and a [Token](doc:creating-tokens) to add metadata to.
-- Follow our [Best Practices for Collection/Token Metadata](doc:metadata-standard).
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) and a [Token](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add metadata to.
+- Follow our [Best Practices for Collection/Token Metadata](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 :::
 
 You can even use metadata to attach gifs, videos, and 3D models to your token. This data can be stored both on-chain and off-chain to allow users and other supported platforms to access the information.
 
 When storing data on-chain, metadata can be defined as attributes such as name, description, fallback image, and any other attribute you choose. However, if the data is stored off-chain, it should always reference a centralized public repository through a .json file.
 
-# Metadata Storage
+## Metadata Storage
 
 There are three main ways to store metadata for your tokens:
 
@@ -51,11 +51,11 @@ There are three main ways to store metadata for your tokens:
 
 Each option has trade-offs between cost, reliability, and security, and the choice depends on the specific needs and goals of the digital asset being created.
 
-# Attributes: OnChain Metadata
+## Attributes: OnChain Metadata
 
 You can assign multiple on-chain attributes to a token simultaneously, which allows you to define the metadata of the token. 
 
-Some commonly recognized attributes, following the [Universal Metadata Standard](doc:metadata-standard), include:
+Some commonly recognized attributes, following the [Universal Metadata Standard](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), include:
 
 - **`name`:** The title of the token.
 - **`description`:** A brief explanation or description of the token.
@@ -63,7 +63,7 @@ Some commonly recognized attributes, following the [Universal Metadata Standard]
 - **`URI`:** The web address (URL) where the JSON file containing the token's off-chain or IPFS metadata is hosted.
 
 :::tip Need to add more metadata?
-Check the [Best Practices for Collection/Token Metadata](doc:metadata-standard), and the [Universal Metadata Standard](https://enj.in/metadata).
+Check the [Best Practices for Collection/Token Metadata](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
 :::
 
 :::warning Attributes for Collections and Tokens are very similar.
@@ -78,10 +78,10 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 **There are two ways to add metadata:**
 
-- [Using the Enjin Dashboard](#option-a-using-the-platform-user-interface)
-- [Using the Enjin API](#option-b-using-the-graphql-api--sdks)
+1. [Using the Enjin Dashboard](#option-a-using-the-enjin-dashboard)
+2. [Using the GraphQL API & SDKs](#option-b-using-the-enjin-api--sdks)
 
-## Option A. Using the Enjin Dashboard
+### Option A. Using the Enjin Dashboard
 
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
 **Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Attributes**" button.
@@ -109,7 +109,7 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 - If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
 - If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
 
-## Option B. Using the Enjin API & SDKs
+### Option B. Using the Enjin API & SDKs
 
 The BatchSetAttribute mutation allows you to efficiently set or update multiple attributes for a specific token within a collection in a single blockchain transaction. Attributes represent various properties, characteristics, or metadata associated with a token.
 
@@ -407,7 +407,7 @@ print(response.json())
 
 A WebSocket event will also be fired so you can pick up the changes in real-time by listening to the app channel on the WebSocket.
 
-# JSON File: Off-Chain & IPFS Metadata
+## JSON File: Off-Chain & IPFS Metadata
 
 A JSON file can be used to provide comprehensive information about the asset, including its description, visual representation, multimedia attachments, external references, categorization, associated files, and specific attributes.
 
@@ -446,15 +446,15 @@ Take note of these data points:
 You can also host your JSON files on IPFS, to make your metadata more immutable.
 
 :::tip Need to add more metadata?
-Check the [Best Practices for Collection/Token Metadata](https://docs.enjin.io/docs/metadata-standard), and the [Universal Metadata Standard](https://enj.in/metadata).
+Check the [Best Practices for Collection/Token Metadata](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
 :::tip What's next?
-To mint some token supply, head to the [Minting Tokens](/docs/minting-a-token) tutorial.
+To mint some token supply, head to the [Minting Tokens](/02-tutorials/01-managing-tokens/04-minting-a-token.md) tutorial.
 :::

@@ -17,7 +17,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](doc:api-reference).\
+For the most up-to-date information, refer to the [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 
@@ -27,8 +27,6 @@ For the most up-to-date information, refer to the [API Reference](doc:api-refere
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.
-
-# Mutations
 
 ## CreateToken
 
@@ -89,15 +87,16 @@ mutation CreateToken {
 ```
   </TabItem>
 </Tabs>
-//TODO: change the url below. old url: /docs/tokenid-structure
-:::info 📘 For Token ID management, head to [Best Practices → TokenID Structure](#)
+
+:::info
+For Token ID management, head to [Advamced Mechanics → TokenID Structure](/02-tutorials/03-advanced-mechanics/01-tokenid-structure.md)
 :::
 ### Use Case:
 
 You can use the `CreateToken` mutation in various scenarios, including:
 
 - **Digital Collectibles**: Create unique digital collectible tokens within a collection, each with distinct characteristics.
-- **Digital Currencies**: Create tokens with dynamic supplies, such as "INFINITE," allowing flexibility in your token economy, and support for decimals with "decimalCount", for in-game "Currency" tokens, such as Gold Coins. [Read more on Currency Tokens](doc:creating-a-currency-token).
+- **Digital Currencies**: Create tokens with dynamic supplies, such as "INFINITE," allowing flexibility in your token economy, and support for decimals with "decimalCount", for in-game "Currency" tokens, such as Gold Coins. [Read more on Currency Tokens](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-a-currency-token.md).
 - **Reward Tokens**: Issue reward tokens with predefined supply and pricing for loyalty programs or incentivizing user engagement.
 
 By utilizing the `CreateToken` mutation, you can manage and control the issuance of tokens, enabling various use cases that require the creation of digital assets with specific attributes and supply policies.

@@ -16,7 +16,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](doc:api-reference).\
+For the most up-to-date information, refer to the [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 
@@ -27,8 +27,6 @@ For the most up-to-date information, refer to the [API Reference](doc:api-refere
 
 This is a detailed reference guide that explains the most commonly used operations.
 
-# Queries
-
 ## Get Collection
 
 The `GetCollection` query allows you to retrieve detailed information about a specific collection by providing its `collectionId`. This information includes collection attributes, token details, and associated accounts.
@@ -36,10 +34,8 @@ The `GetCollection` query allows you to retrieve detailed information about a sp
 :::warning Reading Third-Party Collections
 Please note that the Enjin Platform Cloud is set up to show only the collections and tokens that were created via the auth-ed Enjin Platform Cloud account.\
 To get a collection that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.\
-Learn more about tracking a collection in the [Tracking Collections section](#).
+Learn more about tracking a collection in the [Tracking Collections section](/02-tutorials/01-managing-tokens/09-fetching-token-holders.md#tracking-collections).
 :::
-
-//TODO: fix above link (../fetching-token-holders.md#tracking-collections)
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -223,7 +219,7 @@ The `GetCollection` query is a powerful tool for fetching detailed information a
 
 :::warning 🚧 Using the Enjin Platform Cloud?
 The Enjin Platform Cloud has collections and tokens scoping enabled, to ensure a better experience by only showing you collections and tokens you created using the cloud.\
-If you wish to fetch collections/tokens created outside of your cloud account, consider transitioning to the [Open-Source Platform](doc:quickstart-guide).
+If you wish to fetch collections/tokens created outside of your cloud account, consider transitioning to the [Open-Source Platform](/02-tutorials/04-going-open-source/01-self-hosting.md).
 :::
 
 The `GetCollections` query allows you to retrieve an array of collections. You can optionally filter the collections by providing a list of collection IDs that you are interested in.

@@ -14,7 +14,7 @@ updatedAt: "Tue Sep 10 2024 00:09:19 GMT+0000 (Coordinated Universal Time)"
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-# NFT Collection
+## NFT Collection
 
 Consider a situation where your goal is to create a <GlossaryTerm id="collection" /> limited to 1,000 tokens, where each token is an <GlossaryTerm id="nft" /> symbolizing a distinct in-game sword.
 
@@ -26,7 +26,7 @@ By setting the "**Max Token Count**" to `1,000`, you can cap the total number of
 
 Meanwhile, setting the "**Max Token Supply**" to `1` ensures that each token in the swords collection will have a maximum supply of `1`. This enforces the uniqueness of each token in the collection, enforcing each token in the collection to be an NFT.
 
-# Immutable Tokenomics
+## Immutable Tokenomics
 
 Suppose you want to create a <GlossaryTerm id="collection" /> with one simple but crucial rule: Each token has a pre-defined max supply which can only be decreased.  
 Achieving this requires careful configuration of your Mint Policy:

@@ -36,7 +36,7 @@ When a player with a brand or multiverse item enters your game, you can scan the
 
 While the concept of multiverse items is appealing for players, it's important for you as a developer to adopt certain development and marketing strategies to ensure you reap measurable benefits from this integration.
 
-# Acquisition
+## Acquisition
 
 Your goal is to inform all existing and potential NFT owners that they can utilize their NFTs in your game, and to give them compelling reasons to engage with your game using these NFTs.
 
@@ -64,7 +64,7 @@ Ensure your game is included as a utility provider in the token's metadata. This
 
 By designating your game's utility as "locked" on the token and clarifying that players can unlock this utility by engaging with your game, you provide them with a direct incentive to play your game. This strategy motivates players to explore your game in order to access the additional utility of their NFT.
 
-# Monetization
+## Monetization
 
 To monetize collaborations effectively, it's important to create strategies that are enjoyable for players and advantageous for both the NFT creator and the utility provider.
 
@@ -82,9 +82,9 @@ The holders of the NFT will likely be inclined to contribute to this fund, as re
 
 By marking the utility of your game on the token’s metadata as "locked," and clarifying that players can unlock it by paying a small fee, you provide a straightforward incentive for them to pay and access the additional value and functionalities of their NFT in your game.
 
-# Development
+## Development
 
-If you're on the Self-Hosted Enjin platform, the steps for integrating multiverse features largely mirror the standard process of [reading wallets](https://docs.enjin.io/docs/fetching-wallets).
+If you're on the Self-Hosted Enjin platform, the steps for integrating multiverse features largely mirror the standard process of [reading wallets](/02-tutorials/02-managing-users/02-reading-user-wallets.md).
 
 Here’s the Query you will need to use:
 
@@ -93,8 +93,8 @@ Here’s the Query you will need to use:
 ```graphql
 query GetWallet {
   GetWallet(account:"efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3") {
-# omit “tokenIds” to read all tokens in a collection
-# if you are getting a page after the first put the “endCursor” value into the “after” field
+// omit “tokenIds” to read all tokens in a collection
+// if you are getting a page after the first put the “endCursor” value into the “after” field
 tokenAccounts (collectionIds:2100 tokenIds:1 after:"" first:100) {
       pageInfo {
         hasNextPage
@@ -138,7 +138,7 @@ Here’s an example of a response you can expect.
   "data": {
     "GetWallet": {
       "tokenAccounts": {
-        # if there are more items to read there will be a guid in the “endCursor” value
+        // if there are more items to read there will be a guid in the “endCursor” value
         "pageInfo": {
           "hasNextPage": false,
           "endCursor": ""
@@ -150,7 +150,7 @@ Here’s an example of a response you can expect.
               "reservedBalance": "0",
               "token": {
                 "tokenId": "1",
-			# to read the metadata I should query the url provided as the value for the uri attribute
+			// to read the metadata I should query the url provided as the value for the uri attribute
                 "attributes": [
                   {
                     "key": "uri",
@@ -168,7 +168,7 @@ Here’s an example of a response you can expect.
 
 ```
 
-# Best Practices
+## Best Practices
 
 - Only pull data from the collections you need. This will improve performance and ensure your backend infrastructure remains scalable.
 - Always read and check the balance. Sometimes, the player may hold the token but the balance is actually zero, for instance, if the token has been burned. These burned tokens should not have in-game utility.

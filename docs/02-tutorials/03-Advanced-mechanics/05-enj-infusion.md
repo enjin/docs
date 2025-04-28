@@ -39,7 +39,7 @@ By integrating ENJ Infusion, creators and developers can provide enhanced value 
 
 ## Creating a Token with Infused ENJ
 
-To create a token with Infused ENJ, proceed with the instructions on the [Creating Tokens](doc:creating-tokens) page, but make sure to specify the amount of ENJ to infuse into the token, in the “Infuse ENJ” section.  
+To create a token with Infused ENJ, proceed with the instructions on the [Creating Tokens](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) page, but make sure to specify the amount of ENJ to infuse into the token, in the “Infuse ENJ” section.  
 If you are using the `CreateToken` mutation, insert the infusion amount in the `params: infusion` parameter.
 
 :::warning Important Note

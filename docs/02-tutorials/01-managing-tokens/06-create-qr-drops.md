@@ -23,16 +23,16 @@ By scanning a Beam QR code, users can receive promotional items, collectibles, o
 This is a great way for you to onboard new users.
 
 :::info What you'll need:
-- Some [ Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
+- Some [ Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) and a [Token](doc:creating-tokens) to mint.
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) and a [Token](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
 :::
 
 **There are two ways to create an Enjin Beam:**
 
-1. [Using the Platform User Interface](#option-a-using-the-platform-user-interface)
-2. [Using the GraphQL API](#option-b-using-the-graphql-api--sdks)
+1. [Using the Enjin Dashboard](#option-a-using-the-enjin-dashboard)
+2. [Using the Enjin API & SDKs](#option-b-using-the-enjin-api--sdks)
 
 ## Option A. Using the Enjin Dashboard
 
@@ -57,12 +57,12 @@ Once the Beam is created, locate it in the "**Beams**" menu, click the **3 verti
 
 :::warning Need to view multiple "Single-Use" QR codes?
 Please note, viewing multiple "Single-Use" QR codes is currently not available in the Platform User Interface.  
-For the time being, it can be viewed programmatically only via [GraphQL API / SDKs](#option-b-using-the-graphql-api--sdks)
+For the time being, it can be viewed programmatically only via [Enjin API & SDKs](#option-b-using-the-enjin-api--sdks)
 :::
 
 The Enjin Beam is now ready to be shared to distribute tokens. Users can scan the QR code and instantly receive your token!  
 Next skillset to learn is mutating a collection / token.  
-Proceed to the [Freezing & Thawing](doc:freezing-thawing) tutorial to learn more.
+Proceed to the [Freezing & Thawing](/02-tutorials/01-managing-tokens/07-freezing-thawing.md) tutorial to learn more.
 
 ## Option B. Using the Enjin API & SDKs
 
@@ -969,17 +969,17 @@ print(response.json())
 </Tabs>
 
 :::tip This query might return items in different pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](doc:using-graphql#pagination).
+To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination).
 :::
 
 The Enjin Beam is now ready to be shared to distribute tokens. Users can scan the QR code and instantly receive your token!
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as different Beam flags types with the `Flags` argument.
 :::
 
 :::tip What's next?
-Proceed to the [Freezing & Thawing](doc:freezing-thawing) tutorial to learn more.
+Proceed to the [Freezing & Thawing](/02-tutorials/01-managing-tokens/07-freezing-thawing.md) tutorial to learn more.
 :::

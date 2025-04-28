@@ -19,11 +19,18 @@ This guide outlines recommended approaches for structuring and organizing token 
 
 ***
 
-## Structuring Token IDs
+## Token ID Structuring Approaches
 
-### Key Methods for Token ID Organization
+There are 4 key methods for Token ID organization:
 
-#### 1. **Bitmasks**
+1. [Bitmasks](#1-bitmasks)
+2. [Ranges](#2-ranges)
+3. [Hashes](#3-hashes)
+4. [Integer (No Encoding)](#4-integer-no-encoding)
+
+***
+
+### 1. **Bitmasks**
 
 Bitmasks allocate specific bits of the 128-bit token ID to various attributes, such as **game**, **server**, **class**, and **item ID**. Each section of the token ID is defined by the bit size required for that attribute, ensuring efficient use of space. 
 
@@ -33,8 +40,6 @@ For example:
 - **Server ID**: 8 bits (up to 256 servers)  
 - **Class ID**: 16 bits (up to 65,536 classes)  
 - **Item ID**: Remaining 100 bits  
-
-#### Example:
 
 If you create a token with the ID `0x05ffa34f000000000000000000000001`, it can be decoded as:  
 
@@ -47,11 +52,11 @@ This method is compact but requires encoding and decoding logic.
 
 ***
 
-#### 2. **Ranges**
+### 2. **Ranges**
 
 Ranges define numeric intervals for each category, making the structure simpler to understand and decode. 
 
-#### Example:
+for example:
 
 - **Game 01**: Token IDs 0–1000  
   - **Server 01**: 0–300  
@@ -70,11 +75,11 @@ This approach is intuitive but may require manual configuration of ID ranges.
 
 ***
 
-#### 3. **Hashes**
+### 3. **Hashes**
 
 Hashes use cryptographic functions like **SHA256**, **Keccak256**, or **Blake2** to generate unique token IDs. The input can include attributes such as game name, server, or class.
 
-#### Example:
+for example:
 
 ```
 {
@@ -86,11 +91,11 @@ This guarantees uniqueness but makes decoding impossible, as hashing is a one-wa
 
 ***
 
-#### 4. **Integer (No Encoding)**
+### 4. **Integer (No Encoding)**
 
 Using Integer IDs involves assigning unique and raw integers without additional encoding. This is the simplest method but does not include embedded metadata.
 
-#### Example:
+for example:
 
 Token IDs are manually assigned, such as `1`, `2`, `3`, etc. This method is straightforward but lacks flexibility for organization.
 
@@ -120,7 +125,7 @@ Resulting Token ID: `160504280491028834688987873652194148362`
 
 This encoder generates a token ID from a hashed array or object.
 
-#### Example:
+for example:
 
 ```graphql
 tokenId: {
@@ -148,7 +153,7 @@ The Hash Encoder generates token IDs by hashing input data. If the resulting has
 
 This encoder converts a string into a numeric token ID.
 
-#### Example:
+for example:
 
 ```graphql
 tokenId: {
@@ -168,7 +173,7 @@ The StringId Encoder converts strings into numeric token IDs. Strings that produ
 
 For direct assignment, integers can be passed as-is to create token IDs.
 
-#### Example:
+for example:
 
 ```graphql
 tokenId: {integer: 1001}

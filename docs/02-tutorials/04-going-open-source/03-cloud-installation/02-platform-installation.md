@@ -11,7 +11,7 @@ metadata:
 createdAt: "Wed Jan 31 2024 10:14:26 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Tue Sep 10 2024 00:18:31 GMT+0000 (Coordinated Universal Time)"
 ---
-# Install the Enjin Platform package dependencies
+## Install the Enjin Platform package dependencies
 
 1. Your app will be located in `/var/www/laravel/`. Use the `cd` command to navigate to this folder:
 
@@ -46,7 +46,7 @@ updatedAt: "Tue Sep 10 2024 00:18:31 GMT+0000 (Coordinated Universal Time)"
    sudo apt install golang-go
    ```
 
-# Install and configure the Enjin Platform Core package
+## Install and configure the Enjin Platform Core package
 
 1. Delete the `composer.lock` file if it exists:
 
@@ -61,7 +61,7 @@ updatedAt: "Tue Sep 10 2024 00:18:31 GMT+0000 (Coordinated Universal Time)"
    :::info Platform Packages
    In this guide, we are installing platform-core package only, this is the only required package.  
    All other packages are optional.  
-   To install additional packages, check out the [Installing Additional Platform Packages](doc:installing-additional-packages) section
+   To install additional packages, check out the [Installing Additional Platform Packages](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md) section
    :::
 
    ```bash
@@ -109,11 +109,11 @@ updatedAt: "Tue Sep 10 2024 00:18:31 GMT+0000 (Coordinated Universal Time)"
     ```
 
 :::info Continue with the installation
-If you wish to use features such as Beam, Fuel Tanks, Marketplace, or UI, please continue to the [Installing Additional Packages](doc:installing-additional-packages) page.  
-If not, please continue to the [Setting up the Decoder](doc:setting-up-the-decoder) page.
+If you wish to use features such as Beam, Fuel Tanks, Marketplace, or UI, please continue to the [Installing Additional Packages](/02-tutorials/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md) page.  
+If not, please continue to the [Setting up the Decoder](/02-tutorials/04-going-open-source/03-cloud-installation/05-setting-up-the-decoder.md) page.
 :::
 
-# Setup Automated Database Pruning
+## Setup Automated Database Pruning
 
 The ingest process will store data over time in the database. Once processed, this data can be optionally pruned to save storage space in the database.
 

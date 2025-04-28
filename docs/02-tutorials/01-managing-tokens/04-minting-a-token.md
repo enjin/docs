@@ -23,17 +23,17 @@ We call this "Play-to-Mint," giving players the power to create tokens themselve
 Plus, it keeps your processes more efficient by delivering tokens right to players' wallets without any unnecessary `transfer` transactions.
 
 :::info What you'll need:
-- Some [ Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
+- Some [ Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
 If the token has <GlossaryTerm id="enj_infusion" />, each new unit minted will require the same amount of ENJ to be infused.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) and a [Token](doc:creating-tokens) to mint.
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) and a [Token](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
 :::
 
 **There are two ways to use the <GlossaryTerm id="create_asset" /> functionalities:**
 
-- [Using the Platform User Interface](#option-a-using-the-platform-user-interface)
-- [Using the GraphQL API](#option-b-using-the-graphql-api--sdks)
+1. [Using the Enjin Dashboard](#option-a-using-the-enjin-dashboard)
+2. [Using the GraphQL API & SDKs](#option-b-using-the-enjin-api--sdks)
 
 ## Option A. Using the Enjin Dashboard
 
@@ -333,11 +333,11 @@ print(response.json())
 A WebSocket event will also be fired so you can pick up the transfer transaction in real time by listening to the app channel on the WebSocket.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as the ability to sign using a managed wallet with the `signingAccount` argument, or batch create tokens instead of minting existing ones with the `createParams` argument.
 :::
 
 :::tip You've minted a token!
-What if you need to transfer a token? proceed to [Transferring Tokens](doc:simple-token-transfer).
+What if you need to transfer a token? proceed to [Transferring Tokens](/02-tutorials/01-managing-tokens/05-transferring-tokens.md).
 :::

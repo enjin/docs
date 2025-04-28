@@ -27,7 +27,7 @@ For example, in a "Transfer" event, the "from" account address appears in its pu
 If needed, you may use the [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between **SS58-encoded address format** (e.g., "cx...123" for the Canary Matrixchain or "cn...123" for the Canary Relaychain) and public key format.
 :::
 
-# Using Enjin Platform
+## Using Enjin Platform
 
 To view events emitted from a transaction conducted on the platform, you can use the `GetTransaction` query as follows:
 
@@ -108,7 +108,7 @@ query GetTransaction {
 
 Our platform broadcasts network events through a `WebSocket` channel, similar to the recent events feature in Polkadot-JS. It's important to note that this channel includes not only network-wide events but also specific events from the Enjin Platform.
 
-Learn more about [Websocket Events here](doc:websocket-events) .
+Learn more about [Websocket Events here](03-api-functions/03-websocket-events.md) .
 
 ![Platform Events](./img/platform-events.png)
 
@@ -174,7 +174,7 @@ query GetPendingEvents {
   </TabItem>
 </Tabs>
 
-# Using Enjin Console
+## Using Enjin Console
 
 In the explorer tab, you can find the recent events emitted in the network. Those will appear as soon as they are emitted.
 

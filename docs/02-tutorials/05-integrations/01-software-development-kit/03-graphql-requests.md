@@ -15,15 +15,15 @@ updatedAt: "Tue Sep 10 2024 00:51:17 GMT+0000 (Coordinated Universal Time)"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Creating the Request
+## Creating the Request
 
 The most important step in sending a request is to first create said request. The SDK provides us with two ways to create a request. The first way is to utilize a predefined, dynamic request class to programmatically compile our request at runtime. The second way is to provide our own query string to be sent along with any relevant information, however, this method of going about creating a request places a greater demand on us to validate that our queries and mutations are indeed correct.
 
-## Dynamic Requests
+### Dynamic Requests
 
 Dynamic requests represent the different queries and mutations we may make in the platform's GraphQL schemas and offer a built-in, programmatic method of arranging requests at runtime.
 
-## Setting Result Fields
+### Setting Result Fields
 
 Requests which produce non-scalar types in the response will have an associated fragment class that may be passed to its aptly named `Fragment` method. For predefined type models in the SDK, there will be corresponding fragment classes that allow us to specify the fields we want to be returned in the response.
 
@@ -91,7 +91,7 @@ fragment->WithField("collectionId", true)
 For requests which accept fragments, a fragment with at least one field requested must be passed or the SDK will throw an exception.
 :::
 
-## Setting Request Variables
+### Setting Request Variables
 
 GraphQL requests that have settable variables will have methods prefixed with "set" for setting predefined parameters for the given type. An example of this for the `GetCollection` the query can be seen below:
 
@@ -184,7 +184,7 @@ GetCollection req = GetCollection()
   </TabItem>
 </Tabs>
 
-## Setting Input Parameters
+### Setting Input Parameters
 
 Classes, such as fragments and those modeling a GraphQL input may have settable parameters to be used as part of a request. An example of one of these parameter holders is shown below:
 
@@ -254,7 +254,7 @@ tokenId->SetParameter("integer", integer);
 Parameters on the root fragment of a request will be treated as if they are parameters for the request itself, such is the case for the after and first parameters of the ConnectionFragment class.
 :::
 
-## Sending the Request
+### Sending the Request
 
 When sending requests the SDK offers built-in methods that complement the predefined requests. The methods will be prefixed with "Send" followed by the name of the request. An example of what this may look like for the `GetCollection` the request is shown below:
 
@@ -279,7 +279,7 @@ SendGetCollection(*client, req);
   </TabItem>
 </Tabs>
 
-## Static Requests
+### Static Requests
 
 Aside from the dynamic queries and mutations built into the SDK, we may pass static query strings and variable mappings to the platform client in cases where speed is valued more than dynamic request creation.
 
@@ -289,7 +289,7 @@ To facilitate static requests, the platform client implements a method that take
 The type for the data in the GraphQL query string must be aliased as result to ensure that the returned data may be properly deserialized for the response.
 :::
 
-## Without Variables
+### Without Variables
 
 When creating a static request without passing a mapping of variables we need only set the values for such variables in the query string we will be using. After creating our query string we then pass it and the schema path to the `SendRequest` method while leaving the variables argument as `null`, as shown below:
 
@@ -344,11 +344,11 @@ client->SendRequest<GraphQlResponse<Collection>>(req);
 For the C++ SDK, if the request contains an Upload variable then an additional map containing the names and values of the uploads will need to be passed to the AddOperation method.
 :::
 
-## Handling the Response
+### Handling the Response
 
 Once we have sent our request to the platform we should expect to get a response back with information that we intended to retrieve in the first place or with information that we may act on if we so choose.
 
-## Getting the Response
+### Getting the Response
 
 The send methods of a platform client return asynchronous handlers which contain the result of our operation. At the first level of the result, is a platform response of type, which generally holds the HTTP information of the response from the platform. Within this platform response, there is also a `GraphQlResponse` property, which contains the result data of our GraphQL request and any errors that may have been returned with it.
 
@@ -398,7 +398,7 @@ const optional<GraphQlResponse<Collection>>& gqlRes = platformRes->GetResult();
   </TabItem>
 </Tabs>
 
-## Processing the Result
+### Processing the Result
 
 To process the result we must first get the `GraphQlData` property within the `GraphQlResponse`, then we will get the result property from the data. The type of result will be either one of the predefined type models or a scalar value depending on our request.
 
@@ -435,7 +435,7 @@ if (gqlRes.has_value() && gqlRes->IsSuccess())
   </TabItem>
 </Tabs>
 
-## Processing Errors
+### Processing Errors
 
 The response may also contain errors that the platform may return in situations where our request was malformed, had incorrect arguments, or failed some other validation. To retrieve any such errors we make a call to the response's Errors property as shown below:
 

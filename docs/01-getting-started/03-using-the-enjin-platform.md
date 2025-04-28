@@ -17,26 +17,26 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](doc:using-enjin-coin) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.\
+Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.\
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
-# 1. Set Up an <GlossaryTerm id="enjin_platform" /> Account
+## 1. Set Up an <GlossaryTerm id="enjin_platform" /> Account
 
 To get started, go ahead and create an account on the <GlossaryTerm id="enjin_platform_cloud" /> and **verify your email address.** In this tutorial, we'll be using the [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io).
 
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-- The [Self-Hosted Platform](doc:open-source-platform) which you can run locally to connect to either network.
+- The [Self-Hosted Platform](/02-tutorials/04-going-open-source/02-local-installation.md) which you can run locally to connect to either network.
 :::
 
-## Things you should know
+### Things you should know
 
 - <GlossaryTerm id="enjin_blockchain" /> is <GlossaryTerm id="immutable" />, which is why we recommend building your initial proof-of-concept on Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" /> – the fast and free environment for testing Enjin's tools.
 - Every "<GlossaryTerm id="mutation" />" request (i.e, minting a <GlossaryTerm id="token" />) must be signed by a <GlossaryTerm id="wallet_account" />.
 
-# 2. Set Up an API Token
+## 2. Set Up an API Token
 
 Once your account is created, create a new API token by clicking the "**Create API Token**", which can be found on the [Account Settings](https://platform.canary.enjin.io/settings) page.
 
@@ -48,15 +48,15 @@ Copy and save that token somewhere safe, you'll need that to automatically appro
 You can always revoke the token and create another one in the future.
 :::
 
-# 3. Set Up a Wallet
+## 3. Set Up a Wallet
 
 Transactions can be approved in 2 different ways:
 
 - **Manually:** Using the [Enjin Wallet](https://enjin.io/products/wallet) / [Polkadot.js](https://polkadot.js.org/).
-- **Automatically:** Using the [Enjin Wallet Daemon](doc:wallet-daemon).
+- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md).
 
 :::tip Start by manually approving transactions
-If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](doc:using-the-enjin-platform#using-enjin-wallet--polkadotjs)\
+If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)\
 Enjin wallet app is available on both [iOS](https://enj.in/ios-wallet) and [Android](https://enj.in/android-wallet).
 :::
 
@@ -71,21 +71,21 @@ The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, s
 
 The Enjin Wallet Daemon can automatically sign requests for you.
 
-To download and set up wallet daemon, head over to the [Wallet Daemon Setup](doc:wallet-daemon) page.  
+To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/05-using-wallet-daemon.md) page.  
 To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.  
 Create an API Token on the [Account Settings](https://platform.canary.enjin.io/settings) page and set the Platform API Token in your Wallet Daemon configuration.
 
 Once your wallet daemon is connected, your Platform account is set up and ready to use!
 
-# 4. Create Platform Requests
+## 4. Create Platform Requests
 
 Now that the Platform account is set up, we can start creating platform requests.  
 In this example we will be creating a <GlossaryTerm id="collection" />.
 
 **There are two ways to create Platform requests:**
 
-- [Using the Platform User Interface](#option-a-using-the-platform-user-interface)
-- [Using the GraphQL API](#option-b-using-the-graphql-api--sdks)
+- [Using the Platform User Interface](#option-a-using-the-enjin-dashboard)
+- [Using the GraphQL API](#option-b-using-the-enjin-api--sdks)
 
 :::info Which approach should I use?
 Everything that can be done via the Platform's User Interface, can be done programmatically via the <GlossaryTerm id="graphql" /> API or any of the Platform <GlossaryTerm id="sdk" />s.\
@@ -93,7 +93,7 @@ If you are just starting out, we recommend using the Platform User Interface as 
 However, if you need to make a Platform request programmatically, you can do that via the <GlossaryTerm id="enjin_platform_api" /> / <GlossaryTerm id="sdk" />s.
 :::
 
-## Option A. Using the Enjin Dashboard
+### Option A. Using the Enjin Dashboard
 
 In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
 
@@ -105,7 +105,7 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 
 ![Collection created banner on Enjin Platform](./img/collection-created-banner.png)
 
-## Option B. Using the Enjin API & SDKs
+### Option B. Using the Enjin API & SDKs
 
 To create a Platform request programmatically, use the <GlossaryTerm id="graphql" /> API, or one of the <GlossaryTerm id="sdk" />s.  
 This mutation will set up a new transaction that once finalized on-chain will contain the new collection id in the transaction <GlossaryTerm id="events" />. 
@@ -324,7 +324,7 @@ print(response.json())
 
 A WebSocket event will also be fired so you can pick up the collection in real time by listening to the app channel on the WebSocket.
 
-# 5. Approve Platform Requests
+## 5. Approve Platform Requests
 
 Once a Platform request is created, all that remains is to approve it, which will sign the transaction and broadcast it to the Enjin Blockchain
 
@@ -342,12 +342,12 @@ Since this transaction is a <GlossaryTerm id="mutation" />, you will need to sig
 
 And that's it! The transaction is then broadcasted to the Enjin Blockchain, and once approved, it will be included in a <GlossaryTerm id="block" />.
 
-# 6. Receive Transaction Information
+## 6. Receive Transaction Information
 
 There are 3 ways to receive the transaction status and information:
 
 - [Receive Transaction Information Using the Platform User Interface](#receive-transaction-information-using-the-platform-user-interface)
-- [Receive Transaction Information Using the GraphQL API / SDKs](#receive-transaction-information-using-the-graphql-api--sdks)
+- [Receive Transaction Information Using the Enjin API / SDKs](#receive-transaction-information-using-the-enjin-api--sdks)
 - [Receive Transaction Information by Listening to Platform Websocket Events](#receive-transaction-information-by-listening-to-platform-websocket-events)
 
 ### Receive Transaction Information Using the Platform User Interface
@@ -364,7 +364,7 @@ To receive the transaction information programmatically, You can use the `GetTra
 But for this example, we're going to use the `GetPendingEvents` query, which returns all of the events emitted to your platform account.
 
 :::info This query might return items in multiple pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](doc:using-graphql#pagination).
+To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination).
 :::
 
 **Query:**
@@ -581,7 +581,7 @@ The third event was emitted when the collection was created on-chain, and has th
 The forth and final event with `FINALIZED` state was emitted when the platform request was finalized.
 
 :::info Note
-For the full list of platform states, check the [Enjin API --> Important Arguments](doc:important-arguments#state) page.
+For the full list of platform states, check the [Enjin API --> Important Arguments](/03-api-functions/04-important-arguments.md#state) page.
 :::
 
 :::tip Acknowledging Events
@@ -590,7 +590,7 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 ### Receive Transaction Information by Listening to Platform Websocket Events
 
-You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](doc:websocket-events)
+You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](03-api-functions/03-websocket-events.md)
 
 :::info The <GlossaryTerm id="self_hosted_enjin_platform" />
 Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="self_hosted_enjin_platform" /> for the following reasons:
@@ -600,9 +600,9 @@ Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may
 - Ideal for projects requiring advanced features and customization options.
 - Ensures full ownership and autonomy over your NFT platform.
 
-To set it up, check out the [Self-Hosted Platform](doc:open-source-platform) page.
+To set it up, check out the [Self-Hosted Platform](/02-tutorials/04-going-open-source/02-local-installation.md) page.
 :::
 
 :::tip What's Next?
-Learn how to [Use the API](https://docs.enjin.io/docs/using-enjin-api).
+Learn how to [Use the API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
 :::

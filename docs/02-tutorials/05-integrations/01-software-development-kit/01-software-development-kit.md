@@ -15,7 +15,7 @@ The Enjin Platform SDKs provide an API for communicating with the Enjin Platform
 
 The Enjin Platform SDKs provide a framework that developers can use on their desired programming language as it allows games and apps to interact with the Enjin API without the need of building a bridge between your application and our API requests, the Enjin SDKs facilitate the usage of listening and processing of events emitted by the Enjin Platform, which helps us deliver a better user experience in our application and eliminate unnecessary API requests we would otherwise make to the Enjin Platform.
 
-# SDK Libraries
+## SDK Libraries
 
 | Library | Link                                                                       |
 | :------ | :------------------------------------------------------------------------- |

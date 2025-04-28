@@ -11,12 +11,12 @@ metadata:
 createdAt: "Sun Nov 12 2023 18:05:47 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Sun Oct 27 2024 18:09:38 GMT+0000 (Coordinated Universal Time)"
 ---
-# Best Practices for Collection/Token Metadata
+## Best Practices for Collection/Token Metadata
 
 Metadata plays a vital role in the token ecosystem. It provides necessary details about a token and ensures that tokens are presented correctly across various applications.  
 To maintain consistency and ensure universal compatibility, it's important to adhere to a specific standard for metadata.
 
-## Why Follow a Metadata Standard?
+### Why Follow a Metadata Standard?
 
 Following a standard for metadata ensures that token details are accurately represented across all applications that support the standard. This eliminates inconsistencies and ensures that your tokens are presented in the way you intended. 
 
@@ -24,10 +24,10 @@ Adhering to a standard also simplifies the process for application developers, a
 
 For more details on the standard, refer to our [Universal Off-Chain Token Metadata Standard](https://enj.in/metadata).
 
-## Creating Metadata
+### Creating Metadata
 
 :::info Need an example?
-For a complete example of Collection & Token metadata, check out the [Metadata Example page](doc:metadata-example)
+For a complete example of Collection & Token metadata, check out the [Metadata Example page](/02-tutorials/03-advanced-mechanics/02-metadata-standard/02-metadata-example.md)
 :::
 
 :::warning **Important:** Attribute keys are case sensitive.
@@ -84,9 +84,9 @@ There are two ways to create metadata for your tokens:
    ```
 
 Whichever method you choose, it's crucial to ensure the metadata is structured according to the standard to maintain compatibility and present your tokens correctly.  
-For a detailed guide on adding metadata, please refer to our [Adding Metadata Tutorial](doc:adding-metadata).
+For a detailed guide on adding metadata, please refer to our [Adding Metadata Tutorial](/02-tutorials/01-managing-tokens/03-adding-metadata.md).
 
-## Dynamic Metadata Fetching
+### Dynamic Metadata Fetching
 
 When an application such as [Enjin wallet](https://enj.in/wallet) / [NFT.io](https://nft.io) loads token metadata, it starts by looking for the `uri` attribute on the token level.  
 If there’s no `uri` on the token level, it then looks for the `uri` attribute on the collection level.

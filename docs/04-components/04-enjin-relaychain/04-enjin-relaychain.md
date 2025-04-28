@@ -9,13 +9,13 @@ updatedAt: "Sun Dec 10 2023 16:41:03 GMT+0000 (Coordinated Universal Time)"
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-# What is Enjin Relaychain?
+## What is Enjin Relaychain?
 
 Enjin Relaychain is a decentralized and scalable network built for digital assets and non-fungible tokens (NFTs). It is based on Polkadot and uses the open-source Substrate framework to provide a comprehensive and efficient ecosystem for NFT creation. With superior functionality, speed, and low costs, Enjin Blockchain is designed to enhance the creation and management of digital assets in a secure and reliable manner.
 
 ![](./img/19.webp)
 
-# Benefits of the Enjin Relaychain:
+## Benefits of the Enjin Relaychain:
 
 1. Scalability: Enjin Relaychain is built to be highly scalable, enabling a significant increase in transaction throughput and enhanced performance for NFT projects, games, brands, and communities around the globe. This scalability is achieved through a unique architecture that leverages a multi-chain approach, allowing for parallel processing of transactions, reducing bottlenecks, and optimizing the use of resources.
 2. Customizable Matrix Chains: Enjin Relaychain features a primary Relay chain and several Matrix Chains, which can be customized to meet the specific needs of different use cases. The Relay chain is optimized for security, network synchronicity, and block validation, while the Matrix Chains are specialized blockchains that can prioritize speed, scalability, and cost efficiency. By offloading security and integrity to the Relay chain, Matrix Chains can evolve and adapt to changing market demands without compromising their unique features or properties. This architecture provides the flexibility and agility needed for NFT projects, games, brands, and communities to innovate and thrive.

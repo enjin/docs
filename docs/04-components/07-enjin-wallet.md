@@ -11,13 +11,13 @@ metadata:
 createdAt: "Tue Oct 31 2023 23:27:25 GMT+0000 (Coordinated Universal Time)"
 updatedAt: "Fri Oct 11 2024 08:37:36 GMT+0000 (Coordinated Universal Time)"
 ---
-# What is the Enjin Wallet?
+## What is the Enjin Wallet?
 
 The Enjin Wallet underwent a complete overhaul, resulting in enhanced performance, stability, and reliability. It now boasts improved power, speed, and user-friendliness, making it an excellent option for those interested in a blockchain wallet tailored specifically to NFTs, such as game developers, art collectors, and gamers.
 
 The Enjin Wallet's updated user interface and designs ensure accessibility to users of all backgrounds, providing a secure and seamless solution for storing, trading and transferring NFTs. Additionally, the wallet offers extensive compatibility with multiple cryptocurrencies for storage purposes.
 
-# Enjin Wallet 2.0 Demo
+## Enjin Wallet 2.0 Demo
 <div class="video-container">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/xnHsqO4Rj9E?si=XhKu5D42kbB66PVA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>

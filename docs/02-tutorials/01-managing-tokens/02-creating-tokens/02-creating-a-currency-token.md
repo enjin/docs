@@ -11,13 +11,13 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Similarly to [Tokens](doc:creating-tokens), "Currency Tokens" are also digital assets that can be traded, sold, or used on the Enjin Blockchain. However, unlike standard tokens, currency tokens support fractional values, allowing them to be divided into smaller units, just like traditional currencies.
+Similarly to [Tokens](/02-tutorials/01-managing-tokens/02-creating-tokens/02-creating-tokens.md), "Currency Tokens" are also digital assets that can be traded, sold, or used on the Enjin Blockchain. However, unlike standard tokens, currency tokens support fractional values, allowing them to be divided into smaller units, just like traditional currencies.
 
 :::info What you'll need:
-- Some [Enjin Coin](doc:using-enjin-coin) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.  
+- Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](doc:using-the-enjin-platform).
-- A [Collection](doc:creating-collections) to place the tokens in.
+- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- A [Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md) to place the tokens in.
 :::
 
 Enjin Blockchain allows you to create customized <GlossaryTerm id="token_id" /> structures. This flexibility enables you to organize your tokens in various ways that suit your needs.
@@ -35,8 +35,8 @@ For example, for the Gold Coins token example mentioned above, a balance of 1,57
 Similarly, when minting tokens, to mint 4.80 Gold Coins, the minted supply parameter should be set to 480 (4.8 \* 10^2).
 :::
 
-:::tip Token ID Structure [Best Practices](doc:tokenid-structure)
-Before minting the Mainnet versions of your Tokens, that will be used in your live economy. Make sure to take a look at the [best practices for Token ID structure](doc:tokenid-structure).
+:::tip Token ID Structure [Best Practices](/02-tutorials/03-advanced-mechanics/01-tokenid-structure.md)
+Before minting the Mainnet versions of your Tokens, that will be used in your live economy. Make sure to take a look at the [best practices for Token ID structure](/02-tutorials/03-advanced-mechanics/01-tokenid-structure.md).
 :::
 
 **There are two ways to use the <GlossaryTerm id="create_asset" /> functionalities:**
@@ -277,14 +277,14 @@ print(response.json())
 A WebSocket event will also be fired so you can pick up the changes in real-time by listening to the app channel on the WebSocket.
 
 :::tip
-For Token ID management, head to [Best Practices > TokenID Structure](doc:tokenid-structure)
+For Token ID management, head to [Best Practices > TokenID Structure](/02-tutorials/03-advanced-mechanics/01-tokenid-structure.md)
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](doc:api-reference). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
 For instance, you'll find settings such as adding attributes/royalties/supply type and much more with the `CreateTokenParams` argument, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
 :::tip What's next?
-To add metadata to your token, go to the [Adding Metadata](doc:adding-metadata) tutorial.
+To add metadata to your token, go to the [Adding Metadata](/02-tutorials/01-managing-tokens/03-adding-metadata.md) tutorial.
 :::
