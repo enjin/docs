@@ -1,6 +1,6 @@
 ---
 title: "Staking Integration Guide"
-slug: "validator-staking"
+slug: "staking-integration"
 excerpt: "This page will cover the basic integration of Enjin Blockchain Staking functionality, enabling you and your users to get started with staking on the Enjin Blockchain."
 hidden: false
 createdAt: "Mon Feb 26 2024 13:37:22 GMT+0000 (Coordinated Universal Time)"

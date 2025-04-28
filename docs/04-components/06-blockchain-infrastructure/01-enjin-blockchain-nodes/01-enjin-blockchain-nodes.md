@@ -1,6 +1,6 @@
 ---
 title: "Enjin Blockchain Nodes"
-slug: "enjin-blockchain-nodes"
+slug: "../nodes"
 excerpt: ""
 hidden: false
 createdAt: "Sun Jul 14 2024 16:06:28 GMT+0000 (Coordinated Universal Time)"

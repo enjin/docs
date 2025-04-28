@@ -1,6 +1,6 @@
 ---
 title: "Enjin Tech-Stack"
-slug: "enjin-techstack"
+slug: "enjin-tech-stack"
 excerpt: "The world's most robust set of Web3 game development tools."
 hidden: false
 metadata: 

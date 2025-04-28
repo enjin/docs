@@ -1,6 +1,6 @@
 ---
-title: "Running Matrixchain Nodes"
-slug: "matrixchain-nodes"
+title: "Run a Matrixchain Node"
+slug: "../run-matrixchain-node"
 excerpt: ""
 hidden: false
 createdAt: "Sun Jul 14 2024 16:14:36 GMT+0000 (Coordinated Universal Time)"

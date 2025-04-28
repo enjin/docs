@@ -1,6 +1,6 @@
 ---
 title: "Hosting an Enjin Node"
-slug: "running-a-node"
+slug: "../running-a-node"
 excerpt: "Running an Enjin node allows you to connect to the Enjin network, expose the RPC endpoint, and author blocks. This guide walks you through the process of running your own node locally and on a remote server."
 hidden: false
 createdAt: "Sun Jul 14 2024 16:45:39 GMT+0000 (Coordinated Universal Time)"

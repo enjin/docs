@@ -1,6 +1,6 @@
 ---
-title: "Running Relaychain Nodes"
-slug: "relaychain-nodes"
+title: "Run a Relaychain Node"
+slug: "../run-relaychain-node"
 excerpt: ""
 hidden: false
 createdAt: "Sun Jul 14 2024 16:11:54 GMT+0000 (Coordinated Universal Time)"

@@ -1,6 +1,6 @@
 ---
 title: "Enjin Relaychain"
-slug: "blockchain-infrastructure"
+slug: "../enjin-relaychain"
 excerpt: "Layer 0: The security layer of the Enjin Blockchain."
 hidden: false
 createdAt: "Tue Oct 31 2023 03:28:27 GMT+0000 (Coordinated Universal Time)"

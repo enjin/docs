@@ -1,6 +1,6 @@
 ---
-title: "Building From Source"
-slug: "building-from-source"
+title: "Build Node From Source"
+slug: "../build-node-from-source"
 excerpt: ""
 hidden: false
 createdAt: "Sun Jul 14 2024 16:29:00 GMT+0000 (Coordinated Universal Time)"

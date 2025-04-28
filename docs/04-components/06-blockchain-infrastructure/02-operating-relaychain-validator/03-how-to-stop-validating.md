@@ -1,6 +1,6 @@
 ---
 title: "How to Stop Validating"
-slug: "how-to-stop-validating"
+slug: "stop-validating"
 excerpt: "If you are currently operating a validator node on the Enjin Blockchain and wish to stop validating, follow the steps outlined below."
 hidden: false
 createdAt: "Fri Oct 11 2024 08:17:48 GMT+0000 (Coordinated Universal Time)"

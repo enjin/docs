@@ -1,6 +1,6 @@
 ---
 title: "Running a Validator"
-slug: "running-a-validator"
+slug: "run-a-validator"
 excerpt: ""
 hidden: false
 createdAt: "Sun Jul 14 2024 16:10:29 GMT+0000 (Coordinated Universal Time)"

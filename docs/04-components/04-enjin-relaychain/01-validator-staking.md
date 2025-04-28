@@ -1,6 +1,6 @@
 ---
 title: "Validator Staking"
-slug: "enjin-relaychain"
+slug: "validator-staking"
 excerpt: ""
 hidden: false
 createdAt: "Tue Oct 31 2023 03:27:35 GMT+0000 (Coordinated Universal Time)"

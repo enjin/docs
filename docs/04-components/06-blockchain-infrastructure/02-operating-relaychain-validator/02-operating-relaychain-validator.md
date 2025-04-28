@@ -1,6 +1,6 @@
 ---
 title: "Operating a Relaychain Validator"
-slug: "operating-relaychain-validator"
+slug: "../operating-relaychain-validator"
 excerpt: ""
 hidden: false
 createdAt: "Fri Oct 11 2024 08:20:22 GMT+0000 (Coordinated Universal Time)"

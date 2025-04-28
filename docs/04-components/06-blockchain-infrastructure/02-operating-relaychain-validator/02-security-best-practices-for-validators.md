@@ -1,6 +1,6 @@
 ---
 title: "Security Best Practices for Validators"
-slug: "security-best-practices-for-validators"
+slug: "security-best-practices"
 excerpt: "Validators play a critical role in the Enjin Blockchain ecosystem by proposing, validating and finalizing blocks. Given their importance, validators are frequent targets for various types of attacks. It is essential to follow best practices for setting up and maintaining your validator nodes to mitigate risk and ensure the network’s robustness."
 hidden: false
 createdAt: "Fri Oct 11 2024 08:23:22 GMT+0000 (Coordinated Universal Time)"
