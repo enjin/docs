@@ -54,7 +54,7 @@
 .featureDescription {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--ifm-color-emphasis-600);
+  color: var(--feature-card-text-color);
   margin-bottom: 2rem;
   flex-grow: 1;
 }

@@ -3,6 +3,10 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
+//TODO: fix feature cards padding on both desktop and mobile
+//TODO: fix light mode design
+//TODO: Fill placeholders with texts and links
+
 const FeatureList = [
   {
     title: 'Quick Start Guide',
@@ -15,6 +19,12 @@ const FeatureList = [
     description: 'Comprehensive API documentation for building games and apps on Enjin.',
     link: '/docs/api-reference',
     buttonText: 'Explore APIs',
+  },
+  {
+    title: 'SDK Documentation',
+    description: 'Detailed guides for using Enjin SDKs in your favorite programming language.',
+    link: '/docs/sdk-documentation',
+    buttonText: 'View SDKs',
   },
   {
     title: 'SDK Documentation',

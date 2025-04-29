@@ -4,11 +4,21 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #6f4ceb, #4a29bc); /* Purple gradient */
+  color: white; /* Set text color to white for better contrast */
 }
+
+[data-theme='dark'] .heroBannerContainer {
+  background-color: rgb(26 31 44 / 1);
+}
+
+  [data-theme='dark'] .heroBanner {
+    background: linear-gradient(180deg,#9b87f526,#7e69ab1a);
+  }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
