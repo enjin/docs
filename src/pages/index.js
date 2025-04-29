@@ -1,3 +1,4 @@
+import Image from '@site/static/img/integrate_faster.png';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -16,6 +17,7 @@ function HomepageHeader() {
           <Heading as="h1" className="hero__title">
             Welcome to Enjin Docs
           </Heading>
+          <img src={Image} alt="Integrate Faster" className={styles.heroImage} /> {/* Add CSS class */}
           <p className="hero__subtitle">
             Start building with the world's first purpose-built blockchain for games and apps, with NFTs implemented at the protocol level.
           </p>
