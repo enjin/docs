@@ -1,4 +1,8 @@
 {
-  "label": "Getting Started"
+  "label": "Getting Started",
+  "link": {
+    "type": "generated-index",
+    "description": "Begin your journey with the Enjin ecosystem here. This section provides essential introductory guides and foundational knowledge."
+  }
 }
   

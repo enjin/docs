@@ -91,4 +91,4 @@ For a comprehensive guide on exploring and utilizing GraphQL queries and mutatio
 :::tip What's next?
 - New to GraphQL? Learn how to structure queries and mutations in our [How to Use GraphQL guide](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md).
 - To automate signing requests, continue to the [Using the Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md) page.
-- Or, If you're ready to start building... [Create a Collection](/02-tutorials/01-managing-tokens/01-creating-collections.md).
+- Or, If you're ready to start building... [Create a Collection](/02-guides/01-managing-tokens/01-creating-collections.md).

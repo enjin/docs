@@ -1,4 +1,7 @@
 {
-  "label": "API Functions"
+  "label": "API Functions",
+  "link": {
+    "type": "generated-index",
+    "description": "Explore the complete set of Enjin GraphQL API functions. This section details every available query and mutation, explaining their purpose, required arguments, and practical use-cases for interacting directly with the Enjin Platform."
+  }
 }
-  

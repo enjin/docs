@@ -50,6 +50,7 @@
   margin-bottom: 1.5rem;
   background: linear-gradient(175deg,var(--feature-card-title-text-color-from), var(--feature-card-title-text-color-to));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 
 }

@@ -81,7 +81,7 @@ The "Require token" setting determines that a specific token must be held by the
 ##### Require Signature:
 
 The "Require Signature" setting determines that a call must be signed by a specific account, and this signature must be included in the dispatch settings for the call to be accepted by the fuel tank.  
-If the signature is not provided, is invalid or is signed by a different account, the call will be rejected and fail. This feature is particularly useful with [managed wallets](/02-tutorials/02-managing-users/03-using-managed-wallets.md) to allow multiple controlled accounts to use the fuel tank without paying <GlossaryTerm id="storage_deposit" />s in advance.
+If the signature is not provided, is invalid or is signed by a different account, the call will be rejected and fail. This feature is particularly useful with [managed wallets](/02-guides/02-managing-users/03-using-managed-wallets.md) to allow multiple controlled accounts to use the fuel tank without paying <GlossaryTerm id="storage_deposit" />s in advance.
 
 ##### Whitelisted Pallets:
 

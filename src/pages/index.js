@@ -22,7 +22,7 @@ function HomepageHeader() {
           <div className={styles.buttons}>
             <Link
               className={clsx(styles.button__wide, 'button button--primary button--lg margin-right--md')}
-              to="/docs/quick-start">
+              to="getting-started/quick-start-guide">
               Get Started
             </Link>
           </div>

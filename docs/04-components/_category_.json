@@ -1,4 +1,8 @@
 {
-  "label": "Components"
+  "label": "Components",
+  "link": {
+    "type": "generated-index",
+    "description": "Delve into the core architecture and individual elements that constitute the Enjin ecosystem. This section provides detailed explanations of key components, including the overall Tech-Stack, the Enjin Platform, Enjin Coin (ENJ), the Relaychain, the Matrixchain, and other essential tools and products."
+  }
 }
   

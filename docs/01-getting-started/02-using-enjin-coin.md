@@ -29,7 +29,9 @@ It’s important to note that once a <GlossaryTerm id="multitoken" /> is infused
 
 To keep an Enjin Coin Account active on the network, the wallet must hold **at least 0.1 ENJ**. If the balance drops below this threshold, the account may be **automatically deleted** - unless the transfer uses the `keepAlive` flag set to `true`.
 
-> Note: This requirement only applies to Enjin Coin accounts. NFT (<GlossaryTerm id="multitoken" />) holdings are unaffected and remain safe even if the wallet has 0 ENJ.
+:::note
+This requirement only applies to Enjin Coin accounts. NFT (<GlossaryTerm id="multitoken" />) holdings are unaffected and remain safe even if the wallet has 0 ENJ.
+:::
 
 When `keepAlive` is set to `true`, the transfer will fail if it would reduce the balance below 0.1 ENJ—ensuring the account stays active. If set to `false`, the transfer will go through, but the account may be deleted if the balance falls below the threshold.
 

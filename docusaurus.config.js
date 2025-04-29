@@ -91,9 +91,21 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Docs',
-                to: '/',
+                label: 'Getting Started',
+                to: 'category/getting-started',
               },
+              {
+                label: 'Guides',
+                to: 'category/guides',
+              },
+              {
+                label: 'API Functions',
+                to: 'category/api-functions',
+              },
+              {
+                label: 'Components',
+                to: 'category/components',
+              }, 
             ],
           },
           {

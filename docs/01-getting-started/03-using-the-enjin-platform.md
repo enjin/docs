@@ -20,7 +20,7 @@ To get started, go ahead and create an account on the <GlossaryTerm id="enjin_pl
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-- The [Self-Hosted Platform](/02-tutorials/04-going-open-source/02-local-installation.md) which you can run locally to connect to either network.
+- The [Self-Hosted Platform](/02-guides/04-going-open-source/02-local-installation.md) which you can run locally to connect to either network.
 :::
 
 ### Things you should know
@@ -592,7 +592,7 @@ Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may
 - Ideal for projects requiring advanced features and customization options.
 - Ensures full ownership and autonomy over your NFT platform.
 
-To set it up, check out the [Self-Hosted Platform](/02-tutorials/04-going-open-source/02-local-installation.md) page.
+To set it up, check out the [Self-Hosted Platform](/02-guides/04-going-open-source/02-local-installation.md) page.
 :::
 
 :::tip What's Next?
