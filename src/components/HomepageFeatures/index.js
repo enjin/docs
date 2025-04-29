@@ -3,8 +3,6 @@ import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
-//TODO: fix feature cards padding on both desktop and mobile
-//TODO: fix light mode design
 //TODO: Fill placeholders with texts and links
 
 const FeatureList = [
@@ -53,8 +51,8 @@ function Feature({title, description, link, buttonText}) {
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
-      <div className="container">
-        <div className="row">
+      <div className={styles.container}>
+        <div className={styles.row}>
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

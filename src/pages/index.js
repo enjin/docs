@@ -21,14 +21,9 @@ function HomepageHeader() {
           </p>
           <div className={styles.buttons}>
             <Link
-              className='button button--primary button--lg margin-right--md'
+              className={clsx(styles.button__wide, 'button button--primary button--lg margin-right--md')}
               to="/docs/quick-start">
               Get Started
-            </Link>
-            <Link
-              className='button button--primary button--lg'
-              to="https://github.com/enjin">
-              View on GitHub
             </Link>
           </div>
         </div>

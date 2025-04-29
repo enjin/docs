@@ -13,14 +13,23 @@
   --ifm-color-primary-light: #8a7ed6;
   --ifm-color-primary-lighter: #958ad9;
   --ifm-color-primary-lightest: #b5ade5;
+  /* --ifm-navbar-background-color: #13141c; */
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-background-color: #ffffff;
   --ifm-background-surface-color: #f8f8f8;
+  --features-bg: #fff;
   --feature-card-bg: #f7f7fb;
   --feature-card-border: #eeeef3;
   --feature-card-hover-border: #e0e0e8;
   --feature-card-shadow: rgba(0, 0, 0, 0.02);
+  --feature-card-text-color: rgb(75 85 99 / 1);
+  --feature-card-title-text-color-from: #9b87f5;
+  --feature-card-title-text-color-to: #7E69AB;
+  --hero-header-color-from: #9b87f5;
+  --hero-header-color-to: #7E69AB;
+  --ifm-hero-text-color: rgb(75 85 99 / 1);
+  --button-hover: #000;
 }
 
 [data-theme='dark'] {
@@ -31,17 +40,21 @@
   --ifm-color-primary-light: #8a7ed6;
   --ifm-color-primary-lighter: #958ad9;
   --ifm-color-primary-lightest: #b5ade5;
+  --ifm-navbar-background-color: #1e2232;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-background-color: #13141c;
   --ifm-background-surface-color: #1a1b26;
-  --feature-card-bg: rgba(20, 21, 30, 0.95);
-  --feature-card-border: rgba(117, 103, 206, 0.2);
+  --features-bg: #1e2232;
+  --feature-card-bg: #ffffff0d;
+  --feature-card-border: #ffffff1a;
   --feature-card-hover-border: rgba(117, 103, 206, 0.5);
   --feature-card-text-color: rgb(205 205 205 / 1);
-  --ifm-navbar-background-color: #13141c;
-  --ifm-heading-color: #ffffff;
+  --feature-card-title-text-color-from: #9b87f5;
+  --feature-card-title-text-color-to: #D6BCFA ;
+  --hero-header-color-from: #9b87f5;
+  --hero-header-color-to: #D6BCFA;
   --ifm-hero-text-color: rgb(205 205 205 / 1);
-  --ifm-color-emphasis-600: #a1a1aa;
+  --button-hover: #000;
 }
 
 /* Hero section styles */
@@ -53,7 +66,7 @@
 .hero__title {
   font-size: 4rem;
   margin-bottom: 1.5rem;
-  background: -webkit-linear-gradient(#9b87f5, #D6BCFA );
+  background: linear-gradient(90deg,var(--hero-header-color-from), var(--hero-header-color-to));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -77,7 +90,7 @@
 }
 
 .button--primary {
-  background: linear-gradient(90deg, #7567ce 0%, #6050c6 100%);
+  background: linear-gradient(90deg, #9b87f5e6 0%, #9b87f5e6 100%);
   border: none;
   color: white;
 }
@@ -104,6 +117,16 @@
 .button--lg {
   font-size: 1.1rem;
   padding: 0.875rem 2rem;
+}
+
+[data-theme='light'] 
+.button:hover {
+  color: var(--button-hover);
+}
+
+[data-theme='dark'] 
+.button:hover {
+  color: var(--button-hover);
 }
 
 .margin-right--md {
