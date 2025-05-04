@@ -31,7 +31,7 @@ With nomination pools, there is one account that multiple users put their funds 
 - **Immediate exit -** due to the liquid token, the user can exit immediately by exchanging their sENJ for ENJ
 
 <p align="center">
-  <img src={require('./img/1.png').default} width="700" />
+  <img src={require('/img/components/enjin-relaychain/1.png').default} width="700" />
 </p>
 
 ### Direct Staking
@@ -47,7 +47,7 @@ Direct staking is not supported on Enjin. This information is just for compariso
 - **28 days unbonding period -** users must wait 28 days after unbonding to receive their funds
 
 <p align="center">
-  <img src={require('./img/2.png').default} width="600" />
+  <img src={require('/img/components/enjin-relaychain/2.png').default} width="600" />
 </p>
 
 ## Tokens Overview
@@ -58,7 +58,7 @@ There are three tokens relevant to staking:
 - **sENJ -** sENJ is the liquid token that represents staked ENJ. It is minted when ENJ is staked and burned when ENJ is unstaked. It can also be exchanged for ENJ through the exchange pallet.
 - **Degen Token -** The degen token is an NFT in a special collection. It is required to create a pool and is also used to manage the pool. The owner of this NFT can optionally receive a commission. Each token is only usable in one pool at a time.
 
-![](./img/3.png)
+![](/img/components/enjin-relaychain/3.png)
 
 ## Deposit
 
@@ -75,13 +75,13 @@ A deposit is reserved when the pool is created. This deposit will be released to
    1. Bob gets the 5000 ENJ deposit because he holds the degen
    2. Bob would actually get slightly more than 5000 ENJ because the deposit is staked, so he would get the rewards as well
 
-![](./img/4.png)
+![](/img/components/enjin-relaychain/4.png)
 
 ## ENJ & sENJ
 
 Here's an example to show the relationship between ENJ and sENJ. The important thing to understand is that although the number of sENJ does not change as rewards are distributed, its value increases because it represents a proportion of the total ENJ in the pool.
 
-![](./img/5.jpg)
+![](/img/components/enjin-relaychain/5.jpg)
 
 ## Bonus Cycle
 
@@ -92,11 +92,11 @@ There are two balances in a pool.
 
 80% of the rewards are distributed immediately, 20% are put into the bonus balance. Bonuses are calculated per validator. As the graphic shows, the 20% is collected at the beginning of the payout, then it is distributed to each pool's bonus account. Pools with longer bonus cycles get more bonus.
 
-![](./img/6.png)
+![](/img/components/enjin-relaychain/6.png)
 
 Each era, some amount of bonus is distributed from each pool's bonus account to its rewards account. This amount changes depending on the pool's bonus cycle. A small amount of bonus is distributed at the beginning of the cycle, but at the end, each era distributes a large amount of bonus. By the end of the cycle, the whole bonus is distributed, and the cycle restarts.
 
-![](./img/7.png)
+![](/img/components/enjin-relaychain/7.png)
 
 ## Payouts
 
@@ -111,7 +111,7 @@ Payouts do not happen automatically. The payout_rewards extrinsic should be call
       3. Sends reward commission to the degen token holder
       4. The pool's reward balance is staked (reinvested) so that rewards will be as high as possibl
 
-![](./img/8.png)
+![](/img/components/enjin-relaychain/8.png)
 
 ## Extrinsics Overview
 

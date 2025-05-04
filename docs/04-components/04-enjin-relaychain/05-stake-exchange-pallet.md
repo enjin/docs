@@ -112,7 +112,7 @@ if its 0.9:1, (you need 0.9 sENJ to get 1ENJ), you would use 900000000 (90%)
 
 The below example creates an offer with a liquidity of 1000ENJ (1000000000000000000000), and offers a rate of 99% (990000000), and will accepts pools with a reward rate of 1.1 (1100000000000000000). The offer only accepts tokens from Pool ID 2.
 
-![](./img/34.png)
+![](/img/components/enjin-relaychain/34.png)
 
 ## Canceling an Offer
 
@@ -121,7 +121,7 @@ The below example creates an offer with a liquidity of 1000ENJ (1000000000000000
 - Click "Confirm" to proceed with the cancellation.
 - If successful, you will receive a confirmation message indicating that the offer has been canceled.
 
-![](./img/35.png)
+![](/img/components/enjin-relaychain/35.png)
 
 ## Configuring Liquidity Account
 
@@ -134,7 +134,7 @@ Configuring Liquidity Account is only required if you create an offer aka if you
 
    Example configuration to disallow sENJ tokens with tokenId 210:
 
-![](./img/36.png)
+![](/img/components/enjin-relaychain/36.png)
 
 ## Withdrawing Liquidity
 
@@ -146,7 +146,7 @@ Configuring Liquidity Account is only required if you create an offer aka if you
 
    Example : You created an offer with initial amount of 1000ENJ. If you withdraw liquidity of 400ENJ, then your updated offer will have a liquidity of 600ENJ.
 
-![](./img/37.png)
+![](/img/components/enjin-relaychain/37.png)
 
 ## Adding Liquidity
 
@@ -159,7 +159,7 @@ Configuring Liquidity Account is only required if you create an offer aka if you
    Example : You created an offer with initial amount of 1000ENJ. If you add liquidity of 400ENJ, then your updated  
    offer will have a liquidity of 1400ENJ.
 
-![](./img/38.png)
+![](/img/components/enjin-relaychain/38.png)
 
 ## Buying Tokens
 
@@ -170,6 +170,6 @@ Configuring Liquidity Account is only required if you create an offer aka if you
 - Click "Confirm" to proceed with the token exchange.
 - If successful, you will receive a confirmation message indicating that the token exchange has been completed. You will also receive the exchanged ENJ tokens in your wallet.
 
-![](./img/39.png)
+![](/img/components/enjin-relaychain/39.png)
 
 Happy staking and token exchanging!

@@ -32,21 +32,21 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
 **Locate the token** you wish to mint, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Mint**" button.
 
-![Minting a Token](./img/minting-a-token.gif)
+![Minting a Token](/img/guides/managing-tokens/minting-a-token.gif)
 
 Set the recipient and the amount in the corresponding fields, and Click on "**Mint**"
 
 <p align="center">
-  <img src={require('./img/mint-token-form.png').default} alt="Mint Token Form" />
+  <img src={require('/img/guides/managing-tokens/mint-token-form.png').default} alt="Mint Token Form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/mint-token-banner.png').default} width="600" alt="Mint Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/mint-token-banner.png').default} width="600" alt="Mint Transaction Request Banner" />
 </p>
 
-![Pending Mint Transaction](./img/pending-mint-txn.png)
+![Pending Mint Transaction](/img/guides/managing-tokens/pending-mint-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

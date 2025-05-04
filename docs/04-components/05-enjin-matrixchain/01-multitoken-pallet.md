@@ -16,11 +16,11 @@ The Enjin Blockchain has a token standard called MultiTokens. The standard is co
 
 **<GlossaryTerm id="multi_unit_token" />** are stackable, have a quantity and optional decimal places. An example of a multi-unit token is a twenty dollar bill - each bill is worth the same amount as another twenty dollar bill.
 
-![](./img/1.png)
+![](/img/components/enjin-matrixchain/1.png)
 
 **<GlossaryTerm id="nft" />s** are not interchangeable; each token has its own unique identifier. Examples of NFTs are original art, gaming characters and pets, numbered collectibles, and more.
 
-![](./img/2.png)
+![](/img/components/enjin-matrixchain/2.png)
 
 **Grouped NFTs** are Multi-unit tokens/NFTs that are a part of a family, and share the same Base ID.
 
@@ -29,7 +29,7 @@ Please note that Grouped tokens functionality is being implemented.
 This page will be updated once it is.
 :::
 
-![](./img/3.png)
+![](/img/components/enjin-matrixchain/3.png)
 
 ## Terminology
 
@@ -51,11 +51,11 @@ The first 2000 Collection IDs are reserved for future system collections. Collec
 
 A <GlossaryTerm id="storage_deposit" /> of 6.25 ENJ is required to create a collection. The deposit can be recovered by the collection owner if all tokens are burned and the collection is destroyed.
 
-![](./img/4.png)
+![](/img/components/enjin-matrixchain/4.png)
 
-![](./img/5.png)
+![](/img/components/enjin-matrixchain/5.png)
 
-![](./img/6.png)
+![](/img/components/enjin-matrixchain/6.png)
 
 ## Tokens
 
@@ -63,7 +63,7 @@ Each token must belong to a Collection, and is created using the mint extrinsic.
 
 In the Enjin Blockchain there is no distinction between <GlossaryTerm id="multi_unit_token" />s and <GlossaryTerm id="nft" />s. Each token is a <GlossaryTerm id="multitoken" /> that may be a multi-unit token or an NFT depending on its supply. A NFT is simply a token with a total supply of one. Additional constraints, like a cap, can be applied to a token at the time of minting to make sure the total supply never increases.
 
-![](./img/7.png)
+![](/img/components/enjin-matrixchain/7.png)
 
 ## How to Create a Collection
 
@@ -83,7 +83,7 @@ By default, the policies are flexible, but you can make them more strict. For ex
 
 When the collection is created, it will emit a `CollectionCreated` event. This event contains the collection id that is used to access the collection.
 
-![](./img/8.png)
+![](/img/components/enjin-matrixchain/8.png)
 
 ## How to create a Token
 
@@ -134,13 +134,13 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
   - Infusion: The amount of ENJ to infuse to each unit. (More info in the [#ENJ Infusion](#enj-infusion) section below)
   - Anyone Can Infuse: Whether anyone will be able to add infusion to this token, or only the collection owner.
 
-![](./img/9.png)
+![](/img/components/enjin-matrixchain/9.png)
 
 ### Mint
 
 This is used when minting additional units to an already existing token, as long as the circulating token supply didn't reach its cap.
 
-![](./img/10.png)
+![](/img/components/enjin-matrixchain/10.png)
 
 ## Transferring tokens and NFTs
 
@@ -150,13 +150,13 @@ To perform a transfer, use the `transfer` extrinsic. There are two types of tran
 
 A simple transfer is when the `origin` of the extrinsic is also the sender. i.e. when the account that calling the extrinsic is also the token holder.
 
-![](./img/11.png)
+![](/img/components/enjin-matrixchain/11.png)
 
 ### Operator Transfer
 
 An operator transfer is when an account makes transfers on behalf of another account. This is also known as `transfer_from`. 
 
-![](./img/12.png)
+![](/img/components/enjin-matrixchain/12.png)
 
 In the example above, Alice is creating a transaction call to transfer a MultiToken to Bob's account from Charlie's account.  
 For the transaction to be successful, Bob must approve Alice to transfer this token in advance.
@@ -192,7 +192,7 @@ There is an additional field on the `BurnParam` called `remove_token_storage`. I
 
 When a <GlossaryTerm id="multitoken" /> is removed from storage, the <GlossaryTerm id="storage_deposit" /> is returned to the collection owner, and it will be as if the token never existed, so it can be recreated in the future with different configuration.
 
-![](./img/13.png)
+![](/img/components/enjin-matrixchain/13.png)
 
 ## Setting/Removing Attributes
 
@@ -204,13 +204,13 @@ To remove an `attribute`, use `remove_attribute` extrinsic. It's only callable b
 
 This is done by clicking the `Manage Attributes` button under the expanded collection. Use the toggle to switch between setting and removing attributes.
 
-![](./img/14.webp)
+![](/img/components/enjin-matrixchain/14.webp)
 
 ### Setting Token Attributes
 
 This is done by clicking the `Manage Attributes` button on the token page. Use the toggle to switch between setting and removing attributes.
 
-![](./img/15.webp)
+![](/img/components/enjin-matrixchain/15.webp)
 
 ## Freezing
 
@@ -221,14 +221,14 @@ Accounts, collections, and tokens can be frozen to prevent transfers. This is do
 This is done by clicking on Freeze button under expanded collection.  
 Use the toggle to switch between freezing a specific collection account and the whole collection.
 
-![](./img/16.png)
+![](/img/components/enjin-matrixchain/16.png)
 
 ### Freeze a token or a token account
 
 This is done by clicking on Freeze button on the token page.  
 Use the toggle to switch between freezing a specific token account and the whole token.
 
-![](./img/17.png)
+![](/img/components/enjin-matrixchain/17.png)
 
 ## Thawing
 
@@ -239,14 +239,14 @@ To unfreeze either collection, token, collection account or token account, use t
 This is done by clicking on the `Thaw` button under expanded collection.  
 Use the toggle to switch between thawing a specific collection account and the whole collection.
 
-![](./img/18.png)
+![](/img/components/enjin-matrixchain/18.png)
 
 ### Thaw a token or a token account
 
 This is done by clicking on the `Thaw` button on the token page.  
 Use the toggle to switch between thawing a specific token account and the whole token.
 
-![](./img/19.png)
+![](/img/components/enjin-matrixchain/19.png)
 
 ## Batch operations
 
@@ -256,26 +256,26 @@ It is also possible to perform certain operations in batch. The following operat
 
 Using `batch_transfer` you can batch [transfer](#transferring-tokens-and-nfts) operations, allowing to transfer multiple tokens from a single collection, to a list of `recipients` with different `amount` of tokens.
 
-![](./img/20.png)
+![](/img/components/enjin-matrixchain/20.png)
 
 ### Batch Mint
 
 Using `batch_mint` you can batch [mint](#how-to-create-a-token) operations, allowing minting new or existing tokens, each with it's own `recipient` and `amount`.
 
-![](./img/21.png)
+![](/img/components/enjin-matrixchain/21.png)
 
 ### Batch Set Attribute
 
 Using `batch_set_attribute` you can batch set attribute operations, allowing to set multiple attributes to a single collection / token. If `token_id` is `None`, the attribute is set on the collection. If it is `Some`, the attribute is set on the token.
 
-![](./img/22.png)
+![](/img/components/enjin-matrixchain/22.png)
 
 ### Remove All Attributes
 
 Removes all attributes from the given `collection_id` or `token_id`.  
 If `token_id` is `None`, it removes all attributes of the collection. If `token_id` is `Some`, it removes all attributes of the token. `attributeCount` must match the number of attributes set in the collection/token, or the transaction will fail.
 
-![](./img/23.png)
+![](/img/components/enjin-matrixchain/23.png)
 
 ## ENJ Infusion
 
@@ -283,14 +283,14 @@ The ENJ Infusion of a token represents the backing value of each unit in ENJ, wh
 
 Each token unit may have some ENJ infused into it. The token creator can choose to infuse ENJ to any of its tokens at any  given time, or at the time of creation.
 
-![](./img/24.png)
+![](/img/components/enjin-matrixchain/24.png)
 
 Infused ENJ can only be retrieved by [burning the token supply](#burning-tokens).  
 Burning the token releases the ENJ to the holder.
 
 In addition, the token creator can choose to allow anyone to add ENJ infusion to an existing token, or restrict it so only the creator can add ENJ infusion.
 
-![](./img/25.png)
+![](/img/components/enjin-matrixchain/25.png)
 
 ## Token Account Deposit
 

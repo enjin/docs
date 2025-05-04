@@ -21,14 +21,14 @@ The Enjin Platform works much like a customizable building set. It has a modular
 
 This versatile platform offers two versions to cater to different needs. The [open-source](https://github.com/enjin/platform), self-hosted version provides you with comprehensive control over your data, eliminating dependence on any third-party servers or services. Enjin also offers a hosted version, the Enjin Platform Cloud ([mainnet ](https://platform.enjin.io/)\|[ canary](https://platform.canary.enjin.io/)), tailored for users seeking rapid integration. You can choose the version that best fits your requirements.
 
-![](./img/4.png)
+![](/img/components/4.png)
 
 ## How does it work?
 
 How does Enjin Platform bring all these functionalities together? The answer lies in its structure. The platform comprises distinct components each designed to offer a unique solution for developers and creators. 
 
 <p align="center">
-  <img src={require('./img/5.png').default} width="700" />
+  <img src={require('/img/components/5.png').default} width="700" />
 </p>
 
 ### API & Schema
@@ -94,7 +94,7 @@ Everyone is welcome to contribute to the codebase and build upon the framework. 
 
 The Enjin Platform comes with a lightweight and easy-to-use user interface. The graphical interface comes with GUI forms for creating, viewing, managing collections & NFTs. You can also extend the UI with additional components like Beams and Fuel Tanks, depending on their availability and installation.
 
-![](./img/6.png)
+![](/img/components/6.png)
 
 The user interface is available as a [standalone application](https://github.com/enjin/platform-ui) for the self-hosted Enjin Platform, but comes standard when using the Enjin-hosted implementation of the [Enjin Platform](https://platform.enjin.io/).
 

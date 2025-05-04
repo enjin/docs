@@ -168,7 +168,7 @@ If you want community nominations, you must show commitment and trust by bonding
 
 In this step, we will bond an amount ENJ, set our session keys and confirm we're ready to begin validating. To get started, navigate to the [Staking \> Accounts](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking/actions) page on the Enjin Console and select `+ Add Validator`.
 
-![](./img/1.png)
+![](/img/components/blockchain-infrastructure/2.png)
 
 
 Select the `stash account` that you want to use as a Validator. This account will be responsible for bonding the relevant ENJ.
@@ -182,7 +182,7 @@ For the `payment destination` there are three options:
 - **Specified payment account:** this option allows you to specify an alternative account (unrelated to the stash account) which will receive any payouts.
 - You can then select `next` to continue the setup.
 
-![](./img/2.png)
+![](/img/components/blockchain-infrastructure/3.png)
 
 In the `keys from rotatekeys` field, you want to enter the keys you acquired during Generating Session Keys.
 
@@ -196,7 +196,7 @@ Finally, select `Bond & Validate` to finalise the setup of your Validator.
 
 All that remains is to verify everything was set correctly. You can do this by navigating to the [Staking \> Overview](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking) section of the Enjin Console and selecting the `Waiting` tab. If everything was successful, you'll see your Validator listed.
 
-![](./img/3.png)
+![](/img/components/blockchain-infrastructure/4.png)
 
 Congratulations! If you've followed everything correctly, you're now officially a Validator! Make sure that you have enough total stake backing your Validator be selected for the next Validator Set.
 

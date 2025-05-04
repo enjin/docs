@@ -102,7 +102,7 @@ Our platform broadcasts network events through a `WebSocket` channel, similar to
 
 Learn more about [Websocket Events here](03-api-functions/03-websocket-events.md) .
 
-![Platform Events](./img/platform-events.png)
+![Platform Events](/img/guides/going-open-source/platform-events.png)
 
 Our platform uses WebSockets to transmit real-time events, but since WebSockets can sometimes be unstable, there's a risk of missing events if your system loses connection. To address this, we also cache events in a query called `GetPendingEvents`. The most effective way to stay updated in real time and ensure no events are missed is to always `acknowledge` the events you receive.
 
@@ -170,8 +170,8 @@ query GetPendingEvents {
 
 In the explorer tab, you can find the recent events emitted in the network. Those will appear as soon as they are emitted.
 
-![Viewing events on Enjin Console](./img/enjin-console-events.png)
+![Viewing events on Enjin Console](/img/guides/going-open-source/enjin-console-events.png)
 
 You can also see the events emitted in a single block by querying the block directly
 
-![Viewing events on Enjin Console](./img/enjin-console-events-2.png)
+![Viewing events on Enjin Console](/img/guides/going-open-source/enjin-console-events-2.png)

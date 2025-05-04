@@ -35,7 +35,7 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 In the Platform menu, navigate to "**[Tokens](https://platform.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.enjin.io/create/token)**" button.
 
-![Creating Token](./img/creating-token.gif)
+![Creating Token](/img/guides/managing-tokens/creating-token.gif)
 
 From here, you can customize your collection's Mint Policy, Market Policy, and Attributes.
 
@@ -53,10 +53,10 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/create-token-banner.png').default} width="600" alt="Create Token Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/create-token-banner.png').default} width="600" alt="Create Token Transaction Request Banner" />
 </p>
 
-![Pending Create Token Transaction](./img/pending-create-token-txn.png)
+![Pending Create Token Transaction](/img/guides/managing-tokens/pending-create-token-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

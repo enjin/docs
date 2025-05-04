@@ -21,13 +21,13 @@ You can access the GraphiQL Playground for both Testnet and Mainnet environments
 
 - Start by opening the GraphiQL Playground and click the `Show Documentation Explorer` button located at the top left. This will display a panel listing all available queries, mutations, and types.
 
-![Show Documentation Explorer](./img/show-documentation-explorer.gif)
+![Show Documentation Explorer](/img/getting-started/show-documentation-explorer.gif)
 
 #### Step 2: Search for a Specific Mutation
 
 - In the Documentation Explorer, you can use the search input to find a specific mutation. For example, to find the "CreateToken" mutation, type "Create" into the search bar. This helps narrow down the list to relevant operations.
 
-![Search mutations or queries](./img/search.gif)
+![Search mutations or queries](/img/getting-started/search.gif)
 
 :::tip Tip: quick Access to Documentation
 If you already have a query or mutation in your builder, you can quickly open its documentation page by clicking on it while holding the `Ctrl` button. This will navigate you directly to its details in the Documentation Explorer.
@@ -40,7 +40,7 @@ If you already have a query or mutation in your builder, you can quickly open it
   - **Return Type**: The type of data it returns, such as a "transaction".
   - **Arguments**: A list of arguments it accepts, with descriptions and data types.
 
-![Explore mutation, query, or type](./img/explore-mutation-query-type.gif)
+![Explore mutation, query, or type](/img/getting-started/explore-mutation-query-type.gif)
 
 ### Understanding Arguments and Types
 
@@ -49,7 +49,7 @@ If you already have a query or mutation in your builder, you can quickly open it
 - For instance, if you want to create a token with an initial supply of 10, you will need to focus on the `params` argument. This argument is of type "CreateTokenParams", a complex type.
 
 <p align="center">
-  <img src={require('./img/arg-explore-example.png').default} alt="Example of exploring an argument" />
+  <img src={require('/img/getting-started/arg-explore-example.png').default} alt="Example of exploring an argument" />
 </p>
 
 - Click on `CreateTokenParams` to explore its fields:
@@ -58,7 +58,7 @@ If you already have a query or mutation in your builder, you can quickly open it
   - **cap**: Of type "TokenMintCap", which may define the maximum supply (optional).
 
 <p align="center">
-  <img src={require('./img/exploring-complex-type.png').default} alt="Example of exploring a complex type argument" />
+  <img src={require('/img/getting-started/exploring-complex-type.png').default} alt="Example of exploring a complex type argument" />
 </p>
 
 #### Constructing Your Mutation

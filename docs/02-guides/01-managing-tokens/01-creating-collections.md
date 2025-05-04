@@ -25,7 +25,7 @@ On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="colle
 
 In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
 
-![Creating a collection](./img/create-collection.gif)
+![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
 
 From here, you can customize your collection's Mint Policy, Market Policy, Explicit Currencies (on option to delegate a token for <GlossaryTerm id="royalties" />), and Attributes.
 
@@ -39,10 +39,10 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/collection-created-banner.png').default} width="600" alt="Collection created banner that appears after creating a transaction request" />
+  <img src={require('/img/guides/managing-tokens/collection-created-banner.png').default} width="600" alt="Collection created banner that appears after creating a transaction request" />
 </p>
 
-![Pending create collection transaction](./img/pending-create-collection-txn.png)
+![Pending create collection transaction](/img/guides/managing-tokens/pending-create-collection-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

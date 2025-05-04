@@ -78,7 +78,7 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
 **Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Attributes**" button.
 
-![Adding Metadata](./img/adding-metadata.gif)
+![Adding Metadata](/img/guides/managing-tokens/adding-metadata.gif)
 
 :::tip Need to add multiple attributes for a token?
 Click on the "**Batch**" button, followed by "**Batch SetAttribute**".
@@ -89,16 +89,16 @@ To add / edit an attribute, select the "**Set**" option, type in the "**Key**" t
 Once you're satisfied with the options, click on the "**Set Attribute**" button at the bottom right corner to create the request.
 
 <p align="center">
-  <img src={require('./img/set-attribute-form.png').default} alt="Set Attribute form" />
+  <img src={require('/img/guides/managing-tokens/set-attribute-form.png').default} alt="Set Attribute form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/set-attribute-banner.png').default} width="600" alt="Set Attribute Banner" />
+  <img src={require('/img/guides/managing-tokens/set-attribute-banner.png').default} width="600" alt="Set Attribute Banner" />
 </p>
 
-![Pending Set Attribute Banner](./img/pending-set-attr-txn.png)
+![Pending Set Attribute Banner](/img/guides/managing-tokens/pending-set-attr-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

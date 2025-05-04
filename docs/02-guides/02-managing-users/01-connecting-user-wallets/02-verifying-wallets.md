@@ -698,7 +698,7 @@ print(response.json())
 }
 ```
 
-![Verify Flow Diagram](./img/verify-flow-diagram.png)
+![Verify Flow Diagram](/img/guides/managing-users/verify-flow-diagram.png)
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.

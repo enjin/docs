@@ -192,7 +192,7 @@ When implementing multiverse items you will want to think about how you will rep
 :::tip Metadata Management
 Note that if you’re adopting another game’s token, you may not want to use all the metadata that is provided. For example, if you are making a 2D game you might want to create your own sprite to represent it instead of using a stylistic image that doesn’t suit your game. For example, this is how the ForgeHammer is represented in Etherscape - a 2D pixel-art game.  
 <p align="center">
-  <img src={require('./img/adjust-art-style.png').default} width="400" alt="Adjust the item's art style to fit your game" />
+  <img src={require('/img/guides/advanced-mechanics/adjust-art-style.png').default} width="400" alt="Adjust the item's art style to fit your game" />
 </p>
 :::
 

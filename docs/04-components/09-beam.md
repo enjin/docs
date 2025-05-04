@@ -28,7 +28,7 @@ Beam QR codes can be shared through various visually accessible platforms, inclu
 2. Distribute NFTs on a large scale via a QR code, making it easy for users to scan and claim.
 3. Enhance your online presence and offer a user-friendly experience that appeals to a wide range of users, including those who are not familiar with crypto or blockchain technology.
 
-![](./img/8.png)
+![](/img/components/8.png)
 
 ## Types of Beams
 
@@ -36,23 +36,23 @@ Beam QR codes can be shared through various visually accessible platforms, inclu
 
 One of the significant differences between Enjin Beam and its predecessors is the `MINT_ON_DEMAND` feature. This feature eliminates the need to pre-mint all tokens for distribution, which is the default way of creating beams on Enjin Blockchain. With this feature, Beam creators can define a parameter on the mutation for tokens to be minted directly to users' wallets at the exact moment they are claimed, reducing the time people wait for the tokens to arrive in their wallets.
 
-![](./img/9.png)
+![](/img/components/9.png)
 
 ### Batch Mint & Batch Transfer
 
 Enjin Beam also introduces batch mint and batch transfer features, allowing multiple tokens to be minted and/or transferred in a single on-chain transaction. This reduces the overall system load during periods of high activity, and users can claim their tokens faster and at a  significantly lower cost. With the ability to batch 150 mints into a single transaction, users can claim their tokens faster and at a lower cost.
 
-![](./img/10.png)
+![](/img/components/10.png)
 
 ### Integer Range Type
 
 The Integer Range type is another new feature that makes creating Beams more efficient. By using this feature, you can specify a sequential range of token IDs for distribution using a shorthand format. So instead of specifying all of the token IDs you want to distribute individually, we can now simply provide an integer range in this format: "[startId..endId]" e.g. ["1..10000"] you can also mix and match single IDs and ranges: ["1", "5..10", "12", "15", "20..32"]
 
-![](./img/11.png)
+![](/img/components/11.png)
 
 ### Set attributes on the go!
 
 Developers can now set attributes to the minted tokens as they're being minted on-chain for the first time. This feature allows for unique and computed metadata to be added to tokens during the creation process.  
 This interaction with the mint on-demand feature is a match made in heaven as game developers will be able to create the tokens. At the same time, the beam is being generated, and they can set the metadata and mint the tokens as the demand for new tokens increases.
 
-![](./img/12.png)
+![](/img/components/12.png)

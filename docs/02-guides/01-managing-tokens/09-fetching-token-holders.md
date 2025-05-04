@@ -664,7 +664,7 @@ The `GetToken`, `GetTokens`, `GetCollection`, and `GetCollections` queries are l
 
 To track a collection, head over to the collections page on Enjin Platform: https://platform.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
 
-![Track Collection](./img/track-collection.png)
+![Track Collection](/img/guides/managing-tokens/track-collection.png)
 
 :::tip Need to track collections programmatically?
 You can use the `AddToTracked` mutation to track a collection programmatically.

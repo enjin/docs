@@ -20,7 +20,7 @@ For the Enjin Bot to be able to assign roles to users, it must be positioned hig
 In the roles list, locate the Enjin Bot and drag it **above** the roles it will be managing.  
 Make sure to save the changes by clicking the "**Save Changes**" button.
 
-![Setting up the Enjin Discord Bot - Configuring Roles Permissions](./img/discord-roles-permissions.gif)
+![Setting up the Enjin Discord Bot - Configuring Roles Permissions](/img/guides/integrations/discord-roles-permissions.gif)
 
 
 ## Step #3: Setup the role assignment configurations
@@ -36,7 +36,7 @@ After verifying and finalizing the configuration settings, send the message.
 
 The bot will then prompt you to select which roles to assign - Select the roles and click anywhere outside of the selection box to confirm the selection.
 
-![Setting up the Enjin Discord Bot - Running the Setup Command](./img/discord-running-setup-command.gif)
+![Setting up the Enjin Discord Bot - Running the Setup Command](/img/guides/integrations/discord-running-setup-command.gif)
 
 :::tip Did you know?
 You can assign different roles based on token amount holdings.  
@@ -53,7 +53,7 @@ Within this newly created channel, execute the `/add-button` command. This comma
 
 For a more personalized user experience, you may also add a custom description to the wallet connection button. Simply append the `description` parameter to the `/add-button` command prompt.
 
-![Setting up the Enjin Discord Bot - Configuring Wallet Connection Channel](./img/discord-setting-up-wallet-connection.gif)
+![Setting up the Enjin Discord Bot - Configuring Wallet Connection Channel](/img/guides/integrations/discord-setting-up-wallet-connection.gif)
 
 ***
 

@@ -4,18 +4,18 @@ slug: "quick-start-guide"
 description: "Begin your journey with Enjin's blockchain ecosystem using our Quick Start Guide. Learn how to integrate blockchain items into your projects seamlessly"
 ---
 
-//TODO: complete this draft
+import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 # Enjin Quick Start Guide
 
-Welcome! This guide provides the essential steps to quickly integrate the Enjin Blockchain and NFTs into your game or application using the Enjin Platform. We'll use the Canary testnet for a safe development environment.
+Welcome! This guide provides the essential steps to quickly integrate the <GlossaryTerm id="enjin_blockchain" /> and <GlossaryTerm id="nft" />s into your game or application using the <GlossaryTerm id="enjin_platform" />. We'll use the <GlossaryTerm id="canary" /> testnet for a safe and free development environment.
 
 :::info **By the end of this guide, you will have:**
 
-- Set up your developer account on the Enjin Canary Platform.
+- Set up your developer account on the Canary <GlossaryTerm id="enjin_platform_cloud" />.
 - Connected your developer wallet to authorize actions.
-- Created your first blockchain Collection and Token (NFT or FT).
-- Learned how to link your users' Enjin Wallets to your application.
+- Created your first blockchain <GlossaryTerm id="collection" /> and <GlossaryTerm id="nft" />.
+- Learned how to link your users' <GlossaryTerm id="enjin_wallet" />s to your application.
   - Sent a token to a linked user wallet.
   - Read tokens from a linked user wallet
 :::
@@ -28,255 +28,252 @@ The Enjin Platform is your central hub for managing blockchain projects, collect
 
 ### Steps to Create an Account:
 
-1.  Navigate to the Canary Platform website: `[Canary Platform URL - Placeholder]`
-2.  Click on the "Sign Up" or "Create Account" button.
-    *   `[Screenshot: Sign Up Button - Placeholder]`
-3.  Follow the on-screen instructions to register your account (typically involves providing an email and setting a password).
-    *   `[Screenshot: Registration Form - Placeholder]`
+1.  Navigate to the Canary Platform website: https://platform.canary.enjin.io/
+2.  Click on the "Create an account" button.
+3.  Fill in your account credentials and click on the "Register" button.
 4.  Verify your email address by clicking the link sent to your inbox.
 5.  Log in to your newly created Canary Platform account.
-    *   `[Screenshot: Platform Dashboard after Login - Placeholder]`
-
-:::info **Learn More:**
-[Read the full overview of the Enjin Platform](placeholder_link_platform_overview)
-:::
 
 ## 2. Connect Your Wallet Account
 
 ### Why Connect a Wallet?
 
-To perform actions on the blockchain (like creating collections or minting tokens) through the Platform, you need to authorize these actions. Connecting your developer wallet (like the Enjin Wallet app) allows the Platform to request your signature for transactions you initiate. This ensures you maintain control over your project's core operations.
+To perform actions on the blockchain (like creating collections or minting tokens) through the Platform, you need to authorize these actions. Connecting your developer wallet (like the Enjin Wallet app) allows the Platform to request your signature for transactions you initiate.
 
 ### Steps to Connect Your Wallet:
 
-1.  Inside the Enjin Platform, navigate to the "Wallet" or "Account Settings" section.
-    *   `[Screenshot: Platform Wallet Section - Placeholder]`
-2.  Click "Connect Wallet" or a similar option.
-3.  Follow the instructions, which usually involve scanning a QR code with your Enjin Wallet app to link it.
-    *   `[Screenshot: Wallet Linking QR Code - Placeholder]`
+To connect your wallet, click on the "Connect Wallet" button in the top right corner and follow the on-screen instructions.
 
-:::tip Automating Signatures with the Wallet Daemon
-For applications requiring automated actions (like minting rewards in real-time or batch transferring items without manual confirmation each time), you can set up the **Enjin Wallet Daemon**. This secure service runs on your server and can automatically sign pre-approved transaction types initiated by your application via the API.
+![Connecting a wallet app on the Enjin Platform](/img/getting-started/connect-wallet-app.gif)
 
-**Learn More:** [Set up the Enjin Wallet Daemon](placeholder_link_wallet_daemon)
+:::tip Automating Signatures with the <GlossaryTerm id="wallet_daemon" />
+For applications requiring automated actions (like minting rewards in real-time or batch transferring items without manual confirmation each time), you can set up the **Enjin Wallet Daemon**. This secure service runs on your server and can automatically sign transaction requests sent to your Enjin Platform.
+
+**Learn More:** [Set up the Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
 :::
 
 :::info **Ways to Create Blockchain Requests:**
 You can interact with the Enjin Platform and initiate blockchain requests in several ways:
-*   **Manually:** Using the user interface of the Enjin Platform Cloud.
-*   **Programmatically:**
-    *   Sending **direct HTTP requests** to the [Enjin GraphQL API](placeholder_link_graphql_api_docs).
-    *   Using the **official Enjin SDKs***:
-        *   [C# SDK](placeholder_link_csharp_sdk)
-        *   [C++ SDK](placeholder_link_cpp_sdk)
-    * **Other Languages:** The "Guides" section provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
-    * **AI Assistant:** Utilize the Enjin Platform AI assistant to help construct API calls.
+-   **Manually:** Using the user interface of the Enjin Platform Cloud.
+-   **Programmatically:**
+    -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
+    -   Using the [**official Enjin SDKs**](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md):
+        -   [C# SDK](https://github.com/enjin/platform-csharp-sdk)
+        -   [C++ SDK](https://github.com/enjin/platform-cpp-sdk)
+    - **Other Languages:** The [Guides section](/category/guides) provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
+    - **AI Assistant:** Utilize the [Enjin Platform AI assistant](https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai) to help construct API calls.
 :::
 
 ## 3. Create Your First Collection and Token
 
 ### What are Collections and Tokens?
+Let's define the core building blocks for your digital items on the <GlossaryTerm id="enjin_blockchain" />:
 
-*   **Collection:** A smart contract that acts as a container for your digital items. Think of it as representing your entire game, application, or a specific series of items.
-*   **Token:** The actual digital item within a collection. This can be a Non-Fungible Token (NFT) representing a unique item (like a specific sword or character) or a Fungible Token (FT) representing interchangeable items (like gold coins or crafting materials).
+- **Collection:** Think of a <GlossaryTerm id="collection" /> as a container or category for your digital items. It helps organize items related to your specific game, application, or a particular series. All items within a collection share certain base properties defined when you create the collection.
+- **Token (`multiToken`):** A **Token** represents the actual digital item that users can own within a Collection. On the Enjin Blockchain, all tokens fundamentally exist as **<GlossaryTerm id="multitoken" />s**. This is a core feature built directly into the blockchain protocol itself.  
 
 :::tip Structuring Your Project
 A common approach is to create:
-*   **One Collection** for your entire game or application.
-*   **Multiple Tokens** within that collection, representing the various items, characters, achievements, or currencies your users can own.
-
-➡️ **Learn More:**
-*   [Collection Configuration Details](placeholder_link_collection_config)
-*   [Token Configuration Details](placeholder_link_token_config)
-*   [Best Practices for Structuring Collections and Tokens](placeholder_link_structure_best_practices)
+-   **One Collection** for your entire game or application.
+-   **Multiple Tokens** within that collection, representing the various items, characters, achievements, or currencies your users can own.
 :::
 
-### Creating via the Platform UI:
+### Steps for creating a collection and token:
 
 1.  **Create Collection:**
-    *   Navigate to the "Collections" section in the Platform UI.
-    *   Click "Create Collection".
-    *   Fill in the required details (Name, symbol, etc.).
-        *   `[Screenshot: Create Collection Form - Placeholder]`
-    *   Submit the creation request (this will require signing with your connected wallet).
+    -   In the Platform menu, navigate to the **[Collections page](https://platform.canary.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
+    ![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
+    -   Customize your collection - you can specify the collection's name, description, media, attributes, Mint and Market policies, and more.  
+    To learn more about collection configuration, please check the [Create Collections guide](/02-guides/01-managing-tokens/01-creating-collections.md).
+    -   Submit the creation request by clicking on the **Create** button. This will create a signature request which you can view in the [Transactions page](https://platform.canary.enjin.io/transactions), and will require a transaction to be signed.
+    ![](/img/guides/managing-tokens/pending-create-collection-txn.png)
+    -   To sign the Create Collection transaction request - Click on the **"Sign"** button and approve the signature request with your connected wallet.
+    -   Once the transaction is confirmed on-chain, the new collection will appear in your [Collections page](https://platform.canary.enjin.io/collections), where you can also find its ID, keep note of it for the next step.
 2.  **Create Token:**
-    *   Go into the Collection you just created.
-    *   Navigate to the "Tokens" or "items" tab within the collection.
-    *   Click "Create Token".
-    *   Choose the token type (NFT or FT) and configure its properties (Name, supply, transfer settings, etc.).
-        *   `[Screenshot: Create Token Form - Placeholder]`
-    *   Submit the creation request (requires wallet signature).
+    -   In the Platform menu, navigate to the **[Tokens page](https://platform.canary.enjin.io/tokens)**. Then, click on the "**[Create Token](https://platform.canary.enjin.io/create/token)**" button.
+    -   Customize your token - you can specify the token's name, description, media, attributes, and more.  
+    To learn more about token configuration, please check the [Create Tokens guide](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
+    -   In the **"Collection ID"** input field, insert the collection id of the collection you just created. You may also click the input field and select the id from the dropdown menu.
+    -   In the **"Recipient"** input field, insert the <GlossaryTerm id="address" /> of the wallet that you wish to receive the token's initial supply. You can find the address of your connected wallet in the [settings page](https://platform.canary.enjin.io/settings) by clicking on the Settings icon in the top right corner, followed by the "Settings" button.
+    -   Submit the creation request by clicking on the **Create** button. This requires another transaction, which you can sign in the [Transactions page](https://platform.canary.enjin.io/transactions).
 
 :::tip Programmatic Creation
-You can also create collections and tokens using the API or SDKs. This is useful for automating setup or integrating it into your own tooling.
+You can also create collections and tokens using the API or SDKs.
 
 ➡️ **See Guides:**
-*   [Guide: Create Collections Programmatically](placeholder_link_create_collection_programmatic)
-*   [Guide: Create Tokens Programmatically](placeholder_link_create_token_programmatic)
+-   [Guide: Create Collections Programmatically](/02-guides/01-managing-tokens/01-creating-collections.md#option-b-using-the-enjin-api--sdks)
+-   [Guide: Create Tokens Programmatically](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks)
 :::
 
-## 4. Add Metadata to Your Collection and Token
-
-### Why Add Metadata?
-
-Metadata provides the descriptive details for your collections and tokens – like names, descriptions, images, and custom properties. This information makes your items recognizable, visually appealing, and useful within your application and across the Enjin ecosystem (e.g., in wallets and marketplaces).
-
-:::info Learn more about Metadata:
-- [Understanding Metadata](placeholder_link_metadata_overview)  
-- [Metadata Best Practices](placeholder_link_metadata_best_practices)
-:::
-
-### Adding Metadata via the Platform UI:
-
-1.  **Collection Metadata:**
-    *   Navigate to your Collection settings.
-    *   Find the "Metadata" section.
-    *   Upload an image, add a description, and define any other relevant fields.
-        *   `[Screenshot: Collection Metadata Editor - Placeholder]`
-    *   Save changes.
-2.  **Token Metadata:**
-    *   Navigate to the specific Token within your Collection.
-    *   Find the "Metadata" section.
-    *   Upload the token's image, add its description, define custom attributes (e.g., stats, rarity), etc.
-        *   `[Screenshot: Token Metadata Editor - Placeholder]`
-    *   Save changes.
-
-*(Note: Updating metadata might involve a blockchain transaction depending on the configuration, especially if metadata is set to be immutable or stored on-chain).*
-
-:::tip Programmatic Metadata Updates
-Metadata can also be managed via the API/SDKs, allowing you to update item details dynamically based on game events or other logic.
-
-➡️ **See Guide:** [Guide: Add Metadata Programmatically](placeholder_link_add_metadata_programmatic)
-:::
-
-## 5. Link a User's Wallet to Your Application
+## 4. Link a User's Wallet to Your Application
 
 ### Why Link User Wallets?
 
 To interact with a specific user's blockchain items (check their holdings, send them items), you need to know their public wallet address *and* have proof they control it. Linking associates their in-app account with their verified wallet address. This typically involves:
 
-1.  Your application requests a unique linking code from the Enjin API.
-2.  Your application displays this code (often as a QR code) to the user.
+1.  Your application requests a unique wallet verfication QR code from the Enjin API.
+2.  Your application displays this QR code to the user.
 3.  The user scans the QR code with their Enjin Wallet app.
 4.  The wallet confirms ownership, securely providing your application with the user's public wallet address.
 
 This allows you to:
-*   Grant in-game perks based on NFT ownership.
-*   Airdrop or transfer items directly to the user's wallet.
-*   Display their relevant blockchain inventory within your app.
+-   Grant in-game perks based on NFT ownership.
+-   Airdrop or transfer items directly to the user's wallet.
+-   Display their relevant blockchain inventory within your app.
 
 ### Implementation (GraphQL Example):
 
-You'll typically use GraphQL mutations to initiate the linking process and potentially query the status.
+To request a wallet verification code, we need to interact with the **<GlossaryTerm id="enjin_platform_api" />**  
+The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md) guide.  
+
+:::info Quick Start: Sending API Requests with GraphiQL
+In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.  
+In a production ready integration, your app will typically send API calls using http requests. You can learn more about this in the [Using the Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md) page.
+:::
+
+To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.canary.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.canary.enjin.io/graphiql/).
+
+Once you are in the GraphiQL playground page, copy & paste the following query:
 
 ```graphql
-# Placeholder: GraphQL mutation to request a linking code for the user
-# Example: Might involve passing a unique identifier for the user's app session
-
-mutation RequestLinkingCode {
-  # ... API call details ...
-  # Returns a code (e.g., URI for QR generation)
+query RequestAccount{
+  RequestAccount{
+    qrCode #Returns a QR code for your user to scan
+    verificationId #An id to this account request call. Save this for next step
+  }
 }
 ```
 
-```graphql
-# Placeholder: GraphQL query/subscription to check linking status
-# Example: Might poll or subscribe based on the linking code/session ID
+This will return a link to a QR Code for you to display to your user, and a unique verification id to track the request.
+In your application, you'll display this QR code to your user and instruct him to scan with his <GlossaryTerm id="enjin_wallet_app" />.
+To make sure that the user scanned the QR code and approved the request, copy & paste the following query (replace the `verificationId` with the one from the previous call response):
 
-query CheckLinkingStatus($code: String!) {
-  # ... API call details ...
-  # Returns linked wallet address if successful
+```graphql
+query GetAccountVerified{
+  GetAccountVerified(verificationId: "replace_verification_id_here"){
+    verified
+    account{
+      publicKey
+      address
+    }
+  }
 }
 ```
 
-➡️ **See Guide:** [See the full guide on Linking User Wallets](placeholder_link_user_wallet_linking)
+If the user did scan the QR code and approved the request, the response will show `"verified": true` and contain the user's address:
 
-## 6. Send a Token to a User
+```json
+{
+  "data": {
+    "GetAccountVerified": {
+      "verified": true,
+      "account": {
+        "publicKey": "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e", //The public key of the verified account
+        "address": "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" //The address of the verified account
+      }
+    }
+  }
+}
+```
+
+➡️ **See Guide:** [See the full in-depth guide on Linking User Wallets](/02-guides/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md)
+//TODO: update the above
+
+## 5. Send a Token to a User
 
 ### Why Send Tokens?
 
-This is a core interaction – transferring an NFT or FT from your project's wallet (or another source) to a user's linked wallet. This could be for:
-*   Rewarding achievements.
-*   In-app purchases.
-*   Airdrops or giveaways.
-*   Trading or P2P transfers (if initiated by your backend).
+This is a core interaction – transferring an NFT from your project's wallet (or another source) to a user's linked wallet. This could be for:
+-   Rewarding achievements.
+-   In-app purchases.
+-   Airdrops or giveaways.
 
 ### Implementation (GraphQL Example):
 
-Sending tokens involves creating a transfer request via the API. You'll need the Token ID, the recipient's linked wallet address, and the amount (for FTs).
+Sending tokens involves creating a transfer request via the API. You'll need the Token ID, the recipient's linked wallet address, and the amount (for <GlossaryTerm id="multi_unit_token" />s).
+
+Copy & paste the following mutation into the GraphiQL playground:
 
 ```graphql
-# Placeholder: GraphQL mutation for transferring a token
-# Example: Requires specifying Collection ID, Token ID, recipient address, amount (if FT)
-
-mutation SendTokenToUser($recipientAddress: String!, $tokenId: String!, $value: String) {
- # ... API call details ...
- # Initiates a transfer request
+mutation TransferToken{
+  SimpleTransferToken(
+    collectionId: 36105 #Specify the collection ID here
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the recipent address here
+    params: {
+      tokenId: {integer: 0} #Specify the token ID
+      amount: 1 #Choose the transfer amount
+    }
+  ){
+    id
+    method
+    state
+  }
 }
-
 ```
 
-*(Note: This request often needs to be signed, either manually via the Platform UI if initiated there, or automatically by the Wallet Daemon if initiated programmatically from your backend).*
+:::note This request needs to be signed.
+You can sign it in the [Transactions page](https://platform.canary.enjin.io/transactions), as we did in the previous steps.
+:::
 
-➡️ **See Guide:** [See the full guide on Sending Tokens](placeholder_link_send_tokens)
+➡️ **See Guide:** [See the full in-depth guide on Sending Tokens](/02-guides/01-managing-tokens/05-transferring-tokens.md)
+//TODO: update the above
 
-## 7. Reading Linked User's Tokens
+## 6. Reading Linked User's Tokens
 
 ### Why Read User Tokens?
 
 Once a user has linked their wallet (as shown in Step 5), you'll often need to check which tokens they own within your collection(s). This allows you to:
 
-*   Display their relevant inventory within your game or application interface.
-*   Verify ownership of specific NFTs to grant access, perks, or abilities.
-*   Check balances of Fungible Tokens (like in-game currency).
-*   Trigger game logic based on the assets they hold.
+-   Display their relevant inventory within your game or application interface (like in-game currency or an item).
+-   Verify ownership of specific NFTs to grant access, perks, or abilities.
+-   Trigger game logic based on the items they hold.
 
 ### Implementation (GraphQL Example):
 
-Reading a user's token balance or inventory is typically done by querying the Enjin GraphQL API using the user's linked wallet address and specifying the Collection or Token IDs you're interested in.
+To read the user's wallet, copy & paste the following query into the GraphiQL playground, using the user's linked wallet address:
 
 ```graphql
-# Placeholder: GraphQL query to get token balances for a specific wallet
-# Example: Requires specifying the user's linked wallet address
-# Optionally filter by Collection ID or specific Token IDs
-
-query GetUserTokens($walletAddress: String!, $collectionId: String) {
-  # ... API call details ...
-  # Returns a list of tokens held by the wallet, potentially filtered
-  # Example response structure:
-  # wallets(address: $walletAddress) {
-  #   tokens(collectionId: $collectionId) {
-  #     id
-  #     balance
-  #     # ... other token details
-  #   }
-  # }
+query FetchingWalletTokens{
+  GetWallet(account: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"){ #Specify the account address
+    tokenAccounts{
+      edges{
+        node{
+          balance
+          token{
+            tokenId
+            collection{
+              collectionId
+            }
+            attributes{
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
-➡️ **See Guide:** [See the full guide on Reading User Token Balances](placeholder_link_read_tokens)
+➡️ **See Guide:** [See the full in-depth guide on Reading User Wallet Balances](/02-guides/02-managing-users/02-reading-user-wallets.md)
+//TODO: update the above
 
-## 8. Next Steps and Advanced Features
+## 7. Next Steps and Advanced Features
 
 Congratulations! You've covered the basics of setting up your project on the Enjin Platform, creating items, and enabling user wallet interactions.
 
-> **Ready for Production?**
-> Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
-> 1.  Set up your project on the **mainnet Enjin Platform Cloud**: `[Mainnet Platform URL - Placeholder]`
-> 2.  Update your application's API calls or SDKs to use the **mainnet GraphQL API endpoints**: `[Mainnet API Endpoints Documentation - Placeholder]`
-
+:::warning **Ready for Production?**
+Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
+1.  Set up your project on the **mainnet Enjin Platform Cloud**: https://platform.enjin.io/
+2.  Update your application's API calls or SDKs to use the [**mainnet GraphQL API endpoints**](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md#mainnet)
+:::
 
 Now you can explore more advanced integrations:
 
-*   **On-Demand Minting:** Programmatically create *new* tokens directly into users' wallets based on real-time application events (e.g., crafting an item, completing a quest). This avoids pre-minting large supplies.
-    ➡️ [Learn about On-Demand Minting](placeholder_link_on_demand_minting)
-
-*   **Enjin Wallet Daemon:** If your application requires frequent, automated minting or transferring without manual intervention, setting up the Wallet Daemon is highly recommended for secure signature automation.
-    ➡️ [Set up the Enjin Wallet Daemon](placeholder_link_wallet_daemon)
-
-*   **Managed Wallets:** Simplify onboarding for users unfamiliar with crypto wallets. You can create and manage wallets *for* your users within the platform. Users can interact with blockchain features seamlessly, and later choose to export their items to their own self-custody Enjin Wallet if they wish. This significantly lowers the barrier to entry for Web2 users.
-    ➡️ [Explore Managed Wallets](placeholder_link_managed_wallets)
-
-Dive deeper into the specific guides and API documentation to unlock the full potential of Enjin for your project!
-
-➡️ [Explore the full Enjin Documentation](placeholder_link_main_docs)
+-   **On-Demand Minting:** Programmatically create *new* tokens directly into users' wallets based on real-time application events (e.g., crafting an item, completing a quest). This avoids pre-minting large supplies.
+    ➡️ [Learn about On-Demand Minting](/02-guides/01-managing-tokens/04-minting-a-token.md#option-b-using-the-enjin-api--sdks)
+-   **Enjin Wallet Daemon:** If your application requires frequent, automated minting or transferring without manual intervention, setting up the Wallet Daemon is highly recommended for secure signature automation.
+    ➡️ [Set up the Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
+-   **Managed Wallets:** Simplify onboarding for users unfamiliar with crypto wallets. You can create and manage wallets for your users within the platform. Users can interact with blockchain features seamlessly, and later choose to export their items to their own self-custody Enjin Wallet if they wish. This significantly lowers the barrier to entry for Web2 users.
+    ➡️ [Explore Managed Wallets](/02-guides/02-managing-users/03-using-managed-wallets.md)

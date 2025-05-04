@@ -30,21 +30,21 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
 **Locate the token** you wish to burn, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Burn**" button.
 
-![Burning a Token](./img/burning-token.gif)
+![Burning a Token](/img/guides/managing-tokens/burning-token.gif)
 
 Insert the amount of tokens to Burn, and click on the "**Burn**" button.
 
 <p align="center">
-  <img src={require('./img/burn-token-form.png').default} alt="Burn Token Form" />
+  <img src={require('/img/guides/managing-tokens/burn-token-form.png').default} alt="Burn Token Form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/burn-token-banner.png').default} width="600" alt="Burn Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/burn-token-banner.png').default} width="600" alt="Burn Transaction Request Banner" />
 </p>
 
-![Pending Burn Transaction](./img/pending-burn-token-txn.png)
+![Pending Burn Transaction](/img/guides/managing-tokens/pending-burn-token-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 
@@ -69,7 +69,7 @@ While destroying a token removes the token from the blockchain, and retrieves th
 To destroy a token, follow the above instructions for Burning a token, but make sure to tick the `Remove Token Storage` box.
 
 <p align="center">
-  <img src={require('./img/remove-token-storage.png').default} width="600" alt="Destroying a Token" />
+  <img src={require('/img/guides/managing-tokens/remove-token-storage.png').default} width="600" alt="Destroying a Token" />
 </p>
 
 ### Destroying a collection
@@ -85,21 +85,21 @@ To destroy a token, follow the above instructions for Burning a token, but make 
 In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".  
 **Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Destroy**" button.
 
-![Destroying a Collection](./img/destroying-collection.gif)
+![Destroying a Collection](/img/guides/managing-tokens/destroying-collection.gif)
 
 Then, confirm by clicking the "**Destroy**" button
 
 <p align="center">
-  <img src={require('./img/destroy-collection-form.png').default} alt="Destroy Collection Form" />
+  <img src={require('/img/guides/managing-tokens/destroy-collection-form.png').default} alt="Destroy Collection Form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu
 
 <p align="center">
-  <img src={require('./img/destroy-collection-banner.png').default} width="600" alt="Destroy Collection Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/destroy-collection-banner.png').default} width="600" alt="Destroy Collection Transaction Request Banner" />
 </p>
 
-![Pending Destroy Collection Transaction](./img/pending-destroy-collection-txn.png)
+![Pending Destroy Collection Transaction](/img/guides/managing-tokens/pending-destroy-collection-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

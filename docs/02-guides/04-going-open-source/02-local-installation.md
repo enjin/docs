@@ -112,13 +112,13 @@ When starting the Enjin Platform using the start script, it builds the Docker im
 
 There are two ways of interacting with Enjin Platform, through the GraphQL API. For testing you can use the GraphiQL playground that will be accessible at http://localhost:8000/graphiql
 
-![Local Platform GraphiQL Playground](./img/local-platform-graphiql.png)
+![Local Platform GraphiQL Playground](/img/guides/going-open-source/local-platform-graphiql.png)
 
 But you can also use the Enjin Platform UI which you can access at `http://localhost:8000`, you might see this setup screen where you should enter the `BASIC_AUTH_TOKEN` that was shown to you in the setup script. 
 
-![Setup Configuration](./img/setup-configuration.png)
+![Setup Configuration](/img/guides/going-open-source/setup-configuration.png)
 
-![Platform User Interface](./img/platform-ui.png)
+![Platform User Interface](/img/guides/going-open-source/platform-ui.png)
 
 After that, you will be able to navigate through the UI and create collections, tokens, fuel tanks, and everything that the Enjin Platform provides to you.
 

@@ -13,7 +13,7 @@ This documentation provides technical details and guidance for developers aiming
 
 Enjin Blockchain is made up of the Enjin Relaychain and the Enjin <GlossaryTerm id="matrixchain" />. 
 
-![](./img/1.png)
+![](/img/components/blockchain-infrastructure/1.png)
 
 ### Enjin Relaychain
 

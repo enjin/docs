@@ -12,7 +12,7 @@ Consider a situation where your goal is to create a <GlossaryTerm id="collection
 
 Accomplishing this requires the right configuration of your Mint Policy:
 
-![Enforced NFT Collection](./img/enforce-nft-collection.png)
+![Enforced NFT Collection](/img/guides/advanced-mechanics/enforce-nft-collection.png)
 
 By setting the "**Max Token Count**" to `1,000`, you can cap the total number of tokens in the swords collection to 1,000.
 
@@ -24,7 +24,7 @@ Suppose you want to create a <GlossaryTerm id="collection" /> with one simple bu
 Achieving this requires careful configuration of your Mint Policy:
 
 <p align="center">
-  <img src={require('./img/enforce-collapsing-supply.png').default} width="600" alt="Enforced Collapsable Supply" />
+  <img src={require('/img/guides/advanced-mechanics/enforce-collapsing-supply.png').default} width="600" alt="Enforced Collapsable Supply" />
 </p>
 
 By toggling the "**Force Collapsing Supply**", you ensure that each token in the collection will be of collapsing supply type.  

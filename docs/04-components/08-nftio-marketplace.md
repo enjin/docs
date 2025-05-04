@@ -7,7 +7,7 @@ description: "nft-io-marketplace"
 
 [NFT.io](http://nft.io/) is the latest innovation from the Enjin team, a global NFT Marketplace fully integrated with the Enjin Blockchain. As the next-generation NFT blockchain, Enjin provides a robust and secure foundation for [NFT.io](http://nft.io/), offering a smart, user-friendly, and ad-free platform for all NFT enthusiasts.
 
-![](./img/7.png)
+![](/img/components/7.png)
 
 At [NFT.io](http://nft.io/), you can easily explore digital art, crypto-collectibles, and other NFTs through a simple and accessible marketplace. Whether you're listing your favorite NFTs, bidding on special edition assets, or creating your own collections, NFT.io offers a seamless experience. Our vision is to empower you to discover, showcase, and trade NFTs in a way that reflects your unique passions and interests. So join us on [NFT.io](https://nft.io/) and experience the future of NFT marketplaces today.
 

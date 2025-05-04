@@ -31,7 +31,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
 **Locate the token** you wish to transfer, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Transfer**" button.
 
-![Transferring Token](./img/transferring-token.gif)
+![Transferring Token](/img/guides/managing-tokens/transferring-token.gif)
 
 :::info Need to perform multiple transfers?
 Click on the "**Batch**" button, followed by "**Batch Transfer**".
@@ -41,14 +41,14 @@ Fill in the recipient, amount, and other optional arguments in the corresponding
 Once you're satisfied with the options, click on the "**Transfer**" button at the bottom right corner to create the request.
 
 <p align="center">
-  <img src={require('./img/transfer-token-form.png').default} alt="Transfer Token Form" />
+  <img src={require('/img/guides/managing-tokens/transfer-token-form.png').default} alt="Transfer Token Form" />
 </p>
 
 <p align="center">
-  <img src={require('./img/transfer-token-banner.png').default} width="600" alt="Transfer Token Transaction Banner" />
+  <img src={require('/img/guides/managing-tokens/transfer-token-banner.png').default} width="600" alt="Transfer Token Transaction Banner" />
 </p>
 
-![Pending Transfer Transaction](./img/pending-transfer-txn.png)
+![Pending Transfer Transaction](/img/guides/managing-tokens/pending-transfer-txn.png)
 Clicking "**View**" on the notification will take you to your Transactions List.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.

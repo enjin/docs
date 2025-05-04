@@ -46,7 +46,7 @@ Before syncing for the first time it would be recommended to increase your dropl
    php artisan queue:work
    ```
 
-![Choose a region](./img/bash-panes-configuration.png)
+![Choose a region](/img/guides/going-open-source/bash-panes-configuration.png)
 
 Your platform setup is now complete and you can start querying blockchain data and creating transactions for your wallet daemon to sign.
 

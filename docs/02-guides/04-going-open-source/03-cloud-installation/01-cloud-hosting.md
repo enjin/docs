@@ -11,13 +11,13 @@ description: "Discover how to host Enjin’s blockchain platform in the cloud, e
 
 3. Choose a region (for best performance, choose the nearest region to you / your users).
 
-   ![Choose a region](./img/droplet-setup-choose-region.png)
+   ![Choose a region](/img/guides/going-open-source/droplet-setup-choose-region.png)
 
 4. Under 'Choose an image' select the Marketplace tab.
 
 5. In the search box type 'Laravel' and pick Laravel from the list.
 
-   ![Choose a region](./img/droplet-setup-select-laravel.png)
+   ![Choose a region](/img/guides/going-open-source/droplet-setup-select-laravel.png)
 
    :::info Laravel and Ubuntu versions
    This guide was made and tested on Laravel version 10.16.1, Ubuntu version 22.04.

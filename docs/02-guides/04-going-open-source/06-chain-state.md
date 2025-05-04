@@ -79,7 +79,7 @@ It's important to know that the Enjin Platform only keeps track of the current s
 
 Open the Enjin Console, you can connect to the network by clicking on the following URL: https://console.enjin.io/
 
-![Enjin Console Chain State](./img/enjin-console-chain-state.png)
+![Enjin Console Chain State](/img/guides/going-open-source/enjin-console-chain-state.png)
 
 ## Querying the data
 
@@ -92,7 +92,7 @@ Remember that the database used by the blockchain node is structured like a tree
 
 Unlike a traditional SQL database with tables, a blockchain organizes data in a tree structure for efficiency, but the concept of separate areas for different data types (pallets) and specific datasets (storages) within those areas is similar.
 
-![Querying data from the Enjin Console](./img/enjin-console-querying-data.png)
+![Querying data from the Enjin Console](/img/guides/going-open-source/enjin-console-querying-data.png)
 
 :::tip Specifying the Block Hash
 If you do not enter the block hash to query, the chain state displayed to you will always represent the latest block created in the network.

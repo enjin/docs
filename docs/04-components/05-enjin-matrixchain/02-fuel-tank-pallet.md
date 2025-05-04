@@ -200,7 +200,7 @@ Even though the account rules and dispatch rules are optional, it is recommended
 
 This image shows how to create a fuel tank, with some basic rules, in the following fuel tank configuration Alice creates a fuel tank that provides storage deposits for operations that require it. The tank consists of a single ruleset that doesn't require a Tank User Account to dispatch calls, and only Bob and Charlie can dispatch calls via this ruleset.
 
-![](./img/26.png)
+![](/img/components/enjin-matrixchain/26.png)
 
 ## How to modify a fuel tank?
 
@@ -232,7 +232,7 @@ To remove an account from a fuel tank using the explorer:
 1. Head to `Network` → `Fuel tanks`, and follow similar instructions to remove an account.
 2. Select the fuel tank and click remove account
 
-![](./img/27.png)
+![](/img/components/enjin-matrixchain/27.png)
 
 ## Remove an account rule data
 
@@ -244,7 +244,7 @@ Similar to the process of mutating a Fuel Tank, the Fuel Tank must be frozen for
 
 To remove an account rule data, head to `Developer` → `Extrinsic` → `fuelTanks` → `removeAccountRuleData`, and select the `tankId`, `accountId` to remove data from and the rule set and rule type to remove data from.
 
-![](./img/28.png)
+![](/img/components/enjin-matrixchain/28.png)
 
 ## Dispatch a transaction using a fuel tank
 
@@ -259,7 +259,7 @@ Inside the dialog box that opens, select:
 - The extrinsic to execute.
 - The dispatch settings if necessary.
 
-![](./img/29.png)
+![](/img/components/enjin-matrixchain/29.png)
 
 On success, you should see the `CallDispatched` event.
 

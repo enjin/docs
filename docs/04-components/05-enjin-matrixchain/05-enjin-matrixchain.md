@@ -13,7 +13,7 @@ Enjin's digital asset functionality is built right into the protocol level, allo
 
 ## Enjin Matrixchain Features
 
-![](./img/30.webp)
+![](/img/components/enjin-matrixchain/30.webp)
 
 The Enjin Matrixchain incorporates an array of features that enable digital asset creation, minting, transfer, on-chain marketplace actions, royalties, crafting, swapping, fuel tanks, and more. These features are integrated into the chain protocol, making them readily accessible to all users without requiring additional setup. However, if users require specific functionality not included in the core protocol, they can leverage custom smart contracts to extend the capabilities of the platform. This flexibility ensures that Enjin can accommodate a wide range of use cases, from simple transactions to complex asset interactions.
 

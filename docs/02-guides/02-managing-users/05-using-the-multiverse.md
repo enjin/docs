@@ -6,7 +6,7 @@ description: "Learn how to integrate the multiverse into your game or applicatio
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-![Using the multiverse](./img/using-the-multiverse.jpg)
+![Using the multiverse](/img/guides/managing-users/using-the-multiverse.jpg)
 
 <GlossaryTerm id="the_multiverse" /> is the world's first cross-game item economy, that offers you a powerful growth engine to attract new players into your game and keep them coming back every month.
 
@@ -36,7 +36,7 @@ Enjin is giving away this item for free, then educating players on where they ca
 
 Players can receive the item by scanning an <GlossaryTerm id="enjin_beam" /> QR code to get it for free.
 
-![](./img/using-the-multiverse-2.jpg)
+![](/img/guides/managing-users/using-the-multiverse-2.jpg)
 
 Once they receive the item, they are directed to the [Multiverse Codex](https://enjin.io/multiverse), where they can find games to play where their new item has utility. This is how your game will get discovered.
 
@@ -44,7 +44,7 @@ Players will also start to discover a handful of other <GlossaryTerm id="multive
 
 This will lead them to participate in <GlossaryTerm id="multiverse_quests" />, where they will play your game every month to earn more Multiverse Items.
 
-![](./img/using-the-multiverse-3.jpg)
+![](/img/guides/managing-users/using-the-multiverse-3.jpg)
 
 ### How to Add Your Game
 
@@ -67,7 +67,7 @@ Monthly events will feature new opportunities for players to win different Multi
 
 Over time, players may aim to collect all available items or trade them on [NFT.io](https://nft.io).
 
-![](./img/using-the-multiverse-4.png)
+![](/img/guides/managing-users/using-the-multiverse-4.png)
 
 To enter the quest, players will need to follow these steps:
 
@@ -83,7 +83,7 @@ To enter the quest, players will need to follow these steps:
 
 - Find the [#multiverse-quests](https://enj.in/discord) channel in Enjin’s Discord to see a full list of games that are dropping this coveted item.
 
-![](./img/using-the-multiverse-5.jpg)
+![](/img/guides/managing-users/using-the-multiverse-5.jpg)
 
 ### How to Add Your Game
 

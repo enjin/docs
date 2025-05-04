@@ -57,21 +57,21 @@ Simply navigate to the corresponding menu for tokens instead of collections, or 
 In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".  
 **Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Freeze**" button.
 
-![Freezing a Collection](./img/freezing-collection.gif)
+![Freezing a Collection](/img/guides/managing-tokens/freezing-collection.gif)
 
 Choose the freeze state, and click on the "**Freeze**" button.
 
 <p align="center">
-  <img src={require('./img/freeze-collection-form.png').default} alt="Freeze Collection Form" />
+  <img src={require('/img/guides/managing-tokens/freeze-collection-form.png').default} alt="Freeze Collection Form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('./img/freeze-collection-banner.png').default} width="600" alt="Freeze Collection Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/freeze-collection-banner.png').default} width="600" alt="Freeze Collection Transaction Request Banner" />
 </p>
 
-![Pending Freeze Collection Transaction Request](./img/pending-freeze-collection-txn.png)
+![Pending Freeze Collection Transaction Request](/img/guides/managing-tokens/pending-freeze-collection-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 

@@ -30,18 +30,18 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 In the Platform menu, navigate to "**[Beams](https://platform.canary.enjin.io/beams/list)**". Then, click the "**[Create Enjin Beam](https://platform.canary.enjin.io/create/beam)**" button.
 
-![Creating a Beam](./img/create-beam.gif)
+![Creating a Beam](/img/guides/managing-tokens/create-beam.gif)
 
 Fill in the beam settings and optional arguments in the corresponding fields.
 
 <p align="center">
-  <img src={require('./img/create-beam-form.png').default} width="800" alt="Create Beam Form" />
+  <img src={require('/img/guides/managing-tokens/create-beam-form.png').default} width="800" alt="Create Beam Form" />
 </p>
 
 Fill the tokens that you want to include in this Beam (You can add more tokens by adding the "**Add Token**" button)
 
 <p align="center">
-  <img src={require('./img/create-beam-form-2.png').default} width="800" alt="Create Beam Form 2" />
+  <img src={require('/img/guides/managing-tokens/create-beam-form-2.png').default} width="800" alt="Create Beam Form 2" />
 </p>
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.  
@@ -49,7 +49,7 @@ If a signature request is needed, approve it.
 
 Once the Beam is created, locate it in the "**Beams**" menu, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Claim**" button to view the QR code.
 
-![Claiming a Beam](./img/claim-beam.gif)
+![Claiming a Beam](/img/guides/managing-tokens/claim-beam.gif)
 
 :::warning Need to view multiple "Single-Use" QR codes?
 Please note, viewing multiple "Single-Use" QR codes is currently not available in the Platform User Interface.  

@@ -12,13 +12,13 @@ The Enjin Wallet Daemon provides a streamlined process for signing blockchain tr
 
 In the Enjin Platform context, the Wallet Daemon is a utility tool that manages a blockchain wallet address associated with an Enjin Blockchain account. When a transaction is initiated on the Enjin Platform, the Wallet Daemon receives the transaction, signs it, and sends it back to the platform. This ensures secure and efficient transaction processing for Enjin Platform users.
 
-![A diagram of the Enjin Platform ](./img/enjin-platform-diagram.png)
+![A diagram of the Enjin Platform ](/img/getting-started/enjin-platform-diagram.png)
 
 The diagram above provides insight into the interaction between the Enjin Wallet Daemon and the Enjin Platform. This illustrates how the Wallet Daemon can communicate with the API in both directions, automatically signing and broadcasting transactions to the blockchain. This helps developers better understand how the two components work together seamlessly to provide a streamlined experience.
 
 ## Wallet Daemon Events
 
-![A diagram of the wallet daemon](./img/wallet-daemon-diagram.png)
+![A diagram of the wallet daemon](/img/getting-started/wallet-daemon-diagram.png)
 
 The diagram above depicts the various stages involved in creating a new collection on the Enjin Matrixchain via the Enjin Platform API, with a particular emphasis on the Wallet Daemon events.
 
@@ -49,13 +49,13 @@ Choose the approach that best fits your technical proficiency and the needs of y
 
 ## Wallet Daemon Executable
 
-![The wallet daemon executable app](./img/wallet-daemon-executable-welcome.png)
+![The wallet daemon executable app](/img/getting-started/wallet-daemon-executable-welcome.png)
 
 Setting up the Wallet Daemon Executable is a straight forward process.  
 Download the latest version of the Wallet Daemon from [GitHub](https://github.com/enjin/wallet-daemon-ui/releases), extract it, and run the `enjin_wallet_daemon.exe` executable file.  
 Follow the on-screen instructions to set it up and make sure to insert your Enjin Platform API Token from your [account settings page](https://platform.canary.enjin.io/settings).
 
-![Configuring the Wallet Daemon Executable with Enjin Platform](./img/daemon-exec-overview.gif)
+![Configuring the Wallet Daemon Executable with Enjin Platform](/img/getting-started/daemon-exec-overview.gif)
 
 ## Setting up Wallet Daemon via Docker
 

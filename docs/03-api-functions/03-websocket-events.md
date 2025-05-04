@@ -30,7 +30,7 @@ If needed, you may use the [Account Format Transform tool](https://matrix.subsca
 }
 ```
 
-![Example banner](./img/Pusher.gif)
+![Example banner](/img/api-functions/Pusher.gif)
 
 To get the full list of events and the channels they are broadcasted in, send the `GetEvents` query:
 

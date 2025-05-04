@@ -15,4 +15,4 @@ Key updates include:
 
 For more details on Laravel Horizon, refer to their documentation: https://laravel.com/docs/10.x/horizon.
 
-![Laravel Horizon Dashboard](./img/laravel-dashboard.png)
+![Laravel Horizon Dashboard](/img/guides/going-open-source/laravel-dashboard.png)

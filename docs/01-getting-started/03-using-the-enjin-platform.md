@@ -32,7 +32,7 @@ To get started, go ahead and create an account on the <GlossaryTerm id="enjin_pl
 
 Once your account is created, create a new API token by clicking the "**Create API Token**", which can be found on the [Account Settings](https://platform.canary.enjin.io/settings) page.
 
-![Creating an API token on the Enjin Platform](./img/create-api-token.gif)
+![Creating an API token on the Enjin Platform](/img/getting-started/create-api-token.gif)
 
 Copy and save that token somewhere safe, you'll need that to automatically approve transactions using a <GlossaryTerm id="wallet_daemon" />.
 
@@ -57,7 +57,7 @@ Enjin wallet app is available on both [iOS](https://enj.in/ios-wallet) and [Andr
 Connect your wallet by clicking the "**Connect Wallet**" button in the top right corner and follow the on-screen instructions.  
 The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, secure, and rewarding experience, ensuring their continuous engagement with your game.
 
-![Connecting a wallet app on the Enjin Platform](./img/connect-wallet-app.gif)
+![Connecting a wallet app on the Enjin Platform](/img/getting-started/connect-wallet-app.gif)
 
 ### B. Using Daemon Wallet
 
@@ -89,13 +89,13 @@ However, if you need to make a Platform request programmatically, you can do tha
 
 In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
 
-![Create collection form on Enjin Platform](./img/create-collection-form.png)
+![Create collection form on Enjin Platform](/img/getting-started/create-collection-form.png)
 
 From here, you can customize your collection's Mint Policy, Market Policy, Explicit Royalty Currencies (optional), and Attributes.
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
 
-![Collection created banner on Enjin Platform](./img/collection-created-banner.png)
+![Collection created banner on Enjin Platform](/img/getting-started/collection-created-banner.png)
 
 ### Option B. Using the Enjin API & SDKs
 
@@ -322,7 +322,7 @@ Once a Platform request is created, all that remains is to approve it, which wil
 
 Transaction requests are displayed in the "**[Transactions](https://platform.canary.enjin.io/transactions)**" menu.
 
-![Pending create collection txn on Enjin Platform](./img/pending-create-collection-txn.png)
+![Pending create collection txn on Enjin Platform](/img/getting-started/pending-create-collection-txn.png)
 
 
 Since this transaction is a <GlossaryTerm id="mutation" />, you will need to sign the transaction using your Wallet.
@@ -330,7 +330,7 @@ Since this transaction is a <GlossaryTerm id="mutation" />, you will need to sig
 - If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
 - If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.  
 
-![Approving the create collection txn on Enjin Platform](./img/approving-create-collection-txn.gif)
+![Approving the create collection txn on Enjin Platform](/img/getting-started/approving-create-collection-txn.gif)
 
 And that's it! The transaction is then broadcasted to the Enjin Blockchain, and once approved, it will be included in a <GlossaryTerm id="block" />.
 
@@ -348,7 +348,7 @@ To check the transaction status, head over to the [Transactions](https://platfor
 Once the transactions approves on-chain, the transaction will get updated with the `FINALIZED` state and the transaction events will be displayed.  
 In the events, we can find useful information, such as the newly created collection ID.
 
-![How to find your newly created collection ID](./img/find-newly-created-collection-id.gif)
+![How to find your newly created collection ID](/img/getting-started/find-newly-created-collection-id.gif)
 
 ### Receive Transaction Information Using the Enjin API & SDKs
 

@@ -29,7 +29,7 @@ The installer will ask a few questions, such as your platform URL, the auth toke
 Once it's finished installing, you should be able to load up the UI by going to the path you specified for the 'default route path' step.
 
 <p align="center">
-  <img src={require('./img/setup-configuration.jpg').default} alt="Choose a region" />
+  <img src={require('/img/guides/going-open-source/setup-configuration.jpg').default} alt="Choose a region" />
 </p>
 
 When logging in to the Platform, it'll ask for the `Enjin Platform URL` and `Authorization Token` you used to set up the platform, for authentication purposes.  
