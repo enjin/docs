@@ -6,6 +6,8 @@ description: "Begin your journey with Enjin's blockchain ecosystem using our Qui
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
+import Cta from '@site/src/components/cta';
+
 # Enjin Quick Start Guide
 
 Welcome! This guide provides the essential steps to quickly integrate the <GlossaryTerm id="enjin_blockchain" /> and <GlossaryTerm id="nft" />s into your game or application using the <GlossaryTerm id="enjin_platform" />. We'll use the <GlossaryTerm id="canary" /> testnet for a safe and free development environment.
@@ -176,8 +178,9 @@ If the user did scan the QR code and approved the request, the response will sho
 }
 ```
 
-➡️ **See Guide:** [See the full in-depth guide on Linking User Wallets](/02-guides/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md)
-//TODO: update the above
+:::tip Learn more about linking user wallets
+Check the full in-depth guide: [Linking User Wallets](/02-guides/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md).
+:::
 
 ## 5. Send a Token to a User
 
@@ -215,8 +218,9 @@ mutation TransferToken{
 You can sign it in the [Transactions page](https://platform.canary.enjin.io/transactions), as we did in the previous steps.
 :::
 
-➡️ **See Guide:** [See the full in-depth guide on Sending Tokens](/02-guides/01-managing-tokens/05-transferring-tokens.md)
-//TODO: update the above
+:::tip Learn more about sending tokens
+Check the full in-depth guide: [Sending Tokens](/02-guides/01-managing-tokens/05-transferring-tokens.md).
+:::
 
 ## 6. Reading Linked User's Tokens
 
@@ -256,8 +260,9 @@ query FetchingWalletTokens{
 }
 ```
 
-➡️ **See Guide:** [See the full in-depth guide on Reading User Wallet Balances](/02-guides/02-managing-users/02-reading-user-wallets.md)
-//TODO: update the above
+:::tip Learn more about reading user wallet balances
+Check the full in-depth guide: [Reading User Wallet Balances](/02-guides/02-managing-users/02-reading-user-wallets.md).
+:::
 
 ## 7. Next Steps and Advanced Features
 
