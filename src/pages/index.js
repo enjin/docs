@@ -17,7 +17,7 @@ function HomepageHeader() {
           <Heading as="h1" className="hero__title">
             Welcome to Enjin Docs
           </Heading>
-          <img src={Image} alt="Integrate Faster" className={styles.heroImage} /> {/* Add CSS class */}
+          {/* <img src={Image} alt="Integrate Faster" className={styles.heroImage} /> */}
           <p className="hero__subtitle">
             Start building with the world's first purpose-built blockchain for games and apps, with NFTs implemented at the protocol level.
           </p>
