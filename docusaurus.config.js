@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Enjin Docs',
-  tagline: 'Dinosaurs are cool',
+  title: 'Enjin Documentation',
+  tagline: 'Official Documentation for Enjin',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -23,7 +23,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Enjin', // Usually your GitHub org/user name.
-  projectName: 'enjin-docs', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
 
@@ -60,7 +60,7 @@ const config = {
       maxHeadingLevel: 5,
     },
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/social-card.jpg',
       navbar: {
         title: 'Enjin',
         logo: {
@@ -113,7 +113,7 @@ const config = {
             items: [
               {
                 label: 'Telegram',
-                href: 'https://t.me/enjin',
+                href: 'https://enj.in/telegram',
               },
               {
                 label: 'Discord',
@@ -121,7 +121,7 @@ const config = {
               },
               {
                 label: 'X',
-                href: 'https://x.com/enjin',
+                href: 'https://enj.in/twitter',
               },
             ],
           },
@@ -139,7 +139,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} AtlasDev, Inc.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Enjin Pte. Ltd.`,
       },
       prism: {
         theme: prismThemes.github,
