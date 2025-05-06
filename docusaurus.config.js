@@ -45,6 +45,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: './sidebars.js',
+          editUrl: 'https://github.com/enjin/docs/tree/master/',
         },
         blog: false,
         theme: {
