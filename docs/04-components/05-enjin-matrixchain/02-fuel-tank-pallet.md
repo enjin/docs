@@ -188,9 +188,9 @@ Create a new fuel tank by providing a `descriptor`. The extrinsic generates a di
 
 To create a new fuel tank using the [explorer](https://console.enjin.io/#/explorer), head to `Network` → `Fuel tanks` → `Create Fuel Tank`. This page allows you to create a new fuel tank by specifying the following options:
 
-- **Name: **Name for the fuel tank.
-- **[User Account Management](#user-account-management): ** (Optional) Allows setting the permission level to add new accounts to the fuel tank.
-- **[Coverage Policy](#coverage-policy): ** \<FEES|FEES_AND_DEPOSIT\> → Specify the scope of the fuel tank's subsidy.
+- **Name:** Name for the fuel tank.
+- **[User Account Management](#user-account-management):** (Optional) Allows setting the permission level to add new accounts to the fuel tank.
+- **[Coverage Policy](#coverage-policy):** \<FEES|FEES_AND_DEPOSIT\> → Specify the scope of the fuel tank's subsidy.
 - **[Account Rules](#account-rules):** (Optional) Allows specifying rules that are evaluated before an account is added to the fuel tank.
 - **[Dispatch Rules](#dispatch-rules):** (Optional) Allows specifying rules that are evaluated before an extrinsic is dispatched via the fuel tank.
 

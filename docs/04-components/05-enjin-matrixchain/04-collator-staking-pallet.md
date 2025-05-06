@@ -13,8 +13,8 @@ The Collator Staking pallet is responsible for managing the collators of the Enj
 ## Terminology
 
 - **Collator:** A Matrixchain block producer.
-- **Stake: **An amount of Balance reserved for candidate registration.
-- **Invulnerable: **An account guaranteed to be in the collator set.
+- **Stake:** An amount of Balance reserved for candidate registration.
+- **Invulnerable:** An account guaranteed to be in the collator set.
 - **Round:** A range of blocks for which a specific set of collators are selected to produce blocks during that period.
 - **Nominator:** An account that is voting for the collator to get selected for a specific round of block production.
 - **Candidates:** Accounts that have bonded some balance to be selected as a collator.

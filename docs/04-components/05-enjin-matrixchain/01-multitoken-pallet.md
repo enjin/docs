@@ -33,14 +33,14 @@ This page will be updated once it is.
 
 ## Terminology
 
-- **Collection - ** A group of tokens. Also holds data for those tokens and the policies that govern their behavior.
-- **Token - **A unique asset with a balance
-- **Token Account - ** A token account is stored in user account. It holds the account's <GlossaryTerm id="multitoken" /> states like its balance, freeze state, etc.
-- **Policy - **Governs behavior for tokens in a collection
+- **Collection -** A group of tokens. Also holds data for those tokens and the policies that govern their behavior.
+- **Token -** A unique asset with a balance
+- **Token Account -** A token account is stored in user account. It holds the account's <GlossaryTerm id="multitoken" /> states like its balance, freeze state, etc.
+- **Policy -** Governs behavior for tokens in a collection
 - **Attribute -** Metadata for a collection or a token
 - **Operator -** An account that operates on behalf of another account (transferFrom)
 - **Approval -** Required for an operator to use an account
-- **Freeze/Thaw - **If a collection, token, or account is frozen, it cannot transfer tokens
+- **Freeze/Thaw -** If a collection, token, or account is frozen, it cannot transfer tokens
 - **Descriptor -** Used to create something. For example, a CollectionDescriptor creates a Collection.
 
 ## Collections

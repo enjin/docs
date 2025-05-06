@@ -15,7 +15,7 @@ Use [console.enjin.io](https://console.enjin.io/) to use the user interface refe
 - **Liquid staking -** a token is received that represents the user's stake. The staked token can be used (is liquid) while the user is staked. It is minted when the user stakes and burned when they unstake. It can also be exchanged for the real token.
 - **Validator -** Provides security for the network and receives rewards for doing so. On Enjin, these rewards are distributed to nomination pools. (A list of active validators can be seen on [Subscan](https://enjin.subscan.io/validator).)
 - **Nominator -** The account that chooses a validator to stake with. In the case of Enjin, this is the nomination pool's account.
-- **Commission - **A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the holder of the Degen NFT.
+- **Commission -** A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the holder of the Degen NFT.
 
 ## Nomination Pools vs Direct Staking
 
@@ -25,7 +25,7 @@ On Enjin, we use nomination pools to handle staking due to the increased simplic
 
 With nomination pools, there is one account that multiple users put their funds into. This account acts as the nominator and receives the rewards. The liquid token, sENJ, is used to represent a user's stake in the pool.
 
-- **Low minimum (1 ENJ) - **pools can have lower minimums per user because all of the pool's funds are staked together  
+- **Low minimum (1 ENJ) -** pools can have lower minimums per user because all of the pool's funds are staked together  
   Easy to use - users only need to choose a pool, no need to choose validators
 - **Receive liquid token -** a liquid token, sENJ, is received that represents the user's stake. This can be transferred or even exchanged for ENJ
 - **Immediate exit -** due to the liquid token, the user can exit immediately by exchanging their sENJ for ENJ
@@ -140,5 +140,5 @@ These are the extrinsics that will be called by users (members) of the pool.
 These extrinsics can be called by anyone. Some of them can only be called when the pool is in the `Destroying` state.
 
 - **`payout_rewards`** - This can be called by anyone, and should be called once per validator per era. It distributes the payouts and handles calculations like bonuses and commissions.
-- **`unbond_deposit` **- Unbonds the deposit. Only callable after the pool is destroyed and all members have left the pool.
+- **`unbond_deposit`** - Unbonds the deposit. Only callable after the pool is destroyed and all members have left the pool.
 - **`withdraw_deposit`** - Withdraws the deposit. Can only be called after the deposit is unbonded. The pool will be destroyed (deleted) after this is called successfully.

@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 This is useful for several reasons:
 
-- **User Base Identification: **You can easily identify your user base by fetching token holders.
+- **User Base Identification:** You can easily identify your user base by fetching token holders.
 - **Loyalty Rewards:** Reward your loyal users by selectively minting new tokens for them.
 - **Valuable Insights:** Analyze user behavior and interactions to gain valuable insights.
 - **Engage Power Users:** Recognize and engage with influential power users who hold a significant amount of tokens.

@@ -94,7 +94,7 @@ The <GlossaryTerm id="graphiql_playground" /> serves three purposes:
 
 1. **Explore** available operations.
 2. **Write** operations using an intuitive interface.
-3. **View ** responses and test your operations before coding them.
+3. **View** responses and test your operations before coding them.
 
 ![A breakdown of the GraphiQL Playground](/img/getting-started/graphiql-explorer-breakdown.png)
 

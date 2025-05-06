@@ -371,8 +371,8 @@ print(response.json())
 
 Next you will need to send a query to get one of the two different code types.
 
-- **Multi-Use Codes: **Useful for advertising.
-- **Single-Use Codes: **Useful for rewarding individuals.
+- **Multi-Use Codes:** Useful for advertising.
+- **Single-Use Codes:** Useful for rewarding individuals.
 
 **Query: Multi-Use Codes**
 
