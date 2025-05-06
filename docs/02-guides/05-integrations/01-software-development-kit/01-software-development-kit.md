@@ -1,6 +1,6 @@
 ---
 title: "Software Development Kits (SDKs)"
-slug: "software-development-kit"
+slug: "../software-development-kit"
 description: "Get started with the Enjin SDK, offering comprehensive developer tools to integrate blockchain technology into your apps and games with ease."
 ---
 The Enjin Platform SDKs provide an API for communicating with the Enjin Platform.
