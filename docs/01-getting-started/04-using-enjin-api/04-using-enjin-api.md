@@ -45,7 +45,11 @@ To make authenticated calls to the Enjin Platform:
 
 Every data transfer strictly adheres to the HTTP/1.1 standard, with HTTPS encryption mandatory for all endpoints to ensure secure communication.
 
-Since the GraphQL API is built upon HTTP, it seamlessly integrates with any programming language that supports HTTP libraries, including popular options like `cURL` and `urllib`.
+The Enjin API primarily utilizes GraphQL, meaning you'll be sending POST HTTP requests to specific endpoints with your GraphQL queries and mutations. This allows you to interact with the Enjin blockchain in a flexible and efficient manner.
+
+:::tip SDKs for Streamlined Development
+For developers looking for a more integrated experience, Enjin also provides official **Software Development Kits (SDKs)** for various programming languages. These SDKs wrap the underlying GraphQL API, offering convenient methods and abstractions to streamline development. You can find more information and links to the available SDKs on our [Software Development Kits (SDKs) page](https://www.google.com/search?q=/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md).
+:::
 
 ### Overview of GraphQL Endpoints
 

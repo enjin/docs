@@ -54,18 +54,6 @@ For applications requiring automated actions (like minting rewards in real-time 
 **Learn More:** [Set up the Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
 :::
 
-:::info **Ways to Create Blockchain Requests:**
-You can interact with the Enjin Platform and initiate blockchain requests in several ways:
--   **Manually:** Using the user interface of the Enjin Platform Cloud.
--   **Programmatically:**
-    -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
-    -   Using the [**official Enjin SDKs**](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md):
-        -   [C# SDK](https://github.com/enjin/platform-csharp-sdk)
-        -   [C++ SDK](https://github.com/enjin/platform-cpp-sdk)
-    - **Other Languages:** The [Guides section](/category/guides) provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
-    - **AI Assistant:** Utilize the [Enjin Platform AI assistant](https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai) to help construct API calls.
-:::
-
 ## 3. Create Your First Collection and Token
 
 ### What are Collections and Tokens?
@@ -81,6 +69,18 @@ A common approach is to create:
 :::
 
 ### Steps for creating a collection and token:
+
+:::info **Ways to Create Blockchain Requests:**
+You can interact with the Enjin Platform and initiate blockchain requests in several ways:
+-   **Manually:** Using the user interface of the Enjin Platform Cloud.
+-   **Programmatically:**
+    -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
+    -   Using the [**official Enjin SDKs**](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md):
+        -   [C# SDK](https://github.com/enjin/platform-csharp-sdk)
+        -   [C++ SDK](https://github.com/enjin/platform-cpp-sdk)
+    - **Other Languages:** The [Guides section](/category/guides) provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
+    - **AI Assistant:** Utilize the [Enjin Platform AI assistant](https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai) to help construct API calls.
+:::
 
 1.  **Create Collection:**
     -   In the Platform menu, navigate to the **[Collections page](https://platform.canary.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
@@ -111,26 +111,30 @@ You can also create collections and tokens using the API or SDKs.
 
 ### Why Link User Wallets?
 
-To interact with a specific user's blockchain items (check their holdings, send them items), you need to know their public wallet address *and* have proof they control it. Linking associates their in-app account with their verified wallet address. This typically involves:
+To interact with a specific user's blockchain items (check their holdings, send them items), you need to know their public wallet address and have proof they control it. This process involves **verifying** the user's ownership of their wallet and then **associating** that verified wallet address with their account within your application's database. This association is what allows you to connect their in-app identity with their blockchain identity.
 
-1.  Your application requests a unique wallet verfication QR code from the Enjin API.
+The typical flow for this is:
+
+1.  Your application requests a unique wallet verification QR code from the Enjin API.
 2.  Your application displays this QR code to the user.
 3.  The user scans the QR code with their Enjin Wallet app.
 4.  The wallet confirms ownership, securely providing your application with the user's public wallet address.
+5.  Your application then saves this verified wallet address and **associates** it with the user's internal ID in your database.
 
-This allows you to:
--   Grant in-game perks based on NFT ownership.
--   Airdrop or transfer items directly to the user's wallet.
--   Display their relevant blockchain inventory within your app.
+Once this association (or "link") is established, you can:
+
+  - Grant in-game perks based on NFT ownership.
+  - Airdrop or transfer items directly to the user's associated wallet.
+  - Display their relevant blockchain inventory within your app.
 
 ### Implementation (GraphQL Example):
 
 To request a wallet verification code, we need to interact with the **<GlossaryTerm id="enjin_platform_api" />**  
 The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md) guide.  
 
-:::info Quick Start: Sending API Requests with GraphiQL
+:::info Quick Start: Sending API Requests with the <GlossaryTerm id="graphiql_playground" />
 In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.  
-In a production ready integration, your app will typically send API calls using http requests. You can learn more about this in the [Using the Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md) page.
+In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md) page.
 :::
 
 To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.canary.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.canary.enjin.io/graphiql/).
@@ -147,8 +151,9 @@ query RequestAccount{
 ```
 
 This will return a link to a QR Code for you to display to your user, and a unique verification id to track the request.
-In your application, you'll display this QR code to your user and instruct him to scan with his <GlossaryTerm id="enjin_wallet_app" />.
-To make sure that the user scanned the QR code and approved the request, copy & paste the following query (replace the `verificationId` with the one from the previous call response):
+In your application, you'll display this QR code to your user and instruct them to scan it with their <GlossaryTerm id="enjin_wallet_app" />.
+
+To confirm that the user scanned the QR code and approved the request, copy & paste the following query (replace the `replace_verification_id_here` placeholder with the `verificationId` from the previous call's response):
 
 ```graphql
 query GetAccountVerified{
@@ -162,7 +167,7 @@ query GetAccountVerified{
 }
 ```
 
-If the user did scan the QR code and approved the request, the response will show `"verified": true` and contain the user's address:
+If the user successfully scanned the QR code and approved the request, the response will show `"verified": true` and contain the user's wallet address:
 
 ```json
 {
@@ -177,6 +182,8 @@ If the user did scan the QR code and approved the request, the response will sho
   }
 }
 ```
+
+At this point, your application should take the `address` value from the response and store it in your user database, associated with the specific user who scanned the QR code. This is the crucial step that "links" the user's in-app identity with their blockchain wallet address.
 
 :::tip Learn more about linking user wallets
 Check the full in-depth guide: [Linking User Wallets](/02-guides/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md).
