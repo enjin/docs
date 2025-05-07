@@ -8,13 +8,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - If you are transferring collection ownership, you also need to own a [Collection](/02-guides/01-managing-tokens/01-creating-collections.md).
 :::
 
 Transferring collection ownership is done in two steps:
 
-## Step #1: Sending a transfer ownership request with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
+## Step #1: Sending a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 To send a transfer ownership request, we use the `MutateCollection` mutation:
 
@@ -188,7 +188,7 @@ print(response.json())
 
 Once the transaction is confirmed, the new owner needs to approve the ownership transfer request, for the collection ownership to be executed
 
-## Step #2: Accepting a transfer ownership request with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
+## Step #2: Accepting a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 To accept a transfer ownership request, we call the `AcceptCollectionTransfer` mutation from the new collection owner account:
 

@@ -106,7 +106,7 @@ Explore "[Core Operations](https://platform.canary.enjin.io/graphiql)" for core 
 
 :::info GraphiQL Playground:
 Please be aware that the provided links below are specifically for the GraphiQL Playground, which is a graphical user interface designed for exploring and interacting with the Enjin Platform GraphQL APIs directly from a web browser.  
-If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md#overview-of-graphql-endpoints)  
+If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#overview-of-graphql-endpoints)  
 #### Testnet:
 - [Core Operations](https://platform.canary.enjin.io/graphiql)
 - [Marketplace](https://platform.canary.enjin.io/graphiql/marketplace)

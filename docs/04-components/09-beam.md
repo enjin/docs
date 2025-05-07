@@ -3,6 +3,11 @@ title: "Enjin Beam"
 slug: "beam"
 description: "Discover how to use Enjin Beam to distribute blockchain assets through QR codes, making it easy to send and receive NFTs and tokens."
 ---
+
+:::info Explore Our Comprehensive Beam Guide
+For a detailed walkthrough of Enjin Beam's features and how to use them, check out our [in-depth guide for beams](/02-guides/01-managing-tokens/06-create-qr-drops.md).
+:::
+
 ## What is Enjin Beam?
 
 Enjin Beam offers an efficient way to market, promote, and distribute blockchain assets. By leveraging QR code technology, Enjin Beam allows for the easy distribution of blockchain assets on the Enjin blockchain. This feature is available on NFT.io and can be used by anyone who registers on the marketplace.
@@ -29,6 +34,11 @@ Beam QR codes can be shared through various visually accessible platforms, inclu
 3. Enhance your online presence and offer a user-friendly experience that appeals to a wide range of users, including those who are not familiar with crypto or blockchain technology.
 
 ![](/img/components/8.png)
+
+:::tip Master Enjin Beam
+Want to unlock the full potential of your NFT distributions? Our comprehensive guide to Enjin Beam offers advanced techniques, detailed setup instructions, and strategic insights for maximizing your campaign's reach and impact.  
+➡️ **[Read the In-Depth Guide to Enjin Beam](/02-guides/01-managing-tokens/06-create-qr-drops.md)**
+:::
 
 ## Types of Beams
 

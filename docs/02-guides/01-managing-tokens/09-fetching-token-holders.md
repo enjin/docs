@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
 This is useful for several reasons:
@@ -343,10 +343,10 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
-## Fetching Collection Holders with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
+## Fetching Collection Holders with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 :::warning Fetching Collections Limitations
 Please note that the `GetCollections` query is limited to collections that were created via the auth-ed Enjin Platform Cloud account.  
@@ -651,11 +651,11 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
 
 ## Tracking Collections

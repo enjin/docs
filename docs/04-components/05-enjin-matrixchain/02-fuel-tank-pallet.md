@@ -7,7 +7,8 @@ description: "Subsidize fees for your players while reducing overall costs."
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 :::info The Enjin Blockchain Console
-Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
+Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.  
+You may also check the [hands-on guide for creating and using fuel tanks](/02-guides/02-managing-users/04-using-fuel-tanks.md)
 :::
 
 ## What is a Fuel Tank?

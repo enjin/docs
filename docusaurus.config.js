@@ -58,11 +58,20 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      //Search Engine
+      algolia: {
+        appId: 'D5SPTI7JN9',
+        // Public API key: it is safe to commit it
+        apiKey: '65206337c8bc339a16dc564f61480400',
+        indexName: 'enjin',
+        contextualSearch: true,
+        searchPagePath: 'search',
+        insights: true,
+      },
       tableOfContents: {
       minHeadingLevel: 2,
       maxHeadingLevel: 5,
     },
-      // Replace with your project's social card
       image: 'img/social-card.jpg',
       navbar: {
         title: 'Enjin',

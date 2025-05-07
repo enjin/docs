@@ -11,9 +11,9 @@ import TabItem from '@theme/TabItem';
 Adding <GlossaryTerm id="metadata" /> to a token enables games and apps to import detailed information and showcase your token's data. Usually, digital assets are identified just by its <GlossaryTerm id="token_id" />. Metadata adds extra details to these assets, giving them properties such as a title, a narrative, and visuals.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/01-getting-started/02-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
+- Some [ Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
-- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add metadata to.
 - Follow our [Best Practices for Collection/Token Metadata](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 :::
@@ -446,7 +446,7 @@ Check the [Best Practices for Collection/Token Metadata](/02-guides/03-advanced-
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::

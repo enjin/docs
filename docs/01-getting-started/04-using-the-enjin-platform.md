@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
+Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
@@ -45,7 +45,7 @@ You can always revoke the token and create another one in the future.
 Transactions can be approved in 2 different ways:
 
 - **Manually:** Using the [Enjin Wallet](https://enjin.io/products/wallet) / [Polkadot.js](https://polkadot.js.org/).
-- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md).
+- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
 
 :::tip Start by manually approving transactions
 If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)  
@@ -63,7 +63,7 @@ The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, s
 
 The Enjin Wallet Daemon can automatically sign requests for you.
 
-To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/05-using-wallet-daemon.md) page.  
+To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page.  
 To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.  
 Create an API Token on the [Account Settings](https://platform.canary.enjin.io/settings) page and set the Platform API Token in your Wallet Daemon configuration.
 
@@ -356,7 +356,7 @@ To receive the transaction information programmatically, You can use the `GetTra
 But for this example, we're going to use the `GetPendingEvents` query, which returns all of the events emitted to your platform account.
 
 :::info This query might return items in multiple pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination).
+To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination).
 :::
 
 **Query:**
@@ -596,5 +596,5 @@ To set it up, check out the [Self-Hosted Platform](/02-guides/04-going-open-sour
 :::
 
 :::tip What's Next?
-Learn how to [Use the API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
+Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
 :::

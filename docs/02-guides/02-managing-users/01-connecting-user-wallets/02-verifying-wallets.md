@@ -14,12 +14,12 @@ If you need to send requests to user wallets, use [WalletConnect](/02-guides/02-
 :::
 
 :::info What you'll need:
-- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
 By using wallet verification, you can receive the user's wallet address with 100% certainty that this wallet is owned by the user.
 
-## Verify Wallet with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
+## Verify Wallet with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 ### Step 1. Initiate an Account Request
 
@@ -701,5 +701,5 @@ print(response.json())
 ![Verify Flow Diagram](/img/guides/managing-users/verify-flow-diagram.png)
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
