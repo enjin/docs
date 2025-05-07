@@ -8,7 +8,7 @@ const FeatureList = [
     title: 'Quick Start Guide',
     description: 'New to Enjin? Follow our step-by-step guide covering essential setup and basic operations to get you building on the Enjin blockchain quickly.',
     link: 'getting-started/quick-start-guide',
-    buttonText: 'Start Learning',
+    buttonText: 'Get Started',
   },
   {
     title: 'Guides',

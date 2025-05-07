@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](/01-getting-started/02-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
+Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
@@ -356,7 +356,7 @@ To receive the transaction information programmatically, You can use the `GetTra
 But for this example, we're going to use the `GetPendingEvents` query, which returns all of the events emitted to your platform account.
 
 :::info This query might return items in multiple pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination).
+To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination).
 :::
 
 **Query:**
@@ -596,5 +596,5 @@ To set it up, check out the [Self-Hosted Platform](/02-guides/04-going-open-sour
 :::
 
 :::tip What's Next?
-Learn how to [Use the API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
+Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
 :::

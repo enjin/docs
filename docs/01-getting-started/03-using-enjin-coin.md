@@ -44,5 +44,5 @@ This deposit is also known as <GlossaryTerm id="token_account_deposit" />.
 Once <GlossaryTerm id="multitoken" />s are destroyed, or 'burned', this deposit is returned to the issuer's account proportionally.
 
 :::tip What's next?
-Learn how to [Use the Enjin Platform](./03-using-the-enjin-platform.md).
+Learn how to [Use the Enjin Platform](./04-using-the-enjin-platform.md).
 :::

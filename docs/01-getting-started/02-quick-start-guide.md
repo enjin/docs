@@ -72,7 +72,7 @@ A common approach is to create:
 You can interact with the Enjin Platform and initiate blockchain requests in several ways:
 -   **Manually:** Using the user interface of the Enjin Platform Cloud.
 -   **Programmatically:**
-    -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md).
+    -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
     -   Using the [**official Enjin SDKs**](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md):
         -   [C# SDK](https://github.com/enjin/platform-csharp-sdk)
         -   [C++ SDK](https://github.com/enjin/platform-cpp-sdk)
@@ -128,11 +128,11 @@ Once this association (or "link") is established, you can:
 ### Implementation (GraphQL Example):
 
 To request a wallet verification code, we need to interact with the **<GlossaryTerm id="enjin_platform_api" />**  
-The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md) guide.  
+The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) guide.  
 
 :::info Quick Start: Sending API Requests with the <GlossaryTerm id="graphiql_playground" />
 In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.  
-In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md) page.
+In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) page.
 :::
 
 To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.canary.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.canary.enjin.io/graphiql/).
@@ -276,7 +276,7 @@ Congratulations! You've covered the basics of setting up your project on the Enj
 :::warning **Ready for Production?**
 Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
 1.  Set up your project on the **mainnet Enjin Platform Cloud**: https://platform.enjin.io/
-2.  Update your application's API calls or SDKs to use the [**mainnet GraphQL API endpoints**](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md#mainnet)
+2.  Update your application's API calls or SDKs to use the [**mainnet GraphQL API endpoints**](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#mainnet)
 :::
 
 Now you can explore more advanced integrations:

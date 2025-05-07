@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md).\
+For the most up-to-date information, refer to the [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 
@@ -197,7 +197,7 @@ To utilize this query, provide the `tankId` of the desired fuel tank for which y
 The `GetFuelTanks` query allows you to retrieve detailed information about multiple fuel tanks within the Enjin API simultaneously. This query is particularly useful when you need to obtain an overview or compare details of various fuel tanks within a system.
 
 :::warning This query might return items in multiple pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API → Pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination).
+To learn how to use GraphQL cursors for pagination, head to [Using the API → Pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination).
 :::
 
 <Tabs>

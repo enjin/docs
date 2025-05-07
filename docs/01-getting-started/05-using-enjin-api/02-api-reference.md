@@ -85,7 +85,7 @@ mutation {
 - This mutation creates a new token with an initial supply of 10 in the specified collection. Adjust the parameters as needed for your application.
 
 :::tip Not sure how to construct the query/mutation?
-Check out our [GraphQL Query Builder Guide](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#graphiql-playground) for detailed instructions on building queries and mutations.
+Check out our [GraphQL Query Builder Guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#graphiql-playground) for detailed instructions on building queries and mutations.
 :::
 
 #### Conclusion

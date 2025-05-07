@@ -14,7 +14,7 @@ This is especially important in gaming and app development as it enables you to 
 For example, if a user has a particular token in their wallet, they might gain access to exclusive in-game items or features within an app, enhancing the user experience and adding value to the tokens.
 
 :::info What you'll need:
-- An [Enjin Platform Account](/01-getting-started/03-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
 :::tip Best Practices
@@ -26,7 +26,7 @@ For example, if a user has a particular token in their wallet, they might gain a
 - When accessing external metadata or media, make sure to do so asynchronously and think about storing it in a local cache for faster retrieval.
 :::
 
-## Fetching a wallet with the [Enjin API](/01-getting-started/04-using-enjin-api/04-using-enjin-api.md)
+## Fetching a wallet with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 ### Fetching wallet's Enjin Coin balance
 
@@ -558,7 +558,7 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
 ### Fetch a wallet's tokens
@@ -907,9 +907,9 @@ print(response.json())
 ```
 
 :::tip Using Pagination
-The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
+The response may be displayed on several pages. To view all of it, you may need to follow steps for [pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination) which allows you to flip through the pages.
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/04-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
