@@ -19,8 +19,8 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 Enjin Blockchain allows you to create customized <GlossaryTerm id="token_id" /> structures. This flexibility enables you to organize your tokens in various ways that suit your needs.
 
-- **For <GlossaryTerm id="multi_unit_token" />s **These tokens are identical in value and function, and therefore, they all share the same Token ID. This commonality in ID reflects their interchangeable nature. For instance, all units of a specific cryptocurrency like Bitcoin would have the same identification as they hold the same value and are indistinguishable from one another in terms of usage and worth.
-- **For <GlossaryTerm id="non_fungible_tokens" /> (<GlossaryTerm id="nft" />s): **Every NFT has a unique Token ID that sets it apart from other tokens, even within the same collection. This unique ID is crucial for establishing the individuality and provenance of each NFT, which could represent anything from digital art to ownership rights over a virtual asset.
+- **For <GlossaryTerm id="multi_unit_token" />s** These tokens are identical in value and function, and therefore, they all share the same Token ID. This commonality in ID reflects their interchangeable nature. For instance, all units of a specific cryptocurrency like Bitcoin would have the same identification as they hold the same value and are indistinguishable from one another in terms of usage and worth.
+- **For <GlossaryTerm id="non_fungible_tokens" /> (<GlossaryTerm id="nft" />s):** Every NFT has a unique Token ID that sets it apart from other tokens, even within the same collection. This unique ID is crucial for establishing the individuality and provenance of each NFT, which could represent anything from digital art to ownership rights over a virtual asset.
 
 :::tip Token ID Structure [Best Practices](/02-guides/03-advanced-mechanics/01-tokenid-structure.md)
 Before minting the Mainnet versions of your Tokens, that will be used in your live economy. Make sure to take a look at the [best practices for Token ID structure](/02-guides/03-advanced-mechanics/01-tokenid-structure.md).
@@ -39,14 +39,14 @@ In the Platform menu, navigate to "**[Tokens](https://platform.enjin.io/tokens)*
 
 From here, you can customize your collection's Mint Policy, Market Policy, and Attributes.
 
-- **Create Token Section - ** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.  
+- **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.  
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/03-advanced-mechanics/01-tokenid-structure.md).
-- **Cap - **The token cap (if required).
+- **Cap -** The token cap (if required).
   - The **Infinite** supply type is the most flexible. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply.
   - The **Fixed** supply type offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined max supply. Burned tokens can be re-minted, ensuring the total supply remains constant.
   - The **Collapsing** supply type is the most strict. This supply type allows the collection owner to mint new tokens as long as the circulating supply does not exceed the max supply. However, burning tokens reduces the max supply, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
-- **Token Royalty Settings - **The market behavior for the token.
-- **Attributes - ** Set the token details which are details stored in pairs, like a title and its content. Certain attributes, such as the `URI`, `name`, and `description`, have special roles that are understood by many platforms and marketplaces. If you're new, simply link to a JSON file that lists all the token's details. Make sure to check out the [Metadata Standard](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
+- **Token Royalty Settings -** The market behavior for the token.
+- **Attributes -** Set the token details which are details stored in pairs, like a title and its content. Certain attributes, such as the `URI`, `name`, and `description`, have special roles that are understood by many platforms and marketplaces. If you're new, simply link to a JSON file that lists all the token's details. Make sure to check out the [Metadata Standard](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
 

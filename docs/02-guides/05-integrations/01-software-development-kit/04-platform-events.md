@@ -13,7 +13,7 @@ To allow our application to receive events from the platform the SDK comes with 
 
 ### Creating a Listener
 
-To use the `IEventListener` interface on a listener class we create we must implement its `OnEvent` method. This method accepts a `PlatformEven`t, which contains the name of the event, the channel it was broadcasted on, the raw event message, and the parsed JSON data representing the message. A generic listener implementing this interface is shown in the code block below:
+To use the `IEventListener` interface on a listener class we create we must implement its `OnEvent` method. This method accepts a `PlatformEvent`, which contains the name of the event, the channel it was broadcasted on, the raw event message, and the parsed JSON data representing the message. A generic listener implementing this interface is shown in the code block below:
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">

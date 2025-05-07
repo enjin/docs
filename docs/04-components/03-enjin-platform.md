@@ -56,14 +56,14 @@ The Enjin Platform is packed with features designed to make your life as a devel
 
 ### Enabled Automation
 
-- **User-validation requests: **A swift way to establish user identities
-- **Authentication requests: **Seamless process to secure sessions
-- **Managed wallet creation: **Forget the complex coding, create wallets with a few clicks
+- **User-validation requests:** A swift way to establish user identities
+- **Authentication requests:** Seamless process to secure sessions
+- **Managed wallet creation:** Forget the complex coding, create wallets with a few clicks
 - **Wallet linking and switching:** Easily manage multiple wallets and switch between them
-- **Asset transfer and management: **Smoothly transfer and manage your digital assets
-- **Enjin Beam support: **Leverage Enjin Beams for unique offerings
+- **Asset transfer and management:** Smoothly transfer and manage your digital assets
+- **Enjin Beam support:** Leverage Enjin Beams for unique offerings
 - **Fuel Tanks support:** Efficiently manage your fuel tanks for subsidizing transaction fees
-- **Marketplace support: **Create and manage marketplace listings with ease
+- **Marketplace support:** Create and manage marketplace listings with ease
 - **Relaychain auto-teleport:** Any Relaychain ENJ mistakenly sent to managed wallet will be automatically teleported to Matrixchain
 
 ### Data Management Tool

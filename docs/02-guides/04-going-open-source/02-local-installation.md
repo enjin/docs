@@ -156,7 +156,7 @@ In case you want to access the GraphQL playground, you would just need to add /g
 
 ### 7\. Upgrade to latest version
 
-** Step 1:** **Update the submodules** by navigating to each of the `platform-decoder` and `wallet-daemon` folders and run:
+**Step 1:** **Update the submodules** by navigating to each of the `platform-decoder` and `wallet-daemon` folders and run:
 
 ```bash
 git checkout master && git pull

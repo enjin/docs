@@ -29,10 +29,10 @@ In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin
 
 From here, you can customize your collection's Mint Policy, Market Policy, Explicit Currencies (on option to delegate a token for <GlossaryTerm id="royalties" />), and Attributes.
 
-- **Mint Policy - **The rules pertaining to token supply and number of tokens available to be minted in the future.
-- **Market Policy - **Determines the rules which tokens in this collection must follow when interacting with the on-chain marketplace.
-- **Explicit Royalty Currencies - **Choose which currencies are required to pay marketplace royalties for the tokens in this collection.
-- **Attributes - **Set the collection details which are details stored in pairs, like a title and its content. Certain attributes, such as `name` and `description`, have special roles that are understood by many platforms, wallets and marketplaces.
+- **Mint Policy -** The rules pertaining to token supply and number of tokens available to be minted in the future.
+- **Market Policy -** Determines the rules which tokens in this collection must follow when interacting with the on-chain marketplace.
+- **Explicit Royalty Currencies -** Choose which currencies are required to pay marketplace royalties for the tokens in this collection.
+- **Attributes -** Set the collection details which are details stored in pairs, like a title and its content. Certain attributes, such as `name` and `description`, have special roles that are understood by many platforms, wallets and marketplaces.
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
 
