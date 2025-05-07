@@ -6,8 +6,6 @@ description: "Begin your journey with Enjin's blockchain ecosystem using our Qui
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-import Cta from '@site/src/components/cta';
-
 # Enjin Quick Start Guide
 
 Welcome! This guide provides the essential steps to quickly integrate the <GlossaryTerm id="enjin_blockchain" /> and <GlossaryTerm id="nft" />s into your game or application using the <GlossaryTerm id="enjin_platform" />. We'll use the <GlossaryTerm id="canary" /> testnet for a safe and free development environment.
@@ -51,7 +49,7 @@ To connect your wallet, click on the "Connect Wallet" button in the top right co
 :::tip Automating Signatures with the <GlossaryTerm id="wallet_daemon" />
 For applications requiring automated actions (like minting rewards in real-time or batch transferring items without manual confirmation each time), you can set up the **Enjin Wallet Daemon**. This secure service runs on your server and can automatically sign transaction requests sent to your Enjin Platform.
 
-**Learn More:** [Set up the Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
+**Learn More:** [Set up the Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
 :::
 
 ## 3. Create Your First Collection and Token
@@ -286,6 +284,6 @@ Now you can explore more advanced integrations:
 -   **On-Demand Minting:** Programmatically create *new* tokens directly into users' wallets based on real-time application events (e.g., crafting an item, completing a quest). This avoids pre-minting large supplies.
     ➡️ [Learn about On-Demand Minting](/02-guides/01-managing-tokens/04-minting-a-token.md#option-b-using-the-enjin-api--sdks)
 -   **Enjin Wallet Daemon:** If your application requires frequent, automated minting or transferring without manual intervention, setting up the Wallet Daemon is highly recommended for secure signature automation.
-    ➡️ [Set up the Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
+    ➡️ [Set up the Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
 -   **Managed Wallets:** Simplify onboarding for users unfamiliar with crypto wallets. You can create and manage wallets for your users within the platform. Users can interact with blockchain features seamlessly, and later choose to export their items to their own self-custody Enjin Wallet if they wish. This significantly lowers the barrier to entry for Web2 users.
     ➡️ [Explore Managed Wallets](/02-guides/02-managing-users/03-using-managed-wallets.md)

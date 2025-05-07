@@ -45,7 +45,7 @@ You can always revoke the token and create another one in the future.
 Transactions can be approved in 2 different ways:
 
 - **Manually:** Using the [Enjin Wallet](https://enjin.io/products/wallet) / [Polkadot.js](https://polkadot.js.org/).
-- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md).
+- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
 
 :::tip Start by manually approving transactions
 If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)  
@@ -63,7 +63,7 @@ The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, s
 
 The Enjin Wallet Daemon can automatically sign requests for you.
 
-To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/05-using-wallet-daemon.md) page.  
+To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page.  
 To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.  
 Create an API Token on the [Account Settings](https://platform.canary.enjin.io/settings) page and set the Platform API Token in your Wallet Daemon configuration.
 

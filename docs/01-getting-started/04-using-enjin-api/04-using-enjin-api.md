@@ -39,7 +39,7 @@ To make authenticated calls to the Enjin Platform:
 ```
 
 4. _(Optional)_ To automate requests made from the Enjin Platform using a wallet daemon, you need to configure your daemon with the API token.  
-   For more details head over to [Using the Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md)
+   For more details head over to [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
 
 ## Endpoints & Queries
 
@@ -48,7 +48,7 @@ Every data transfer strictly adheres to the HTTP/1.1 standard, with HTTPS encryp
 The Enjin API primarily utilizes GraphQL, meaning you'll be sending POST HTTP requests to specific endpoints with your GraphQL queries and mutations. This allows you to interact with the Enjin blockchain in a flexible and efficient manner.
 
 :::tip SDKs for Streamlined Development
-For developers looking for a more integrated experience, Enjin also provides official **Software Development Kits (SDKs)** for various programming languages. These SDKs wrap the underlying GraphQL API, offering convenient methods and abstractions to streamline development. You can find more information and links to the available SDKs on our [Software Development Kits (SDKs) page](https://www.google.com/search?q=/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md).
+For developers looking for a more integrated experience, Enjin also provides official **Software Development Kits (SDKs)** for various programming languages. These SDKs wrap the underlying GraphQL API, offering convenient methods and abstractions to streamline development. You can find more information and links to the available SDKs on our [Software Development Kits (SDKs) page](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md).
 :::
 
 ### Overview of GraphQL Endpoints
@@ -94,5 +94,5 @@ For a comprehensive guide on exploring and utilizing GraphQL queries and mutatio
 
 :::tip What's next?
 - New to GraphQL? Learn how to structure queries and mutations in our [How to Use GraphQL guide](/01-getting-started/04-using-enjin-api/01-how-to-use-graphql.md).
-- To automate signing requests, continue to the [Using the Wallet Daemon](/01-getting-started/05-using-wallet-daemon.md) page.
+- To automate signing requests, continue to the [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) page.
 - Or, If you're ready to start building... [Create a Collection](/02-guides/01-managing-tokens/01-creating-collections.md).
