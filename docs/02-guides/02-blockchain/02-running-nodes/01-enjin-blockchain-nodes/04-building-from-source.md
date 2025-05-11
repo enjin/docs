@@ -1,6 +1,6 @@
 ---
 title: "Build Node From Source"
-slug: "../build-node-from-source"
+slug: "build-node-from-source"
 ---
 :::info This is an advanced guide
 For pre-compiled binaries or for information on running a node via Docker, visit [Running a Node](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/01-running-a-node.md).

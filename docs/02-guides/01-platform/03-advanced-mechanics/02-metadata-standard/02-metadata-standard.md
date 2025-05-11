@@ -1,6 +1,6 @@
 ---
 title: "Metadata Standard"
-slug: "metadata-standard"
+slug: "../metadata-standard"
 description: "Explore Enjin’s metadata standards, enabling you to define the characteristics of your blockchain tokens and enhance their utility within decentralized applications."
 ---
 ## Best Practices for Collection/Token Metadata

@@ -1,5 +1,5 @@
 ---
-title: "Blockchain Infrustructure"
+title: "Enjin Blockchain Infrustructure"
 slug: "../blockchain-infrustructure"
 ---
 

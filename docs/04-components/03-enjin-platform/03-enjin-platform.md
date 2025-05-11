@@ -6,7 +6,7 @@ description: "Discover the Enjin Platform, a comprehensive suite of tools for bu
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io/login), connected to Enjin Canary Testnet
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to Enjin Blockchain Mainnet
-- The [Self-Hosted Enjin Platform](https://github.com/enjin/platform) that you can connect to either network.
+- The [Self-Hosted Enjin Platform](https://github.com/enjin/platform) where you can choose to connect to either network.
 :::
 
 ## What is the Enjin Platform?

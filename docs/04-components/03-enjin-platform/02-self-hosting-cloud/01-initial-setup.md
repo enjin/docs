@@ -1,6 +1,6 @@
 ---
-title: "Cloud Hosting"
-slug: "cloud-hosting"
+title: "Initial Setup"
+slug: "initial-setup"
 description: "Discover how to host Enjin’s blockchain platform in the cloud, ensuring high availability and scalability for your blockchain applications."
 ---
 ## Setting up a Droplet
