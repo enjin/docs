@@ -1,6 +1,6 @@
 ---
-title: "Using the Multiverse"
-slug: "using-the-multiverse"
+title: "The Multiverse"
+slug: "the-multiverse"
 description: "Learn how to integrate the multiverse into your game or application, allowing users to access cross-game blockchain assets and experiences."
 ---
 
