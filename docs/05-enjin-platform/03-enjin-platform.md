@@ -48,7 +48,7 @@ The [Wallet Daemon](https://github.com/enjin/wallet-daemon) is the component res
 
 With the release of the Enjin Platform, we’re preparing multiple SDKs to further streamline integration into your projects. Our first release includes the open-source [C# SDK](https://github.com/enjin/platform-csharp-sdk) for connecting and interacting with the Enjin Platform.
 
-Want to learn more about our SDKs? Dive into our documentation [here](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md).
+Want to learn more about our SDKs? Dive into our documentation [here](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md).
 
 ## Notable Platform Features
 

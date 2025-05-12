@@ -42,7 +42,7 @@ Nominators who delegate their ENJ tokens to a validator are also at risk of slas
 
 ## Good Practices to Avoiding Slashing
 
-Validators on the Enjin Blockchain must follow best practices to avoid slashing penalties and ensure the security and reliability of nodes. You can refer to the [Security Best Practices for Validators](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/02-security-best-practices-for-validators.md) article for more information.
+Validators on the Enjin Blockchain must follow best practices to avoid slashing penalties and ensure the security and reliability of nodes. You can refer to the [Security Best Practices for Validators](/02-guides/02-blockchain/02-running-nodes/02-operating-relaychain-validator/02-security-best-practices-for-validators.md) article for more information.
 
 ## Conclusion
 

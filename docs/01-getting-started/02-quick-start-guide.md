@@ -73,10 +73,10 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 -   **Manually:** Using the user interface of the Enjin Platform Cloud.
 -   **Programmatically:**
     -   Sending **direct HTTP requests** to the [Enjin GraphQL API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
-    -   Using the [**official Enjin SDKs**](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md):
+    -   Using the [**official Enjin SDKs**](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md):
         -   [C# SDK](https://github.com/enjin/platform-csharp-sdk)
         -   [C++ SDK](https://github.com/enjin/platform-cpp-sdk)
-    - **Other Languages:** The [Guides section](/category/guides) provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
+    - **Other Languages:** The [Guides section](/category/integration-guides) provides code snippets for GraphQL, cURL, JavaScript, Node.JS, and Python for most operations.
     - **AI Assistant:** Utilize the [Enjin Platform AI assistant](https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai) to help construct API calls.
 :::
 
@@ -84,7 +84,7 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
     -   In the Platform menu, navigate to the **[Collections page](https://platform.canary.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
     ![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
     -   Customize your collection - you can specify the collection's name, description, media, attributes, Mint and Market policies, and more.  
-    To learn more about collection configuration, please check the [Create Collections guide](/02-guides/01-managing-tokens/01-creating-collections.md).
+    To learn more about collection configuration, please check the [Create Collections guide](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
     -   Submit the creation request by clicking on the **Create** button. This will create a signature request which you can view in the [Transactions page](https://platform.canary.enjin.io/transactions), and will require a transaction to be signed.
     ![](/img/guides/managing-tokens/pending-create-collection-txn.png)
     -   To sign the Create Collection transaction request - Click on the **"Sign"** button and approve the signature request with your connected wallet.
@@ -92,7 +92,7 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 2.  **Create Token:**
     -   In the Platform menu, navigate to the **[Tokens page](https://platform.canary.enjin.io/tokens)**. Then, click on the "**[Create Token](https://platform.canary.enjin.io/create/token)**" button.
     -   Customize your token - you can specify the token's name, description, media, attributes, and more.  
-    To learn more about token configuration, please check the [Create Tokens guide](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
+    To learn more about token configuration, please check the [Create Tokens guide](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
     -   In the **"Collection ID"** input field, insert the collection id of the collection you just created. You may also click the input field and select the id from the dropdown menu.
     -   In the **"Recipient"** input field, insert the <GlossaryTerm id="address" /> of the wallet that you wish to receive the token's initial supply. You can find the address of your connected wallet in the [settings page](https://platform.canary.enjin.io/settings) by clicking on the Settings icon in the top right corner, followed by the "Settings" button.
     -   Submit the creation request by clicking on the **Create** button. This requires another transaction, which you can sign in the [Transactions page](https://platform.canary.enjin.io/transactions).
@@ -101,8 +101,8 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 You can also create collections and tokens using the API or SDKs.
 
 ➡️ **See Guides:**
--   [Guide: Create Collections Programmatically](/02-guides/01-managing-tokens/01-creating-collections.md#option-b-using-the-enjin-api--sdks)
--   [Guide: Create Tokens Programmatically](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks)
+-   [Guide: Create Collections Programmatically](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md#option-b-using-the-enjin-api--sdks)
+-   [Guide: Create Tokens Programmatically](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks)
 :::
 
 ## 4. Link a User's Wallet to Your Application
@@ -132,7 +132,7 @@ The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfami
 
 :::info Quick Start: Sending API Requests with the <GlossaryTerm id="graphiql_playground" />
 In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.  
-In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) page.
+In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) page.
 :::
 
 To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.canary.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.canary.enjin.io/graphiql/).
@@ -184,7 +184,7 @@ If the user successfully scanned the QR code and approved the request, the respo
 At this point, your application should take the `address` value from the response and store it in your user database, associated with the specific user who scanned the QR code. This is the crucial step that "links" the user's in-app identity with their blockchain wallet address.
 
 :::tip Learn more about linking user wallets
-Check the full in-depth guide: [Linking User Wallets](/02-guides/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md).
+Check the full in-depth guide: [Linking User Wallets](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-verifying-wallets.md).
 :::
 
 ## 5. Send a Token to a User
@@ -224,7 +224,7 @@ You can sign it in the [Transactions page](https://platform.canary.enjin.io/tran
 :::
 
 :::tip Learn more about sending tokens
-Check the full in-depth guide: [Sending Tokens](/02-guides/01-managing-tokens/05-transferring-tokens.md).
+Check the full in-depth guide: [Sending Tokens](/02-guides/01-platform/01-managing-tokens/05-transferring-tokens.md).
 :::
 
 ## 6. Reading Linked User's Tokens
@@ -266,7 +266,7 @@ query FetchingWalletTokens{
 ```
 
 :::tip Learn more about reading user wallet balances
-Check the full in-depth guide: [Reading User Wallet Balances](/02-guides/02-managing-users/02-reading-user-wallets.md).
+Check the full in-depth guide: [Reading User Wallet Balances](/02-guides/01-platform/02-managing-users/02-reading-user-wallets.md).
 :::
 
 ## 7. Next Steps and Advanced Features
@@ -282,8 +282,8 @@ Remember, this guide used the **Canary testnet** for development and testing. Wh
 Now you can explore more advanced integrations:
 
 -   **On-Demand Minting:** Programmatically create *new* tokens directly into users' wallets based on real-time application events (e.g., crafting an item, completing a quest). This avoids pre-minting large supplies.
-    ➡️ [Learn about On-Demand Minting](/02-guides/01-managing-tokens/04-minting-a-token.md#option-b-using-the-enjin-api--sdks)
+    ➡️ [Learn about On-Demand Minting](/02-guides/01-platform/01-managing-tokens/04-minting-a-token.md#option-b-using-the-enjin-api--sdks)
 -   **Enjin Wallet Daemon:** If your application requires frequent, automated minting or transferring without manual intervention, setting up the Wallet Daemon is highly recommended for secure signature automation.
     ➡️ [Set up the Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
 -   **Managed Wallets:** Simplify onboarding for users unfamiliar with crypto wallets. You can create and manage wallets for your users within the platform. Users can interact with blockchain features seamlessly, and later choose to export their items to their own self-custody Enjin Wallet if they wish. This significantly lowers the barrier to entry for Web2 users.
-    ➡️ [Explore Managed Wallets](/02-guides/02-managing-users/03-using-managed-wallets.md)
+    ➡️ [Explore Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md)

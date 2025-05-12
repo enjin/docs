@@ -3,7 +3,7 @@ title: "Restarting the Platform"
 slug: "restarting-the-platform"
 description: "Learn how to safely restart the Enjin platform to ensure smooth operation and minimal downtime for your blockchain applications."
 ---
-Every time you change .env variables / [update the platform version](/02-guides/04-going-open-source/03-cloud-installation/09-updating-the-platform.md) / [install a package](/02-guides/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md), for any changes to take effect, the workers need to be restarted:
+Every time you change .env variables / [update the platform version](/05-enjin-platform/02-self-hosting-cloud/09-updating-the-platform.md) / [install a package](/05-enjin-platform/02-self-hosting-cloud/03-installing-additional-packages.md), for any changes to take effect, the workers need to be restarted:
 
 1. attach to your workers tmux sessions:
 

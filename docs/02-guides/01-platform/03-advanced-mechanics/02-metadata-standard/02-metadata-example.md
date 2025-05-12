@@ -3,7 +3,7 @@ title: "Metadata Example"
 slug: "metadata-example"
 description: "View detailed examples of how to implement metadata within your blockchain tokens, following Enjin’s guidelines for token structure and data representation."
 ---
-In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
+In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
 You may set the collection/token `uri` on-chain attribute to a resource containing the collection's/token's metadata in JSON format, or set each individual metadata with an on-chain attribute, using the metadata type as the attribute key.  
 For example, to set the token's description individually, set the token's on-chain attribute key to `description`, and provide the description as the attribute's value.  

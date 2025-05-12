@@ -129,4 +129,4 @@ nano ~/.ssh/authorized_keys
 
 Finally log out and then log back in as the new user: `ssh platform@server_ip_address`.  
 
-Now the droplet is configured, it's time to [Install the Enjin Platform](/02-guides/04-going-open-source/03-cloud-installation/02-platform-installation.md)
+Now the droplet is configured, it's time to [Install the Enjin Platform](/05-enjin-platform/02-self-hosting-cloud/02-platform-installation.md)

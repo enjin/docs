@@ -5,7 +5,7 @@ description: "Discover how to use Enjin Beam to distribute blockchain assets thr
 ---
 
 :::info Explore Our Comprehensive Beam Guide
-For a detailed walkthrough of Enjin Beam's features and how to use them, check out our [in-depth guide for beams](/02-guides/01-managing-tokens/06-create-qr-drops.md).
+For a detailed walkthrough of Enjin Beam's features and how to use them, check out our [in-depth guide for beams](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md).
 :::
 
 ## What is Enjin Beam?
@@ -37,7 +37,7 @@ Beam QR codes can be shared through various visually accessible platforms, inclu
 
 :::tip Master Enjin Beam
 Want to unlock the full potential of your NFT distributions? Our comprehensive guide to Enjin Beam offers advanced techniques, detailed setup instructions, and strategic insights for maximizing your campaign's reach and impact.  
-➡️ **[Read the In-Depth Guide to Enjin Beam](/02-guides/01-managing-tokens/06-create-qr-drops.md)**
+➡️ **[Read the In-Depth Guide to Enjin Beam](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md)**
 :::
 
 ## Types of Beams

@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
+Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
@@ -20,7 +20,7 @@ To get started, go ahead and create an account on the <GlossaryTerm id="enjin_pl
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-- The [Self-Hosted Platform](/02-guides/04-going-open-source/02-local-installation.md) which you can run locally to connect to either network.
+- The [Self-Hosted Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) which you can run locally to connect to either network.
 :::
 
 ### Things you should know
@@ -573,7 +573,7 @@ The third event was emitted when the collection was created on-chain, and has th
 The forth and final event with `FINALIZED` state was emitted when the platform request was finalized.
 
 :::info Note
-For the full list of platform states, check the [Enjin API --> Important Arguments](/03-api-functions/04-important-arguments.md#state) page.
+For the full list of platform states, check the [Enjin API --> Important Arguments](/03-api-reference/04-important-arguments.md#state) page.
 :::
 
 :::tip Acknowledging Events
@@ -582,7 +582,7 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 ### Receive Transaction Information by Listening to Platform Websocket Events
 
-You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](03-api-functions/03-websocket-events.md)
+You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-events.md)
 
 :::info The <GlossaryTerm id="self_hosted_enjin_platform" />
 Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="self_hosted_enjin_platform" /> for the following reasons:
@@ -592,7 +592,7 @@ Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may
 - Ideal for projects requiring advanced features and customization options.
 - Ensures full ownership and autonomy over your NFT platform.
 
-To set it up, check out the [Self-Hosted Platform](/02-guides/04-going-open-source/02-local-installation.md) page.
+To set it up, check out the [Self-Hosted Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) page.
 :::
 
 :::tip What's Next?

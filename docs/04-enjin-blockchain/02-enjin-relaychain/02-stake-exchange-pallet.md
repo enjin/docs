@@ -30,7 +30,7 @@ By utilizing Enjin Nomination Pools and the Stake Exchange Pallet, users have th
 
 ## Getting Started
 
-Ensure that you have access to an Enjin Relay Chain and have the necessary ENJ tokens to stake. The UI used in this guide can be accessed [here](https://explorer.efinity.io/?rpc=wss%3A%2F%2Frpc.relay.canary.enjin.io#/extrinsics)
+Ensure that you have access to an Enjin Relay Chain and have the necessary ENJ tokens to stake. The UI used in this guide can be accessed [here (*Canary Testnet)](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.canary.enjin.io#/extrinsics)
 
 **Accessing the Pallet Functions:**  
 Open your Enjin Explorer and navigate to the Developer -> Extrinsics interface. Locate the "Stake Exchange Pallet" and click on it to access the available functions.

@@ -31,7 +31,7 @@ Once your validator is chilled, it will no longer be eligible for selection in f
 ## Step 2: Purge Validator Session Keys
 
 :::danger Important
-Purging session keys is a permanent action. Once completed, your validator will no longer be able to participate in validation activities unless new keys are generated and [set up again](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md).
+Purging session keys is a permanent action. Once completed, your validator will no longer be able to participate in validation activities unless new keys are generated and [set up again](/02-guides/02-blockchain/02-running-nodes/02-operating-relaychain-validator/01-running-a-validator.md).
 
 This step is crucial for security, as it prevents any accidental or unauthorized activation of your validator.
 :::

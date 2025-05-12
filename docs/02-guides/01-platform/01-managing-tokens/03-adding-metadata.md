@@ -11,11 +11,11 @@ import TabItem from '@theme/TabItem';
 Adding <GlossaryTerm id="metadata" /> to a token enables games and apps to import detailed information and showcase your token's data. Usually, digital assets are identified just by its <GlossaryTerm id="token_id" />. Metadata adds extra details to these assets, giving them properties such as a title, a narrative, and visuals.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- A [Collection](/02-guides/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add metadata to.
-- Follow our [Best Practices for Collection/Token Metadata](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
+- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add metadata to.
+- Follow our [Best Practices for Collection/Token Metadata](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 :::
 
 You can even use metadata to attach gifs, videos, and 3D models to your token. This data can be stored both on-chain and off-chain to allow users and other supported platforms to access the information.
@@ -47,7 +47,7 @@ Each option has trade-offs between cost, reliability, and security, and the choi
 
 You can assign multiple on-chain attributes to a token simultaneously, which allows you to define the metadata of the token. 
 
-Some commonly recognized attributes, following the [Universal Metadata Standard](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), include:
+Some commonly recognized attributes, following the [Universal Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), include:
 
 - **`name`:** The title of the token.
 - **`description`:** A brief explanation or description of the token.
@@ -55,7 +55,7 @@ Some commonly recognized attributes, following the [Universal Metadata Standard]
 - **`URI`:** The web address (URL) where the JSON file containing the token's off-chain or IPFS metadata is hosted.
 
 :::tip Need to add more metadata?
-Check the [Best Practices for Collection/Token Metadata](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
+Check the [Best Practices for Collection/Token Metadata](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
 :::
 
 :::warning Attributes for Collections and Tokens are very similar.
@@ -442,15 +442,15 @@ Take note of these data points:
 You can also host your JSON files on IPFS, to make your metadata more immutable.
 
 :::tip Need to add more metadata?
-Check the [Best Practices for Collection/Token Metadata](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
+Check the [Best Practices for Collection/Token Metadata](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), and the [Universal Metadata Standard](https://enj.in/metadata).
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
 :::tip What's next?
-To mint some token supply, head to the [Minting Tokens](/02-guides/01-managing-tokens/04-minting-a-token.md) tutorial.
+To mint some token supply, head to the [Minting Tokens](/02-guides/01-platform/01-managing-tokens/04-minting-a-token.md) tutorial.
 :::

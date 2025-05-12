@@ -19,7 +19,7 @@ This is useful for several reasons:
 - **Engage Power Users:** Recognize and engage with influential power users who hold a significant amount of tokens.
 - **Improved User Experience:** By retrieving token holder data, you can enhance the overall user experience and make informed, data-driven decisions.
 
-## Fetching Token Holders with the [Enjin API](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)
+## Fetching Token Holders with the [Enjin API](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)
 
 :::warning Fetching Tokens Limitations
 Please note that the `GetToken` query is limited to tokens from collections that were created via the auth-ed Enjin Platform account.  
@@ -354,7 +354,7 @@ To get a collection that was created elsewhere (via a different Enjin Platform C
 Learn more about tracking a collection in the [Tracking Collections section below](#tracking-collections).
 :::
 
-For an [NFT collection](/02-guides/03-advanced-mechanics/03-enforced-rarity.md#nft-collection), we can use the `GetCollection` query and include the the `accounts` in the query response to find out how many NFTs from the collection are owned by each address.
+For an [NFT collection](/02-guides/01-platform/03-advanced-mechanics/03-enforced-rarity.md#nft-collection), we can use the `GetCollection` query and include the the `accounts` in the query response to find out how many NFTs from the collection are owned by each address.
 
 **Query:**
 
@@ -655,7 +655,7 @@ The response may be displayed on several pages. To view all of it, you may need 
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
 
 ## Tracking Collections

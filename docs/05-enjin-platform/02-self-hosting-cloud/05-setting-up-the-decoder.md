@@ -49,7 +49,7 @@ Once built, we'll run the server in the next step along with the other workers.
 
 ## Updating the Decoder
 
-If you're using Supervisor to keep the decoder running ([Keeping the Platform Running](/02-guides/04-going-open-source/03-cloud-installation/012-keeping-the-platform-running.md)) , stop it using:
+If you're using Supervisor to keep the decoder running ([Keeping the Platform Running](/05-enjin-platform/02-self-hosting-cloud/012-keeping-the-platform-running.md)) , stop it using:
 
 ```bash
 sudo supervisorctl stop platform-decoder:*

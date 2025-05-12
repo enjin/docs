@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- If you are transferring collection ownership, you also need to own a [Collection](/02-guides/01-managing-tokens/01-creating-collections.md).
+- If you are transferring collection ownership, you also need to own a [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
 :::
 
 Transferring collection ownership is done in two steps:

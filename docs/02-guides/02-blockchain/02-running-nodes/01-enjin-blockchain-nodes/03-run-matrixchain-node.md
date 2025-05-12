@@ -2,7 +2,7 @@
 title: "Run a Matrixchain Node"
 slug: "run-matrixchain-node"
 ---
-There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)).
+There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)).
 
 :::warning Currently, it is not possible to run a Enjin Matrixchain collator node.
 This guide will be updated once that option is available.
@@ -12,7 +12,7 @@ This guide will be updated once that option is available.
 
 :::info
 The Docker Image can be found on Docker Hub at: [enjin/matrixchain](https://hub.docker.com/r/enjin/matrixchain)  
-In this example, we demonstrate using the version `latest`. However, in practice, we recommend statically setting this to a specific version (such as `v100`) and then performing manual upgrades to your nodes as and when appropriate. This is to ensure that your node doesn't inadvertently differ from one restart to the next. See the [Upgrading using Docker](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-docker) section for more information.
+In this example, we demonstrate using the version `latest`. However, in practice, we recommend statically setting this to a specific version (such as `v100`) and then performing manual upgrades to your nodes as and when appropriate. This is to ensure that your node doesn't inadvertently differ from one restart to the next. See the [Upgrading using Docker](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-docker) section for more information.
 :::
 
 You can use the following `docker-compose.yml` file:
@@ -113,16 +113,16 @@ Once updated, simply restart the node by first stopping the existing node and th
 
 ### Upgrading using Binary
 
-Simply download the latest binary and run it as you have always done as per the [Binary, Command](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#command) section. It's as simple as that!
+Simply download the latest binary and run it as you have always done as per the [Binary, Command](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#command) section. It's as simple as that!
 
 #### Upgrading from Source
 
-If you are upgrading based on a build you've produced from the source code, you must navigate to the directory containing the source code in a terminal. Once you have built the binary, simply follow the instruction [Upgrading using Binary](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-binary) to complete the upgrade. 
+If you are upgrading based on a build you've produced from the source code, you must navigate to the directory containing the source code in a terminal. Once you have built the binary, simply follow the instruction [Upgrading using Binary](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/03-run-matrixchain-node.md#upgrading-using-binary) to complete the upgrade. 
 
 ##### Git-cloned Repository
 
-You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary using the latest version.
+You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary using the latest version.
 
 ##### Downloaded Repository
 
-In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary.
+In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary.

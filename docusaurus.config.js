@@ -109,16 +109,24 @@ const config = {
               },
               {
                 label: 'Guides',
-                to: 'category/guides',
+                to: 'category/integration-guides',
               },
               {
-                label: 'API Functions',
-                to: 'category/api-functions',
+                label: 'API Reference',
+                to: 'api-reference',
               },
               {
-                label: 'Components',
-                to: 'category/components',
-              }, 
+                label: 'Enjin Blockchain',
+                to: 'enjin-blockchain/infrustructure',
+              },
+              {
+                label: 'Enjin Platform',
+                to: 'category/enjin-platform',
+              },
+              {
+                label: 'Enjin Products',
+                to: 'category/enjin-products',
+              },
             ],
           },
           {

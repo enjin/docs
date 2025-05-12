@@ -12,10 +12,10 @@ import TabItem from '@theme/TabItem';
 Burning a token with <GlossaryTerm id="enj_infusion" /> (often called "Melting") releases the Infused ENJ to the holder.
 
 :::info What you'll need:
-- Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- A [Collection](/02-guides/01-managing-tokens/01-creating-collections.md) or a [Token](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to burn/destroy.
+- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) or a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to burn/destroy.
 :::
 
 **There are two ways to Burn a token:**

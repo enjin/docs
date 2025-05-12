@@ -2,6 +2,6 @@
   "label": "Integration Guides",
   "link": {
     "type": "generated-index",
-    "description": "Dive into practical, step-by-step guides designed to help you master Enjin project development. Explore topics like managing tokens and collections, handling user wallets, implementing advanced mechanics, and integrating with the Enjin ecosystem."
+    "description": "Integrate with Enjin's platform and blockchain technologies. Find guides on managing tokens, integrating users, running nodes, and using the SDK."
   }
 }

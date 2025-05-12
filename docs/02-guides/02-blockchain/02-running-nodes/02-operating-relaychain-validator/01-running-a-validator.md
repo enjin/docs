@@ -69,7 +69,7 @@ If you do not see the message, you can install a NTP client using the following 
 
 `sudo apt-get install ntp`
 
-Once installed, `ntpd` (the NTP client daemon) will start automatically. You can then query to ensure that system clock has synchronized by repeating the steps under [Checking System Clock Synchronization](/04-components/06-blockchain-infrastructure/02-operating-relaychain-validator/01-running-a-validator.md#checking-system-clock-synchronization).
+Once installed, `ntpd` (the NTP client daemon) will start automatically. You can then query to ensure that system clock has synchronized by repeating the steps under [Checking System Clock Synchronization](/02-guides/02-blockchain/02-running-nodes/02-operating-relaychain-validator/01-running-a-validator.md#checking-system-clock-synchronization).
 
 :::danger
 If you skip this step, your Validator may miss chances to author blocks. If the clock isn't accurate, the network may not accept the blocks you produce. This will result in ImOnline heartbeats making it on chain, but zero allocated blocks making it on chain.
@@ -77,7 +77,7 @@ If you skip this step, your Validator may miss chances to author blocks. If the 
 
 ### Running a Relaychain Node
 
-You can refer to the page on [Running a Relaychain Node](/04-components/06-blockchain-infrastructure/01-enjin-blockchain-nodes/02-run-relaychain-node.md) in order to get setup.
+You can refer to the page on [Running a Relaychain Node](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/02-run-relaychain-node.md) in order to get setup.
 
 #### Synchronize Chain State
 

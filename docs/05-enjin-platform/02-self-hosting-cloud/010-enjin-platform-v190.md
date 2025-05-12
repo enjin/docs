@@ -92,7 +92,7 @@ Save the config with `ctrl-x y` and restart nginx with `sudo service nginx resta
 
 Laravel Reverb uses node, so we will next need to build the app with `npm run build` this should also build the platform UI assets if you are using the `platform-ui` package too.
 
-Finally, if you are using supervisor to handle your long running commands (such as the ingest and queue workers) then you will then need to [restart both the queue worker and in the ingest commands](/02-guides/04-going-open-source/03-cloud-installation/011-restarting-the-platform.md) so they also use the latest code.  If the Platform Decoder was also updated and rebuilt then it should also be restarted.
+Finally, if you are using supervisor to handle your long running commands (such as the ingest and queue workers) then you will then need to [restart both the queue worker and in the ingest commands](/05-enjin-platform/02-self-hosting-cloud/011-restarting-the-platform.md) so they also use the latest code.  If the Platform Decoder was also updated and rebuilt then it should also be restarted.
 
 Please note that if you have configured supervisor to run your websocket server then you'll need to update the conf as follows e.g.:
 

@@ -53,7 +53,7 @@ description: "A complete guide to installing the Enjin blockchain platform, from
    :::info Platform Packages
    In this guide, we are installing platform-core package only, this is the only required package.  
    All other packages are optional.  
-   To install additional packages, check out the [Installing Additional Platform Packages](/02-guides/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md) section
+   To install additional packages, check out the [Installing Additional Platform Packages](/05-enjin-platform/02-self-hosting-cloud/03-installing-additional-packages.md) section
    :::
 
    ```bash
@@ -101,8 +101,8 @@ description: "A complete guide to installing the Enjin blockchain platform, from
     ```
 
 :::info Continue with the installation
-If you wish to use features such as Beam, Fuel Tanks, Marketplace, or UI, please continue to the [Installing Additional Packages](/02-guides/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md) page.  
-If not, please continue to the [Setting up the Decoder](/02-guides/04-going-open-source/03-cloud-installation/05-setting-up-the-decoder.md) page.
+If you wish to use features such as Beam, Fuel Tanks, Marketplace, or UI, please continue to the [Installing Additional Packages](/05-enjin-platform/02-self-hosting-cloud/03-installing-additional-packages.md) page.  
+If not, please continue to the [Setting up the Decoder](/05-enjin-platform/02-self-hosting-cloud/05-setting-up-the-decoder.md) page.
 :::
 
 ## Setup Automated Database Pruning

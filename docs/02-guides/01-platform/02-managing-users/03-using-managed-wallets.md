@@ -13,10 +13,10 @@ Managed wallets offer a seamless user experience by allowing you to create block
 This transparency lets users easily track the movement of items in and out of their wallets, aiding in user onboarding and providing clear, immutable on-chain data to track their tokens.
 
 :::info What you'll need:
-- Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- A [Collection](/02-guides/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add to the wallet.
+- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add to the wallet.
 :::
 
 ## Create Managed Wallets
@@ -191,7 +191,7 @@ Make sure to use the same Daemon wallet seed and password used to create Managed
 
 Once the Managed wallet is created, you can provide the `externalId` field of the Wallet object to any query or mutation that accepts a `Wallet.externalId` parameter, in order to use a Managed wallet instead of any other wallet.
 
-Lets look at the `GetWallet` query as an example, to [get the Public Key of an account](/02-guides/01-managing-tokens/09-fetching-token-holders.md), we use the account's address. `account: "address_here"`
+Lets look at the `GetWallet` query as an example, to [get the Public Key of an account](/02-guides/01-platform/01-managing-tokens/09-fetching-token-holders.md), we use the account's address. `account: "address_here"`
 
 However, to get the Public Key of a `Managed wallet`, we provide the `Wallet.externalId` parameter instead.
 
@@ -959,5 +959,5 @@ print(response.json())
 Make sure that `signingAccount` is set to the Managed Wallet address that owns that token.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::

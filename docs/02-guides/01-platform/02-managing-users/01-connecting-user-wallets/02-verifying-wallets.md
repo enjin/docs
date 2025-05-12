@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 The Enjin Platform offers a Wallet verifying process that you can use to verify the authenticity of a user's blockchain address. 
 
 :::tip
-If you need to send requests to user wallets, use [WalletConnect](/02-guides/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md) instead.
+If you need to send requests to user wallets, use [WalletConnect](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md) instead.
 :::
 
 :::info What you'll need:
@@ -701,5 +701,5 @@ print(response.json())
 ![Verify Flow Diagram](/img/guides/managing-users/verify-flow-diagram.png)
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::

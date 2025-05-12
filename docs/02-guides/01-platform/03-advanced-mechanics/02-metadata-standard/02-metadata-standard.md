@@ -19,7 +19,7 @@ For more details on the standard, refer to our [Universal Off-Chain Token Metada
 ### Creating Metadata
 
 :::info Need an example?
-For a complete example of Collection & Token metadata, check out the [Metadata Example page](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-example.md)
+For a complete example of Collection & Token metadata, check out the [Metadata Example page](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-example.md)
 :::
 
 :::warning **Important:** Attribute keys are case sensitive.
@@ -76,7 +76,7 @@ There are two ways to create metadata for your tokens:
    ```
 
 Whichever method you choose, it's crucial to ensure the metadata is structured according to the standard to maintain compatibility and present your tokens correctly.  
-For a detailed guide on adding metadata, please refer to our [Adding Metadata Tutorial](/02-guides/01-managing-tokens/03-adding-metadata.md).
+For a detailed guide on adding metadata, please refer to our [Adding Metadata Tutorial](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md).
 
 ### Dynamic Metadata Fetching
 

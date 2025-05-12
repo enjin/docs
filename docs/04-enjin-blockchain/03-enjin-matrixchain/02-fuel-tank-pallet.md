@@ -8,7 +8,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 :::info The Enjin Blockchain Console
 Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.  
-You may also check the [hands-on guide for creating and using fuel tanks](/02-guides/02-managing-users/04-using-fuel-tanks.md)
+You may also check the [hands-on guide for creating and using fuel tanks](/02-guides/01-platform/02-managing-users/04-using-fuel-tanks.md)
 :::
 
 ## What is a Fuel Tank?
@@ -82,7 +82,7 @@ The "Require token" setting determines that a specific token must be held by the
 ##### Require Signature:
 
 The "Require Signature" setting determines that a call must be signed by a specific account, and this signature must be included in the dispatch settings for the call to be accepted by the fuel tank.  
-If the signature is not provided, is invalid or is signed by a different account, the call will be rejected and fail. This feature is particularly useful with [managed wallets](/02-guides/02-managing-users/03-using-managed-wallets.md) to allow multiple controlled accounts to use the fuel tank without paying <GlossaryTerm id="storage_deposit" />s in advance.
+If the signature is not provided, is invalid or is signed by a different account, the call will be rejected and fail. This feature is particularly useful with [managed wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) to allow multiple controlled accounts to use the fuel tank without paying <GlossaryTerm id="storage_deposit" />s in advance.
 
 ##### Whitelisted Pallets:
 

@@ -136,8 +136,8 @@ You are also welcome to design your own 3D or 2D models to better suit your game
 
 To add utility to multiverse items, your game will need to:
 
-1. [Link player wallets to your game](/02-guides/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
-2. [Read the inventory from player wallets](/02-guides/02-managing-users/02-reading-user-wallets.md).
+1. [Link player wallets to your game](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+2. [Read the inventory from player wallets](/02-guides/01-platform/02-managing-users/02-reading-user-wallets.md).
 3. Validate ownership of the [multiverse items](#the-multiverse-collection).
 4. Provide an in-game benefit for each multiverse item.
 
@@ -147,7 +147,7 @@ Once you have completed these steps, [contact Enjin](https://enjin.io/contact) t
 
 Collection ID: `2967`
 
-To see if a user owns a multiverse item, use the [GetTokens query](/03-api-functions/01-queries/03-tokens-queries.md#gettokens) and filter based on Collection ID or Token IDs.
+To see if a user owns a multiverse item, use the [GetTokens query](/03-api-reference/01-queries/03-tokens-queries.md#gettokens) and filter based on Collection ID or Token IDs.
 
 | Token Name | Token IDs (Ranging From) | TokenIDs (Ranging To) |
 | :--- | :--- | :--- |

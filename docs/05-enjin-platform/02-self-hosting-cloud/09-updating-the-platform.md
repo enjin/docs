@@ -34,7 +34,7 @@ php artisan migrate
 php artisan platform-ui:rebuild
 ```
 
-Finally you will then need to [restart both the queue worker and in the ingest commands](/02-guides/04-going-open-source/03-cloud-installation/011-restarting-the-platform.md) so they also use the latest code.  
+Finally you will then need to [restart both the queue worker and in the ingest commands](/05-enjin-platform/02-self-hosting-cloud/011-restarting-the-platform.md) so they also use the latest code.  
 If the Platform Decoder was also updated and rebuilt then it should also be restarted.
 
 ## Confirming the update was successful

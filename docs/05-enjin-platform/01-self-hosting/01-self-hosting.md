@@ -1,6 +1,6 @@
 ---
 title: "Self Hosting"
-slug: "self-hosting"
+slug: "../self-hosting"
 description: "Find out how to set up self-hosting for your blockchain infrastructure, giving you control over your environment and data security."
 ---
 :::info Choosing the right platform for you

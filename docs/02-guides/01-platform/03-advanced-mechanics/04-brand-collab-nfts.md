@@ -76,7 +76,7 @@ By marking the utility of your game on the token’s metadata as "locked," and c
 
 ## Development
 
-If you're on the Self-Hosted Enjin platform, the steps for integrating multiverse features largely mirror the standard process of [reading wallets](/02-guides/02-managing-users/02-reading-user-wallets.md).
+If you're on the Self-Hosted Enjin platform, the steps for integrating multiverse features largely mirror the standard process of [reading wallets](/02-guides/01-platform/02-managing-users/02-reading-user-wallets.md).
 
 Here’s the Query you will need to use:
 

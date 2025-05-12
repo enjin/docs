@@ -20,7 +20,7 @@ When dispatching a transaction via a Fuel Tank, the following checks must pass:
 - The Fuel Tank allows dispatching this transaction.
 
 :::info What you'll need:
-- Some [Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
@@ -789,7 +789,7 @@ print(response.json())
 A WebSocket event will also be fired so you can pick up the Fuel Tank creation in real time by listening to the app channel on the WebSocket.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::
 
 ## Dispatching a Call Using a Fuel Tank
@@ -801,7 +801,7 @@ Use the `DispatchAndTouch` mutation to create a `UserAccount` and `Dispatch` at 
 :::
 
 :::tip Not sure which Fuel Tank to select?
-If you need help figuring out the best fuel tank to use for a transaction, check out this page: [Selecting a fuel tank to dispatch with](/04-components/05-enjin-matrixchain/02-fuel-tank-pallet.md#selecting-a-fuel-tank-to-dispatch-with).
+If you need help figuring out the best fuel tank to use for a transaction, check out this page: [Selecting a fuel tank to dispatch with](/04-enjin-blockchain/03-enjin-matrixchain/02-fuel-tank-pallet.md#selecting-a-fuel-tank-to-dispatch-with).
 :::
 
 ### Step #1: Prepare The Mutation
@@ -1032,7 +1032,7 @@ print(response.json())
 Once the mutation is sent, signed and broadcasted, If the transaction is eligible, the fuel tank will subsidize the transaction fees; otherwise, the transaction will fail.
 
 :::info Need to broadcast from Managed Wallet?
-To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](/02-guides/02-managing-users/03-using-managed-wallets.md#transferring-tokens-from-managed-wallets) page.  
+To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#transferring-tokens-from-managed-wallets) page.  
 It's important to note that the `signingAccount` argument should be added on the `Dispatch` mutation level, and **NOT** in the dispatch argument.  
 In the above example, to transfer the token from a managed wallet via a fuel tank:
 

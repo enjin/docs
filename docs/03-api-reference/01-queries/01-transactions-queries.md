@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md).\
+For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 

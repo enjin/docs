@@ -79,7 +79,7 @@ By default, the policies are flexible, but you can make them more strict. For ex
 - Market Policy: Whether each token within the collection should have forced marketplace royalties. Read more in the [#Create Token Parameters](#create-token-parameters) section below.
 - Explicit Royalty Currencies: List of tokens that will be allowed to be used as a royalty currency for each filled listing of a token withing the collection. If no tokens are provided, all tokens will be allowed to be used as a royalty currency.  
   Read more in the [#Create Token Parameters](#create-token-parameters) section below.
-- Attributes: The collection's attributes such as `name`, `description`, `media`, etc. These should be structured according to the [metadata standard](/02-guides/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
+- Attributes: The collection's attributes such as `name`, `description`, `media`, etc. These should be structured according to the [metadata standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
 When the collection is created, it will emit a `CollectionCreated` event. This event contains the collection id that is used to access the collection.
 
@@ -106,7 +106,7 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 
 #### Create Token Parameters
 
-- <GlossaryTerm id="token_id" />: A unique token identifier for the new <GlossaryTerm id="multitoken" />. View the [TokenID Structure](/02-guides/03-advanced-mechanics/01-tokenid-structure.md) page for more information.
+- <GlossaryTerm id="token_id" />: A unique token identifier for the new <GlossaryTerm id="multitoken" />. View the [TokenID Structure](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md) page for more information.
 - Initial Supply: The amount of token supply to initially <GlossaryTerm id="mint" /> to the recipient account.
 - Account Deposit Count: The number of accounts to reserve ENJ to, for <GlossaryTerm id="token_account_deposit" /> required for future `mint`/`transfer` operations. More info in the [#Account Deposit](#token-account-deposit) section below.
 - Supply Cap

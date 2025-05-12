@@ -33,10 +33,10 @@ A **freeze state** determines whether a token can be transferred and the conditi
   The token is always transferrable and cannot be frozen. Choose this state if you want the token to remain unrestricted in its movement across wallets and platforms.  
 
 :::info What you'll need:
-- Some [ Enjin Coin](/01-getting-started/03-using-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- A [Collection](/02-guides/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to freeze.
+- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to freeze.
 :::
 
 **There are two ways to Freeze / Thaw:**
@@ -1031,12 +1031,12 @@ print(response.json())
 Once the transaction is executed, the specified token will be thawed.
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
 :::tip Need to send a transaction request to user's wallet?
 This can be done using Enjin Platform API & WalletConnect!  
-To learn more, check out the [Using WalletConnect page](/02-guides/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
 :::

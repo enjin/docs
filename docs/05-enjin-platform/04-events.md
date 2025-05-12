@@ -100,7 +100,7 @@ query GetTransaction {
 
 Our platform broadcasts network events through a `WebSocket` channel, similar to the recent events feature in Polkadot-JS. It's important to note that this channel includes not only network-wide events but also specific events from the Enjin Platform.
 
-Learn more about [Websocket Events here](03-api-functions/03-websocket-events.md) .
+Learn more about [Websocket Events here](/05-enjin-platform/04-events.md) .
 
 ![Platform Events](/img/guides/going-open-source/platform-events.png)
 

@@ -22,18 +22,18 @@ Enjin is more than just a <GlossaryTerm id="blockchain" />; it's a suite of inte
 </div>
 
 - **Enjin Blockchain:** The core of the ecosystem, <GlossaryTerm id="enjin_blockchain" /> is a **<GlossaryTerm id="pos" />, dual-layer chain** built for **scalability, security, and ease of use** in game and app development. As a purpose-built <GlossaryTerm id="blockchain" /> for these applications, its protocol-level <GlossaryTerm id="nft" /> functionalities optimize creation, management, and transactions, ensuring efficiency and reliability.  
-*[Learn more about Enjin Blockchain Architecture](/04-components/06-blockchain-infrastructure/06-blockchain-infrastructure.md)*
+*[Learn more about Enjin Blockchain Architecture](/04-enjin-blockchain/04-enjin-blockchain.md)*
 - **The <GlossaryTerm id="enjin_platform" />:** This platform is your primary gateway to the <GlossaryTerm id="enjin_blockchain" />. Its robust <GlossaryTerm id="graphql" /> API allows you to manage digital assets, interact with users, and implement <GlossaryTerm id="blockchain" /> features without requiring deep <GlossaryTerm id="blockchain" /> expertise.  
-*[Explore the API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md)*
-- **Software Development Kits (SDKs) & Code Snippets:** To accelerate your development, Enjin offers official **[<GlossaryTerm id="sdk" />s](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md) (primarily in C# and C++)**. You'll also find **code snippets for common actions in <GlossaryTerm id="graphql" />, cURL, JavaScript, Node.js, and Python**. These resources include comprehensive documentation and examples to streamline integration.  
-*[Check out the SDKs page](/02-guides/05-integrations/01-software-development-kit/01-software-development-kit.md)*
+*[Explore the API Reference](/03-api-reference/03-api-reference.md)*
+- **Software Development Kits (SDKs) & Code Snippets:** To accelerate your development, Enjin offers official **[<GlossaryTerm id="sdk" />s](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md) (primarily in C# and C++)**. You'll also find **code snippets for common actions in <GlossaryTerm id="graphql" />, cURL, JavaScript, Node.js, and Python**. These resources include comprehensive documentation and examples to streamline integration.  
+*[Check out the SDKs page](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md)*
 - **Key Enjin Products:**
   - **<GlossaryTerm id="enjin_wallet" />:** A secure, user-friendly mobile wallet for storing, managing, and trading <GlossaryTerm id="nft" />s and other digital assets from the Enjin ecosystem and beyond.  
-*[Learn more about the Enjin Wallet](/04-components/07-enjin-wallet.md)*
+*[Learn more about the Enjin Wallet](/06-enjin-products/03-enjin-wallet.md)*
   - **<GlossaryTerm id="nft_io" />:** The official marketplace for the Enjin ecosystem, where users can discover, buy, sell, and trade <GlossaryTerm id="nft" />s, fostering a vibrant economy for your digital assets.  
   *[Visit NFT.io](https://nft.io)*
   - **<GlossaryTerm id="enjin_beam" />:** A powerful marketing tool for distributing <GlossaryTerm id="nft" />s in bulk via QR codes, links, or other methods—ideal for airdrops, rewards, and promotional campaigns.  
-  *[Discover Enjin Beam](/04-components/09-beam.md)*
+  *[Discover Enjin Beam](/06-enjin-products/05-beam.md)*
 
 ## What You Can Achieve with Enjin
 
@@ -45,13 +45,13 @@ Enjin empowers you to build innovative experiences by leveraging its unique feat
     Use the <GlossaryTerm id="enjin_platform" /> API and <GlossaryTerm id="sdk" />s to effortlessly embed rich <GlossaryTerm id="nft" /> functionalities. <GlossaryTerm id="mint" /> tokens on-demand, program asset transfers, implement freezing mechanics, retrieve <GlossaryTerm id="token" /> holder information, and execute a wide array of <GlossaryTerm id="nft" /> interactions with ease.
 3.  **Simplify User Onboarding with Managed Wallets:**
     Lower the entry barrier for users new to cryptocurrency by managing their wallets via the <GlossaryTerm id="enjin_platform" />. Users can enjoy seamless <GlossaryTerm id="blockchain" /> interactions and later choose to export their assets to their self-custody <GlossaryTerm id="enjin_wallet" />, significantly streamlining the Web2-to-Web3 transition.  
-    *[Read about Managed Wallets](/02-guides/02-managing-users/03-using-managed-wallets.md)*
+    *[Read about Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md)*
     <div class="video-container">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/WGVn4RST1Fc?si=H0BUdgo-4B_eSwcw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 4.  **Enhance User Experience with Fuel Tanks:**
     Improve the experience for users, especially those new to Web3, by subsidizing <GlossaryTerm id="transaction_fees" /> using <GlossaryTerm id="fuel_tank" />s. Create and fund on-chain pools with dynamic eligibility rules to abstract away <GlossaryTerm id="gas" /> fee complexities, making interactions smoother.  
-    *[Read about Fuel Tanks](/04-components/05-enjin-matrixchain/02-fuel-tank-pallet.md)*
+    *[Read about Fuel Tanks](/04-enjin-blockchain/03-enjin-matrixchain/02-fuel-tank-pallet.md)*
 ## Ready to Start Building?
 
 This overview offers a glimpse into the Enjin ecosystem. To get hands-on and begin your development journey, our Quick Start Guide is the perfect next step.

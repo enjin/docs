@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/01-getting-started/05-using-enjin-api/02-api-reference.md).\
+For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 
@@ -161,7 +161,7 @@ The `GetTokens` query allows you to retrieve an array of token data from a colle
 :::warning Reading Third-Party Tokens
 Please note that the Enjin Platform Cloud is set up to show only the collections and tokens that were created via the auth-ed Enjin Platform Cloud account.\
 To get a token that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.\
-Learn more about tracking a collection in the [Tracking Collections section](/02-guides/01-managing-tokens/09-fetching-token-holders.md#tracking-collections).
+Learn more about tracking a collection in the [Tracking Collections section](/02-guides/01-platform/01-managing-tokens/09-fetching-token-holders.md#tracking-collections).
 :::
 
 <Tabs>

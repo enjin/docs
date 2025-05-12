@@ -4,7 +4,7 @@ slug: "setting-up-the-ui"
 description: "Find out how to set up and customize the user interface for Enjin’s platform, improving user experience and functionality."
 ---
 :::warning This steps are required only if the UI package is installed
-If you want to use the Enjin Platform with a User Interface, make sure to [install the platform-ui package first](/02-guides/04-going-open-source/03-cloud-installation/03-installing-additional-packages.md)
+If you want to use the Enjin Platform with a User Interface, make sure to [install the platform-ui package first](/05-enjin-platform/02-self-hosting-cloud/03-installing-additional-packages.md)
 :::
 
 If you would like to use the Platform UI package then there is a separate install process to run through as follows, and make sure you have your authentication token handy to paste in.

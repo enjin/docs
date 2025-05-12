@@ -20,7 +20,7 @@ composer require enjin/platform-ui
 ```
 
 :::info Continue with the installation
-If your platform is already running, the [workers need to be restarted](/02-guides/04-going-open-source/03-cloud-installation/011-restarting-the-platform.md) for the changes to take effect.  
-If you just installed the `platform-ui` package, make sure to [set it up](/02-guides/04-going-open-source/03-cloud-installation/04-setting-up-the-ui.md) before using it.  
-If you haven't installed the `platform-ui` package, please continue to the [Setting up the Decoder](/02-guides/04-going-open-source/03-cloud-installation/05-setting-up-the-decoder.md) page
+If your platform is already running, the [workers need to be restarted](/05-enjin-platform/02-self-hosting-cloud/011-restarting-the-platform.md) for the changes to take effect.  
+If you just installed the `platform-ui` package, make sure to [set it up](/05-enjin-platform/02-self-hosting-cloud/04-setting-up-the-ui.md) before using it.  
+If you haven't installed the `platform-ui` package, please continue to the [Setting up the Decoder](/05-enjin-platform/02-self-hosting-cloud/05-setting-up-the-decoder.md) page
 :::
