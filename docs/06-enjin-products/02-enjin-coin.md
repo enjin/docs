@@ -1,12 +1,13 @@
 ---
-title: "Using Enjin Coin"
-slug: "using-enjin-coin"
-description: "Learn how to use Enjin Coin, the cryptocurrency powering the Enjin ecosystem, for creating, managing, and integrating blockchain-based assets in games and apps."
+title: "Enjin Coin"
+slug: "enjin-coin"
+description: "Learn about Enjin Coin, the cryptocurrency powering blockchain-based assets and transactions within the Enjin Ecosystem, from games to applications."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-<GlossaryTerm id="enjin_coin" /> is used to pay <GlossaryTerm id="transaction_fees" />  (also known as <GlossaryTerm id="gas" />), <GlossaryTerm id="storage_deposit" />, and to add <GlossaryTerm id="enj_infusion" /> to <GlossaryTerm id="multitoken" />s on the <GlossaryTerm id="enjin_blockchain" />.
+Enjin Coin (ENJ) is the native coin of the Enjin Blockchain, serving as the main token for performing actions and facilitating transactions on the network (staking, marketplace, governance, etc.)
+It is used to pay <GlossaryTerm id="transaction_fees" />  (also known as <GlossaryTerm id="gas" />), <GlossaryTerm id="storage_deposit" />, and to add <GlossaryTerm id="enj_infusion" /> to <GlossaryTerm id="multitoken" />s on the <GlossaryTerm id="enjin_blockchain" />.
 
 Enjin <GlossaryTerm id="coin" /> can come in three different forms:
 
@@ -42,7 +43,3 @@ Use `keepAlive: true` to **prevent accidental deletion**, especially when transf
 A <GlossaryTerm id="storage_deposit" /> of 0.01 ENJ is required for each <GlossaryTerm id="multitoken" /> holder.
 This deposit is also known as <GlossaryTerm id="token_account_deposit" />.
 Once <GlossaryTerm id="multitoken" />s are destroyed, or 'burned', this deposit is returned to the issuer's account proportionally.
-
-:::tip What's next?
-Learn how to [Use the Enjin Platform](./04-using-the-enjin-platform.md).
-:::
