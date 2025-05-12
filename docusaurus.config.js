@@ -89,6 +89,13 @@ const config = {
           {to: '/api-reference', label: 'API Reference', position: 'left'},
           {href: 'https://chatgpt.com/g/g-678f70643d2c8191a78baff699e46e5f-enjin-platform-ai', label: 'AI Assistant', position: 'left'},
           {href: 'https://enjin.io/changelog', label: 'Changelog', position: 'left'},
+          {href: '/tools', label: 'Tools', position: 'left'},
+          
+          {
+            href: 'https://console.enjin.io',
+            label: 'Blockchain Console',
+            position: 'right',
+          },
           {
             href: 'https://www.enjinstatus.com/',
             label: 'Service Status',
