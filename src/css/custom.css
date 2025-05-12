@@ -57,6 +57,16 @@
   --button-hover: #000;
 }
 
+[data-theme='light'] .DocSearch {
+  --docsearch-searchbox-background: #ebedf0;
+  --docsearch-searchbox-focus-background: #ffffff
+}
+
+[data-theme='dark'] .DocSearch {
+  --docsearch-searchbox-background: #1b1b1d;
+  --docsearch-searchbox-focus-background: #000000;
+}
+
 /* Hero section styles */
 .hero {
   padding: 6rem 0;
