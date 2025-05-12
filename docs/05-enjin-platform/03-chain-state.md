@@ -1,6 +1,6 @@
 ---
-title: "Chain State"
-slug: "chain-state"
+title: "Reading Chain State"
+slug: "reading-chain-state"
 description: "Learn how to monitor and manage the chain state for your Enjin blockchain platform, ensuring optimal performance and data integrity."
 ---
 

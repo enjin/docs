@@ -691,4 +691,4 @@ Indexing this data enables you to monitor the change over time and infer the inc
 
 - [Enjin Console](https://console.enjin.io/) has a dedicated page for [Staking](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking) and [Nomination Pools](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.blockchain.enjin.io#/staking/pools).
 
-- For more in-depth information, feel free to explore other topics within the [Enjin Relaychain](/04-enjin-blockchain/02-enjin-relaychain/01-enjin-relaychain.md) section.
+- For more in-depth information, feel free to explore other topics within the [Enjin Relaychain](/04-enjin-blockchain/02-enjin-relaychain/02-enjin-relaychain.md) section.

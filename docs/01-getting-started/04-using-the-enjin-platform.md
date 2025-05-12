@@ -582,7 +582,7 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 ### Receive Transaction Information by Listening to Platform Websocket Events
 
-You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-events.md)
+You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-working-with-events.md)
 
 :::info The <GlossaryTerm id="self_hosted_enjin_platform" />
 Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="self_hosted_enjin_platform" /> for the following reasons:
