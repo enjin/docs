@@ -1,8 +1,4 @@
 {
-  "label": "Enjin Platform",
-  "link": {
-    "type": "generated-index",
-    "description": "Learn about the Enjin Platform, an open-source framework for building NFT applications. It acts as a bridge between your application and the Enjin Blockchain, covering self-hosting, cloud deployment, architecture, and features."
-  }
+  "label": "Enjin Platform"
 }
   

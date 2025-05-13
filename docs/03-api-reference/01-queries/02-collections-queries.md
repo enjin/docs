@@ -211,7 +211,7 @@ The `GetCollection` query is a powerful tool for fetching detailed information a
 
 :::warning 🚧 Using the Enjin Platform Cloud?
 The Enjin Platform Cloud has collections and tokens scoping enabled, to ensure a better experience by only showing you collections and tokens you created using the cloud.\
-If you wish to fetch collections/tokens created outside of your cloud account, consider transitioning to the [Open-Source Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md).
+If you wish to fetch collections/tokens created outside of your cloud account, consider transitioning to the [Enterprise On-Prem Enjin Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md).
 :::
 
 The `GetCollections` query allows you to retrieve an array of collections. You can optionally filter the collections by providing a list of collection IDs that you are interested in.

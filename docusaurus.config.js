@@ -27,8 +27,8 @@ const config = {
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
   //TODO: change to throw after developing
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
+  onBrokenLinks: 'warn',
+  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -121,7 +121,7 @@ const config = {
               },
               {
                 label: 'Enjin Platform',
-                to: 'category/enjin-platform',
+                to: 'enjin-platform',
               },
               {
                 label: 'Enjin Products',

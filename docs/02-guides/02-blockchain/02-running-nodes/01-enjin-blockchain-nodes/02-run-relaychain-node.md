@@ -2,7 +2,7 @@
 title: "Run a Relaychain Node"
 slug: "run-relaychain-node"
 ---
-There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)).
+There are two different ways in which you can a Node, the first one being through Docker, and the second one through a Binary (either precompiled or [Built from Source](/enjin-blockchain-nodes/building-from-source)).
 
 ## Create Data Directory
 
@@ -116,11 +116,11 @@ If you are upgrading based on a build you've produced from the source code, you 
 
 ##### Git-cloned Repository
 
-You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary using the latest version.
+You should then fetch the latest changes using `git fetch` and then retrieve the source code of the latest tagged version `git checkout <tag>`. Once you have swapped to the latest source code for that release, you can simply run `cargo build --release` (as guided in [Building From Source](/enjin-blockchain-nodes/building-from-source)) to produce a new binary using the latest version.
 
 ##### Downloaded Repository
 
-In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/04-building-from-source.md)) to produce a new binary.
+In the event that the repository was directly downloaded, and not cloned via `git`, you will first need to download the source code for the latest version. Once done, extract the source code and navigate to the directory in a terminal. You can then run `cargo build --release` (as guided in [Building From Source](/enjin-blockchain-nodes/building-from-source)) to produce a new binary.
 
 ## Looking to run a validator?
 

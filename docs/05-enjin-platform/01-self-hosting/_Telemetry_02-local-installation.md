@@ -5,7 +5,7 @@ description: "Learn how to install Enjin's blockchain tools locally on your syst
 ---
 ## Running it locally
 
-The [Open-Source Enjin Platform](https://github.com/enjin/platform) was made to be as simple as possible to run, you will be able to have a full running environment in less than 5 minutes.
+The [Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform) was made to be as simple as possible to run, you will be able to have a full running environment in less than 5 minutes.
 
 ### 1\. Install Dependencies
 

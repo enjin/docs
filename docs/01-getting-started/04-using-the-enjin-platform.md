@@ -20,7 +20,7 @@ To get started, go ahead and create an account on the <GlossaryTerm id="enjin_pl
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-- The [Self-Hosted Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) which you can run locally to connect to either network.
+- The [Enterprise On-Prem Enjin Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) which you can run locally to connect to either network.
 :::
 
 ### Things you should know
@@ -584,15 +584,15 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-working-with-events.md)
 
-:::info The <GlossaryTerm id="self_hosted_enjin_platform" />
-Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="self_hosted_enjin_platform" /> for the following reasons:
+:::info The <GlossaryTerm id="enterprise_on_prem_platform" />
+Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="enterprise_on_prem_platform" /> for the following reasons:
 - Complete control over data and infrastructure.
 - Eliminates dependence on third-party servers.
 - Enhanced customization and scalability.
 - Ideal for projects requiring advanced features and customization options.
 - Ensures full ownership and autonomy over your NFT platform.
 
-To set it up, check out the [Self-Hosted Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) page.
+To set it up, check out the [Enterprise On-Prem Enjin Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) page.
 :::
 
 :::tip What's Next?

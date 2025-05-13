@@ -1,21 +1,21 @@
 ---
 title: "Self Hosting"
-slug: "../self-hosting"
-description: "Find out how to set up self-hosting for your blockchain infrastructure, giving you control over your environment and data security."
+slug: "../enterprise-on-prem"
+description: "Find out how to set up enterprise on-prem for your blockchain infrastructure, giving you control over your environment and data security."
 ---
 :::info Choosing the right platform for you
 There are two version of the Enjin Platform
 - The [Enjin Platform Cloud](http://platform.enjin.io/) 
   - A cloud-hosted version that you can start using straight away.
   - Ideal if you're new to Enjin or don't want to manage your own infrastructure. 
-- The [Self-Hosted Enjin Platform](https://github.com/enjin/platform) 
+- The [ Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform) 
   - A self-hosted solution that offers customization and full control over the software.
   - Best for those who are more tech-savvy. It gives you full control over the data and source code, allowing you to customize the platform extensively, including adding new features, writing your own Beam conditions or creating custom events. However, running it requires systems administration skills. You'll need to handle backups, updates, server maintenance, and set up internet access and SSL certificates for the platform.
 :::
 
-## Advantages of Self-Hosting the Enjin Platform
+## Advantages of Running the Enjin Platform On-Premises (Enterprise)
 
-Self-hosting offers significant benefits for app development:
+Enterprise On-Prem offers significant benefits for app development:
 
 - **Seamless Transactions**: Includes transaction retries, wallet nonce management, and gas estimation for smooth operations.
 - **Comprehensive Web3 Tools**: Offers a blockchain indexer, GraphQL API, and other vital infrastructure for efficient blockchain interaction.
@@ -85,7 +85,3 @@ The Enjin Platform sends notifications through WebSocket channels about activiti
 For instance, it alerts when a new collection is created. Clients can get these updates by subscribing their wallets to the WebSocket channel via the Enjin Wallet Daemon. 
 
 This daemon not only checks for transactions to sign but also listens for these event notifications, enabling real-time interaction and dynamic experiences on the platform.
-
-:::info
-[Download the Self-Hosted Platform](https://github.com/enjin/platform)
-:::

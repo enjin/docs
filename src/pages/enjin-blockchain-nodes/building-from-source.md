@@ -3,7 +3,7 @@ title: "Build Node From Source"
 slug: "build-node-from-source"
 ---
 :::info This is an advanced guide
-For pre-compiled binaries or for information on running a node via Docker, visit [Running a Node](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/01-running-a-node.md).
+For pre-compiled binaries or for information on running a node via Docker, visit [Running a Node](/guides/blockchain/running-nodes/enjin-blockchain-nodes/running-a-node).
 :::
 
 ## Building an Enjin Node
@@ -27,4 +27,4 @@ The following steps will build the latest version of the Enjin Matrixchain node 
 
 You will now find the compiled binary `at ./target/release/matrix`
 
-You can follow [these instructions](/02-guides/02-blockchain/02-running-nodes/01-enjin-blockchain-nodes/02-run-relaychain-node.md#binary) on running the binary.
+You can follow [these instructions](/guides/blockchain/running-nodes/enjin-blockchain-nodes/run-relaychain-node#binary) on running the binary.
