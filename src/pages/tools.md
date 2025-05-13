@@ -1,6 +1,6 @@
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-## Enjin Canary Testnet Tools
+## Canary Testnet Tools
 
 To save time and money, we recommend building your initial proof-of-concept on Enjin Canary <GlossaryTerm id="testnet" /> – the fast and free environment for testing Enjin's tools.
 
