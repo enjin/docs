@@ -2,7 +2,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 ## Canary Testnet Tools
 
-To save time and money, we recommend building your initial proof-of-concept on Enjin Canary <GlossaryTerm id="testnet" /> – the fast and free environment for testing Enjin's tools.
+To save time and money, we recommend building your initial proof-of-concept on Canary <GlossaryTerm id="testnet" /> – the fast and free environment for testing Enjin's tools.
 
 [Enjin Blockchain Mainnet](#enjin-blockchain-mainnet-tools) is <GlossaryTerm id="immutable" />, which means all transactions processed on it will exist on its ledger forever and attract gas fees and will exist on its ledger forever.
 
