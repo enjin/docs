@@ -25,7 +25,7 @@ To save time and money, we recommend building your initial proof-of-concept on C
 ---
 
 ## Enjin Blockchain Mainnet Tools
-Once you have successfully integrated [Enjin Canary Testnet](#enjin-canary-testnet-tools) into your game or app, you will be ready to launch on <GlossaryTerm id="mainnet" />.
+Once you have successfully integrated the [Canary Testnet](#enjin-canary-testnet-tools) into your game or app, you will be ready to launch on <GlossaryTerm id="mainnet" />.
 
 ### Launching on Mainnet
 1. Build on [Testnet](#enjin-canary-testnet-tools) first.
