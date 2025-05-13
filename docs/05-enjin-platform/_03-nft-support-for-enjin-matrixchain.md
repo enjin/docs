@@ -3,7 +3,7 @@ title: "NFT Support for Enjin Matrixchain"
 slug: "nft-support-for-enjin-matrixchain"
 description: "This guide provides three approaches to integrate NFT support on the Enjin Matrixchain."
 ---
-1. **Using Enjin Platform Cloud or Self-hosted Enjin Platform:** Utilizing the [Enjin Platform Cloud](https://enjin.io/technology/platform) or deploying a [self-hosted Enjin Platform](/05-enjin-platform/01-self-hosting/01-self-hosting.md) instance.
+1. **Using Enjin Platform Cloud or Self-hosted Enjin Platform:** Utilizing the [Enjin Platform Cloud](https://enjin.io/technology/platform) or deploying a [self-hosted Enjin Platform](/05-enjin-platform/01-enterprise-on-prem/01-enterprise-on-prem.md) instance.
 2. **Native Integration:** Direct interaction with the Enjin Matrixchain node using RPC and libraries like `@polkadotjs/api`.
 3. **Using Self-hosted Indexer:** Deploying a [self-hosted Enjin Matrixchain Indexer](/04-components/06-blockchain-infrastructure/03-running-enjin-matrixchain-indexer.md).
 
@@ -12,7 +12,7 @@ description: "This guide provides three approaches to integrate NFT support on t
 This approach is suitable for developers who do not want the complexities of interfacing with an RPC endpoint and instead want to either seamlessly integrate with an exhaustive GraphQL interface or need access to more complex or historical data. . There are two options:
 
 1. **Using Enjin Platform Cloud:** Enjin offers a cloud-based solution that abstracts the complexities of blockchain interactions and provides an easy-to-use API. Refer to the [Enjin Platform Cloud Guide](/01-getting-started/04-using-the-enjin-platform.md) for detailed integration steps.
-2. **Self-hosted Enjin Platform:** For those who wish to maintain control over the platform, setting up a self-hosted Enjin Platform is a viable option. Follow the instructions in the [Self-hosted Enjin Platform Setup Guide](/05-enjin-platform/01-self-hosting/01-self-hosting.md) .
+2. **Self-hosted Enjin Platform:** For those who wish to maintain control over the platform, setting up a self-hosted Enjin Platform is a viable option. Follow the instructions in the [Self-hosted Enjin Platform Setup Guide](/05-enjin-platform/01-enterprise-on-prem/01-enterprise-on-prem.md) .
 
 ## Native Integration
 
