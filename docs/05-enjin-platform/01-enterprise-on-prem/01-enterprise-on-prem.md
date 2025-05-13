@@ -1,5 +1,5 @@
 ---
-title: "Self Hosting"
+title: "Enterprise On-Prem"
 slug: "../enterprise-on-prem"
 description: "Find out how to set up enterprise on-prem for your blockchain infrastructure, giving you control over your environment and data security."
 ---
