@@ -584,17 +584,6 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-working-with-events.md)
 
-:::info The <GlossaryTerm id="enterprise_on_prem_platform" />
-Once you've fully tested the <GlossaryTerm id="enjin_platform_cloud" />, you may consider transitioning to the <GlossaryTerm id="enterprise_on_prem_platform" /> for the following reasons:
-- Complete control over data and infrastructure.
-- Eliminates dependence on third-party servers.
-- Enhanced customization and scalability.
-- Ideal for projects requiring advanced features and customization options.
-- Ensures full ownership and autonomy over your NFT platform.
-
-To set it up, check out the [Enterprise On-Prem Enjin Platform](/05-enjin-platform/01-enterprise-on-prem/01-enterprise-on-prem.md) page.
-:::
-
 :::tip What's Next?
 Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
 :::

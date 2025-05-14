@@ -66,7 +66,7 @@ The code repository can be found at https://github.com/enjin/platform
 It is recommended that the Enjin Wallet Daemon is installed and ran in isolation. This means running it on a dedicated server. The daemon itself is incredibly light-weight and does not require any extensive resources.
 
 :::tip Have Docker installed?
-If you don't have Docker installed, please review the [Enterprise On-Prem Enjin Platform Installation Guide](/05-enjin-platform/01-enterprise-on-prem/02-local-installation.md) for more information.
+If you don't have Docker installed, you may install either the docker engine or docker desktop, though if you have never used docker before we recommend using docker desktop: https://www.docker.com/products/docker-desktop
 :::
 
 You can do this by first cloning the `enjin/platform` repository from GitHub with the submodules:
