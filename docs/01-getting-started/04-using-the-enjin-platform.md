@@ -20,7 +20,7 @@ To get started, go ahead and create an account on the <GlossaryTerm id="enjin_pl
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
 - The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-- The [Enterprise On-Prem Enjin Platform](/05-enjin-platform/01-enterprise-on-prem/01-enterprise-on-prem.md) which you can run locally to connect to either network.
+- The [Enterprise On-Prem Enjin Platform](/05-enjin-platform/04-enterprise-on-prem/04-enterprise-on-prem.md) which you can run locally to connect to either network.
 :::
 
 ### Things you should know
@@ -582,7 +582,7 @@ To remove the pending events from the queue after fetching them, set the `acknow
 
 ### Receive Transaction Information by Listening to Platform Websocket Events
 
-You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/04-working-with-events.md)
+You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/03-working-with-events.md)
 
 :::tip What's Next?
 Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
