@@ -11,15 +11,15 @@ const FeatureList = [
     buttonText: 'Get Started',
   },
   {
-    title: 'Guides',
+    title: 'Integration Guides',
     description: 'Accelerate your development with official Enjin SDKs. Access comprehensive documentation, code examples, and usage guides for various languages and platforms.',
-    link: 'category/guides',
+    link: 'category/integration-guides',
     buttonText: 'View Guides',
   },
   {
     title: 'Enjin Tech-Stack',
     description: 'Understand the complete Enjin ecosystem. Get a high-level overview of how the Enjin Blockchain, Platform APIs, SDKs, Wallet, and Marketplace interconnect.',
-    link: 'components/enjin-tech-stack',
+    link: 'enjin-products/enjin-tech-stack',
     buttonText: 'View Tech-Stack',
   },
   {
