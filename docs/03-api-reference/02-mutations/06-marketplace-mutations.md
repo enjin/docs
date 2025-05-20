@@ -238,15 +238,10 @@ mutation FillListing {
 The `FillListing` mutation is a critical operation for buyers in a marketplace. Here's how you can use it:
 
 1. **Select Listing**: You specify the unique `listingId` of the listing you want to fill, indicating the asset you wish to purchase.
-
 2. **Quantity**: Determine the `amount` of the asset you want to buy. Ensure that this quantity matches the available quantity in the listing if it's a fixed price sale.
-
 3. **Transaction Submission**: Execute the mutation, triggering the transaction. The response will provide transaction details, including the initial state as "PENDING."
-
 4. **Transaction Processing**: The network processes the transaction, and eventually, the `transactionId` and `transactionHash` fields in the response will be updated with the respective values once confirmed.
-
 5. **Completion**: The successful execution of the `FillListing` mutation indicates that you have committed to the purchase, and the asset will be transferred to your wallet upon transaction confirmation.
-
 6. **Accepting Offers**: The mutation is also used by seller to accept a buy offer and sell the asset to the buyer.
 
 This mutation is essential for buyers to participate in the marketplace, finalize purchases, and take ownership of assets. It facilitates the transfer of both digital assets and funds between parties on the blockchain, ensuring a seamless and secure transaction process.
@@ -302,15 +297,6 @@ mutation FinalizeAuction {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **You** can use the `FinalizeAuction` mutation in scenarios where you have conducted an auction-based listing and need to complete the auction process. This includes:
-  - Officially transferring the auctioned asset to the winning bidder.
-  - Ensuring that the funds are allocated as per the auction terms.
-  - Providing finality to the auction and enforcing the bid commitments.
-
-It's important to note that `FinalizeAuction` is specific to auction listings and is used after the auction has ended. This mutation represents the final step in the auction process, marking the asset as officially won by the highest bidder and concluding the transaction.
-
 ## CancelListing
 
 The `CancelListing` mutation in used to cancel a listing on the Enjin Blockchain marketplace. This operation is typically performed by the seller or the system administrator and is used to remove an asset from a marketplace listing.
@@ -361,12 +347,3 @@ mutation CancelListing {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **You** can use the `CancelListing` mutation when you want to:
-  - Remove an asset from a marketplace listing.
-  - Take an asset off the market temporarily or permanently.
-  - Manage the availability of assets in the marketplace.
-
-By canceling a listing, you ensure that the asset is no longer available for purchase in the marketplace. This can be useful when an item is no longer for sale, is undergoing maintenance, or if the seller wants to withdraw it from the market for any reason. The cancellation is a critical aspect of marketplace management and allows you to maintain control over the assets listed in your platform.

@@ -21,9 +21,8 @@ For example, if a user has a particular token in their wallet, they might gain a
 - Only pull data from the collections you need. This will improve performance and ensure your backend infrastructure remains scalable.
 - Always read and check the balance. Sometimes, the player may appear to hold the token but the balance is actually zero, for instance, if the token has been burned. These burned tokens should not have in-game utility.
 - Consider whether you want NFTs that are listed on a marketplace to have utility in your game. Items that are listed for sale don't show up in regular token balance and show up in reserved balance instead. If you want them to have utility, you can check the reserved balance and include the reserved supply.
-- Consider if you need to use pagination. Users can have hundreds of tokens, in this situation you will need to read them in multiple calls.
+- When an API call response contains too many results, they are paginated. Users can have hundreds of tokens, in this situation you will need to read them in multiple calls. [Read more about Pagination here](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination).
 - If you plan to utilize metadata from on-chain or external sources, it's important to also read the token's attributes. Typically, you'll find a "uri" attribute that points to the external location of this metadata.
-- When accessing external metadata or media, make sure to do so asynchronously and think about storing it in a local cache for faster retrieval.
 :::
 
 ## Fetching a wallet with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)

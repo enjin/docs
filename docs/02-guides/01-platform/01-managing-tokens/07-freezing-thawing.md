@@ -8,14 +8,14 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-"Freezing" refers to the process of temporarily suspending the transferability of a collection or a specific token.
-
-This action provides you greater control over the movement of assets, enhancing security and enabling unique use-cases.
+"Freezing" refers to the process of temporarily suspending the transferability of a collection or a specific token. This action provides you greater control over the movement of assets, enhancing security and enabling unique use-cases.
 
 One such use-case is the implementation of "Soulbound" tokens. A Soulbound token is bound to a specific address and cannot be transferred out of the wallet it's minted on. This feature can be used to create unique gameplay mechanics, loyalty rewards, and more.
 
-Note, freezing only applies to transfers, which also results in marketplace listings being unpurchasable.  
+:::note
+Freezing only applies to <GlossaryTerm id="melt" />ing and transfers, which also results in marketplace listings being unpurchasable.  
 Freezing does not suspend token minting.
+:::
 
 ### Freeze States
 
@@ -46,7 +46,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-:::tip Note: Applying Freeze/Thaw Actions to Collections and Tokens  
+:::tip Applying Freeze/Thaw Actions to Collections and Tokens  
 This tutorial illustrates the process of freezing a collection.  
 However, the same steps can be applied to freeze or thaw tokens.  
 Simply navigate to the corresponding menu for tokens instead of collections, or for thawing instead of freezing.

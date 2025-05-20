@@ -4,10 +4,22 @@ slug: "verifying-wallets"
 description: "Learn how to verify user wallets to ensure secure and trustworthy transactions within the Enjin platform, enhancing security and reliability."
 ---
 
+import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Enjin Platform offers a Wallet verifying process that you can use to verify the authenticity of a user's blockchain address. 
+Before you can interact with a user's blockchain items or associate their in-app identity with their blockchain address, you need a reliable way to confirm they own the wallet they provide. The Enjin Platform's wallet verification process provides a secure method to achieve this.
+
+By verifying a user's wallet, you gain certainty that the public wallet address shared genuinely belongs to them. This verified link is essential for securely accessing their blockchain inventory, delivering items, or granting ownership-based perks within your application.
+
+The verification process typically involves:
+
+1. Your application requests a unique verification code and QR code from the Enjin API.
+2. The user scans the QR code with their <GlossaryTerm id="enjin_wallet_app" />.
+3. The <GlossaryTerm id="enjin_wallet_app" /> confirms ownership and securely provides the wallet address to the Enjin Platform.
+4. Your application retrieves the verified address from the Platform.
+
+Once verified, you can confidently associate this blockchain address with the user's account in your system, enabling seamless blockchain interactions.
 
 :::tip
 If you need to send requests to user wallets, use [WalletConnect](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md) instead.
@@ -16,8 +28,6 @@ If you need to send requests to user wallets, use [WalletConnect](/02-guides/01-
 :::info What you'll need:
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
-
-By using wallet verification, you can receive the user's wallet address with 100% certainty that this wallet is owned by the user.
 
 ## Verify Wallet with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
@@ -210,11 +220,12 @@ print(response.json())
 }
 ```
 
-This will generate a linking code from the Enjin Platform, which the user can scan with their Enjin Wallet. The wallet will then send their address to the Enjin Platform, allowing you to retrieve it
+This will return a link to a QR Code for you to display to your user, and a unique verification id to track the request.
+In your application, you'll display this QR code to your user and instruct them to scan it with their <GlossaryTerm id="enjin_wallet_app" />.
 
 ### Step 2: Verify Account
 
-Once the user has scanned the QR code using the Enjin Wallet, you can retrieve the account using two methods.
+To confirm that the user scanned the QR code and approved the request, you can retrieve the account using two methods.
 
 #### Option A: `GetWallet`
 

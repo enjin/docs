@@ -83,17 +83,6 @@ query GetBlocks {
   </TabItem>
 </Tabs>
 
-### Use Case
-
-This query is highly useful for obtaining a snapshot of data at specific points defined by block numbers. It serves various purposes:
-
-- Tracking the progress of block synchronization.
-- Identifying any failures in processing.
-- Providing a clear audit trail for the blocks processed by the system.
-- Efficiently managing and navigating through large sets of data.
-
-By using the `GetBlocks` query, you can systematically access and analyze block data, essential for maintaining the integrity and transparency of on-chain operations.
-
 ## GetTransaction
 
 The `GetTransaction` query allows you to retrieve detailed information about a specific transaction. It provides comprehensive details about the transaction, including its state, associated wallet, and related events.
@@ -367,11 +356,6 @@ query GetTransaction {
 ```
   </TabItem>
 </Tabs>
-
-
-### Use Case:
-
-By utilizing the `GetTransaction` query with the specified parameters, you can obtain detailed information about any transaction. This aids in tracking, verifying, and analyzing transactions, making it a valuable tool for development and monitoring.
 
 ## GetTransactions
 
@@ -672,11 +656,6 @@ query GetTransactions {
 ```
   </TabItem>
 </Tabs>
-
-
-### Use Case:
-
-By using the `GetTransactions` query with the specified parameters, you can retrieve and filter transactions based on your application's requirements. This query is valuable for applications that need to display transaction histories to users, perform transaction analysis, or maintain transaction records. The flexibility to filter transactions by various criteria makes it a versatile tool for querying and managing transactions.
 
 ## GetPendingEvents
 

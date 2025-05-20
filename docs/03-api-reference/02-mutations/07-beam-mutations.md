@@ -52,16 +52,6 @@ mutation CreateBeam {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **You** can use the `CreateBeam` mutation to set up Enjin Beam campaigns for various purposes:
-  - **Marketing and Promotions**: Distribute promotional items, rewards, or collectibles to engage users effectively.
-  - **Event Tie-ins**: Create time-limited Beam campaigns to coincide with events or special occasions.
-  - **Controlled Distribution**: Precisely control the distribution of tokens by specifying token IDs, claim quantities, and distribution types.
-  - **Flexibility**: Opt for the "MINT_ON_DEMAND" distribution type to mint tokens only when they are claimed, optimizing resource usage and ensuring tokens are created as needed.
-
-This mutation is a fundamental step in launching a new Enjin Beam campaign, allowing **you** to efficiently distribute tokens and interact with users through QR code-based token distribution.
-
 ## ClaimBeam
 
 The `ClaimBeam` is used to claim a specific Enjin Beam using a unique code. Enjin Beam is a method for distributing tokens, and this mutation allows users to claim their allocated tokens by providing the necessary code and cryptographic signature.
@@ -90,16 +80,6 @@ mutation ClaimBeam {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **You** can use the `ClaimBeam` mutation in various scenarios, including:
-  - **Digital Rewards**: Players can claim rewards for in-game achievements by entering a provided code within the game's interface. The mutation handles the claiming process in the background.
-  - **Promotional Campaigns**: Special promotions can distribute codes via email, social media, or partnerships, allowing users to redeem them for special in-game items or bonuses.
-  - **Cross-Platform Bonuses**: Players can claim rewards earned on one platform and use them on another platform by utilizing the `ClaimBeam` mutation.
-  - **Gifts and Trades**: Players can trade items or send gifts to others using codes. The recipient claims the item with the mutation, ensuring secure and authorized transfers.
-
-This mutation simplifies the asset claim process, making it convenient and secure for users. It eliminates the need for QR code scanning, which can be particularly advantageous in scenarios where scanning is not feasible or convenient. Additionally, it enables automated claiming processes within the game ecosystem, streamlining asset distribution.
-
 ## UpdateBeam
 
 The `UpdateBeam` mutation is used to modify the properties of an existing Enjin Beam. It allows you to update specific attributes of a Beam, such as its name, to ensure that the campaign remains accurate and adaptable.
@@ -126,15 +106,6 @@ mutation UpdateBeam {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- You can use the `UpdateBeam` mutation in various scenarios, including:
-  - **Campaign Adaptation**: If your marketing campaign evolves or changes its theme, you can use this mutation to update the Beam's name to reflect the new direction.
-  - **Error Correction**: If there was an error or typo in the original Beam name or any other updatable detail, you can correct it without the need to create a new Beam.
-  - **Dynamic Campaign Management**: As your campaign progresses, you have the flexibility to manage and update the Beam's details to keep them aligned with your campaign strategy.
-
-This mutation is a valuable tool for campaign management, offering the ability to make dynamic changes and ensure that your campaign remains relevant and up-to-date even after its initial creation.
-
 ## DeleteBeam
 
 The `DeleteBeam` mutation is used to delete an existing Enjin Beam from the system. It allows you to remove a Beam and all of its associated data based on its unique identifier code.
@@ -157,12 +128,3 @@ mutation DeleteBeam {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **You** can use the `DeleteBeam` mutation in various scenarios, including:
-  - **Campaign Closure**: When a promotional campaign or event ends, and the Beam is no longer needed, you can delete it to prevent clutter and confusion in your system.
-  - **Mistake Rectification**: If a Beam was created by mistake or no longer aligns with your campaign strategy, you can remove it to maintain a clean and relevant campaign portfolio.
-  - **Resource Management**: Deleting unused Beams is essential for efficient resource management and keeping your system organized.
-
-This mutation is a critical component of Beam lifecycle management, allowing you to maintain a streamlined and efficient system by removing obsolete or unwanted Beams.

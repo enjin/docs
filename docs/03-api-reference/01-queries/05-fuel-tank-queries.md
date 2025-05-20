@@ -98,14 +98,6 @@ query GetAccounts {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **Account Overview**: You can utilize the `GetAccounts` query to obtain a comprehensive overview of all accounts participating in a specific fuel tank. This information is valuable for monitoring usage patterns, conducting transaction audits, and efficiently managing the fuel tank.
-- **Administrative Tasks**: As an administrator, you can use this query to gain insights into the accounts within the fuel tank, facilitating effective account management and maintenance.
-- **Transaction Analysis**: The query provides essential data for analyzing transactions associated with the fuel tank's accounts, ensuring transparency and accountability in transaction fee subsidization.
-
-To make use of this query, provide the `tankId` of the desired fuel tank for which you want to retrieve account details. The response will include a structured list of participating accounts, allowing you to work with the data as needed.
-
 ## GetFuelTank
 
 The `GetFuelTank` query allows you to retrieve detailed information about a specific fuel tank within the Enjin API. Fuel tanks are utilized for subsidizing transaction fees on the Enjin Blockchain. This query provides an extensive overview of the fuel tank's configuration, ownership, and associated rules.
@@ -183,14 +175,6 @@ query GetFuelTank {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **Fuel Tank Management**: The `GetFuelTank` query is essential for managing and overseeing the configuration of a specific fuel tank. It provides detailed insights into the tank's name, ownership, deposit policies, associated accounts, and rule sets.
-- **Strategic Decision-Making**: Users, especially administrators, can use this query to make strategic decisions about how the fuel tank operates. It helps in assessing security, compliance, and overall functionality.
-- **Comprehensive Overview**: Unlike the `GetAccounts` query, which primarily focuses on the accounts within the fuel tank, `GetFuelTank` offers a broader and more configuration-centric overview of the entire fuel tank setup. It is valuable for understanding not only who is participating but also how the tank is configured and managed.
-
-To utilize this query, provide the `tankId` of the desired fuel tank for which you want to retrieve detailed information. The response will provide a comprehensive snapshot of the specified fuel tank's configuration and operation, aiding in effective management and decision-making.
 
 ## GetFuelTanks
 
@@ -297,10 +281,3 @@ query GetFuelTanks{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **Fuel Tank Management**: The `GetFuelTanks` query is valuable for managing and overseeing multiple fuel tanks within a system. It allows you to retrieve comprehensive data for multiple tanks in a single request, providing an efficient way to monitor and compare their configurations, rules, and ownership.
-- **Comparison and Analysis**: Users, especially administrators, can use this query to compare configurations and rules across different fuel tanks, making it easier to assess similarities and differences. It is particularly useful for analyzing and auditing multiple fuel tanks in bulk.
-
-To utilize this query, provide an array of `tankIds` representing the fuel tanks for which you want to retrieve detailed information. The response will provide a comprehensive snapshot of each specified fuel tank's configuration and operation, allowing you to efficiently manage and analyze multiple tanks in your system.

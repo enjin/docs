@@ -8,9 +8,18 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Managed wallets offer a seamless user experience by allowing you to create blockchain wallets for your users without requiring them to download any apps or take additional steps. 
+Managed wallets provide a seamless experience for your users by allowing you to create and manage blockchain wallets on their behalf. Users don't need to download any special apps or take extra steps, making it easier for them to get started with your application.
 
-This transparency lets users easily track the movement of items in and out of their wallets, aiding in user onboarding and providing clear, immutable on-chain data to track their tokens.
+This approach offers transparency, allowing users to easily track their digital assets. It simplifies user onboarding and provides clear, immutable on-chain data for tracking tokens, enhancing trust and engagement within your platform.
+
+Here's how the typical flow works:
+
+1. **[Managed Wallet Creation](#create-managed-wallets):** When a new user starts using your application, you initiate the creation of a managed wallet for them, and assign the user's internal ID from your database to the newly created managed wallet. This ensures a consistent link between the user and their wallet.
+2. **[Asset Management](#minting-tokens-to-managed-wallets):** As the user earns or deposits digital assets within your application, these assets are automatically stored in their managed wallet.
+3. **[In-App Transactions](#minting-tokens-to-managed-wallets):** Any actions the user performs within your application that involve their wallet (e.g., spending tokens, participating in in-game economies) are executed directly on their managed wallet.
+4. **[User Withdrawal (Optional)](#transferring-tokens-from-managed-wallets):** If a user decides they want to take full control of their assets, you can facilitate the transfer of all funds from their managed wallet to their own self-custodial wallet.
+
+This process ensures that users can interact with blockchain assets seamlessly within your application without needing to understand the underlying complexities of blockchain technology or operating his own crypto wallet.
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
@@ -19,12 +28,15 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add to the wallet.
 :::
 
+---
+
 ## Create Managed Wallets
 
 To create a Managed wallet, run the `CreateWallet` mutation, with a unique ID as a parameter.
 
 Choose a unique `externalId` for each player/user that can be cross-referenced later. This unique identifier should be something already associated with the player in your database, such as a player ID or username.  
 By doing so, you will be able to consistently link the Managed Wallet to the respective player.
+
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

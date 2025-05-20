@@ -44,14 +44,6 @@ mutation AcknowledgeEvents{
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use this mutation when you want to:
-
-- Ensure that certain events have been successfully processed or recognized.
-- Remove processed events from the cache to prevent it from growing excessively.
-- Optimize system performance by clearing unnecessary data from the cache.
-
 ## UpdateTransaction
 
 The `UpdateTransaction` mutation enables you to update an existing transaction with new information. This is useful for maintaining accurate transaction records and tracking the lifecycle of transactions.
@@ -78,15 +70,6 @@ mutation UpdateTransaction{
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use the `UpdateTransaction` mutation when you want to:
-
-- Update the state, transaction ID, signed block, or transaction hash of an existing transaction.
-- Ensure that off-chain transaction records accurately reflect on-chain details.
-- Track the progress and lifecycle of a transaction.
-- Respond dynamically to events, such as block confirmations or transaction finality.
-
 ## RetryTransactions
 
 The `RetryTransactions` mutation provides a mechanism to retry transactions that have previously failed. This is particularly useful for addressing transaction failures caused by temporary issues such as network congestion or gas price spikes.
@@ -109,11 +92,3 @@ mutation RetryTransactions{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can use the `RetryTransactions` mutation when:
-
-- You want to re-attempt processing of transactions that previously failed.
-- Transactions have failed due to temporary issues like network congestion or gas price spikes.
-- Avoid the need to manually re-create and resubmit each transaction, saving time and effort.

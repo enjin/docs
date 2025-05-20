@@ -70,12 +70,6 @@ mutation CreateCollection {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-Utilize the `CreateCollection` mutation for streamlined initiation of new on-chain collections, offering distinct benefits:
-
-- **Token Project Launch**: Perfect for new token ventures, it enables the structured organization and management of multiple tokens under one collection.
-
 ## ApproveCollection
 
 The `ApproveCollection` mutation is used to authorize another account (referred to as the "operator") to transfer tokens from a specific collection account. This operation is common in scenarios involving Non-Fungible Tokens (NFTs) or tokenized assets, where token management may need to be delegated without transferring ownership of the tokens.
@@ -129,13 +123,6 @@ mutation ApproveCollection {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use the `ApproveCollection` mutation when you need to delegate token management within a collection to another account without transferring ownership. Here are some scenarios where this mutation is beneficial:
-
-- **Delegated Token Management**: When users want to delegate the responsibility of managing their token transfers, they can use this mutation to grant specific accounts permission.
-- **Token Marketplaces**: Operators on token marketplaces can receive approval to list tokens from a collection on their platform for trading.
-
 ## UnapproveCollection
 
 The `UnapproveCollection` mutation is used to revoke previously granted permissions for a specific account (referred to as the "operator") to transfer items from a collection owned by the sender's account. This operation is essential for enhancing the security and control of digital assets, ensuring that the owner of a collection can manage who has the authority to move or transfer items from their collection.
@@ -187,14 +174,6 @@ mutation UnapproveCollection{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can use the `UnapproveCollection` mutation when you need to revoke a specific operator's permission to transfer items from a collection. Here are some scenarios where this mutation is beneficial:
-
-- **Changing Operators**: If the relationship between the owner of the collection and the operator changes, you can use this mutation to revoke the operator's access.
-- **Expired Permissions**: If the operator's permissions were set with a time limit or specific conditions that have now expired, you can revoke their access.
-- **Security Control**: Enhance the security of digital assets by providing a straightforward method to revoke access when needed.
 
 ## MutateCollection
 
@@ -253,14 +232,6 @@ mutation MutateCollection {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use the `MutateCollection` mutation when you need to make changes to an existing collection's default settings. Here are some scenarios where this mutation is beneficial:
-
-- **Royalty Adjustment**: You want to adjust the royalty settings for a collection, changing the beneficiary and the percentage of royalties received from token sales.
-- **Governance Updates**: To adapt to changing governance requirements or business agreements, you can modify collection parameters like royalties.
-- **Market Competitiveness**: To stay competitive in a marketplace, you may need to fine-tune collection settings to align with market practices.
-
 ## Burn
 
 The `Burn` mutation is used to permanently delete a specified amount of tokens from a collection. This operation is irreversible and results in the removal of tokens from circulation. When tokens are burned, the reserved value associated with them is often returned to the issuer's account.
@@ -317,14 +288,6 @@ mutation Burn {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use the `Burn` mutation when you need to permanently remove tokens from circulation in a collection. Here are some scenarios where this mutation is useful:
-
-- **Token Scarcity**: You want to increase the scarcity and value of remaining tokens by permanently deleting a portion of them.
-- **Value Reclamation**: In systems where tokens have reserved value (e.g., ENJ-backed tokens), burning allows you to reclaim this reserved value.
-- **Deflationary Models**: Burning tokens can be part of a deflationary economic model where tokens are periodically removed from circulation.
-
 ## DestroyCollection
 
 The `DestroyCollection` mutation is used to permanently delete an existing collection. This operation is irreversible and removes the entire collection, including all associated tokens and their reserved values.
@@ -373,14 +336,6 @@ mutation DestroyCollection{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can use the `DestroyCollection` mutation when you want to permanently remove an entire collection of tokens from the blockchain. Here are some scenarios where this mutation is useful:
-
-- **Unused Collections**: You have collections that are no longer needed or relevant, and you want to clean up the blockchain by removing them.
-- **Reclaim Reserved Value**: Destroying a collection releases any reserved value associated with it, which can be a significant amount of resources.
-- **Optimizing Blockchain Data**: By removing unused collections, you can optimize the data stored on the blockchain and reduce clutter.
 
 ## Freeze
 
@@ -433,14 +388,6 @@ mutation Freeze {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can use the `Freeze` mutation in various scenarios where temporary halting of transfers is required:
-
-- **Security Measures**: Freeze a collection or token in response to suspicious activities or during an investigation to secure the assets.
-- **Administrative Control**: Temporarily halt transfers for maintenance, upgrades, or administrative actions.
-- **Emergency Response**: Freeze assets in response to unforeseen events or emergencies to prevent harm or loss.
 
 ## SetCollectionAttribute
 
@@ -495,13 +442,6 @@ mutation SetCollectionAttribute {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `SetCollectionAttribute` mutation is useful for dynamically managing attributes within a collection. You can use it in various scenarios, such as:
-
-- Defining or updating characteristics of the collection, such as metadata or properties.
-- Ensuring that collections have the necessary metadata for display or functionality within your application.
-
 ## RemoveCollectionAttribute
 
 The `RemoveCollectionAttribute` mutation is designed to remove a specific attribute from an entire collection of tokens. Attributes typically represent metadata associated with the tokens, such as name, color, size, or any other descriptive information.
@@ -553,7 +493,3 @@ mutation RemoveCollectionAttribute {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `RemoveCollectionAttribute` mutation is useful for collection owners or maintainers who need to update or correct the metadata of a collection. It allows for the removal of an attribute that is no longer needed or was incorrectly added to all tokens within a collection. This helps in maintaining the accuracy and relevance of the token metadata, which is crucial for the functionality and value perception of NFTs within the collection.

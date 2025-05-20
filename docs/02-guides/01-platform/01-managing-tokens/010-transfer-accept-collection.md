@@ -12,6 +12,9 @@ import TabItem from '@theme/TabItem';
 - If you are transferring collection ownership, you also need to own a [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
 :::
 
+Collection ownership on the Enjin Blockchain grants specific permissions and control over a collection and its tokens.  
+The collection owner is the only account authorized to make changes to the collection or any tokens within it. This includes the exclusive ability to mint new tokens or mint additional supply of existing tokens in the collection.
+
 Transferring collection ownership is done in two steps:
 
 ## Step #1: Sending a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)

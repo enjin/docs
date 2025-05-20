@@ -83,15 +83,6 @@ mutation CreateToken {
 :::info
 For Token ID management, head to [Advamced Mechanics → TokenID Structure](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md)
 :::
-### Use Case:
-
-You can use the `CreateToken` mutation in various scenarios, including:
-
-- **Digital Collectibles**: Create unique digital collectible tokens within a collection, each with distinct characteristics.
-- **Digital Currencies**: Create tokens with dynamic supplies, such as "INFINITE," allowing flexibility in your token economy, and support for decimals with "decimalCount", for in-game "Currency" tokens, such as Gold Coins. [Read more on Currency Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-a-currency-token.md).
-- **Reward Tokens**: Issue reward tokens with predefined supply and pricing for loyalty programs or incentivizing user engagement.
-
-By utilizing the `CreateToken` mutation, you can manage and control the issuance of tokens, enabling various use cases that require the creation of digital assets with specific attributes and supply policies.
 
 ## MintToken
 
@@ -148,16 +139,6 @@ mutation MintToken {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can use the `MintToken` mutation in various scenarios, including:
-
-- **Token Rewards**: Mint additional tokens to reward users for specific actions or achievements application.
-- **Supply Management**: Increase the supply of a token to accommodate growing demand in a tokenized ecosystem.
-- **Inflation Control**: Adjust the supply of a token to maintain economic stability and control inflation.
-
-By utilizing the `MintToken` mutation, you have the flexibility to manage the supply of existing tokens in a controlled and transparent manner, ensuring that your tokenized ecosystem operates effectively and efficiently.
 
 ## BatchMint
 
@@ -226,17 +207,6 @@ mutation BatchMint {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-You can use the `BatchMint` mutation in various scenarios, including:
-
-- **Efficient Token Distribution**: When you need to distribute a large number of tokens to multiple recipients, batch minting reduces network congestion and minimizes transaction fees.
-- **Mass Token Creation**: When you want to mint a significant quantity of tokens at once, such as for rewards, promotions, or in-game assets.
-- **Resource Optimization**: To streamline the minting process and improve overall efficiency for both issuers and recipients.
-- **Cost Savings**: By consolidating minting actions into a single transaction, you can save on cumulative transaction fees.
-
-By utilizing the `BatchMint` mutation, you can efficiently manage the creation and distribution of multiple tokens, optimizing both time and resources.
-
 ## SetTokenAttribute
 
 The `SetTokenAttribute` mutation allows you to assign or update attributes for a specific token within a collection. It is used to manage individual token metadata and properties.
@@ -290,16 +260,6 @@ mutation SetTokenAttribute{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-You can utilize the `SetTokenAttribute` mutation in various scenarios, including:
-
-- **Token Metadata Management**: When you need to update or assign specific attributes to tokens, affecting how they are displayed or interacted with in applications.
-- **Non-Fungible Tokens (NFTs)**: Particularly important for NFTs, where each token represents a unique item or asset, and setting unique attributes ensures individuality.
-- **Customization**: Enabling customization of tokens within a collection, allowing you to tailor their properties to specific use cases.
-
-By using the `SetTokenAttribute` mutation, you can efficiently manage and customize the attributes of individual tokens, enhancing their utility and uniqueness.
 
 ## BatchSetAttribute
 
@@ -366,17 +326,6 @@ mutation BatchSetAttribute {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `BatchSetAttribute` mutation is valuable for various use cases, including:
-
-- **Efficient Metadata Management**: When you need to update or assign multiple attributes to a token within a collection, optimizing the metadata management process.
-- **Bulk Attribute Updates**: Useful for applications where the same set of attributes needs to be applied to multiple tokens, such as gaming assets, collectibles, or NFTs.
-- **Streamlined Token Customization**: When you want to customize the properties and features of tokens to suit specific use cases or user preferences.
-- **Reducing Transaction Overhead**: By combining multiple attribute updates into a single transaction, you can save on transaction fees and processing time, enhancing overall efficiency.
-
-The `BatchSetAttribute` mutation simplifies the process of updating token attributes within a collection, making it easier to manage and customize token properties.
 
 ## BatchTransfer
 
@@ -452,16 +401,6 @@ mutation BatchTransfer {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `BatchTransfer` mutation is a powerful tool for various use cases, including:
-
-- **Efficient Token Distribution**: When you need to distribute tokens to multiple recipients in a single transaction, reducing both transaction fees and processing time.
-- **Bulk Asset Movements**: Handling bulk asset transfers, which is common in non-fungible token (NFT) platforms, where users may purchase or receive multiple assets at once.
-- **Streamlining Operations**: Simplifying the process of transferring tokens in bulk, making it an essential function for managing tokens within a decentralized application (dApp).
-
-The `BatchTransfer` mutation is distinct from `BatchMint`, which is used for creating multiple tokens, and `BatchSetAttribute`, which updates token attributes. Instead, `BatchTransfer` focuses on efficiently transferring existing tokens from one account to multiple recipients, making it a valuable tool for managing token distribution within your dApp.
-
 ## SimpleTransferToken
 
 The `SimpleTransferToken` mutation simplifies the process of transferring a specific token from one wallet to another. It is a straightforward way to facilitate token transfers without the need for complex intermediary steps.
@@ -517,16 +456,6 @@ mutation SimpleTransferToken {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `SimpleTransferToken` mutation is useful in various scenarios, including:
-
-- **Peer-to-Peer Transactions**: Enabling direct transfers of tokens between two accounts without the need for intermediaries.
-- **Token Ownership Transfer**: Facilitating the transfer of ownership of tokens, especially in marketplaces or when transferring assets between users.
-- **Automated Token Distribution**: Streamlining the process of distributing tokens for purposes such as rewards, airdrops, or automated transactions.
-
-You can use `SimpleTransferToken` when you want to initiate a straightforward token transfer from one account to another. It simplifies the process, making it an essential function for handling token transfers.
 
 ## ApproveToken
 
@@ -584,16 +513,6 @@ mutation ApproveToken {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `ApproveToken` mutation is exceptionally useful in various scenarios, including:
-
-- **Fine-Grained Control**: Allowing token owners to delegate token management on a per-token basis, enabling precise control over who can transfer specific tokens and in what quantity.
-- **Unique Token Management**: Facilitating the handling of tokens with varying values, attributes, or utilities within a collection.
-- **Third-Party Management**: Enabling automated systems or trusted third parties to manage tokens without transferring ownership, a critical capability for various decentralized applications.
-
-You can use `ApproveToken` when you need to establish highly specific permission structures for individual tokens. It offers a sophisticated level of control that is vital for scenarios where each token may have distinct permissions and use cases.
-
 ## UnapproveToken
 
 The `UnapproveToken` mutation serves the purpose of revoking approval for a specific account (referred to as the "operator") to transfer a particular token from a token account. Unlike `UnapproveCollection`, which revokes permissions over an entire collection, `UnapproveToken` provides fine-grained control by targeting individual tokens within a collection. This level of precision is valuable when managing tokens with distinct values, attributes, or permissions within a collection.
@@ -647,16 +566,6 @@ mutation UnapproveToken{
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `UnapproveToken` mutation is particularly valuable in several scenarios, including:
-
-- **Precise Permission Control**: Allowing token owners to meticulously manage permissions for individual tokens within their collection, ensuring that each token's transferability is controlled as needed.
-- **Distinct Token Management**: Facilitating the management of tokens with varying values, attributes, or use cases within a collection.
-- **Revoking Unauthorized Access**: Revoking approval for operators who should no longer have permission to transfer specific tokens.
-
-You can utilize `UnapproveToken` when you need to maintain a high level of control over individual token permissions. It is especially essential when tokens within a collection have unique attributes, values, or permissions, and you want to ensure that unauthorized transfers are prevented.
-
 ## Freeze
 
 The `Freeze` mutation is a powerful tool that enables the temporary suspension of token transfers on a collection, token, collection account, or token account. This freezing action effectively prevents any further transfers from occurring, which also results in marketplace listings being unpurchaseable. The primary purpose of freezing is to provide administrative control, enhance security, investigate suspicious activities, or respond to unforeseen events that require the temporary halt of operations.
@@ -708,16 +617,6 @@ mutation Freeze {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `Freeze` mutation serves various important use cases, including:
-
-- **Security and Oversight**: You can use it to enhance the security of assets in the event of suspicious activities or during an investigation. Freezing prevents any further transfers that could compromise the assets.
-- **Administrative Control**: It provides a means for administrative actions on assets, such as during maintenance or upgrades, allowing you to pause transfers temporarily to make necessary adjustments.
-- **Emergency Response**: In unforeseen events that require an immediate response to prevent harm or loss, you can execute the freeze operation to halt all transfers and protect the assets from potential damage.
-
-You can leverage the `Freeze` mutation when you need to exercise control, oversight, or emergency response capabilities over collections, tokens, or accounts, ensuring the safety and integrity of your assets.
 
 ## Thaw
 
@@ -771,16 +670,6 @@ mutation Thaw{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `Thaw` mutation is instrumental in the following scenarios:
-
-- **Regaining Control**: If you own or administer a collection or token that was frozen for security, maintenance, or compliance reasons, you can use this mutation to regain full control and resume normal operations.
-- **Resuming Transactions**: You can unfreeze tokens to allow trading and transferring to continue.
-- **Dynamic Control**: It enables dynamic control over tokens, ensuring they remain compliant with external conditions or security protocols.
-
-By executing the `Thaw` mutation, you can effectively restore the functionality of frozen tokens or collections, ensuring they remain responsive to your needs and operational requirements.
 
 ## MutateToken
 
@@ -836,16 +725,6 @@ mutation MutateToken {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `MutateToken` mutation serves various essential purposes, including:
-
-- **Fine-Grained Control**: You can make precise changes to individual token attributes, allowing for customized management of token properties.
-- **Administrative Control**: It provides the ability to enforce restrictions or apply updates to a specific token, ensuring compliance with your platform's rules and policies.
-- **Token Lifecycle Management**: This mutation is crucial for managing the lifecycle events of tokens, enabling actions like freezing, updating, or enforcing specific behaviors.
-
-By executing the `MutateToken` mutation, you have the flexibility to tailor the attributes and behavior of individual tokens within your collection, ensuring they align with your specific requirements and use cases.
 
 ## OperatorTransferToken
 
@@ -904,14 +783,6 @@ mutation OperatorTransferToken{
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **You** can use the `OperatorTransferToken` mutation in various scenarios, including:
-  - **Gaming Platforms**: In online games, players may need to exchange in-game assets or currency, and operators can assist in managing these transfers securely.
-  - **Asset Management**: Trusted third-party services can help users manage and transfer their digital assets efficiently.
-
-This mutation is essential for scenarios where third-party services or platforms need the ability to manage tokens on behalf of the user. It provides a secure and controlled way to handle asset transfers, ensuring that the operator has the necessary permissions and authorization to perform these actions on behalf of users.
-
 ## RemoveAllAttributes
 
 Remove all attributes from a collection and token.
@@ -963,16 +834,6 @@ mutation RemoveAllAttributes {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `OperatorTransferToken` mutation plays a pivotal role in various scenarios where third-party services or platforms need the capability to manage tokens on behalf of users. This functionality is particularly useful in the following use cases:
-
-- **Marketplaces**: You can use this mutation to facilitate secure and trusted transfers of assets within online marketplaces, allowing operators to handle transactions.
-- **Gaming Platforms**: In the gaming industry, it enables operators to manage in-game assets and perform transfers or trades on behalf of players.
-- **Asset Management**: For any application where users' assets, such as tokens, need to be managed by trusted operators, this mutation ensures controlled and authorized asset management.
-
-By executing the `OperatorTransferToken` mutation, you empower trusted operators to handle token transfers, which is vital for enhancing user experiences and enabling secure asset management.
 
 ## RemoveTokenAttribute
 
@@ -1027,16 +888,6 @@ mutation RemoveTokenAttribute {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `RemoveTokenAttribute` mutation is a valuable tool for token owners or administrators who need to manage the metadata of individual tokens with precision. Here are some scenarios where this mutation is useful:
-
-- **Data Correction**: You can use it to correct errors in token attributes, ensuring the accuracy of metadata.
-- **Attribute Deletion**: When certain attributes of a token become irrelevant or need to be removed for any reason, this mutation allows for their deletion.
-- **Metadata Cleanup**: Over time, tokens may accumulate unnecessary attributes. This mutation aids in keeping token metadata clean and relevant.
-
-By executing the `RemoveTokenAttribute` mutation, you have granular control over the attributes associated with individual tokens, which is essential for maintaining data integrity and ensuring that token metadata remains accurate and up-to-date.
-
 ## TransferBalance
 
 The `TransferBalance` mutation is an operation designed for initiating the transfer of a specified amount of funds or balance from one account to another. It plays a fundamental role in enabling financial transactions by allowing users to send precise amounts of cryptocurrency or digital assets securely and transparently.
@@ -1089,16 +940,6 @@ mutation TransferBalance {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `TransferBalance` mutation is a critical component for various financial and asset transfer scenarios. Here are some common use cases:
-
-- **Peer-to-Peer Transactions**: You can use this mutation to enable users to send specific amounts of cryptocurrency or digital assets to others on your platform.
-- **Payment Processing**: For merchants and e-commerce platforms, this mutation facilitates secure and precise payments from customers.
-- **Budget Management**: In scenarios where users need to allocate specific amounts for specific purposes or budgeting, this mutation allows them to transfer precise amounts.
-
-By executing the `TransferBalance` mutation, you, as a developer, empower users to conduct accurate and secure financial transactions. It ensures the movement of assets between parties is conducted with the required precision and control.
-
 ## TransferAllBalance
 
 The `TransferAllBalance` mutation is designed for the purpose of transferring the entire balance from one account to another. It simplifies the process of moving all available funds from a sender's account to a recipient's account. This mutation is particularly useful for scenarios where you need to empty an account, consolidate funds from multiple accounts into one, or transfer ownership of an account by moving all assets to the new owner.
@@ -1150,16 +991,6 @@ mutation TransferAllBalance {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `TransferAllBalance` mutation is a versatile operation with various practical use cases, including:
-
-- **Emptying an Account**: You can use this mutation to completely empty a sender's account, ensuring that all available funds are transferred to another account.
-- **Consolidating Funds**: When you need to consolidate funds from multiple accounts into a single account, this mutation simplifies the process.
-- **Transferring Ownership**: In scenarios where you want to transfer ownership of an account, you can use `TransferAllBalance` to move all assets to the new owner's account, making it a seamless transition.
-
-By executing the `TransferAllBalance` mutation, you, as a developer, provide users with a powerful tool for efficiently managing their account balances. It simplifies asset transfer operations by moving all available funds, eliminating the need for users to specify the exact amount, and ensuring that accounts remain operational as needed.
-
 ## Infuse
 
 The Infuse mutation allows you to embed Enjin Coin (ENJ) into an existing token. This operation is crucial for enhancing the intrinsic value of digital assets, ensuring that they carry a guaranteed ENJ backing. By infusing ENJ, you provide tangible value to the token, which can only be retrieved through the process of "<GlossaryTerm id="melt" />ing" the token.
@@ -1199,14 +1030,3 @@ mutation Infuse{
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `Infuse` mutation can be utilized in various scenarios, including:
-
-- **Enhancing Asset Value**: Infuse ENJ into tokens to provide a base value, making them more attractive to collectors and investors.
-- **Gaming and Virtual Worlds**: Game developers can infuse ENJ into in-game items, ensuring they have real-world value and appeal to players.
-- **Loyalty Programs**: Businesses can issue tokens with infused ENJ, adding tangible value to customer loyalty points.
-- **Crowdfunding**: Projects can offer tokens infused with ENJ to backers, ensuring their contributions hold inherent value.
-
-By using the `Infuse` mutation, you can effectively increase the perceived and actual value of tokens, fostering trust and interest in your digital assets. Note that infusing is permitted only if you are the collection owner or if the token's `anyoneCanInfuse` state is set to true.

@@ -86,22 +86,6 @@ query GetBeam {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-Here's how you can use the `GetBeam` query in your application:
-
-- **Display Beam Information**: You can retrieve and display detailed information about a specific Beam to your users or audience. This can be especially useful during promotional campaigns or when presenting users with opportunities to claim assets.
-
-- **Check Claim Availability**: Before attempting to claim a Beam, you can use this query to check whether the Beam is currently claimable (`isClaimable`) and how many claims remain available (`claimsRemaining`). This helps you manage user expectations and ensure they can claim the asset.
-
-- **QR Code Generation**: If your application involves generating QR codes for Beam claims, you can extract the QR code URL and payload from the response to facilitate the QR code creation process.
-
-- **Embed Beam Details**: You can embed Beam details into your application or website, making it convenient for users to learn about and interact with Beams as part of your blockchain asset distribution strategy.
-
-- **Real-time Monitoring**: You can use this query to monitor the real-time usage of a Beam, allowing you to gather analytics and track the effectiveness of your promotional campaigns and asset distribution efforts.
-
-Overall, the `GetBeam` query is a valuable tool for managing and presenting information about Beams within your blockchain-based application, enabling a seamless and informative experience for your users.
-
 ## GetBeams
 
 The `GetBeams` query is used to retrieve an array of beam details, optionally filtered by codes or names. This query is particularly useful for applications that need to fetch information about multiple Beams at once, making it easier to manage and display Beam data.
@@ -337,24 +321,6 @@ query GetBeams {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-Here's how you can use the `GetBeams` query in your application:
-
-- **Retrieve Multiple Beam Details**: You can use this query to fetch details about multiple Beams at once, making it efficient for managing a collection of Beams.
-
-- **Filter Beams**: You can optionally filter Beams by their unique codes or names to retrieve specific subsets of Beams that match your criteria.
-
-- **Display Beam Information**: You can display the retrieved Beam details in your application, providing users with information about available Beams, their descriptions, and whether they are currently claimable.
-
-- **Track Claims**: By accessing the `claims` information, you can track the claims made on each Beam, including claim status, quantity, and wallet details. This can be valuable for monitoring the distribution of digital assets.
-
-- **Generate QR Codes**: You can use the URL provided in the `qr` object to generate QR codes for users to claim Beams directly from your application.
-
-- **Analyze Beam Usage**: The query allows you to gather data on how many claims have been made on each Beam and when they were claimed, enabling you to analyze user engagement and the effectiveness of promotional campaigns.
-
-Overall, the `GetBeams` query is a versatile tool for managing and presenting information about Beams in your blockchain-based application, offering insights into asset distribution and user interactions.
-
 ## GetClaims
 
 The `GetClaims` query is used to retrieve an array of claim details from a system, and it allows for optional filtering based on claim IDs, codes, accounts, or states. This query is typically used to track and manage claims associated with specific assets or codes in a system.
@@ -575,16 +541,6 @@ query GetClaims {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **You** can use the `GetClaims` query to retrieve claim details associated with specific codes, allowing you to:
-  - Track the status of claims for particular assets or codes in your system.
-  - Monitor the progress of claim processing.
-  - Provide updates to users or administrators regarding claim statuses.
-  - Perform audits and manage the distribution of assets based on claim information.
-
-By filtering claims based on codes, you can efficiently manage and track claims for different assets or products in your system. This query is valuable for administrative purposes, customer support, and ensuring the smooth processing of claims within your platform.
-
 ## GetSingleUseCodes
 
 The `GetClaims` query retrieves an array of claim details, optionally filtered by claim IDs, claim codes, accounts, or claim states. It is designed to provide information about claims associated with a specific code.
@@ -655,11 +611,3 @@ query GetSingleUseCodes {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **You** can use the `GetClaims` query to track the status of claims associated with a specific code in your system.
-- This query is helpful for administrative purposes, such as auditing, claim processing, or customer service.
-- **You** can provide updates on claim statuses to users, ensuring that claims are being processed correctly.
-- By retrieving the quantity and potential wallet information, **you** can manage the distribution of assets and identify any issues with claims.
-- This information allows **you** to monitor the progress of claim processing and take appropriate actions as needed.
