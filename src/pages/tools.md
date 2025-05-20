@@ -22,6 +22,7 @@ To save time and money, we recommend building your initial proof-of-concept on C
 | [cENJ Faucet](https://faucet.canary.enjin.io/)            | Use this faucet to load testnet tokens (cENJ) into your account, enabling you to process unlimited transactions on the testnet for free.                                                |
 | [NFT.io Marketplace](https://canary.nft.io)     | The Enjin Blockchain’s on-chain NFT marketplace that can be natively integrated into your games and apps                                                                                |
 | [Subscan Block Explorer](https://canary-matrix.subscan.io/) | Allows you to extract, visualize, and review Canary data, including vital information about transactions, such as transaction history, wallet balances, fees, and other useful metrics. |
+| [Enjin Ecosystem Slack Community](https://enj.in/ecosystem-slack) | Join the official Enjin Ecosystem Slack community to connect with other developers and community members. |
 ---
 
 ## Enjin Blockchain Mainnet Tools
@@ -42,3 +43,4 @@ Once you have successfully integrated the [Canary Testnet](#canary-testnet-tools
 | [Enjin Coin](https://enjin.io/enjin-coin)                 	| Research Enjin Coin, the native currency that you can use to process transactions on the Enjin Blockchain.                                                                                        	|
 | [NFT.io Marketplace](https://nft.io)         	| The Enjin Blockchain’s on-chain NFT marketplace that can be natively integrated into your games and apps                                                                                          	|
 | [Subscan Block Explorer](https://matrix.subscan.io/)     	| Allows you to extract, visualize, and review Enjin Blockchain data, including vital information about transactions, such as transaction history, wallet balances, fees, and other useful metrics. 	|
+| [Enjin Ecosystem Slack Community](https://enj.in/ecosystem-slack) | Join the official Enjin Ecosystem Slack community to connect with other developers and community members. |
