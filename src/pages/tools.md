@@ -22,13 +22,14 @@ To save time and money, we recommend building your initial proof-of-concept on C
 | [cENJ Faucet](https://faucet.canary.enjin.io/)            | Use this faucet to load testnet tokens (cENJ) into your account, enabling you to process unlimited transactions on the testnet for free.                                                |
 | [NFT.io Marketplace](https://canary.nft.io)     | The Enjin Blockchain’s on-chain NFT marketplace that can be natively integrated into your games and apps                                                                                |
 | [Subscan Block Explorer](https://canary-matrix.subscan.io/) | Allows you to extract, visualize, and review Canary data, including vital information about transactions, such as transaction history, wallet balances, fees, and other useful metrics. |
+| [Enjin Ecosystem Slack Community](https://enj.in/ecosystem-slack) | Join the official Enjin Ecosystem Slack community to connect with other developers and community members. |
 ---
 
 ## Enjin Blockchain Mainnet Tools
-Once you have successfully integrated the [Canary Testnet](#enjin-canary-testnet-tools) into your game or app, you will be ready to launch on <GlossaryTerm id="mainnet" />.
+Once you have successfully integrated the [Canary Testnet](#canary-testnet-tools) into your game or app, you will be ready to launch on <GlossaryTerm id="mainnet" />.
 
 ### Launching on Mainnet
-1. Build on [Testnet](#enjin-canary-testnet-tools) first.
+1. Build on [Testnet](#canary-testnet-tools) first.
 2. Get some [ENJ](https://enjin.io/enjin-coin) to use.
 3. Create an Enjin [Platform Cloud account](https://platform.enjin.io/), create a collection, and mint your tokens.
 4. Transition from the <GlossaryTerm id="testnet" /> to the <GlossaryTerm id="mainnet" /> endpoints.
@@ -42,3 +43,4 @@ Once you have successfully integrated the [Canary Testnet](#enjin-canary-testnet
 | [Enjin Coin](https://enjin.io/enjin-coin)                 	| Research Enjin Coin, the native currency that you can use to process transactions on the Enjin Blockchain.                                                                                        	|
 | [NFT.io Marketplace](https://nft.io)         	| The Enjin Blockchain’s on-chain NFT marketplace that can be natively integrated into your games and apps                                                                                          	|
 | [Subscan Block Explorer](https://matrix.subscan.io/)     	| Allows you to extract, visualize, and review Enjin Blockchain data, including vital information about transactions, such as transaction history, wallet balances, fees, and other useful metrics. 	|
+| [Enjin Ecosystem Slack Community](https://enj.in/ecosystem-slack) | Join the official Enjin Ecosystem Slack community to connect with other developers and community members. |

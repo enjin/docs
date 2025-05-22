@@ -41,12 +41,16 @@ From here, you can customize your collection's Mint Policy, Market Policy, and A
 
 - **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.  
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md).
-- **Cap -** The token cap (if required).
-  - The **Infinite** supply type is the most flexible. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply.
-  - The **Fixed** supply type offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined max supply. Burned tokens can be re-minted, ensuring the total supply remains constant.
-  - The **Collapsing** supply type is the most strict. This supply type allows the collection owner to mint new tokens as long as the circulating supply does not exceed the max supply. However, burning tokens reduces the max supply, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
-- **Token Royalty Settings -** The market behavior for the token.
-- **Attributes -** Set the token details which are details stored in pairs, like a title and its content. Certain attributes, such as the `URI`, `name`, and `description`, have special roles that are understood by many platforms and marketplaces. If you're new, simply link to a JSON file that lists all the token's details. Make sure to check out the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
+- **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required).
+  - The **[Infinite](/03-api-reference/04-important-arguments.md#infinite)** supply type is the most flexible. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply.
+  - The **[Fixed](/03-api-reference/04-important-arguments.md#supply)** supply type offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined max supply. Burned tokens can be re-minted, ensuring the total supply remains constant.
+  - The **[Collapsing](/03-api-reference/04-important-arguments.md#collapsing_supply)** supply type is the most strict. This supply type allows the collection owner to mint new tokens as long as the circulating supply does not exceed the max supply. However, burning tokens reduces the max supply, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
+- **[Token Royalty Settings](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token.
+- **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Set the token details which are details stored in pairs, like a title and its content. Certain attributes, such as the `URI`, `name`, and `description`, have special roles that are understood by many platforms and marketplaces. If you're new, simply link to a JSON file that lists all the token's details. Make sure to check out the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
+
+:::info Learn more about the arguments
+For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
+:::
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
 

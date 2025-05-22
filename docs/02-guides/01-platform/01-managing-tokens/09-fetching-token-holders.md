@@ -1,23 +1,22 @@
 ---
 title: "Fetching Token Holders"
 slug: "fetching-token-holders"
-description: "Learn how to fetch token holder data using the Enjin API, giving you insights into who holds your blockchain assets."
+description: "Fetch token and collection holders using the Enjin Platform API."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+This guide explains how to fetch the current holders of a specific token or the owners of a collection using the Enjin Platform API.
+
+Accessing this data is valuable for several purposes:
+- **Identify Token Holders:** Get a list of addresses that hold your tokens or own items from your collection.
+- **Targeted Actions:** Use the list to perform actions specifically for your holders or owners, such as distributing rewards or communicating directly.
+- **Analyze Distribution:** Understand how your tokens or collection items are distributed among users.
+
 :::info What you'll need:
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
-
-This is useful for several reasons:
-
-- **User Base Identification:** You can easily identify your user base by fetching token holders.
-- **Loyalty Rewards:** Reward your loyal users by selectively minting new tokens for them.
-- **Valuable Insights:** Analyze user behavior and interactions to gain valuable insights.
-- **Engage Power Users:** Recognize and engage with influential power users who hold a significant amount of tokens.
-- **Improved User Experience:** By retrieving token holder data, you can enhance the overall user experience and make informed, data-driven decisions.
 
 ## Fetching Token Holders with the [Enjin API](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)
 

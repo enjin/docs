@@ -1,5 +1,5 @@
 ---
-title: "Burning / Destroying Tokens and Collections"
+title: "Melting / Destroying Tokens and Collections"
 slug: "burning-destroying-tokens"
 description: "Understand the process of burning or destroying tokens in the Enjin ecosystem, allowing you to permanently remove assets from circulation."
 ---
@@ -8,43 +8,43 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-"Burning" refers to the process of decreasing a token's supply and removing it from circulation, or in some cases, even removing the token from the blockchain entirely.  
-Burning a token with <GlossaryTerm id="enj_infusion" /> (often called "Melting") releases the Infused ENJ to the holder.
+"Melting" (often called "Burning") refers to the process of decreasing a token's supply and removing it from circulation, or in some cases, even removing the token from the blockchain entirely.  
+Melting a token with <GlossaryTerm id="enj_infusion" /> releases the Infused ENJ to the holder.
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
-- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) or a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to burn/destroy.
+- A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) or a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to melt/destroy.
 :::
 
-**There are two ways to Burn a token:**
+**There are two ways to Melt a token:**
 
 1. [Using the Platform User Interface](#option-a-using-the-enjin-dashboard)
 2. [Using the GraphQL API](#option-b-using-the-enjin-api--sdks)
 
 ## Option A. Using the Enjin Dashboard
 
-### Burning token's supply
+### Melting token's supply
 
 In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
-**Locate the token** you wish to burn, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Burn**" button.
+**Locate the token** you wish to melt, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Burn**" button.
 
-![Burning a Token](/img/guides/managing-tokens/burning-token.gif)
+![melting a Token](/img/guides/managing-tokens/burning-token.gif)
 
-Insert the amount of tokens to Burn, and click on the "**Burn**" button.
+Insert the amount of tokens to melt, and click on the "**Burn**" button.
 
 <p align="center">
-  <img src={require('/img/guides/managing-tokens/burn-token-form.png').default} alt="Burn Token Form" />
+  <img src={require('/img/guides/managing-tokens/burn-token-form.png').default} alt="Melt Token Form" />
 </p>
 
 The Transaction Request will then appear in the "**Transactions**" menu.
 
 <p align="center">
-  <img src={require('/img/guides/managing-tokens/burn-token-banner.png').default} width="600" alt="Burn Transaction Request Banner" />
+  <img src={require('/img/guides/managing-tokens/burn-token-banner.png').default} width="600" alt="Melt Transaction Request Banner" />
 </p>
 
-![Pending Burn Transaction](/img/guides/managing-tokens/pending-burn-token-txn.png)
+![Pending melt Transaction](/img/guides/managing-tokens/pending-burn-token-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 
@@ -58,15 +58,15 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 - The token has no attributes
   - If the token has attributes, you can remove the attributes by clicking the **3 vertical dots** (**⋮**) next to the token, followed by "**Attributes**" and selecting "**Remove All"**. 
 - The token has 0 supply
-  - If the token has supply, you can follow the above guide [Burning token's supply](#burning-tokens-supply) to remove all token supply (as long as you own all of the token's supply)  
-  Note - you can remove the supply and destroy the token in the same Burn transaction.
+  - If the token has supply, you can follow the above guide [Burning token's supply](#melting-tokens-supply) to remove all token supply (as long as you own all of the token's supply)  
+  Note - you can remove the supply and destroy the token in the same melt transaction.
 :::
 
-Burning a token and destroying it are two different actions.  
-The action demonstrated above is the action of burning a token, which decreases it's circulating supply.  
+Melting a token and destroying it are two different actions.  
+The action demonstrated above is the action of melting a token, which decreases it's circulating supply.  
 While destroying a token removes the token from the blockchain, and retrieves the <GlossaryTerm id="storage_deposit" /> to the collection owner.
 
-To destroy a token, follow the above instructions for Burning a token, but make sure to tick the `Remove Token Storage` box.
+To destroy a token, follow the above instructions for Melting a token, but make sure to tick the `Remove Token Storage` box.
 
 <p align="center">
   <img src={require('/img/guides/managing-tokens/remove-token-storage.png').default} width="600" alt="Destroying a Token" />
@@ -108,7 +108,7 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 
 ## Option B. Using the Enjin API & SDKs
 
-### Burning token's supply
+### Melting token's supply
 
 Use the `Burn` mutation:
 

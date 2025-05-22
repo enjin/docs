@@ -36,7 +36,8 @@ Important to keep in mind:
 
 ## Creation parameters
 
-It's worth noting that `tokenId` is the ID of the Degen NFT you hold. `PoolId` may or may not match the `tokenId`, this wont change anything, but is worth keeping in mind. Duration is defined in `eras`, where `1 era = 24 hours` on Enjin Relaychain, and minimum value is set at `30 eras`.
+It's worth noting that `tokenId` is the ID of the Degen NFT you hold. `PoolId` may or may not match the `tokenId`, this wont change anything, but is worth keeping in mind. `Duration` is defined in `eras`, where `1 era = 24 hours` on Enjin Relaychain, and minimum value is set at `30 eras`. `Capacity` is the maximum amount of [sENJ](/04-enjin-blockchain/02-enjin-relaychain/01-validator-staking.md#tokens-overview) that can be staked in the pool. The maximum Capacity is determined by the Degen's token `max_pool_capacity` attribute.  
+Note that this is sENJ, not ENJ. To learn more about the difference, [check out the Validator Staking page](/04-enjin-blockchain/02-enjin-relaychain/01-validator-staking.md).
 
 ![](/img/components/enjin-relaychain/12.png)
 

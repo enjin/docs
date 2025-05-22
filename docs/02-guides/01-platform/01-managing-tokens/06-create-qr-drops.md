@@ -8,11 +8,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<GlossaryTerm id="enjin_beam" /> is a QR code-based distribution system that allows users to claim tokens directly into their Enjin Wallet. 
-
-By scanning a Beam QR code, users can receive promotional items, collectibles, or other tokens as part of marketing campaigns or events.
-
-This is a great way for you to onboard new users.
+<GlossaryTerm id="enjin_beam" /> is a simple way to distribute digital assets like tokens and collectibles using QR codes. Users just need to scan a Beam QR code with their Enjin Wallet to receive tokens directly. It's a great tool for marketing campaigns, events, or promotions to give away items and easily bring new users into your ecosystem.
 
 :::info What you'll need:
 - Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
@@ -28,21 +24,39 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Beams](https://platform.canary.enjin.io/beams/list)**". Then, click the "**[Create Enjin Beam](https://platform.canary.enjin.io/create/beam)**" button.
+1.  Log in to your Enjin Platform account.
+2.  In the main menu, go to "**Beams**" ([https://platform.canary.enjin.io/beams/list](https://platform.canary.enjin.io/beams/list)).
+3.  Click the "**Create Enjin Beam**" button ([https://platform.canary.enjin.io/create/beam](https://platform.canary.enjin.io/create/beam)).
 
 ![Creating a Beam](/img/guides/managing-tokens/create-beam.gif)
 
-Fill in the beam settings and optional arguments in the corresponding fields.
+Now, you'll fill out the details for your Beam:
+
+- **Beam Settings:** Configure the basic properties of your Beam.
+  - **Collection ID:** Select the collection that contains the tokens you want to distribute.
+  - **Beam Metadata:** Give your Beam a name, description, and add an image. This is what users will see when they scan the QR code.
 
 <p align="center">
   <img src={require('/img/guides/managing-tokens/create-beam-form.png').default} width="800" alt="Create Beam Form" />
 </p>
 
-Fill the tokens that you want to include in this Beam (You can add more tokens by adding the "**Add Token**" button)
+- **Tokens to Distribute:** This is where you define which tokens are given out and how many.
+    - A single Beam is made up of one or more "Beam Claims". Each time a user scans the QR code and successfully receives a token, they are redeeming one **Beam Claim**.
+    - **[Token IDs](/03-api-reference/04-important-arguments.md#tokenid):** Specify the IDs of the specific tokens you want to distribute with this claim.
+    - **[Claim Quantity](/03-api-reference/04-important-arguments.md#claimquantity):** This sets how many individual Beam Claims you want to create for each selected Token ID.
+    - **[Token Quantity Per Claim](/03-api-reference/04-important-arguments.md#tokenquantityperclaim):** This sets how many units of the token a user receives *each time* they redeem a single Beam Claim. For example, if you're giving out stacks of 5 gold coins with each claim, set this to 5.
+    - **[Type](/03-api-reference/04-important-arguments.md#beam-claim-type):** Choose whether redeeming a claim will `MINT` a brand new token or `TRANSFER` an existing token from your account balance.
 
 <p align="center">
   <img src={require('/img/guides/managing-tokens/create-beam-form-2.png').default} width="800" alt="Create Beam Form 2" />
 </p>
+
+:::tip Use **[Flags](/03-api-reference/04-important-arguments.md#flags)** for advanced options and more control
+  - **Single-use:** This important flag changes how the QR code works.
+  - **Default (Single-use OFF):** You get one main QR code for the entire Beam. When a user scans it, the system randomly picks one of the available Beam Claims to give them.
+  - **Single-use ON:** A *unique QR code* is generated for *every single Beam Claim*.
+    - **Why use Single-use?** It gives you precise control over which specific claim (and thus which token) goes to which person. It's also more secure for private distributions; you can share individual QR codes with specific users without worrying about a main QR code being leaked publicly.
+:::
 
 Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.  
 If a signature request is needed, approve it.
@@ -51,8 +65,8 @@ Once the Beam is created, locate it in the "**Beams**" menu, click the **3 verti
 
 ![Claiming a Beam](/img/guides/managing-tokens/claim-beam.gif)
 
-:::warning Need to view multiple "Single-Use" QR codes?
-Please note, viewing multiple "Single-Use" QR codes is currently not available in the Platform User Interface.  
+:::warning Need to get all of the "Single-Use" QR codes?
+Please note, viewing all of the "Single-Use" QR codes is currently not available in the Platform User Interface.  
 For the time being, it can be viewed programmatically only via [Enjin API & SDKs](#option-b-using-the-enjin-api--sdks)
 :::
 

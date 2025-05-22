@@ -6,7 +6,7 @@ description: "Discover how to use the Enjin Discord Bot to integrate blockchain 
 <div class="video-container">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/n4pUAWuPiS0?si=-fKbdXA25kQSmvUR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
-
+---
 The Enjin Discord Bot offers an advanced integration solution, enabling users to seamlessly connect their wallets. Utilizing this secure wallet connection, the bot is capable of automatically assigning specific roles based on the user's collection and NFT holdings.
 
 ## Step #1: Add the Enjin Bot to your discord server

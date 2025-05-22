@@ -52,6 +52,16 @@ Enjin empowers you to build innovative experiences by leveraging its unique feat
 4.  **Enhance User Experience with Fuel Tanks:**
     Improve the experience for users, especially those new to Web3, by subsidizing <GlossaryTerm id="transaction_fees" /> using <GlossaryTerm id="fuel_tank" />s. Create and fund on-chain pools with dynamic eligibility rules to abstract away <GlossaryTerm id="gas" /> fee complexities, making interactions smoother.  
     *[Read about Fuel Tanks](/04-enjin-blockchain/03-enjin-matrixchain/02-fuel-tank-pallet.md)*
+
+## Enjin Ecosystem Slack
+
+Join the official [Enjin Ecosystem Slack community](
+https://enj.in/ecosystem-slack) to connect with other developers and community members. It's a great place to:
+
+- Ask questions and get help
+- Share your projects and ideas
+- Interact directly with Atlas Development, a core contributor to Enjin
+
 ## Ready to Start Building?
 
 This overview offers a glimpse into the Enjin ecosystem. To get hands-on and begin your development journey, our Quick Start Guide is the perfect next step.

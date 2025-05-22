@@ -20,9 +20,9 @@ Enjin Blockchain allows you to create customized <GlossaryTerm id="token_id" /> 
 
 For the currency token options, configure the metadata parameter, which consists of 3 values:
 
-- Name: The token name (e.g. Gold Coins).
-- Symbol: A short symbol that represents the token (e.g. GOLD).
-- Decimals: Max amount of decimals supported for this token (e.g. 2 would mean the token can support up to 2 decimals, like 5.75 Gold Coins).
+- **Name:** The token name (e.g. Gold Coins).
+- **Symbol:** A short symbol that represents the token (e.g. GOLD).
+- **Decimals:** Max amount of decimals supported for this token (e.g. 2 would mean the token can support up to 2 decimals, like 5.75 Gold Coins).
 
 :::warning Important Note on Decimals Support
 The `decimalCount` property specifies how token balances should be displayed in applications, but it does not allow for actual fractional values on the Enjin Blockchain.  

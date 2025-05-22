@@ -72,14 +72,6 @@ mutation CreateFuelTank {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **Fuel Tank Creation**: You can use the `CreateFuelTank` mutation when you need to establish a new fuel tank. This is a crucial step in configuring the tank's behavior, specifying rules, and defining its role in managing transactions and accounts.
-- **Customized Transaction Environment**: By providing parameters like `accountRules`, `dispatchRules`, and budget details, you can customize the fuel tank's behavior to suit your specific transactional requirements. For example, you can set token requirements, whitelist specific callers, and define transaction limits.
-- **Idempotent Requests**: The `idempotencyKey` ensures that repeated requests with the same key do not result in duplicate fuel tank creations, maintaining consistency in your system.
-
-To create a fuel tank, provide the necessary parameters, execute the `CreateFuelTank` mutation, and receive a response that includes the initial state of the request and placeholders for transaction-related information, which will be updated as the process progresses. This mutation forms the foundation for configuring and managing fuel tanks within your network.
-
 ## DestroyFuelTank
 
 The `DestroyFuelTank` mutation is used to permanently remove an existing fuel tank from the system. This operation is essential for efficient resource management, allowing you to clean up unused or unnecessary fuel tanks within your network infrastructure.
@@ -130,15 +122,6 @@ mutation DestroyFuelTank {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **Fuel Tank Cleanup**: You can use the `DestroyFuelTank` mutation when you need to permanently remove an existing fuel tank that is no longer needed in your system. This operation helps in freeing up valuable resources and ensuring that only relevant and active fuel tanks remain operational.
-- **Resource Efficiency**: By regularly cleaning up unused or obsolete fuel tanks, you can maintain the efficiency and cost-effectiveness of your network infrastructure. It also reduces clutter and simplifies the management of fuel tanks.
-- **Transaction Record**: The response provides transaction-related information, such as `transactionId` and `transactionHash`, allowing you to track the progress and completion of the destroy operation.
-- **Idempotency**: The `idempotencyKey` ensures that if you accidentally submit the same destroy request multiple times, it will not result in duplicate operations, maintaining the integrity of your system.
-
-To destroy a fuel tank, provide the `tankId` parameter, execute the `DestroyFuelTank` mutation, and receive a response that includes the status of the destroy request and relevant transaction details. This mutation is a valuable tool for managing your network's resources effectively.
 
 ## AddAccount
 
@@ -194,14 +177,6 @@ mutation AddAccount {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **User Access Control**: You can use the `AddAccount` mutation when you want to grant access to a specific user, allowing them to interact with a particular fuel tank. This enables dynamic access control without manual intervention.
-- **Automated User Management**: By using this mutation, you automate the process of adding users to fuel tanks on a per-tank basis, streamlining the management of user access.
-- **Access Tracking and Auditing**: The mutation allows you to track and audit changes to the access list of a fuel tank, ensuring transparency and accountability in user management.
-
-To add a new account to a fuel tank, provide the `tankId` and `userId` parameters, execute the `AddAccount` mutation, and receive a response with details about the transaction and the added account. This mutation simplifies user management within your network.
-
 ## BatchAddAccount
 
 The `BatchAddAccount` mutation is designed for efficiently adding multiple new user accounts to a specified fuel tank in a single batch operation. This feature is particularly useful when you need to add several accounts at once, reducing the number of individual requests and optimizing resource usage.
@@ -254,14 +229,6 @@ mutation BatchAddAccount {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **Efficient User Management**: You can utilize the `BatchAddAccount` mutation when you need to efficiently manage multiple user accounts within a specific fuel tank. This batch operation reduces the number of requests, saving time and resources.
-- **Cost and Resource Optimization**: In systems where transaction costs or processing times are significant factors, using `BatchAddAccount` can be cost-effective and resource-efficient. Instead of sending multiple individual requests, you streamline the process with a single batch request.
-- **Bulk User Access**: When you want to grant access to multiple users simultaneously, such as in a shared resource environment, `BatchAddAccount` simplifies the task of adding multiple accounts to a fuel tank, ensuring that access is granted efficiently.
-
-To add multiple new user accounts to a fuel tank, provide the `tankId` and an array of `userIds` as parameters, execute the `BatchAddAccount` mutation, and receive a response with details about the batch operation. This batch operation is a valuable tool for managing access control efficiently within your system.
-
 ## BatchRemoveAccount
 
 The `BatchRemoveAccount` mutation is designed for efficiently removing multiple user accounts from a specified fuel tank in a single batch operation. This feature is particularly useful when you need to remove several accounts at once, reducing the number of individual removal requests and optimizing resource usage.
@@ -312,14 +279,6 @@ mutation BatchRemoveAccount {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-- **Efficient User Management**: You can utilize the `BatchRemoveAccount` mutation when you need to efficiently manage the removal of multiple user accounts from a specific fuel tank. This batch operation reduces the number of removal requests, saving time and resources.
-- **Access Revocation**: When you want to revoke access for multiple users simultaneously, such as in cases where users no longer need access or during user clean-up, `BatchRemoveAccount` simplifies the process of removing multiple accounts from a fuel tank efficiently.
-- **Maintenance and Cleanup**: `BatchRemoveAccount` is valuable for maintaining fuel tank user lists by enabling the removal of multiple accounts at once. It helps ensure that only authorized and necessary users have access to the fuel tank.
-
-To remove multiple user accounts from a fuel tank, provide the `tankId` and an array of `userIds` as parameters, execute the `BatchRemoveAccount` mutation, and receive a response with details about the batch removal operation. This batch operation is a valuable tool for efficiently managing user access control within your system.
 
 ## Dispatch
 
@@ -381,14 +340,6 @@ mutation Dispatch {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **Automated Workflows**: You can utilize the `Dispatch` mutation in automated systems where specific actions need to be triggered on behalf of users or automated accounts. This is particularly valuable when you want the fuel tank to handle the associated costs.
-- **Cost Attribution**: `Dispatch` enables complex workflows by allowing the fuel tank to assume the cost of the operation. This ensures that the execution of commands is automated while adhering to established rules and protocols.
-- **Transaction Fee Management**: When you need to automate actions and ensure that transaction fees are covered, `Dispatch` provides the means to handle these aspects seamlessly.
-
-To use `Dispatch`, provide the `tankId`, `ruleSetId`, `dispatch` object with the call details, and optionally set `paysRemainingFee`. Execute the mutation and receive a response with information about the dispatch operation. This mutation empowers you to automate and streamline complex operations within your system while maintaining compliance with established rules.
-
 ## DispatchAndTouch
 
 The `DispatchAndTouch` mutation combines the functionalities of the `Dispatch` mutation with the ability to create an account for the calling entity (`origin`) if it doesn't already exist. This mutation is especially valuable in scenarios where the caller's account may not have been set up in advance, streamlining the process of both executing an operation and ensuring account existence.
@@ -449,14 +400,6 @@ mutation DispatchAndTouch {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-- **Automated Workflows**: You can utilize the `DispatchAndTouch` mutation in automated systems where specific actions need to be triggered, and you want to ensure that the caller has an account. This is particularly useful when the caller's account may not have been set up beforehand, as `DispatchAndTouch` can create it on the fly.
-- **Account Creation Assurance**: `DispatchAndTouch` provides the assurance that the caller has an account, even if one didn't exist previously, streamlining the interaction process.
-- **Cost and Account Management**: It allows you to manage both the costs associated with operations and the creation of accounts within the parameters set by the fuel tank's `user_account_management` settings. If account creation is not allowed, `DispatchAndTouch` will handle the necessary checks and notify you accordingly.
-
-To use `DispatchAndTouch`, provide the `tankId`, `ruleSetId`, `dispatch` object with the operation details, and optionally set `paysRemainingFee`. Execute the mutation, and receive a response with information about the dispatch operation and account creation. This mutation simplifies workflows by automating both the execution of operations and the account setup, ensuring smooth interactions within your system.
-
 ## SetConsumption
 
 The `SetConsumption` mutation enables you to manually set the fuel consumption for a specific fuel tank. It allows you to override the current fuel consumption data with the values provided in the mutation arguments. This can be useful for making adjustments, corrections, or administrative changes to fuel consumption records.
@@ -514,15 +457,6 @@ mutation SetConsumption {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `SetConsumption` mutation serves various purposes and can be particularly valuable in scenarios such as:
-
-- **Manual Adjustments**: When you need to manually adjust fuel consumption to regulate usage.
-- **Administrative Overrides**: For administrative purposes, you can use `SetConsumption` to override consumption data, making it useful for any situation where you need to take control of consumption rates.
-
-To use `SetConsumption`, provide the `tankId`, `ruleSetId`, `userId`, `totalConsumed`, and `lastResetBlock`. Execute the mutation to set the desired consumption data. This mutation offers flexibility in managing fuel consumption records and allows you to make precise adjustments when needed.
-
 ## InsertRuleSet
 
 The `InsertRuleSet` mutation is used to add a new rule set to a fuel tank. It allows you to define specific rules and requirements for the fuel tank's operation.
@@ -577,18 +511,6 @@ mutation InsertRuleSet {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `InsertRuleSet` mutation is valuable for scenarios where you need to define and add new rule sets to fuel tanks. It allows you to set specific requirements and conditions for how the fuel tank should operate.
-
-Here's how you can use it:
-
-- **Adding Custom Rules**: You can use `InsertRuleSet` to insert custom rule sets that dictate how the fuel tank should behave in different situations.
-- **Defining Requirements**: You can specify requirements such as the need for a particular token collection and token ID, ensuring that the fuel tank follows specific criteria.
-- **Tracking Progress**: The mutation provides feedback on the state and details of the insertion, helping you monitor the progress and outcome of the operation.
-
-By adding new rule sets, you can tailor the behavior of the fuel tank to suit your specific use cases and requirements, providing flexibility and control over its operations.
 
 ### Rules
 
@@ -691,12 +613,6 @@ mutation MutateFuelTank {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `MutateFuelTank` mutation is valuable for scenarios where you need to modify specific Fuel Tank configurations. It allows you to define the nature of the mutation you want to perform, such as changing the `coveragePolicy`, `reservesAccountCreationDeposit` or `accountRules`.
-
-By applying specific mutations to fuel tanks, you can tailor their functionality to suit your specific use cases and requirements, providing flexibility and control over their attributes.
-
 ## RemoveAccount
 
 The `RemoveAccount` mutation is used to remove a specified user account from a fuel tank. This mutation is particularly useful for managing the accounts associated with a fuel tank.
@@ -747,17 +663,6 @@ mutation RemoveAccount {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `RemoveAccount` mutation is valuable for scenarios where you need to manage the user accounts associated with a fuel tank. It allows you to specify which account should be removed from the fuel tank, providing control and flexibility over the accounts.
-
-Here's how you can use it:
-
-- **Account Management**: You can use `RemoveAccount` to remove specific user accounts from a fuel tank, ensuring that only authorized users have access.
-- **Track Progress**: The mutation provides feedback on the state and details of the removal, helping you monitor the progress and outcome of the operation.
-
-By using this mutation, you can effectively manage the accounts linked to a fuel tank, ensuring security and compliance with your application's requirements.
 
 ## RemoveAccountRuleData
 
@@ -815,16 +720,6 @@ mutation RemoveAccountRuleData {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `RemoveAccountRuleData` mutation is valuable for scenarios where you need to manage the rules associated with a user's account on a fuel tank. Here's how you can use it:
-
-- **Rule Management**: You can use `RemoveAccountRuleData` to delete specific rules that have been applied to a user's interactions with a fuel tank. This allows you to adjust the permissions or operational rules as needed.
-- **Compliance**: If certain rules are no longer applicable or need to be updated to comply with changing policies or requirements, you can remove them using this mutation.
-- **Customization**: This mutation provides flexibility in managing account-specific rules, allowing you to tailor the user experience and permissions.
-
-By using `RemoveAccountRuleData`, you can effectively manage the rules and requirements associated with user accounts on a fuel tank, ensuring that the system operates according to your desired policies and compliance standards.
-
 ## RemoveRuleSet
 
 The `RemoveRuleSet` mutation is utilized to completely remove an existing set of rules from a specified fuel tank. Rule sets represent collections of conditions or constraints that govern the usage and access to the fuel tank. Removing a rule set becomes necessary when you need to modify operational policies, or a rule set is no longer applicable to the fuel tank's operations.
@@ -875,16 +770,6 @@ mutation RemoveRuleSet {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `RemoveRuleSet` mutation is valuable for various scenarios:
-
-- **Simplification**: You can use it to simplify or reduce the complexity of the operational rules associated with a fuel tank.
-- **Regulatory Compliance**: It allows you to adapt to regulatory changes that may require the removal of specific rules that are no longer compliant.
-- **Transitioning**: When preparing to implement a new rule set, you can remove the old one to ensure a clean slate for the new rules.
-
-This mutation is broader in scope compared to `RemoveAccountRuleData` as it removes an entire set of rules, potentially affecting all users and transactions associated with the fuel tank. It's about overhauling or discontinuing a whole set of operational constraints, rather than fine-tuning individual permissions.
 
 ## ScheduleMutateFreezeState
 
@@ -940,13 +825,3 @@ mutation ScheduleMutateFreezeState {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `ScheduleMutateFreezeState` mutation is valuable for various scenarios:
-
-- **Emergency Suspension**: You can use it to immediately suspend tank or rule set activities in emergency situations, preventing unwanted transactions.
-- **Maintenance**: During maintenance periods, you can freeze tanks or rule sets to make changes without external interference.
-- **Administrative Control**: It allows you to temporarily halt operations for administrative reasons without permanently altering or removing configurations.
-
-This mutation provides control over the freeze state of tanks and rule sets, offering flexibility in managing the accessibility and operability of your fuel tank system.

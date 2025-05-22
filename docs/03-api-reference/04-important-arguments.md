@@ -3,6 +3,9 @@ title: "Arguments"
 slug: "important-arguments"
 description: "A quick reference for some important arguments used in the Enjin API Schema."
 ---
+
+import GlossaryTerm from '@site/src/components/GlossaryTerm';
+
 :::info Please note: This is an introductory reference
 For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
@@ -246,15 +249,16 @@ A "value" represents the corresponding information or data associated with that 
 
 ## hasRoyalty
 
+Configures royalties for each marketplace sale of this token.
 Royalties are effectively enforced by the core blockchain, ensuring you receive your entitled earnings whenever the token is involved in transactions, providing a transparent and automated system for royalty distribution.
 
-### beneficiary
+- #### beneficiary
 
-The recipient or entity designated to receive a portion of the proceeds from token transactions
+    - The recipient or entity designated to receive a portion of the proceeds from token sales
 
-### percentage
+- #### percentage
 
-Represents the specific portion or share of the transaction value that is allocated to the beneficiary.
+    - Represents the specific portion or share of the transaction value that is allocated to the beneficiary.
 
 ## isCurrency
 
@@ -263,6 +267,22 @@ This concept is used by the marketplace to determine what assets are allowed to 
 ## cap
 
 Employed to limit the maximum supply of tokens, creating scarcity and rarity by setting an upper bound on the number of tokens that can ever be created.
+
+- #### SUPPLY
+
+    - A fixed supply model where the cap amount sets the maximum tokens that can exist in circulation. Burned tokens can be re-minted.
+
+- #### COLLAPSING_SUPPLY
+
+    - A dynamic supply model where the cap amount defines the total tokens that can ever be minted. Burned tokens cannot be re-minted.
+
+- #### SINGLE_MINT (DEPRECATED)
+
+    - Allows the token to be minted only once. Functions as a collapsing supply model with the cap amount set to the initial supply.
+
+- #### INFINITE
+
+    - Allows unlimited token creation with no supply cap.
 
 ### type
 
@@ -314,17 +334,33 @@ The `source` parameter refers to the address from which the tokens will be trans
 
 The "mintPolicy" parameter allows you to define the minting policy for tokens within a collection, with the following sub-parameters:
 
-### forceCollapsingSupply
+- #### forceCollapsingSupply
 
-Determines whether the tokens in this collection will be minted as **CollapsingSupply** types. This supply type allows the collection owner to mint new tokens as long as the token's circulating supply does not exceed it's max supply. Burning tokens reduces the max supply, meaning that in collapsing supply type, burned tokens cannot be re-minted.
+    - Determines whether the tokens in this collection will be minted as **CollapsingSupply** types. This supply type allows the collection owner to mint new tokens as long as the token's circulating supply does not exceed it's max supply. Burning tokens reduces the max supply, meaning that in collapsing supply type, burned tokens cannot be re-minted.
 
-## maxTokenCount
+- #### maxTokenCount
 
-Specifies the maximum number of tokens that can be issued within this collection, setting an upper limit on the total token count.
+    - Specifies the maximum number of tokens that can be issued within this collection, setting an upper limit on the total token count.
 
-## maxTokenSupply
+- #### maxTokenSupply
 
-Sets the maximum quantity of each unique token within this collection that can be minted, establishing an upper limit on the available supply for individual tokens.
+    - Sets the maximum quantity of each unique token within this collection that can be minted, establishing an upper limit on the available supply for individual tokens.
+
+## marketPolicy
+
+Configures default marketplace royalties for all tokens in the collection.
+
+- #### royalty
+
+    - A default royalty percentage for all tokens in the collection. This can be overridden on a per-token basis.
+
+## explicitRoyaltyCurrencies
+
+The `explicitRoyaltyCurrencies` field within a collection serves the purpose of specifying which currencies are permitted to be accepted as royalties. 
+
+By including specific currencies in this field, a collection restricts the acceptance of royalties to only those currencies, ensuring that any listing created that intends to pay royalties in an unaccepted currency will result in a failed listing creation process. 
+
+This feature enhances control and compliance in managing royalties within the collection.
 
 ## freezeType
 
@@ -344,16 +380,55 @@ The `freezeType` parameter offers flexibility in specifying what can be frozen w
 
 The "markAsProcessing" action involves retrieving a list of newly pending transactions and subsequently marking them as "processing," indicating that they are currently being handled or executed within the blockchain system.
 
-## explicitRoyaltyCurrencies
-
-The `explicitRoyaltyCurrencies` field within a collection serves the purpose of specifying which currencies are permitted to be accepted as royalties. 
-
-By including specific currencies in this field, a collection restricts the acceptance of royalties to only those currencies, ensuring that any listing created that intends to pay royalties in an unaccepted currency will result in a failed listing creation process. 
-
-This feature enhances control and compliance in managing royalties within the collection.
-
 ## owner
 
 The term "owner" can be employed in various contexts, depending on the specific action being performed.
 
 For example, when unapproving a collection, "owner" refers to the account from which the collection approval will be removed, signifying the entity or account that holds ownership or control over the approval status of the collection.
+
+# Beam
+
+## TokenIds
+
+Specifies a list of integer <GlossaryTerm id="token_id" />s claimable in the beam. A Beam Claim will be generated for each provided ID.  
+Provide IDs as strings, using commas to separate multiple entries. Supports single IDs (e.g., "1"), ranges (e.g., "6..8"), or a combination (e.g., ["1", "6..8", "10"] includes IDs 1, 6, 7, 8, and 10).
+
+## tokenQuantityPerClaim
+
+Specifies how many token units will be minted or transferred for each Beam Claim.
+
+## claimQuantity
+
+Specifies the number of Beam Claims to create for each provided token ID. Defaults to 1.
+
+## type {#beam-claim-type}
+
+Specifies how tokens are delivered when the beam is claimed:
+
+- #### TRANSFER_TOKEN
+
+    - Transfers existing tokens to the recipient.
+
+- #### MINT_ON_DEMAND
+
+    - Mints tokens directly to the recipient.
+
+## claimLimit
+
+Specify the number of times each user can claim the beam.
+
+## flags
+
+Specifies the type of beam behavior to modify. Available options include:
+
+- #### PAUSED
+
+    - Temporarily prevents claims from being processed.
+
+- #### SINGLE_USE
+
+    - Enables the use of single-use claim codes for distributing specific tokens from the beam.
+
+- #### PRUNABLE
+
+    - Allows claim records for expired beams to be deleted from the database after a set period.

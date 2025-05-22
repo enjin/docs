@@ -67,16 +67,6 @@ query GetBid {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `GetBid` query serves various use cases:
-
-- **Audit and Verification**: You can use it to verify and audit bid details, ensuring transparency and accountability.
-- **Market Analysis**: It aids in analyzing market behavior, helping you understand bidding patterns and the market value of listings.
-- **User Interface Updates**: Developers can use this data to update user interfaces with real-time bid information. This enhances the user experience by keeping users informed about their bids or bids on listings they are interested in.
-
-By providing access to bid-related data, the `GetBid` query is a fundamental tool for applications and systems that involve marketplaces and bidding processes.
-
 ## GetBids
 
 The `GetBids` query is used to retrieve a list of bids for one or more market listings based on specified listing IDs. Unlike the `GetBid` query, which retrieves details of a single bid, `GetBids` can return multiple bids and includes pagination information.
@@ -149,16 +139,6 @@ query GetBids {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `GetBids` query serves various use cases:
-
-- **Marketplace Insights**: You can use it to gain insights into the market by retrieving bid data for multiple listings. This helps you understand the level of activity and interest in various listings.
-- **Data Analysis**: The retrieved data can be used for statistical analysis, trend identification, and understanding how the market responds to different listings.
-- **User Interface**: For platforms displaying lists of bids on multiple items, this query ensures that users have access to comprehensive bid information across various listings.
-
-While the `GetBid` query focuses on retrieving detailed information about a single bid, `GetBids` is suitable for scenarios where you need an overview of all bids related to specific listings, especially when dealing with a larger volume of bid data.
 
 ## GetListing
 
@@ -311,16 +291,6 @@ query GetListing {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `GetListing` query is valuable for various use cases:
-
-- **Detailed Listing Information**: You can retrieve all essential information about a specific listing, making it useful for potential buyers to review listing details comprehensively.
-- **Historical Data Analysis**: It includes historical states, sales, and bids, enabling users to track the listing's activity over time and analyze its market performance.
-- **Transaction Preparation**: Sellers and buyers can prepare for transactions effectively by understanding the listing's terms, including price, minimum take value, and asset details.
-
-Unlike queries like `GetBids` that focus on specific aspects of a listing, `GetListing` provides a holistic view of a single market listing, encapsulating all its attributes, history, and context in a single response. This makes it particularly useful for in-depth research and transaction preparation.
 
 ## GetListings
 
@@ -500,16 +470,6 @@ query GetListings {
   </TabItem>
 </Tabs>
 
-### Use Case:
-
-The `GetListings` query is valuable for various use cases:
-
-- **Batch Data Retrieval**: You can efficiently retrieve detailed information about multiple listings in a single request, which is useful for batch processing or displaying a list of items on a user interface.
-- **Marketplace Overview**: It allows you to obtain a comprehensive overview of multiple listings, making it easier to analyze and present marketplace data to users.
-- **Pagination Support**: `GetListings` provides pagination details, making it suitable for handling large datasets of listings.
-
-Compared to the `GetListing` query, which focuses on a single listing, `GetListings` is designed to cater to scenarios where you need to work with multiple listings simultaneously. It streamlines the data retrieval process, especially when dealing with large sets of listings, and includes pagination support for handling extensive listings efficiently.
-
 ## GetSale
 
 The `GetSale` query is used to retrieve details about a specific sale transaction that has occurred on the Enjin Blockchain marketplace. This query requires the sale ID as input and returns information about the sale, including the sale ID, price, quantity, bidder information, and the associated market listing.
@@ -558,17 +518,6 @@ query GetSale {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `GetSale` query serves various purposes in a marketplace:
-
-- **Transaction Verification**: You can use it to verify and retrieve specific details of a sale transaction, including the price, quantity, and bidder information. This is essential for transparency and auditing purposes.
-- **Marketplace Analytics**: By providing sale details, this query aids in market analysis, allowing you to understand the pricing and quantity dynamics within the marketplace.
-- **User Interface Updates**: Applications can use this data to update user interfaces with the latest sale information, enhancing user experience by keeping them informed about completed transactions.
-- **Historical Data Retrieval**: It allows you to access historical sale data, which can be valuable for historical analysis and reporting.
-
-Overall, the `GetSale` query helps you retrieve and display specific details about completed sale transactions in a marketplace.
 
 ## GetSales
 
@@ -642,14 +591,3 @@ query GetSales {
 ```
   </TabItem>
 </Tabs>
-
-### Use Case:
-
-The `GetSales` query serves various purposes in a marketplace:
-
-- **Transaction History**: It allows you to retrieve a history of completed sale transactions associated with specific market listings. This is valuable for auditing and transparency.
-- **Marketplace Analytics**: By fetching completed sale details, you can analyze pricing trends, quantity dynamics, and bidder behaviors within the marketplace.
-- **User Interface Updates**: Applications can use this data to display the history of sales to users, helping them track the transaction history of specific listings.
-- **Transaction Confirmation**: Sellers and buyers can use this query to confirm the details of completed transactions, including the sale price and bidder information.
-
-Overall, the `GetSales` query is instrumental in providing insights into the history of completed sale transactions within a marketplace. It offers a comprehensive view of completed sales associated with specific market listings, aiding in transparency and informed decision-making.
