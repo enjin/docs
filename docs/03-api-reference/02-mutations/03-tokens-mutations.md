@@ -142,7 +142,7 @@ mutation MintToken {
 
 ## BatchMint
 
-The `BatchMint` mutation enables you to efficiently create multiple tokens within a single blockchain transaction. This process, known as batch minting, simplifies the minting of multiple tokens, reducing transaction fees and processing time.
+The `BatchMint` mutation enables you to efficiently create multiple tokens within a single blockchain transaction. This process, known as batch minting, simplifies the minting of multiple tokens, reducing transaction fees and processing time. The maximum number of recipients that you can batch into a single transaction is 250.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
