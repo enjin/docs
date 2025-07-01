@@ -76,3 +76,16 @@ At this point we have nominated both validators and should just wait to see the 
 As the pool owner, you can change the settings of the pool. This includes changing the duration, commission, and management roles of the pool. To do this, use the `Mutate` button that is located under each expanded pool.
 
 ![](/img/components/enjin-relaychain/18.png)
+
+## Destroying nomination pool
+
+Destroying a nomination pool involves a series of steps.
+
+:::tip
+For a more convenient way to destroy a pool, consider using [NFT.io](https://nft.io).
+:::
+
+To manually destroy a pool using the Enjin Console, follow these steps:
+1. **Change the Pool State to Destroying**: Initiate the destruction process by setting the pool's state to `Destroying`. You can do this by calling the `nominationPools.destroy()` extrinsic.
+2. **Unbond Member Stakes**: If any members have staked funds in the pool, their stakes must be unbonded. Once the pool is in the `Destroying` state, the `nominationPools.unbond()` extrinsic becomes permissionless. This means the pool owner can initiate unbonding for all members by calling `nominationPools.unbond()` on their behalf. After the unbonding period for all members ends, their stakes must be withdrawn using the `nominationPools.withdrawUnbonded()` extrinsic, which is also permissionless at this stage.
+3. **Unbond and Withdraw the Initial Deposit**: Once the pool is in the `Destroying` state and has no bonded members, the pool owner must unbond their initial ENJ stake deposit. Do this by calling the `nominationPools.unbondDeposit()` extrinsic. After the unbonding period for the deposit ends, use the `nominationPools.withdrawDeposit()` extrinsic to withdraw it and finalize the pool's destruction.
