@@ -123,7 +123,7 @@ const config = {
               },
               {
                 label: 'Enjin Blockchain',
-                to: 'enjin-blockchain/infrustructure',
+                to: 'enjin-blockchain/infrastructure',
               },
               {
                 label: 'Enjin Platform',
