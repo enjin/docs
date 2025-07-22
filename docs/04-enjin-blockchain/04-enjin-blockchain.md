@@ -1,6 +1,6 @@
 ---
-title: "Enjin Blockchain Infrustructure"
-slug: "infrustructure"
+title: "Enjin Blockchain infrastructure"
+slug: "infrastructure"
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
