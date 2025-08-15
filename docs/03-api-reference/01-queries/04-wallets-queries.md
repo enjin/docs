@@ -21,7 +21,7 @@ This is a detailed reference guide that explains the most commonly used operatio
 
 ## GetWallet
 
-The `GetWallet` query provides detailed information about a specific wallet. This query retrieves various details related to the wallet, including account information, balances, associated collections and tokens, approvals, and transaction history. 
+The `GetWallet` query provides detailed information about a specific wallet. This query retrieves various details related to the wallet, including account information, balances, associated collections and tokens, approvals, and transaction history.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

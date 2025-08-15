@@ -7,9 +7,9 @@ description: "Explore how to read user wallet data, providing insights into user
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Fetching wallets is crucial because it allows you to see the contents of a wallet, including all tokens held within. 
+Fetching wallets is crucial because it allows you to see the contents of a wallet, including all tokens held within.
 
-This is especially important in gaming and app development as it enables you to assign specific utilities or benefits to certain tokens. 
+This is especially important in gaming and app development as it enables you to assign specific utilities or benefits to certain tokens.
 
 For example, if a user has a particular token in their wallet, they might gain access to exclusive in-game items or features within an app, enhancing the user experience and adding value to the tokens.
 
@@ -244,7 +244,7 @@ print(response.json())
 ```
 
 :::info Balances Format
-API balances fields are formatted as u128 number type.  
+API balances fields are formatted as u128 number type.
 to get decimal value, divide the value by 10^18.
 :::
 

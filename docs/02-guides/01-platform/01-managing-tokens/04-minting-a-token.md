@@ -8,15 +8,15 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Now that you've got your tokens created, it's time to start minting them into player wallets as they are earned. 
+Now that you've got your tokens created, it's time to start minting them into player wallets as they are earned.
 
-We call this "Play-to-Mint," giving players the power to create tokens themselves, which feels more rewarding. 
+We call this "Play-to-Mint," giving players the power to create tokens themselves, which feels more rewarding.
 
 Plus, it keeps your processes more efficient by delivering tokens right to players' wallets without any unnecessary `transfer` transactions.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
-If the token has <GlossaryTerm id="enj_infusion" />, each new unit minted will require the same amount of ENJ to be infused.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
+If the token has <GlossaryTerm id="enj_infusion" />, each new unit minted will require the same amount of ENJ to be infused.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
@@ -29,7 +29,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
+In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
 **Locate the token** you wish to mint, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Mint**" button.
 
 ![Minting a Token](/img/guides/managing-tokens/minting-a-token.gif)
@@ -66,7 +66,7 @@ mutation BatchMint {
     recipients: [
       {
         account: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921" #The recipient of the mint
-        mintParams: { 
+        mintParams: {
           amount:1 #Amount to mint
           tokenId: {integer: 6533} #Token ID to mint
         }

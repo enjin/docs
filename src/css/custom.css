@@ -130,12 +130,12 @@
   padding: 0.875rem 2rem;
 }
 
-[data-theme='light'] 
+[data-theme='light']
 .button:hover {
   color: var(--button-hover);
 }
 
-[data-theme='dark'] 
+[data-theme='dark']
 .button:hover {
   color: var(--button-hover);
 }

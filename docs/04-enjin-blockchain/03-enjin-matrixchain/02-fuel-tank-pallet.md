@@ -7,7 +7,7 @@ description: "Subsidize fees for your players while reducing overall costs."
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 :::info The Enjin Blockchain Console
-Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.  
+Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
 You may also check the [hands-on guide for creating and using fuel tanks](/02-guides/01-platform/02-managing-users/04-using-fuel-tanks.md)
 :::
 
@@ -31,7 +31,7 @@ Dispatch refers to the act of broadcasting a transaction via a Fuel Tank, which 
 
 #### Tank User Account
 
-Some fuel tanks require users to register an account to use them. The owner of the fuel tank can specify whether only they can add accounts or if users are allowed to create their own accounts, with or without specific requirements, with the `User Account Management` field.  
+Some fuel tanks require users to register an account to use them. The owner of the fuel tank can specify whether only they can add accounts or if users are allowed to create their own accounts, with or without specific requirements, with the `User Account Management` field.
 Each fuel tank account requires a 0.01 ENJ deposit for the Tank User Account <GlossaryTerm id="storage_deposit" />
 
 #### User Account Management
@@ -50,7 +50,7 @@ Account Rules are rules that are validated at the time of Tank User Account Crea
 
 #### Dispatch Rules
 
-Dispatch Rules are rules that are validated at the time of dispatch.  
+Dispatch Rules are rules that are validated at the time of dispatch.
 When a dispatch call is made to a fuel tank, it must be made in accordance with a set of rules. These rules, known as rule sets, can include multiple individual rules that determine the validity of the call. A fuel tank can have multiple rule sets, each of which controls access and permissions to the fuel tank's functionality and resources.
 
 #### Available Rules
@@ -81,7 +81,7 @@ The "Require token" setting determines that a specific token must be held by the
 
 ##### Require Signature:
 
-The "Require Signature" setting determines that a call must be signed by a specific account, and this signature must be included in the dispatch settings for the call to be accepted by the fuel tank.  
+The "Require Signature" setting determines that a call must be signed by a specific account, and this signature must be included in the dispatch settings for the call to be accepted by the fuel tank.
 If the signature is not provided, is invalid or is signed by a different account, the call will be rejected and fail. This feature is particularly useful with [managed wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) to allow multiple controlled accounts to use the fuel tank without paying <GlossaryTerm id="storage_deposit" />s in advance.
 
 ##### Whitelisted Pallets:
@@ -100,13 +100,13 @@ Permitted calls refer to a list of specific extrinsic calls that are allowed to 
 
 #### Coverage Policy:
 
-This determines the scope of the fuel tank's subsidy.  
-Setting the Coverage Policy to "FEES" means it will subsidize only <GlossaryTerm id="transaction_fees" />.  
+This determines the scope of the fuel tank's subsidy.
+Setting the Coverage Policy to "FEES" means it will subsidize only <GlossaryTerm id="transaction_fees" />.
 Alternatively, setting it to "FEES_AND_DEPOSIT" ensures it covers both <GlossaryTerm id="transaction_fees" /> and any <GlossaryTerm id="storage_deposit" /> the dispatched call may require.
 
 #### Freezing:
 
-"Freezing" is a state where a fuel tank or a rule set is temporarily prevented from accepting calls. This means that while a fuel tank or rule set is frozen, no dispatches are allowed to occur on it. This is implemented as a safety measure to prevent accidental or malicious changes and to ensure that the fuel tank or rule set remains in a stable state until the freeze is lifted.  
+"Freezing" is a state where a fuel tank or a rule set is temporarily prevented from accepting calls. This means that while a fuel tank or rule set is frozen, no dispatches are allowed to occur on it. This is implemented as a safety measure to prevent accidental or malicious changes and to ensure that the fuel tank or rule set remains in a stable state until the freeze is lifted.
 Also note that in order to mutate any fuel tank or rule set configurations, it must be frozen first.
 
 #### Descriptor:
@@ -115,9 +115,9 @@ A descriptor is a list of all the data needed to create a fuel tank. It includes
 
 #### Require Account:
 
-The "Require Account" setting determines whether the caller must have a tank account in order to dispatch.  
-If "Require Account" is set to true, the caller must have a tank account; otherwise, their dispatch will be rejected and fail.  
-If "Require Account" is set to false, the caller can dispatch even without a tank account.  
+The "Require Account" setting determines whether the caller must have a tank account in order to dispatch.
+If "Require Account" is set to true, the caller must have a tank account; otherwise, their dispatch will be rejected and fail.
+If "Require Account" is set to false, the caller can dispatch even without a tank account.
 It is important to note that when "Require Account" is set to false, anyone will be able to dispatch, which could quickly drain the tank funds. Therefore, it is crucial to implement strict dispatch rules when using "Require Account: false" to prevent misuse.
 
 ### Extrinsics
@@ -132,7 +132,7 @@ Applies provided mutation to the fuel tank. Caller must be the owner of the fuel
 
 #### add_account:
 
-Adds a new fuel tank user account, which not only allows using fuel tank, but also stores user consumption and rule set data. An account can be created only if account rules are successfully validated. An account is required to dispatch calls when the ruleset's `require_account` is set to `true`.  
+Adds a new fuel tank user account, which not only allows using fuel tank, but also stores user consumption and rule set data. An account can be created only if account rules are successfully validated. An account is required to dispatch calls when the ruleset's `require_account` is set to `true`.
 A storage deposit is required, and may be paid by the user or the fuel tank, depending on the settings. Could fail with `NoPermission` if caller is not the owner and user management settings don't allow users to create accounts on their own. Creation of already existing account withing a tank will result in `AccountAlreadyExists` error. In case some of account rules cannot validate the caller, rule specific error will be returned. In success case emits `AccountAdded` event
 
 #### remove_account:
@@ -145,8 +145,8 @@ Remove account rule data if it exists. Requires the fuel tank or the rule set to
 
 #### dispatch:
 
-Dispatch a call through the fuel tank, where the tank would pay for transaction fees and, if configured, provide a storage deposit.  
-Additional settings can be provided with the `Settings` argument such as `provide remaining fee`, or include a signature required for the `RequireSignature` dispatch rule.  
+Dispatch a call through the fuel tank, where the tank would pay for transaction fees and, if configured, provide a storage deposit.
+Additional settings can be provided with the `Settings` argument such as `provide remaining fee`, or include a signature required for the `RequireSignature` dispatch rule.
 All calls are subject to rule set evaluation and would result in rule specific errors in case of failure. In case the inner call fails, the `DispatchFailed` event will be emitted with wrapped dispatch error inside. In success case emits `Dispatched` event.
 
 #### dispatch_and_touch:
@@ -210,7 +210,7 @@ To mutate or modify a fuel tank, the caller must be the owner of the fuel tank, 
 To mutate a fuel tank using the explorer, head to `Network` → `Fuel tanks`. Mutating a fuel tank involves three steps 1. Freeze the fuel tank 2. Mutate the fuel tank 3. Unfreeze the fuel tank
 
 1. To Freeze the fuel tank, head to `Network` → `Fuel tanks`, this will present a list of all fuel tanks, select the fuel tank you wish to mutate and select freeze/unfreeze. In the next dialog box, set `is_frozen` to `true` and execute the transaction
-2. To mutate the fuel tank, head to `Network` → `Fuel Tanks` → under specific fuel tank → `Mutate`In the modal, Select the Account (the owner of the fuel tank) and select the fuel tank id (you can get this from the fuel tanks page in the previous step) and add any modifications to the fuel tank.  
+2. To mutate the fuel tank, head to `Network` → `Fuel Tanks` → under specific fuel tank → `Mutate`In the modal, Select the Account (the owner of the fuel tank) and select the fuel tank id (you can get this from the fuel tanks page in the previous step) and add any modifications to the fuel tank.
    If successful, you should see the event with you changes in the explorer `Network` tab
 3. To unfreeze the fuel tank, head to `Network` → `Fuel tanks`, and perform the same step but select the `is_frozen` to `false`
 
@@ -294,8 +294,8 @@ fn select_fuel_tank(
 
 The method returns a `RpcResult<Option<(Address, u32)>>`, which can be interpreted as:
 
-- `Option<(Address, u32)>` : An optional tuple where:  
-  `Address`: The selected fuel tank's address.  
+- `Option<(Address, u32)>` : An optional tuple where:
+  `Address`: The selected fuel tank's address.
   `u32`: The amount of fuel (funds) available in the selected tank.
 
 If no appropriate fuel tanks are found the rpc will return null.
@@ -318,7 +318,7 @@ const MATRIX_URL = "ws://127.0.0.1:56287";
 async function sendTransaction() {
         // Initialize the provider
         const provider = new WsProvider(MATRIX_URL);
-        
+
         // Create the API instance
         const api = await ApiPromise.create({
             provider,

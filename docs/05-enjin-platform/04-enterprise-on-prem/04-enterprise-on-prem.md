@@ -5,10 +5,10 @@ description: "Find out how to set up enterprise on-prem for your blockchain infr
 ---
 :::info Choosing the right platform for you
 There are two version of the Enjin Platform
-- The [Enjin Platform Cloud](http://platform.enjin.io/) 
+- The [Enjin Platform Cloud](http://platform.enjin.io/)
   - A cloud-hosted version that you can start using straight away.
-  - Ideal if you're new to Enjin or don't want to manage your own infrastructure. 
-- The [ Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform) 
+  - Ideal if you're new to Enjin or don't want to manage your own infrastructure.
+- The [ Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform)
   - A self-hosted solution that offers customization and full control over the software.
   - Best for those who are more tech-savvy. It gives you full control over the data and source code, allowing you to customize the platform extensively, including adding new features, writing your own Beam conditions or creating custom events. However, running it requires systems administration skills. You'll need to handle backups, updates, server maintenance, and set up internet access and SSL certificates for the platform.
 :::
@@ -60,28 +60,28 @@ The Enjin Platform indexer is designed to minimize the blockchain's storage and 
 
 ### Data Management Tool
 
-The Data Management Tool from Indexers organizes and structures blockchain data. 
+The Data Management Tool from Indexers organizes and structures blockchain data.
 
 It creates a centralized database, making it easier for game developers to access specific data they need without sorting through all blockchain data.
 
 ### Quick Sync Method
 
-The Enjin Platform features a quick sync method allowing developers to rapidly update and store the latest blockchain state using a pre-packaged index. 
+The Enjin Platform features a quick sync method allowing developers to rapidly update and store the latest blockchain state using a pre-packaged index.
 
-This method saves time by avoiding full blockchain syncing. 
+This method saves time by avoiding full blockchain syncing.
 
 A "Worker" service manages and processes all blockchain blocks and their associated events.
 
 ### Auto-Healing Feature
 
-The Enjin Platform has an auto-healing feature that constantly checks the database's health. 
+The Enjin Platform has an auto-healing feature that constantly checks the database's health.
 
 If it finds problems like corruption or mismatches, it automatically updates to match the current blockchain state, keeping data accurate and current.
 
 ### Events & WebSockets
 
-The Enjin Platform sends notifications through WebSocket channels about activities on the platform. 
+The Enjin Platform sends notifications through WebSocket channels about activities on the platform.
 
-For instance, it alerts when a new collection is created. Clients can get these updates by subscribing their wallets to the WebSocket channel via the Enjin Wallet Daemon. 
+For instance, it alerts when a new collection is created. Clients can get these updates by subscribing their wallets to the WebSocket channel via the Enjin Wallet Daemon.
 
 This daemon not only checks for transactions to sign but also listens for these event notifications, enabling real-time interaction and dynamic experiences on the platform.

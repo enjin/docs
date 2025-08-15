@@ -27,7 +27,7 @@ Enjin Relaychain is a decentralized, multi-chain network that aims to provide a 
 
 - Scalable and customizable multi-chain network;
 - Enhanced NFT creation capabilities;
-- Predictable scalability and costs;  
+- Predictable scalability and costs;
   User-friendly staking;
 - Inclusive and accessible for all users;
 - Seamlessly integrated with Enjin products.

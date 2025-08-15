@@ -15,7 +15,7 @@ You will need to transfer tokens for:
 - Providing a seamless user experience by allowing token transfers without leaving the game environment.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
@@ -28,7 +28,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
+In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
 **Locate the token** you wish to transfer, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Transfer**" button.
 
 ![Transferring Token](/img/guides/managing-tokens/transferring-token.gif)
@@ -37,7 +37,7 @@ In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/t
 Click on the "**Batch**" button, followed by "**Batch Transfer**".
 :::
 
-Fill in the recipient, amount, and other optional arguments in the corresponding fields.  
+Fill in the recipient, amount, and other optional arguments in the corresponding fields.
 Once you're satisfied with the options, click on the "**Transfer**" button at the bottom right corner to create the request.
 
 <p align="center">
@@ -56,7 +56,7 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 - If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
 - If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
 
-If you're looking to distribute tokens to your community or players, but don't have their account addresses, don't worry! Our solution is Enjin Beam.  
+If you're looking to distribute tokens to your community or players, but don't have their account addresses, don't worry! Our solution is Enjin Beam.
 Proceed to the [Distributing Tokens via QR](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md) tutorial to learn more.
 
 ## Option B. Using the Enjin API & SDKs
@@ -474,7 +474,7 @@ mutation TransferKeepAlive(
 variables = {
   'recipient': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", #Specify the recipent address
   'amount': 1 #Specify the amount of tokens to transfer
-  
+
 }
 
 response = requests.post('https://platform.canary.enjin.io/graphql',
@@ -488,10 +488,10 @@ print(response.json())
 
 :::info **Notes:**
 - `amount` argument
-  - In the `TransferBalance` mutation, the `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be transferred.  
+  - In the `TransferBalance` mutation, the `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be transferred.
     In the example above, an `amount` of `5000000000000000000` will actually send 5 ENJ. Keep this in mind when specifying the `amount` in your mutations.
 - `keepAlive` argument
-  - Set to true if you want to make sure the account doesn't get reaped.  
+  - Set to true if you want to make sure the account doesn't get reaped.
     Learn more about keepAlive argument [here](/03-api-reference/04-important-arguments.md#keepalive)
 :::
 
@@ -708,12 +708,12 @@ print(response.json())
 A WebSocket event will also be fired so you can pick up the transfer transaction in real time by listening to the app channel on the WebSocket.
 
 :::tip Need to send a transaction request to user's wallet?
-This can be done using Enjin Platform API & WalletConnect!  
+This can be done using Enjin Platform API & WalletConnect!
 To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 

@@ -11,7 +11,7 @@ The Enjin Blockchain is a Layer 1 protocol designed with native NFT functionalit
 
 This documentation provides technical details and guidance for developers aiming to integrate with or leverage the Enjin Blockchain's capabilities.
 
-Enjin Blockchain is made up of the Enjin Relaychain and the Enjin <GlossaryTerm id="matrixchain" />. 
+Enjin Blockchain is made up of the Enjin Relaychain and the Enjin <GlossaryTerm id="matrixchain" />.
 
 ![](/img/components/blockchain-infrastructure/1.png)
 

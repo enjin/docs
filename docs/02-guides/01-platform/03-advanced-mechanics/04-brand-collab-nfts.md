@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 :::info Co-Authored by [SamTheBay](https://twitter.com/SamTheBay)
 Sam is the Founder of [Etherscape](https://www.etherscape.io/), a multiplayer RPG with some of the most innovative Web3 game design elements in the industry.
 
-[Reach out to Sam on Discord](https://discord.gg/NXwWehg89p) for partnership and collaboration opportunities.  
+[Reach out to Sam on Discord](https://discord.gg/NXwWehg89p) for partnership and collaboration opportunities.
 You can see examples of Brand Integrations in [Etherscape's whitepaper](https://whitepaper.etherscape.io/CryptoIntegration/multiverse-support/collaborations).
 :::
 
@@ -174,24 +174,24 @@ Here’s an example of a response you can expect.
 
 In order to implement any token in game you will need to sync a list of token ids that your player has in their wallet. In the most simple case, you only need to sync tokens from a single collection (likely the main collection associated with your game). However, in multiverse cases, you will now need to sync tokens from multiple collections. There are a couple of options to achieve this.
 
-1. Sync All Tokens  
+1. Sync All Tokens
    The first approach is to sync all the tokens in the players wallet across all collections. This makes the graphQL query very simple. However, with this approach you need to bear in mind that some wallets will have thousands of tokens in them (and could grow to even hundreds of thousands). This means that you can’t rely on syncing all the wallets tokens in a single call. You will need to make sure to implement proper pagination using the GraphQL API’s so that you can read out the tokens in many batches.
-2. Sync Specific Collections Only  
+2. Sync Specific Collections Only
    Another approach is to only sync the collections you care about. This will limit the total number of tokens that you need to sync. In your GraphQL query you can specify a list of collection and token ids in order to narrow down the range. Depending on your case, you may still want to handle pagination of calls if any of the collections you include have a large number of tokens.
 
 ### Syncing Metadata
 
 When implementing multiverse items you will want to think about how you will represent them in game. This generally means that you are going to want to provide metadata and media for them. Below are a few options for your consideration.
 
-1. Static Metadata  
+1. Static Metadata
    If you already know exactly what you want the token to do in your game and it won’t change then you can essentially hard code it. In this case, there is no need to read the metadata from the chain or from an external source. If the group and id match your intention then you can give it the in game visuals and utility that you want.
-2. External Sources  
+2. External Sources
    The most common practice is to store metadata off-chain at an external url. This is especially true for any media content such as images, videos, 3d models and audio. If you want to leverage this metadata then you will need to make calls to the URI that hosts it in order to download it. When doing that, you will want to consider the following…
    1. Make sure the calls are asynchronous. The external calls will take time and you don’t want them to impact your games frame rate.
    2. You probably want to cache any media locally on the drive. The URI you are downloading from could be slow, unreliable or throttle you. As a result, you will want to avoid reading it more often than necessary.
 
 :::tip Metadata Management
-Note that if you’re adopting another game’s token, you may not want to use all the metadata that is provided. For example, if you are making a 2D game you might want to create your own sprite to represent it instead of using a stylistic image that doesn’t suit your game. For example, this is how the ForgeHammer is represented in Etherscape - a 2D pixel-art game.  
+Note that if you’re adopting another game’s token, you may not want to use all the metadata that is provided. For example, if you are making a 2D game you might want to create your own sprite to represent it instead of using a stylistic image that doesn’t suit your game. For example, this is how the ForgeHammer is represented in Etherscape - a 2D pixel-art game.
 <p align="center">
   <img src={require('/img/guides/advanced-mechanics/adjust-art-style.png').default} width="400" alt="Adjust the item's art style to fit your game" />
 </p>

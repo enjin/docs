@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.  
+Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 :::
 
@@ -48,13 +48,13 @@ Transactions can be approved in 2 different ways:
 - **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
 
 :::tip Start by manually approving transactions
-If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)  
+If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)
 Enjin wallet app is available on both [iOS](https://enj.in/ios-wallet) and [Android](https://enj.in/android-wallet).
 :::
 
 ### A. Using Enjin Wallet / Polkadot.js
 
-Connect your wallet by clicking the "**Connect Wallet**" button in the top right corner and follow the on-screen instructions.  
+Connect your wallet by clicking the "**Connect Wallet**" button in the top right corner and follow the on-screen instructions.
 The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, secure, and rewarding experience, ensuring their continuous engagement with your game.
 
 ![Connecting a wallet app on the Enjin Platform](/img/getting-started/connect-wallet-app.gif)
@@ -63,15 +63,15 @@ The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, s
 
 The Enjin Wallet Daemon can automatically sign requests for you.
 
-To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page.  
-To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.  
+To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page.
+To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.
 Create an API Token on the [Account Settings](https://platform.canary.enjin.io/settings) page and set the Platform API Token in your Wallet Daemon configuration.
 
 Once your wallet daemon is connected, your Platform account is set up and ready to use!
 
 ## 4. Create Platform Requests
 
-Now that the Platform account is set up, we can start creating platform requests.  
+Now that the Platform account is set up, we can start creating platform requests.
 In this example we will be creating a <GlossaryTerm id="collection" />.
 
 **There are two ways to create Platform requests:**
@@ -80,8 +80,8 @@ In this example we will be creating a <GlossaryTerm id="collection" />.
 - [Using the GraphQL API](#option-b-using-the-enjin-api--sdks)
 
 :::info Which approach should I use?
-Everything that can be done via the Platform's User Interface, can be done programmatically via the <GlossaryTerm id="graphql" /> API or any of the Platform <GlossaryTerm id="sdk" />s.  
-If you are just starting out, we recommend using the Platform User Interface as it's more user friendly.  
+Everything that can be done via the Platform's User Interface, can be done programmatically via the <GlossaryTerm id="graphql" /> API or any of the Platform <GlossaryTerm id="sdk" />s.
+If you are just starting out, we recommend using the Platform User Interface as it's more user friendly.
 However, if you need to make a Platform request programmatically, you can do that via the <GlossaryTerm id="enjin_platform_api" /> / <GlossaryTerm id="sdk" />s.
 :::
 
@@ -99,8 +99,8 @@ Once you're satisfied with the options, click on the "**Create**" button at the 
 
 ### Option B. Using the Enjin API & SDKs
 
-To create a Platform request programmatically, use the <GlossaryTerm id="graphql" /> API, or one of the <GlossaryTerm id="sdk" />s.  
-This mutation will set up a new transaction that once finalized on-chain will contain the new collection id in the transaction <GlossaryTerm id="events" />. 
+To create a Platform request programmatically, use the <GlossaryTerm id="graphql" /> API, or one of the <GlossaryTerm id="sdk" />s.
+This mutation will set up a new transaction that once finalized on-chain will contain the new collection id in the transaction <GlossaryTerm id="events" />.
 
 :::tip Test your requests in the GraphiQL Playground:
 - [Testnet](https://platform.canary.enjin.io/graphiql)
@@ -218,7 +218,7 @@ int main() {
         std::cout << to_string(transaction->GetId().value()) << std::endl;
         std::cout << ToString(transaction->GetMethod().value()) << std::endl;
     }
-  
+
      // Write any error messages to the console
     if (gqlResult.has_value() && gqlResult->HasErrors())
     {
@@ -328,7 +328,7 @@ Transaction requests are displayed in the "**[Transactions](https://platform.can
 Since this transaction is a <GlossaryTerm id="mutation" />, you will need to sign the transaction using your Wallet.
 
 - If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.  
+- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
 
 ![Approving the create collection txn on Enjin Platform](/img/getting-started/approving-create-collection-txn.gif)
 
@@ -344,15 +344,15 @@ There are 3 ways to receive the transaction status and information:
 
 ### Receive Transaction Information Using the Platform User Interface
 
-To check the transaction status, head over to the [Transactions](https://platform.canary.enjin.io/transactions) page locate the transaction and click on the button to it's right to show more details.  
-Once the transactions approves on-chain, the transaction will get updated with the `FINALIZED` state and the transaction events will be displayed.  
+To check the transaction status, head over to the [Transactions](https://platform.canary.enjin.io/transactions) page locate the transaction and click on the button to it's right to show more details.
+Once the transactions approves on-chain, the transaction will get updated with the `FINALIZED` state and the transaction events will be displayed.
 In the events, we can find useful information, such as the newly created collection ID.
 
 ![How to find your newly created collection ID](/img/getting-started/find-newly-created-collection-id.gif)
 
 ### Receive Transaction Information Using the Enjin API & SDKs
 
-To receive the transaction information programmatically, You can use the `GetTransaction` query and set the `id` to the ID received in the `CreateCollection` mutation.  
+To receive the transaction information programmatically, You can use the `GetTransaction` query and set the `id` to the ID received in the `CreateCollection` mutation.
 But for this example, we're going to use the `GetPendingEvents` query, which returns all of the events emitted to your platform account.
 
 :::info This query might return items in multiple pages using Connections
@@ -567,9 +567,9 @@ print(response.json())
 }
 ```
 
-The first event with `PENDING` state was emitted when the `CreateCollection` platform request was created.  
-The second event with `BROADCAST` state was emitted when the transaction was signed and broadcasted to the Enjin Blockchain.  
-The third event was emitted when the collection was created on-chain, and has the `collectionId` in it's data.  
+The first event with `PENDING` state was emitted when the `CreateCollection` platform request was created.
+The second event with `BROADCAST` state was emitted when the transaction was signed and broadcasted to the Enjin Blockchain.
+The third event was emitted when the collection was created on-chain, and has the `collectionId` in it's data.
 The forth and final event with `FINALIZED` state was emitted when the platform request was finalized.
 
 :::info Note

@@ -17,7 +17,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 - **Mainnet:** `http://platform.enjin.io/graphql/beam`
 :::
 
-This is a detailed reference guide that explains the most commonly used operations. 
+This is a detailed reference guide that explains the most commonly used operations.
 
 ## CreateBeam
 
@@ -62,7 +62,7 @@ The `ClaimBeam` is used to claim a specific Enjin Beam using a unique code. Enji
 mutation ClaimBeam {
   ClaimBeam(
     code: "cd6443f822cf6e89c03edd4f6fbc6e55"
-    account: "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"    
+    account: "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"
     signature:"0x1d670c35a76efa984fa2bd655d21eb28af0ee470e359848d2105845e170bb589fd6b7c2cbe97c9acce1eb205d4ade39cae75c619230cf44b64b25ec8677d7f0f"
     cryptoSignatureType:SR25519
   )

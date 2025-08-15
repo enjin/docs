@@ -177,7 +177,7 @@ Learn more about tracking a collection in the [Tracking Collections section](/02
 query GetTokens {
   GetTokens(
     collectionId: 7153
-    tokenIds: [{integer:10}]    
+    tokenIds: [{integer:10}]
   ) {
     edges {
       cursor

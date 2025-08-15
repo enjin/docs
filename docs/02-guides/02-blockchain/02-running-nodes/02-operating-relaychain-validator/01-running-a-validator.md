@@ -86,23 +86,23 @@ In order to validate, you must first have a node that has fully synchronized. Th
 The syncing process can be identified as a result of lines been written to your console indicating "Syncing," like so:
 
 ```text
-2023-10-10 19:39:00 ⚙️  Syncing, target=#1861415 (8 peers), best: #1733 (0xf5eb…68ab), finalized #1536 (0x14c5…d421), ⬇ 1.0MiB/s ⬆ 15.5kiB/s  
-2023-10-10 19:39:05 ⚙️  Syncing 439.6 bps, target=#1861415 (8 peers), best: #3931 (0xa854…ea3c), finalized #3584 (0xc223…cab1), ⬇ 580.4kiB/s ⬆ 2.7kiB/s  
-2023-10-10 19:39:10 ⚙️  Syncing 428.6 bps, target=#1861416 (8 peers), best: #6074 (0x7a75…e2db), finalized #5632 (0x4944…9413), ⬇ 579.2kiB/s ⬆ 1.7kiB/s  
-2023-10-10 19:39:15 ⚙️  Syncing 417.2 bps, target=#1861417 (8 peers), best: #8160 (0xbb52…b682), finalized #7680 (0x61ce…91bc), ⬇ 577.6kiB/s ⬆ 1.4kiB/s  
+2023-10-10 19:39:00 ⚙️  Syncing, target=#1861415 (8 peers), best: #1733 (0xf5eb…68ab), finalized #1536 (0x14c5…d421), ⬇ 1.0MiB/s ⬆ 15.5kiB/s
+2023-10-10 19:39:05 ⚙️  Syncing 439.6 bps, target=#1861415 (8 peers), best: #3931 (0xa854…ea3c), finalized #3584 (0xc223…cab1), ⬇ 580.4kiB/s ⬆ 2.7kiB/s
+2023-10-10 19:39:10 ⚙️  Syncing 428.6 bps, target=#1861416 (8 peers), best: #6074 (0x7a75…e2db), finalized #5632 (0x4944…9413), ⬇ 579.2kiB/s ⬆ 1.7kiB/s
+2023-10-10 19:39:15 ⚙️  Syncing 417.2 bps, target=#1861417 (8 peers), best: #8160 (0xbb52…b682), finalized #7680 (0x61ce…91bc), ⬇ 577.6kiB/s ⬆ 1.4kiB/s
 2023-10-10 19:39:20 ⚙️  Syncing 416.2 bps, target=#1861418 (8 peers), best: #10241 (0x3303…f6a6), finalized #10240 (0xaac3…9f1c), ⬇ 582.3kiB/s ⬆ 4.0kiB/s
 ```
 
 You will know when it has synced, as you will no longer see lines as illustrated above and instead you'll see lines indicating blocks have been "Imported":
 
 ```text
-2023-10-18 14:33:24 ✨ Imported #1971895 (0xa37a…4ec9)  
-2023-10-18 14:33:24 ✨ Imported #1971895 (0xa37a…4ec9)  
-2023-10-18 14:33:22 💤 Idle (10 peers), best: #1971894 (0xe81a…d878), finalized #1971891 (0xa9fc…7deb), ⬇ 4.9kiB/s ⬆ 9.1kiB/s  
-2023-10-18 14:33:19 💤 Idle (9 peers), best: #1971894 (0xe81a…d878), finalized #1971890 (0x7065…145e), ⬇ 5.2kiB/s ⬆ 3.9kiB/s  
-2023-10-18 14:33:18 ✨ Imported #1971894 (0xe81a…d878)  
-2023-10-18 14:33:18 ✨ Imported #1971894 (0xe81a…d878)  
-2023-10-18 14:33:17 💤 Idle (10 peers), best: #1971893 (0xb933…472d), finalized #1971890 (0x7065…145e), ⬇ 7.1kiB/s ⬆ 6.1kiB/s  
+2023-10-18 14:33:24 ✨ Imported #1971895 (0xa37a…4ec9)
+2023-10-18 14:33:24 ✨ Imported #1971895 (0xa37a…4ec9)
+2023-10-18 14:33:22 💤 Idle (10 peers), best: #1971894 (0xe81a…d878), finalized #1971891 (0xa9fc…7deb), ⬇ 4.9kiB/s ⬆ 9.1kiB/s
+2023-10-18 14:33:19 💤 Idle (9 peers), best: #1971894 (0xe81a…d878), finalized #1971890 (0x7065…145e), ⬇ 5.2kiB/s ⬆ 3.9kiB/s
+2023-10-18 14:33:18 ✨ Imported #1971894 (0xe81a…d878)
+2023-10-18 14:33:18 ✨ Imported #1971894 (0xe81a…d878)
+2023-10-18 14:33:17 💤 Idle (10 peers), best: #1971893 (0xb933…472d), finalized #1971890 (0x7065…145e), ⬇ 7.1kiB/s ⬆ 6.1kiB/s
 2023-10-18 14:33:14 💤 Idle (9 peers), best: #1971893 (0xb933…472d), finalized #1971890 (0x7065…145e), ⬇ 8.6kiB/s ⬆ 10.7kiB/s
 ```
 
@@ -110,23 +110,22 @@ You will know when it has synced, as you will no longer see lines as illustrated
 
 If you're uncertain about your node's current session keys after the setKeys transaction, you can check using two RPC methods: hasKey for a specific key or hasSessionKeys for the entire session key string.
 
-Once your node has been fully synced, it's now time to generate your session keys. You need to stop the node and run it again using the `--validator` option.
+Once your node has been fully synced, it's now time to generate your session keys. You need to stop the node and run it again using the `--validator` option. Running with the `--validator` option also requires you to specify the `--public-addr` option. You can do this by first acquiring your public IP address (ex. `198.51.100.69`) and then passing: `--public-addr /ip4/198.51.100.69/tcp/30334/ws`
 
-`$ ./enjin --validator --rpc-methods=unsafe --name "a_reasonably_unique_name_a8f310"`
+`$ ./enjin --validator --rpc-methods=unsafe --name "a_reasonably_unique_name_a8f310" --public-addr /ip4/[YOUR-IP]/tcp/30334/ws`
 
 You will know if this was successful as you will see an output during startup indicating your role is now `AUTHORITY` and an indication of the `BABE` authorship worker being started. This can be observed in the below example:
 
 ```text
-2023-10-10 19:38:46 Enjin  
-2023-10-10 19:38:46 ✌️  version 0.9.43-b624209af49  
-2023-10-10 19:38:46 ❤️  by Enjin, 2017-2023  
-2023-10-10 19:38:46 📋 Chain specification: Enjin Relaychain  
-2023-10-10 19:38:46 🏷  Node name: a_reasonably_unique_name_a8f310  
-2023-10-10 19:38:46 👤 Role: AUTHORITY  
-2023-10-10 19:38:46 💾 Database: RocksDb at /enjin/chainstate/relaychain/chains/enjin-relaychain/db/full  
-2023-10-10 19:38:46 ⛓  Native runtime: enjin-101 (enjin-1.tx2.au1)  
-[..]  
-2023-10-10 19:38:55 👶 Starting BABE Authorship worker
+2025-08-15 08:34:07 Enjin
+2025-08-15 08:34:07 ✌️  version 1.6.0-2dafb82dcb4
+2025-08-15 08:34:07 ❤️  by Enjin, 2017-2025
+2025-08-15 08:34:07 📋 Chain specification: Enjin Relaychain
+2025-08-15 08:34:07 🏷  Node name: a_reasonably_unique_name_a8f310
+2025-08-15 08:34:07 👤 Role: AUTHORITY
+2025-08-15 08:34:07 💾 Database: RocksDb at /enjin/chainstate/relaychain/chains/enjin-relaychain/db/full
+[..]
+2025-08-15 08:34:09 👶 Starting BABE Authorship worker
 ```
 
 #### Generating Session Keys
@@ -162,7 +161,7 @@ If you ran this successfully, you will receive a successful response and the res
 
 #### Bond ENJ, Set Session Keys and Begin Validating
 
-To become a Validator on the Enjin Relaychain, you initially need 15,000 ENJ. However, to become an Active Validator and earn rewards, you need a total stake that meets or exceeds a certain amount of ENJ. 
+To become a Validator on the Enjin Relaychain, you initially need 15,000 ENJ. However, to become an Active Validator and earn rewards, you need a total stake that meets or exceeds a certain amount of ENJ.
 
 If you want community nominations, you must show commitment and trust by bonding some of your own ENJ and illustrating a willingness of own personal loss if you're to operate the Validator incorrectly. Don't bond all of your ENJ to ensure you can cover transaction fees. Bonded ENJ is locked and cannot be used.
 

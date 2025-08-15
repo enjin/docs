@@ -15,9 +15,9 @@ Head over to this page to add the Enjin Bot to your discord server: https://enj.
 
 ## Step #2: Grant the Enjin Bot permissions
 
-Navigate to "**Server Settings**" within your Discord server, and select "**Roles**".  
-For the Enjin Bot to be able to assign roles to users, it must be positioned higher in the hierarchy than all the roles it is intended to assign.  
-In the roles list, locate the Enjin Bot and drag it **above** the roles it will be managing.  
+Navigate to "**Server Settings**" within your Discord server, and select "**Roles**".
+For the Enjin Bot to be able to assign roles to users, it must be positioned higher in the hierarchy than all the roles it is intended to assign.
+In the roles list, locate the Enjin Bot and drag it **above** the roles it will be managing.
 Make sure to save the changes by clicking the "**Save Changes**" button.
 
 ![Setting up the Enjin Discord Bot - Configuring Roles Permissions](/img/guides/integrations/discord-roles-permissions.gif)
@@ -25,9 +25,9 @@ Make sure to save the changes by clicking the "**Save Changes**" button.
 
 ## Step #3: Setup the role assignment configurations
 
-To configure the role assignment, you will need to enter the specific collection IDs that the Enjin Bot will use to assign roles. 
+To configure the role assignment, you will need to enter the specific collection IDs that the Enjin Bot will use to assign roles.
 
-In your Discord server, type `/setup ` or type `/` and select the `/setup` command. You will be prompted to enter the collection ID, and two optional fields `asset` ID and `balance` (which can be viewed by pressing the 'Tab' button) to assign role based on token holdings.  
+In your Discord server, type `/setup ` or type `/` and select the `/setup` command. You will be prompted to enter the collection ID, and two optional fields `asset` ID and `balance` (which can be viewed by pressing the 'Tab' button) to assign role based on token holdings.
 These IDs correspond to the collection / asset that users must own in order to be assigned certain roles.
 
 You can find the collection IDs by visiting [NFT.io](https://nft.io) and selecting the specific collection. The collection ID is located next to the collection name or in the token's details, where you can also find the token ID.
@@ -39,7 +39,7 @@ The bot will then prompt you to select which roles to assign - Select the roles 
 ![Setting up the Enjin Discord Bot - Running the Setup Command](/img/guides/integrations/discord-running-setup-command.gif)
 
 :::tip Did you know?
-You can assign different roles based on token amount holdings.  
+You can assign different roles based on token amount holdings.
 e.g. `Enjineer` role if owning at least 1 Blobby token, and `Gamer` role if owning at least 10 Blobby tokens.
 :::
 

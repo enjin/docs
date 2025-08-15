@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 To have the SDK connect with the Enjin Platform we must use its platform clients and event services. As a starter, we will look over how to set up these clients.
 
-:::warning Please always make sure to integrate authentication endpoints via secure backend servers.  
+:::warning Please always make sure to integrate authentication endpoints via secure backend servers.
 Direct integration of the SDKs into game clients, which can be decompiled, is strictly not recommended due to potential security risks and exposure of your keys.
 :::
 
@@ -135,7 +135,7 @@ unique_ptr<PusherEventService> service = PusherEventService::Builder()
   </TabItem>
 </Tabs>
 
-:::tip 
+:::tip
 If you wish to change the key (websocket), you can do so in the platform config files.
 :::
 

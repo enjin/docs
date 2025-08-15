@@ -16,7 +16,7 @@ The Enjin Wallet's updated user interface and designs ensure accessibility to us
 
 Game developers can enjoy seamless integration with the Enjin Platform when using the new Enjin Wallet, as it is fully compatible with the Enjin Blockchain, our API, SDKs, and NFT.io support. This makes the Enjin Wallet an ideal digital wallet for storing, trading and transferring NFTs in a secure and seamless way. With its user-friendly interface and broad cryptocurrency compatibility, the Enjin Wallet is a valuable tool for anyone looking to engage with the Enjin ecosystem.
 
-The Enjin Wallet is not limited to the Enjin Blockchain and also supports a wide range of other blockchains, including BTC, LTC, ETH, BEP20, Polygon, Polkadot, KSM, Doge, ERC20, and other standards. This broad spectrum of compatibility ensures that users can store, trade, and manage a diverse range of digital assets all in one place.  
+The Enjin Wallet is not limited to the Enjin Blockchain and also supports a wide range of other blockchains, including BTC, LTC, ETH, BEP20, Polygon, Polkadot, KSM, Doge, ERC20, and other standards. This broad spectrum of compatibility ensures that users can store, trade, and manage a diverse range of digital assets all in one place.
 The Enjin Wallet is available for both Android and iOS devices:
 
 Download from [Google Play](https://play.google.com/store/apps/details?id=com.enjin.mobile.wallet&hl=en&gl=US&pli=1)

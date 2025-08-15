@@ -459,7 +459,7 @@ print(response.json())
 ```
 
 :::info Balances Format
-API balances fields are formatted as u128 number type.  
+API balances fields are formatted as u128 number type.
 to get decimal value, divide the value by 10^18.
 :::
 

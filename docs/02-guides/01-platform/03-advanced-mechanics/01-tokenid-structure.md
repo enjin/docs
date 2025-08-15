@@ -5,7 +5,7 @@ description: "Learn about the Enjin TokenID structure, its format, and how to ut
 ---
 # Token ID Structure
 
-Token IDs in a collection serve as unique identifiers for tokens, represented as 128-bit integers. Beyond their primary role, token IDs can also store structured information about a token's attributes, providing greater organizational flexibility. 
+Token IDs in a collection serve as unique identifiers for tokens, represented as 128-bit integers. Beyond their primary role, token IDs can also store structured information about a token's attributes, providing greater organizational flexibility.
 
 This guide outlines recommended approaches for structuring and organizing token IDs, as well as the four encoding options available on the Enjin Platform: **ERC1155**, **Hash**, **StringId**, and **Integer** (no encoding).
 
@@ -24,20 +24,20 @@ There are 4 key methods for Token ID organization:
 
 ### 1. **Bitmasks**
 
-Bitmasks allocate specific bits of the 128-bit token ID to various attributes, such as **game**, **server**, **class**, and **item ID**. Each section of the token ID is defined by the bit size required for that attribute, ensuring efficient use of space. 
+Bitmasks allocate specific bits of the 128-bit token ID to various attributes, such as **game**, **server**, **class**, and **item ID**. Each section of the token ID is defined by the bit size required for that attribute, ensuring efficient use of space.
 
 For example:
 
-- **Game ID**: 4 bits (up to 16 games)  
-- **Server ID**: 8 bits (up to 256 servers)  
-- **Class ID**: 16 bits (up to 65,536 classes)  
-- **Item ID**: Remaining 100 bits  
+- **Game ID**: 4 bits (up to 16 games)
+- **Server ID**: 8 bits (up to 256 servers)
+- **Class ID**: 16 bits (up to 65,536 classes)
+- **Item ID**: Remaining 100 bits
 
-If you create a token with the ID `0x05ffa34f000000000000000000000001`, it can be decoded as:  
+If you create a token with the ID `0x05ffa34f000000000000000000000001`, it can be decoded as:
 
-- **Game ID**: `05` (Game 5)  
-- **Server ID**: `ff` (Server 255)  
-- **Class ID**: `a34f` (Sword)  
+- **Game ID**: `05` (Game 5)
+- **Server ID**: `ff` (Server 255)
+- **Class ID**: `a34f` (Sword)
 - **Item ID**: `1`
 
 This method is compact but requires encoding and decoding logic.
@@ -46,22 +46,22 @@ This method is compact but requires encoding and decoding logic.
 
 ### 2. **Ranges**
 
-Ranges define numeric intervals for each category, making the structure simpler to understand and decode. 
+Ranges define numeric intervals for each category, making the structure simpler to understand and decode.
 
 for example:
 
-- **Game 01**: Token IDs 0–1000  
-  - **Server 01**: 0–300  
-    - **Class A**: 0–20  
-    - **Class B**: 20–40  
-  - **Server 02**: 300–600  
+- **Game 01**: Token IDs 0–1000
+  - **Server 01**: 0–300
+    - **Class A**: 0–20
+    - **Class B**: 20–40
+  - **Server 02**: 300–600
 
-Token ID `325` maps to:  
+Token ID `325` maps to:
 
-- **Game ID**: `01`  
-- **Server ID**: `02`  
-- **Class ID**: `B`  
-- **Item ID**: `5`  
+- **Game ID**: `01`
+- **Server ID**: `02`
+- **Class ID**: `B`
+- **Item ID**: `5`
 
 This approach is intuitive but may require manual configuration of ID ranges.
 
@@ -181,8 +181,8 @@ This approach is simple and requires no encoding or decoding.
 
 ### Considerations:
 
-- **Ease of Use**: Use Integers or ranges for simplicity.  
-- **Scalability**: Bitmasks and hashes work best for large collections with many attributes.  
+- **Ease of Use**: Use Integers or ranges for simplicity.
+- **Scalability**: Bitmasks and hashes work best for large collections with many attributes.
 - **Interoperability**: Use the ERC1155 encoder for compatibility with Ethereum-based assets.
 
 By understanding these methods and tools, you can design token ID structures that best suit your project's needs while ensuring flexibility and scalability.

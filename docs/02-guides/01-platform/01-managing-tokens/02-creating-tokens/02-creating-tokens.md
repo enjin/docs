@@ -8,10 +8,10 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-"<GlossaryTerm id="token" />s" are digital assets that can be traded, sold, or used on the Enjin Blockchain. 
+"<GlossaryTerm id="token" />s" are digital assets that can be traded, sold, or used on the Enjin Blockchain.
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) to place the tokens in.
@@ -39,7 +39,7 @@ In the Platform menu, navigate to "**[Tokens](https://platform.enjin.io/tokens)*
 
 From here, you can customize your collection's Mint Policy, Market Policy, and Attributes.
 
-- **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.  
+- **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md).
 - **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required).
   - The **[Infinite](/03-api-reference/04-important-arguments.md#infinite)** supply type is the most flexible. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply.
@@ -355,7 +355,7 @@ For Token ID management, head to [Best Practices > TokenID Structure](/02-guides
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 For instance, you'll find settings such as adding attributes/royalties/supply type and much more with the `CreateTokenParams` argument, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 

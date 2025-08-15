@@ -15,7 +15,7 @@ This is a detailed reference guide that explains most common arguments within th
 
 ## id
 
-The `id` argument is a unique identifier used to specifically identify a query or mutation that occurred on the Enjin Platform. 
+The `id` argument is a unique identifier used to specifically identify a query or mutation that occurred on the Enjin Platform.
 
 It helps pinpoint a particular operation when you want to reference it or perform actions related to that operation.
 
@@ -29,7 +29,7 @@ It is structured in the format `xxxxxx-y`, where `xxxxxx` denotes the block numb
 
 ## transactionHash
 
-The "transactionHash" argument in GraphQL serves as a unique identifier for a particular blockchain transaction. 
+The "transactionHash" argument in GraphQL serves as a unique identifier for a particular blockchain transaction.
 
 It is generated using a cryptographic hash function, guaranteeing that each "transactionHash" is entirely distinct and cannot resemble an identifier from a different blockchain network.
 
@@ -45,21 +45,21 @@ You will need to use the `verificationId` to find a wallet address once it's bee
 
 ## after
 
-Used as a cursor to specify a starting point for fetching data in a paginated list. 
+Used as a cursor to specify a starting point for fetching data in a paginated list.
 
-It helps you retrieve data after a specific item or position in the list. 
+It helps you retrieve data after a specific item or position in the list.
 
 ## first
 
 Used to specify the number of results or items you want to return per page when dealing with paginated data.
 
-Simply provide it with a numeric value that represents the desired number of results you want to retrieve in a single page. 
+Simply provide it with a numeric value that represents the desired number of results you want to retrieve in a single page.
 
 ## account
 
-Your "Enjin Blockchain account" that acts like your digital identity on the blockchain. 
+Your "Enjin Blockchain account" that acts like your digital identity on the blockchain.
 
-It allows you to interact with the blockchain, such as sending or receiving tokens. 
+It allows you to interact with the blockchain, such as sending or receiving tokens.
 
 Think of it as your account on the blockchain network.
 
@@ -75,21 +75,21 @@ Your address is derived from your public key and serves as a more user-friendly 
 
 ### publicKey
 
-A cryptographic key associated with your Enjin Blockchain account. 
+A cryptographic key associated with your Enjin Blockchain account.
 
-It serves as your unique identifier on the blockchain. 
+It serves as your unique identifier on the blockchain.
 
 When someone wants to send you tokens or verify your transactions, they use your public key to do so. It's like your digital fingerprint.
 
 ## hashes
 
-Allows you to filter blockchain transactions based on their unique transaction hashes. 
+Allows you to filter blockchain transactions based on their unique transaction hashes.
 
 Transaction hashes are cryptographic representations of individual transactions on the blockchain, ensuring their immutability and uniqueness.
 
 ## numbers
 
-Used for filtering transactions by block numbers, allows you to specify the block numbers from which you want to retrieve transactions. 
+Used for filtering transactions by block numbers, allows you to specify the block numbers from which you want to retrieve transactions.
 
 This is useful when you want to narrow down and retrieve transactions from specific blocks on the blockchain.
 
@@ -101,13 +101,13 @@ Token collections play a pivotal role in organizing and managing related tokens,
 
 ## acknowledgeEvents
 
-Controls whether to automatically acknowledge events that were broadcast to the blockchain but have not yet been acknowledged by the blockchain itself. 
+Controls whether to automatically acknowledge events that were broadcast to the blockchain but have not yet been acknowledged by the blockchain itself.
 
 When events are acknowledged before finalization on the blockchain, the operation's `result` is set as `EXTRINSIC_FAILED`, indicating a failure in the blockchain's processing.
 
 ## tokenId
 
-Used to request specific information about a particular token on the Enjin Blockchain. 
+Used to request specific information about a particular token on the Enjin Blockchain.
 
 It allows you to retrieve details, properties, and attributes of the token identified by its unique token ID.
 
@@ -123,13 +123,13 @@ It's useful for scenarios where simplicity and efficiency are more important tha
 
 Derived from a string, such as a name or label. It you to choose human-readable representations of tokens.
 
-You might choose `stringId` when you want to represent tokens with user-friendly names or labels. 
+You might choose `stringId` when you want to represent tokens with user-friendly names or labels.
 
 It's useful for mapping easily recognizable names.
 
 ### hash
 
-A `hash` is created using a cryptographic hash function, ensuring uniqueness and collision resistance. 
+A `hash` is created using a cryptographic hash function, ensuring uniqueness and collision resistance.
 
 It's suitable when uniqueness across collections is critical.
 
@@ -137,7 +137,7 @@ It's often used in cases where tokens must be resistant to duplication or tamper
 
 ### ERC1155
 
-Designed to facilitate seamless conversion between tokens Ethereum Virtual Machine (EVM) chains and tokens on Enjin Blockchain. 
+Designed to facilitate seamless conversion between tokens Ethereum Virtual Machine (EVM) chains and tokens on Enjin Blockchain.
 
 Particularly useful for projects that require interoperability between blockchain ecosystems.
 
@@ -145,13 +145,13 @@ It enables tokens to be converted from one chain to another while retaining thei
 
 #### index
 
-A 16-bit integer that represents a specific instance or variation of a token type within an ERC-1155 contract. 
+A 16-bit integer that represents a specific instance or variation of a token type within an ERC-1155 contract.
 
 It is used in combination with the base token ID to uniquely identify individual tokens of the same type within the contract.
 
 #### tokenId
 
-A unique identifier used within the ERC-1155 token standard. 
+A unique identifier used within the ERC-1155 token standard.
 
 It combines two components: a 16-bit hexadecimal base token ID and a 16-bit integer index.
 
@@ -159,31 +159,31 @@ When these components are combined, they create a 128-bit integer that serves as
 
 ## method
 
-Enables precise and efficient retrieval of transaction-specific method. 
+Enables precise and efficient retrieval of transaction-specific method.
 
-This targeted approach offers a clear and detailed understanding of the exact actions performed within a transaction, simplifying debugging, security auditing, and user interaction. 
+This targeted approach offers a clear and detailed understanding of the exact actions performed within a transaction, simplifying debugging, security auditing, and user interaction.
 
 It streamlines data retrieval by focusing on the essential method details, making it a powerful tool for developers, auditors, analysts, and end-users to gain insights, enhance security, and improve the overall user experience in blockchain applications.
 
 ## signedAtBlock
 
-Specifies the exact block at which a transaction was signed on the blockchain. 
+Specifies the exact block at which a transaction was signed on the blockchain.
 
-It serves as a historical reference point, indicating precisely when the transaction was initiated and digitally signed within the blockchain's timeline. 
+It serves as a historical reference point, indicating precisely when the transaction was initiated and digitally signed within the blockchain's timeline.
 
-This information is particularly useful when there is a need find a transaction within a block, verify the authenticity of a digital signature, or ensure compliance with timestamp-related requirements. 
+This information is particularly useful when there is a need find a transaction within a block, verify the authenticity of a digital signature, or ensure compliance with timestamp-related requirements.
 
-It enables users, developers, and auditors to track the temporal context of blockchain interactions, offering a clear historical record that can be crucial for auditing, legal, regulatory, and security purposes. 
+It enables users, developers, and auditors to track the temporal context of blockchain interactions, offering a clear historical record that can be crucial for auditing, legal, regulatory, and security purposes.
 
 ## state
 
 Used for tracking and monitoring the progress of Enjin Platform queries and mutations, offering insights into their current status and history. Here are the various states and why they are useful:
 
-- **`ABANDONED`:** Indicates that the operation couldn't be sent, often due to encoding issues or insufficient funds. 
-- **`PENDING`:** Represents a newly created operation that is awaiting approval by a wallet. 
-- **`PROCESSING`:** Signifies that the Enjin Wallet Daemon has picked up the transaction and is actively processing it. 
+- **`ABANDONED`:** Indicates that the operation couldn't be sent, often due to encoding issues or insufficient funds.
+- **`PENDING`:** Represents a newly created operation that is awaiting approval by a wallet.
+- **`PROCESSING`:** Signifies that the Enjin Wallet Daemon has picked up the transaction and is actively processing it.
 - **`BROADCAST`:** Indicates that the transaction has successfully sent the transaction to the Enjin Blockchain.
-- **`FINALIZED`:** Denotes that the transaction has been successfully included in a block on the blockchain. Although, it doesn't specify whether the on-chain transaction succeeded or failed. That data can be queried by using the `result` field. 
+- **`FINALIZED`:** Denotes that the transaction has been successfully included in a block on the blockchain. Although, it doesn't specify whether the on-chain transaction succeeded or failed. That data can be queried by using the `result` field.
 
 ## result
 
@@ -197,15 +197,15 @@ This single piece of information is pivotal for ensuring the reliability, integr
 
 ## externalId
 
-You can utilize the `externalId` argument to establish a connection between an account in database and an Enjin Platform Account. 
+You can utilize the `externalId` argument to establish a connection between an account in database and an Enjin Platform Account.
 
 It's worth noting that you have control over setting a user's `externalId`, so it's advisable to choose an identifier that aligns with your existing database, making "`externalId`" a valuable and versatile option for processing requests.
 
 ## signature
 
-Allows for message authentication, ensuring that data remains unaltered during transmission, and guarantees the integrity of blockchain-stored data. 
+Allows for message authentication, ensuring that data remains unaltered during transmission, and guarantees the integrity of blockchain-stored data.
 
-Additionally, `signature` serves as a means of verifying user identity and authorization, providing non-repudiation, enhancing security, and confirming the legitimacy of blockchain transactions. 
+Additionally, `signature` serves as a means of verifying user identity and authorization, providing non-repudiation, enhancing security, and confirming the legitimacy of blockchain transactions.
 
 Overall, this argument is indispensable for maintaining trust, security, and data reliability in cryptographic and blockchain environments.
 
@@ -227,7 +227,7 @@ Use the `signingaccount` argument to specify the account responsible for signing
 
 ## simulate
 
-You would use the `simulate` parameter set to `true` when you want to test and validate the outcome of a transaction without actually executing it on the blockchain network. 
+You would use the `simulate` parameter set to `true` when you want to test and validate the outcome of a transaction without actually executing it on the blockchain network.
 
 It provides a valuable way to safely experiment with transactions and prevent unintended consequences, especially in scenarios where accuracy and precision are critical.
 
@@ -322,7 +322,7 @@ The `continueOnFailure` parameter, when set to true, indicates that the system s
 
 ## keepAlive
 
-When conducting Enjin Coin (ENJ) transfers, utilizing the "keepAlive" option with a value of true is advisable if you intend to preserve the sender's Enjin Coin Account, even when its balance drops below the minimum threshold of 0.1 ENJ. 
+When conducting Enjin Coin (ENJ) transfers, utilizing the "keepAlive" option with a value of true is advisable if you intend to preserve the sender's Enjin Coin Account, even when its balance drops below the minimum threshold of 0.1 ENJ.
 
 It's important to recognize that Enjin Coin Accounts and Token Accounts are distinct entities, meaning that a wallet can still hold tokens and NFTs even if the Enjin Coin Account is removed.
 
@@ -356,9 +356,9 @@ Configures default marketplace royalties for all tokens in the collection.
 
 ## explicitRoyaltyCurrencies
 
-The `explicitRoyaltyCurrencies` field within a collection serves the purpose of specifying which currencies are permitted to be accepted as royalties. 
+The `explicitRoyaltyCurrencies` field within a collection serves the purpose of specifying which currencies are permitted to be accepted as royalties.
 
-By including specific currencies in this field, a collection restricts the acceptance of royalties to only those currencies, ensuring that any listing created that intends to pay royalties in an unaccepted currency will result in a failed listing creation process. 
+By including specific currencies in this field, a collection restricts the acceptance of royalties to only those currencies, ensuring that any listing created that intends to pay royalties in an unaccepted currency will result in a failed listing creation process.
 
 This feature enhances control and compliance in managing royalties within the collection.
 
@@ -390,7 +390,7 @@ For example, when unapproving a collection, "owner" refers to the account from w
 
 ## TokenIds
 
-Specifies a list of integer <GlossaryTerm id="token_id" />s claimable in the beam. A Beam Claim will be generated for each provided ID.  
+Specifies a list of integer <GlossaryTerm id="token_id" />s claimable in the beam. A Beam Claim will be generated for each provided ID.
 Provide IDs as strings, using commas to separate multiple entries. Supports single IDs (e.g., "1"), ranges (e.g., "6..8"), or a combination (e.g., ["1", "6..8", "10"] includes IDs 1, 6, 7, 8, and 10).
 
 ## tokenQuantityPerClaim

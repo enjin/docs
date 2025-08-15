@@ -41,7 +41,7 @@ The diagram above depicts the various stages involved in creating a new collecti
 
 :::tip Choosing the Right Approach for Running the Wallet Daemon
 There are two ways to run the Wallet Daemon, each suitable for different user profiles and use cases:
-1. **Executable Approach:** This method involves running a simple executable, configuring it via a user interface, and clicking 'Run' to start it. It is the most straightforward approach and is recommended for beginners or those who are not developers and for development environments / personal use. Learn how to set it up in our [Setting up Wallet Daemon using Executable](#wallet-daemon-executable) guide.  
+1. **Executable Approach:** This method involves running a simple executable, configuring it via a user interface, and clicking 'Run' to start it. It is the most straightforward approach and is recommended for beginners or those who are not developers and for development environments / personal use. Learn how to set it up in our [Setting up Wallet Daemon using Executable](#wallet-daemon-executable) guide.
 2. **Docker Approach:** This method involves cloning a GitHub repository and modifying the configuration files. It offers more flexibility and control, making it suitable for developers and for production use. Learn how to set it up in our [Setting up Wallet Daemon using Docker](#setting-up-wallet-daemon-via-docker) guide.
 
 Choose the approach that best fits your technical proficiency and the needs of your project.
@@ -51,8 +51,8 @@ Choose the approach that best fits your technical proficiency and the needs of y
 
 ![The wallet daemon executable app](/img/getting-started/wallet-daemon-executable-welcome.png)
 
-Setting up the Wallet Daemon Executable is a straight forward process.  
-Download the latest version of the Wallet Daemon from [GitHub](https://github.com/enjin/wallet-daemon-ui/releases), extract it, and run the `enjin_wallet_daemon.exe` executable file.  
+Setting up the Wallet Daemon Executable is a straight forward process.
+Download the latest version of the Wallet Daemon from [GitHub](https://github.com/enjin/wallet-daemon-ui/releases), extract it, and run the `enjin_wallet_daemon.exe` executable file.
 Follow the on-screen instructions to set it up and make sure to insert your Enjin Platform API Token from your [account settings page](https://platform.canary.enjin.io/settings).
 
 ![Configuring the Wallet Daemon Executable with Enjin Platform](/img/getting-started/daemon-exec-overview.gif)
@@ -88,21 +88,21 @@ The final configuration is to update the `configs/daemon/config.json` file to co
 <Tabs>
   <TabItem value="mainnet" label="Enjin Blockchain">
 ```
-{  
-  "node": "wss://rpc.matrix.blockchain.enjin.io:443",  
-  "relay_node": "wss://rpc.relay.blockchain.enjin.io:443",  
-  "api": "https://platform.enjin.io/graphql",  
-  "master_key": "/opt/app/storage"  
+{
+  "node": "wss://rpc.matrix.blockchain.enjin.io:443",
+  "relay_node": "wss://rpc.relay.blockchain.enjin.io:443",
+  "api": "https://platform.enjin.io/graphql",
+  "master_key": "/opt/app/storage"
 }
 ```
   </TabItem>
   <TabItem value="canary" label="Canary Blockchain">
 ```
-{  
-  "node": "wss://rpc.matrix.canary.enjin.io:443",  
-  "relay_node": "wss://rpc.relay.canary.enjin.io:443",  
-  "api": "https://platform.canary.enjin.io/graphql",  
-  "master_key": "/opt/app/storage"  
+{
+  "node": "wss://rpc.matrix.canary.enjin.io:443",
+  "relay_node": "wss://rpc.relay.canary.enjin.io:443",
+  "api": "https://platform.canary.enjin.io/graphql",
+  "master_key": "/opt/app/storage"
 }
 ```
   </TabItem>
@@ -117,22 +117,22 @@ Finally, you can spin up the daemon using the following command from the platfor
 ### Importing Daemon Wallet From Existing Seed
 
 :::info Daemon Wallets Encryption
-Daemon wallets may be encrypted with a password specified in the `KEY_PASS` env var located in `configs/daemon/.env`.  
-If your existing wallet is encrypted with a password, make sure to update your `KEY_PASS` var accordingly.  
-If your existing wallet is not encrypted, leave the `KEY_PASS` var empty.  
+Daemon wallets may be encrypted with a password specified in the `KEY_PASS` env var located in `configs/daemon/.env`.
+If your existing wallet is encrypted with a password, make sure to update your `KEY_PASS` var accordingly.
+If your existing wallet is not encrypted, leave the `KEY_PASS` var empty.
 :::
 
 Follow the steps below to set up your wallet daemon from an existing seed:
 
-1. Find your wallet's public key. You can convert your wallet's account address to it's public key with the [Account Format Transform](https://matrix.subscan.io/tools/format_transform) tool.  
+1. Find your wallet's public key. You can convert your wallet's account address to it's public key with the [Account Format Transform](https://matrix.subscan.io/tools/format_transform) tool.
    We'll use wallet address `efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW` as an example. It's public key is `0x62c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`.
-2. Remove the 0x from the public key from step #1.  
+2. Remove the 0x from the public key from step #1.
    For our example, it's `62c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`
-3. Inside your platform's `configs/daemon/store` folder, create a file with the name `73723235<string from step #2>`.  
+3. Inside your platform's `configs/daemon/store` folder, create a file with the name `73723235<string from step #2>`.
    For our example, we've created the file `configs/daemon/store/7372323562c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`
-4. Inside the new file created on step #3, insert your wallet's mnemonic seed wrapped with double quotes.  
+4. Inside the new file created on step #3, insert your wallet's mnemonic seed wrapped with double quotes.
    Example: `"earn meat maid rotate ..."`
-5. Rebuild your platform for the changes to take effect:  
+5. Rebuild your platform for the changes to take effect:
    `docker compose build`
-6. Run the daemon again:  
+6. Run the daemon again:
    `docker compose up daemon`

@@ -52,7 +52,7 @@ public:
         const string& eventName = evt.GetEventName();
         const string& channelName = evt.GetChannelName();
         const string& message = evt.GetMessage();
-        
+
         /* Handle event */
     }
 };

@@ -35,7 +35,7 @@ By integrating ENJ Infusion, creators and developers can provide enhanced value 
 
 ## Creating a Token with Infused ENJ
 
-To create a token with Infused ENJ, proceed with the instructions on the [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) page, but make sure to specify the amount of ENJ to infuse into the token, in the “Infuse ENJ” section.  
+To create a token with Infused ENJ, proceed with the instructions on the [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) page, but make sure to specify the amount of ENJ to infuse into the token, in the “Infuse ENJ” section.
 If you are using the `CreateToken` mutation, insert the infusion amount in the `params: infusion` parameter.
 
 :::warning Important Note
@@ -47,12 +47,12 @@ e.g.: to infuse a token with 5 ENJ, the infusion argument should be set to `5000
 
 By default, ENJ infusion is restricted only to the collection owner
 
-At any time, as well as at the time of creating the token, the collection owner can select to to allow anyone to add ENJ infusion to the token.  
-This can be done with the `CreateToken` mutation by setting the `params: anyoneCanInfuse` parameter to `true`.  
+At any time, as well as at the time of creating the token, the collection owner can select to to allow anyone to add ENJ infusion to the token.
+This can be done with the `CreateToken` mutation by setting the `params: anyoneCanInfuse` parameter to `true`.
 If the token is already created, the `anyoneCanInfuse` state can be adjusted via the `MutateToken` mutation, with the `mutation: anyoneCanInfuse` parameter.
 
 :::warning **Feature Availability Notice**
-Currently, the `anyoneCanInfuse` state can only be configured at the time of creating the token. The option to adjust the infusion permission for an existing token via a mutation will be added later on. We will update the documentation once this feature is available.  
+Currently, the `anyoneCanInfuse` state can only be configured at the time of creating the token. The option to adjust the infusion permission for an existing token via a mutation will be added later on. We will update the documentation once this feature is available.
 In the meantime, if you wish to adjust infusion permission of an existing token now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
 :::
 
@@ -61,7 +61,7 @@ In the meantime, if you wish to adjust infusion permission of an existing token 
 To add ENJ infusion to a token that already exists, use the `Infuse` mutation:
 
 :::warning Important Note
-The `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be infused.  
+The `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be infused.
 e.g.: to infuse a token with 5 ENJ, the infusion argument should be set to `5000000000000000000`, which is `5*(10^18)`.
 :::
 

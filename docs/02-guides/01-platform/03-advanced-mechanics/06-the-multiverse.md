@@ -30,7 +30,7 @@ This cycle—driven by consistent player engagement, developer involvement, and 
 
 ## Using the Primythical Chest to Acquire Players
 
-The <GlossaryTerm id="primythical_chest" /> is an infinite supply promotional tool and Enjin's primary funnel for onboarding new players into your game. 
+The <GlossaryTerm id="primythical_chest" /> is an infinite supply promotional tool and Enjin's primary funnel for onboarding new players into your game.
 
 Enjin is giving away this item for free, then educating players on where they can use it.
 
@@ -63,7 +63,7 @@ Multiverse Items are designed as powerful tokens with <GlossaryTerm id="utility"
 
 Each month, Enjin will supply you with Multiverse Items to attract players eager to earn them in your game.
 
-Monthly events will feature new opportunities for players to win different Multiverse Items in your game, creating ongoing engagement between you and the Enjin playerbase. 
+Monthly events will feature new opportunities for players to win different Multiverse Items in your game, creating ongoing engagement between you and the Enjin playerbase.
 
 Over time, players may aim to collect all available items or trade them on [NFT.io](https://nft.io).
 
@@ -126,7 +126,7 @@ Here is the yearly release schedule for Multiverse Items & Quests:
 
 ### Step 1: Download the 3D Multiverse Models
 
-Visit [Enjin's public resource repository](https://drive.google.com/drive/folders/1ijlDn_f9PN8GsT9kQfGZR0ObrUgEL2ge) to download 3D models for Unity and Unreal Engine. 
+Visit [Enjin's public resource repository](https://drive.google.com/drive/folders/1ijlDn_f9PN8GsT9kQfGZR0ObrUgEL2ge) to download 3D models for Unity and Unreal Engine.
 
 These ready-to-integrate models will streamline your multiverse integration process.
 

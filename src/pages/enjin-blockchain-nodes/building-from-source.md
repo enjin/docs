@@ -19,8 +19,8 @@ This guide was tested in Ubuntu 20.04 and macOS 13 (Ventura).
 The following steps will build the latest version of the Enjin Matrixchain node from the master branch:
 
 1. Install Rust and Substrate dependencies following the official [Substrate installation guide](https://docs.substrate.io/install/).
-2. Clone the Enjin repository:  
-   `git clone https://github.com/enjin/matrixchain.git`  
+2. Clone the Enjin repository:
+   `git clone https://github.com/enjin/matrixchain.git`
    `cd matrixchain`
 3. Checkout the latest version of the code: `git checkout v3.1.4`
 4. Build the node: `cargo build --release`

@@ -80,8 +80,8 @@ const glossary = {
     enjin_platform_cloud: { name: "Enjin Platform Cloud", definition: "A cloud hosted Enjin Platform that allows you to kickstart your next NFT project in just a few minutes. Ran on Enjin's robust servers, yet fully secure and isolated to your unique project instance, you can launch your NFT game with a few simple steps. Just create an account, set it up, generate your first API key, and voila! Your NFT game is operational." },
     enterprise_on_prem_platform: { name: "Enterprise On-Prem Enjin Platform", definition: "The Enterprise On-Prem Enjin platform is the most powerful and advanced open-source framework for building NFT platforms. This provides you with comprehensive control over your data, eliminating dependence on any third-party servers or services." },
   };
-  
+
   export default glossary;
-  
+
 
 

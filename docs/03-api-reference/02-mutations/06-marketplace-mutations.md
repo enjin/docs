@@ -27,8 +27,8 @@ The `CreateListing` mutation is used to initiate the process of placing a buy or
 
 The `CreateListing` mutation is a fundamental operation in a marketplace. It allows you, as a seller, to list your assets for sale on the platform, and as a buyer, to create a buy offer. Here's how you can use it:
 
-1. **Asset Details**: Specify the asset you want to buy/sell and the asset you want to receive in exchange.  
-   When creating a sell order, specify the asset you want to sell in the `makeAssetId` parameter, and the asset you want to receive in exchange in the `takeAssetId` parameter.  
+1. **Asset Details**: Specify the asset you want to buy/sell and the asset you want to receive in exchange.
+   When creating a sell order, specify the asset you want to sell in the `makeAssetId` parameter, and the asset you want to receive in exchange in the `takeAssetId` parameter.
    When creating a buy order, specify the asset you want to buy in the `takeAssetId` parameter, and the asset you want to pay with in the `makeAssetId` parameter.
 
 :::info
@@ -37,7 +37,7 @@ For ENJ tokens, use `collectionId: 0` and `tokenId: {integer: 0}`
 
 2. **Quantity and Price**: Set the quantity (`amount`) and the price (`price`) at which you are willing to buy/sell the asset.
 3. **Uniqueness**: Include a random string (`salt`) to ensure the uniqueness of your listing order.
-4. **start/end block (Optional)**: If you are conducting an auction, you can specify the start and end blocks for the auction (`auctionParams`).  
+4. **start/end block (Optional)**: If you are conducting an auction, you can specify the start and end blocks for the auction (`auctionParams`).
    If you are conducting an offer, you can specify the end block for the auction (`offerParams`).
 5. **Response**: After successfully creating the listing, you will receive a response with details about the new listing, including its ID, state, and other relevant information.
 

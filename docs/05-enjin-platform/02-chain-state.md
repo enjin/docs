@@ -6,9 +6,9 @@ description: "Learn how to monitor and manage the chain state for your Enjin blo
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-The chain state of a blockchain is a snapshot of all the data it contains at a given moment. 
+The chain state of a blockchain is a snapshot of all the data it contains at a given moment.
 
-This includes account balances, ownership of digital assets, and other on-chain information. 
+This includes account balances, ownership of digital assets, and other on-chain information.
 
 It's regularly updated through the network's consensus algorithm to maintain data integrity.
 
@@ -16,11 +16,11 @@ To query this state, there are several methods, but let's focus on using the Enj
 
 ## Enjin Platform
 
-The Enjin Platform uses a blockchain indexer to gather transactions, aiming to provide the latest chain state as quickly as possible. 
+The Enjin Platform uses a blockchain indexer to gather transactions, aiming to provide the latest chain state as quickly as possible.
 
 Direct queries to the blockchain via an RPC node are possible but can be demanding on resources, especially with many simultaneous queries. Indexers mitigate this issue.
 
-With the Enjin Platform, you can use advanced queries involving multiple relationships to get data faster than directly from RPC nodes. 
+With the Enjin Platform, you can use advanced queries involving multiple relationships to get data faster than directly from RPC nodes.
 
 Here's an example of a query in the GraphiQL playground, showing the state of collection ID 2000:
 
@@ -85,10 +85,10 @@ Open the Enjin Console, you can connect to the network by clicking on the follow
 
 To look up data from a specific module (called a <GlossaryTerm id="pallet" />) on the Chainstate page of the Enjin Console, you just need to pick the pallet you're interested in and then select the data item you need from that pallet.
 
-Remember that the database used by the blockchain node is structured like a tree (specifically, a radix tree), which is different from a standard SQL database. 
+Remember that the database used by the blockchain node is structured like a tree (specifically, a radix tree), which is different from a standard SQL database.
 
-- **Pallet Storage** on a blockchain is like a separate database for each category of data. 
-- **Specific Storage** within a pallet is akin to a table in a database, holding actual data entries. 
+- **Pallet Storage** on a blockchain is like a separate database for each category of data.
+- **Specific Storage** within a pallet is akin to a table in a database, holding actual data entries.
 
 Unlike a traditional SQL database with tables, a blockchain organizes data in a tree structure for efficiency, but the concept of separate areas for different data types (pallets) and specific datasets (storages) within those areas is similar.
 

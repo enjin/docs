@@ -18,7 +18,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 - **Mainnet:** `http://platform.enjin.io/graphql/beam`
 :::
 
-This is a detailed reference guide that explains the most commonly used operations. 
+This is a detailed reference guide that explains the most commonly used operations.
 
 ## GetBeam
 
@@ -37,7 +37,7 @@ query GetBeam {
     start
     end
     isClaimable
-    claimsRemaining    
+    claimsRemaining
     qr {
       url
       payload
@@ -53,7 +53,7 @@ query GetBeam {
       forceSingleMint
       frozen
       network
-    }    
+    }
   }
 }
 
@@ -355,7 +355,7 @@ query GetClaims {
         }
         beam {
           id
-          code          
+          code
         }
       }
     }

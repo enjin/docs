@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 Similarly to [Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md), "Currency Tokens" are also digital assets that can be traded, sold, or used on the Enjin Blockchain. However, unlike standard tokens, currency tokens support fractional values, allowing them to be divided into smaller units, just like traditional currencies.
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) to place the tokens in.
@@ -25,9 +25,9 @@ For the currency token options, configure the metadata parameter, which consists
 - **Decimals:** Max amount of decimals supported for this token (e.g. 2 would mean the token can support up to 2 decimals, like 5.75 Gold Coins).
 
 :::warning Important Note on Decimals Support
-The `decimalCount` property specifies how token balances should be displayed in applications, but it does not allow for actual fractional values on the Enjin Blockchain.  
-This means that for a token with "Decimals: 2", the balance should be divided by 100 (10^2) when displayed in applications.  
-For example, for the Gold Coins token example mentioned above, a balance of 1,575 Gold Coins should be shown as 15.75 (1,575/100) in apps.  
+The `decimalCount` property specifies how token balances should be displayed in applications, but it does not allow for actual fractional values on the Enjin Blockchain.
+This means that for a token with "Decimals: 2", the balance should be divided by 100 (10^2) when displayed in applications.
+For example, for the Gold Coins token example mentioned above, a balance of 1,575 Gold Coins should be shown as 15.75 (1,575/100) in apps.
 Similarly, when minting tokens, to mint 4.80 Gold Coins, the minted supply parameter should be set to 480 (4.8 \* 10^2).
 :::
 
@@ -43,13 +43,13 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 ## Option A. Using the Enjin Dashboard
 
 :::warning Unavailable via the User Interface
-The option to create a currency token via the user interface is currently being developed.  
+The option to create a currency token via the user interface is currently being developed.
 For the time being, you can create currency token via [Option B. Using the Enjin API & SDKs](#option-b-using-the-enjin-api--sdks).
 :::
 
 ## Option B. Using the Enjin API & SDKs
 
-CreateToken mutation enables you to create a new token within an existing collection. This operation is essential for introducing new digital assets, and it allows you to define various attributes and characteristics for the newly created token.  
+CreateToken mutation enables you to create a new token within an existing collection. This operation is essential for introducing new digital assets, and it allows you to define various attributes and characteristics for the newly created token.
 For the currency token options, configure the metadata parameter, which consists of name, symbol and decimals
 
 <Tabs>
@@ -152,8 +152,8 @@ fetch('https://platform.canary.enjin.io/graphql', {
           collectionId: $collection_id
           params:{
             tokenId: {integer: $token_id}
-            initialSupply: $initial_supply 
-            cap: {type: $cap} 
+            initialSupply: $initial_supply
+            cap: {type: $cap}
             metadata: $metadata
           }
         ) {
@@ -277,7 +277,7 @@ For Token ID management, head to [Best Practices > TokenID Structure](/02-guides
 :::
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 For instance, you'll find settings such as adding attributes/royalties/supply type and much more with the `CreateTokenParams` argument, or the ability to sign using a managed wallet with the `signingAccount` argument.
 :::
 
