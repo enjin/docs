@@ -69,11 +69,11 @@ Here's how the same RESTful request would like like in GraphQL, sent as an HTTP 
 ```graphql
 mutation CreateToken {
   CreateToken(
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", 
-    collectionId: 2406, 
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+    collectionId: 2406,
     params: {
-      tokenId: { integer: 0 }, 
-      initialSupply: 1, 
+      tokenId: { integer: 0 },
+      initialSupply: 1,
       cap: { type: INFINITE }
     }
   ) {
@@ -105,8 +105,8 @@ Choose between [Testnet](https://platform.canary.enjin.io/graphiql) or [Mainnet]
 Explore "[Core Operations](https://platform.canary.enjin.io/graphiql)" for core operations like managing tokens, wallets, users, and transactions.
 
 :::info GraphiQL Playground:
-Please be aware that the provided links below are specifically for the GraphiQL Playground, which is a graphical user interface designed for exploring and interacting with the Enjin Platform GraphQL APIs directly from a web browser.  
-If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#overview-of-graphql-endpoints)  
+Please be aware that the provided links below are specifically for the GraphiQL Playground, which is a graphical user interface designed for exploring and interacting with the Enjin Platform GraphQL APIs directly from a web browser.
+If you wish to execute GraphQL requests programmatically from your local environment or a cloud-based application, you will need to utilize the actual GraphQL endpoint URLs. These can be found [here](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#overview-of-graphql-endpoints)
 #### Testnet:
 - [Core Operations](https://platform.canary.enjin.io/graphiql)
 - [Marketplace](https://platform.canary.enjin.io/graphiql/marketplace)
@@ -139,7 +139,7 @@ Add a `query` or `mutation` into the "write" panel, and you'll see the list of a
 
 ### Step 4: Select which operations and datapoints you require
 
-Click the required data points to automatically add them to the write column. 
+Click the required data points to automatically add them to the write column.
 
 This feature eliminates any guesswork when structuring your operations and helps you make the most of the Enjin Platform Schema.
 
@@ -149,7 +149,7 @@ This feature eliminates any guesswork when structuring your operations and helps
 
 ### Step 5: Click the play button to execute your operation
 
-To execute your operation and view the response, simply click the `Execute Query` button. 
+To execute your operation and view the response, simply click the `Execute Query` button.
 
 You can execute any on-chain operation here. You can even mint tokens and view wallet data on [Mainnet](https://platform.enjin.io/graphiql).
 
@@ -165,7 +165,7 @@ To interface with it directly, you will need to understand how GraphQL operation
 
 ### Operation Name
 
-The Operation Name such as `GetTokenInfo` is a user-defined identifier for a specific operation. 
+The Operation Name such as `GetTokenInfo` is a user-defined identifier for a specific operation.
 
 It allows you to organize and distinguish different operations within a single request, making it easier to handle responses and manage complex queries or mutations efficiently.
 
@@ -197,11 +197,11 @@ query GetTokenInfo { #'GetTokenInfo' is the Operation Name that distinguishes th
 
 ### Fields
 
-Fields serve as a means to precisely specify the data you want to retrieve in the response of an operation. 
+Fields serve as a means to precisely specify the data you want to retrieve in the response of an operation.
 
 Fields enable you to fine-tune the granularity of data retrieval, ensuring you receive precisely what you need.
 
-When crafting Queries and Mutations, the Enjin Platform defines what fields are available for you to request. 
+When crafting Queries and Mutations, the Enjin Platform defines what fields are available for you to request.
 
 For instance, when using the `GetToken` query, you can request the `supply` field, which corresponds to a specific piece of information stored on the blockchain.
 
@@ -233,9 +233,9 @@ query {
 
 ### Arguments
 
-You can pass data into an operation by using arguments.  
+You can pass data into an operation by using arguments.
 
-Most Queries and Mutations define a set of input data you can use, for example in the `GetToken` query you can pass in a `collectionId` and a `tokenId` argument. 
+Most Queries and Mutations define a set of input data you can use, for example in the `GetToken` query you can pass in a `collectionId` and a `tokenId` argument.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -263,19 +263,19 @@ query {
   </TabItem>
 </Tabs>
 
-Sometimes arguments will be required, sometimes they will be optional, and some operations may not take any arguments at all.  
+Sometimes arguments will be required, sometimes they will be optional, and some operations may not take any arguments at all.
 
 The API will tell you if you try to run an operation without a required argument.
 
 ### Aliases
 
-The alias, such as `TokenInfo` and `CurrentSupply` in the queries provided below, serve as a custom labels for specific fields within the operation. 
+The alias, such as `TokenInfo` and `CurrentSupply` in the queries provided below, serve as a custom labels for specific fields within the operation.
 
 Aliases allow you to rename the field in the response, making the data more intuitive and organized, especially when dealing with multiple fields or nested queries within a GraphQL request.
 
 #### Operation Alias:
 
-Usually used in batch operations, it allows you to provide a clear and descriptive name for each operations. 
+Usually used in batch operations, it allows you to provide a clear and descriptive name for each operations.
 
 You might use it to distinguish between multiple similar queries or to provide context for the purpose of the query.
 
@@ -307,7 +307,7 @@ query GetTokenInfo {
 
 #### Field Alias:
 
-This option is useful when you want to label a specific field within the response. 
+This option is useful when you want to label a specific field within the response.
 
 It allows you to rename individual fields in the response for clarity or to avoid naming conflicts.
 
@@ -403,13 +403,13 @@ query GetTokenInfo($collection_id: BigInt! $token_id: BigInt) {
 
 ### Types
 
-Types in GraphQL serve as blueprints for defining the shape and composition of the data available through the API, encompassing a collection of fields representing specific pieces of information. 
+Types in GraphQL serve as blueprints for defining the shape and composition of the data available through the API, encompassing a collection of fields representing specific pieces of information.
 
 These structures lay the foundation for shaping queries and mutations, ensuring precise data retrieval and manipulation.
 
 #### Query:
 
-A `query` is used to retrieve data from the Enjin Platform. 
+A `query` is used to retrieve data from the Enjin Platform.
 
 In this example, we're querying for information about a specific token.
 
@@ -490,7 +490,7 @@ The field `id` indicate the data we want to receive in the response.
 
 A batch `query` allows you to send multiple mutation operations in a single request to reduce network overhead.
 
-Each query have its own set of parameters and return data. 
+Each query have its own set of parameters and return data.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -527,7 +527,7 @@ query BatchGetTokenInfo {
   </TabItem>
 </Tabs>
 
-In this batch query, we retrieve information for two different tokens with distinct `collectionId` and `tokenId`. 
+In this batch query, we retrieve information for two different tokens with distinct `collectionId` and `tokenId`.
 
 Each token's data is aliased using `TokenInfo1` and `TokenInfo2`.
 
@@ -535,7 +535,7 @@ Each token's data is aliased using `TokenInfo1` and `TokenInfo2`.
 
 A batch `mutation` allows you to send multiple mutation operations in a single request to reduce network overhead.
 
-Each mutation can have its own set of parameters and return data. 
+Each mutation can have its own set of parameters and return data.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -590,7 +590,7 @@ Some GraphQL queries returns results in multiple pages. In GraphQL, these are ca
 
 For example, the [GetWallet query](https://studio.apollographql.com/public/EnjinPlatform/variant/core/schema/reference/objects/Query?query=GetWallet) returns an object of type [Wallet](https://studio.apollographql.com/public/EnjinPlatform/variant/core/schema/reference/objects/Wallet). Wallet objects contains tokenAccount which is of type [TokenAccountConnection](https://studio.apollographql.com/public/EnjinPlatform/variant/core/schema/reference/objects/TokenAccountConnection). Since this object is of type 'connection', it uses pagination.
 
-By default, if you don't specify which page to query, the first page will be returned.  
+By default, if you don't specify which page to query, the first page will be returned.
 To check if the response contains another page for a certain object, use the pageInfo.hasNextPage property from the connection.
 
 <Tabs>
@@ -650,7 +650,7 @@ By default, this connection returns 15 edges (tokens) per page.
 The amount of edges per page can be adjusted by using slicing.
 :::
 
-To navigate to the next page, use pagination combined with the edge cursor.  
+To navigate to the next page, use pagination combined with the edge cursor.
 First, add the cursor field to the query response. (Alternatively, you can add the pageInfo.endCursor field to fetch the cursor of the last edge in the connection)
 
 <Tabs>
@@ -717,7 +717,7 @@ query FetchingWalletTokens{
   </TabItem>
 </Tabs>
 
-Now we have the cursor of the last edge of the current page.  
+Now we have the cursor of the last edge of the current page.
 To navigate to the next page, add the `after` parameter to the `tokenAccounts` connection, and insert the cursor of the last edge of the current page.
 
 <Tabs>
@@ -784,7 +784,7 @@ query FetchingWalletTokens{
   </TabItem>
 </Tabs>
 
-To get all edges in the connection, continue navigating to the next page with a loop.  
+To get all edges in the connection, continue navigating to the next page with a loop.
 You'll know that you reached the last page when the `hasNextPage` returns `false`.
 
 ***

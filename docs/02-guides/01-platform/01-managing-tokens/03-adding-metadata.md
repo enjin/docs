@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 Adding <GlossaryTerm id="metadata" /> to a token enables games and apps to import detailed information and showcase your token's data. Usually, digital assets are identified just by its <GlossaryTerm id="token_id" />. Metadata adds extra details to these assets, giving them properties such as a title, a narrative, and visuals.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and metadata <GlossaryTerm id="storage_deposit" />s.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add metadata to.
@@ -32,20 +32,20 @@ There are three main ways to store metadata for your tokens:
    - On-chain storage can cost a small fee at the time of mint and has slight limitations in terms of space, making it suitable for smaller, permanent files.
 
 2. **Off-Chain Storage: JSON**
-   - This means the metadata is stored outside the blockchain on a separate server or database. 
+   - This means the metadata is stored outside the blockchain on a separate server or database.
    - It's often accessible through a URL, typically pointing to a JSON file containing the asset's information.
    - Off-chain storage is cheaper and more flexible for large or frequently updated data, but it relies on external servers' availability and security.
 
 3. **InterPlanetary File System (<GlossaryTerm id="ipfs" />): JSON**
    - IPFS is a decentralized storage solution that distributes file storage across a network of computers.
    - It allows metadata to be stored off the main blockchain but in a way that's still decentralized, tamper-proof, and permanent.
-   - IPFS assigns a unique hash to each file. When you store metadata on IPFS, you link to it using this hash, ensuring the data remains unchanged. 
+   - IPFS assigns a unique hash to each file. When you store metadata on IPFS, you link to it using this hash, ensuring the data remains unchanged.
 
 Each option has trade-offs between cost, reliability, and security, and the choice depends on the specific needs and goals of the digital asset being created.
 
 ## Attributes: OnChain Metadata
 
-You can assign multiple on-chain attributes to a token simultaneously, which allows you to define the metadata of the token. 
+You can assign multiple on-chain attributes to a token simultaneously, which allows you to define the metadata of the token.
 
 Some commonly recognized attributes, following the [Universal Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md), include:
 
@@ -59,9 +59,9 @@ Check the [Best Practices for Collection/Token Metadata](/02-guides/01-platform/
 :::
 
 :::warning Attributes for Collections and Tokens are very similar.
-The process of adding attributes is similar for both collections and tokens.  
-While this tutorial guides you through adding an attribute to a token, you can follow the same steps to add attributes to a collection.  
-Simply navigate to the corresponding menu for collections instead of tokens.  
+The process of adding attributes is similar for both collections and tokens.
+While this tutorial guides you through adding an attribute to a token, you can follow the same steps to add attributes to a collection.
+Simply navigate to the corresponding menu for collections instead of tokens.
 :::
 
 :::warning **Important:** Attribute keys are case sensitive.
@@ -75,7 +75,7 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 ### Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".  
+In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
 **Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Attributes**" button.
 
 ![Adding Metadata](/img/guides/managing-tokens/adding-metadata.gif)
@@ -215,7 +215,7 @@ int main() {
     AttributeInput nameAttribute3 = AttributeInput()
             .SetKey(make_shared<SerializableString>("uri"))
             .SetValue(make_shared<SerializableString>("https://yourhost/metadata.json"));
-  
+
     vectorAttributes.push_back(nameAttribute1);
     vectorAttributes.push_back(nameAttribute2);
     vectorAttributes.push_back(nameAttribute3);
@@ -433,9 +433,9 @@ Take note of these data points:
 
 - **`description`**: This field provides a human-readable description of the asset. It's a text description that helps users understand the nature or significance of the asset.
 
-- **`media`**: The `media` field contains a URL pointing to an image representation of the asset. It supports PNG, GIF, and JPG file formats. 
+- **`media`**: The `media` field contains a URL pointing to an image representation of the asset. It supports PNG, GIF, and JPG file formats.
 
-- **`external_url`**: The "external_url" field is a URL pointing to an external application or website where users can view additional information or interact with the asset. 
+- **`external_url`**: The "external_url" field is a URL pointing to an external application or website where users can view additional information or interact with the asset.
 
 - **`attributes`**: This is an object array where each object should contain an `title` and `value` fields. The attribute `title` defines the type of trait or attribute associated with the asset, while `value` can be a string or a number, representing the value of that trait or attribute.
 

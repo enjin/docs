@@ -25,7 +25,7 @@ This versatile platform offers two versions to cater to different needs. The [En
 
 ## How does it work?
 
-How does Enjin Platform bring all these functionalities together? The answer lies in its structure. The platform comprises distinct components each designed to offer a unique solution for developers and creators. 
+How does Enjin Platform bring all these functionalities together? The answer lies in its structure. The platform comprises distinct components each designed to offer a unique solution for developers and creators.
 
 <p align="center">
   <img src={require('/img/components/5.png').default} width="700" />
@@ -33,7 +33,7 @@ How does Enjin Platform bring all these functionalities together? The answer lie
 
 ### API & Schema
 
-The [Open-Source Enjin Platform](https://github.com/enjin/platform) also provides a ready-made application that simplifies blockchain actions for developers by removing the need for encoding, signing transactions, and understanding complex technical details. 
+The [Open-Source Enjin Platform](https://github.com/enjin/platform) also provides a ready-made application that simplifies blockchain actions for developers by removing the need for encoding, signing transactions, and understanding complex technical details.
 
 The project has two key components:
 

@@ -36,7 +36,7 @@ Beam QR codes can be shared through various visually accessible platforms, inclu
 ![](/img/components/8.png)
 
 :::tip Master Enjin Beam
-Want to unlock the full potential of your NFT distributions? Our comprehensive guide to Enjin Beam offers advanced techniques, detailed setup instructions, and strategic insights for maximizing your campaign's reach and impact.  
+Want to unlock the full potential of your NFT distributions? Our comprehensive guide to Enjin Beam offers advanced techniques, detailed setup instructions, and strategic insights for maximizing your campaign's reach and impact.
 ➡️ **[Read the In-Depth Guide to Enjin Beam](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md)**
 :::
 
@@ -62,7 +62,7 @@ The Integer Range type is another new feature that makes creating Beams more eff
 
 ### Set attributes on the go!
 
-Developers can now set attributes to the minted tokens as they're being minted on-chain for the first time. This feature allows for unique and computed metadata to be added to tokens during the creation process.  
+Developers can now set attributes to the minted tokens as they're being minted on-chain for the first time. This feature allows for unique and computed metadata to be added to tokens during the creation process.
 This interaction with the mint on-demand feature is a match made in heaven as game developers will be able to create the tokens. At the same time, the beam is being generated, and they can set the metadata and mint the tokens as the demand for new tokens increases.
 
 ![](/img/components/12.png)

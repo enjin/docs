@@ -8,7 +8,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 ## What is the Enjin Matrixchain?
 
-Enjin is a blockchain platform that provides a developer-friendly Matrixchain built on the Enjin Relaychain specifically designed for digital assets. Unlike most digital assets that run on general-purpose chains, Enjin provides faster on-chain digital asset creation and interactions, greater security, interoperability, and flexibility.  
+Enjin is a blockchain platform that provides a developer-friendly Matrixchain built on the Enjin Relaychain specifically designed for digital assets. Unlike most digital assets that run on general-purpose chains, Enjin provides faster on-chain digital asset creation and interactions, greater security, interoperability, and flexibility.
 Enjin's digital asset functionality is built right into the protocol level, allowing developers to focus on building their apps instead of worrying about security and functionality. Enjin's developer-friendly approach offers a simplified and streamlined experience that can accelerate the creation and adoption of digital assets on the blockchain.
 
 ## Enjin Matrixchain Features

@@ -25,7 +25,7 @@ The Enjin Blockchain has a token standard called MultiTokens. The standard is co
 **Grouped NFTs** are Multi-unit tokens/NFTs that are a part of a family, and share the same Base ID.
 
 :::warning Groups are being implemented.
-Please note that Grouped tokens functionality is being implemented.  
+Please note that Grouped tokens functionality is being implemented.
 This page will be updated once it is.
 :::
 
@@ -77,7 +77,7 @@ By default, the policies are flexible, but you can make them more strict. For ex
 - Max Token Supply: The maximum supply limit for each individual token within the collection. Setting this to 1 will ensure each token within the collection is an NFT.
 - Force Collapsing Supply: Whether all tokens within the collection should have a collapsing supply. Read more on the available supply types in the [#Create Token Parameters](#create-token-parameters) section below.
 - Market Policy: Whether each token within the collection should have forced marketplace royalties. Read more in the [#Create Token Parameters](#create-token-parameters) section below.
-- Explicit Royalty Currencies: List of tokens that will be allowed to be used as a royalty currency for each filled listing of a token withing the collection. If no tokens are provided, all tokens will be allowed to be used as a royalty currency.  
+- Explicit Royalty Currencies: List of tokens that will be allowed to be used as a royalty currency for each filled listing of a token withing the collection. If no tokens are provided, all tokens will be allowed to be used as a royalty currency.
   Read more in the [#Create Token Parameters](#create-token-parameters) section below.
 - Attributes: The collection's attributes such as `name`, `description`, `media`, etc. These should be structured according to the [metadata standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
@@ -88,18 +88,18 @@ When the collection is created, it will emit a `CollectionCreated` event. This e
 ## How to create a Token
 
 :::info Some deposits are required.
-A single <GlossaryTerm id="storage_deposit" /> of 0.01 ENJ is required to store the token on-chain. This deposit also covers the first <GlossaryTerm id="token_account_deposit" />.  
+A single <GlossaryTerm id="storage_deposit" /> of 0.01 ENJ is required to store the token on-chain. This deposit also covers the first <GlossaryTerm id="token_account_deposit" />.
 An additional <GlossaryTerm id="token_account_deposit" /> of 0.01 ENJ is required for each new token holder.
 :::
 
 Tokens are created using the `mint` extrinsic. It only contains three parameters, the `recipient`, the `collection_id` and `mint params`. The mint params is an enum with a two variants: CreateToken and Mint.
 
-`CreateToken` is used to create a new token and set its configuration such as cap, metadata, royalty, etc.  
+`CreateToken` is used to create a new token and set its configuration such as cap, metadata, royalty, etc.
 `Mint` is used to mint additional units to an existing token.
 
 ### CreateToken
 
-This must be used the first time a token is created. The provided token id must not already exist. Some additional settings can be chosen when creating a token, such as setting a cap on the supply or giving it a royalty for the marketplace.  
+This must be used the first time a token is created. The provided token id must not already exist. Some additional settings can be chosen when creating a token, such as setting a cap on the supply or giving it a royalty for the marketplace.
 Some of these settings can be changed later by using the `mutate_token` extrinsic.
 
 To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
@@ -116,7 +116,7 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 - Token Market Behavior: (can be changed later on using the `MutateToken` extrinsic)
   - None: No Royalties.
   - Has Royalty: Set a percentage of ENJ royalty for each filled listing on the marketplace.
-  - isCurrency: Allows this new token to be used as royalty (instead of ENJ royalty) for other tokens in the collection.  
+  - isCurrency: Allows this new token to be used as royalty (instead of ENJ royalty) for other tokens in the collection.
     **\*Note**: setting a MultiToken currency as royalty isn't implemented on-chain as of now and only acts as a placeholder.
 - Listing Forbidden: Whether this token should be prevented from listing on the marketplace (can be changed later on using the `MutateToken` extrinsic)
 - Freeze State:
@@ -127,8 +127,8 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 - Metadata: The parameters below are for creating a token with decimal support, like a in-game currency.
   - Name: The token name. Can be set to `0x` to provide an empty name. (this name takes precedence when the token name is provided in different parameters such as `uri`/`name` attributes)
   - Symbol: The token symbol to be shown in different apps.
-  - Decimals: The token's decimals count.  
-    Please note, this parameter does not affect the token's behavior on-chain and is used solely for display purposes in applications. It helps apps determine how to format and present the token's total supply.  
+  - Decimals: The token's decimals count.
+    Please note, this parameter does not affect the token's behavior on-chain and is used solely for display purposes in applications. It helps apps determine how to format and present the token's total supply.
     e.g. A token with `supply: 175` and `decimals: 2` should be formatted as `1.75`.
 - ENJ Infusion:
   - Infusion: The amount of ENJ to infuse to each unit. (More info in the [#ENJ Infusion](#enj-infusion) section below)
@@ -154,11 +154,11 @@ A simple transfer is when the `origin` of the extrinsic is also the sender. i.e.
 
 ### Operator Transfer
 
-An operator transfer is when an account makes transfers on behalf of another account. This is also known as `transfer_from`. 
+An operator transfer is when an account makes transfers on behalf of another account. This is also known as `transfer_from`.
 
 ![](/img/components/enjin-matrixchain/12.png)
 
-In the example above, Alice is creating a transaction call to transfer a MultiToken to Bob's account from Charlie's account.  
+In the example above, Alice is creating a transaction call to transfer a MultiToken to Bob's account from Charlie's account.
 For the transaction to be successful, Bob must approve Alice to transfer this token in advance.
 
 #### Transfer Approvals
@@ -178,8 +178,8 @@ For tokens with the "Collapsing Supply" cap type, burning token units decreases 
 
 ### Melting a Token
 
-"Melting" is a term used to describe the process of burning a <GlossaryTerm id="multitoken" /> that contains an <GlossaryTerm id="enj_infusion" />. This process not only destroys the token but also releases the infused ENJ to the token holder.  
-Read more in the [#ENJ Infusion](#enj-infusion) section below.  
+"Melting" is a term used to describe the process of burning a <GlossaryTerm id="multitoken" /> that contains an <GlossaryTerm id="enj_infusion" />. This process not only destroys the token but also releases the infused ENJ to the token holder.
+Read more in the [#ENJ Infusion](#enj-infusion) section below.
 Note that "melting" is a conceptual term and does not exist as a specific function in the blockchain code.
 
 ### Destroying Token Account
@@ -218,14 +218,14 @@ Accounts, collections, and tokens can be frozen to prevent transfers. This is do
 
 ### Freeze a collection or a collection account
 
-This is done by clicking on Freeze button under expanded collection.  
+This is done by clicking on Freeze button under expanded collection.
 Use the toggle to switch between freezing a specific collection account and the whole collection.
 
 ![](/img/components/enjin-matrixchain/16.png)
 
 ### Freeze a token or a token account
 
-This is done by clicking on Freeze button on the token page.  
+This is done by clicking on Freeze button on the token page.
 Use the toggle to switch between freezing a specific token account and the whole token.
 
 ![](/img/components/enjin-matrixchain/17.png)
@@ -236,14 +236,14 @@ To unfreeze either collection, token, collection account or token account, use t
 
 ### Thaw a collection or a collection account
 
-This is done by clicking on the `Thaw` button under expanded collection.  
+This is done by clicking on the `Thaw` button under expanded collection.
 Use the toggle to switch between thawing a specific collection account and the whole collection.
 
 ![](/img/components/enjin-matrixchain/18.png)
 
 ### Thaw a token or a token account
 
-This is done by clicking on the `Thaw` button on the token page.  
+This is done by clicking on the `Thaw` button on the token page.
 Use the toggle to switch between thawing a specific token account and the whole token.
 
 ![](/img/components/enjin-matrixchain/19.png)
@@ -272,7 +272,7 @@ Using `batch_set_attribute` you can batch set attribute operations, allowing to 
 
 ### Remove All Attributes
 
-Removes all attributes from the given `collection_id` or `token_id`.  
+Removes all attributes from the given `collection_id` or `token_id`.
 If `token_id` is `None`, it removes all attributes of the collection. If `token_id` is `Some`, it removes all attributes of the token. `attributeCount` must match the number of attributes set in the collection/token, or the transaction will fail.
 
 ![](/img/components/enjin-matrixchain/23.png)
@@ -285,7 +285,7 @@ Each token unit may have some ENJ infused into it. The token creator can choose 
 
 ![](/img/components/enjin-matrixchain/24.png)
 
-Infused ENJ can only be retrieved by [burning the token supply](#burning-tokens).  
+Infused ENJ can only be retrieved by [burning the token supply](#burning-tokens).
 Burning the token releases the ENJ to the holder.
 
 In addition, the token creator can choose to allow anyone to add ENJ infusion to an existing token, or restrict it so only the creator can add ENJ infusion.
@@ -294,18 +294,18 @@ In addition, the token creator can choose to allow anyone to add ENJ infusion to
 
 ## Token Account Deposit
 
-On top of the <GlossaryTerm id="storage_deposit" /> required to store the token on-chain, a Storage Deposit of 0.01 ENJ is required to store each Token Account on-chain.  
+On top of the <GlossaryTerm id="storage_deposit" /> required to store the token on-chain, a Storage Deposit of 0.01 ENJ is required to store each Token Account on-chain.
 A Token Account is created when an account has a <GlossaryTerm id="multitoken" /> balance of 1 or more, and it is destroyed when that balance becomes zero.
 
-It's important to note that the storage deposit is required for each new Token Account created, not for the total supply of tokens minted.  
-For example:  
+It's important to note that the storage deposit is required for each new Token Account created, not for the total supply of tokens minted.
+For example:
 
-- Minting/transferring 1,000 of a single MultiToken to **a single recipient account that doesn’t already hold a balance of that token** will require creating a Token Account for that recipient. This process incurs a one-time storage deposit of only 0.01 ENJ, covering the entirety of the 1,000 tokens.  
+- Minting/transferring 1,000 of a single MultiToken to **a single recipient account that doesn’t already hold a balance of that token** will require creating a Token Account for that recipient. This process incurs a one-time storage deposit of only 0.01 ENJ, covering the entirety of the 1,000 tokens.
 
-- Minting/transferring any balance of a single MultiToken to **1,000 different recipient accounts, each of which doesn’t already hold a balance of that token**, will require creating a Token Account for each recipient. This process incurs a storage deposit of 0.01 ENJ per account, resulting in a total deposit of 10 ENJ.  
+- Minting/transferring any balance of a single MultiToken to **1,000 different recipient accounts, each of which doesn’t already hold a balance of that token**, will require creating a Token Account for each recipient. This process incurs a storage deposit of 0.01 ENJ per account, resulting in a total deposit of 10 ENJ.
 
-The token creator can reserve some ENJ for Account Deposits on token creation with the `account_deposit_count` field.  
+The token creator can reserve some ENJ for Account Deposits on token creation with the `account_deposit_count` field.
 ENJ reserve for Account Deposits can be added / removed ahead of time by any account, with the `update_account_deposit` extrinsic.
 
-On a `mint`/`transfer` operation, if a new Account Deposit is needed and there's no account deposit in reserve, the ENJ required for the account deposit will be taken on demand from the account that performed the mint or transfer. If it is an operator transfer, it is taken from the source account.  
+On a `mint`/`transfer` operation, if a new Account Deposit is needed and there's no account deposit in reserve, the ENJ required for the account deposit will be taken on demand from the account that performed the mint or transfer. If it is an operator transfer, it is taken from the source account.
 In the future, if the created Token Account is destroyed, the ENJ used for the Account Deposit is returned to the account that originally reserved the on-demand deposit.

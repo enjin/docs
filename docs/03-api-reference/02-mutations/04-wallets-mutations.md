@@ -82,7 +82,7 @@ mutation VerifyAccount{
         verificationId: "0xfdb976d1c5fc9ed6d546f31332e756ca9c9ef6e3c6f0d9ea0ed0713b1cd84440"
         signature: "0x8958f002f9513256fa329fa92441d39adc59e3a19165aeeb343acd72b7f6a"
         account: "0xbeac4e574b46a3722da9239f97359b0440c0fb66e3b130f20c2284fd033f9138"
-        
+
     )
 }
 ```

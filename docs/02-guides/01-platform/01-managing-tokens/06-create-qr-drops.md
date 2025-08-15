@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <GlossaryTerm id="enjin_beam" /> is a simple way to distribute digital assets like tokens and collectibles using QR codes. Users just need to scan a Beam QR code with their Enjin Wallet to receive tokens directly. It's a great tool for marketing campaigns, events, or promotions to give away items and easily bring new users into your ecosystem.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
@@ -58,7 +58,7 @@ Now, you'll fill out the details for your Beam:
     - **Why use Single-use?** It gives you precise control over which specific claim (and thus which token) goes to which person. It's also more secure for private distributions; you can share individual QR codes with specific users without worrying about a main QR code being leaked publicly.
 :::
 
-Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.  
+Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
 If a signature request is needed, approve it.
 
 Once the Beam is created, locate it in the "**Beams**" menu, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Claim**" button to view the QR code.
@@ -66,12 +66,12 @@ Once the Beam is created, locate it in the "**Beams**" menu, click the **3 verti
 ![Claiming a Beam](/img/guides/managing-tokens/claim-beam.gif)
 
 :::warning Need to get all of the "Single-Use" QR codes?
-Please note, viewing all of the "Single-Use" QR codes is currently not available in the Platform User Interface.  
+Please note, viewing all of the "Single-Use" QR codes is currently not available in the Platform User Interface.
 For the time being, it can be viewed programmatically only via [Enjin API & SDKs](#option-b-using-the-enjin-api--sdks)
 :::
 
-The Enjin Beam is now ready to be shared to distribute tokens. Users can scan the QR code and instantly receive your token!  
-Next skillset to learn is mutating a collection / token.  
+The Enjin Beam is now ready to be shared to distribute tokens. Users can scan the QR code and instantly receive your token!
+Next skillset to learn is mutating a collection / token.
 Proceed to the [Freezing & Thawing](/02-guides/01-platform/01-managing-tokens/07-freezing-thawing.md) tutorial to learn more.
 
 ## Option B. Using the Enjin API & SDKs
@@ -403,7 +403,7 @@ query GetBeam {
     start
     end
     isClaimable
-    claimsRemaining    
+    claimsRemaining
     qr {
       url
       payload
@@ -415,7 +415,7 @@ query GetBeam {
       forceSingleMint
       frozen
       network
-    }    
+    }
   }
 }
 ```
@@ -551,7 +551,7 @@ int main() {
             std::cout << error.GetMessage().value() << std::endl;
         }
     }
-  
+
     client.reset();
 
     return 0;
@@ -578,7 +578,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
           start
           end
           isClaimable
-          claimsRemaining    
+          claimsRemaining
           qr {
             url
             payload
@@ -590,7 +590,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
             forceSingleMint
             frozen
             network
-          }    
+          }
         }
       }
     `,
@@ -622,7 +622,7 @@ axios.post('https://platform.canary.enjin.io/graphql', {
         start
         end
         isClaimable
-        claimsRemaining    
+        claimsRemaining
         qr {
           url
           payload
@@ -634,7 +634,7 @@ axios.post('https://platform.canary.enjin.io/graphql', {
           forceSingleMint
           frozen
           network
-        }    
+        }
       }
     }
   `,
@@ -666,7 +666,7 @@ query GetBeam
     start
     end
     isClaimable
-    claimsRemaining    
+    claimsRemaining
     qr {
       url
       payload
@@ -678,7 +678,7 @@ query GetBeam
       forceSingleMint
       frozen
       network
-    }    
+    }
   }
 }
 '''

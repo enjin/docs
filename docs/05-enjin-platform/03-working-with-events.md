@@ -7,15 +7,15 @@ description: "Explore how to handle blockchain events within the Enjin platform,
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In the blockchain ecosystem, "events" refer to important actions or changes within the blockchain network. 
+In the blockchain ecosystem, "events" refer to important actions or changes within the blockchain network.
 
 This includes things like creating or changing digital assets, transferring balances, and any other actions that alter the chain's state. These events are recorded on the blockchain, providing a transparent and unchangeable history of all activities.
 
 Monitoring and analyzing these events helps users and developers understand the flow of transactions and respond to specific actions or conditions in the network. This is key for decentralized applications and games, enabling automated interactions and improving overall functionality.
 
 :::warning Note on Address Formats in Platform Events
-Please note that all account addresses included in platform events, such as channel names or any addresses within the event payload, are formatted as **public keys**.  
-For example, in a "Transfer" event, the "from" account address appears in its public key format.  
+Please note that all account addresses included in platform events, such as channel names or any addresses within the event payload, are formatted as **public keys**.
+For example, in a "Transfer" event, the "from" account address appears in its public key format.
 If needed, you may use the [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between **SS58-encoded address format** (e.g., "cx...123" for the Canary Matrixchain or "cn...123" for the Canary Relaychain) and public key format.
 :::
 

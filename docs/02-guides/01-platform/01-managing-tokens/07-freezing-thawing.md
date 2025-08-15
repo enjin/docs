@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 One such use-case is the implementation of "Soulbound" tokens. A Soulbound token is bound to a specific address and cannot be transferred out of the wallet it's minted on. This feature can be used to create unique gameplay mechanics, loyalty rewards, and more.
 
 :::note
-Freezing only applies to <GlossaryTerm id="melt" />ing and transfers, which also results in marketplace listings being unpurchasable.  
+Freezing only applies to <GlossaryTerm id="melt" />ing and transfers, which also results in marketplace listings being unpurchasable.
 Freezing does not suspend token minting.
 :::
 
@@ -23,17 +23,17 @@ A **freeze state** determines whether a token can be transferred and the conditi
 
 #### Explanation of Freeze States
 
-- **Permanent:**  
-  The token is permanently frozen and cannot be transferred to another account under any circumstances. Use this state for tokens that are intended to stay bound to their original holder, such as "Soulbound" tokens for identity or loyalty purposes.  
+- **Permanent:**
+  The token is permanently frozen and cannot be transferred to another account under any circumstances. Use this state for tokens that are intended to stay bound to their original holder, such as "Soulbound" tokens for identity or loyalty purposes.
 
-- **Temporary:**  
+- **Temporary:**
   The token is temporarily frozen, restricting transfers until it is explicitly thawed by the collection owner. This state is ideal for implementing time-limited restrictions or conditional asset movement.
 
-- **Never:**  
-  The token is always transferrable and cannot be frozen. Choose this state if you want the token to remain unrestricted in its movement across wallets and platforms.  
+- **Never:**
+  The token is always transferrable and cannot be frozen. Choose this state if you want the token to remain unrestricted in its movement across wallets and platforms.
 
 :::info What you'll need:
-- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to freeze.
@@ -46,15 +46,15 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-:::tip Applying Freeze/Thaw Actions to Collections and Tokens  
-This tutorial illustrates the process of freezing a collection.  
-However, the same steps can be applied to freeze or thaw tokens.  
+:::tip Applying Freeze/Thaw Actions to Collections and Tokens
+This tutorial illustrates the process of freezing a collection.
+However, the same steps can be applied to freeze or thaw tokens.
 Simply navigate to the corresponding menu for tokens instead of collections, or for thawing instead of freezing.
 :::
 
 ### Freezing an entire collection
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".  
+In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".
 **Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Freeze**" button.
 
 ![Freezing a Collection](/img/guides/managing-tokens/freezing-collection.gif)
@@ -219,7 +219,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
         $freeze_type: FreezeType!
       )  {
         Freeze(
-          collectionId: $collection_id 
+          collectionId: $collection_id
           freezeType: $freeze_type
         ){
           id
@@ -250,7 +250,7 @@ axios.post('https://platform.canary.enjin.io/graphql', {
       $freeze_type: FreezeType!
     )  {
       Freeze(
-        collectionId: $collection_id 
+        collectionId: $collection_id
         freezeType: $freeze_type
       ){
         id
@@ -281,7 +281,7 @@ mutation FreezeCollection
   $freeze_type: FreezeType!
 )  {
   Freeze(
-    collectionId: $collection_id 
+    collectionId: $collection_id
     freezeType: $freeze_type
   ){
     id
@@ -528,7 +528,7 @@ mutation FreezeToken
   $token_id: BigInt!
   $freeze_type: FreezeType!
   $freeze_state: FreezeStateType
-  
+
 ) {
   Freeze(
     collectionId: $collection_id
@@ -702,7 +702,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
         $freeze_type: FreezeType!
       ) {
         Thaw(
-          collectionId: $collection_id 
+          collectionId: $collection_id
           freezeType: $freeze_type
         ){
           id
@@ -733,7 +733,7 @@ axios.post('https://platform.canary.enjin.io/graphql', {
       $freeze_type: FreezeType!
     ) {
       Thaw(
-        collectionId: $collection_id 
+        collectionId: $collection_id
         freezeType: $freeze_type
       ){
         id
@@ -764,7 +764,7 @@ mutation ThawCollection
   $freeze_type: FreezeType!
 ) {
   Thaw(
-    collectionId: $collection_id 
+    collectionId: $collection_id
     freezeType: $freeze_type
   ){
     id
@@ -1037,6 +1037,6 @@ For instance, you'll find settings such as `continueOnFailure` to skip data that
 :::
 
 :::tip Need to send a transaction request to user's wallet?
-This can be done using Enjin Platform API & WalletConnect!  
+This can be done using Enjin Platform API & WalletConnect!
 To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
 :::

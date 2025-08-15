@@ -35,12 +35,12 @@ Bytes used to differentiate listings that have the same values.
 
 ### Make Asset
 
-The asset being sold.  
+The asset being sold.
 When creating an offer, it's the asset being requested.
 
 ### Take Asset
 
-The asset requested.  
+The asset requested.
 When creating an offer, it's the asset being bought.
 
 ### Fee side
@@ -145,7 +145,7 @@ Only the latest bid is stored on an auction. All bids must increase by the `mini
 
 **`place_counter_offer`** - Creates a Counter offer to an existing offer listing. Can only be called by an account that owns the token.
 
-**`answer_counter_offer`** - Either accept, reject, or counter a counter offer. Callable by the offer creator (buyer) and the counter offer creator (seller).  
+**`answer_counter_offer`** - Either accept, reject, or counter a counter offer. Callable by the offer creator (buyer) and the counter offer creator (seller).
 When a counter offer is successfully accepted/rejected, it is removed from storage.
 
 **`set_protocol_fee`** - Change the protocol fee. Can only be called by the `ProtocolFeeOrigin` set in the config.

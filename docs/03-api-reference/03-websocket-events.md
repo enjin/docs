@@ -7,12 +7,12 @@ Enjin Platform Cloud **Canary**: `wss://ws-us2.pusher.com:443/app/76b7604dabc23c
 Enjin Platform Cloud **Mainnet**: `wss://ws-us2.pusher.com:443/app/02cbd93e7842fb1db299?protocol=7`
 :::
 
-The Enjin Platform emits events that you can listen to for various operations.  
+The Enjin Platform emits events that you can listen to for various operations.
 For example, whenever a transaction is issued by your wallet daemon, an event is emitted via Websocket.
 
 Listening to events is especially useful when awaiting for a transaction to be approved on-chain.
 
-Platform events are emitted to the platform Websocket endpoint, in various channels.  
+Platform events are emitted to the platform Websocket endpoint, in various channels.
 For example, we can listen to events related to account address `cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f` by subscribing to the channel `0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e`, which is the account's public key.
 
 :::note Note on Address Formats in Platform Events

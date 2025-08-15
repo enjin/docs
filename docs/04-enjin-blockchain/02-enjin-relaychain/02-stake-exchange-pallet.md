@@ -32,7 +32,7 @@ By utilizing Enjin Nomination Pools and the Stake Exchange Pallet, users have th
 
 Ensure that you have access to an Enjin Relay Chain and have the necessary ENJ tokens to stake. The UI used in this guide can be accessed [here (*Canary Testnet)](https://console.enjin.io/?rpc=wss%3A%2F%2Frpc.relay.canary.enjin.io#/extrinsics)
 
-**Accessing the Pallet Functions:**  
+**Accessing the Pallet Functions:**
 Open your Enjin Explorer and navigate to the Developer -> Extrinsics interface. Locate the "Stake Exchange Pallet" and click on it to access the available functions.
 
 ## Creating an Offer
@@ -85,19 +85,19 @@ So as the creator of the offer, it is in your best interest to keep this value a
 
 **_Note_** : The `minAverageRewardRate` is represented by u128, which allows for higher precision. Example :
 
-if its 1, (the pool should have a reward rate greater than or equal to 1) you would use 1000000000000000000  (1x)  
-if its 1.1, (the pool should have a reward rate greater than or equal to 1.1), you would use 1100000000000000000 (11.x)  
+if its 1, (the pool should have a reward rate greater than or equal to 1) you would use 1000000000000000000  (1x)
+if its 1.1, (the pool should have a reward rate greater than or equal to 1.1), you would use 1100000000000000000 (11.x)
 if its 2 (the pool should have a reward rate greater than or equal to 2), you would use 2000000000000000000  (2x)
 
-To get the input ratio, you can multiply your desired ratio with `1000000000000000000`,  
-ex : `1.112 * 1000000000000000000 = 1120000000000000000`  
+To get the input ratio, you can multiply your desired ratio with `1000000000000000000`,
+ex : `1.112 * 1000000000000000000 = 1120000000000000000`
 This ratio means, the offer will only accept pool with a reward rate more than 1.112
 
 ***
 
 **_Note_** : The `rate` is also represented by Perbill, this value will be used to determine how many `sENJ` will be required to get `ENJ`. Example :
 
-if its 1:1, (you need 1 sENJ to get 1ENJ) you would use 1000000000  (100%)  
+if its 1:1, (you need 1 sENJ to get 1ENJ) you would use 1000000000  (100%)
 if its 0.9:1, (you need 0.9 sENJ to get 1ENJ), you would use 900000000 (90%)
 
 ***
@@ -156,7 +156,7 @@ Configuring Liquidity Account is only required if you create an offer aka if you
 - Click "Confirm" to proceed with adding liquidity.
 - If successful, you will receive a confirmation message indicating that the liquidity has been added.
 
-   Example : You created an offer with initial amount of 1000ENJ. If you add liquidity of 400ENJ, then your updated  
+   Example : You created an offer with initial amount of 1000ENJ. If you add liquidity of 400ENJ, then your updated
    offer will have a liquidity of 1400ENJ.
 
 ![](/img/components/enjin-relaychain/38.png)

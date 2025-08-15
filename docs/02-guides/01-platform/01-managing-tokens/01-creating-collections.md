@@ -9,12 +9,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and 6.25 ENJ for <GlossaryTerm id="storage_deposit" />s.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and 6.25 ENJ for <GlossaryTerm id="storage_deposit" />s.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
-On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="collection" />. 
+On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="collection" />.
 
 **There are two ways to use the <GlossaryTerm id="create_collection" /> functionalities:**
 
@@ -57,7 +57,7 @@ Once you've created a collection you're ready to start [creating tokens](/02-gui
 
 ## Option B. Using the Enjin API & SDKs
 
-The `CreateCollection` mutation is used to create a new on-chain collection. 
+The `CreateCollection` mutation is used to create a new on-chain collection.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -163,7 +163,7 @@ int main() {
         std::cout << to_string(transaction->GetId().value()) << std::endl;
         std::cout << ToString(transaction->GetMethod().value()) << std::endl;
     }
-  
+
      // Write any error messages to the console
     if (gqlResult.has_value() && gqlResult->HasErrors())
     {
@@ -260,7 +260,7 @@ print(response.json())
 </Tabs>
 
 :::info Explore More Arguments
-For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.  
+For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 For instance, you'll find settings such as different supply types with the `MintPolicy` argument, enforcing royalties with the `MarketPolicy` argument, or adding metadata with the `AttributeInput` argument.
 :::
 

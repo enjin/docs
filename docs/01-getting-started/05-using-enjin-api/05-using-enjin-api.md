@@ -11,7 +11,7 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 The Enjin API is a set of programmatic interfaces that allow developers to interact with the Enjin Platform from their own applications. Built using <GlossaryTerm id="graphql" />,  it enables clients to request exactly the data they need in a flexible and efficient way. Unlike traditional RESTful APIs, which require multiple endpoints for different data requirements, GraphQL enables more efficient data retrieval through a single endpoint. This flexibility reduces the number of network requests and optimizes performance, making it particularly advantageous for applications that require efficient data handling, such as blockchain and NFT platforms.
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" />.
 - You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
@@ -22,7 +22,7 @@ We recommend reviewing our [How to Use GraphQL guide](/01-getting-started/05-usi
 :::
 ## Authentication
 
-Access tokens assume a pivotal role in facilitating your application's interaction with the Enjin Platform API.  
+Access tokens assume a pivotal role in facilitating your application's interaction with the Enjin Platform API.
 These tokens serve a dual purpose:
 
 - They grant your application access to the platform.
@@ -38,7 +38,7 @@ To make authenticated calls to the Enjin Platform:
 "Authorization": "<API Token Here>"
 ```
 
-4. _(Optional)_ To automate requests made from the Enjin Platform using a wallet daemon, you need to configure your daemon with the API token.  
+4. _(Optional)_ To automate requests made from the Enjin Platform using a wallet daemon, you need to configure your daemon with the API token.
    For more details head over to [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
 
 ## Endpoints & Queries

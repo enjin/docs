@@ -5,8 +5,8 @@ description: "View detailed examples of how to implement metadata within your bl
 ---
 In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
-You may set the collection/token `uri` on-chain attribute to a resource containing the collection's/token's metadata in JSON format, or set each individual metadata with an on-chain attribute, using the metadata type as the attribute key.  
-For example, to set the token's description individually, set the token's on-chain attribute key to `description`, and provide the description as the attribute's value.  
+You may set the collection/token `uri` on-chain attribute to a resource containing the collection's/token's metadata in JSON format, or set each individual metadata with an on-chain attribute, using the metadata type as the attribute key.
+For example, to set the token's description individually, set the token's on-chain attribute key to `description`, and provide the description as the attribute's value.
 If both on-chain and off-chain attributes are set, the on-chain attributes will take precedence over the off-chain attributes.
 
 :::warning **Important:** Attribute keys are case sensitive.
@@ -89,7 +89,7 @@ Ensure you use the correct casing when defining attributes to avoid errors.
   - On the Enjin Wallet and NFT.io marketplace, when more than one media file is provided, the media is scrollable.
 - `fallback_image`: A link to an alternative image file that serves as a backup when the media files listed under `media` fail to load or are unsupported in certain views.
   - Best Practice: Use an image hosted on a different server to ensure availability in case of server downtime.
-  - The `fallback_image` is also helpful for views that do not support the primary media file.  
+  - The `fallback_image` is also helpful for views that do not support the primary media file.
     Example: If the main media file is a 3D object (e.g., GLB), a fallback image can be displayed in views that lack 3D rendering support.
 - `attributes`: A list of custom properties attached to the token. In the above example, it's used as an indicator of the item's common rarity and a list of games it's usable in.
 - `external_url`: A link to the token's website or a website with information on the token.

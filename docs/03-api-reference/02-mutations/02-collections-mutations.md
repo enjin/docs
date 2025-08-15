@@ -133,7 +133,7 @@ The `UnapproveCollection` mutation is used to revoke previously granted permissi
 mutation UnapproveCollection{
     UnapproveCollection(
         collectionId: "6305"
-        operator: "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"      
+        operator: "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"
     ) {
         id
         transactionId
@@ -347,7 +347,7 @@ The `Freeze` mutation is used to temporarily halt token transfers on a collectio
 mutation Freeze {
   Freeze(
     freezeType: COLLECTION
-    collectionId: "10943"    
+    collectionId: "10943"
   ) {
     id
     transactionId
@@ -451,7 +451,7 @@ The `RemoveCollectionAttribute` mutation is designed to remove a specific attrib
 ```graphql
 mutation RemoveCollectionAttribute {
     RemoveCollectionAttribute(
-        collectionId: "4741"  
+        collectionId: "4741"
         key: "name"
     ) {
         id

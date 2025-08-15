@@ -7,7 +7,7 @@ Enjin is the ideal blockchain platform for your game or business due to its gami
 
 ![](/img/components/1.webp)
 
-Enjin's tools and services, originally developed for gaming, are versatile and applicable to businesses of all sizes and industries. Whether seeking to create blockchain products or utilize tokenized digital assets for acquisition, retention, engagement, and monetization strategies, Enjin's expertise can be a valuable resource.  
+Enjin's tools and services, originally developed for gaming, are versatile and applicable to businesses of all sizes and industries. Whether seeking to create blockchain products or utilize tokenized digital assets for acquisition, retention, engagement, and monetization strategies, Enjin's expertise can be a valuable resource.
 The Enjin Platform is a powerful Platform as a Service (PaaS) for blockchain technology, designed to simplify the creation and administration of blockchain games.
 
 Unlike traditional blockchain game development that requires building and maintaining complex infrastructure, the Enjin Platform offers a comprehensive, and adaptable set of tools and services. With Enjin's Blockchain SDKs, Platform API, and Automation services such as the wallet Daemon, game developers can revolutionize the creation of blockchain games. The Enjin Platform also incorporates Enjin Relaychain and Enjin Matrixchain, which serve as the blockchain backbone of the entire system.

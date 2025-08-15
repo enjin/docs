@@ -359,7 +359,7 @@ mutation BatchTransfer {
               amount:1
             }
         	}
-        ]        
+        ]
     ) {
         id
         transactionId
@@ -576,7 +576,7 @@ The `Freeze` mutation is a powerful tool that enables the temporary suspension o
 mutation Freeze {
   Freeze(
     freezeType: COLLECTION
-    collectionId: "10943"    
+    collectionId: "10943"
   ) {
     id
     transactionId
@@ -735,7 +735,7 @@ The `OperatorTransferToken` mutation is designed for operators to transfer token
 ```graphql
 mutation OperatorTransferToken{
     OperatorTransferToken(
-      	collectionId: "7154"    
+      	collectionId: "7154"
         recipient: "0x50a1ba0a184c9aca3a2ac7d427e96a676fe988454b4b56a62dd6622e843e890d"
         params: {
           tokenId: {integer:6533}
@@ -792,7 +792,7 @@ Remove all attributes from a collection and token.
 ```graphql
 mutation RemoveAllAttributes {
   RemoveAllAttributes(
-    collectionId: "7154"  
+    collectionId: "7154"
     tokenId: {integer:6533}
   ) {
     id

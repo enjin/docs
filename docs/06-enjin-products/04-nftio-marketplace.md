@@ -13,7 +13,7 @@ At [NFT.io](http://nft.io/), you can easily explore digital art, crypto-collecti
 
 ## Key Benefits & Features
 
-- **Connect using your very own wallet:** The platform is seamlessly integrated with the Enjin Wallet.  
+- **Connect using your very own wallet:** The platform is seamlessly integrated with the Enjin Wallet.
   No Ads: Enjoy an ad-free experience on NFT.io. You can explore the platform without any interruption from pesky promotions, dangerous scams, or annoying ads.
 - **Beginner Friendly:** NFT.io has been revamped from scratch, boasting a user-friendly interface that caters to people from diverse backgrounds and skill levels. Whether you're an experienced NFT trader or a beginner, NFT.io offers simplicity and ease of use for all.
 - **Made for all NFTs:** NFT.io is designed to support all types of NFTs. Whether you're an art collector, a music enthusiast, a fan of crypto collectibles, or simply browsing, we cater to all NFT categories.

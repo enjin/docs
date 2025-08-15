@@ -25,7 +25,7 @@ On Enjin, we use nomination pools to handle staking due to the increased simplic
 
 With nomination pools, there is one account that multiple users put their funds into. This account acts as the nominator and receives the rewards. The liquid token, sENJ, is used to represent a user's stake in the pool.
 
-- **Low minimum (1 ENJ) -** pools can have lower minimums per user because all of the pool's funds are staked together  
+- **Low minimum (1 ENJ) -** pools can have lower minimums per user because all of the pool's funds are staked together
   Easy to use - users only need to choose a pool, no need to choose validators
 - **Receive liquid token -** a liquid token, sENJ, is received that represents the user's stake. This can be transferred or even exchanged for ENJ
 - **Immediate exit -** due to the liquid token, the user can exit immediately by exchanging their sENJ for ENJ

@@ -21,8 +21,8 @@ Accessing this data is valuable for several purposes:
 ## Fetching Token Holders with the [Enjin API](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)
 
 :::warning Fetching Tokens Limitations
-Please note that the `GetToken` query is limited to tokens from collections that were created via the auth-ed Enjin Platform account.  
-To get a token that was created elsewhere (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.  
+Please note that the `GetToken` query is limited to tokens from collections that were created via the auth-ed Enjin Platform account.
+To get a token that was created elsewhere (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
 Learn more about tracking a collection in the [Tracking Collections section below](#tracking-collections).
 :::
 
@@ -348,8 +348,8 @@ The response may be displayed on several pages. To view all of it, you may need 
 ## Fetching Collection Holders with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
 :::warning Fetching Collections Limitations
-Please note that the `GetCollections` query is limited to collections that were created via the auth-ed Enjin Platform Cloud account.  
-To get a collection that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.  
+Please note that the `GetCollections` query is limited to collections that were created via the auth-ed Enjin Platform Cloud account.
+To get a collection that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
 Learn more about tracking a collection in the [Tracking Collections section below](#tracking-collections).
 :::
 

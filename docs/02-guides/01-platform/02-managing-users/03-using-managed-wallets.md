@@ -22,7 +22,7 @@ Here's how the typical flow works:
 This process ensures that users can interact with blockchain assets seamlessly within your application without needing to understand the underlying complexities of blockchain technology or operating his own crypto wallet.
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to add to the wallet.
@@ -34,7 +34,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 To create a Managed wallet, run the `CreateWallet` mutation, with a unique ID as a parameter.
 
-Choose a unique `externalId` for each player/user that can be cross-referenced later. This unique identifier should be something already associated with the player in your database, such as a player ID or username.  
+Choose a unique `externalId` for each player/user that can be cross-referenced later. This unique identifier should be something already associated with the player in your database, such as a player ID or username.
 By doing so, you will be able to consistently link the Managed Wallet to the respective player.
 
 
@@ -195,7 +195,7 @@ print(response.json())
 </Tabs>
 
 :::warning Lost database data?
-Recreate the Managed wallets by running `CreateWallet` mutation again for each of the `externalId`s.  
+Recreate the Managed wallets by running `CreateWallet` mutation again for each of the `externalId`s.
 Make sure to use the same Daemon wallet seed and password used to create Managed wallets prior, as Managed wallets are derived with the following derivation path: `walletSeed/externalId///password`
 :::
 

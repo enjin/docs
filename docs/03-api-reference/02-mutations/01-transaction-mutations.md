@@ -17,7 +17,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 - **Mainnet:** `http://platform.enjin.io/graphql`
 :::
 
-This is an overview of some of the most commonly used operations in the Enjin Platform Schema. 
+This is an overview of some of the most commonly used operations in the Enjin Platform Schema.
 
 ## AcknowledgeEvents
 

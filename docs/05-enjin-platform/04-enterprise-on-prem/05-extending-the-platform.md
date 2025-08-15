@@ -3,7 +3,7 @@ title: "Extending the Platform"
 slug: "extending-the-platform"
 description: "Learn how to extend the Enjin platform by adding custom features and integrations to meet the unique needs of your blockchain projects."
 ---
-Our platform lets you add your own code to customize it without changing the original code. For example, you can use the `adhocRules` feature in the Beam Mutation to set custom rules. 
+Our platform lets you add your own code to customize it without changing the original code. For example, you can use the `adhocRules` feature in the Beam Mutation to set custom rules.
 
 One way to use this is by adding a `ValidationRule` to the `ClaimBeamMutation`. This rule limits how many times a user can claim a Beam, based on their IP address and wallet account. It ensures a user can only claim once per IP or account.
 

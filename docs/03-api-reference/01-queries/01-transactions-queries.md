@@ -18,7 +18,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 - **Mainnet:** `http://platform.enjin.io/graphql`
 :::
 
-This is an overview of some of the most commonly used operations in the Enjin Platform Schema. 
+This is an overview of some of the most commonly used operations in the Enjin Platform Schema.
 
 ## GetBlocks
 
@@ -659,7 +659,7 @@ query GetTransactions {
 
 ## GetPendingEvents
 
-The `GetPendingEvents` query is designed to retrieve a list of events that have been broadcast by the system but not yet acknowledged by the client. This is useful for ensuring that no events are missed or unprocessed, particularly in systems that rely on event-driven architectures or asynchronous processing. 
+The `GetPendingEvents` query is designed to retrieve a list of events that have been broadcast by the system but not yet acknowledged by the client. This is useful for ensuring that no events are missed or unprocessed, particularly in systems that rely on event-driven architectures or asynchronous processing.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -1089,7 +1089,7 @@ You can use the `GetPendingEvents` query to ensure that all events are accounted
 - Updating user interfaces in real-time.
 - Triggering downstream processes that depend on event data.
 
-Developers and system administrators can use this query to monitor and handle event-driven systems effectively, maintaining their reliability and consistency. To acknowledge the outputted events (and therefore remove them from pending events), set the `acknowledgeEvents` parameter to `true` (default is false).  
+Developers and system administrators can use this query to monitor and handle event-driven systems effectively, maintaining their reliability and consistency. To acknowledge the outputted events (and therefore remove them from pending events), set the `acknowledgeEvents` parameter to `true` (default is false).
 To filter outputted pending events on specific channels, use the `channelFilters` parameter
 
 ```graphql
@@ -1111,6 +1111,6 @@ query geFilteredtPendingEvents {
 }
 ```
 
-This example will output pending events broadcasted in either `cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu` and `cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f` channels.  
-Using the `Type` argument, you, can construct advanced filters like `'channel_1' AND ('channel_2' OR 'channel_3')`  
+This example will output pending events broadcasted in either `cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu` and `cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f` channels.
+Using the `Type` argument, you, can construct advanced filters like `'channel_1' AND ('channel_2' OR 'channel_3')`
 Note, The default type is "**AND**".

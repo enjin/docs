@@ -58,7 +58,7 @@ For applications requiring automated actions (like minting rewards in real-time 
 Let's define the core building blocks for your digital items on the <GlossaryTerm id="enjin_blockchain" />:
 
 - **Collection:** Think of a <GlossaryTerm id="collection" /> as a container or category for your digital items. It helps organize items related to your specific game, application, or a particular series. All items within a collection share certain base properties defined when you create the collection.
-- **Token (`multiToken`):** A **Token** represents the actual digital item that users can own within a Collection. On the Enjin Blockchain, all tokens fundamentally exist as **<GlossaryTerm id="multitoken" />s**. This is a core feature built directly into the blockchain protocol itself.  
+- **Token (`multiToken`):** A **Token** represents the actual digital item that users can own within a Collection. On the Enjin Blockchain, all tokens fundamentally exist as **<GlossaryTerm id="multitoken" />s**. This is a core feature built directly into the blockchain protocol itself.
 
 :::tip Structuring Your Project
 A common approach is to create:
@@ -83,7 +83,7 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 1.  **Create Collection:**
     -   In the Platform menu, navigate to the **[Collections page](https://platform.canary.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
     ![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
-    -   Customize your collection - you can specify the collection's name, description, media, attributes, Mint and Market policies, and more.  
+    -   Customize your collection - you can specify the collection's name, description, media, attributes, Mint and Market policies, and more.
     To learn more about collection configuration, please check the [Create Collections guide](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
     -   Submit the creation request by clicking on the **Create** button. This will create a signature request which you can view in the [Transactions page](https://platform.canary.enjin.io/transactions), and will require a transaction to be signed.
     ![](/img/guides/managing-tokens/pending-create-collection-txn.png)
@@ -91,7 +91,7 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
     -   Once the transaction is confirmed on-chain, the new collection will appear in your [Collections page](https://platform.canary.enjin.io/collections), where you can also find its ID, keep note of it for the next step.
 2.  **Create Token:**
     -   In the Platform menu, navigate to the **[Tokens page](https://platform.canary.enjin.io/tokens)**. Then, click on the "**[Create Token](https://platform.canary.enjin.io/create/token)**" button.
-    -   Customize your token - you can specify the token's name, description, media, attributes, and more.  
+    -   Customize your token - you can specify the token's name, description, media, attributes, and more.
     To learn more about token configuration, please check the [Create Tokens guide](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
     -   In the **"Collection ID"** input field, insert the collection id of the collection you just created. You may also click the input field and select the id from the dropdown menu.
     -   In the **"Recipient"** input field, insert the <GlossaryTerm id="address" /> of the wallet that you wish to receive the token's initial supply. You can find the address of your connected wallet in the [settings page](https://platform.canary.enjin.io/settings) by clicking on the Settings icon in the top right corner, followed by the "Settings" button.
@@ -127,11 +127,11 @@ Once this association (or "link") is established, you can:
 
 ### Implementation (GraphQL Example):
 
-To request a wallet verification code, we need to interact with the **<GlossaryTerm id="enjin_platform_api" />**  
-The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) guide.  
+To request a wallet verification code, we need to interact with the **<GlossaryTerm id="enjin_platform_api" />**
+The Enjin Platform API is a <GlossaryTerm id="graphql" /> API. If you are unfamiliar with GraphQL, we recommend checking out the [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) guide.
 
 :::info Quick Start: Sending API Requests with the <GlossaryTerm id="graphiql_playground" />
-In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.  
+In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> to easily send an API request from within the browser.
 In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) page.
 :::
 

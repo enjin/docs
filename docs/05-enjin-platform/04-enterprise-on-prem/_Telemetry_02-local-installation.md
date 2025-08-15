@@ -29,9 +29,9 @@ You login by editing the `configs/core/.env file`. Here, you use the `DAEMON_ACC
 
 ### 3\. Run the Start Script
 
-In the main folder of the platform, there are two start scripts: `start.bat` for Windows and `start.sh` for macOS and Linux. 
+In the main folder of the platform, there are two start scripts: `start.bat` for Windows and `start.sh` for macOS and Linux.
 
-Running either script sets everything up automatically. 
+Running either script sets everything up automatically.
 
 #### Running the Start script on Windows
 
@@ -39,7 +39,7 @@ To run the Start script on windows, simply double click the `start.bat` file.
 
 #### Running the Start script on MacOS / Linux
 
-To run the Start script on MacOS / Linux, open your Terminal application on MacOS, or establish an SSH connection to your Linux server.  
+To run the Start script on MacOS / Linux, open your Terminal application on MacOS, or establish an SSH connection to your Linux server.
 Then, navigate to the platform's root directory using the `cd platform` command, and start the script using the following command:
 
 ```bash
@@ -72,18 +72,18 @@ y
 
 Done, your daemon password is: 0c0b44096a6f54d3ab92aff019a7dd5ecf383fd0df908e71aec34b62145e96e5
 
-[+] Building 11.8s (26/26) FINISHED  
+[+] Building 11.8s (26/26) FINISHED
 ............
 
 Let's get your wallet daemon address, please wait...
 [+] Running 1/1
- ✔ Container platform-daemon-1  Started  
+ ✔ Container platform-daemon-1  Started
 
 Your wallet daemon address is: efUGPaFNbV3JyqEfv27eRWkQ2tcMd5ympi83p1c2q5VUXPttv
 Do you want to start all platform services? (y/n)
 y
 
-[+] Building 179.1s (141/167)                                                                                                                                                                                      
+[+] Building 179.1s (141/167)
 ...............
 
 [+] Running 8/8
@@ -94,14 +94,14 @@ y
  ✔ Container platform-websocket-1  Started
  ✔ Container platform-app-1        Started
  ✔ Container platform-ingest-1     Started
- ✔ Container platform-beam-1       Started  
+ ✔ Container platform-beam-1       Started
 
 Your Enjin Platform is now running, please visit: http://localhost:8000/graphiql
 ```
 
 ### 4\. Choose Your Network
 
-For the Enjin Platform Starter, the default network is set to `enjin-matrixchain` (mainnet). You can switch different networks by editing NETWORK variable in the `configs/core/.env` file.  
+For the Enjin Platform Starter, the default network is set to `enjin-matrixchain` (mainnet). You can switch different networks by editing NETWORK variable in the `configs/core/.env` file.
 Accepted values are `enjin-matrixchain` / `canary-matrixchain` / `local-matrixchain`.
 
 :::info To apply the changes, run without caching
@@ -114,7 +114,7 @@ There are two ways of interacting with Enjin Platform, through the GraphQL API. 
 
 ![Local Platform GraphiQL Playground](/img/guides/going-open-source/local-platform-graphiql.png)
 
-But you can also use the Enjin Platform UI which you can access at `http://localhost:8000`, you might see this setup screen where you should enter the `BASIC_AUTH_TOKEN` that was shown to you in the setup script. 
+But you can also use the Enjin Platform UI which you can access at `http://localhost:8000`, you might see this setup screen where you should enter the `BASIC_AUTH_TOKEN` that was shown to you in the setup script.
 
 ![Setup Configuration](/img/guides/going-open-source/setup-configuration.png)
 
@@ -176,8 +176,8 @@ docker compose up -d
 
 ### 8\. Configure Collections (Optional)
 
-By default, the Enjin Platform syncs token data from all of the collections in the Blockchain.  
-To save storage and sync time, you can configure the Enjin Platform to sync only selected collections.  
+By default, the Enjin Platform syncs token data from all of the collections in the Blockchain.
+To save storage and sync time, you can configure the Enjin Platform to sync only selected collections.
 To do that, head over to http://localhost:8000/graphiql and run the `AddToTracked` mutation, with the IDs of the collections you wish to sync, like so:
 
 ```graphql

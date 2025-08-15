@@ -20,7 +20,7 @@ When dispatching a transaction via a Fuel Tank, the following checks must pass:
 - The Fuel Tank allows dispatching this transaction.
 
 :::info What you'll need:
-- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.  
+- Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin / Canary Matrixchain to pay for <GlossaryTerm id="transaction_fees" />, and for funding the tank.
 You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
@@ -80,7 +80,7 @@ By default, only the Fuel Tank owner has the permission to add accounts to the F
 
 ### Coverage Policy
 
-By default, the fuel tank will subsidize only <GlossaryTerm id="transaction_fees" />.  
+By default, the fuel tank will subsidize only <GlossaryTerm id="transaction_fees" />.
 To cover both <GlossaryTerm id="transaction_fees" /> and any <GlossaryTerm id="storage_deposit" /> the dispatched call may require, set the Coverage Policy to `FEES_AND_DEPOSIT`
 
 ## Creating Fuel Tanks
@@ -88,7 +88,7 @@ To cover both <GlossaryTerm id="transaction_fees" /> and any <GlossaryTerm id="s
 Now that we have a basic understanding of how Fuel Tanks are structured, let's go through setting up some Fuel Tanks with specific functionality, including creating rules and customizing it to fit your needs, enabling you to reduce transaction costs for your users.
 
 :::info User Interface
-This guide will demonstrate how to create various fuel tanks with the GraphQL API.  
+This guide will demonstrate how to create various fuel tanks with the GraphQL API.
 Note that you may also use the User Interface to create Fuel Tanks.
 
 To create a Fuel Tank using the Platform's User Interface, navigate to "**[Fuel Tanks](https://platform.canary.enjin.io/fuel-tanks)**" in the Platform Menu. Then, click the "**[Create Fuel Tank](https://platform.canary.enjin.io/create/fuel-tank)**" button.
@@ -99,7 +99,7 @@ Please be aware that the following arguments are currently unavailable on the En
 - `PermittedExtrinsics` cannot be set via the Enjin Platform UI.
 - `WhitelistedPallets` is not supported on the Enjin Platform, both on the UI and API.
 - `requireAccount` is also not supported on the Enjin Platform, both on the UI and API.
-We will update the documentation once these options are available.  
+We will update the documentation once these options are available.
 Code snippets with these arguments are provided for illustrative purposes only. If you wish to create a fuel tank with these options now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
 :::
 
@@ -316,9 +316,9 @@ print(response.json())
 ### Subsidize Any Transaction Involving <GlossaryTerm id="multitoken" />s From A Certain Collection
 
 :::warning Upcoming Feature Notice: `WhitelistedPallets` Option
-The `WhitelistedPallets` argument is not yet supported on the Enjin Platform.  
-The following code snippet is provided for illustrative purposes only.  
-If you wish to create a fuel tank with this option now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).  
+The `WhitelistedPallets` argument is not yet supported on the Enjin Platform.
+The following code snippet is provided for illustrative purposes only.
+If you wish to create a fuel tank with this option now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
 We will update the documentation once this option is available.
 :::
 
@@ -539,9 +539,9 @@ print(response.json())
 The following mutation will set up a fuel tank that subsidizes any transaction, the tank is allowed to subsidize up to 5 ENJ per 30 days for each User Account in the tank, which can be created only if the account is within the whitelisted callers list.
 
 :::warning Upcoming Feature Notice: `requireAccount` Option
-The `requireAccount` argument is not yet supported on the Enjin Platform.  
-The following code snippet is provided for illustrative purposes only.  
-If you wish to create a fuel tank with this option now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).  
+The `requireAccount` argument is not yet supported on the Enjin Platform.
+The following code snippet is provided for illustrative purposes only.
+If you wish to create a fuel tank with this option now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
 We will update the documentation once this option is available.
 :::
 
@@ -806,7 +806,7 @@ If you need help figuring out the best fuel tank to use for a transaction, check
 
 ### Step #1: Prepare The Mutation
 
-First, prepare the mutation you wish to dispatch, with the `id` and `encodedData` fields in the response.  
+First, prepare the mutation you wish to dispatch, with the `id` and `encodedData` fields in the response.
 In this example, we'll dispatch a call to send a <GlossaryTerm id="multitoken" /> from one account to another:
 
 :::danger Ask for the `id` and `encodedData` fields!
@@ -1032,8 +1032,8 @@ print(response.json())
 Once the mutation is sent, signed and broadcasted, If the transaction is eligible, the fuel tank will subsidize the transaction fees; otherwise, the transaction will fail.
 
 :::info Need to broadcast from Managed Wallet?
-To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#transferring-tokens-from-managed-wallets) page.  
-It's important to note that the `signingAccount` argument should be added on the `Dispatch` mutation level, and **NOT** in the dispatch argument.  
+To broadcast the transaction from a managed wallet account, add the `signingAccount` argument as instructed in the [Using Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#transferring-tokens-from-managed-wallets) page.
+It's important to note that the `signingAccount` argument should be added on the `Dispatch` mutation level, and **NOT** in the dispatch argument.
 In the above example, to transfer the token from a managed wallet via a fuel tank:
 
 ```graphql

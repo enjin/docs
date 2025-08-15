@@ -27,7 +27,7 @@ An archive node stores the complete history of the network and is typically used
 
 ## Network Participation
 
-Users can earn rewards by running a collator node to participate in the Enjin network. However, it's essential to understand that collators do not secure the network. In Enjin, PoA (Proof of Authority) consensus is used, and block producers or collators are chosen from the list of authorized validators. More collators do not necessarily mean a better or more secure network since Relaychain validators will reject an invalid Matrixchain block.  
+Users can earn rewards by running a collator node to participate in the Enjin network. However, it's essential to understand that collators do not secure the network. In Enjin, PoA (Proof of Authority) consensus is used, and block producers or collators are chosen from the list of authorized validators. More collators do not necessarily mean a better or more secure network since Relaychain validators will reject an invalid Matrixchain block.
 Having too many collators can also slow down the network. The only power that collators possess is transaction censorship. To avoid censorship, a Matrixchain must have some neutral collators, but not necessarily a majority. In theory, the censorship problem can be solved by having only one honest collator.
 
 ## Staking
@@ -36,9 +36,9 @@ The management of collators on the Enjin Matrixchain is handled by the collator 
 
 ## Rewards
 
-The formula for calculating the block reward is:  
-reward = `blocks_authored_by_collator \* reward_per_block`  
-where `reward_per_block = total_reward_per_session / total_blocks_in_session`  
+The formula for calculating the block reward is:
+reward = `blocks_authored_by_collator \* reward_per_block`
+where `reward_per_block = total_reward_per_session / total_blocks_in_session`
 The rewards are then distributed depending on the type of collator:
 
 - Invulnerable Collators: the fees are transferred back to the fee distribution account

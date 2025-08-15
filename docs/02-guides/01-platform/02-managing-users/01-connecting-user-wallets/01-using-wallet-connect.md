@@ -8,13 +8,13 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[WalletConnect](https://docs.walletconnect.com/) is an open-source protocol that connects your mobile wallet to decentralized applications.  
+[WalletConnect](https://docs.walletconnect.com/) is an open-source protocol that connects your mobile wallet to decentralized applications.
 Using the Platform API and WalletConnect you can send any transaction request directly to your user's wallet app.
 
 :::info What you'll need:
 - Node.js 18+ and yarn installed
 - A mobile device with [Enjin Wallet app](https://enjin.io/wallet) installed
-- A Canary wallet with at least 6.5 ENJ in it to cover for <GlossaryTerm id="storage_deposit" /> and <GlossaryTerm id="transaction_fees" />.  
+- A Canary wallet with at least 6.5 ENJ in it to cover for <GlossaryTerm id="storage_deposit" /> and <GlossaryTerm id="transaction_fees" />.
 You can obtain cENJ for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md) (Canary).
 :::
@@ -25,12 +25,12 @@ On production apps, you will need [WalletConnect's SDK](https://docs.walletconne
 
 Start by cloning the polkadot-onboard repository: https://github.com/enjin-forks/polkadot-onboard.git
 
-Once cloned, install the packages, install the workspace, build the workspace, and start the example project.  
+Once cloned, install the packages, install the workspace, build the workspace, and start the example project.
 To do that, navigate to the cloned repository folder and run the following commands:
 
 :::info **Note:**
-The commands below are Bash commands, which are commonly run in a Unix-like environment (such as macOS, or Linux).  
-Windows users may encounter errors if they try running these commands directly in Command Prompt or PowerShell.  
+The commands below are Bash commands, which are commonly run in a Unix-like environment (such as macOS, or Linux).
+Windows users may encounter errors if they try running these commands directly in Command Prompt or PowerShell.
 To run them successfully on Windows, use a Bash-compatible terminal, like [Git Bash](https://gitforwindows.org/).
 :::
 
@@ -49,7 +49,7 @@ yarn start:react-next
 Navigate to http://localhost:3000 using your browser. If everything went well, a sample page should load up.
 
 :::info Configured Chain
-The sample project is set to broadcast transaction on the Canary Matrixchain Testnet.  
+The sample project is set to broadcast transaction on the Canary Matrixchain Testnet.
 To configure a different blockchain, you can adjust the `chainIds` in the `examples/react-next/components/ConnectContainer.tsx` file.
 
 Chain IDs on Enjin Chains:
@@ -61,7 +61,7 @@ Chain IDs on Enjin Chains:
 
 ## Connect user's wallet
 
-To send transactions to your user, he must be connected to your dapp.  
+To send transactions to your user, he must be connected to your dapp.
 Clicking `Get Wallets`, followed by `Polkadot Demo 2.0`, initiates a connection between your user and your dapp.
 
 <p align="center">
@@ -74,8 +74,8 @@ Once the user scans the QR code with his Enjin wallet app (or any other wallet w
   <img src={require('/img/guides/managing-users/approve-connection-request.jpg').default} width="600" alt="Approve Connection Request" />
 </p>
 
-Once a connection was made, you'll receive a list of all addresses connected from your user's wallet.  
-Now you are able to send any transaction request to your user's wallet.  
+Once a connection was made, you'll receive a list of all addresses connected from your user's wallet.
+Now you are able to send any transaction request to your user's wallet.
 To demonstrate a sample transaction request, click the "**Submit Transaction with Polkadot.JS**" button on one of the displayed addresses.
 
 <p align="center">
@@ -94,7 +94,7 @@ In the next section, you'll learn how to construct your own transaction requests
 
 ## How to construct a custom transaction?
 
-In the example above, we have sent a request to broadcast a transaction that was already constructed for us.  
+In the example above, we have sent a request to broadcast a transaction that was already constructed for us.
 But how was that transaction constructed and how can we send any transaction we want? Let's find out!
 
 At `examples/react-next/pages/api`, there's two endpoints we'll be using:
@@ -102,7 +102,7 @@ At `examples/react-next/pages/api`, there's two endpoints we'll be using:
 - `transaction.tsx` endpoint which constructs the transaction
 - `send.tsx` which broadcasts the transaction request to the blockchain using Enjin Platform API.
 
-First, we need to insert our Enjin platform API key to be able to interact with it.  
+First, we need to insert our Enjin platform API key to be able to interact with it.
 If you haven't created an api key yet, you can do so in https://platform.canary.enjin.io/settings.
 
 In both `examples/react-next/pages/api/transaction.tsx` and `examples/react-next/pages/api/send.tsx` files, replace `your-api-key` with your api key (note, there's three different api key fields that needs to be updated).
@@ -110,8 +110,8 @@ In both `examples/react-next/pages/api/transaction.tsx` and `examples/react-next
 Once we've configured the Enjin Platform API key, rebuild and restart the project:
 
 :::info **Note:**
-The commands below are Bash commands, which are commonly run in a Unix-like environment (such as macOS, or Linux).  
-Windows users may encounter errors if they try running these commands directly in Command Prompt or PowerShell.  
+The commands below are Bash commands, which are commonly run in a Unix-like environment (such as macOS, or Linux).
+Windows users may encounter errors if they try running these commands directly in Command Prompt or PowerShell.
 To run them successfully on Windows, use a Bash-compatible terminal, like [Git Bash](https://gitforwindows.org/).
 :::
 
@@ -120,13 +120,13 @@ yarn build:workspace
 yarn start:react-next
 ```
 
-Now that the project is authenticated with the Enjin Platform, we can go ahead and press the "**Submit Transaction with Platform**" button.  
-A `CreateCollection` request will be sent to your wallet, and once confirmed, the transaction will be signed and broadcasted to the blockchain.  
+Now that the project is authenticated with the Enjin Platform, we can go ahead and press the "**Submit Transaction with Platform**" button.
+A `CreateCollection` request will be sent to your wallet, and once confirmed, the transaction will be signed and broadcasted to the blockchain.
 Now it's time to break it down and understand how it works:
 
 ### Step #1: Constructing the transaction call
 
-We are constructing the transaction using the `transaction.tsx` endpoint.  
+We are constructing the transaction using the `transaction.tsx` endpoint.
 First, we make a query to the user's address to get its nonce:
 
 ```javascript
@@ -150,7 +150,7 @@ First, we make a query to the user's address to get its nonce:
   });
 ```
 
-Once we get the nonce, we prepare the `CreateCollection` transaction call using Enjin Platform API.  
+Once we get the nonce, we prepare the `CreateCollection` transaction call using Enjin Platform API.
 You can use any other mutation Enjin Platform API offers, but for this example we're using CreateCollection.
 
 ```javascript
@@ -179,12 +179,12 @@ You can use any other mutation Enjin Platform API offers, but for this example w
   });
 ```
 
-We are also passing the `signingAccount`. This is necessary so your daemon doesn't sign the transaction.  
+We are also passing the `signingAccount`. This is necessary so your daemon doesn't sign the transaction.
 In the mutation response, we're asking for the `id` and `signingPayloadJson`, which we will use in the next step.
 
 ### Step #2: Sending the Transaction Request to user's wallet
 
-With the payload in hand we pass that to our WalletConnect signer and ask it to sign. In the example project, this is done at: `examples/react-next/components/AccountBox.tsx` 
+With the payload in hand we pass that to our WalletConnect signer and ask it to sign. In the example project, this is done at: `examples/react-next/components/AccountBox.tsx`
 
 ```javascript
 const txId = data?.data?.CreateCollection?.id;
@@ -196,8 +196,8 @@ The above will trigger the Transaction Request dialog you saw previously, asking
 
 ### Step #3: Broadcasting the signed transaction
 
-Finally, we received the `txId`, `signature`, and `payload` from the user's wallet.  
-We can now broadcast the signed transaction to the blockchain using the Enjin Platform API `SendTransaction` mutation.  
+Finally, we received the `txId`, `signature`, and `payload` from the user's wallet.
+We can now broadcast the signed transaction to the blockchain using the Enjin Platform API `SendTransaction` mutation.
 This is done at: `examples/react-next/pages/api/send.tsx`
 
 ```javascript
@@ -221,7 +221,7 @@ This is done at: `examples/react-next/pages/api/send.tsx`
   });
 ```
 
-The Enjin Platform will broadcast the transaction to the blockchain and keep track of it.  
+The Enjin Platform will broadcast the transaction to the blockchain and keep track of it.
 You can see the transaction status in Enjin Platform: https://platform.canary.enjin.io/transactions
 
 ***
