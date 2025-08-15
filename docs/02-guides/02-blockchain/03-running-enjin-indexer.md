@@ -144,7 +144,7 @@ REDIS_URL=redis://indexer_redis:6379/1
 ```dotenv
 # .env (for Canary Relaychain)
 
-ARCHIVE_ENDPOINT=https://v2.archive.subsquid.io/network/canary-relay
+ARCHIVE_ENDPOINT=# no archive endpoint available for Canary Relaychain
 CHAIN_ENDPOINT=wss://archive.relay.canary.enjin.io
 CHAIN_PREFIX=69
 DB_HOST=indexer_db
@@ -158,7 +158,7 @@ REDIS_URL=redis://indexer_redis:6379/2
 ```dotenv
 # .env (for Canary Matrixchain)
 
-ARCHIVE_ENDPOINT=https://v2.archive.subsquid.io/network/canary-matrix
+ARCHIVE_ENDPOINT=https://v2.archive.subsquid.io/network/enjin-canary-matrix
 CHAIN_ENDPOINT=wss://archive.matrix.canary.enjin.io
 CHAIN_PREFIX=9030
 DB_HOST=indexer_db
@@ -184,7 +184,7 @@ You can read the [GraphQL Documentation](https://graphql.org/learn/) for more in
    cd indexer
    ```
 2. Configure Environment Variables
-   In the repository, you will find a `.env.example` file that outlines the necessary environment variables for running the Enjin Matrixchain Indexer. Copy this file to create your own `.env` file: `cp .env.example .env`
+   In the repository, you will find a `.env.example` file that outlines the necessary environment variables for running the Enjin Indexer. Copy this file to create your own `.env` file: `cp .env.example .env`
    Then, open the .env file in a text editor and fill in the missing values. Below is an example of the environment variables and their purpose:
 
 ```text
@@ -192,7 +192,7 @@ NODE_ENV: Node.js environment (supported values: development, production)
 
 CHAIN_ENDPOINT: [Required] WebSocket endpoint to connect to. It is recommended to be set to your own Enjin archive node.
 CHAIN_PREFIX: [Required] The chain prefix (SS58) of the chain you are connecting to.
-ARCHIVE_ENDPOINT: [Required] Subsquid archive endpoint for historical blockchain data.
+ARCHIVE_ENDPOINT: [Optional] Subsquid archive endpoint for historical blockchain data. See: https://docs.sqd.ai/subsquid-network/reference/networks/https://docs.sqd.ai/subsquid-network/reference/networks/
 
 DB_NAME: [Required] Postgres database name.
 DB_HOST: [Required] Postgres host.
