@@ -184,7 +184,7 @@ You can read the [GraphQL Documentation](https://graphql.org/learn/) for more in
    cd indexer
    ```
 2. Configure Environment Variables
-   In the repository, you will find a `.env.example` file that outlines the necessary environment variables for running the Enjin Matrixchain Indexer. Copy this file to create your own `.env` file: `cp .env.example .env`
+   In the repository, you will find a `.env.example` file that outlines the necessary environment variables for running the Enjin Indexer. Copy this file to create your own `.env` file: `cp .env.example .env`
    Then, open the .env file in a text editor and fill in the missing values. Below is an example of the environment variables and their purpose:
 
 ```text
