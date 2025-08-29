@@ -26,10 +26,10 @@ For a complete example of Collection & Token metadata, check out the [Metadata E
 Ensure you use the correct casing when defining attributes to avoid errors.
 :::
 
-There are two ways to create metadata for your tokens:
+There are two ways to set metadata for your tokens:
 
 1. **Off-chain - Hosted JSON File:** Set the collection or token attribute with the key `uri` and the value as a URL to a off-chain hosted JSON file. This file can be hosted either in a centralized manner or on IPFS.
-   The JSON file should contain metadata that follows the structure defined in the metadata standard.
+   The JSON file should contain metadata that follows the structure defined in the metadata standard.  
    Example:
    ```graphql
    mutation SetMetadataUsingJSON {
@@ -50,7 +50,7 @@ There are two ways to create metadata for your tokens:
    }
    ```
 
-2. **On-chain - Directly Setting Metadata:** Set the metadata directly on-chain using a structure that follows the metadata standard.
+2. **On-chain - Directly Setting Metadata:** Set the metadata directly on-chain using a structure that follows the metadata standard.  
    Example:
    ```graphql
    mutation SetMetadataDirectly {

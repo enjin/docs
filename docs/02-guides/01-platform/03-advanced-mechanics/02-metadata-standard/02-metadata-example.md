@@ -25,11 +25,13 @@ Ensure you use the correct casing when defining attributes to avoid errors.
       "type": "image/jpeg"
     },
     {
-      "url": "https://platform.production.enjinusercontent.com/enterprise/enjin/assets/media/2024-multiverse.banner.jpg",
+      "url": "https://cdn.enjin.io/mint/image/15.jpg",
       "type": "image/jpg"
-    }
+    },
+    
   ],
-  "fallback_image": "https://cdn.enjinx.io/assets/images/ethereum/platform/0/apps/8/2b728df41fadef568e4410fb823999d14473ef1e.jpeg",
+  "banner_image": "https://platform.production.enjinusercontent.com/enterprise/enjin/assets/media/2024-multiverse.banner.jpg",
+  "fallback_image": "https://cdn.enjin.io/mint/image/15.jpg",
   "external_url": "https://enjin.io/multiverse"
 }
 ```
@@ -39,7 +41,8 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 - `name`: The collection's display name.
 - `description`: The collection's description.
 - `media`: A list of links to media files (images, GIFs, videos, etc.) to be displayed as the collection media.
-  - The NFT.io marketplace uses the first provided media file as the collection's featured media, and the second provided media file as a banner image.
+  - The NFT.io marketplace uses the first provided media file as the collection's featured media.
+- `banner_image`: A link to an image file to be displayed as the collection banner. (Recommended ratio: 4:1)
 - `fallback_image`: A link to an alternative image file to be used when the media provided in the `media` list fails to load.
 - `external_url`: A link to the collection's website.
 
