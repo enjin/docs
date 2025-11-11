@@ -1,7 +1,7 @@
 ---
 title: "Dynamic Metadata"
 slug: "dynamic-metadata"
-description: "View detailed examples of how to implement metadata within your blockchain tokens, following Enjin’s guidelines for token structure and data representation."
+description: "Learn to use Dynamic Metadata to efficiently manage large NFT collections. Our easy-to-follow guide shows how to set one URL for all your tokens, saving time and on-chain costs."
 ---
 
 What if you have a collection with 10,000 unique tokens? Setting up metadata (like the name, image, and description) for each one sounds like a lot of work, and it can be costly.
