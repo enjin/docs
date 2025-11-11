@@ -63,7 +63,7 @@ Now, a user opens the NFT.io marketplace to look at your "Dragon's Fang" token. 
 
 Your server (or Pinata, in our example) then sends this specific file, which contains the name "Dragon's Fang" and its unique image. That's how it all connects!
 
-#### What You Must Name Your Files
+### What You Must Name Your Files
 
 For this to work, your hosted files **must** use these exact naming conventions:
 
@@ -94,6 +94,8 @@ First, let's get all your images and videos uploaded.
 4.  Upload the folder you just prepared.
 5.  Once it's finished, you'll see your folder in the file list. Copy its **CID** (a long string of letters and numbers).
 6.  Save this CID somewhere safe (like a notepad). This is your `<Media-CID>`.
+
+![Uploading metadata files to Pinata Cloud](/img/guides/advanced-mechanics/uploading-media-files.gif)
 
 ### Step 2: Create and Host Your JSON Metadata Files
 
