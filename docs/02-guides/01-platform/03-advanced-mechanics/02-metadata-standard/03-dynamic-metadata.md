@@ -131,7 +131,7 @@ Finally, let's tell your collection where to find these new metadata files. You'
 
 1.  The `value` you need to set is your **`<JSON-CID>`** from the last step, followed by the `/{id}.json` placeholder.
       * **Example Value:** `ipfs://bafy...xyz/{id}.json` (Replace `bafy...xyz` with your actual `<JSON-CID>`).
-2.  Set this attribute using the `BatchSetAttribute` mutation. You can copy/paste the example below into the [graphiql playground]((https://platform.enjin.io/graphiql)), and change the values.
+2.  Set this attribute using the `BatchSetAttribute` mutation. You can copy/paste the example below into the [graphiql playground](https://platform.enjin.io/graphiql), and change the values.
 
 ```graphql
 mutation SetDynamicMetadataURI {
