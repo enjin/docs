@@ -77,20 +77,3 @@ There are two ways to set metadata for your tokens:
 
 Whichever method you choose, it's crucial to ensure the metadata is structured according to the standard to maintain compatibility and present your tokens correctly.
 For a detailed guide on adding metadata, please refer to our [Adding Metadata Tutorial](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md).
-
-### Dynamic Metadata Fetching
-
-When an application such as [Enjin wallet](https://enj.in/wallet) / [NFT.io](https://nft.io) loads token metadata, it starts by looking for the `uri` attribute on the token level.
-If there’s no `uri` on the token level, it then looks for the `uri` attribute on the collection level.
-
-While each token could have it’s own uri attribute, It is sometimes more convenient, and efficient, to use Dynamic Metadata.
-
-For Dynamic Metadata fetching, the metadata doesn't exist on each token.
-Instead, one `uri` attribute is set on the collection level, with the dynamic keyword `{id}.json`.
-For example: `https://yourdomain.com/{id}.json`
-
-When fetching a token dynamically, the `{id}` is replaced with the collection ID, followed by the token ID, like this: https://yourdomain.com/8143-72.json.
-
-Dynamic Metadata works best for NFTs with large supply, as usually each NFT has it’s own Metadata, and by using Dynamic Metadata there’s less data stored on-chain, drastically reducing the amount of ENJ tokens required when creating the tokens.
-
-For a detailed step-by-step guide on setting Dynamic Metadata Fetching, please refer to our Help Center article: [Creating and Hosting Metadata Dynamically](https://support.enjin.io/hc/en-gb/articles/16617419735314-Creating-and-Hosting-Metadata-Dynamically)
