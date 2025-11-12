@@ -3,6 +3,7 @@ title: "Dynamic Metadata"
 slug: "dynamic-metadata"
 description: "Learn to use Dynamic Metadata to efficiently manage large NFT collections. Our easy-to-follow guide shows how to set one URL for all your tokens, saving time and on-chain costs."
 ---
+import AutoplayVideo from '@site/src/components/AutoplayVideo';
 
 What if you have a collection with 10,000 unique tokens? Setting up metadata (like the name, image, and description) for each one sounds like a lot of work, and it can be costly.
 
@@ -95,7 +96,9 @@ First, let's get all your images and videos uploaded.
 5.  Once it's finished, you'll see your folder in the file list. Copy its **CID** (a long string of letters and numbers).
 6.  Save this CID somewhere safe (like a notepad). This is your `<Media-CID>`.
 
-![Uploading metadata files to Pinata Cloud](/img/guides/advanced-mechanics/uploading-media-files.gif)
+<AutoplayVideo 
+  webmSrc="/img/guides/advanced-mechanics/uploading-media-files.webm"
+/>
 
 ### Step 2: Create and Host Your JSON Metadata Files
 
