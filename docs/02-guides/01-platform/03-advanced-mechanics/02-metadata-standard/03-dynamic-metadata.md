@@ -3,7 +3,6 @@ title: "Dynamic Metadata"
 slug: "dynamic-metadata"
 description: "Learn to use Dynamic Metadata to efficiently manage large NFT collections. Our easy-to-follow guide shows how to set one URL for all your tokens, saving time and on-chain costs."
 ---
-import AutoplayVideo from '@site/src/components/AutoplayVideo';
 
 What if you have a collection with 10,000 unique tokens? Setting up metadata (like the name, image, and description) for each one sounds like a lot of work, and it can be costly.
 
@@ -96,9 +95,10 @@ First, let's get all your images and videos uploaded.
 5.  Once it's finished, you'll see your folder in the file list. Copy its **CID** (a long string of letters and numbers).
 6.  Save this CID somewhere safe (like a notepad). This is your `<Media-CID>`.
 
-<AutoplayVideo 
-  webmSrc="/img/guides/advanced-mechanics/uploading-media-files.webm"
-/>
+<video muted playsinline controls width="100%">
+  <source src="/img/guides/advanced-mechanics/uploading-media-files.mp4" type="video/webm" />
+  Sorry, your browser doesn't support embedded videos.
+</video>
 
 ### Step 2: Create and Host Your JSON Metadata Files
 
