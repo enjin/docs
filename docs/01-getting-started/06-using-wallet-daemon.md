@@ -69,8 +69,8 @@ It is recommended that the Enjin Wallet Daemon is installed and ran in isolation
 If you don't have Docker installed, you may install either the docker engine or docker desktop, though if you have never used docker before we recommend using docker desktop: https://www.docker.com/products/docker-desktop
 :::
 
-:::warning Action Required: Sentosa Upgrade
-To ensure uninterrupted service and transaction signing capabilities, users must upgrade their Wallet Daemon to v2.1.1 or greater before the Sentosa blockchain upgrade.
+:::warning Action Required: [Sentosa Upgrade](https://enjin.io/blog/enjin-blockchain-sentosa-upgrade)
+To ensure uninterrupted service and transaction signing capabilities, users must upgrade their Wallet Daemon to v2.1.1 or greater before the [Sentosa blockchain upgrade](https://enjin.io/blog/enjin-blockchain-sentosa-upgrade).
 
 > Canary Testnet: The Sentosa upgrade is already live (since October 27, 2025). If you are using the Canary Wallet Daemon to sign transactions, you must update immediately to v2.1.1+ or transactions will fail.
 
