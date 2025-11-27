@@ -60,7 +60,7 @@ Follow the on-screen instructions to set it up and make sure to insert your Enji
 ## Setting up Wallet Daemon via Docker
 
 :::note Code repository
-The code repository can be found at https://github.com/enjin/platform
+The code repository can be found at https://github.com/enjin/wallet-daemon/
 :::
 
 It is recommended that the Enjin Wallet Daemon is installed and ran in isolation. This means running it on a dedicated server. The daemon itself is incredibly light-weight and does not require any extensive resources.
@@ -69,21 +69,31 @@ It is recommended that the Enjin Wallet Daemon is installed and ran in isolation
 If you don't have Docker installed, you may install either the docker engine or docker desktop, though if you have never used docker before we recommend using docker desktop: https://www.docker.com/products/docker-desktop
 :::
 
-You can do this by first cloning the `enjin/platform` repository from GitHub with the submodules:
+:::warning Action Required: [Sentosa Upgrade](https://enjin.io/blog/enjin-blockchain-sentosa-upgrade)
+To ensure uninterrupted service and transaction signing capabilities, users must upgrade their Wallet Daemon to v2.1.1 or greater before the [Sentosa blockchain upgrade](https://enjin.io/blog/enjin-blockchain-sentosa-upgrade).
+
+> Canary Testnet: The Sentosa upgrade is already live (since October 27, 2025). If you are using the Canary Wallet Daemon to sign transactions, you must update immediately to v2.1.1+ or transactions will fail.
+
+> Mainnet: The upgrade is scheduled for December 8, 2025 (approx. 16:30 UTC, at Relaychain block 13229687 and Matrixchain block 7734855). While older versions will work until this date, it is highly recommended to upgrade to the latest version beforehand.
+
+Instructions on upgrading the wallet-daemon to the latest version can be found [here](#updating-the-daemon-to-the-latest-version)
+:::
+
+To download the Enjin Daemon, clone the `enjin/wallet-daemon` repository from GitHub by running this command in the Terminal:
 
 ```bash
-git clone --recurse-submodules https://github.com/enjin/platform.git
+git clone https://github.com/enjin/wallet-daemon.git
 ```
 
 ### Configure Daemon
 
-You will want to update the `configs/daemon/.env` file with the `PLATFORM_KEY` (which is an API Token generated within the Settings page of the Enjin Platform Cloud). In addition to this, you'll want to specify a unique `KEY_PASS`.
+You will want to update the `.env` file with the `PLATFORM_KEY` (which is an API Token generated within the Settings page of the Enjin Platform Cloud). In addition to this, you'll want to specify a unique `KEY_PASS`.
 
 :::danger Important note
 The `KEY_PASS` is immutable. It is directly used to derive the wallet private key. Choose something unique and make sure to backup this `KEY_PASS` in a secure manner.
 :::
 
-The final configuration is to update the `configs/daemon/config.json` file to communicate with either the Enjin Blockchain (mainnet) or Canary Blockchain (testnet). You can do this by updating the node property in the JSON file. You can find an example of both networks below.
+The final configuration is to update the `config.json` file to communicate with either the Enjin Blockchain (mainnet) or Canary Blockchain (testnet). You can do this by updating the node property in the JSON file. You can find an example of both networks below.
 
 <Tabs>
   <TabItem value="mainnet" label="Enjin Blockchain">
@@ -92,7 +102,7 @@ The final configuration is to update the `configs/daemon/config.json` file to co
   "node": "wss://rpc.matrix.blockchain.enjin.io:443",
   "relay_node": "wss://rpc.relay.blockchain.enjin.io:443",
   "api": "https://platform.enjin.io/graphql",
-  "master_key": "/opt/app/storage"
+  "master_key": "store"
 }
 ```
   </TabItem>
@@ -102,7 +112,7 @@ The final configuration is to update the `configs/daemon/config.json` file to co
   "node": "wss://rpc.matrix.canary.enjin.io:443",
   "relay_node": "wss://rpc.relay.canary.enjin.io:443",
   "api": "https://platform.canary.enjin.io/graphql",
-  "master_key": "/opt/app/storage"
+  "master_key": "store"
 }
 ```
   </TabItem>
@@ -110,14 +120,38 @@ The final configuration is to update the `configs/daemon/config.json` file to co
 
 ### Starting the Daemon
 
-Finally, you can spin up the daemon using the following command from the platform directory:
+Finally, you can spin up the daemon using the following command from your local `wallet-daemon` directory:
 
 `docker compose up -d daemon`
 
-### Importing Daemon Wallet From Existing Seed
+On the initial launch, a 12-words mnemonic seed will be created in the `/store` folder, with an additional encryption using the secret pass provided in the `KEY_PASS` environment variable. If you ever need to import this wallet into any wallet app, the derivation path is as follows:  
+`<the-12-words-mnemonic-seed>///<the_key_pass>`
 
-:::info Daemon Wallets Encryption
-Daemon wallets may be encrypted with a password specified in the `KEY_PASS` env var located in `configs/daemon/.env`.
+### Updating the Daemon to the latest version
+
+To upgrade your Docker installation of the Wallet Daemon to the latest version, follow these steps from within your local `wallet-daemon` directory:
+
+1.  **Pull the latest code from the repository:**
+    ```bash
+    git pull
+    ```
+2.  **Stop the currently running container:**
+    ```bash
+    docker compose stop daemon
+    ```
+3.  **Rebuild the Docker image to incorporate the updates:**
+    ```bash
+    docker compose build --no-cache
+    ```
+4.  **Start the daemon again:**
+    ```bash
+    docker compose up -d daemon
+    ```
+
+### Importing Wallet Daemon From Existing Seed
+
+:::info Wallet Daemon Encryption
+Wallet Daemon may be encrypted with a password specified in the `KEY_PASS` env var located in the `.env` file.
 If your existing wallet is encrypted with a password, make sure to update your `KEY_PASS` var accordingly.
 If your existing wallet is not encrypted, leave the `KEY_PASS` var empty.
 :::
@@ -128,11 +162,11 @@ Follow the steps below to set up your wallet daemon from an existing seed:
    We'll use wallet address `efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW` as an example. It's public key is `0x62c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`.
 2. Remove the 0x from the public key from step #1.
    For our example, it's `62c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`
-3. Inside your platform's `configs/daemon/store` folder, create a file with the name `73723235<string from step #2>`.
-   For our example, we've created the file `configs/daemon/store/7372323562c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`
+3. Inside your local `wallet-daemon/store` folder, create a file with the name `73723235<string from step #2>`.
+   For our example, we've created the file `/store/7372323562c75d8f81e05794cd0b703cf07b7ea3196840eaac4e300cb968fdd266882e02`
 4. Inside the new file created on step #3, insert your wallet's mnemonic seed wrapped with double quotes.
    Example: `"earn meat maid rotate ..."`
-5. Rebuild your platform for the changes to take effect:
+5. Rebuild your docker container for the changes to take effect:
    `docker compose build`
 6. Run the daemon again:
    `docker compose up daemon`
