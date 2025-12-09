@@ -15,6 +15,7 @@ Then set the permission for it using `sudo chown -R 1000:1000 /data`
 :::info
 The Docker Image can be found on Docker Hub at: [enjin/relaychain](https://hub.docker.com/r/enjin/relaychain).
 In this example, we demonstrate using the version `latest`. However, in practice, we recommend statically setting this to a specific version (such as `v100`) and then performing manual upgrades to your nodes as and when appropriate. This is to ensure that your node doesn't inadvertently differ from one restart to the next. See the [Upgrading using Docker](#upgrading-using-docker) section for more information.
+:::
 
 You can use the following `docker-compose.yml` file:
 
