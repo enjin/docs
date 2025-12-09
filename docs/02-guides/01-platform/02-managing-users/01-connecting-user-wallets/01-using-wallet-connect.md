@@ -11,6 +11,14 @@ import TabItem from '@theme/TabItem';
 [WalletConnect](https://docs.walletconnect.com/) is an open-source protocol that connects your mobile wallet to decentralized applications.
 Using the Platform API and WalletConnect you can send any transaction request directly to your user's wallet app.
 
+:::danger **Maintenance Notice**
+The `polkadot-onboard` sample repository used in this guide is **no longer maintained** and may not function as expected.
+
+**Note:** WalletConnect itself remains fully functional and compatible with Enjin Blockchain. This guide is retained as a reference for the implementation logic for developers building their own integrations.
+
+**Upcoming Feature:** A native solution is in development to enable direct transaction requests from the Enjin Platform to the Enjin Wallet, removing the need for third-party services.
+:::
+
 :::info What you'll need:
 - Node.js 18+ and yarn installed
 - A mobile device with [Enjin Wallet app](https://enjin.io/wallet) installed
@@ -21,7 +29,7 @@ You can obtain cENJ for testing from the [Canary faucet](https://faucet.canary.e
 
 ## Install and configure the sample project
 
-On production apps, you will need [WalletConnect's SDK](https://docs.walletconnect.com/web3wallet/about), but for this guide we'll be using a sample project called [polkadot-onboard](https://github.com/enjin-forks/polkadot-onboard.git).
+On production apps, you will need [WalletConnect's SDK](https://docs.walletconnect.com/web3wallet/about), but for this guide we'll be using the (now deprecated) sample project called [polkadot-onboard](https://github.com/enjin-forks/polkadot-onboard.git).
 
 Start by cloning the polkadot-onboard repository: https://github.com/enjin-forks/polkadot-onboard.git
 
