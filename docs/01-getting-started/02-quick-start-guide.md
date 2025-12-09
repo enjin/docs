@@ -231,7 +231,7 @@ Check the full in-depth guide: [Sending Tokens](/02-guides/01-platform/01-managi
 
 ### Why Read User Tokens?
 
-Once a user has linked their wallet (as shown in Step 5), you'll often need to check which tokens they own within your collection(s). This allows you to:
+Once a user has linked their wallet (as shown in [Step 4](#4-link-a-users-wallet-to-your-application)), you'll often need to check which tokens they own within your collection(s). This allows you to:
 
 -   Display their relevant inventory within your game or application interface (like in-game currency or an item).
 -   Verify ownership of specific NFTs to grant access, perks, or abilities.

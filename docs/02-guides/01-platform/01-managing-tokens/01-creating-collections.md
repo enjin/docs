@@ -32,7 +32,7 @@ From here, you can customize your collection's Mint Policy, Market Policy, Expli
 - **[Mint Policy](/03-api-reference/04-important-arguments.md#mintpolicy) -** The rules pertaining to token supply and number of tokens available to be minted in the future.
 - **[Market Policy](/03-api-reference/04-important-arguments.md#marketpolicy) -** Determines the rules which tokens in this collection must follow when interacting with the on-chain marketplace.
 - **[Explicit Royalty Currencies](/03-api-reference/04-important-arguments.md#explicitroyaltycurrencies) -** Choose which currencies are required to pay marketplace royalties for the tokens in this collection.
-- **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Set the collection details which are details stored in pairs, like a title and its content. Certain attributes, such as `name` and `description`, have special roles that are understood by many platforms, wallets and marketplaces.
+- **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Add details to your collection using key-value pairs. Standard keys like `name` and `description` allow applications to display your content correctly. You can also use the `URI` to link to a JSON file hosting your metadata. For more information, see the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
 
 :::info Learn more about the arguments
 For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).

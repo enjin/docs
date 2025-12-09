@@ -995,9 +995,10 @@ mutation TransferAllBalance {
 
 The Infuse mutation allows you to embed Enjin Coin (ENJ) into an existing token. This operation is crucial for enhancing the intrinsic value of digital assets, ensuring that they carry a guaranteed ENJ backing. By infusing ENJ, you provide tangible value to the token, which can only be retrieved through the process of "<GlossaryTerm id="melt" />ing" the token.
 
-:::warning Important Note
-The `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be infused.
-e.g.: to infuse a token with 5 ENJ, the infusion argument should be set to `5000000000000000000`, which is `5*(10^18)`.
+:::warning Calculating the infusion amount
+The Platform accepts infusion values in the **base unit** (integers), not decimal ENJ amounts. To calculate the correct input, **multiply your desired ENJ amount by 10^18** (1 quintillion).
+  - **Formula:** `Desired ENJ infusion` \* `1,000,000,000,000,000,000`
+  - **Example:** To infuse a token with **5 ENJ**, input `5000000000000000000`.
 :::
 
 <Tabs>
