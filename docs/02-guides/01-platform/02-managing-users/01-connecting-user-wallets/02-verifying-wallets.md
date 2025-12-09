@@ -458,9 +458,10 @@ print(response.json())
 }
 ```
 
-:::info Balances Format
-API balances fields are formatted as u128 number type.
-to get decimal value, divide the value by 10^18.
+:::info **Formatting Balances**
+The API returns balance fields in the **base unit** (u128), meaning they appear as large integers without decimals. To obtain the readable ENJ amount, **divide the returned value by 10^18**.
+- **Formula:** `Base Unit Value` / `1,000,000,000,000,000,000` = `ENJ Amount`
+- **Example:** A value of `86010842630734264894` converts to approximately **86.01 ENJ**.
 :::
 
 **Response: If user has not verified**

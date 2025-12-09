@@ -486,13 +486,14 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-:::info **Notes:**
-- `amount` argument
-  - In the `TransferBalance` mutation, the `amount` argument is denoted in `u128`. This means that the number you specify is divided by 10^18 to determine the actual amount of ENJ to be transferred.
-    In the example above, an `amount` of `5000000000000000000` will actually send 5 ENJ. Keep this in mind when specifying the `amount` in your mutations.
-- `keepAlive` argument
-  - Set to true if you want to make sure the account doesn't get reaped.
-    Learn more about keepAlive argument [here](/03-api-reference/04-important-arguments.md#keepalive)
+:::info **Key Arguments**
+- **Calculating the `amount`**
+  - The Platform accepts ENJ values in the **base unit** (integers), not decimal ENJ amounts. To calculate the correct input, **multiply your desired ENJ amount by 10^18** (1 quintillion).
+  - **Formula:** `Desired ENJ` \* `1,000,000,000,000,000,000`
+  - **Example:** To transfer **5 ENJ**, input `5000000000000000000`.
+- **Using `keepAlive`**
+  - Set to `true` to prevent the account from being removed (reaped) if the balance drops below the minimum requirement.
+  - [Learn more about the keepAlive argument here](/03-api-reference/04-important-arguments.md#keepalive)
 :::
 
 ### Batch Transferring ENJ token
