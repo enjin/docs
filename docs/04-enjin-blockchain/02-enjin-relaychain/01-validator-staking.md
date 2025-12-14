@@ -4,8 +4,10 @@ slug: "validator-staking"
 ---
 This is an overview of staking on Enjin Relaychain, known as liquid staking.
 
-:::info The Enjin Blockchain Console
-Use [console.enjin.io](https://console.enjin.io/) to use the user interface referenced in this document.
+:::info Staking Interfaces
+- **Enjin Console:** You can use [console.enjin.io](https://console.enjin.io/) to access the full user interface referenced in this document.
+  - *Note:* Ensure you connect to the **Enjin Relaychain** network in the top left corner, as staking takes place on the Relaychain.
+- **NFT.io:** Alternatively, you can use **[NFT.io](https://nft.io/staking)** for a simplified experience. While it offers fewer advanced features than the Console, it provides a convenient, user-friendly interface to manage your stake and nomination pools.
 :::
 
 ## Concepts
@@ -15,7 +17,7 @@ Use [console.enjin.io](https://console.enjin.io/) to use the user interface refe
 - **Liquid staking -** a token is received that represents the user's stake. The staked token can be used (is liquid) while the user is staked. It is minted when the user stakes and burned when they unstake. It can also be exchanged for the real token.
 - **Validator -** Provides security for the network and receives rewards for doing so. On Enjin, these rewards are distributed to nomination pools. (A list of active validators can be seen on [Subscan](https://enjin.subscan.io/validator).)
 - **Nominator -** The account that chooses a validator to stake with. In the case of Enjin, this is the nomination pool's account.
-- **Commission -** A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the holder of the Degen NFT.
+- **Commission -** A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the nomination pool owner, which is an holder of a Degen NFT.
 
 ## Nomination Pools vs Direct Staking
 
@@ -26,7 +28,7 @@ On Enjin, we use nomination pools to handle staking due to the increased simplic
 With nomination pools, there is one account that multiple users put their funds into. This account acts as the nominator and receives the rewards. The liquid token, sENJ, is used to represent a user's stake in the pool.
 
 - **Low minimum (1 ENJ) -** pools can have lower minimums per user because all of the pool's funds are staked together
-  Easy to use - users only need to choose a pool, no need to choose validators
+- **Easy to use** - users only need to choose a pool, no need to choose validators
 - **Receive liquid token -** a liquid token, sENJ, is received that represents the user's stake. This can be transferred or even exchanged for ENJ
 - **Immediate exit -** due to the liquid token, the user can exit immediately by exchanging their sENJ for ENJ
 
@@ -55,7 +57,7 @@ Direct staking is not supported on Enjin. This information is just for compariso
 There are three tokens relevant to staking:
 
 - **ENJ -** ENJ is the native token of the Enjin network. It is the token staked in the pool.
-- **sENJ -** sENJ is the liquid token that represents staked ENJ. It is minted when ENJ is staked and burned when ENJ is unstaked. It can also be exchanged for ENJ through the exchange pallet.
+- **sENJ -** sENJ is the liquid token that represents staked ENJ. It is minted when ENJ is staked and burned when ENJ is unstaked. It can also be exchanged for ENJ through the `stakeExchange` pallet.
 - **Degen Token -** The degen token is an NFT in a special collection. It is required to create a pool and is also used to manage the pool. The owner of this NFT can optionally receive a commission. Each token is only usable in one pool at a time.
 
 ![](/img/components/enjin-relaychain/3.png)
@@ -83,35 +85,18 @@ Here's an example to show the relationship between ENJ and sENJ. The important t
 
 ![](/img/components/enjin-relaychain/5.jpg)
 
-## Bonus Cycle
-
-There are two balances in a pool.
-
-- reward balance - rewards from the pool
-- bonus balance - part of the rewards that are held and distributed in cycles
-
-80% of the rewards are distributed immediately, 20% are put into the bonus balance. Bonuses are calculated per validator. As the graphic shows, the 20% is collected at the beginning of the payout, then it is distributed to each pool's bonus account. Pools with longer bonus cycles get more bonus.
-
-![](/img/components/enjin-relaychain/6.png)
-
-Each era, some amount of bonus is distributed from each pool's bonus account to its rewards account. This amount changes depending on the pool's bonus cycle. A small amount of bonus is distributed at the beginning of the cycle, but at the end, each era distributes a large amount of bonus. By the end of the cycle, the whole bonus is distributed, and the cycle restarts.
-
-![](/img/components/enjin-relaychain/7.png)
-
 ## Payouts
 
-Payouts do not happen automatically. The payout_rewards extrinsic should be called once per validator per era. This extrinsic does two things:
+Payouts do not happen automatically. The `payout_rewards` extrinsic should be called once per validator per era. This extrinsic does two things:
 
 1. Collect rewards
-   1. For the era it is called in, it collects the staking rewards from the validator. As stated above, some of this goes directly to the reward account. The rest goes through several calculations some portion goes into each pool's bonus account.
+   1. For the era it is called in, it collects the staking rewards from the validator to the reward account.
 2. Distribute rewards
    1. The reward distribution happens for the previous era, so it's always one era behind. It is done this way because it needs to wait for the pools to collect rewards from all validators. It does the following:
-      1. If the pool has reached the end of its cycle, it cycles the pool
-      2. Sends bonus for era from the bonus account to the rewards account
-      3. Sends reward commission to the degen token holder
-      4. The pool's reward balance is staked (reinvested) so that rewards will be as high as possibl
+      1. Sends reward commission to the degen token holder
+      2. The pool's reward balance is staked (reinvested) so that rewards will be as high as possible
 
-![](/img/components/enjin-relaychain/8.png)
+![](/img/components/enjin-relaychain/8-new.png)
 
 ## Extrinsics Overview
 
@@ -139,6 +124,6 @@ These are the extrinsics that will be called by users (members) of the pool.
 
 These extrinsics can be called by anyone. Some of them can only be called when the pool is in the `Destroying` state.
 
-- **`payout_rewards`** - This can be called by anyone, and should be called once per validator per era. It distributes the payouts and handles calculations like bonuses and commissions.
+- **`payout_rewards`** - This can be called by anyone, and should be called once per validator per era. It distributes the payouts and commissions.
 - **`unbond_deposit`** - Unbonds the deposit. Only callable after the pool is destroyed and all members have left the pool.
 - **`withdraw_deposit`** - Withdraws the deposit. Can only be called after the deposit is unbonded. The pool will be destroyed (deleted) after this is called successfully.

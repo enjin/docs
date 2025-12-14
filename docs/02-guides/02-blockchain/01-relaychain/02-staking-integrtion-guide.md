@@ -153,18 +153,7 @@ console.log(Object.fromEntries(pools))
         },
         "tokenId": 1,
         "capacity": "0x00000000001a784379d99db420000000",
-        "bonusCycle": {
-            "previousStart": 98,
-            "start": 219,
-            "end": 339,
-            "pendingDuration": null
-        },
         "creationBlock": 1654079,
-        "bonusesPaid": [
-            164,
-            ...
-            247
-        ],
         "name": "0x"
     },
     ...
@@ -202,21 +191,7 @@ console.log(pool)
     },
     "tokenId": 1,
     "capacity": "0x00000000001a784379d99db420000000",
-    "bonusCycle":
-    {
-        "previousStart": 98,
-        "start": 219,
-        "end": 339,
-        "pendingDuration": null
-    },
     "creationBlock": 1654079,
-    "bonusesPaid":
-    [
-        163,
-        164,
-        165,
-        ...
-    ],
     "name": "0x"
 }
 ```
