@@ -22,7 +22,6 @@ You should look out for the following criteria when choosing a nomination pool:
 - **Capacity -** shows the maximum amount of sENJ that the pool can issue. If the capacity is reached, you will not be able to stake ENJ in the pool.
 - **Nominees -** displays the validators that the pool is nominating. Remember that the pool will only receive rewards if their nominated validators are selected to produce a block. If the validator is slashed for any reason (e.g. being offline for too long), the funds nominated by pool will be slashed as well.
 - **Members -** shows the current participants for each nomination pool. More members can provide higher stake, but it also means that rewards will be split between more people.
-- **Bonus Cycle -** when pool information is expanded, you can see the `start era` and `end era` number of the bonus cycle, during this period the bonus rewards are tracked for the pool and its members.
 
 ![](/img/components/enjin-relaychain/21.png)
 
@@ -58,7 +57,10 @@ Every era the rewards are generated for NPoS participants, creating inflation. T
 
 ## Leaving a nomination pool
 
-If you wish to leave a nomination pool, you can do so by clicking on the `Unbond` button that is displayed under each expanded pool. Please note that unbonding period is not immediate and the bonus cycle needs to completely pass before funds can be withdrawn using `Withdraw unbonded` button.
+To leave a nomination pool, expand the pool details and click `Unbond`.
+:::note
+You must wait 28 eras for the unbonding period to complete. Once finished, click `Withdraw unbonded` to retrieve your funds.
+:::
 
 ![](/img/components/enjin-relaychain/28.png)
 
