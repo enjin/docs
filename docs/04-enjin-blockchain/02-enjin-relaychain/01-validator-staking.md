@@ -5,9 +5,9 @@ slug: "validator-staking"
 This is an overview of staking on Enjin Relaychain, known as liquid staking.
 
 :::info Staking Interfaces
-- **Enjin Console:** You can use [console.enjin.io](https://console.enjin.io/) to access the full user interface referenced in this document.
+- **[NFT.io](https://nft.io):** Use NFT.io for a simplified experience. It provides a convenient, user-friendly interface to manage your stake and nomination pools.
+- **[Enjin Console](https://console.enjin.io/)**: For advanced features and the full user interface referenced in this document, use [console.enjin.io](https://console.enjin.io/).
   - *Note:* Ensure you connect to the **Enjin Relaychain** network in the top left corner, as staking takes place on the Relaychain.
-- **NFT.io:** Alternatively, you can use **[NFT.io](https://nft.io/staking)** for a simplified experience. While it offers fewer advanced features than the Console, it provides a convenient, user-friendly interface to manage your stake and nomination pools.
 :::
 
 ## Concepts
@@ -17,7 +17,7 @@ This is an overview of staking on Enjin Relaychain, known as liquid staking.
 - **Liquid staking -** a token is received that represents the user's stake. The staked token can be used (is liquid) while the user is staked. It is minted when the user stakes and burned when they unstake. It can also be exchanged for the real token.
 - **Validator -** Provides security for the network and receives rewards for doing so. On Enjin, these rewards are distributed to nomination pools. (A list of active validators can be seen on [Subscan](https://enjin.subscan.io/validator).)
 - **Nominator -** The account that chooses a validator to stake with. In the case of Enjin, this is the nomination pool's account.
-- **Commission -** A percentage of the rewards taken for offering a service. On Enjin, a commission can be taken by both the validator and the nomination pool owner, which is an holder of a Degen NFT.
+- **Commission -** A percentage of the rewards taken for offering a service. This can be either or both: a commission set by a validator, for their contributions to progressing and securing the network; and/or a commission set by a nomination pool owner, for having created the pool for which the active validator(s) were selected and the user(s) of the pool benefited.
 
 ## Nomination Pools vs Direct Staking
 
@@ -87,16 +87,14 @@ Here's an example to show the relationship between ENJ and sENJ. The important t
 
 ## Payouts
 
-Payouts do not happen automatically. The `payout_rewards` extrinsic should be called once per validator per era. This extrinsic does two things:
+Reward payouts are automated by validators, eliminating the need for manual intervention. However, understanding the distribution logic is helpful:
 
-1. Collect rewards
-   1. For the era it is called in, it collects the staking rewards from the validator to the reward account.
-2. Distribute rewards
-   1. The reward distribution happens for the previous era, so it's always one era behind. It is done this way because it needs to wait for the pools to collect rewards from all validators. It does the following:
-      1. Sends reward commission to the degen token holder
-      2. The pool's reward balance is staked (reinvested) so that rewards will be as high as possible
+1. **Reward Collection:** Staking rewards are collected from the validator into the reward account for the current era.
+2. **Reward Distribution:** Rewards are distributed for the *previous* era (one era lag) to ensure all validator rewards are fully collected first. This stage involves:
+   1. Sending the commission to the Degen token holder.
+   2. Staking (reinvesting) the pool's remaining reward balance to maximize future returns.
 
-![](/img/components/enjin-relaychain/8-new.png)
+![](/img/components/enjin-relaychain/8.png)
 
 ## Extrinsics Overview
 
@@ -122,8 +120,6 @@ These are the extrinsics that will be called by users (members) of the pool.
 
 ### Permissionless
 
-These extrinsics can be called by anyone. Some of them can only be called when the pool is in the `Destroying` state.
-
-- **`payout_rewards`** - This can be called by anyone, and should be called once per validator per era. It distributes the payouts and commissions.
-- **`unbond_deposit`** - Unbonds the deposit. Only callable after the pool is destroyed and all members have left the pool.
-- **`withdraw_deposit`** - Withdraws the deposit. Can only be called after the deposit is unbonded. The pool will be destroyed (deleted) after this is called successfully.
+These extrinsics can be called when the pool is in the `Destroying` state, by anyone.
+* **`unbond_deposit`** - Unbonds the deposit. Only callable after the pool is destroyed and all members have left the pool.
+* **`withdraw_deposit`** - Withdraws the deposit. Can only be called after the deposit is unbonded. The pool will be destroyed (deleted) after this is called successfully.
