@@ -1,5 +1,5 @@
 ---
-title: "MultiToken Pallet"
+title: "MultiTokens Pallet"
 slug: "multitoken-pallet"
 description: "The utility pallets of the Enjin Blockchain."
 ---
@@ -22,22 +22,22 @@ The Enjin Blockchain has a token standard called MultiTokens. The standard is co
 
 ![](/img/components/enjin-matrixchain/2.png)
 
-**Grouped NFTs** are Multi-unit tokens/NFTs that are a part of a family, and share the same Base ID.
-
-:::warning Groups are being implemented.
-Please note that Grouped tokens functionality is being implemented.
-This page will be updated once it is.
-:::
+**Grouped Tokens** are Multi-unit tokens or NFTs organized into logical sub-categories within a collection. This adds a structural layer between the collection and individual tokens, allowing for organized "folders" in apps like the Enjin Wallet and NFT.io.
 
 ![](/img/components/enjin-matrixchain/3.png)
+
+:::info Partial Implementation
+Token grouping is currently implemented at the blockchain level. While users can view and manage groups on NFT.io and view them in the Enjin Wallet, full Enjin Platform (API/UI) support is currently in development.
+:::
 
 ## Terminology
 
 - **Collection -** A group of tokens. Also holds data for those tokens and the policies that govern their behavior.
+- **<GlossaryTerm id="token_group" /> -** An organizational layer within a collection used to categorize tokens.
 - **Token -** A unique asset with a balance
 - **Token Account -** A token account is stored in user account. It holds the account's <GlossaryTerm id="multitoken" /> states like its balance, freeze state, etc.
 - **Policy -** Governs behavior for tokens in a collection
-- **Attribute -** Metadata for a collection or a token
+- **Attribute -** Metadata (strings/data) attached to a collection, group, or token.
 - **Operator -** An account that operates on behalf of another account (transferFrom)
 - **Approval -** Required for an operator to use an account
 - **Freeze/Thaw -** If a collection, token, or account is frozen, it cannot transfer tokens
@@ -56,6 +56,23 @@ A <GlossaryTerm id="storage_deposit" /> of 6.25 ENJ is required to create a coll
 ![](/img/components/enjin-matrixchain/5.png)
 
 ![](/img/components/enjin-matrixchain/6.png)
+
+## Token Grouping
+
+Token Grouping adds an organizational layer between a **Collection** and its **Tokens**. It allows creators to categorize assets into logical "folders," significantly improving navigation and user experience.
+
+For example, a "Fantasy RPG" collection can group its tokens into "Weapons," "Armor," and "Potions." Within "Weapons," tokens could be further organized into "Swords" or "Axes." Without grouping, all tokens appear in a single, flat list, making specific items difficult to locate.
+
+### Functional Overview
+* **Blockchain Level:** Groups are implemented directly on the MultiTokens pallet.
+* **Attributes:** Like collections, groups can have their own attributes (metadata).
+* **Organization:** In the Enjin Wallet and NFT.io, grouped tokens are displayed in folders rather than a random sorted list.
+
+### Implementation Status
+Token grouping is currently in a **partial release** phase:
+* **Enjin Wallet:** Users can view and navigate tokens organized into group folders.
+* **NFT.io:** Users can view groups and manage them (manual or auto-grouping).
+* **Enjin Platform:** UI and API support for managing groups via the Platform is currently in development.
 
 ## Tokens
 
