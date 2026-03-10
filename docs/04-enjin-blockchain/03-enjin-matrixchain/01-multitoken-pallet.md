@@ -33,7 +33,7 @@ Token grouping is currently implemented at the blockchain level. While users can
 ## Terminology
 
 - **Collection -** A group of tokens. Also holds data for those tokens and the policies that govern their behavior.
-- **<GlossaryTerm id="token_group" />:** An organizational layer within a collection used to categorize tokens.
+- **<GlossaryTerm id="token_group" /> -** An organizational layer within a collection used to categorize tokens.
 - **Token -** A unique asset with a balance
 - **Token Account -** A token account is stored in user account. It holds the account's <GlossaryTerm id="multitoken" /> states like its balance, freeze state, etc.
 - **Policy -** Governs behavior for tokens in a collection
