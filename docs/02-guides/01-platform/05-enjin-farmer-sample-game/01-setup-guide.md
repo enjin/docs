@@ -68,7 +68,7 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 ### Wallet Daemon
 
 1. Run the Wallet Daemon executable you downloaded.
-2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](https://docs.enjin.io/getting-started/using-wallet-daemon#wallet-daemon-executable).
+2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
 3. Select the Enjin Platform Canary in the network dropdown menu, and run the Wallet Daemon.
 4. Once configured and running, the Wallet Daemon UI will display a wallet address. **Copy this wallet address** for the next step.
 
