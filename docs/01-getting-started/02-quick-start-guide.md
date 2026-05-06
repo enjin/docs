@@ -276,7 +276,7 @@ Congratulations! You've covered the basics of setting up your project on the Enj
 :::warning **Ready for Production?**
 Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
 1.  Set up your project on the **mainnet Enjin Platform Cloud**: https://platform.enjin.io/
-2.  Update your application's API calls or SDKs to use the [**mainnet GraphQL API endpoints**](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#mainnet)
+2.  Update your application's API calls or SDKs to target [**mainnet**](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#selecting-a-network-and-chain) by passing `network: ENJIN` on each query and mutation.
 :::
 
 Now you can explore more advanced integrations:

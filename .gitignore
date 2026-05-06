@@ -11,3 +11,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# v3 documentation migration notes (working file, not for upstream)
+v3-API.md
+build-test/
