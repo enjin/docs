@@ -41,7 +41,7 @@ The code repository can be found at https://github.com/enjin/wallet-daemon/
 It is recommended that the Enjin Wallet Daemon is installed and ran in isolation. This means running it on a dedicated server. The daemon itself is incredibly light-weight and does not require any extensive resources.
 
 :::info Network-agnostic
-The Wallet Daemon v3 is network-agnostic — it does not need to be configured for a specific chain. A single daemon instance signs transactions for all Enjin networks (Enjin Matrixchain, Enjin Relaychain, Canary Matrixchain, and Canary Relaychain). Each chain just maps to a different SS58 address derived from the same wallet, all of which are printed when the daemon starts.
+The Wallet Daemon is network-agnostic — it does not need to be configured for a specific chain. A single daemon instance signs transactions for all Enjin networks (Enjin Matrixchain, Enjin Relaychain, Canary Matrixchain, and Canary Relaychain). Each chain just maps to a different SS58 address derived from the same wallet, all of which are printed when the daemon starts.
 :::
 
 The recommended way to run the daemon is to [download a prebuilt binary](#download-the-binary) for your operating system. If you'd rather run it inside Docker, see [Running with Docker](#running-with-docker) at the bottom of this page.
@@ -138,7 +138,7 @@ The seed file is encrypted with the `KEY_PASS` env var. Make sure `KEY_PASS` is 
 
 ### Running with Docker
 
-If you'd prefer to run the daemon inside Docker rather than as a standalone binary, clone the `3.x` branch of the repository (the v3 development branch) and use the included [`docker-compose.yml`](https://github.com/enjin/wallet-daemon/blob/3.x/docker-compose.yml).
+If you'd prefer to run the daemon inside Docker rather than as a standalone binary, clone the `3.x` branch of the repository (the active development branch) and use the included [`docker-compose.yml`](https://github.com/enjin/wallet-daemon/blob/3.x/docker-compose.yml).
 
 ```bash
 git clone --branch 3.x https://github.com/enjin/wallet-daemon.git

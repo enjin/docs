@@ -57,7 +57,7 @@ For developers looking for a more integrated experience, Enjin also provides off
 
 ### GraphQL Endpoint
 
-Unlike previous versions of the platform, which exposed separate endpoints per feature area and per network, the Enjin Platform now serves all queries and mutations from a **single GraphQL endpoint**:
+The Enjin Platform serves all queries and mutations from a **single GraphQL endpoint**:
 
 :::note GraphQL Endpoint
 `https://platform.beta.enjin.io/graphql`

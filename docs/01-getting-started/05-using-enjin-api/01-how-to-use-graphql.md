@@ -426,7 +426,7 @@ The `supply` field indicates the data we want to receive in the response.
 
 #### Mutation:
 
-A `mutation` is used to modify state on the Enjin Platform — typically by creating an on-chain transaction. In v3, every blockchain operation is performed through the `CreateTransaction` mutation, with the specific action selected inside its `transaction` argument (`mintToken`, `createCollection`, `transferToken`, and so on).
+A `mutation` is used to modify state on the Enjin Platform — typically by creating an on-chain transaction. Every blockchain operation is performed through the `CreateTransaction` mutation, with the specific action selected inside its `transaction` argument (`mintToken`, `createCollection`, `transferToken`, and so on).
 
 In this example, we're minting a new token.
 
