@@ -48,7 +48,7 @@ query FetchWalletBalance{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query FetchWalletBalance($account: String!) {\r\n  GetWallet(account: $account) {\r\n    balances {\r\n      free\r\n      reserved\r\n    }\r\n  }\r\n}","variables":{"account":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
@@ -74,7 +74,7 @@ getWallet.Fragment(walletFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -111,7 +111,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -152,7 +152,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -179,7 +179,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query FetchWalletBalance($account: String!) {
       GetWallet(account: $account) {
@@ -219,7 +219,7 @@ variables = {
   'account': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the account address
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -279,7 +279,7 @@ query FetchingWalletCollections{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query FetchingWalletCollections($account: String!) {\r\n  GetWallet(account: $account) {\r\n    collectionAccounts {\r\n      edges {\r\n        node {\r\n          collection {\r\n            collectionId\r\n            attributes {\r\n              key\r\n              value\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}","variables":{"account":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
@@ -314,7 +314,7 @@ getWallet.Fragment(walletFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -364,7 +364,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -405,7 +405,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -441,7 +441,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query FetchingWalletCollections($account: String!) {
       GetWallet(account: $account) {
@@ -499,7 +499,7 @@ variables = {
   'account': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the account address
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -634,7 +634,7 @@ getWallet.Fragment(walletFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -689,7 +689,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -730,7 +730,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -770,7 +770,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query FetchingWalletTokens($account: String!) {
       GetWallet(account: $account) {
@@ -836,7 +836,7 @@ variables = {
   'account': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the account address
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

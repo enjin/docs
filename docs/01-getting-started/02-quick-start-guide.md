@@ -28,7 +28,7 @@ The Enjin Platform is your central hub for managing blockchain projects, collect
 
 ### Steps to Create an Account:
 
-1.  Navigate to the Canary Platform website: https://platform.canary.enjin.io/
+1.  Navigate to the Enjin Platform: https://platform.beta.enjin.io/
 2.  Click on the "Create an account" button.
 3.  Fill in your account credentials and click on the "Register" button.
 4.  Verify your email address by clicking the link sent to your inbox.
@@ -81,21 +81,21 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 :::
 
 1.  **Create Collection:**
-    -   In the Platform menu, navigate to the **[Collections page](https://platform.canary.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
+    -   In the Platform menu, navigate to the **[Collections page](https://platform.beta.enjin.io/collections)**. Then, click on the "**[Create Collection](https://platform.beta.enjin.io/create/collection)**" button.
     ![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
     -   Customize your collection - you can specify the collection's name, description, media, attributes, Mint and Market policies, and more.
     To learn more about collection configuration, please check the [Create Collections guide](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
-    -   Submit the creation request by clicking on the **Create** button. This will create a signature request which you can view in the [Transactions page](https://platform.canary.enjin.io/transactions), and will require a transaction to be signed.
+    -   Submit the creation request by clicking on the **Create** button. This will create a signature request which you can view in the [Transactions page](https://platform.beta.enjin.io/transactions), and will require a transaction to be signed.
     ![](/img/guides/managing-tokens/pending-create-collection-txn.png)
     -   To sign the Create Collection transaction request - Click on the **"Sign"** button and approve the signature request with your connected wallet.
-    -   Once the transaction is confirmed on-chain, the new collection will appear in your [Collections page](https://platform.canary.enjin.io/collections), where you can also find its ID, keep note of it for the next step.
+    -   Once the transaction is confirmed on-chain, the new collection will appear in your [Collections page](https://platform.beta.enjin.io/collections), where you can also find its ID, keep note of it for the next step.
 2.  **Create Token:**
-    -   In the Platform menu, navigate to the **[Tokens page](https://platform.canary.enjin.io/tokens)**. Then, click on the "**[Create Token](https://platform.canary.enjin.io/create/token)**" button.
+    -   In the Platform menu, navigate to the **[Tokens page](https://platform.beta.enjin.io/tokens)**. Then, click on the "**[Create Token](https://platform.beta.enjin.io/create/token)**" button.
     -   Customize your token - you can specify the token's name, description, media, attributes, and more.
     To learn more about token configuration, please check the [Create Tokens guide](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
     -   In the **"Collection ID"** input field, insert the collection id of the collection you just created. You may also click the input field and select the id from the dropdown menu.
-    -   In the **"Recipient"** input field, insert the <GlossaryTerm id="address" /> of the wallet that you wish to receive the token's initial supply. You can find the address of your connected wallet in the [settings page](https://platform.canary.enjin.io/settings) by clicking on the Settings icon in the top right corner, followed by the "Settings" button.
-    -   Submit the creation request by clicking on the **Create** button. This requires another transaction, which you can sign in the [Transactions page](https://platform.canary.enjin.io/transactions).
+    -   In the **"Recipient"** input field, insert the <GlossaryTerm id="address" /> of the wallet that you wish to receive the token's initial supply. You can find the address of your connected wallet in the [settings page](https://platform.beta.enjin.io/settings) by clicking on the Settings icon in the top right corner, followed by the "Settings" button.
+    -   Submit the creation request by clicking on the **Create** button. This requires another transaction, which you can sign in the [Transactions page](https://platform.beta.enjin.io/transactions).
 
 :::tip Programmatic Creation
 You can also create collections and tokens using the API or SDKs.
@@ -135,7 +135,7 @@ In this example, we will be using the <GlossaryTerm id="graphiql_playground" /> 
 In a production-ready integration, your app will typically send API calls using HTTP requests or one of the [official Enjin SDKs](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md). You can learn more about this in the [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) page.
 :::
 
-To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.canary.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.canary.enjin.io/graphiql/).
+To interact with the Enjin Platform API, head over to the [Enjin Platform](https://platform.beta.enjin.io/), click on the settings icon in the top right corner, followed by **"platform-core"** in the available packages. This will navigate to the [Enjin Platform GraphiQL Playground](https://platform.beta.enjin.io/graphiql/).
 
 Once you are in the GraphiQL playground page, copy & paste the following query:
 
@@ -220,7 +220,7 @@ mutation TransferToken{
 ```
 
 :::note This request needs to be signed.
-You can sign it in the [Transactions page](https://platform.canary.enjin.io/transactions), as we did in the previous steps.
+You can sign it in the [Transactions page](https://platform.beta.enjin.io/transactions), as we did in the previous steps.
 :::
 
 :::tip Learn more about sending tokens

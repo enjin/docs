@@ -40,7 +40,7 @@ mutation SendTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation SendTransferOwnershipRequest(\r\n  $collection_id: BigInt!\r\n  $new_owner: String\r\n) {\r\n  MutateCollection(\r\n    collectionId: $collection_id\r\n    mutation: { owner: $new_owner }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"new_owner":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
@@ -70,7 +70,7 @@ mutateCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -88,7 +88,7 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -123,7 +123,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation SendTransferOwnershipRequest(
       $collection_id: BigInt!
@@ -180,7 +180,7 @@ variables = {
 
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -211,7 +211,7 @@ mutation AcceptTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation AcceptTransferOwnershipRequest($collection_id: BigInt!) {\r\n  AcceptCollectionTransfer(collectionId: $collection_id) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105}}'
@@ -236,7 +236,7 @@ acceptCollectionTransfer.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -254,7 +254,7 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -284,7 +284,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation AcceptTransferOwnershipRequest(
       $collection_id: BigInt!
@@ -331,7 +331,7 @@ variables = {
 
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

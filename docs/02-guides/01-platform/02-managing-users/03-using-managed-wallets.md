@@ -48,7 +48,7 @@ mutation CreateManagedWallet {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateManagedWallet($external_id: String!) {\r\n  CreateWallet(externalId: $external_id)\r\n}","variables":{"externalId":"player_1_id"}}'
@@ -65,7 +65,7 @@ var createWallet = new CreateWallet()
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -92,7 +92,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -133,7 +133,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -155,7 +155,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateManagedWallet($external_id: String!) {
       CreateWallet(externalId: $external_id)
@@ -185,7 +185,7 @@ variables = {
   'externalId': "player_1_id" #Replace this with a unique ID
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -224,7 +224,7 @@ query GetManagedWalletPublicKey {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query GetManagedWalletPublicKey($external_id: String!) {\r\n  GetWallet(externalId: $external_id) {\r\n    account {\r\n      address\r\n      publicKey\r\n    }\r\n  }\r\n}","variables":{"externalId":"player_1_id"}}'
@@ -248,7 +248,7 @@ var walletFragment = new WalletFragment()
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -284,7 +284,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -325,7 +325,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -352,7 +352,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query GetManagedWalletPublicKey($external_id: String!) {
       GetWallet(externalId: $external_id) {
@@ -392,7 +392,7 @@ variables = {
   'externalId': "player_1_id" #Specify the managed wallet unique ID
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -445,7 +445,7 @@ mutation BatchMint {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BatchMint($collection_id: BigInt!) {\r\n  BatchMint(\r\n    collectionId: $collection_id\r\n    recipients: [\r\n      {\r\n        account: \"cxMkGKAmD73fGoFVaKj5HNmeLRHpTFDf5oQMp2dsqKJ8uZ3tT\" #The recipient of the mint (the Managed wallet account address from the GetWallet query)\r\n        mintParams: {\r\n          amount: 1 #Amount to mint\r\n          tokenId: { integer: 6533 } #Token ID to mint\r\n        }\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":7154}}'
@@ -483,7 +483,7 @@ batchMint.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -533,7 +533,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -574,7 +574,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -611,7 +611,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BatchMint($collection_id: BigInt!) {
       BatchMint(
@@ -671,7 +671,7 @@ variables = {
   'collection_id': 7154 #Specify the managed wallet unique ID
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -714,7 +714,7 @@ mutation BatchTransfer {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BatchTransfer($collection_id: BigInt!, $signing_account: String!) {\r\n  BatchTransfer(\r\n    collectionId: $collection_id\r\n    signingAccount: $signing_account\r\n    recipients: [\r\n      {\r\n        account: \"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ\" #The recipient of the transfer\r\n        simpleParams: {\r\n          tokenId: { integer: 6533 } #Token ID to transfer\r\n          amount: 1 #Amount to transfer\r\n        }\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":7154,"signing_account":"cxMkGKAmD73fGoFVaKj5HNmeLRHpTFDf5oQMp2dsqKJ8uZ3tT"}}'
@@ -752,7 +752,7 @@ batchTransfer.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -803,7 +803,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -844,7 +844,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -887,7 +887,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BatchTransfer
     (
@@ -959,7 +959,7 @@ variables = {
   'signing_account': "cxMkGKAmD73fGoFVaKj5HNmeLRHpTFDf5oQMp2dsqKJ8uZ3tT" #Add your signing account address (the Managed wallet account address from the GetWallet query)
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

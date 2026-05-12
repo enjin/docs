@@ -91,7 +91,7 @@ Now that we have a basic understanding of how Fuel Tanks are structured, let's g
 This guide will demonstrate how to create various fuel tanks with the GraphQL API.
 Note that you may also use the User Interface to create Fuel Tanks.
 
-To create a Fuel Tank using the Platform's User Interface, navigate to "**[Fuel Tanks](https://platform.canary.enjin.io/fuel-tanks)**" in the Platform Menu. Then, click the "**[Create Fuel Tank](https://platform.canary.enjin.io/create/fuel-tank)**" button.
+To create a Fuel Tank using the Platform's User Interface, navigate to "**[Fuel Tanks](https://platform.beta.enjin.io/fuel-tanks)**" in the Platform Menu. Then, click the "**[Create Fuel Tank](https://platform.beta.enjin.io/create/fuel-tank)**" button.
 :::
 
 :::warning **Feature Availability Notice**
@@ -103,12 +103,10 @@ We will update the documentation once these options are available.
 Code snippets with these arguments are provided for illustrative purposes only. If you wish to create a fuel tank with these options now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
 :::
 
-:::info Make sure to use the Fuel Tank Endpoint
-- Testnet: `http://platform.canary.enjin.io/graphql/fuel-tanks`
-- Mainnet: `http://platform.beta.enjin.io/graphql/fuel-tanks`
-**Try the Beam Playground here:**
-- Testnet: http://platform.canary.enjin.io/graphiql/fuel-tanks
-- Mainnet: http://platform.beta.enjin.io/graphiql/fuel-tanks
+:::info GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
+
+**Try the GraphiQL Playground here:** https://platform.beta.enjin.io/graphiql
 :::
 
 ### Subsidize Token Transfers For A Collection
@@ -137,7 +135,7 @@ mutation CreateFuelTank{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateFuelTank(\r\n  $name: String!\r\n  $coveragePolicy: CoveragePolicy\r\n  $permittedExtrinsics: [TransactionMethod!]\r\n  $whitelistedCollections: [BigInt!]\r\n) {\r\n  CreateFuelTank(\r\n    name: $name\r\n    coveragePolicy: $coveragePolicy\r\n    dispatchRules: [\r\n      {\r\n        permittedExtrinsics: $permittedExtrinsics #This rule specifies that only batch transfers are subsidized\r\n        whitelistedCollections: $whitelistedCollections #This rule ensures that only the specified collection is subsidized\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"name":"Collection Token Transfers","coveragePolicy":"FEES","permittedExtrinsics":["BatchTransfer"],"whitelistedCollections":[36105]}}'
@@ -174,7 +172,7 @@ createFuelTank.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -192,7 +190,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -234,7 +232,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateFuelTank
       (
@@ -304,7 +302,7 @@ variables = {
   'whitelistedCollections': [36105] #This rule ensures that only the specified collection is subsidized
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -346,7 +344,7 @@ mutation CreateFuelTank{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateFuelTank(\r\n  $name: String!\r\n  $coveragePolicy: CoveragePolicy\r\n  $reserveAccountCreationDeposit: Boolean\r\n  $whitelistedPallets: [String!]\r\n  $whitelistedCollections: [BigInt!]\r\n) {\r\n  CreateFuelTank(\r\n    name: $name\r\n    coveragePolicy: $coveragePolicy\r\n    reservesAccountCreationDeposit: $reserveAccountCreationDeposit\r\n    dispatchRules: [\r\n      {\r\n        whitelistedPallets: $whitelistedPallets\r\n        whitelistedCollections: $whitelistedCollections\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"name":"Collection Token Actions","coveragePolicy":"FEES_AND_DEPOSIT","reserveAccountCreationDeposit":true,"whitelistedPallets":["MultiTokens","Marketplace"],"whitelistedCollections":[36105]}}'
@@ -383,7 +381,7 @@ createFuelTank.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -401,7 +399,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -447,7 +445,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateFuelTank(
       $name: String!
@@ -525,7 +523,7 @@ variables = {
   'whitelistedCollections': [36105] #This rule ensures that only the specified collection is subsidized
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -575,7 +573,7 @@ mutation CreateFuelTank{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateFuelTank(\r\n  $name: String!\r\n  $coveragePolicy: CoveragePolicy\r\n  $whitelistedCallers: [String!]\r\n  $requireAccount: Boolean\r\n  $userFuelBudget: FuelBudgetInputType\r\n) {\r\n  CreateFuelTank(\r\n    name: $name\r\n    coveragePolicy: $coveragePolicy\r\n    accountRules: { whitelistedCallers: $whitelistedCallers }\r\n    dispatchRules: [\r\n      { requireAccount: $requireAccount, userFuelBudget: $userFuelBudget }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"name":"Only Specific Accounts Allowed","coveragePolicy":"FEES","whitelistedCallers":["cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","cxKRcxyqEuj8qwS4qAmxZMLKNoMJPMhQBLhoQdKekubbo3BtP"],"requireAccount":true,"userFuelBudget":{"amount":5000000000000000000,"resetPeriod":432000}}}'
@@ -626,7 +624,7 @@ createFuelTank.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -644,7 +642,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -693,7 +691,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateFuelTank(
       $name: String!
@@ -777,7 +775,7 @@ variables = {
   }
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -862,7 +860,7 @@ mutation Dispatch {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation Dispatch(\r\n  $tankId: String!\r\n  $ruleSetId: BigInt!\r\n  $call: DispatchCall!\r\n  $query: String!\r\n  $variables: Object\r\n) {\r\n  Dispatch(\r\n    tankId: $tankId\r\n    ruleSetId: $ruleSetId\r\n    dispatch: { call: $call, query: $query, variables: $variables }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"tankId":"efQqqMFeDXMSQ43rShznQQ5Aq5pnMUKBfvTQHntatMmF4JZou","ruleSetId":0,"call":"MULTI_TOKENS","query":"mutation TransferNFT{SimpleTransferToken(collectionId: 3298 recipient: \"efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr\" params: {tokenId: {integer: 1} amount: 1}){id encodedData}}","variables":null}}'
@@ -896,7 +894,7 @@ dispatch.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -914,7 +912,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -954,7 +952,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation Dispatch(
       $tankId: String!
@@ -1020,7 +1018,7 @@ variables = {
   'variables': None #If the mutation has variables, insert them here as an object.
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

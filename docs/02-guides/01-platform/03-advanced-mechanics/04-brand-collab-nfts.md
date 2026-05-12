@@ -111,7 +111,7 @@ tokenAccounts (collectionIds:2100 tokenIds:1 after:"" first:100) {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl -X POST "https://platform.canary.enjin.io/graphql" \
+curl -X POST "https://platform.beta.enjin.io/graphql" \
 -H "Content-Type: application/json" \
 -H "Authorization: enjin_api_key" \
 -d '{

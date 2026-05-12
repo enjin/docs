@@ -29,7 +29,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
 **Locate the token** you wish to mint, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Mint**" button.
 
 ![Minting a Token](/img/guides/managing-tokens/minting-a-token.gif)
@@ -82,7 +82,7 @@ mutation BatchMint {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BatchMint($collection_id: BigInt!) {\r\n  BatchMint(\r\n    collectionId: $collection_id\r\n    recipients: [\r\n      {\r\n        account: \"0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921\"\r\n        mintParams: {\r\n          amount: 1\r\n          tokenId: { integer: 6533 }\r\n        }\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"collection_id":7154}}'
@@ -119,7 +119,7 @@ batchMint.Fragment(batchMintFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -172,7 +172,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -214,7 +214,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -253,7 +253,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BatchMint(
       $collection_id: BigInt!
@@ -317,7 +317,7 @@ variables = {
   'collection_id': 7154 #Specify the collection ID
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

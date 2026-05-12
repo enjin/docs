@@ -28,7 +28,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
 **Locate the token** you wish to transfer, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Transfer**" button.
 
 ![Transferring Token](/img/guides/managing-tokens/transferring-token.gif)
@@ -86,7 +86,7 @@ mutation TransferToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation TransferToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $recipient: String!\r\n  $amount: BigInt!\r\n) {\r\n  SimpleTransferToken(\r\n    collectionId: $collection_id\r\n    recipient: $recipient\r\n    params: { tokenId: { integer: $token_id }, amount: $amount }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"collection_id":36105,"token_id":0,"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":1}}'
@@ -119,7 +119,7 @@ simpleTransferToken.Fragment(simpleTransferTokenFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -165,7 +165,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -208,7 +208,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -249,7 +249,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation TransferToken(
       $collection_id: BigInt!
@@ -317,7 +317,7 @@ variables = {
   'amount': 1 #Choose the transfer amount
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -347,7 +347,7 @@ mutation TransferENJTokens {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation TransferENJTokens(\r\n  $recipient: String!\r\n  $amount: BigInt!\r\n  $keep_alive: Boolean\r\n) {\r\n  TransferBalance(\r\n    recipient: $recipient\r\n    amount: $amount\r\n    keepAlive: $keep_alive\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":1,"keep_alive":true}}'
@@ -373,7 +373,7 @@ transferKeepAlive.Fragment(transferKeepAliveFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -391,7 +391,7 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -424,7 +424,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation TransferKeepAlive(
         $recipient: String!
@@ -477,7 +477,7 @@ variables = {
 
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -530,7 +530,7 @@ mutation BatchSendENJ{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BatchSendENJ($recipients: [TransferRecipient!]!) {\r\n  BatchTransferBalance(recipients: $recipients) {\r\n    id\r\n    transactionId\r\n    state\r\n  }\r\n}\r\n","variables":{"recipients":[{"account":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","transferBalanceParams":{"value":5000000000000000000}},{"account":"cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","transferBalanceParams":{"value":15250000000000000000,"keepAlive":true}}]}}'
@@ -573,7 +573,7 @@ batchTransferBalance.Fragment(transferBalanceFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -591,7 +591,7 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -631,7 +631,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BatchSendENJ($recipients: [TransferRecipient!]!){
         BatchTransferBalance(
@@ -697,7 +697,7 @@ variables = {
   ]
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

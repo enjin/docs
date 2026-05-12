@@ -29,7 +29,7 @@ Before you begin, make sure you have the following installed:
   - ✅ **Unity Hub** with **Unity Editor version `6000.0.24f1`**.
   - ✅ **Node.js** (which includes `npm`).
   - ✅ **Git** for cloning the repositories.
-  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.canary.enjin.io/).
+  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
   - ✅ Some cENJ tokens (can be aquired from the [cENJ Faucet](https://faucet.canary.enjin.io/))
 
 -----
@@ -60,8 +60,8 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 ### Enjin Platform
 
-1. Log in to your [Enjin Platform](https://platform.canary.enjin.io/) account.
-2. Head over to your [account settings page](https://platform.canary.enjin.io/settings).
+1. Log in to your [Enjin Platform](https://platform.beta.enjin.io/) account.
+2. Head over to your [account settings page](https://platform.beta.enjin.io/settings).
 3. Navigate to the **Daemon Wallet** section and create a new API Token.
 4. Copy the **API Token**; you will need this in the next step.
 

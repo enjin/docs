@@ -50,7 +50,7 @@ query RequestAccount{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query RequestAccount {\r\n  RequestAccount {\r\n    qrCode #Returns a QR code for your user to scan\r\n    verificationId #Save this for next step\r\n  }\r\n}\r\n","variables":{}}'
@@ -73,7 +73,7 @@ requestAccount.Fragment(accountRequestFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -106,7 +106,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -147,7 +147,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -169,7 +169,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query RequestAccount{
       RequestAccount{
@@ -198,7 +198,7 @@ query RequestAccount{
 }
 '''`
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -213,7 +213,7 @@ print(response.json())
 {
   "data": {
     "RequestAccount": {
-      "qrCode": "https://platform.canary.enjin.io/qr?s=512&f=png&d=https://platform.canary.enjin.io/proof/MHg3OGFmYWIxYWQxMjk0YzFlZWY4MjdlNmFjNTM1MmJiOTVmNmFmNWJhNmUyNjk5ZGRkOTI3YjAwNmQ3ZDk0MzZjO2Vwc3I6QTIwMTBBSzlM",
+      "qrCode": "https://platform.beta.enjin.io/qr?s=512&f=png&d=https://platform.beta.enjin.io/proof/MHg3OGFmYWIxYWQxMjk0YzFlZWY4MjdlNmFjNTM1MmJiOTVmNmFmNWJhNmUyNjk5ZGRkOTI3YjAwNmQ3ZDk0MzZjO2Vwc3I6QTIwMTBBSzlM",
       "verificationId": "0x78afab1ad1294c1eef827e6ac5352bb95f6af5ba6e2699ddd927b006d7d9436c"
     }
   }
@@ -250,7 +250,7 @@ query GetVerifiedWallet{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query GetVerifiedWallet($verification_id: String!) {\r\n  GetWallet(verificationId: $verification_id) {\r\n    account {\r\n      address\r\n    }\r\n    balances {\r\n      free\r\n    }\r\n  }\r\n}","variables":{"verification_id":"0x78afab1ad1294c1eef827e6ac5352bb95f6af5ba6e2699ddd927b006d7d9436c"}}'
@@ -278,7 +278,7 @@ getWallet.Fragment(walletFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -317,7 +317,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -359,7 +359,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -388,7 +388,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query GetVerifiedWallet($verification_id: String!) {
       GetWallet(verificationId: $verification_id) {
@@ -432,7 +432,7 @@ variables = {
   'verification_id': "0x78afab1ad1294c1eef827e6ac5352bb95f6af5ba6e2699ddd927b006d7d9436c" #Set the verificationId from the RequestAccount response
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -496,7 +496,7 @@ query GetAccountVerified{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query GetAccountVerified($verification_id: String!) {\r\n  GetAccountVerified(verificationId: $verification_id) {\r\n    verified\r\n    account {\r\n      publicKey\r\n      address\r\n    }\r\n  }\r\n}","variables":{"verification_id":"0x78afab1ad1294c1eef827e6ac5352bb95f6af5ba6e2699ddd927b006d7d9436c"}}'
@@ -523,7 +523,7 @@ getAccountVerified.Fragment(accountVerifiedFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -560,7 +560,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -602,7 +602,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -630,7 +630,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     query GetAccountVerified($verification_id: String!) {
       GetAccountVerified(verificationId: $verification_id) {
@@ -672,7 +672,7 @@ variables = {
   'verification_id': "0x78afab1ad1294c1eef827e6ac5352bb95f6af5ba6e2699ddd927b006d7d9436c" #Set the verificationId from the RequestAccount response
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

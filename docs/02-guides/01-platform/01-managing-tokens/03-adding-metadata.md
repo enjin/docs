@@ -75,7 +75,7 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 ### Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
 **Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Attributes**" button.
 
 ![Adding Metadata](/img/guides/managing-tokens/adding-metadata.gif)
@@ -140,7 +140,7 @@ mutation BatchSetAttribute {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {\r\n  BatchSetAttribute(\r\n    collectionId: $collection_id\r\n    tokenId: { integer: $token_id }\r\n    attributes: [\r\n      { key: \"name\", value: \"Chronicles of the Celestium\" }\r\n      {\r\n        key: \"description\"\r\n        value: \"An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse.\"\r\n      }\r\n      { key: \"uri\", value: \"https://yourhost/metadata.json\" }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":0}}'
@@ -181,7 +181,7 @@ batchSetAttribute.Fragment(batchSetAttributeFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -244,7 +244,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -286,7 +286,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -330,7 +330,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {
       BatchSetAttribute(
@@ -392,7 +392,7 @@ variables = {
   'token_id': 0, #Specify the token ID.
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
 	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

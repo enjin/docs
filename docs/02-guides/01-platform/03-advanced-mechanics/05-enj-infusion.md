@@ -85,7 +85,7 @@ mutation Infuse{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation Infuse(\r\n  $collection_id: BigInt!\r\n  $token_id: EncodableTokenIdInput!\r\n  $amount: BigInt!\r\n) {\r\n  Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":3298,"token_id":{"integer":1},"amount":5000000000000000000}}'
@@ -112,7 +112,7 @@ infuse.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -130,7 +130,7 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -162,7 +162,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation Infuse(
       $collection_id: BigInt!
@@ -212,7 +212,7 @@ variables = {
   'amount': 5000000000000000000 #Specify the amount of ENJ to infuse
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

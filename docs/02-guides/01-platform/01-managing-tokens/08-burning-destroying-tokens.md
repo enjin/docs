@@ -27,7 +27,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ### Melting token's supply
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
 **Locate the token** you wish to melt, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Burn**" button.
 
 ![melting a Token](/img/guides/managing-tokens/burning-token.gif)
@@ -82,7 +82,7 @@ To destroy a token, follow the above instructions for Melting a token, but make 
   - If the collection has some tokens, you can follow the above guide [Destroying a token and removing it from the Blockchain](#destroying-a-token-and-removing-it-from-the-blockchain) for each of the tokens in the collection, to destroy them all.
 :::
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
 **Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Destroy**" button.
 
 ![Destroying a Collection](/img/guides/managing-tokens/destroying-collection.gif)
@@ -132,7 +132,7 @@ mutation BurnToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BurnToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $amount: BigInt!\r\n) {\r\n  Burn(\r\n    collectionId: $collection_id\r\n    params: { tokenId: { integer: $token_id }, amount: $amount }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":5,"amount":1}}'
@@ -163,7 +163,7 @@ burn.Fragment(burnFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -181,7 +181,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -219,7 +219,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BurnToken(
       $collection_id: BigInt!
@@ -281,7 +281,7 @@ variables = {
   'amount': 1 #Specify the amount of supply to burn
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -325,7 +325,7 @@ mutation DestroyToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation BurnToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $amount: BigInt!\r\n) {\r\n  Burn(\r\n    collectionId: $collection_id\r\n    params: {\r\n      tokenId: { integer: $token_id }\r\n      amount: $amount\r\n      removeTokenStorage: true\r\n    }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":5,"amount":1}}'
@@ -357,7 +357,7 @@ burn.Fragment(burnFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -375,7 +375,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -414,7 +414,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation BurnToken(
       $collection_id: BigInt!
@@ -478,7 +478,7 @@ variables = {
   'amount': 1 #Specify the amount of supply to burn
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -515,7 +515,7 @@ mutation DestroyCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation DestroyCollection($collection_id: BigInt!) {\r\n  DestroyCollection(collectionId: $collection_id) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105}}'
@@ -540,7 +540,7 @@ destroyCollection.Fragment(destrotCollectionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -558,7 +558,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -586,7 +586,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation DestroyCollection($collection_id: BigInt!){
       DestroyCollection(
@@ -628,7 +628,7 @@ variables = {
   'collection_id': 36105 #Specify the collection ID
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

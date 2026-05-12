@@ -13,9 +13,8 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
 :::
 
-:::tip Beam Endpoints
-- **Testnet:** `http://platform.canary.enjin.io/graphql/beam`
-- **Mainnet:** `http://platform.beta.enjin.io/graphql/beam`
+:::tip GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.

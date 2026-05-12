@@ -94,7 +94,7 @@ mutation CreateToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateToken(\r\n  $recipient: String!\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt\r\n  $initial_supply: BigInt\r\n  $cap: TokenMintCapType!\r\n) {\r\n  CreateToken(\r\n    recipient: $recipient\r\n    collectionId: $collection_id\r\n    params: {\r\n      tokenId: { integer: $token_id }\r\n      initialSupply: $initial_supply\r\n      cap: { type: $cap }\r\n    }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collection_id":91829,"token_id":0,"initial_supply":1,"cap":"INFINITE"}}'
@@ -127,7 +127,7 @@ createToken.Fragment(createTokenFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -179,7 +179,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -221,7 +221,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -265,7 +265,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateToken(
       $recipient: String!
@@ -339,7 +339,7 @@ variables = {
   'cap': 'INFINITE' #Define supply type
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
 	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )

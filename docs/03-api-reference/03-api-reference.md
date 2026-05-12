@@ -10,10 +10,7 @@ The GraphiQL Playground is an interactive environment where developers can explo
 
 ### Accessing the GraphiQL Playground
 
-You can access the GraphiQL Playground for both Testnet and Mainnet environments:
-
-- **Testnet**: [Core Operations](https://platform.canary.enjin.io/graphiql)
-- **Mainnet**: [Core Operations](https://platform.beta.enjin.io/graphiql)
+You can access the GraphiQL Playground here: [Core Operations](https://platform.beta.enjin.io/graphiql).
 
 ### Navigating the Documentation Explorer
 

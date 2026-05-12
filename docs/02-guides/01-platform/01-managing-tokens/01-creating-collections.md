@@ -23,7 +23,7 @@ On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="colle
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.beta.enjin.io/create/collection)**" button.
 
 ![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
 
@@ -74,7 +74,7 @@ mutation CreateCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"mutation CreateCollection($forceCollapsingSupply: Boolean) {\r\n  CreateCollection(\r\n    mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"forceCollapsingSupply":false}}'
@@ -99,7 +99,7 @@ createCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -140,7 +140,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -182,7 +182,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -210,7 +210,7 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateCollection($forceCollapsingSupply: Boolean) {
       CreateCollection(
@@ -250,7 +250,7 @@ mutation CreateCollection($forceCollapsingSupply: Boolean) {
 
 variables = {'forceCollapsingSupply': False} #Set to true to enforce collapsing supply mint policy
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
 	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
