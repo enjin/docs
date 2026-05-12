@@ -12,7 +12,7 @@ Welcome! This guide provides the essential steps to quickly integrate the <Gloss
 
 :::info **By the end of this guide, you will have:**
 
-- Set up your developer account on the Canary <GlossaryTerm id="enjin_platform_cloud" />.
+- Set up your developer account on the <GlossaryTerm id="enjin_platform_cloud" />.
 - Connected your developer wallet to authorize actions.
 - Created your first blockchain <GlossaryTerm id="collection" /> and <GlossaryTerm id="nft" />.
 - Learned how to link your users' <GlossaryTerm id="enjin_wallet" />s to your application.
@@ -20,11 +20,11 @@ Welcome! This guide provides the essential steps to quickly integrate the <Gloss
   - Read tokens from a linked user wallet
 :::
 
-## 1. Create Your Enjin Canary Platform Account
+## 1. Create Your Enjin Platform Account
 
 ### What is the Enjin Platform?
 
-The Enjin Platform is your central hub for managing blockchain projects, collections, and digital items (NFTs and Fungible Tokens). We'll start by creating an account on the Canary Platform, which operates on Enjin's testnet blockchain. This allows you to experiment without using real funds or affecting the main network.
+The Enjin Platform is your central hub for managing blockchain projects, collections, and digital items (NFTs and Fungible Tokens). We'll start by creating an account on the Enjin Platform. We'll use the Canary testnet throughout this guide so you can experiment without using real funds or affecting the main network.
 
 ### Steps to Create an Account:
 
@@ -32,7 +32,7 @@ The Enjin Platform is your central hub for managing blockchain projects, collect
 2.  Click on the "Create an account" button.
 3.  Fill in your account credentials and click on the "Register" button.
 4.  Verify your email address by clicking the link sent to your inbox.
-5.  Log in to your newly created Canary Platform account.
+5.  Log in to your newly created Enjin Platform account.
 
 ## 2. Connect Your Wallet Account
 
@@ -275,7 +275,7 @@ Congratulations! You've covered the basics of setting up your project on the Enj
 
 :::warning **Ready for Production?**
 Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
-1.  Set up your project on the **mainnet Enjin Platform Cloud**: https://platform.beta.enjin.io/
+1.  Switch the network selector to **Enjin (mainnet)** in the [Enjin Platform Cloud](https://platform.beta.enjin.io/).
 2.  Update your application's API calls or SDKs to target [**mainnet**](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#selecting-a-network-and-chain) by passing `network: ENJIN` on each query and mutation.
 :::
 
