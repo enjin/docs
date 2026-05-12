@@ -15,7 +15,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 
 :::tip Core Endpoints
 - **Testnet:** `http://platform.canary.enjin.io/graphql`
-- **Mainnet:** `http://platform.enjin.io/graphql`
+- **Mainnet:** `http://platform.beta.enjin.io/graphql`
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.

@@ -5,7 +5,7 @@ description: "Find out how to set up enterprise on-prem for your blockchain infr
 ---
 :::info Choosing the right platform for you
 There are two version of the Enjin Platform
-- The [Enjin Platform Cloud](http://platform.enjin.io/)
+- The [Enjin Platform Cloud](http://platform.beta.enjin.io/)
   - A cloud-hosted version that you can start using straight away.
   - Ideal if you're new to Enjin or don't want to manage your own infrastructure.
 - The [ Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform)

@@ -14,7 +14,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 
 :::tip Fuel Tanks Endpoints
 - **Testnet:** `http://platform.canary.enjin.io/graphql/fuel-tanks`
-- **Mainnet:** `http://platform.enjin.io/graphql/fuel-tanks`
+- **Mainnet:** `http://platform.beta.enjin.io/graphql/fuel-tanks`
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.

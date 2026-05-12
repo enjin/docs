@@ -78,11 +78,11 @@ Proceed to the [Freezing & Thawing](/02-guides/01-platform/01-managing-tokens/07
 
 :::info Make sure to use the Beam Endpoint
 - Testnet: `http://platform.canary.enjin.io/graphql/beam`
-- Mainnet: `http://platform.enjin.io/graphql/beam`
+- Mainnet: `http://platform.beta.enjin.io/graphql/beam`
 
 **Try the Beam Playground here:**
 - Testnet: http://platform.canary.enjin.io/graphiql/beam
-- Mainnet: http://platform.enjin.io/graphiql/beam
+- Mainnet: http://platform.beta.enjin.io/graphiql/beam
 :::
 
 First, create the Beam with the parameters of your choice, such as name, description, image, begin and end date & the number of assets that you would like to distribute.

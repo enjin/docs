@@ -5,7 +5,7 @@ description: "Discover the Enjin Platform, a comprehensive suite of tools for bu
 ---
 :::info There are three versions of the Enjin Platform to choose from:
 - The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io/login), connected to Enjin Canary Testnet
-- The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to Enjin Blockchain Mainnet
+- The [Enjin Platform Cloud (Mainnet)](http://platform.beta.enjin.io/), connected to Enjin Blockchain Mainnet
 - The [Enterprise On-Prem Enjin Platform](https://github.com/enjin/platform) where you can choose to connect to either network.
 :::
 
@@ -19,7 +19,7 @@ Consider the Enjin Platform as your digital interpreter, simplifying your commun
 
 The Enjin Platform works much like a customizable building set. It has a modular design, which means you can add or take away pieces as needed. These pieces come in the form of optional add-on packages. They provide extra tools, such as managing Fuel Tanks, handling marketplace listings (through the marketplace package), or generating Enjin Beams via the API (with the Enjin Beam package). In other words, with the Enjin Platform, you get a customized setup that fits your specific needs.
 
-This versatile platform offers two versions to cater to different needs. The [Enterprise On-Prem](https://github.com/enjin/platform), self-hosted version provides you with comprehensive control over your data, eliminating dependence on any third-party servers or services. Enjin also offers a hosted version, the Enjin Platform Cloud ([mainnet ](https://platform.enjin.io/)\|[ canary](https://platform.canary.enjin.io/)), tailored for users seeking rapid integration. You can choose the version that best fits your requirements.
+This versatile platform offers two versions to cater to different needs. The [Enterprise On-Prem](https://github.com/enjin/platform), self-hosted version provides you with comprehensive control over your data, eliminating dependence on any third-party servers or services. Enjin also offers a hosted version, the Enjin Platform Cloud ([mainnet ](https://platform.beta.enjin.io/)\|[ canary](https://platform.canary.enjin.io/)), tailored for users seeking rapid integration. You can choose the version that best fits your requirements.
 
 ![](/img/components/4.png)
 
@@ -96,7 +96,7 @@ The Enjin Platform comes with a lightweight and easy-to-use user interface. The 
 
 ![](/img/components/6.png)
 
-The user interface is available as a [standalone application](https://github.com/enjin/platform-ui) for the Enterprise On-Prem Enjin Platform, but comes standard when using the Enjin-hosted implementation of the [Enjin Platform](https://platform.enjin.io/).
+The user interface is available as a [standalone application](https://github.com/enjin/platform-ui) for the Enterprise On-Prem Enjin Platform, but comes standard when using the Enjin-hosted implementation of the [Enjin Platform](https://platform.beta.enjin.io/).
 
 ## Enjin Platform Cloud
 
@@ -104,4 +104,4 @@ The modularity and flexibility of the Enjin Platform can be daunting for first-t
 
 This user-friendly version allows you to kickstart your next NFT project in just a few minutes. Ran on Enjin's robust servers, yet fully secure and isolated to your unique project instance, you can launch your NFT game with a few simple steps. Just create an account, set it up, generate your first API key, and voila! Your NFT game is operational. The [Wallet Daemon](https://github.com/enjin/wallet-daemon) on your own server securely handles the signing and broadcasting of all transactions, ensuring the utmost integrity of your project's security.
 
-Get started today on [mainnet](https://platform.enjin.io/register) or [canary](https://platform.canary.enjin.io/register).
+Get started today on [mainnet](https://platform.beta.enjin.io/register) or [canary](https://platform.canary.enjin.io/register).

@@ -595,7 +595,7 @@ query FetchingWalletTokens{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl -X POST "https://platform.enjin.io/graphql" \
+curl -X POST "https://platform.beta.enjin.io/graphql" \
 -H "Content-Type: application/json" \
 -H "Authorization: enjin_api_key" \
 -d '{"query": "query FetchingWalletTokens { GetWallet(account: \"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f\") { tokenAccounts { edges { node { balance token { tokenId collection { collectionId } attributes { key value } } } } } } }"}'

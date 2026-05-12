@@ -661,7 +661,7 @@ For a comprehensive view of all available arguments for queries and mutations, p
 
 The `GetToken`, `GetTokens`, `GetCollection`, and `GetCollections` queries are limited only to collections and tokens that were created via the auth-ed Enjin Platform account. To use these queries with collections / tokens created externally (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
 
-To track a collection, head over to the collections page on Enjin Platform: https://platform.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
+To track a collection, head over to the collections page on Enjin Platform: https://platform.beta.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
 
 ![Track Collection](/img/guides/managing-tokens/track-collection.png)
 

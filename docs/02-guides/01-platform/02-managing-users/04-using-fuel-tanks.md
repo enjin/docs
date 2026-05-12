@@ -105,10 +105,10 @@ Code snippets with these arguments are provided for illustrative purposes only. 
 
 :::info Make sure to use the Fuel Tank Endpoint
 - Testnet: `http://platform.canary.enjin.io/graphql/fuel-tanks`
-- Mainnet: `http://platform.enjin.io/graphql/fuel-tanks`
+- Mainnet: `http://platform.beta.enjin.io/graphql/fuel-tanks`
 **Try the Beam Playground here:**
 - Testnet: http://platform.canary.enjin.io/graphiql/fuel-tanks
-- Mainnet: http://platform.enjin.io/graphiql/fuel-tanks
+- Mainnet: http://platform.beta.enjin.io/graphiql/fuel-tanks
 :::
 
 ### Subsidize Token Transfers For A Collection

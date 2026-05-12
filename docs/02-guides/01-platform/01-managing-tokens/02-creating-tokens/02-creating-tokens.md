@@ -33,7 +33,7 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.enjin.io/create/token)**" button.
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.beta.enjin.io/create/token)**" button.
 
 ![Creating Token](/img/guides/managing-tokens/creating-token.gif)
 

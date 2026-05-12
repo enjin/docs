@@ -36,7 +36,7 @@ The server is configured using the following environment variables:
 | :--- | :--- |
 | `PORT` | The port the server listens on. Defaults to `3000`. |
 | `JWT_SECRET` | A secure, random string used for signing player authentication tokens. |
-| `ENJIN_API_URL` | The Enjin Platform API URL. Use `https://platform.canary.enjin.io/graphql` for testing (Canary Network) or `https://platform.enjin.io/graphql` for production. |
+| `ENJIN_API_URL` | The Enjin Platform API URL. Use `https://platform.canary.enjin.io/graphql` for testing (Canary Network) or `https://platform.beta.enjin.io/graphql` for production. |
 | `ENJIN_API_KEY` | Your API Key Token obtained from the Enjin Platform. |
 | `DAEMON_WALLET_ADDRESS` | The address of your Wallet Daemon. This wallet receives the initial supply of all created tokens. |
 | `ENJIN_COLLECTION_ID` | The ID of the Enjin Farmer collection. If left blank, the server will create a new collection on startup. |

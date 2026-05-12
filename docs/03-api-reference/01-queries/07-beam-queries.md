@@ -15,7 +15,7 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 
 :::tip Beam Endpoints
 - **Testnet:** `http://platform.canary.enjin.io/graphql/beam`
-- **Mainnet:** `http://platform.enjin.io/graphql/beam`
+- **Mainnet:** `http://platform.beta.enjin.io/graphql/beam`
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.
@@ -74,8 +74,8 @@ query GetBeam {
       "isClaimable": true,
       "claimsRemaining": 10,
       "qr": {
-        "url": "https://platform.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc",
-        "payload": "https://platform.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc"
+        "url": "https://platform.beta.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc",
+        "payload": "https://platform.beta.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc"
       },
       "message": null,
       "collection": null
@@ -186,8 +186,8 @@ query GetBeams {
             "end": "2028-11-14T00:00:00+00:00",
             "isClaimable": true,
             "qr": {
-              "url": "https://platform.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc",
-              "payload": "https://platform.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc"
+              "url": "https://platform.beta.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc",
+              "payload": "https://platform.beta.enjin.io/claim/0dd3694f2c4599179f08686539cd73dc"
             },
             "collection": null,
             "claims": {
@@ -582,8 +582,8 @@ query GetSingleUseCodes {
           "node": {
             "code": "eyJpdiI6IlNFM2tRZzgxaU5pZi9hVXBVZTBCeVE9PSIsInZhbHVlIjoicDdsSmlCU1JHNnd6QUtHU1FRV2pNQ2twaDNPT2YreFVrK3Jrb1VXL0NPc2tOeFBVdTZFM2J1Ykp5NTlRNlNwZXg0d1JTbHo1N1BHMDJqaG11WDhDTGIxRVlVenBoTWVwT3ZrL3RwR2pZTzA9IiwibWFjIjoiYWI3ZjdhY2RmMzE2NGM1MjAxMWVmYTk2ZWNjNWQyNTY4MWQ4NGZhY2ZhN2M5Y2FmMmM0MzU5MDM1N2Q1NDFiYSIsInRhZyI6IiJ9",
             "qr": {
-              "url": "https://platform.enjin.io/claim/eyJpdiI6ImVMNTEybWEwSnZ6WlF3QjUvQW15Wmc9PSIsInZhbHVlIjoiVklOcCtCYVpGTG1aRjQyY0FZb3RmS1JSd1JGT0dka05rT1NQUnZoMXZ4UGsxVklzVmNoejhEUDQ5TjVMc0picjR4MmEzQUJTaWMrUVYxb21yMExZRWVjUGp1T2Rnb0owMHcwWmxXWCtGMnM9IiwibWFjIjoiMjUyNzdlODkyMTRkZmViM2M1OWY5MWNlYjgxYjUzOGE3NTA4NmU0NjY3MjIwOGY0ZDkxNTg3ZTJjOWM5NjUxMSIsInRhZyI6IiJ9",
-              "payload": "https://platform.enjin.io/claim/eyJpdiI6IkJJWVNYb3lFVGRpaUNEemNJQ20xamc9PSIsInZhbHVlIjoic1ZXMzNGN1FnbWVRc1Z2S2IrYThIT0Rpd2JpeGhza2wxSG1FSlVqTUhzN3UrYmozaXNnZ2dSTU5HTmluZ2laY3JWNUcyemcyaDJZT1VGdGx6SjgxdGVwdUIvN1JhRHRVSnd2RFRYZVhOOUk9IiwibWFjIjoiNzllYmQ1MjFlODBmMWEzOTdjOTc0YWM0YjQ4M2ExZmEyOWZhNzQyY2RlNGJjMzcxNDdkOTQxOWJlYmYyMmUwMSIsInRhZyI6IiJ9"
+              "url": "https://platform.beta.enjin.io/claim/eyJpdiI6ImVMNTEybWEwSnZ6WlF3QjUvQW15Wmc9PSIsInZhbHVlIjoiVklOcCtCYVpGTG1aRjQyY0FZb3RmS1JSd1JGT0dka05rT1NQUnZoMXZ4UGsxVklzVmNoejhEUDQ5TjVMc0picjR4MmEzQUJTaWMrUVYxb21yMExZRWVjUGp1T2Rnb0owMHcwWmxXWCtGMnM9IiwibWFjIjoiMjUyNzdlODkyMTRkZmViM2M1OWY5MWNlYjgxYjUzOGE3NTA4NmU0NjY3MjIwOGY0ZDkxNTg3ZTJjOWM5NjUxMSIsInRhZyI6IiJ9",
+              "payload": "https://platform.beta.enjin.io/claim/eyJpdiI6IkJJWVNYb3lFVGRpaUNEemNJQ20xamc9PSIsInZhbHVlIjoic1ZXMzNGN1FnbWVRc1Z2S2IrYThIT0Rpd2JpeGhza2wxSG1FSlVqTUhzN3UrYmozaXNnZ2dSTU5HTmluZ2laY3JWNUcyemcyaDJZT1VGdGx6SjgxdGVwdUIvN1JhRHRVSnd2RFRYZVhOOUk9IiwibWFjIjoiNzllYmQ1MjFlODBmMWEzOTdjOTc0YWM0YjQ4M2ExZmEyOWZhNzQyY2RlNGJjMzcxNDdkOTQxOWJlYmYyMmUwMSIsInRhZyI6IiJ9"
             }
           }
         },
@@ -592,8 +592,8 @@ query GetSingleUseCodes {
           "node": {
             "code": "eyJpdiI6Imp5R0xzNC9aVWZlT090SGVsL3RyVlE9PSIsInZhbHVlIjoiemJiWmsrZEl2TXVzc2R1c2svalhIRjdGVUFXRThPOTg2RnZJVCtMNEE1UENxN3FLeURhL1J4UXhBakduekduRmxRQTJwdmRCeXZqQi9rbVVyVnRmK2V4c2xDZU9jUW15N0xNSkRiUyt2ZlE9IiwibWFjIjoiNTZlOGQ4NjdmNDNmOTQ3NWYwM2M2MzRlMGRmODlmNmQwZmM2ZDllNjdmMTk4ZTA0ZWJiYTliZTZkZTJhOTM3MyIsInRhZyI6IiJ9",
             "qr": {
-              "url": "https://platform.enjin.io/claim/eyJpdiI6IlhtTHdEdlM5bXlQNnVEaGZpejkrR3c9PSIsInZhbHVlIjoidlh3dVhuTVhOVEQvcElBM0drMVhBQ2Z1SFdob3BtNmJnYVQwWExoVmlUYWdPTUhkUzJ1QS9JL25yeHVPSnBQb2VyM3lJWXd3aEMySVd1MjkwellTdW50UVl1YTJRdmNCV3lzdXVLaE9Wckk9IiwibWFjIjoiOGNhNmY1MzZlZWRjMmE0ZjMwYjQ0ODY0Nzg5MTk5MDU4OTAwYmZhYjYzODI4OGQ3ZDIyNTQ5MjA2Zjc2MTczYiIsInRhZyI6IiJ9",
-              "payload": "https://platform.enjin.io/claim/eyJpdiI6IkN4OHZzUDdGc1AwUG9wdXpQSDVGYXc9PSIsInZhbHVlIjoiOTJJRHQ3VjdoZHR0WVpqajVoSGZIZFNoZHJtVE1iRjR0ZndLQXRQYVE1TS8zaGd1WEZDdDQrckNzUXExdnFvZDVVcE5PMVU1bklFRWhqSnVXVi96WVB4RE5CMk1qTFhHYVIvVWdscFljUTA9IiwibWFjIjoiYWIyY2U4YmIzMjJmNjY0ZmE2NzZjMTZhYTE0YjJlMTEwNDQxMjJlY2Y3NzZlYzZkMDNhMGI3NGQ2MDEyYTZlZSIsInRhZyI6IiJ9"
+              "url": "https://platform.beta.enjin.io/claim/eyJpdiI6IlhtTHdEdlM5bXlQNnVEaGZpejkrR3c9PSIsInZhbHVlIjoidlh3dVhuTVhOVEQvcElBM0drMVhBQ2Z1SFdob3BtNmJnYVQwWExoVmlUYWdPTUhkUzJ1QS9JL25yeHVPSnBQb2VyM3lJWXd3aEMySVd1MjkwellTdW50UVl1YTJRdmNCV3lzdXVLaE9Wckk9IiwibWFjIjoiOGNhNmY1MzZlZWRjMmE0ZjMwYjQ0ODY0Nzg5MTk5MDU4OTAwYmZhYjYzODI4OGQ3ZDIyNTQ5MjA2Zjc2MTczYiIsInRhZyI6IiJ9",
+              "payload": "https://platform.beta.enjin.io/claim/eyJpdiI6IkN4OHZzUDdGc1AwUG9wdXpQSDVGYXc9PSIsInZhbHVlIjoiOTJJRHQ3VjdoZHR0WVpqajVoSGZIZFNoZHJtVE1iRjR0ZndLQXRQYVE1TS8zaGd1WEZDdDQrckNzUXExdnFvZDVVcE5PMVU1bklFRWhqSnVXVi96WVB4RE5CMk1qTFhHYVIvVWdscFljUTA9IiwibWFjIjoiYWIyY2U4YmIzMjJmNjY0ZmE2NzZjMTZhYTE0YjJlMTEwNDQxMjJlY2Y3NzZlYzZkMDNhMGI3NGQ2MDEyYTZlZSIsInRhZyI6IiJ9"
             }
           }
         }
