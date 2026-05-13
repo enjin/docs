@@ -33,14 +33,14 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.beta.enjin.io/create/token)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**" and click the collection you want to mint the token into. From the collection page, click the "**Create Token**" button.
 
 From here, you can configure the token's basic settings, supply cap, royalty behavior, and attributes.
 
 - **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, the initial supply, and the recipient in the corresponding fields.
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md).
 - **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required). There are two cap modes — leave the cap field unset for an unlimited supply.
-  - **Unlimited supply (no cap)** is the default. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply. To pick this option, simply omit the cap field in the API, or leave the cap option unset in the dashboard form.
+  - **Unlimited supply (no cap)** is the default. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply. To pick this option, simply omit the cap field in the API, or select the Infinite cap type option in the dashboard form.
   - The **[SUPPLY](/03-api-reference/04-important-arguments.md#supply)** cap mode offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined `supply` value. Burned tokens can be re-minted, ensuring the total supply remains constant.
   - The **[COLLAPSING_SUPPLY](/03-api-reference/04-important-arguments.md#collapsing_supply)** cap mode is the most strict. This cap allows the collection owner to mint new tokens as long as the circulating supply does not exceed the `supply` value. However, burning tokens reduces the cap, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
 - **[Royalty Behavior](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token. Royalties are expressed via the `behavior` field on the token — set `behavior: { type: HAS_ROYALTY, royalties: [...] }`.

@@ -27,8 +27,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ### Melting token's supply
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to melt, click the **3 vertical dots** (**⋮**) to its right, then click the "**Burn**" button.
+[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Burn**".
 
 Insert the amount of tokens to melt, and click on the "**Burn**" button.
 
@@ -71,7 +70,7 @@ The dashboard flow for destroying a collection is being verified — the GraphQL
 :::
 
 In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
-**Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Destroy**" button.
+**Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click the "**Destroy**" button.
 
 Then, confirm by clicking the "**Destroy**" button
 

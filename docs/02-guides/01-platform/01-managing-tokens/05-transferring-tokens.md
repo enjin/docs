@@ -28,11 +28,10 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to transfer, click the **3 vertical dots** (**⋮**) to its right, then click the "**Transfer**" button.
+[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Transfer**".
 
 :::info Need to perform multiple transfers?
-Click on the "**Batch**" button, followed by "**Batch Transfer**".
+The Transfer form has a **+ Add to Batch** button next to **Transfer** — queue several transfers and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
 :::
 
 Fill in the recipient, amount, and other optional arguments in the corresponding fields.

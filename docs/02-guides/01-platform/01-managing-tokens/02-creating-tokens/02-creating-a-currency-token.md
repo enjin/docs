@@ -42,7 +42,7 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.beta.enjin.io/create/token)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**" and click the collection you want to mint the token into. From the collection page, click the "**Create Token**" button.
 
 Fill in the standard token fields — Collection ID, Token ID, Initial Supply, and Recipient. See [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-a-using-the-enjin-dashboard) for the full breakdown of those fields.
 

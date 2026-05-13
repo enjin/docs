@@ -29,8 +29,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to mint, click the **3 vertical dots** (**⋮**) to its right, then click the "**Mint**" button.
+[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Mint**".
 
 Set the recipient and the amount in the corresponding fields, and click on "**Mint**".
 

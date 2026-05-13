@@ -47,15 +47,13 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 ## Option A. Using the Enjin Dashboard
 
 :::tip Applying Freeze/Thaw Actions to Collections and Tokens
-This tutorial illustrates the process of freezing a collection.
-However, the same steps can be applied to freeze or thaw tokens.
-Simply navigate to the corresponding menu for tokens instead of collections, or for thawing instead of freezing.
+This tutorial illustrates the process of freezing a collection. The same flow applies to freezing or thawing a single token — [open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens) and pick **Freeze** or **Thaw** from its actions menu instead.
 :::
 
 ### Freezing an entire collection
 
 In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
-**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) to its right, then click the "**Freeze**" button.
+**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) on its row, then click the "**Freeze**" button.
 
 Choose the freeze state, and click on the "**Freeze**" button.
 

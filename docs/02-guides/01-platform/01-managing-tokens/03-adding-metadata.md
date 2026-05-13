@@ -75,11 +75,10 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 ### Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to its right, then click the "**Attributes**" button.
+[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Attributes**".
 
 :::tip Need to add multiple attributes for a token?
-Click on the "**Batch**" button, followed by "**Batch SetAttribute**".
+Each Set Attribute form has a **+ Add to Batch** button next to **Set Attribute** — queue several attributes and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
 :::
 
 To add / edit an attribute, select the "**Set**" option, type in the "**Key**" that you wish to add / edit, and its "**Value**" in the corresponding text fields.
