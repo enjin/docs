@@ -28,28 +28,16 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 ### Melting token's supply
 
 In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to melt, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Burn**" button.
-
-![melting a Token](/img/guides/managing-tokens/burning-token.gif)
+**Locate the token** you wish to melt, click the **3 vertical dots** (**⋮**) to its right, then click the "**Burn**" button.
 
 Insert the amount of tokens to melt, and click on the "**Burn**" button.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/burn-token-form.png').default} alt="Melt Token Form" />
-</p>
+The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/burn-token-banner.png').default} width="600" alt="Melt Transaction Request Banner" />
-</p>
-
-![Pending melt Transaction](/img/guides/managing-tokens/pending-burn-token-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ### Destroying a token and removing it from the Blockchain
 
@@ -68,11 +56,11 @@ While destroying a token removes the token from the blockchain, and retrieves th
 
 To destroy a token, follow the above instructions for Melting a token, but make sure to tick the `Remove Token Storage` box.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/remove-token-storage.png').default} width="600" alt="Destroying a Token" />
-</p>
-
 ### Destroying a collection
+
+:::warning Pending v3 confirmation
+This section is awaiting confirmation from the Enjin team on v3 support — the v3 GraphQL schema currently exposes no `destroyCollection` action. The dashboard wording below describes the v2 flow and **may or may not still be available** in the v3 dashboard. We'll refresh this section once we hear back.
+:::
 
 :::info To destroy a collection, these requirements must be met:
 - The caller is the collection owner
@@ -85,21 +73,9 @@ To destroy a token, follow the above instructions for Melting a token, but make 
 In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
 **Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Destroy**" button.
 
-![Destroying a Collection](/img/guides/managing-tokens/destroying-collection.gif)
-
 Then, confirm by clicking the "**Destroy**" button
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/destroy-collection-form.png').default} alt="Destroy Collection Form" />
-</p>
-
 The Transaction Request will then appear in the "**Transactions**" menu
-
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/destroy-collection-banner.png').default} width="600" alt="Destroy Collection Transaction Request Banner" />
-</p>
-
-![Pending Destroy Collection Transaction](/img/guides/managing-tokens/pending-destroy-collection-txn.png)
 
 Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
 
@@ -108,23 +84,32 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 
 ## Option B. Using the Enjin API & SDKs
 
-### Melting token's supply
+In v3, burning is the `burnToken` discriminator action on `CreateTransaction`. The same action handles both "melt some supply" and "destroy the token entirely" — set `removeTokenStorage: true` to destroy.
 
-Use the `Burn` mutation:
+:::warning Platform v3 SDKs are not yet available
+The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
+
+### Melting token's supply
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation BurnToken{
-  Burn(
-    collectionId: 68844 #Specify the Collection ID
-    params: {
-      tokenId: {integer: 0} #Specify the Token ID
-      amount: 1 #Specify the amount of supply to burn
+mutation BurnToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      burnToken: {
+        collectionId: 68844
+        tokenId: 0
+        amount: 1
+        removeTokenStorage: false  # set true to also destroy the token (see below)
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -134,8 +119,8 @@ mutation BurnToken{
 ```
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation BurnToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $amount: BigInt!\r\n) {\r\n  Burn(\r\n    collectionId: $collection_id\r\n    params: { tokenId: { integer: $token_id }, amount: $amount }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":5,"amount":1}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { burnToken: { collectionId: $collectionId, tokenId: $tokenId, amount: $amount, removeTokenStorage: false } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":68844,"tokenId":0,"amount":1}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -183,32 +168,29 @@ Snippet In Progress
 ```javascript
 fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation BurnToken(
-        $collection_id: BigInt!
-        $token_id: BigInt!
-        $amount: BigInt!
-      ){
-        Burn(
-          collectionId: $collection_id
-          params: {
-            tokenId: {integer: $token_id}
-            amount: $amount
+      mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            burnToken: {
+              collectionId: $collectionId
+              tokenId: $tokenId
+              amount: $amount
+              removeTokenStorage: false
+            }
           }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      token_id: 5, //Specify the amount of supply to burn
-      amount: 1 //Specify the amount of supply to burn
-    }
+    variables: { collectionId: 68844, tokenId: 0, amount: 1 }
   }),
 })
 .then(response => response.json())
@@ -221,31 +203,28 @@ const axios = require('axios');
 
 axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation BurnToken(
-      $collection_id: BigInt!
-      $token_id: BigInt!
-      $amount: BigInt!
-    ){
-      Burn(
-        collectionId: $collection_id
-        params: {
-          tokenId: {integer: $token_id}
-          amount: $amount
+    mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          burnToken: {
+            collectionId: $collectionId
+            tokenId: $tokenId
+            amount: $amount
+            removeTokenStorage: false
+          }
         }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 5, //Specify the amount of supply to burn
-    amount: 1 //Specify the amount of supply to burn
-  }
+  variables: { collectionId: 68844, tokenId: 0, amount: 1 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -256,68 +235,69 @@ axios.post('https://platform.beta.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation BurnToken(
-  $collection_id: BigInt!
-  $token_id: BigInt!
-  $amount: BigInt!
-){
-  Burn(
-    collectionId: $collection_id
-    params: {
-      tokenId: {integer: $token_id}
-      amount: $amount
+mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      burnToken: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        amount: $amount
+        removeTokenStorage: false
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 5, #Specify the amount of supply to burn
-  'amount': 1 #Specify the amount of supply to burn
-}
+variables = {'collectionId': 68844, 'tokenId': 0, 'amount': 1}
 
 response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-Once the transaction is executed, the token supply will be burned
+Once the transaction is executed, the token supply will be burned.
 
 ### Destroying a token and removing it from the Blockchain
 
 :::info To destroy a token, these requirements must be met:
 - The caller is the collection owner
 - The token has no attributes
-  - If the token has attributes, they can be removed using the `RemoveAllAttributes` mutation
+  - If the token has attributes, they can be removed using the `removeAllTokenAttributes` action (see [Adding Metadata](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md#option-b-using-the-enjin-api--sdks)).
 - The token has 0 supply
-  - You can remove the supply and destroy the token in the same Burn transaction.
+  - You can remove the supply and destroy the token in the same `burnToken` transaction.
 :::
 
-Use the `Burn` mutation, and add `removeTokenStorage: true` property
+Use the same `burnToken` action and set `removeTokenStorage: true`:
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation DestroyToken{
-  Burn(
-    collectionId: 68844 #Specify the Collection ID
-    params: {
-      tokenId: {integer: 0} #Specify the Token ID
-      amount: 1 #Specify the amount of supply to burn
-      removeTokenStorage: true
+mutation DestroyToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      burnToken: {
+        collectionId: 68844
+        tokenId: 0
+        amount: 1
+        removeTokenStorage: true
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -327,8 +307,8 @@ mutation DestroyToken{
 ```
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation BurnToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $amount: BigInt!\r\n) {\r\n  Burn(\r\n    collectionId: $collection_id\r\n    params: {\r\n      tokenId: { integer: $token_id }\r\n      amount: $amount\r\n      removeTokenStorage: true\r\n    }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":5,"amount":1}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { burnToken: { collectionId: $collectionId, tokenId: $tokenId, amount: $amount, removeTokenStorage: true } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":68844,"tokenId":0,"amount":1}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -377,33 +357,29 @@ Snippet In Progress
 ```javascript
 fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation BurnToken(
-        $collection_id: BigInt!
-        $token_id: BigInt!
-        $amount: BigInt!
-      ){
-        Burn(
-          collectionId: $collection_id
-          params: {
-            tokenId: {integer: $token_id}
-            amount: $amount
-            removeTokenStorage: true
+      mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            burnToken: {
+              collectionId: $collectionId
+              tokenId: $tokenId
+              amount: $amount
+              removeTokenStorage: true
+            }
           }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      token_id: 5, //Specify the amount of supply to burn
-      amount: 1 //Specify the amount of supply to burn
-    }
+    variables: { collectionId: 68844, tokenId: 0, amount: 1 }
   }),
 })
 .then(response => response.json())
@@ -416,32 +392,28 @@ const axios = require('axios');
 
 axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation BurnToken(
-      $collection_id: BigInt!
-      $token_id: BigInt!
-      $amount: BigInt!
-    ){
-      Burn(
-        collectionId: $collection_id
-        params: {
-          tokenId: {integer: $token_id}
-          amount: $amount
-          removeTokenStorage: true
+    mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          burnToken: {
+            collectionId: $collectionId
+            tokenId: $tokenId
+            amount: $amount
+            removeTokenStorage: true
+          }
         }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 5, //Specify the amount of supply to burn
-    amount: 1 //Specify the amount of supply to burn
-  }
+  variables: { collectionId: 68844, tokenId: 0, amount: 1 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -452,35 +424,31 @@ axios.post('https://platform.beta.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation BurnToken(
-  $collection_id: BigInt!
-  $token_id: BigInt!
-  $amount: BigInt!
-){
-  Burn(
-    collectionId: $collection_id
-    params: {
-      tokenId: {integer: $token_id}
-      amount: $amount
-      removeTokenStorage: true
+mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      burnToken: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        amount: $amount
+        removeTokenStorage: true
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 5, #Specify the amount of supply to burn
-  'amount': 1 #Specify the amount of supply to burn
-}
+variables = {'collectionId': 68844, 'tokenId': 0, 'amount': 1}
 
 response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -490,6 +458,10 @@ print(response.json())
 Once the transaction is executed, the token will be destroyed and the <GlossaryTerm id="storage_deposit" /> will be retrieved.
 
 ### Destroying a collection
+
+:::warning Pending v3 confirmation
+The v3 GraphQL schema currently has no `destroyCollection` action on `TransactionInput` and no top-level `DestroyCollection` mutation. Until we hear back from the Enjin team on whether collection destruction is intentionally removed, replaced by another action, or simply not wired up yet, the example below remains as the v2 reference and **will not work against v3**.
+:::
 
 :::info To destroy a collection, these requirements must be met:
 - The caller is the collection owner
