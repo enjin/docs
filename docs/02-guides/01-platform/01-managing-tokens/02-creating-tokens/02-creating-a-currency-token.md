@@ -42,10 +42,27 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 ## Option A. Using the Enjin Dashboard
 
-:::warning Unavailable via the User Interface
-The option to create a currency token via the user interface is currently being developed.
-For the time being, you can create currency token via [Option B. Using the Enjin API & SDKs](#option-b-using-the-enjin-api--sdks).
+In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.beta.enjin.io/create/token)**" button.
+
+Fill in the standard token fields — Collection ID, Token ID, Initial Supply, and Recipient. See [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-a-using-the-enjin-dashboard) for the full breakdown of those fields.
+
+To mark the token as a currency, expand the **Advanced Settings** section. Under **Other Options**, tick the **Is Currency** checkbox. Two additional fields appear:
+
+- **Symbol -** A short symbol that represents the token (e.g. `GOLD`).
+- **Decimal Count -** The number of decimal places this token should support when displayed in applications (e.g. `2` for a token like Gold Coins where balances should render with two decimals).
+
+:::info Learn more about the arguments
+For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
 :::
+
+Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
+
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
+
+Once your token is created, lets give it a new look by [Adding Metadata](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md).
 
 ## Option B. Using the Enjin API & SDKs
 
