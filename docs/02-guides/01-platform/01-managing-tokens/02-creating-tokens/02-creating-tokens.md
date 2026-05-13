@@ -50,7 +50,7 @@ From here, you can configure the token's basic settings, supply cap, royalty beh
 For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
 :::
 
-Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 

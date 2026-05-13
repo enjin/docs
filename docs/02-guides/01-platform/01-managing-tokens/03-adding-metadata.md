@@ -84,7 +84,7 @@ Click on the "**Batch**" button, followed by "**Batch SetAttribute**".
 
 To add / edit an attribute, select the "**Set**" option, type in the "**Key**" that you wish to add / edit, and its "**Value**" in the corresponding text fields.
 
-Once you're satisfied with the options, click on the "**Set Attribute**" button at the bottom right corner to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Set Attribute**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 

@@ -36,7 +36,7 @@ Click on the "**Batch**" button, followed by "**Batch Transfer**".
 :::
 
 Fill in the recipient, amount, and other optional arguments in the corresponding fields.
-Once you're satisfied with the options, click on the "**Transfer**" button at the bottom right corner to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Transfer**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
