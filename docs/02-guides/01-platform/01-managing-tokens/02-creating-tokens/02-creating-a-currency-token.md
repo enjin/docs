@@ -18,7 +18,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 Enjin Blockchain allows you to create customized <GlossaryTerm id="token_id" /> structures. This flexibility enables you to organize your tokens in various ways that suit your needs.
 
-For the currency token options, configure the metadata parameter, which consists of 3 values:
+In v3 a token becomes a currency by setting its `behavior` field to `{ type: IS_CURRENCY, name, symbol, decimalCount }`:
 
 - **Name:** The token name (e.g. Gold Coins).
 - **Symbol:** A short symbol that represents the token (e.g. GOLD).
@@ -49,25 +49,39 @@ For the time being, you can create currency token via [Option B. Using the Enjin
 
 ## Option B. Using the Enjin API & SDKs
 
-CreateToken mutation enables you to create a new token within an existing collection. This operation is essential for introducing new digital assets, and it allows you to define various attributes and characteristics for the newly created token.
-For the currency token options, configure the metadata parameter, which consists of name, symbol and decimals
+To create a currency token, use the standard `createToken` action with the `behavior` field set to `{ type: IS_CURRENCY, name, symbol, decimalCount }`. The rest of the input (recipient, collectionId, tokenId, initialSupply, etc.) follows the same shape as a regular [token create](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks).
+
+:::warning Platform v3 SDKs are not yet available
+The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation CreateCurrencyToken{
-  CreateToken(
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #The recipient of the initial supply
-    collectionId: 2406 #Set the collection ID
-    params:{
-      tokenId: {integer: 0} #Set the token ID
-      initialSupply: 1 #Mint initial supply
-      cap: {type: INFINITE} #Define supply type
-      metadata: {name: "Gold Coins", symbol: "GOLD", decimalCount: 2} #Define currency configuration here
+mutation CreateCurrencyToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"  # recipient of the initial supply
+        collectionId: 2406         # collection to mint into
+        tokenId: 0                 # the new token ID
+        initialSupply: 1           # initial supply to mint
+        listingForbidden: false
+        infusion: 0
+        anyoneCanInfuse: false
+        behavior: {                # makes this token a currency
+          type: IS_CURRENCY
+          name: "Gold Coins"
+          symbol: "GOLD"
+          decimalCount: 2
+        }
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -77,8 +91,8 @@ mutation CreateCurrencyToken{
 ```
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation CreateCurrencyToken(\r\n  $recipient: String!\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt\r\n  $initial_supply: BigInt\r\n  $cap: TokenMintCapType!\r\n  $metadata: TokenMetadataInput\r\n) {\r\n  CreateToken(\r\n    recipient: $recipient\r\n    collectionId: $collection_id\r\n    params: {\r\n      tokenId: { integer: $token_id }\r\n      initialSupply: $initial_supply\r\n      cap: { type: $cap }\r\n      metadata: $metadata\r\n    }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collection_id":2406,"token_id":0,"initial_supply":1,"cap":"INFINITE","metadata":{"name":"Gold Coins","symbol":"GOLD","decimalCount":2}}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation CreateCurrencyToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $initialSupply: BigInt!, $behavior: TokenBehaviorInput!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      createToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        initialSupply: $initialSupply\r\n        listingForbidden: false\r\n        infusion: 0\r\n        anyoneCanInfuse: false\r\n        behavior: $behavior\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":2406,"tokenId":0,"initialSupply":1,"behavior":{"type":"IS_CURRENCY","name":"Gold Coins","symbol":"GOLD","decimalCount":2}}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -135,41 +149,44 @@ Work in Progress!
 ```javascript
 fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation CreateCurrencyToken
-      (
+      mutation CreateCurrencyToken(
         $recipient: String!
-        $collection_id: BigInt!
-        $token_id: BigInt
-        $initial_supply: BigInt
-        $cap: TokenMintCapType!
-        $metadata: TokenMetadataInput
+        $collectionId: BigInt!
+        $tokenId: BigInt!
+        $initialSupply: BigInt!
+        $behavior: TokenBehaviorInput!
       ) {
-        CreateToken(
-          recipient: $recipient
-          collectionId: $collection_id
-          params:{
-            tokenId: {integer: $token_id}
-            initialSupply: $initial_supply
-            cap: {type: $cap}
-            metadata: $metadata
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            createToken: {
+              recipient: $recipient
+              collectionId: $collectionId
+              tokenId: $tokenId
+              initialSupply: $initialSupply
+              listingForbidden: false
+              infusion: 0
+              anyoneCanInfuse: false
+              behavior: $behavior
+            }
           }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",  //The recipient of the initial supply
-      collection_id: 2406, //Specify the collection ID
-      token_id: 0, //Specify the token ID
-      initial_supply: 1, //Mint initial supply
-      cap: "INFINITE", //Define supply type
-      metadata: {name: "Gold Coins", symbol: "GOLD", decimalCount: 2} //Define currency configuration here
+      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+      collectionId: 2406,
+      tokenId: 0,
+      initialSupply: 1,
+      behavior: { type: "IS_CURRENCY", name: "Gold Coins", symbol: "GOLD", decimalCount: 2 }
     }
   }),
 })
@@ -185,38 +202,42 @@ axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateCurrencyToken(
       $recipient: String!
-      $collection_id: BigInt!
-      $token_id: BigInt
-      $initial_supply: BigInt
-      $cap: TokenMintCapType!
-      $metadata: TokenMetadataInput
+      $collectionId: BigInt!
+      $tokenId: BigInt!
+      $initialSupply: BigInt!
+      $behavior: TokenBehaviorInput!
     ) {
-      CreateToken(
-        recipient: $recipient
-        collectionId: $collection_id
-        params: {
-          tokenId: { integer: $token_id }
-          initialSupply: $initial_supply
-          cap: { type: $cap }
-          metadata: $metadata
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          createToken: {
+            recipient: $recipient
+            collectionId: $collectionId
+            tokenId: $tokenId
+            initialSupply: $initialSupply
+            listingForbidden: false
+            infusion: 0
+            anyoneCanInfuse: false
+            behavior: $behavior
+          }
         }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",  //The recipient of the initial supply
-    collection_id: 2406, //Specify the collection ID
-    token_id: 0, //Specify the token ID
-    initial_supply: 1, //Mint initial supply
-    cap: "INFINITE", //Define supply type
-    metadata: {name: "Gold Coins", symbol: "GOLD", decimalCount: 2} //Define currency configuration here
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+    collectionId: 2406,
+    tokenId: 0,
+    initialSupply: 1,
+    behavior: { type: "IS_CURRENCY", name: "Gold Coins", symbol: "GOLD", decimalCount: 2 }
   }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN' }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -229,48 +250,52 @@ import requests
 query = '''
 mutation CreateCurrencyToken(
   $recipient: String!
-  $collection_id: BigInt!
-  $token_id: BigInt
-  $initial_supply: BigInt
-  $cap: TokenMintCapType!
-  $metadata: TokenMetadataInput
+  $collectionId: BigInt!
+  $tokenId: BigInt!
+  $initialSupply: BigInt!
+  $behavior: TokenBehaviorInput!
 ) {
-  CreateToken(
-    recipient: $recipient
-    collectionId: $collection_id
-    params: {
-      tokenId: { integer: $token_id }
-      initialSupply: $initial_supply
-      cap: { type: $cap }
-      metadata: $metadata
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: $recipient
+        collectionId: $collectionId
+        tokenId: $tokenId
+        initialSupply: $initialSupply
+        listingForbidden: false
+        infusion: 0
+        anyoneCanInfuse: false
+        behavior: $behavior
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f', #The recipient of the initial supply
-  'collection_id': 2406, #Specify the collection ID
-  'token_id': 0, #Specify the token ID
-  'initial_supply': 1, #Mint initial supply
-  'cap': 'INFINITE', #Define supply type
-  'metadata': {'name': "Gold Coins", 'symbol': "GOLD", 'decimalCount': 2} #Define currency configuration here
+  'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f',
+  'collectionId': 2406,
+  'tokenId': 0,
+  'initialSupply': 1,
+  'behavior': {'type': 'IS_CURRENCY', 'name': 'Gold Coins', 'symbol': 'GOLD', 'decimalCount': 2},
 }
 
 response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the changes in real-time by listening to the app channel on the WebSocket.
+The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.create_token`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
 
 :::tip
 For Token ID management, head to [Best Practices > TokenID Structure](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md)
@@ -278,7 +303,8 @@ For Token ID management, head to [Best Practices > TokenID Structure](/02-guides
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
-For instance, you'll find settings such as adding attributes/royalties/supply type and much more with the `CreateTokenParams` argument, or the ability to sign using a managed wallet with the `signingAccount` argument.
+
+`createToken` also accepts `cap`, `attributes`, and `groups` (token-group membership). To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
 :::
 
 :::tip What's next?
