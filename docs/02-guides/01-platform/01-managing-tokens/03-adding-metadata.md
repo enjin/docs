@@ -61,7 +61,7 @@ Check the [Best Practices for Collection/Token Metadata](/02-guides/01-platform/
 :::warning Attributes for Collections and Tokens are very similar.
 The process of adding attributes is similar for both collections and tokens.
 While this tutorial guides you through adding an attribute to a token, you can follow the same steps to add attributes to a collection.
-Simply navigate to the corresponding menu for collections instead of tokens.
+Simply navigate to the corresponding menu for collections instead of tokens — and on the API, use the `batchSetCollectionAttribute` action (described below) in place of `batchSetTokenAttribute`.
 :::
 
 :::warning **Important:** Attribute keys are case sensitive.
@@ -76,63 +76,58 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 ### Option A. Using the Enjin Dashboard
 
 In the Platform menu, navigate to "**[Tokens](https://platform.beta.enjin.io/tokens)**".
-**Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Attributes**" button.
-
-![Adding Metadata](/img/guides/managing-tokens/adding-metadata.gif)
+**Locate the token** you wish to add / edit attributes for, click the **3 vertical dots** (**⋮**) to its right, then click the "**Attributes**" button.
 
 :::tip Need to add multiple attributes for a token?
 Click on the "**Batch**" button, followed by "**Batch SetAttribute**".
 :::
 
-To add / edit an attribute, select the "**Set**" option, type in the "**Key**" that you wish to add / edit, and it's "**Value**" in the corresponding text fields.
+To add / edit an attribute, select the "**Set**" option, type in the "**Key**" that you wish to add / edit, and its "**Value**" in the corresponding text fields.
 
-Once you're satisfied with the options, click on the "**Set Attribute**" button at the bottom right corner to create the request.
+Once you're satisfied with the options, click on the "**Set Attribute**" button at the bottom right corner to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/set-attribute-form.png').default} alt="Set Attribute form" />
-</p>
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
-
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/set-attribute-banner.png').default} width="600" alt="Set Attribute Banner" />
-</p>
-
-![Pending Set Attribute Banner](/img/guides/managing-tokens/pending-set-attr-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ### Option B. Using the Enjin API & SDKs
 
-The BatchSetAttribute mutation allows you to efficiently set or update multiple attributes for a specific token within a collection in a single blockchain transaction. Attributes represent various properties, characteristics, or metadata associated with a token.
+In v3, batched attributes are split into two discriminator actions on `CreateTransaction`:
+
+- `batchSetTokenAttribute` — sets multiple attributes on a single token (`collectionId`, `tokenId`, `attributes`).
+- `batchSetCollectionAttribute` — sets multiple attributes on a collection (`id`, `attributes`).
+
+The example below sets three attributes on a token. To target the collection itself, swap `batchSetTokenAttribute` for `batchSetCollectionAttribute` and replace the `collectionId` / `tokenId` pair with a single `id` field equal to the collection ID.
+
+:::warning Platform v3 SDKs are not yet available
+The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation BatchSetAttribute {
-  BatchSetAttribute(
-    collectionId: 36105 # Specify the collection ID
-    tokenId: {integer: 0 } #Specify the token ID. If you wish to add collection metadata, omit this line entirely.
-    attributes: [
-      {
-        key: "name" #Provide an attribute name
-        value: "Chronicles of the Celestium"  #Provide an attribute value
-      },
-      {
-        key: "description" #Provide an attribute name
-        value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."  #Provide an attribute value
-      },
-      {
-        key: "uri" #Provide an attribute name
-        value: "https://yourhost/metadata.json"  #Provide an attribute value
+mutation BatchSetTokenAttribute {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      batchSetTokenAttribute: {
+        collectionId: 36105
+        tokenId: 0
+        attributes: [
+          { key: "name", value: "Chronicles of the Celestium" }
+          {
+            key: "description"
+            value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."
+          }
+          { key: "uri", value: "https://yourhost/metadata.json" }
+        ]
       }
-    ]
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -142,8 +137,8 @@ mutation BatchSetAttribute {
 ```
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {\r\n  BatchSetAttribute(\r\n    collectionId: $collection_id\r\n    tokenId: { integer: $token_id }\r\n    attributes: [\r\n      { key: \"name\", value: \"Chronicles of the Celestium\" }\r\n      {\r\n        key: \"description\"\r\n        value: \"An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse.\"\r\n      }\r\n      { key: \"uri\", value: \"https://yourhost/metadata.json\" }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":0}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      batchSetTokenAttribute: {\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        attributes: $attributes\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"tokenId":0,"attributes":[{"key":"name","value":"Chronicles of the Celestium"},{"key":"description","value":"An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."},{"key":"uri","value":"https://yourhost/metadata.json"}]}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -288,37 +283,35 @@ int main() {
 ```javascript
 fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {
-        BatchSetAttribute(
-          collectionId: $collection_id
-          tokenId: { integer: $token_id }
-          attributes: [
-            {
-              key: "name"
-              value: "Chronicles of the Celestium"
+      mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            batchSetTokenAttribute: {
+              collectionId: $collectionId
+              tokenId: $tokenId
+              attributes: $attributes
             }
-            {
-              key: "description"
-              value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."
-            }
-            {
-              key: "uri"
-              value: "https://yourhost/metadata.json"
-            }
-          ]
+          }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      collection_id: 36105, //Specify the collection ID
-    	token_id: 0 //Specify the token ID.
+      collectionId: 36105,
+      tokenId: 0,
+      attributes: [
+        { key: "name", value: "Chronicles of the Celestium" },
+        { key: "description", value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse." },
+        { key: "uri", value: "https://yourhost/metadata.json" }
+      ]
     }
   }),
 })
@@ -332,31 +325,35 @@ const axios = require('axios');
 
 axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {
-      BatchSetAttribute(
-        collectionId: $collection_id
-        tokenId: { integer: $token_id }
-        attributes: [
-          { key: "name", value: "Chronicles of the Celestium" }
-          {
-            key: "description"
-            value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."
+    mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          batchSetTokenAttribute: {
+            collectionId: $collectionId
+            tokenId: $tokenId
+            attributes: $attributes
           }
-          { key: "uri", value: "https://yourhost/metadata.json" }
-        ]
+        }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 0 //Specify the token ID.
+    collectionId: 36105,
+    tokenId: 0,
+    attributes: [
+      { key: "name", value: "Chronicles of the Celestium" },
+      { key: "description", value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse." },
+      { key: "uri", value: "https://yourhost/metadata.json" }
+    ]
   }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN' }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -367,41 +364,49 @@ axios.post('https://platform.beta.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation BatchSetAttribute($collection_id: BigInt!, $token_id: BigInt) {
-  BatchSetAttribute(
-    collectionId: $collection_id
-    tokenId: { integer: $token_id }
-    attributes: [
-      { key: "name", value: "Chronicles of the Celestium" }
-      {
-        key: "description"
-        value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."
+mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      batchSetTokenAttribute: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        attributes: $attributes
       }
-      { key: "uri", value: "https://yourhost/metadata.json" }
-    ]
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 0, #Specify the token ID.
+  'collectionId': 36105,
+  'tokenId': 0,
+  'attributes': [
+    {'key': 'name', 'value': 'Chronicles of the Celestium'},
+    {'key': 'description', 'value': 'An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse.'},
+    {'key': 'uri', 'value': 'https://yourhost/metadata.json'},
+  ],
 }
 
 response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the changes in real-time by listening to the app channel on the WebSocket.
+The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.batch_set_attribute`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
+
+:::tip Setting a single attribute, or removing one
+Use `setTokenAttribute` / `setCollectionAttribute` to write a single key, `removeTokenAttribute` / `removeCollectionAttribute` to remove one, and `removeAllTokenAttributes` / `removeAllCollectionAttributes` to wipe everything. All of these are discriminator fields on `CreateTransaction.transaction`.
+:::
 
 ## JSON File: Off-Chain & IPFS Metadata
 
@@ -448,7 +453,7 @@ Check the [Best Practices for Collection/Token Metadata](/02-guides/01-platform/
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
-For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
+To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
 :::
 
 :::tip What's next?
