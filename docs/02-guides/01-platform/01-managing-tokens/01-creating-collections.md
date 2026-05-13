@@ -48,10 +48,10 @@ Once you've created a collection you're ready to start [creating tokens](/02-gui
 
 ## Option B. Using the Enjin API & SDKs
 
-In v3, every on-chain action goes through the single `CreateTransaction` mutation. The action itself is selected by which field you set on the `transaction` input — for collections, that's `createCollection`.
+Every on-chain action goes through the single `CreateTransaction` mutation. The action itself is selected by which field you set on the `transaction` input — for collections, that's `createCollection`.
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 <Tabs>

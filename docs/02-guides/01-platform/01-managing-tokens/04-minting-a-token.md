@@ -43,15 +43,15 @@ Since this request requires a <GlossaryTerm id="transaction" />, it must be sign
 
 ## Option B. Using the Enjin API & SDKs
 
-In v3, minting is split into two discriminator actions on `CreateTransaction`:
+Minting is split into two discriminator actions on `CreateTransaction`:
 
 - `mintToken` — mints to a single recipient (`recipient`, `collectionId`, `tokenId`, `amount`, optional `unitPrice`).
 - `mintTokens` — mints to multiple recipients in one transaction (`collectionId` + a `tokens: [MintTokenEntryInput!]` list where each entry has `recipient`, `tokenId`, `amount`, optional `unitPrice`).
 
 The example below uses `mintTokens` so it scales naturally if you add more recipients to the array.
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 <Tabs>

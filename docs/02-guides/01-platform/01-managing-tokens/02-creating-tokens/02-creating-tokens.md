@@ -39,11 +39,11 @@ From here, you can configure the token's basic settings, supply cap, royalty beh
 
 - **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, the initial supply, and the recipient in the corresponding fields.
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md).
-- **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required). v3 supports two cap modes — leave the cap field unset for an unlimited supply.
+- **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required). There are two cap modes — leave the cap field unset for an unlimited supply.
   - **Unlimited supply (no cap)** is the default. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply. To pick this option, simply omit the cap field in the API, or leave the cap option unset in the dashboard form.
   - The **[SUPPLY](/03-api-reference/04-important-arguments.md#supply)** cap mode offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined `supply` value. Burned tokens can be re-minted, ensuring the total supply remains constant.
   - The **[COLLAPSING_SUPPLY](/03-api-reference/04-important-arguments.md#collapsing_supply)** cap mode is the most strict. This cap allows the collection owner to mint new tokens as long as the circulating supply does not exceed the `supply` value. However, burning tokens reduces the cap, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
-- **[Royalty Behavior](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token. v3 represents this via the `behavior` field on the token — set `behavior: { type: HAS_ROYALTY, royalties: [...] }`.
+- **[Royalty Behavior](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token. Royalties are expressed via the `behavior` field on the token — set `behavior: { type: HAS_ROYALTY, royalties: [...] }`.
 - **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Add details to your token using key-value pairs. Standard keys like `name` and `description` allow applications to display your content correctly. You can also use the `URI` to link to a JSON file hosting your metadata. For more information, see the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
 
 :::info Learn more about the arguments
@@ -61,10 +61,10 @@ Once your token is created, lets give it a new look by [Adding Metadata](/02-gui
 
 ## Option B. Using the Enjin API & SDKs
 
-In v3, all on-chain actions go through the single `CreateTransaction` mutation. For creating a token, set the `createToken` field on the `transaction` input. `tokenId` is now a flat `BigInt` (no `{ integer: N }` wrapper), and `cap` is optional — omit it to create a token with unlimited supply.
+All on-chain actions go through the single `CreateTransaction` mutation. For creating a token, set the `createToken` field on the `transaction` input. `tokenId` is a flat `BigInt` scalar, and `cap` is optional — omit it to create a token with unlimited supply.
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 <Tabs>

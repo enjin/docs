@@ -93,15 +93,15 @@ Since this request requires a <GlossaryTerm id="transaction" />, it must be sign
 
 ### Option B. Using the Enjin API & SDKs
 
-In v3, batched attributes are split into two discriminator actions on `CreateTransaction`:
+Batched attributes are split into two discriminator actions on `CreateTransaction`:
 
 - `batchSetTokenAttribute` — sets multiple attributes on a single token (`collectionId`, `tokenId`, `attributes`).
 - `batchSetCollectionAttribute` — sets multiple attributes on a collection (`id`, `attributes`).
 
 The example below sets three attributes on a token. To target the collection itself, swap `batchSetTokenAttribute` for `batchSetCollectionAttribute` and replace the `collectionId` / `tokenId` pair with a single `id` field equal to the collection ID.
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 <Tabs>

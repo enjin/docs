@@ -58,8 +58,8 @@ To destroy a token, follow the above instructions for Melting a token, but make 
 
 ### Destroying a collection
 
-:::warning Pending v3 confirmation
-This section is awaiting confirmation from the Enjin team on v3 support — the v3 GraphQL schema currently exposes no `destroyCollection` action. The dashboard wording below describes the v2 flow and **may or may not still be available** in the v3 dashboard. We'll refresh this section once we hear back.
+:::warning Section under review
+The dashboard flow for destroying a collection is being verified — the GraphQL API currently exposes no `destroyCollection` action, so the steps below may not match the current platform. We'll refresh this section once verified.
 :::
 
 :::info To destroy a collection, these requirements must be met:
@@ -84,10 +84,10 @@ Since this request requires a <GlossaryTerm id="transaction" />, it'll need to b
 
 ## Option B. Using the Enjin API & SDKs
 
-In v3, burning is the `burnToken` discriminator action on `CreateTransaction`. The same action handles both "melt some supply" and "destroy the token entirely" — set `removeTokenStorage: true` to destroy.
+Burning is the `burnToken` discriminator action on `CreateTransaction`. The same action handles both "melt some supply" and "destroy the token entirely" — set `removeTokenStorage: true` to destroy.
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 ### Melting token's supply
@@ -459,8 +459,8 @@ Once the transaction is executed, the token will be destroyed and the <GlossaryT
 
 ### Destroying a collection
 
-:::warning Pending v3 confirmation
-The v3 GraphQL schema currently has no `destroyCollection` action on `TransactionInput` and no top-level `DestroyCollection` mutation. Until we hear back from the Enjin team on whether collection destruction is intentionally removed, replaced by another action, or simply not wired up yet, the example below remains as the v2 reference and **will not work against v3**.
+:::warning Section under review
+The GraphQL API currently exposes no `destroyCollection` action on `TransactionInput` and no top-level `DestroyCollection` mutation. The example below is out of date and **will not work against the current Enjin Platform API** — we're confirming the proper flow and will refresh this section once verified.
 :::
 
 :::info To destroy a collection, these requirements must be met:

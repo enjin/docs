@@ -18,7 +18,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 Enjin Blockchain allows you to create customized <GlossaryTerm id="token_id" /> structures. This flexibility enables you to organize your tokens in various ways that suit your needs.
 
-In v3 a token becomes a currency by setting its `behavior` field to `{ type: IS_CURRENCY, name, symbol, decimalCount }`:
+A token becomes a currency by setting its `behavior` field to `{ type: IS_CURRENCY, name, symbol, decimalCount }`:
 
 - **Name:** The token name (e.g. Gold Coins).
 - **Symbol:** A short symbol that represents the token (e.g. GOLD).
@@ -51,8 +51,8 @@ For the time being, you can create currency token via [Option B. Using the Enjin
 
 To create a currency token, use the standard `createToken` action with the `behavior` field set to `{ type: IS_CURRENCY, name, symbol, decimalCount }`. The rest of the input (recipient, collectionId, tokenId, initialSupply, etc.) follows the same shape as a regular [token create](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks).
 
-:::warning Platform v3 SDKs are not yet available
-The C# and C++ SDK examples below still target the Enjin Platform v2 API and **will not work against v3**. This section will be updated once the v3 SDKs ship. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
 :::
 
 <Tabs>
