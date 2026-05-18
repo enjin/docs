@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 One such use-case is the implementation of "Soulbound" tokens. A Soulbound token is bound to a specific address and cannot be transferred out of the wallet it's minted on. This feature can be used to create unique gameplay mechanics, loyalty rewards, and more.
 
 :::note
-Freezing only applies to <GlossaryTerm id="melt" />ing and transfers, which also results in marketplace listings being unpurchasable.
+Freezing only applies to transfers, which also results in marketplace listings being unpurchasable.
 Freezing does not suspend token minting.
 :::
 
@@ -47,15 +47,15 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 ## Option A. Using the Enjin Dashboard
 
 :::tip Applying Freeze/Thaw Actions to Collections and Tokens
-This tutorial illustrates the process of freezing a collection. The same flow applies to freezing or thawing a single token — [open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens) and pick **Freeze** or **Thaw** from its actions menu instead.
+This tutorial illustrates the process of freezing a collection. The same flow applies to freezing or thawing a single token — [Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens) and pick **Freeze Token** or **Thaw Token** from its actions menu instead.
 :::
 
 ### Freezing an entire collection
 
 In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
-**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) on its row, then click the "**Freeze**" button.
+**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) on its row, then click the "**Freeze Collection**" button. In the form that opens up, click on the "**Freeze Collection**" button.
 
-Choose the freeze state, and click on the "**Freeze**" button.
+![The Freeze Collection form](/img/getting-started/v3-freeze-collection-form.png)
 
 The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 

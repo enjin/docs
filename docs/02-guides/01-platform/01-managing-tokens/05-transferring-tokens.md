@@ -28,13 +28,16 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Transfer**".
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Transfer**".
 
 :::info Need to perform multiple transfers?
-The Transfer form has a **+ Add to Batch** button next to **Transfer** — queue several transfers and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
+The Transfer form has a **+ Add to Batch** button — queue several transfers and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
 :::
 
-Fill in the recipient, amount, and other optional arguments in the corresponding fields.
+Fill in the recipient and amount in the corresponding fields.
+
+![The Transfer Token form](/img/getting-started/v3-transfer-token-form.png)
+
 Once you're satisfied with the options, click the "**Transfer**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.

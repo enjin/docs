@@ -250,21 +250,19 @@ The dashboard does not have a top-level **Tokens** page. Tokens are always viewe
 2. Click the collection that contains the token you want to manage.
 3. The collection page lists every token in the collection. Click the **3 vertical dots** (**⋮**) on a token's row to open its action menu — **Mint**, **Transfer**, **Attributes**, **Burn**, **Freeze / Thaw**, and so on.
 
-Most managing-tokens guides describe their dashboard flow assuming you've already navigated to the token this way.
-
-![Placeholder: collection page with the per-token actions menu open](/img/getting-started/v3-collection-tokens-list.png)
+![Collection page with the per-token actions menu open](/img/getting-started/v3-collection-tokens-list.png)
 
 ### Batching transactions {#batching-transactions}
 
-The dashboard can group several actions into a single on-chain transaction. There is no dedicated "Batch" button — instead, every batchable action form has a **+ Add to Batch** button next to its primary CTA:
+The dashboard can group several actions into a single on-chain transaction. Every batchable action form has a **+ Add to Batch** button next to its primary submit button:
 
-![Placeholder: Set Attribute form showing the Set Attribute, + Add to Batch, and Cancel buttons](/img/getting-started/v3-form-add-to-batch.png)
+![Set Attribute form showing the Set Attribute, + Add to Batch, and Cancel buttons](/img/getting-started/v3-form-add-to-batch.png)
 
 Clicking **+ Add to Batch** queues the action instead of submitting it. Repeat for each action you want to bundle.
 
 When you're ready to submit, open the **Batch Queue** panel from the bottom-right corner of the dashboard. The panel lists every queued action with a **Remove** link, lets you pick a **Signing Account** (defaults to the Wallet Daemon), and submits the whole list as a single `CreateBatchTransaction` when you click **Submit Batch**:
 
-![Placeholder: Batch Queue panel with two queued actions and the Submit Batch button](/img/getting-started/v3-batch-queue.png)
+![Batch Queue panel with two queued actions and the Submit Batch button](/img/getting-started/v3-batch-queue.png)
 
 A successful submit produces a single transaction `uuid` on the [Transactions](https://platform.beta.enjin.io/transactions) page — the same shape any other transaction uses, just with multiple actions packed into it.
 

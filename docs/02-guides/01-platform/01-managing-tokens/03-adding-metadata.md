@@ -75,13 +75,15 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 ### Option A. Using the Enjin Dashboard
 
-[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Attributes**".
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Set Attribute**".
 
-:::tip Need to add multiple attributes for a token?
-Each Set Attribute form has a **+ Add to Batch** button next to **Set Attribute** — queue several attributes and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
+:::info Need to add multiple attributes for a token?
+The Set Attribute form has a **+ Add to Batch** button — queue several attributes and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
 :::
 
-To add / edit an attribute, select the "**Set**" option, type in the "**Key**" that you wish to add / edit, and its "**Value**" in the corresponding text fields.
+Type in the "**Key**" that you wish to add, and its "**Value**" in the corresponding text fields.
+
+![The Set Attribute form](/img/getting-started/v3-set-attribute-form.png)
 
 Once you're satisfied with the options, click the "**Set Attribute**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 

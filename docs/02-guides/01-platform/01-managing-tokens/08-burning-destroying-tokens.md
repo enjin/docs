@@ -27,9 +27,11 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ### Melting token's supply
 
-[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Burn**".
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Burn Token**".
 
-Insert the amount of tokens to melt, and click on the "**Burn**" button.
+![The Burn Token form](/img/getting-started/v3-burn-token-form.png)
+
+Insert the amount of tokens to melt, and click on the "**Burn Token**" button.
 
 The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
@@ -43,7 +45,7 @@ Since this request requires a <GlossaryTerm id="transaction" />, it must be sign
 :::info  To destroy a token, these requirements must be met:
 - The caller is the collection owner
 - The token has no attributes
-  - If the token has attributes, you can remove the attributes by clicking the **3 vertical dots** (**⋮**) next to the token, followed by "**Attributes**" and selecting "**Remove All"**.
+  - If the token has attributes, you can remove the attributes by clicking the **3 vertical dots** (**⋮**) next to the token, followed by "**Remove Attribute**", selecting the attribute to remove and submitting the transaction. This needs to be done for all attributes.
 - The token has 0 supply
   - If the token has supply, you can follow the above guide [Burning token's supply](#melting-tokens-supply) to remove all token supply (as long as you own all of the token's supply)
   Note - you can remove the supply and destroy the token in the same melt transaction.
@@ -53,7 +55,7 @@ Melting a token and destroying it are two different actions.
 The action demonstrated above is the action of melting a token, which decreases it's circulating supply.
 While destroying a token removes the token from the blockchain, and retrieves the <GlossaryTerm id="storage_deposit" /> to the collection owner.
 
-To destroy a token, follow the above instructions for Melting a token, but make sure to tick the `Remove Token Storage` box.
+To destroy a token, follow the above instructions for Melting a token, but make sure to tick the `Remove Token Storage` checkbox.
 
 ### Destroying a collection
 
@@ -64,7 +66,7 @@ The dashboard flow for destroying a collection is being verified — the GraphQL
 :::info To destroy a collection, these requirements must be met:
 - The caller is the collection owner
 - The collection has no attributes
-  - If the collection has attributes, you can remove the attributes by clicking the **3 vertical dots** (**⋮**) next to the collection, followed by "**Attributes**" and selecting "**Remove All"**.
+  - If the collection has attributes, you can remove the attributes by clicking the **3 vertical dots** (**⋮**) next to the collection, followed by "**Remove Attribute**", selecting the attribute to remove and submitting the transaction. This needs to be done for all attributes.
 - The collection has 0 tokens **in storage**
   - If the collection has some tokens, you can follow the above guide [Destroying a token and removing it from the Blockchain](#destroying-a-token-and-removing-it-from-the-blockchain) for each of the tokens in the collection, to destroy them all.
 :::

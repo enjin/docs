@@ -83,7 +83,7 @@ mutation CreateCurrencyToken {
       createToken: {
         recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"  # recipient of the initial supply
         collectionId: 2406         # collection to mint into
-        tokenId: 0                 # the new token ID
+        tokenId: 1                 # the new token ID
         initialSupply: 1           # initial supply to mint
         listingForbidden: false
         infusion: 0
@@ -109,7 +109,7 @@ mutation CreateCurrencyToken {
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
--d '{"query":"mutation CreateCurrencyToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $initialSupply: BigInt!, $behavior: TokenBehaviorInput!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      createToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        initialSupply: $initialSupply\r\n        listingForbidden: false\r\n        infusion: 0\r\n        anyoneCanInfuse: false\r\n        behavior: $behavior\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":2406,"tokenId":0,"initialSupply":1,"behavior":{"type":"IS_CURRENCY","name":"Gold Coins","symbol":"GOLD","decimalCount":2}}}'
+-d '{"query":"mutation CreateCurrencyToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $initialSupply: BigInt!, $behavior: TokenBehaviorInput!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      createToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        initialSupply: $initialSupply\r\n        listingForbidden: false\r\n        infusion: 0\r\n        anyoneCanInfuse: false\r\n        behavior: $behavior\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":2406,"tokenId":1,"initialSupply":1,"behavior":{"type":"IS_CURRENCY","name":"Gold Coins","symbol":"GOLD","decimalCount":2}}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -125,7 +125,7 @@ var tokenMetadata = new TokenMetadataInput()
 
 // Define the token parameters
 var tokenParams = new CreateTokenParams()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0)) //Set the token ID
+    .SetTokenId(new EncodableTokenIdInput().SetInteger(1)) //Set the token ID
     .SetInitialSupply(1) //Mint initial supply
     .SetCap(new TokenMintCap().SetType(TokenMintCapType.Infinite)) //Define supply type
     .SetMetadata(tokenMetadata); //Set the token metadata
@@ -201,7 +201,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
     variables: {
       recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
       collectionId: 2406,
-      tokenId: 0,
+      tokenId: 1,
       initialSupply: 1,
       behavior: { type: "IS_CURRENCY", name: "Gold Coins", symbol: "GOLD", decimalCount: 2 }
     }
@@ -249,7 +249,7 @@ axios.post('https://platform.beta.enjin.io/graphql', {
   variables: {
     recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
     collectionId: 2406,
-    tokenId: 0,
+    tokenId: 1,
     initialSupply: 1,
     behavior: { type: "IS_CURRENCY", name: "Gold Coins", symbol: "GOLD", decimalCount: 2 }
   }
@@ -298,7 +298,7 @@ mutation CreateCurrencyToken(
 variables = {
   'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f',
   'collectionId': 2406,
-  'tokenId': 0,
+  'tokenId': 1,
   'initialSupply': 1,
   'behavior': {'type': 'IS_CURRENCY', 'name': 'Gold Coins', 'symbol': 'GOLD', 'decimalCount': 2},
 }

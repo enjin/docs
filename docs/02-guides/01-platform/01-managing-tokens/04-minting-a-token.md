@@ -10,10 +10,6 @@ import TabItem from '@theme/TabItem';
 
 Now that you've got your tokens created, it's time to start minting them into player wallets as they are earned.
 
-We call this "Play-to-Mint," giving players the power to create tokens themselves, which feels more rewarding.
-
-Plus, it keeps your processes more efficient by delivering tokens right to players' wallets without any unnecessary `transfer` transactions.
-
 :::info What you'll need:
 - Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
 If the token has <GlossaryTerm id="enj_infusion" />, each new unit minted will require the same amount of ENJ to be infused.
@@ -29,9 +25,10 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-[Open the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**) on its row, then click "**Mint**".
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Mint**".
+Set the recipient and the amount in the corresponding fields, and click on "**Mint Token**".
 
-Set the recipient and the amount in the corresponding fields, and click on "**Mint**".
+![The Mint Token form](/img/getting-started/v3-mint-token-form.png)
 
 The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
