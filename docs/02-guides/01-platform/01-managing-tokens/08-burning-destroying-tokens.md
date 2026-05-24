@@ -67,9 +67,9 @@ To destroy a token, follow the above instructions for Melting a token, but make 
   - If the collection has some tokens, you can follow the above guide [Destroying a token and removing it from the Blockchain](#destroying-a-token-and-removing-it-from-the-blockchain) for each of the tokens in the collection, to destroy them all.
 :::
 
-In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**", **locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click "**Destroy**".
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**", **locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click "**Destroy Collection**".
 
-Confirm by clicking the "**Destroy**" button.
+Confirm by clicking the "**Destroy Collection**" button.
 
 A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
