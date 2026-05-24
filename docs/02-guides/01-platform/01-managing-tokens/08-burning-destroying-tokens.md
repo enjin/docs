@@ -59,10 +59,6 @@ To destroy a token, follow the above instructions for Melting a token, but make 
 
 ### Destroying a collection
 
-:::warning Section under review
-The dashboard flow for destroying a collection is being verified — the GraphQL API currently exposes no `destroyCollection` action, so the steps below may not match the current platform. We'll refresh this section once verified.
-:::
-
 :::info To destroy a collection, these requirements must be met:
 - The caller is the collection owner
 - The collection has no attributes
@@ -71,17 +67,16 @@ The dashboard flow for destroying a collection is being verified — the GraphQL
   - If the collection has some tokens, you can follow the above guide [Destroying a token and removing it from the Blockchain](#destroying-a-token-and-removing-it-from-the-blockchain) for each of the tokens in the collection, to destroy them all.
 :::
 
-In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
-**Locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click the "**Destroy**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**", **locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click "**Destroy**".
 
-Then, confirm by clicking the "**Destroy**" button
+Confirm by clicking the "**Destroy**" button.
 
-The Transaction Request will then appear in the "**Transactions**" menu
+A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ## Option B. Using the Enjin API & SDKs
 
@@ -460,27 +455,31 @@ Once the transaction is executed, the token will be destroyed and the <GlossaryT
 
 ### Destroying a collection
 
-:::warning Section under review
-The GraphQL API currently exposes no `destroyCollection` action on `TransactionInput` and no top-level `DestroyCollection` mutation. The example below is out of date and **will not work against the current Enjin Platform API** — we're confirming the proper flow and will refresh this section once verified.
-:::
-
 :::info To destroy a collection, these requirements must be met:
 - The caller is the collection owner
 - The collection has no attributes
-  - If the collection has attributes, they can be removed using the `RemoveAllAttributes` mutation
+  - If the collection has attributes, they can be removed using the `removeAllCollectionAttributes` action (see [Adding Metadata](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md#option-b-using-the-enjin-api--sdks)).
 - The collection has 0 tokens **in storage**
-  - If the collection has some tokens, you can the above instructions for [Destroying a token](#destroying-a-token-and-removing-it-from-the-blockchain-1) for each of the tokens in the collection, to destroy them all.
+  - If the collection has some tokens, follow the above instructions for [Destroying a token](#destroying-a-token-and-removing-it-from-the-blockchain-1) for each of the tokens in the collection, to destroy them all.
 :::
+
+Destroying a collection is the `destroyCollection` discriminator action on `CreateTransaction`. Pass the collection ID as `id`:
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation DestroyCollection {
-  DestroyCollection(
-    collectionId: 68844 #Specify the Collection ID
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      destroyCollection: {
+        id: 68844
+      }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -490,8 +489,8 @@ mutation DestroyCollection {
 ```
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation DestroyCollection($collection_id: BigInt!) {\r\n  DestroyCollection(collectionId: $collection_id) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation DestroyCollection($id: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { destroyCollection: { id: $id } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"id":68844}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -533,22 +532,24 @@ Snippet In Progress
 ```javascript
 fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation DestroyCollection($collection_id: BigInt!){
-        DestroyCollection(
-          collectionId: $collection_id
+      mutation DestroyCollection($id: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            destroyCollection: { id: $id }
+          }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105 //Specify the collection ID
-    }
+    variables: { id: 68844 }
   }),
 })
 .then(response => response.json())
@@ -561,21 +562,23 @@ const axios = require('axios');
 
 axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation DestroyCollection($collection_id: BigInt!){
-      DestroyCollection(
-        collectionId: $collection_id
+    mutation DestroyCollection($id: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          destroyCollection: { id: $id }
+        }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105 //Specify the collection ID
-  }
+  variables: { id: 68844 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -586,28 +589,30 @@ axios.post('https://platform.beta.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation DestroyCollection($collection_id: BigInt!){
-  DestroyCollection(
-    collectionId: $collection_id
+mutation DestroyCollection($id: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      destroyCollection: { id: $id }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105 #Specify the collection ID
-}
+variables = {'id': 68844}
 
 response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-Once the transaction is executed, the collection will be destroyed.
+Once the transaction is executed, the collection will be destroyed and the <GlossaryTerm id="storage_deposit" /> will be retrieved.
