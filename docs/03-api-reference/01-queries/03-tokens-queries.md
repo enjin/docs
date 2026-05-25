@@ -1,7 +1,7 @@
 ---
 title: "Tokens"
 slug: "tokens"
-description: "Query the Enjin API to retrieve detailed information about blockchain tokens, including ownership, metadata, and transaction history."
+description: "Query the Enjin API for tokens: supply, cap, behavior, attributes, metadata, and token-group membership."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,82 +16,55 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 `https://platform.beta.enjin.io/graphql`
 :::
 
-This is a detailed reference guide that explains the most commonly used operations.
+A `Token` is an individual asset (fungible or non-fungible) inside a [collection](/03-api-reference/01-queries/02-collections-queries.md). Tokens carry their supply, cap, attributes, metadata, behavior (currency / royalty), and any token-group memberships.
 
-## Get Token
+## GetToken
 
-The `GetToken` query enables you to retrieve detailed information about a specific token from a collection. It requires the collectionId and tokenId parameters to access attributes, account details, and metadata related to the token.
-
-You can utilize the GetToken query for various purposes, including:
-
-- Retrieving Token Information: Get detailed information about a specific token, including supply, cap, and freeze status.
-- Exploring Accounts: Explore accounts that hold the token, check their balances, and freeze status.
-- Context of Collection: Obtain context about the collection to which the token belongs.
-- Retrieving Attributes: Access attributes associated with the collection.
-- Metadata Retrieval: Retrieve metadata associated with the token, such as name, color, or other descriptive information.
+Returns a single token by either its canonical `id` (`"<collectionId>-<tokenId>"`) or by `collectionId` + `tokenId`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetToken {
   GetToken(
+    network: ENJIN
+    chain: MATRIX
     collectionId: 7153
-    tokenId: {integer:10}
+    tokenId: 10
   ) {
+    id
     tokenId
     supply
-    cap
-    capSupply
     isFrozen
-    minimumBalance
-    unitPrice
-    mintDeposit
-    attributeCount
-    nonFungible
-    metadata
-    collection {
-      collectionId
+    isNonFungible
+    isListingForbidden
+    infusion
+    anyoneCanInfuse
+    cap {
+      type
+      supply
+    }
+    behavior {
+      __typename
+      beneficiaries {
+        accountId
+        percentage
+      }
     }
     attributes {
       key
       value
     }
-    accounts {
-      totalCount
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
-      }
-      edges {
-        cursor
-        node {
-          balance
-          reservedBalance
-          isFrozen
-          wallet {
-            account {
-              publicKey
-              address
-            }
-          }
-          approvals {
-            amount
-            expiration
-            wallet {
-              account {
-                publicKey
-                address
-              }
-            }
-          }
-          namedReserves {
-            pallet
-            amount
-          }
-        }
-      }
+    metadata {
+      name
+      description
+    }
+    collection {
+      id
+    }
+    tokenGroupTokens {
+      tokenGroupId
+      position
     }
   }
 }
@@ -102,48 +75,30 @@ query GetToken {
 {
   "data": {
     "GetToken": {
+      "id": "7153-10",
       "tokenId": "10",
       "supply": "1",
-      "cap": "SINGLE_MINT",
-      "capSupply": null,
       "isFrozen": false,
-      "minimumBalance": "1",
-      "unitPrice": "10000000000000000",
-      "mintDeposit": "20000000000000000",
-      "attributeCount": 0,
-      "nonFungible": true,
-      "metadata": null,
-      "collection": {
-        "collectionId": "7153"
+      "isNonFungible": true,
+      "isListingForbidden": false,
+      "infusion": "0",
+      "anyoneCanInfuse": false,
+      "cap": {
+        "type": "SUPPLY",
+        "supply": "1"
       },
-      "attributes": [],
-      "accounts": {
-        "totalCount": 1,
-        "pageInfo": {
-          "hasNextPage": false,
-          "hasPreviousPage": false,
-          "startCursor": "",
-          "endCursor": ""
-        },
-        "edges": [
-          {
-            "cursor": "eyJpZCI6NzgxOCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "balance": "1",
-              "reservedBalance": "0",
-              "isFrozen": false,
-              "wallet": {
-                "account": {
-                  "publicKey": "0x985e66eaff2d50e6635942b20efb5690191c5da56adc3a2720e64b8bf534d050",
-                  "address": "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"
-                }
-              },
-              "approvals": [],
-              "namedReserves": []
-            }
-          }
-        ]
-      }
+      "behavior": null,
+      "attributes": [
+        { "key": "uri", "value": "https://example.com/metadata/10.json" }
+      ],
+      "metadata": {
+        "name": "Legendary Sword #10",
+        "description": null
+      },
+      "collection": { "id": "7153" },
+      "tokenGroupTokens": [
+        { "tokenGroupId": "60", "position": 0 }
+      ]
     }
   }
 }
@@ -151,98 +106,33 @@ query GetToken {
   </TabItem>
 </Tabs>
 
+`Token.behavior.__typename` distinguishes currency tokens (`IS_CURRENCY`) from royalty-bearing tokens (`HAS_ROYALTY`); for plain tokens with no special behavior the whole field is `null`.
+
 ## GetTokens
 
-The `GetTokens` query allows you to retrieve an array of token data from a collection, making it suitable for batch retrieval and data analysis. You can specify filtering criteria to target specific tokens within the collection.
-
-You can utilize the `GetTokens` query for various purposes, including:
-
-- **Bulk Token Retrieval**: Retrieve information about multiple tokens within a collection, making it efficient for displaying token lists or galleries.
-- **Filtered Token Retrieval**: Apply filters to obtain specific tokens based on criteria like token ID, collection, or attributes.
-- **Marketplace Integration**: Fetch token data for use in a marketplace or trading platform to display available tokens and their details.
-- **Data Analysis**: Analyze token data for insights, statistics, or reporting across a collection.
-- **User Experience Enhancement**: Enhance the user experience by providing a comprehensive view of tokens within a collection.
-
-
-:::warning Reading Third-Party Tokens
-Please note that the Enjin Platform Cloud is set up to show only the collections and tokens that were created via the auth-ed Enjin Platform Cloud account.\
-To get a token that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.\
-Learn more about tracking a collection in the [Tracking Collections section](/02-guides/01-platform/01-managing-tokens/09-fetching-token-holders.md#tracking-collections).
-:::
+Returns a paginated list of tokens scoped to a single `collectionId`. Optionally filter to specific `tokenIds`. Pagination is offset-based — increment `page` until the returned list is empty.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetTokens {
   GetTokens(
+    network: ENJIN
+    chain: MATRIX
     collectionId: 7153
-    tokenIds: [{integer:10}]
+    limit: 15
+    page: 1
   ) {
-    edges {
-      cursor
-      node {
-        tokenId
-        supply
-        cap
-        capSupply
-        isFrozen
-        minimumBalance
-        unitPrice
-        mintDeposit
-        attributeCount
-        collection {
-          collectionId
-        }
-        attributes {
-          key
-          value
-        }
-        accounts {
-          totalCount
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-          edges {
-            cursor
-            node {
-              balance
-              reservedBalance
-              isFrozen
-              wallet {
-                account {
-                  publicKey
-                  address
-                }
-              }
-              approvals {
-                amount
-                expiration
-                wallet {
-                  account {
-                    publicKey
-                    address
-                  }
-                }
-              }
-              namedReserves {
-                pallet
-                amount
-              }
-            }
-          }
-        }
-        nonFungible
-      }
+    id
+    tokenId
+    supply
+    isNonFungible
+    cap {
+      type
+      supply
     }
-    totalCount
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
+    metadata {
+      name
     }
   }
 }
@@ -252,65 +142,46 @@ query GetTokens {
 ```json
 {
   "data": {
-    "GetTokens": {
-      "edges": [
-        {
-          "cursor": "eyJjb2xsZWN0aW9uX2lkIjo0OTk4LCJfcG9pbnRzVG9OZXh0SXRlbXMiOnRydWV9",
-          "node": {
-            "tokenId": "10",
-            "supply": "1",
-            "cap": "SINGLE_MINT",
-            "capSupply": null,
-            "isFrozen": false,
-            "minimumBalance": "1",
-            "unitPrice": "10000000000000000",
-            "mintDeposit": "20000000000000000",
-            "attributeCount": 0,
-            "collection": {
-              "collectionId": "7153"
-            },
-            "attributes": [],
-            "accounts": {
-              "totalCount": 1,
-              "pageInfo": {
-                "hasNextPage": false,
-                "hasPreviousPage": false,
-                "startCursor": "",
-                "endCursor": ""
-              },
-              "edges": [
-                {
-                  "cursor": "eyJpZCI6NzgxOCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "balance": "1",
-                    "reservedBalance": "0",
-                    "isFrozen": false,
-                    "wallet": {
-                      "account": {
-                        "publicKey": "0x985e66eaff2d50e6635942b20efb5690191c5da56adc3a2720e64b8bf534d050",
-                        "address": "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"
-                      }
-                    },
-                    "approvals": [],
-                    "namedReserves": []
-                  }
-                }
-              ]
-            },
-            "nonFungible": true
-          }
-        }
-      ],
-      "totalCount": 1,
-      "pageInfo": {
-        "hasNextPage": false,
-        "hasPreviousPage": false,
-        "startCursor": "",
-        "endCursor": ""
+    "GetTokens": [
+      {
+        "id": "7153-6",
+        "tokenId": "6",
+        "supply": "1",
+        "isNonFungible": true,
+        "cap": { "type": "SUPPLY", "supply": "1" },
+        "metadata": { "name": "Legendary Sword #6" }
+      },
+      {
+        "id": "7153-10",
+        "tokenId": "10",
+        "supply": "1",
+        "isNonFungible": true,
+        "cap": { "type": "SUPPLY", "supply": "1" },
+        "metadata": { "name": "Legendary Sword #10" }
       }
-    }
+    ]
   }
 }
 ```
   </TabItem>
 </Tabs>
+
+### Filtering to specific token ids
+
+Pass `tokenIds: [...]` to restrict the result to a known set:
+
+```graphql
+query GetTokens {
+  GetTokens(
+    network: ENJIN
+    chain: MATRIX
+    collectionId: 7153
+    tokenIds: [6, 10]
+    limit: 15
+    page: 1
+  ) {
+    tokenId
+    supply
+  }
+}
+```
