@@ -24,7 +24,7 @@ query GetListing {
   GetListing(
     network: ENJIN
     chain: MATRIX
-    id: "8bd40957579f61b8a04ddaf7c86fbd51329e88f5ec735e910a320169377db161"
+    id: "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d"
   ) {
     id
     seller {
@@ -52,15 +52,15 @@ query GetListing {
 {
   "data": {
     "GetListing": {
-      "id": "8bd40957579f61b8a04ddaf7c86fbd51329e88f5ec735e910a320169377db161",
-      "seller": { "address": "efRCJAEyn5Rp7SX9gvoJEAG7y1td3PZzRhpJYEeofpGVj3ouc" },
-      "makeAsset": { "id": "3484-2", "tokenId": "2" },
+      "id": "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d",
+      "seller": { "address": "efS3yL43XUmqwU2ovUZjjdzfo4eQk5dR7pbUf4dUFxPxqKh2V" },
+      "makeAsset": { "id": "2967-106338239662793367710728619925308440576", "tokenId": "106338239662793367710728619925308440576" },
       "takeAsset": null,
-      "amount": "72",
-      "price": "12000000000000000000",
-      "minTakeValue": "807840000000000000000",
+      "amount": "2",
+      "price": "620000000000000000000",
+      "minTakeValue": "1209000000000000000000",
       "isActive": true,
-      "highestPrice": "12000000000000000000"
+      "highestPrice": "620000000000000000000"
     }
   }
 }
@@ -85,7 +85,7 @@ query GetListings {
   GetListings(
     network: ENJIN
     chain: MATRIX
-    collectionId: 3484
+    collectionId: 2967
     limit: 15
     page: 1
   ) {
@@ -109,19 +109,19 @@ query GetListings {
   "data": {
     "GetListings": [
       {
-        "id": "8bd40957579f61b8a04ddaf7c86fbd51329e88f5ec735e910a320169377db161",
-        "seller": { "address": "efRCJAEyn5Rp7SX9gvoJEAG7y1td3PZzRhpJYEeofpGVj3ouc" },
-        "makeAsset": { "tokenId": "2" },
-        "amount": "72",
-        "price": "12000000000000000000",
+        "id": "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d",
+        "seller": { "address": "efS3yL43XUmqwU2ovUZjjdzfo4eQk5dR7pbUf4dUFxPxqKh2V" },
+        "makeAsset": { "tokenId": "106338239662793367710728619925308440576" },
+        "amount": "2",
+        "price": "620000000000000000000",
         "isActive": true
       },
       {
-        "id": "f3e76d1413e30548204dca8d0a9559dc981ce60e70b49fca4d031f7b7842a3c4",
-        "seller": { "address": "efUfmhm2rcTtVr4ajneB71qbfDZ1EkyYW7xRc6fhuRh3Tg4L1" },
-        "makeAsset": { "tokenId": "4" },
-        "amount": "3",
-        "price": "55000000000000000000",
+        "id": "41fbe28706d544a1afc39d894723d98d8e7922a6be77a8545af23ec2fb998341",
+        "seller": { "address": "efTwg56JrsGcDomiouuTfPybQuRNYX53XBHe6JrgxMvdDtkFw" },
+        "makeAsset": { "tokenId": "107002853660685728525072975374659359309" },
+        "amount": "1",
+        "price": "77000000000000000000",
         "isActive": true
       }
     ]
@@ -138,8 +138,8 @@ query GetListings {
   GetListings(
     network: ENJIN
     chain: MATRIX
-    collectionId: 3484
-    tokenIds: [2, 4]
+    collectionId: 2967
+    tokenIds: [106338239662793367710728619925308440576, 107002853660685728525072975374659359309]
     limit: 15
     page: 1
   ) {

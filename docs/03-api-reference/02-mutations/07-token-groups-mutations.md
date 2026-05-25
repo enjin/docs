@@ -25,7 +25,7 @@ mutation CreateTokenGroup {
     network: ENJIN
     chain: MATRIX
     transaction: {
-      createTokenGroup: { collectionId: 3484 }
+      createTokenGroup: { collectionId: 2967 }
     }
   ) {
     uuid
@@ -62,7 +62,7 @@ mutation DestroyTokenGroup {
     network: ENJIN
     chain: MATRIX
     transaction: {
-      destroyTokenGroup: { id: 60 }
+      destroyTokenGroup: { id: 694 }
     }
   ) {
     uuid
@@ -87,9 +87,9 @@ mutation AddTokenToGroup {
     chain: MATRIX
     transaction: {
       addTokenToGroup: {
-        collectionId: 3484
-        tokenId: 107335160659631965554526087350803497388
-        groupId: 60
+        collectionId: 2967
+        tokenId: 107002853660685728525072975374659356720
+        groupId: 694
       }
     }
   ) {
@@ -115,9 +115,9 @@ mutation RemoveTokenFromGroup {
     chain: MATRIX
     transaction: {
       removeTokenFromGroup: {
-        collectionId: 3484
-        tokenId: 107335160659631965554526087350803497388
-        groupId: 60
+        collectionId: 2967
+        tokenId: 107002853660685728525072975374659356720
+        groupId: 694
       }
     }
   ) {
@@ -143,9 +143,9 @@ mutation SetTokenGroups {
     chain: MATRIX
     transaction: {
       setTokenGroups: {
-        collectionId: 3484
-        tokenId: 107335160659631965554526087350803497388
-        groupIds: [60, 63]
+        collectionId: 2967
+        tokenId: 107002853660685728525072975374659356720
+        groupIds: [694, 692]
       }
     }
   ) {
@@ -171,9 +171,9 @@ mutation SetTokenGroupAttribute {
     chain: MATRIX
     transaction: {
       setTokenGroupAttribute: {
-        id: 60
+        id: 694
         key: "uri"
-        value: "https://example.com/metadata/token-groups/clan-tag.json"
+        value: "https://example.com/metadata/token-groups/epochrome-sword.json"
       }
     }
   ) {
@@ -199,7 +199,7 @@ mutation RemoveTokenGroupAttribute {
     chain: MATRIX
     transaction: {
       removeTokenGroupAttribute: {
-        id: 60
+        id: 694
         key: "uri"
       }
     }
@@ -221,13 +221,13 @@ When you create a new token via [`createToken`](/03-api-reference/02-mutations/0
 transaction: {
   createToken: {
     recipient: "efRecipientAddress"
-    collectionId: 3484
+    collectionId: 2967
     tokenId: 12345
     initialSupply: 1
     listingForbidden: false
     infusion: 0
     anyoneCanInfuse: false
-    groups: [60]
+    groups: [694]
   }
 }
 ```

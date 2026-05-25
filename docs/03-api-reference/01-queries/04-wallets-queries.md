@@ -61,11 +61,11 @@ query GetAccount {
       "balance": "17500000000000000000",
       "tokens": [
         {
-          "id": "3484-2",
-          "tokenId": "2",
+          "id": "2967-107002853660685728525072975374659356720",
+          "tokenId": "107002853660685728525072975374659356720",
           "isNonFungible": false,
-          "collection": { "id": "3484" },
-          "metadata": { "name": "[MvB] Sigil" }
+          "collection": { "id": "2967" },
+          "metadata": { "name": "Epochrome Sword" }
         }
       ]
     }

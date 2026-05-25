@@ -35,7 +35,7 @@ mutation CreateCollection {
           { address: "efRoyaltyBeneficiary", percentage: 5.0 }
         ]
         attributes: [
-          { key: "name", value: "Multiverse Brotherhood" }
+          { key: "name", value: "The Multiverse" }
           { key: "uri",  value: "https://example.com/metadata/collection.json" }
         ]
         explicitRoyaltyCurrencies: [

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 `https://platform.beta.enjin.io/graphql`
 :::
 
-A **token group** is an on-chain set of tokens within a single collection. Each token can belong to zero or more groups; each group can hold many tokens. Groups make it easier to organise large collections in marketplaces and games — for example, you might create a "Legendary Swords" group inside a `Multiverse Brotherhood` collection and grant in-game utility to anyone holding a token from that group.
+A **token group** is an on-chain set of tokens within a single collection. Each token can belong to zero or more groups; each group can hold many tokens. Groups make it easier to organise large collections in marketplaces and games — for example, the `Epochrome Sword` group inside Enjin's `The Multiverse` collection bundles every Epochrome Sword variant together so games can grant in-game utility to anyone holding any one of them.
 
 There is no dedicated `GetTokenGroup` root query. Read groups via the two sides they're related to:
 
@@ -28,7 +28,7 @@ Use [`GetCollection`](/03-api-reference/01-queries/02-collections-queries.md#get
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetCollectionGroups {
-  GetCollection(network: ENJIN, chain: MATRIX, id: 3484) {
+  GetCollection(network: ENJIN, chain: MATRIX, id: 2967) {
     id
     tokenGroups {
       id
@@ -54,20 +54,20 @@ query GetCollectionGroups {
 {
   "data": {
     "GetCollection": {
-      "id": "3484",
+      "id": "2967",
       "tokenGroups": [
         {
-          "id": "60",
+          "id": "694",
           "attributes": [
-            { "key": "uri", "value": "https://example.com/metadata/token-groups/clan-tag.json" }
+            { "key": "uri", "value": "https://example.com/metadata/token-groups/epochrome-sword.json" }
           ],
           "metadata": {
-            "name": "[MvB] Clan Tag",
+            "name": "Epochrome Sword",
             "description": null
           },
           "tokenGroupTokens": [
-            { "tokenId": "3484-107335160659631965554526087350803497388", "position": 0 },
-            { "tokenId": "3484-107335160659631965554526087350803497398", "position": 0 }
+            { "tokenId": "2967-107002853660685728525072975374659356720", "position": 0 },
+            { "tokenId": "2967-107002853660685728525072975374659356721", "position": 0 }
           ]
         }
       ]
@@ -95,7 +95,7 @@ query GetTokenGroups {
   GetToken(
     network: ENJIN
     chain: MATRIX
-    id: "3484-107335160659631965554526087350803497388"
+    id: "2967-107002853660685728525072975374659356720"
   ) {
     id
     tokenId
@@ -118,16 +118,16 @@ query GetTokenGroups {
 {
   "data": {
     "GetToken": {
-      "id": "3484-107335160659631965554526087350803497388",
-      "tokenId": "107335160659631965554526087350803497388",
+      "id": "2967-107002853660685728525072975374659356720",
+      "tokenId": "107002853660685728525072975374659356720",
       "tokenGroupTokens": [
         {
-          "tokenGroupId": "60",
+          "tokenGroupId": "694",
           "position": 0,
           "tokenGroup": {
-            "id": "60",
+            "id": "694",
             "metadata": {
-              "name": "[MvB] Clan Tag"
+              "name": "Epochrome Sword"
             }
           }
         }
@@ -141,10 +141,10 @@ query GetTokenGroups {
 
 ## Checking whether a wallet holds any token from a specific group
 
-There's no single-query path for this — the v3 API doesn't expose a per-(account, group) join. The pattern is:
+There's no single-query path for this yet — the API doesn't expose a per-(account, group) join. The pattern is:
 
 1. `GetAccount(address:)` → read the wallet's `tokens` list.
 2. For each held token (or for the tokens you care about), select `tokenGroupTokens { tokenGroupId }`.
 3. Check whether the target group id appears.
 
-Alternatively, since the platform may evolve this surface, you can read [`Collection.tokenGroups[].tokenGroupTokens`](#reading-all-groups-in-a-collection) once and cache it, then intersect against the wallet's token ids.
+Alternatively, you can read [`Collection.tokenGroups[].tokenGroupTokens`](#reading-all-groups-in-a-collection) once and cache it, then intersect against the wallet's token ids.

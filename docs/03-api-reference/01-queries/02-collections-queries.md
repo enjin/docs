@@ -21,7 +21,7 @@ Returns a single collection by id.
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetCollection {
-  GetCollection(network: ENJIN, chain: MATRIX, id: 3484) {
+  GetCollection(network: ENJIN, chain: MATRIX, id: 2967) {
     id
     owner {
       address
@@ -66,14 +66,14 @@ query GetCollection {
 {
   "data": {
     "GetCollection": {
-      "id": "3484",
+      "id": "2967",
       "owner": {
-        "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y"
+        "address": "efPvNL3eGKd82cwQ9SeV1fyuiwDMM5wkrW5EoAPF42kvDJgG1"
       },
       "attributes": [],
       "metadata": {
-        "name": "Multiverse Brotherhood",
-        "description": null
+        "name": "The Multiverse",
+        "description": "Use these items in 10+ games. Find out more at enjin.io/multiverse"
       },
       "mintPolicy": {
         "forceCollapsingSupply": false,
@@ -88,8 +88,9 @@ query GetCollection {
       },
       "pendingTransfer": null,
       "tokenGroups": [
-        { "id": "60", "metadata": { "name": "[MvB] Clan Tag" } },
-        { "id": "63", "metadata": { "name": "Multiverse Brotherhood ©" } }
+        { "id": "694", "metadata": { "name": "Epochrome Sword" } },
+        { "id": "695", "metadata": { "name": "Pegasoid Steed" } },
+        { "id": "700", "metadata": { "name": "Soulshift Armor" } }
       ]
     }
   }
@@ -111,7 +112,7 @@ query GetCollections {
   GetCollections(
     network: ENJIN
     chain: MATRIX
-    ids: [3484, 7153]
+    ids: [2967, 7153]
   ) {
     id
     owner {
@@ -134,9 +135,9 @@ query GetCollections {
   "data": {
     "GetCollections": [
       {
-        "id": "3484",
-        "owner": { "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y" },
-        "metadata": { "name": "Multiverse Brotherhood" },
+        "id": "2967",
+        "owner": { "address": "efPvNL3eGKd82cwQ9SeV1fyuiwDMM5wkrW5EoAPF42kvDJgG1" },
+        "metadata": { "name": "The Multiverse" },
         "mintPolicy": { "forceCollapsingSupply": false, "maxTokenCount": null }
       },
       {
