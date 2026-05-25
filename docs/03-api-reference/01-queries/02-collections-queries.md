@@ -1,7 +1,7 @@
 ---
 title: "Collections"
 slug: "collections"
-description: "Query the Enjin API to retrieve data about collections, including metadata and token information within a collection."
+description: "Query the Enjin API for collections: metadata, policies, token groups, and pending transfers."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -16,83 +16,50 @@ For the most up-to-date information, refer to the [API Reference](/03-api-refere
 `https://platform.beta.enjin.io/graphql`
 :::
 
-This is a detailed reference guide that explains the most commonly used operations.
+`Collection` is the parent resource for a set of related tokens. A collection carries its mint, market, and transfer policies, its on-chain attributes, and any token groups defined within it. Individual tokens within a collection are read separately via [`GetTokens`](/03-api-reference/01-queries/03-tokens-queries.md#gettokens).
 
-## Get Collection
+## GetCollection
 
-The `GetCollection` query allows you to retrieve detailed information about a specific collection by providing its `collectionId`. This information includes collection attributes, token details, and associated accounts.
-
-:::warning Reading Third-Party Collections
-Please note that the Enjin Platform Cloud is set up to show only the collections and tokens that were created via the auth-ed Enjin Platform Cloud account.\
-To get a collection that was created elsewhere (via a different Enjin Platform Cloud account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.\
-Learn more about tracking a collection in the [Tracking Collections section](/02-guides/01-platform/01-managing-tokens/09-fetching-token-holders.md#tracking-collections).
-:::
+Returns a single collection by id.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetCollection {
-  GetCollection(collectionId: 7153) {
-    collectionId
-    maxTokenCount
-    maxTokenSupply
-    forceSingleMint
-    frozen
-    network
+  GetCollection(network: ENJIN, chain: MATRIX, id: 3484) {
+    id
     owner {
-      account {
-        publicKey
-        address
-      }
+      address
     }
     attributes {
       key
       value
     }
-    tokens {
-      edges {
-        cursor
-        node {
-          tokenId
-        }
-      }
-      totalCount
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
+    metadata {
+      name
+      description
+    }
+    mintPolicy {
+      forceCollapsingSupply
+      maxTokenCount
+      maxTokenSupply
+    }
+    marketPolicy {
+      beneficiaries {
+        accountId
+        percentage
       }
     }
-    accounts {
-      edges {
-        cursor
-        node {
-          accountCount
-          isFrozen
-          wallet {
-            account {
-              publicKey
-              address
-            }
-          }
-          approvals {
-            expiration
-            wallet {
-              account {
-                publicKey
-                address
-              }
-            }
-          }
-        }
-      }
-      totalCount
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-        startCursor
-        endCursor
+    transferPolicy {
+      isFrozen
+    }
+    pendingTransfer {
+      address
+    }
+    tokenGroups {
+      id
+      metadata {
+        name
       }
     }
   }
@@ -104,93 +71,31 @@ query GetCollection {
 {
   "data": {
     "GetCollection": {
-      "collectionId": "7153",
-      "maxTokenCount": 100,
-      "maxTokenSupply": "100",
-      "forceSingleMint": false,
-      "frozen": false,
-      "network": "canary",
+      "id": "3484",
       "owner": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
+        "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y"
       },
       "attributes": [],
-      "tokens": {
-        "edges": [
-          {
-            "cursor": "eyJpZCI6NzI3MiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "tokenId": "10"
-            }
-          },
-          {
-            "cursor": "eyJpZCI6NzI3MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "tokenId": "6"
-            }
-          },
-          {
-            "cursor": "eyJpZCI6Mzk0MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "tokenId": "68"
-            }
-          },
-          {
-            "cursor": "eyJpZCI6Mzk1MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "tokenId": "70468841277235617716769448539773927607"
-            }
-          }
-        ],
-        "totalCount": 4,
-        "pageInfo": {
-          "hasNextPage": false,
-          "hasPreviousPage": false,
-          "startCursor": "",
-          "endCursor": ""
-        }
+      "metadata": {
+        "name": "Multiverse Brotherhood",
+        "description": null
       },
-      "accounts": {
-        "edges": [
-          {
-            "cursor": "eyJpZCI6MTM0OCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "accountCount": 2,
-              "isFrozen": false,
-              "wallet": {
-                "account": {
-                  "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-                  "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-                }
-              },
-              "approvals": []
-            }
-          },
-          {
-            "cursor": "eyJpZCI6MjQ2MSwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-            "node": {
-              "accountCount": 2,
-              "isFrozen": false,
-              "wallet": {
-                "account": {
-                  "publicKey": "0x985e66eaff2d50e6635942b20efb5690191c5da56adc3a2720e64b8bf534d050",
-                  "address": "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"
-                }
-              },
-              "approvals": []
-            }
-          }
-        ],
-        "totalCount": 2,
-        "pageInfo": {
-          "hasNextPage": false,
-          "hasPreviousPage": false,
-          "startCursor": "",
-          "endCursor": ""
-        }
-      }
+      "mintPolicy": {
+        "forceCollapsingSupply": false,
+        "maxTokenCount": null,
+        "maxTokenSupply": null
+      },
+      "marketPolicy": {
+        "beneficiaries": []
+      },
+      "transferPolicy": {
+        "isFrozen": false
+      },
+      "pendingTransfer": null,
+      "tokenGroups": [
+        { "id": "60", "metadata": { "name": "[MvB] Clan Tag" } },
+        { "id": "63", "metadata": { "name": "Multiverse Brotherhood ©" } }
+      ]
     }
   }
 }
@@ -198,93 +103,32 @@ query GetCollection {
   </TabItem>
 </Tabs>
 
+`pendingTransfer` is non-null while a transfer is in progress — see [`GetPendingCollectionTransfers`](#getpendingcollectiontransfers).
+
 ## GetCollections
 
-:::warning 🚧 Using the Enjin Platform Cloud?
-The Enjin Platform Cloud has collections and tokens scoping enabled, to ensure a better experience by only showing you collections and tokens you created using the cloud.
-:::
-
-The `GetCollections` query allows you to retrieve an array of collections. You can optionally filter the collections by providing a list of collection IDs that you are interested in.
+Returns a flat list of collections. Pass `ids` to fetch specific collections, or `address` to fetch collections owned by an address (or both to intersect).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetCollections {
-  GetCollections(collectionIds: [7153]) {
-    edges {
-      cursor
-      node {
-        collectionId
-        maxTokenCount
-        maxTokenSupply
-        forceSingleMint
-        frozen
-        network
-        owner {
-          account {
-            publicKey
-            address
-          }
-        }
-        attributes {
-          key
-          value
-        }
-        tokens {
-          edges {
-            cursor
-            node {
-              tokenId
-            }
-          }
-          totalCount
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-        }
-        accounts  {
-          edges {
-            cursor
-            node {
-              accountCount
-              isFrozen
-              wallet {
-                account {
-                  publicKey
-                  address
-                }
-              }
-              approvals {
-                expiration
-                wallet {
-                  account {
-                    publicKey
-                    address
-                  }
-                }
-              }
-            }
-          }
-          totalCount
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
-        }
-      }
+  GetCollections(
+    network: ENJIN
+    chain: MATRIX
+    ids: [3484, 7153]
+  ) {
+    id
+    owner {
+      address
     }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
+    metadata {
+      name
     }
-    totalCount
+    mintPolicy {
+      forceCollapsingSupply
+      maxTokenCount
+    }
   }
 }
 ```
@@ -293,111 +137,71 @@ query GetCollections {
 ```json
 {
   "data": {
-    "GetCollections": {
-      "edges": [
-        {
-          "cursor": "eyJjb2xsZWN0aW9uX2lkIjo3MTUzLCJfcG9pbnRzVG9OZXh0SXRlbXMiOnRydWV9",
-          "node": {
-            "collectionId": "7153",
-            "maxTokenCount": 100,
-            "maxTokenSupply": "100",
-            "forceSingleMint": false,
-            "frozen": false,
-            "network": "canary",
-            "owner": {
-              "account": {
-                "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-                "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-              }
-            },
-            "attributes": [],
-            "tokens": {
-              "edges": [
-                {
-                  "cursor": "eyJpZCI6NzI3MiwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "tokenId": "10"
-                  }
-                },
-                {
-                  "cursor": "eyJpZCI6NzI3MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "tokenId": "6"
-                  }
-                },
-                {
-                  "cursor": "eyJpZCI6Mzk0MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "tokenId": "68"
-                  }
-                },
-                {
-                  "cursor": "eyJpZCI6Mzk1MywiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "tokenId": "70468841277235617716769448539773927607"
-                  }
-                }
-              ],
-              "totalCount": 4,
-              "pageInfo": {
-                "hasNextPage": false,
-                "hasPreviousPage": false,
-                "startCursor": "",
-                "endCursor": ""
-              }
-            },
-            "accounts": {
-              "edges": [
-                {
-                  "cursor": "eyJpZCI6MTM0OCwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "accountCount": 2,
-                    "isFrozen": false,
-                    "wallet": {
-                      "account": {
-                        "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-                        "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-                      }
-                    },
-                    "approvals": []
-                  }
-                },
-                {
-                  "cursor": "eyJpZCI6MjQ2MSwiX3BvaW50c1RvTmV4dEl0ZW1zIjp0cnVlfQ",
-                  "node": {
-                    "accountCount": 2,
-                    "isFrozen": false,
-                    "wallet": {
-                      "account": {
-                        "publicKey": "0x985e66eaff2d50e6635942b20efb5690191c5da56adc3a2720e64b8bf534d050",
-                        "address": "cxMsNPRk7Ek5V76NC4o2HTBrnxcUnxLA9btuKPcuPkmYi84Ts"
-                      }
-                    },
-                    "approvals": []
-                  }
-                }
-              ],
-              "totalCount": 2,
-              "pageInfo": {
-                "hasNextPage": false,
-                "hasPreviousPage": false,
-                "startCursor": "",
-                "endCursor": ""
-              }
-            }
-          }
-        }
-      ],
-      "pageInfo": {
-        "hasNextPage": false,
-        "hasPreviousPage": false,
-        "startCursor": "",
-        "endCursor": ""
+    "GetCollections": [
+      {
+        "id": "3484",
+        "owner": { "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y" },
+        "metadata": { "name": "Multiverse Brotherhood" },
+        "mintPolicy": { "forceCollapsingSupply": false, "maxTokenCount": null }
       },
-      "totalCount": 1
-    }
+      {
+        "id": "7153",
+        "owner": { "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B" },
+        "metadata": { "name": "Test Collection" },
+        "mintPolicy": { "forceCollapsingSupply": false, "maxTokenCount": 100 }
+      }
+    ]
   }
 }
 ```
   </TabItem>
 </Tabs>
+
+## GetPendingCollectionTransfers
+
+Returns collections that have a pending ownership transfer — the `owner` field on `mutateCollection` was set to a new address, but the recipient hasn't called `acceptCollectionTransfer` yet (and the current owner hasn't called `cancelCollectionTransfer`).
+
+You can filter by `ids` (specific collections) or `address` (collections being transferred *to* this address).
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+query GetPendingCollectionTransfers {
+  GetPendingCollectionTransfers(
+    network: ENJIN
+    chain: MATRIX
+    address: "efRecipientWalletAddress"
+  ) {
+    id
+    owner {
+      address
+    }
+    pendingTransfer {
+      address
+    }
+    metadata {
+      name
+    }
+  }
+}
+```
+  </TabItem>
+  <TabItem value="response" label="Response">
+```json
+{
+  "data": {
+    "GetPendingCollectionTransfers": [
+      {
+        "id": "12345",
+        "owner": { "address": "efOriginalOwnerAddress" },
+        "pendingTransfer": { "address": "efRecipientWalletAddress" },
+        "metadata": { "name": "Hand-off Collection" }
+      }
+    ]
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+See the [Transfer a Collection](/02-guides/01-platform/01-managing-tokens/010-transfer-accept-collection.md) guide for the full transfer / accept / cancel flow.
