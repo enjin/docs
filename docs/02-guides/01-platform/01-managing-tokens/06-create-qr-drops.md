@@ -43,15 +43,15 @@ Now, you'll fill out the details for your Beam:
 - **Tokens to Distribute:** This is where you define which tokens are given out and how many.
     - A single Beam is made up of one or more "Beam Claims". Each time a user scans the QR code and successfully receives a token, they are redeeming one **Beam Claim**.
     - **[Token IDs](/03-api-reference/04-important-arguments.md#tokenid):** Specify the IDs of the specific tokens you want to distribute with this claim.
-    - **[Claim Quantity](/03-api-reference/04-important-arguments.md#claimquantity):** This sets how many individual Beam Claims you want to create for each selected Token ID.
-    - **[Token Quantity Per Claim](/03-api-reference/04-important-arguments.md#tokenquantityperclaim):** This sets how many units of the token a user receives *each time* they redeem a single Beam Claim. For example, if you're giving out stacks of 5 gold coins with each claim, set this to 5.
-    - **[Type](/03-api-reference/04-important-arguments.md#beam-claim-type):** Choose whether redeeming a claim will `MINT` a brand new token or `TRANSFER` an existing token from your account balance.
+    - **Claim Quantity:** This sets how many individual Beam Claims you want to create for each selected Token ID.
+    - **Token Quantity Per Claim:** This sets how many units of the token a user receives *each time* they redeem a single Beam Claim. For example, if you're giving out stacks of 5 gold coins with each claim, set this to 5.
+    - **Type:** Choose whether redeeming a claim will `MINT` a brand new token or `TRANSFER` an existing token from your account balance.
 
 <p align="center">
   <img src={require('/img/guides/managing-tokens/create-beam-form-2.png').default} width="800" alt="Create Beam Form 2" />
 </p>
 
-:::tip Use **[Flags](/03-api-reference/04-important-arguments.md#flags)** for advanced options and more control
+:::tip Use **Flags** for advanced options and more control
   - **Single-use:** This important flag changes how the QR code works.
   - **Default (Single-use OFF):** You get one main QR code for the entire Beam. When a user scans it, the system randomly picks one of the available Beam Claims to give them.
   - **Single-use ON:** A *unique QR code* is generated for *every single Beam Claim*.
