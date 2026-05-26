@@ -23,7 +23,7 @@ The `polkadot-onboard` sample repository used in this guide is **no longer maint
 - Node.js 18+ and yarn installed
 - A mobile device with [Enjin Wallet app](https://enjin.io/wallet) installed
 - A Canary wallet with at least 6.5 ENJ in it to cover for <GlossaryTerm id="storage_deposit" /> and <GlossaryTerm id="transaction_fees" />.
-You can obtain cENJ for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md) (Canary).
 :::
 

@@ -30,7 +30,7 @@ Before you begin, make sure you have the following installed:
   - ✅ **Node.js** (which includes `npm`).
   - ✅ **Git** for cloning the repositories.
   - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
-  - ✅ Some cENJ tokens (can be aquired from the [cENJ Faucet](https://faucet.canary.enjin.io/))
+  - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI)
 
 -----
 
@@ -169,7 +169,7 @@ You're all set up and ready to play.
 </p>
 :::warning cENJ funds are required
 New managed wallet have no funds. To melt or transfer tokens out of a managed wallet, you'll need to fund it with some cENJ, or set up a fuel tank.
-To receive cENJ funds for testing, use the [cENJ faucet](https://faucet.canary.enjin.io/)
+To receive cENJ funds for testing, use the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 :::
 
 :::info Understanding the code

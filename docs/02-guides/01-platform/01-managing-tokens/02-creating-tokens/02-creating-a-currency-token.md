@@ -11,7 +11,7 @@ Similarly to [Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-toke
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) to place the tokens in.
 :::

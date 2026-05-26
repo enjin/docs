@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
 Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](#canary-faucet) in the Platform UI.
 :::
 
 ## 1. Set Up an <GlossaryTerm id="enjin_platform" /> Account
@@ -45,7 +45,27 @@ Once the daemon is running and connected, your Platform account is ready to use.
 On most transaction creation forms in the Platform UI, you can override the default signer using the **Transaction Options → Signing Account** field. Setting it to a Managed Wallet's address signs the transaction with that wallet's stored key instead of with the Wallet Daemon's wallet. See [Using Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) for details.
 :::
 
-## 4. Create Platform Requests
+## 4. Get Test Funds (Canary Faucet) {#canary-faucet}
+
+To create or transact on the Canary testnet, your signing wallet needs some cENJ (Canary ENJ) to cover transaction fees and storage deposits. The Enjin Platform has a built-in faucet that drops cENJ directly to the Wallet Daemon's wallet.
+
+**Prerequisites:** A linked Wallet Daemon — if you haven't set one up yet, see [Set Up the Wallet Daemon](#3-set-up-the-wallet-daemon) above.
+
+**Steps:**
+
+1. In the **network selector** at the top-right corner of the dashboard, switch to **Canary**.
+2. A **Faucet icon** appears next to the selector. Click it.
+3. The faucet sends **250 cENJ** to your Wallet Daemon's wallet.
+
+![Network selector switched to Canary, with the Faucet icon next to it](/img/getting-started/v3-canary-faucet-icon.png)
+
+That's it — your Wallet Daemon's wallet now has enough cENJ to cover fees and deposits while you build and test on Canary.
+
+:::info Funding a different wallet
+The faucet only sends to the Wallet Daemon's wallet. If you need cENJ in a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) or an external wallet, drop the faucet funds first, then transfer them from the daemon to your target wallet.
+:::
+
+## 5. Create Platform Requests
 
 Now that the Platform account is set up, we can start creating platform requests.
 In this example we will be creating a <GlossaryTerm id="collection" />.
@@ -238,7 +258,7 @@ The response includes a `uuid` you can use to query the transaction's status as 
 Once a request is created — whether through the dashboard or the API — the Wallet Daemon (or the [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you specified in the `Signing Account` field) picks it up, signs it, and broadcasts it to the chain. There is no manual approval step. The transaction will move from `PENDING` → `BROADCAST` → `FINALIZED` as it's processed.
 :::
 
-## 5. Working with the Dashboard
+## 6. Working with the Dashboard
 
 A couple of dashboard patterns are worth knowing before you start managing existing collections and tokens.
 
@@ -270,7 +290,7 @@ A successful submit produces a single transaction `uuid` on the [Transactions](h
 The API equivalent of the Batch Queue is the `CreateBatchTransaction` mutation — it takes a `transactions: [TransactionInput!]!` list where each entry is one of the same discriminator inputs you'd pass to `CreateTransaction`.
 :::
 
-## 6. Receive Transaction Information
+## 7. Receive Transaction Information
 
 There are two ways to receive the transaction status and information:
 

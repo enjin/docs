@@ -13,7 +13,7 @@ Melting a token with <GlossaryTerm id="enj_infusion" /> releases the Infused ENJ
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) or a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to melt/destroy.
 :::
