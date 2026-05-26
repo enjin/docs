@@ -405,6 +405,8 @@ print(response.json())
 
 The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.batch_set_attribute`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
 
+Once it reaches `FINALIZED`, an event is emitted for each attribute set, confirming the change. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read them.
+
 :::tip Setting a single attribute, or removing one
 Use `setTokenAttribute` / `setCollectionAttribute` to write a single key, `removeTokenAttribute` / `removeCollectionAttribute` to remove one, and `removeAllTokenAttributes` / `removeAllCollectionAttributes` to wipe everything. All of these are discriminator fields on `CreateTransaction.transaction`.
 :::

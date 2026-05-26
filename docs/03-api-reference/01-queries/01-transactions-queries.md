@@ -159,7 +159,7 @@ query GetBlock {
 </Tabs>
 
 :::warning GetBlock is currently unavailable
-`GetBlock` is temporarily disabled — every call returns an `Internal server error`. For event-level lookups use the [Transactions page on the platform dashboard](https://platform.beta.enjin.io/transactions) and click the **Extrinsic Hash** link on a transaction's row, which opens its events on Subscan. The platform team is aware of the issue and a fix is planned.
+`GetBlock` is temporarily disabled — every call returns an `Internal server error`. The platform team is aware of the issue and a fix is planned. For event-level lookups in the meantime, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 :::
 
 ## GetBlocks
@@ -205,7 +205,7 @@ query GetBlocks {
 </Tabs>
 
 :::warning Block.extrinsics and Block.events return null
-The `extrinsics` and `events` sub-fields on `Block` are defined in the schema but currently return `null` on every request. For now, use the [Transactions dashboard](https://platform.beta.enjin.io/transactions) → **Extrinsic Hash** → Subscan flow for event-level data.
+The `extrinsics` and `events` sub-fields on `Block` are defined in the schema but currently return `null` on every request. For event-level lookups in the meantime, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 :::
 
 ## GetExtrinsic

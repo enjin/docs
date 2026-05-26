@@ -120,7 +120,7 @@ mutation CreateOfferListing {
   </TabItem>
 </Tabs>
 
-The listing's id is the hex string returned by the chain once the transaction finalizes — read it from `Marketplace.ListingCreated` events on the extrinsic, or by listing the collection via [`GetListings`](/03-api-reference/01-queries/06-marketplace-queries.md#getlistings).
+Once the transaction finalizes, a `Marketplace.ListingCreated` event is emitted containing the new listing's id (a hex string assigned by the chain). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it, or look the listing up after the fact via [`GetListings`](/03-api-reference/01-queries/06-marketplace-queries.md#getlistings).
 
 ## fillListing
 

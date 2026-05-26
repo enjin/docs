@@ -934,6 +934,8 @@ print(response.json())
 
 Make sure `signerExternalId` (or `signerAccount`) is set to the managed wallet that holds the token being transferred.
 
+Whether you're minting into a managed wallet or transferring out of one, the on-chain transaction emits the usual events on `FINALIZED` (e.g. `MultiTokens.Minted`, `MultiTokens.Transferred`) — with the managed wallet's address as the signer. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read them.
+
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 :::

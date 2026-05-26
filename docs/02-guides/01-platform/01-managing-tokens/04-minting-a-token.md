@@ -334,6 +334,8 @@ print(response.json())
 
 The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.batch_mint`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
 
+Once it reaches `FINALIZED`, a `MultiTokens.Minted` event is emitted for each recipient with the minted amount — useful when you need to confirm a mint reached a specific player (e.g. before unlocking the corresponding in-game item). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
+
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 

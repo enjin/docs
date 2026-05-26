@@ -14,21 +14,18 @@ In the Enjin Platform context, the Wallet Daemon is a utility tool that manages 
 
 The diagram above provides insight into the interaction between the Enjin Wallet Daemon and the Enjin Platform. This illustrates how the Wallet Daemon can communicate with the API in both directions, automatically signing and broadcasting transactions to the blockchain. This helps developers better understand how the two components work together seamlessly to provide a streamlined experience.
 
-## Wallet Daemon Events
+## How the Wallet Daemon Works
 
 ![A diagram of the wallet daemon](/img/getting-started/wallet-daemon-diagram.png)
 
-The diagram above depicts the various stages involved in creating a new collection on the Enjin Matrixchain via the Enjin Platform API, with a particular emphasis on the Wallet Daemon events.
+The diagram above depicts the various stages involved in creating a new collection on the Enjin Matrixchain via the Enjin Platform API.
 
-1. **Establish a WebSocket connection -** Connect to a WebSocket server to subscribe to channels that receive events.
-2. **Subscribe to a WebSocket channel -** Subscribe to the channel associated with your wallet to receive real-time events.
-3. **Send a mutation -** Send a "CreateCollection" mutation to the Enjin Platform API to create a new collection on the Enjin Matrixchain. The API will encode the transaction that the wallet daemon needs to sign and save it in the Enjin Platform Database.
-4. **Wallet daemon requests pending transactions -** The wallet daemon repeatedly asks the Enjin Platform API if there are any transactions to sign to prevent incoming connections to the wallet daemon, which holds your <GlossaryTerm id="private_key" />.
-5. **Sign and broadcast the transaction -** After receiving the pending transaction, the wallet daemon signs it with your private key and broadcasts it to the Enjin Matrixchain.
-6. **Enjin Matrixchain processes the transaction -** If everything is correct and valid, the Matrixchain successfully processes the extrinsic sent by the wallet daemon, and the new collection is created.
-7. **Enjin Platform API monitors the chain -** The Enjin Platform API continually watches the chain via a WebSocket connection to detect any activity.
-8. **Save the data to the database -** The Enjin Platform API stores the new collection data in its own database, allowing you to query it as desired.
-9. **Emit an event -** The Enjin Platform API sends an event to the WebSocket channels, providing you with the opportunity to take appropriate actions if you're subscribed to the relevant channel.
+1. **Send a mutation -** Your application calls `CreateTransaction` (with the `createCollection` discriminator) on the Enjin Platform API. The API encodes the corresponding extrinsic, stores it in its database with a `PENDING` state, and returns a transaction `uuid`.
+2. **Wallet daemon requests pending transactions -** The wallet daemon repeatedly polls the Enjin Platform API for transactions to sign. This polling model — rather than the daemon accepting incoming connections — means the machine holding your <GlossaryTerm id="private_key" /> never needs to expose an open port.
+3. **Sign and broadcast the transaction -** After receiving the pending transaction, the wallet daemon signs it with your private key and broadcasts it to the Enjin Matrixchain.
+4. **Enjin Matrixchain processes the transaction -** If everything is valid, the Matrixchain processes the extrinsic, and the new collection is created.
+5. **Enjin Platform API monitors the chain -** The Enjin Platform API watches the chain to detect when your transaction is finalized and updates the transaction record accordingly.
+6. **Read the result -** Poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) for the final `state` and `extrinsicHash`. To read the on-chain events the transaction emitted (the new `collection_id`, for example), see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 ***
 

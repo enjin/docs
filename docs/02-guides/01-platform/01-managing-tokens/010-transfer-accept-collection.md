@@ -373,4 +373,4 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-Once the transaction is confirmed, the collection ownership will be transferred to the new owner.
+Once the transaction is confirmed, the collection ownership will be transferred to the new owner. An event is emitted on `FINALIZED` confirming the change — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.

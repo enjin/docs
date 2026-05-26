@@ -694,6 +694,8 @@ This can be done using Enjin Platform API & WalletConnect!
 To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
 :::
 
+Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` event (for token transfers) or `Balances.Transfer` event (for ENJ transfers) is emitted with the sender, recipient, and amount — useful for reacting to inbound transfers in real time (e.g. unlocking an in-game item the moment a player receives the corresponding NFT). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
+
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 

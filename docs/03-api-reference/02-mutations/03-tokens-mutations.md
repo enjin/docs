@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 `https://platform.beta.enjin.io/graphql`
 :::
 
-All token-level actions are submitted through [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction), with the action selected by the field set on the `transaction` input. The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection.
+All token-level actions are submitted through [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction), with the action selected by the field set on the `transaction` input. The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection. Once a transaction reaches `FINALIZED`, the on-chain event(s) it emitted (e.g. `MultiTokens.Minted`, `MultiTokens.Transferred`, `MultiTokens.Burned`) can be read via the flow described in [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 For collection-level actions (creating, mutating, freezing the whole collection, attributes), see [Collections Mutations](/03-api-reference/02-mutations/02-collections-mutations.md).
 

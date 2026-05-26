@@ -314,6 +314,8 @@ print(response.json())
 
 The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.create_token`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
 
+Once it reaches `FINALIZED`, an event is emitted confirming the new currency token was created. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
+
 :::tip
 For Token ID management, head to [Best Practices > TokenID Structure](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md)
 :::

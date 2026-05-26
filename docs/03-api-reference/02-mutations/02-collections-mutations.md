@@ -13,11 +13,13 @@ import TabItem from '@theme/TabItem';
 
 All collection-level actions are submitted through [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction), with the action selected by the field set on the `transaction` input. Each section below shows the discriminator and its expected fields.
 
-The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection.
+The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection. Once a transaction reaches `FINALIZED`, the on-chain event(s) it emitted can be read via the flow described in [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 ## createCollection
 
 Creates a new on-chain collection. Most fields are optional — the example below shows everything; a minimal call is just `transaction: { createCollection: {} }`.
+
+The new collection's `id` is assigned by the chain — once the transaction finalizes, a `MultiTokens.CollectionCreated` event is emitted containing it.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

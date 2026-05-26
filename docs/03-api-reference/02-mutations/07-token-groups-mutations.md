@@ -15,7 +15,7 @@ A token group is an on-chain bucket of tokens within a single collection — see
 
 ## createTokenGroup
 
-Creates an empty token group inside a collection. The group's `id` is assigned by the chain; read it back via [`GetCollection.tokenGroups`](/03-api-reference/01-queries/07-token-groups-queries.md#reading-all-groups-in-a-collection) once the transaction finalizes (or by inspecting the `MultiTokens.TokenGroupCreated` event on Subscan).
+Creates an empty token group inside a collection. Once the transaction finalizes, a `MultiTokens.TokenGroupCreated` event is emitted containing the new group's `id` (assigned by the chain) — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it. You can also list the collection's groups after the fact via [`GetCollection.tokenGroups`](/03-api-reference/01-queries/07-token-groups-queries.md#reading-all-groups-in-a-collection).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

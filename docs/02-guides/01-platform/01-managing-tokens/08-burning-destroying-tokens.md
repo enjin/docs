@@ -616,3 +616,5 @@ print(response.json())
 </Tabs>
 
 Once the transaction is executed, the collection will be destroyed and the <GlossaryTerm id="storage_deposit" /> will be retrieved.
+
+For each of the burn / destroy actions on this page, an event is emitted once the transaction reaches `FINALIZED` — useful as a confirmation signal. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.

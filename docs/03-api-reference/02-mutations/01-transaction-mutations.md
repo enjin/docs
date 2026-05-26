@@ -13,6 +13,8 @@ import TabItem from '@theme/TabItem';
 
 The Enjin Platform exposes a small number of root-level mutations. Almost every on-chain action — creating a collection, minting, transferring, listing, burning, freezing, bonding to a nomination pool, managing token groups — is funnelled through the single `CreateTransaction` mutation, with the action selected by which field is set on the `transaction` input.
 
+Every action emits one or more on-chain events when the transaction reaches `FINALIZED` — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read them.
+
 ## CreateTransaction
 
 Submits a single on-chain action. The `transaction` argument is a `TransactionInput` — set exactly one field on it to choose the action (`createCollection`, `createToken`, `mintToken`, `transferToken`, `transferEnj`, `burnToken`, `freezeToken`, `createListing`, and ~40 more). See [Important Arguments](/03-api-reference/04-important-arguments.md) for the per-field shapes.

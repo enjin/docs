@@ -285,7 +285,7 @@ To check the transaction status, head over to the [Transactions](https://platfor
 
 ![Transactions page showing a finalized create_collection transaction](/img/getting-started/v3-transactions-page.png)
 
-Once the state reaches `FINALIZED`, click the row's **Extrinsic Hash** link to open the transaction on Subscan (the blockchain explorer). The **Events** tab there lists everything the transaction emitted on-chain — for a collection-creation transaction, that's where you'll find the newly minted **collection ID**.
+Once the state reaches `FINALIZED`, the transaction has been included on-chain. The events it emitted — for example, the new **collection ID** after a collection-creation transaction — can be read via the flow described in [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 ### Receive Transaction Information Using the Enjin API & SDKs
 
