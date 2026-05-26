@@ -272,11 +272,12 @@ The API equivalent of the Batch Queue is the `CreateBatchTransaction` mutation �
 
 ## 6. Receive Transaction Information
 
-There are 3 ways to receive the transaction status and information:
+There are two ways to receive the transaction status and information:
 
 - [Receive Transaction Information Using the Platform User Interface](#receive-transaction-information-using-the-platform-user-interface)
 - [Receive Transaction Information Using the Enjin API / SDKs](#receive-transaction-information-using-the-enjin-api--sdks)
-- [Receive Transaction Information by Listening to Platform Websocket Events](#receive-transaction-information-by-listening-to-platform-websocket-events)
+
+For real-time, push-based notifications, see [WebSocket Events](/03-api-reference/03-websocket-events.md) — planned, not yet available.
 
 ### Receive Transaction Information Using the Platform User Interface
 
@@ -431,10 +432,6 @@ A `state` of `FINALIZED` means the transaction has been included in a finalized 
 :::info Note
 For the full list of platform states, check the [Enjin API → Important Arguments](/03-api-reference/04-important-arguments.md#state) page.
 :::
-
-### Receive Transaction Information by Listening to Platform Websocket Events
-
-You can also subscribe to events via WebSocket — useful when you want to react to transaction state changes without polling. For more information, check out the [Websocket Events](/05-enjin-platform/03-working-with-events.md) guide.
 
 :::tip What's Next?
 Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).

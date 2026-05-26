@@ -1,41 +1,22 @@
 ---
-title: "Websocket Events"
+title: "WebSocket Events"
 slug: "websocket-events"
+description: "Real-time event streaming via the Enjin Platform — planned, not yet available."
 ---
-:::info Websocket URLs
-Enjin Platform Cloud **Canary**: `wss://ws-us2.pusher.com:443/app/76b7604dabc23c62be75?protocol=7`\
-Enjin Platform Cloud **Mainnet**: `wss://ws-us2.pusher.com:443/app/02cbd93e7842fb1db299?protocol=7`
+
+:::warning Coming soon
+Real-time event streaming is **planned** for the Enjin Platform but is **not yet available**. The exact API shape (subscription endpoint, channel structure, event payload) hasn't been finalized — this page will be filled in with the full reference once support ships.
 :::
 
-The Enjin Platform emits events that you can listen to for various operations.
-For example, whenever a transaction is issued by your wallet daemon, an event is emitted via Websocket.
+When it ships, this page will document how to subscribe to real-time events emitted by the platform. Typical use cases include:
 
-Listening to events is especially useful when awaiting for a transaction to be approved on-chain.
+- **Reading IDs that the chain assigns at execution time** — for example, picking up the new `listing_id` the moment a `createListing` transaction is finalized, or the new `collection_id` after a `createCollection`, without having to poll or look up Subscan.
+- **Reacting to incoming token activity in real time** — unlocking an in-game item the instant a transfer to the player's wallet finalizes, or refreshing a marketplace UI the moment a bid lands on an active auction.
+- **Driving transaction state UI without polling** — flipping a "Pending → Broadcast → Finalized" indicator off the platform's own state changes.
 
-Platform events are emitted to the platform Websocket endpoint, in various channels.
-For example, we can listen to events related to account address `cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f` by subscribing to the channel `0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e`, which is the account's public key.
+## Until then
 
-:::note Note on Address Formats in Platform Events
-Please note that all account addresses included in platform events, such as channel names or any addresses within the event payload, are formatted as **public keys**.\
-For example, in a "Transfer" event, the "from" account address appears in its public key format.\
-If needed, you may use the [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between **SS58-encoded address format** (e.g., "cx...123" for the Canary Matrixchain or "cn...123" for the Canary Relaychain) and public key format.
-:::
+- **Transaction state** — poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) until `state` becomes `FINALIZED`. The transaction's `extrinsicHash` is also exposed once it's broadcast.
+- **On-chain events emitted by a transaction** (the new collection ID after `createCollection`, the listing ID after `createListing`, etc.) — open the transaction on Subscan via its `extrinsicHash` and read the **Events** tab. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full flow.
 
-```json
-{
-  "event":"pusher:subscribe",
-  "data":{
-    "channel":"0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e"
-  }
-}
-```
-
-![Example banner](/img/api-functions/Pusher.gif)
-
-To get the full list of events and the channels they are broadcasted in, send the `GetEvents` query:
-
-```graphql
-query {
-  GetEvents
-}
-```
+An `events` field will also be added to the `Transaction` type so on-chain event payloads can be read alongside the rest of the transaction. Once it ships, this page and the `GetTransaction` reference will be updated with the full event shape and response examples.
