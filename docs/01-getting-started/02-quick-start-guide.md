@@ -51,10 +51,6 @@ Once the daemon is running and connected, every transaction you submit from this
 To create or transact on Canary, your daemon's wallet needs some cENJ to cover fees and deposits. See [Get Test Funds (Canary Faucet)](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) — one click in the dashboard drops 250 cENJ into your daemon's wallet.
 :::
 
-:::info Signing with a Managed Wallet
-You can override the default signer on a per-transaction basis by setting a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address in the **Transaction Options → Signing Account** field of any transaction form.
-:::
-
 ## 3. Create Your First Collection and Token
 
 ### What are Collections and Tokens?
@@ -89,6 +85,7 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
     To learn more about collection configuration, see the [Create Collections guide](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
     -   Click **Create** to submit. The Wallet Daemon signs and broadcasts the transaction automatically — watch it move from `PENDING` → `BROADCAST` → `FINALIZED` on the [Transactions page](https://platform.beta.enjin.io/transactions).
     -   Once finalized, the new collection appears on the [Collections page](https://platform.beta.enjin.io/collections) with its assigned `id`. Keep that id handy for the next step.
+    ![A collection with the collection ID next to it](/img/getting-started/v3-collection-card.png)
 2.  **Create Token:**
     -   Open the [Collections page](https://platform.beta.enjin.io/collections), click the collection you just created, then click the "**Create Token**" button at the top of the collection's page.
     -   Customize your token — Token ID, initial supply, cap, royalty behavior, and attributes.
