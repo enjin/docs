@@ -12,7 +12,7 @@ Beams are created and managed on the **[NFT.io Beam Dashboard](https://nft.io/be
 
 ### How Enjin Beam works
 
-1. You hold (or are about to mint) assets on the Enjin blockchain.
+1. You hold assets on the Enjin blockchain.
 2. On the [NFT.io Beam Dashboard](https://nft.io/beam/dashboard), you set up a Beam over those assets. You sign a transaction that authorises an Enjin daemon wallet to transfer the assets from your collection on your behalf when claims happen.
 3. NFT.io generates a QR code (or set of QR codes) for the Beam.
 4. A player scans the QR code with the [Enjin Wallet](https://enjin.io/products/wallet) app — or with **Quick Wallet** on NFT.io if they don't have the Enjin Wallet installed — and the asset is transferred straight to them.
