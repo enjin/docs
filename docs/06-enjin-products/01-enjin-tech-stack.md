@@ -3,7 +3,7 @@ title: "Enjin Tech-Stack"
 slug: "enjin-tech-stack"
 description: "Explore the Enjin Ecosystem, providing innovative blockchain solutions for developers, enabling the integration of NFTs, tokens, and decentralized applications."
 ---
-Enjin is the ideal blockchain platform for your game or business due to its gaming roots and the powerful Relaychain infrastructure that it's built upon. The Enjin ecosystem comprises the Enjin Platform, NFT.io, Enjin Wallet 2.0, Beam, SDKs, and other tools and services that allow game and app developers to boost their revenue, gain a competitive advantage, and innovate in ways that were previously impossible.
+Enjin is the ideal blockchain platform for your game or business due to its gaming roots and the powerful Relaychain infrastructure that it's built upon. The Enjin ecosystem comprises the Enjin Platform, NFT.io, Enjin Wallet 2.0, SDKs, and other tools and services that allow game and app developers to boost their revenue, gain a competitive advantage, and innovate in ways that were previously impossible.
 
 ![](/img/components/1.webp)
 
@@ -16,7 +16,7 @@ Unlike traditional blockchain game development that requires building and mainta
   <img src={require('/img/components/2.png').default} />
 </p>
 
-The Enjin Ecosystem provides numerous advantages, one of which is the ability to leverage innovative crowdfunding models. With this platform, you can create gaming assets such as characters, weapons, and real estate ahead of time and offer them to gamers through conventional crowdfunding platforms or a custom website powered by NFT.io. Using Beam, the world's first QR-based blockchain asset distribution service, assets can be easily shared with QR codes. Furthermore, you can facilitate user-driven value creation by enabling players to modify, craft, upgrade, build, and trade blockchain-based gaming assets, which can gain intrinsic value based on their history, stats, utility, and customization.
+The Enjin Ecosystem provides numerous advantages, one of which is the ability to leverage innovative crowdfunding models. With this platform, you can create gaming assets such as characters, weapons, and real estate ahead of time and offer them to gamers through conventional crowdfunding platforms or a custom website powered by NFT.io. You can also facilitate user-driven value creation by enabling players to modify, craft, upgrade, build, and trade blockchain-based gaming assets, which can gain intrinsic value based on their history, stats, utility, and customization.
 
 Enjin's Ecosystem provides benefits beyond just cutting-edge crowdfunding models, including the establishment of user loyalty and trust through true ownership of digital gaming assets. This ownership leads to more loyal users who are more likely to make lost revenue by eliminating gray market trading, which can account for up to 40% of lost revenue. Furthermore, player churn can be reduced by ensuring gaming assets are owned by gamers and safely stored in their private Enjin Wallet, which requires approval for each transaction, thus making hacking or in-game fraud impossible.
 
