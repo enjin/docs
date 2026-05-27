@@ -7,7 +7,7 @@ description: "Learn about the Enjin TokenID structure, its format, and how to ut
 
 Token IDs in a collection serve as unique identifiers for tokens, represented as 128-bit integers. Beyond their primary role, token IDs can also store structured information about a token's attributes, providing greater organizational flexibility.
 
-This guide outlines recommended approaches for structuring and organizing token IDs, as well as the four encoding options available on the Enjin Platform: **ERC1155**, **Hash**, **StringId**, and **Integer** (no encoding).
+This guide outlines four common approaches for structuring and organizing token IDs — **Bitmasks**, **Ranges**, **Hashes**, and **Integer** — along with how to pass them to the platform.
 
 ***
 
@@ -93,96 +93,37 @@ Token IDs are manually assigned, such as `1`, `2`, `3`, etc. This method is stra
 
 ***
 
-## Enjin Platform Token ID Encoders
+## Passing a Token ID to the API
 
-The Enjin Platform provides built-in encoders to convert data into 128-bit token IDs:
-
-### 1. **ERC1155 Encoder**
-
-This encoder uses a 16-bit hexadecimal token ID and a 64-bit integer index.
+`tokenId` is a flat `BigInt` scalar — submit the structured 128-bit integer directly, with no wrapper object:
 
 ```graphql
-tokenId: {
-	erc1155: {
-		tokenId: "0x78c0000000003377", index: 10
-  }
+mutation {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      mintToken: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
+        collectionId: 36105
+        tokenId: 160504280491028834688987873652194148362
+        amount: 1
+      }
+    }
+  ) { uuid action state }
 }
 ```
 
-Resulting Token ID: `160504280491028834688987873652194148362`
+If you want to encode structure into the token ID (bitmask layout, hash, string-derived ID, etc.), compute the resulting 128-bit integer in your application and pass it as `tokenId`. The platform does not perform the encoding for you.
 
-***
-
-### 2. **Hash Encoder**
-
-This encoder generates a token ID from a hashed array or object.
-
-for example:
-
-```graphql
-tokenId: {
-	hash: {
-  	Token: "Sword", Number: 5
-  }
-}
-```
-
-Resulting Token ID: `65304702016350863193892557847492631289`
-
-Token IDs generated with this method cannot be reversed or decoded.
-
-:::info Irreversible Token IDs with the Hash Encoder
-Token IDs generated using the Hash Encoder are derived from a cryptographic hash function. As hashing is a one-way process, these token IDs cannot be reversed or decoded back into the original data.
+:::tip Need to group tokens by type?
+If your goal is to share metadata or utility across a group of tokens — the use case the old ERC-1155 encoder addressed — use the built-in **Token Groups** feature instead of embedding the group in the token ID. See [Token Groups mutations](/03-api-reference/02-mutations/07-token-groups-mutations.md).
 :::
-
-:::danger Important Note
-The Hash Encoder generates token IDs by hashing input data. If the resulting hash exceeds 128 bits, the encoder will fail.
-:::
-
-***
-
-### 3. **StringId Encoder**
-
-This encoder converts a string into a numeric token ID.
-
-for example:
-
-```graphql
-tokenId: {
-	stringId: "MyToken-0001"
-}
-```
-
-Resulting Token ID: `23977024514528806328972881969`
-
-:::danger Important Note
-The StringId Encoder converts strings into numeric token IDs. Strings that produce integers larger than 128 bits will cause the encoding to fail.
-:::
-
-***
-
-### 4. **Integer**
-
-For direct assignment, integers can be passed as-is to create token IDs.
-
-for example:
-
-```graphql
-tokenId: {integer: 1001}
-```
-
-Resulting Token ID: `1001`
-
-This approach is simple and requires no encoding or decoding.
-
-***
 
 ## Choosing the Right Approach
 
-### Considerations:
+- **Ease of Use** — Plain integers or ranges keep IDs human-readable and easy to manage.
+- **Scalability** — Bitmasks and hashes work well for large collections with many attributes.
+- **Grouping** — For shared metadata across many tokens, prefer on-chain [Token Groups](/03-api-reference/02-mutations/07-token-groups-mutations.md) over packing the group into the token ID.
 
-- **Ease of Use**: Use Integers or ranges for simplicity.
-- **Scalability**: Bitmasks and hashes work best for large collections with many attributes.
-- **Interoperability**: Use the ERC1155 encoder for compatibility with Ethereum-based assets.
-
-By understanding these methods and tools, you can design token ID structures that best suit your project's needs while ensuring flexibility and scalability.
+By picking the structure that best fits your project, you can design a token-ID layout that stays flexible and scalable as your collection grows.
