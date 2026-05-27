@@ -7,6 +7,10 @@ description: "Explore how to monitor and handle platform events in the Enjin SDK
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::warning SDKs are not yet available
+The C# and C++ SDK content on this page is out of date and **will not work against the current Enjin Platform API**. This page will be updated once new SDKs are published. Until then, see [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) and the [API Reference](/03-api-reference/03-api-reference.md) for the current API shapes.
+:::
+
 ## Event Listeners
 
 To allow our application to receive events from the platform the SDK comes with an `IEventListener` interface for us to use to receive events for processing.

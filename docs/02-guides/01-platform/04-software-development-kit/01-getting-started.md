@@ -7,6 +7,10 @@ description: "Learn how to get started with the Enjin SDK, your first step towar
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::warning SDKs are not yet available
+The C# and C++ SDK content on this page is out of date and **will not work against the current Enjin Platform API**. This page will be updated once new SDKs are published. Until then, see [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) and the [API Reference](/03-api-reference/03-api-reference.md) for the current API shapes.
+:::
+
 To have the SDK connect with the Enjin Platform we must use its platform clients and event services. As a starter, we will look over how to set up these clients.
 
 :::warning Please always make sure to integrate authentication endpoints via secure backend servers.

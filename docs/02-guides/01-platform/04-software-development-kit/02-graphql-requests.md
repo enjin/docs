@@ -7,6 +7,10 @@ description: "Learn how to use GraphQL requests to interact with the Enjin platf
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::warning SDKs are not yet available
+The C# and C++ SDK content on this page is out of date and **will not work against the current Enjin Platform API**. This page will be updated once new SDKs are published. Until then, see [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) and the [API Reference](/03-api-reference/03-api-reference.md) for the current API shapes.
+:::
+
 ## Creating the Request
 
 The most important step in sending a request is to first create said request. The SDK provides us with two ways to create a request. The first way is to utilize a predefined, dynamic request class to programmatically compile our request at runtime. The second way is to provide our own query string to be sent along with any relevant information, however, this method of going about creating a request places a greater demand on us to validate that our queries and mutations are indeed correct.
