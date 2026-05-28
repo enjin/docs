@@ -691,7 +691,7 @@ To transfer multiple tokens **from a single collection** to multiple recipients 
 
 :::tip Need to send a transaction request to user's wallet?
 This can be done using Enjin Platform API & WalletConnect!
-To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-using-wallet-connect.md).
 :::
 
 Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` event (for token transfers) or `Balances.Transfer` event (for ENJ transfers) is emitted with the sender, recipient, and amount — useful for reacting to inbound transfers in real time (e.g. unlocking an in-game item the moment a player receives the corresponding NFT). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
