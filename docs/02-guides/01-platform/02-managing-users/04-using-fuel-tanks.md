@@ -31,11 +31,11 @@ Fuel tanks are created and configured in the [Enjin Blockchain Console](https://
 
 The most common use of a fuel tank is paying fees for players who never touch ENJ themselves.
 
-Most games onboard players with [managed wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md): the game creates and operates a wallet for each player, and the player can move everything to a self-custodial wallet later. Those players don't hold ENJ, so the game covers their fees — through a fuel tank that only your application can use.
+A tank decides which transactions it pays for through a set of **rules**, which you can tailor to many different use cases — for example, a tank that only subsidizes transactions involving tokens from a specific collection, or one that covers fees only for a fixed list of whitelisted accounts. ([How fuel tanks work](#how-fuel-tanks-work) covers the full list.)
 
-The key is the **Require Signature** rule. It tells the tank to accept a dispatch only if the call carries a valid signature from one specific account. Point that account at your Platform's **Wallet Daemon** address, and only your Platform account can dispatch through the tank — the platform attaches the daemon signature automatically on every transaction you send. No one else can dispatch through your tank, so it can't be drained or used to subsidize unrelated apps.
+The setup below uses the most common rule, **Require Signature**, to build a tank that only your own application can dispatch through. That keeps the tank from being drained or used to subsidize unrelated apps, while your players transact without ever holding ENJ.
 
-In short, the tank is configured with:
+Most games onboard players with [managed wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md): the game creates and operates a wallet for each player. To cover those players' fees, you configure the tank with:
 
 - **User account management** enabled, with the tank reserving the account-creation deposit, so players are added to the tank automatically and never pre-fund anything.
 - **Coverage policy** set to **Fees and Deposit**, so the tank pays both transaction fees and any storage deposit a call needs (for example, listing a token).
@@ -73,7 +73,7 @@ Fill out the form:
 Click **Create fuel tank** and sign the transaction. Once it is on-chain, the new tank appears in the Fuel tanks list with its own address.
 
 :::tip Finding your daemon wallet address
-The Require Signature rule must point at the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with — that's what lets the platform authorize dispatches through this tank automatically. The daemon prints its address on startup and it is the address that signs your transactions by default.
+The Require Signature rule must point at the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with — that's what lets the platform authorize dispatches through this tank automatically. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.beta.enjin.io/settings), where you can copy it directly.
 :::
 
 ### 3. Fund the tank {#fund-tank}
