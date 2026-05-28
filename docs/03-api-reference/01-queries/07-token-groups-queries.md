@@ -32,6 +32,7 @@ query GetCollectionGroups {
     id
     tokenGroups {
       id
+      collectionId
       attributes {
         key
         value
@@ -58,6 +59,7 @@ query GetCollectionGroups {
       "tokenGroups": [
         {
           "id": "694",
+          "collectionId": "2967",
           "attributes": [
             { "key": "uri", "value": "https://example.com/metadata/token-groups/epochrome-sword.json" }
           ],
@@ -79,10 +81,6 @@ query GetCollectionGroups {
 </Tabs>
 
 `tokenGroupTokens[].tokenId` is the canonical token id (`"<collectionId>-<tokenId>"`), not the raw `tokenId` integer.
-
-:::warning Selecting TokenGroup.collectionId returns an error
-The `collectionId` field on `TokenGroup` is in the schema but currently returns an `Internal server error` when selected. Omit it — the parent `Collection.id` already gives you the collection id. The platform team is aware and a fix is planned.
-:::
 
 ## Reading the groups a token belongs to
 

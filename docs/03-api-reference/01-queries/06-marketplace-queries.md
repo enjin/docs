@@ -43,6 +43,7 @@ query GetListing {
     minTakeValue
     isActive
     highestPrice
+    type
   }
 }
 ```
@@ -60,7 +61,8 @@ query GetListing {
       "price": "620000000000000000000",
       "minTakeValue": "1209000000000000000000",
       "isActive": true,
-      "highestPrice": "620000000000000000000"
+      "highestPrice": "620000000000000000000",
+      "type": "FIXED_PRICE"
     }
   }
 }
@@ -72,7 +74,7 @@ Field notes:
 
 - `makeAsset` is the token being sold; `takeAsset` is the asset that fills the listing. When `takeAsset` is `null`, the listing is denominated in ENJ.
 - `highestPrice` is `null` for fixed-price listings; for auctions it's the current top bid.
-- `Listing.type` is part of the schema but currently returns an internal server error — omit it for now. The platform team is aware and a fix is planned. In the meantime, you can usually infer fixed-price vs. auction vs. offer from `highestPrice`/`takeAsset` shape.
+- `type` is the listing kind — `FIXED_PRICE`, `AUCTION`, or `OFFER`.
 
 ## GetListings
 
