@@ -10,65 +10,62 @@ import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
 Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" /> and for <GlossaryTerm id="storage_deposit" />s.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](#canary-faucet) in the Platform UI.
 :::
 
 ## 1. Set Up an <GlossaryTerm id="enjin_platform" /> Account
 
-To get started, go ahead and create an account on the <GlossaryTerm id="enjin_platform_cloud" /> and **verify your email address.** In this tutorial, we'll be using the [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io).
+To get started, go ahead and create an account on the [Enjin Platform Cloud](https://platform.beta.enjin.io/) and **verify your email address.**
 
-:::info There are three versions of the Enjin Platform to choose from:
-- The [Enjin Platform Cloud (Testnet)](https://platform.canary.enjin.io), connected to the Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" />.
-- The [Enjin Platform Cloud (Mainnet)](http://platform.enjin.io/), connected to the Enjin <GlossaryTerm id="blockchain" /> <GlossaryTerm id="mainnet" />.
-:::
+The Enjin Platform is chain-agnostic — a single dashboard covers both networks. Use the **network selector in the top-right corner** of the platform UI to switch between **Canary** (testnet) and **Enjin** (mainnet). We recommend starting on Canary while you build and test.
 
 ### Things you should know
 
 - <GlossaryTerm id="enjin_blockchain" /> is <GlossaryTerm id="immutable" />, which is why we recommend building your initial proof-of-concept on Enjin <GlossaryTerm id="canary" /> <GlossaryTerm id="testnet" /> – the fast and free environment for testing Enjin's tools.
-- Every "<GlossaryTerm id="mutation" />" request (i.e, minting a <GlossaryTerm id="token" />) must be signed by a <GlossaryTerm id="wallet_account" />.
+- Every "<GlossaryTerm id="mutation" />" request (i.e, minting a <GlossaryTerm id="token" />) must be signed by a <GlossaryTerm id="wallet_account" />. On the Enjin Platform, signing is handled automatically by the [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) (or, optionally, by a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) that you select per-transaction).
 
 ## 2. Set Up an API Token
 
-Once your account is created, create a new API token by clicking the "**Create API Token**", which can be found on the [Account Settings](https://platform.canary.enjin.io/settings) page.
-
-![Creating an API token on the Enjin Platform](/img/getting-started/create-api-token.gif)
-
-Copy and save that token somewhere safe, you'll need that to automatically approve transactions using a <GlossaryTerm id="wallet_daemon" />.
+Once your account is created, create a new API token by clicking the "**Create API Token**" button on the [Account Settings](https://platform.beta.enjin.io/settings) page.  
+Copy and save that token somewhere safe — you'll need it to configure your <GlossaryTerm id="wallet_daemon" /> and to authenticate API requests.
 
 :::tip Note
 You can always revoke the token and create another one in the future.
 :::
 
-## 3. Set Up a Wallet
+## 3. Set Up the Wallet Daemon
 
-Transactions can be approved in 2 different ways:
+Every on-chain operation initiated through the Enjin Platform must be signed before it can be broadcast to the blockchain. The Enjin Wallet Daemon does this for you automatically.
 
-- **Manually:** Using the [Enjin Wallet](https://enjin.io/products/wallet) / [Polkadot.js](https://polkadot.js.org/).
-- **Automatically:** Using the [Enjin Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
+To download and configure the Wallet Daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page. The daemon needs to be configured with the API token you created in step 2 — that's how it knows which platform account to sign for.
 
-:::tip Start by manually approving transactions
-If you're using the Enjin Platform for the first time, we recommend [Using Enjin Wallet / Polkadot.js](#a-using-enjin-wallet--polkadotjs)
-Enjin wallet app is available on both [iOS](https://enj.in/ios-wallet) and [Android](https://enj.in/android-wallet).
+Once the daemon is running and connected, your Platform account is ready to use.
+
+:::info Signing with a Managed Wallet
+On most transaction creation forms in the Platform UI, you can override the default signer using the **Transaction Options → Signing Account** field. Setting it to a Managed Wallet's address signs the transaction with that wallet's stored key instead of with the Wallet Daemon's wallet. See [Using Managed Wallets](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) for details.
 :::
 
-### A. Using Enjin Wallet / Polkadot.js
+## 4. Get Test Funds (Canary Faucet) {#canary-faucet}
 
-Connect your wallet by clicking the "**Connect Wallet**" button in the top right corner and follow the on-screen instructions.
-The <GlossaryTerm id="enjin_wallet_app" /> also offers gamers a user-friendly, secure, and rewarding experience, ensuring their continuous engagement with your game.
+To create or transact on the Canary testnet, your signing wallet needs some cENJ (Canary ENJ) to cover transaction fees and storage deposits. The Enjin Platform has a built-in faucet that drops cENJ directly to the Wallet Daemon's wallet.
 
-![Connecting a wallet app on the Enjin Platform](/img/getting-started/connect-wallet-app.gif)
+**Prerequisites:** A linked Wallet Daemon — if you haven't set one up yet, see [Set Up the Wallet Daemon](#3-set-up-the-wallet-daemon) above.
 
-### B. Using Daemon Wallet
+**Steps:**
 
-The Enjin Wallet Daemon can automatically sign requests for you.
+1. In the **network selector** at the top-right corner of the dashboard, switch to **Canary**.
+2. A **Faucet icon** appears next to the selector. Click it.
+3. The faucet sends **250 cENJ** to your Wallet Daemon's wallet.
 
-To download and set up wallet daemon, head over to the [Wallet Daemon Setup](/01-getting-started/06-using-wallet-daemon.md) page.
-To ensure that only authorized requests are approved, the Wallet daemon needs to be configured with an Enjin Platform API Token.
-Create an API Token on the [Account Settings](https://platform.canary.enjin.io/settings) page and set the Platform API Token in your Wallet Daemon configuration.
+![Network selector switched to Canary, with the Faucet icon next to it](/img/getting-started/v3-canary-faucet-icon.png)
 
-Once your wallet daemon is connected, your Platform account is set up and ready to use!
+That's it — your Wallet Daemon's wallet now has enough cENJ to cover fees and deposits while you build and test on Canary.
 
-## 4. Create Platform Requests
+:::info Funding a different wallet
+The faucet only sends to the Wallet Daemon's wallet. If you need cENJ in a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) or an external wallet, drop the faucet funds first, then transfer them from the daemon to your target wallet.
+:::
+
+## 5. Create Platform Requests
 
 Now that the Platform account is set up, we can start creating platform requests.
 In this example we will be creating a <GlossaryTerm id="collection" />.
@@ -86,173 +83,100 @@ However, if you need to make a Platform request programmatically, you can do tha
 
 ### Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**" and click the "**Create Collection**" button.
 
-![Create collection form on Enjin Platform](/img/getting-started/create-collection-form.png)
+![Create collection form on Enjin Platform](/img/getting-started/v3-create-collection-form.png)
 
-From here, you can customize your collection's Mint Policy, Market Policy, Explicit Royalty Currencies (optional), and Attributes.
+From here, you can customize your collection's Mint Policy, Royalties, Explicit Royalty Currencies (optional), and Attributes.
 
-Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
+#### Selecting the signing account
 
-![Collection created banner on Enjin Platform](/img/getting-started/collection-created-banner.png)
+Toward the bottom of the form, the **Transaction Options** section lets you choose which wallet should sign this transaction. By default this is set to the Wallet Daemon's address, but you can paste a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address here to sign with that wallet instead.
+
+![Transaction Options Signing Account field](/img/getting-started/v3-transaction-options-signing-account.png)
+
+Once you're satisfied with the options, click the "**Create**" button at the bottom right to submit the request. You'll see a confirmation modal with the new transaction's UUID:
+
+![Transaction Submitted modal showing the new transaction UUID](/img/getting-started/v3-transaction-submitted-modal.png)
+
+Click **View Transaction** to jump straight to the Transactions page and watch it move from `PENDING` → `BROADCAST` → `FINALIZED` as the daemon signs and the chain finalizes it.
 
 ### Option B. Using the Enjin API & SDKs
 
 To create a Platform request programmatically, use the <GlossaryTerm id="graphql" /> API, or one of the <GlossaryTerm id="sdk" />s.
-This mutation will set up a new transaction that once finalized on-chain will contain the new collection id in the transaction <GlossaryTerm id="events" />.
+This mutation will set up a new transaction that, once finalized on-chain, will produce a new collection. The collection's ID can be read from the transaction's events afterward.
 
-:::tip Test your requests in the GraphiQL Playground:
-- [Testnet](https://platform.canary.enjin.io/graphiql)
-- [Mainnet](https://platform.enjin.io/graphiql)
+:::info First time using the API?
+For a step-by-step walkthrough of the endpoint, authentication, and the `network` / `chain` arguments used below, see [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md). If you're new to GraphQL itself, the [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) guide is a good starting point.
 :::
 
-:::tip
-If you are not using the playground, you need to add your API token to the headers to be authenticated, like so:
-```json
-"Authorization": "<API Token Key Here>"
+:::tip Test your requests in the GraphiQL Playground
+[Open the Enjin Platform GraphiQL Playground](https://platform.beta.enjin.io/graphiql)
+:::
+
+:::tip Authentication
+If you are not using the playground, you need to add your API token to the headers, prefixed with `Bearer`:
+```
+Authorization: Bearer <YOUR_API_TOKEN>
 ```
 :::
+
+Every on-chain action runs through a single `CreateTransaction` mutation. The specific action is selected by which field is set on the `transaction` argument — here, `createCollection`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation CreateCollection {
-  CreateCollection(mintPolicy: { forceCollapsingSupply: false }) #Set to true to enforce collapsing supply mint policy
-  {
-    id
-    method
+  CreateTransaction(
+    network: CANARY  # or ENJIN for mainnet
+    chain: MATRIX
+    transaction: {
+      createCollection: {
+        forceCollapsingSupply: false # Set to true to enforce collapsing supply mint policy
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
 ```
   </TabItem>
   <TabItem value="curl" label="cURL">
-```json
-curl --location 'https://platform.canary.enjin.io/graphql' \
+```bash
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation Infuse(\r\n  $collection_id: BigInt!\r\n  $token_id: EncodableTokenIdInput!\r\n  $amount: BigInt!\r\n) {\r\n  Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"forceCollapsingSupply":false}}'
-```
-  </TabItem>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using System.Text.Json;
-using Enjin.Platform.Sdk;
-
-// Setup the mutation
-var createCollection = new CreateCollection()
-    .SetMintPolicy(new MintPolicy().SetForceCollapsingSupply(false)); //Set to true to enforce collapsing supply mint policy
-
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-createCollection.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendCreateCollection(createCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cplusplus
-#include "EnjinPlatformSdk/CoreMutations.hpp"
-#include <memory>
-#include <iostream>
-
-using namespace enjin::platform::sdk;
-using namespace std;
-
-int main() {
-
-    // Setup mutation data
-    shared_ptr<MintPolicy> mintPolicy = make_shared<MintPolicy>();
-    mintPolicy->SetForceSingleMint(make_shared<SerializableBool>(false));
-
-    // Setup mutation
-    CreateCollection createCollection = CreateCollection();
-    createCollection.SetMintPolicy(mintPolicy);
-
-    // Define and assign the return data fragment to the mutation
-    shared_ptr<TransactionFragment> transactionFragment = make_shared<TransactionFragment>();
-    transactionFragment
-        ->WithId()
-        .WithMethod()
-        .WithState();
-
-    createCollection.SetFragment(transactionFragment);
-
-    // Create and auth a client to send the request to the platform
-    unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
-            .Build();
-    client->Auth("Your_Platform_Token_Here");
-
-    // Send the request then get the response and write the output to the console.
-    // Only the fields that were requested in the fragment will be filled in,
-    // other fields which weren't requested in the fragment will be set to null.
-    future<shared_ptr<IPlatformResponse<GraphQlResponse<Transaction>>>> futureResponse = SendCreateCollection(*client, createCollection);
-
-    // Get the platform response holding the HTTP data
-    PlatformResponsePtr<GraphQlResponse<Transaction>> response = futureResponse.get();
-
-    // Get the result, a GraphQL response, holding the GraphQL data
-    const optional<GraphQlResponse<Transaction>>& gqlResult = response->GetResult();
-
-    // Write the result data to the console
-    if (gqlResult.has_value() && gqlResult->IsSuccess())
-    {
-        const optional<Transaction>& transaction = gqlResult->GetData()->GetResult();
-
-        std::cout << to_string(transaction->GetId().value()) << std::endl;
-        std::cout << ToString(transaction->GetMethod().value()) << std::endl;
-    }
-
-     // Write any error messages to the console
-    if (gqlResult.has_value() && gqlResult->HasErrors())
-    {
-        const optional<vector<GraphQlError>>& errors = gqlResult->GetErrors();
-
-        for (const GraphQlError& error : errors.value()) {
-            std::cout << error.GetMessage().value() << std::endl;
-        }
-    }
-
-    client.reset();
-
-    return 0;
-}
+-H 'Authorization: Bearer <YOUR_API_TOKEN>' \
+-d '{"query":"mutation { CreateTransaction(network: CANARY, chain: MATRIX, transaction: { createCollection: { forceCollapsingSupply: false } }) { uuid action state } }"}'
 ```
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <YOUR_API_TOKEN>'
+  },
   body: JSON.stringify({
     query: `
       mutation CreateCollection($forceCollapsingSupply: Boolean) {
-        CreateCollection(
-          mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+        CreateTransaction(
+          network: CANARY
+          chain: MATRIX
+          transaction: {
+            createCollection: { forceCollapsingSupply: $forceCollapsingSupply }
+          }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      forceCollapsingSupply: false //Set to true to enforce collapsing supply mint policy
+      forceCollapsingSupply: false
     }
   }),
 })
@@ -264,23 +188,30 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateCollection($forceCollapsingSupply: Boolean) {
-      CreateCollection(
-        mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+      CreateTransaction(
+        network: CANARY
+        chain: MATRIX
+        transaction: {
+          createCollection: { forceCollapsingSupply: $forceCollapsingSupply }
+        }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    forceCollapsingSupply: false //Set to true to enforce collapsing supply mint policy
+    forceCollapsingSupply: false
   }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <YOUR_API_TOKEN>'
+  }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -292,164 +223,151 @@ import requests
 
 query = '''
 mutation CreateCollection($forceCollapsingSupply: Boolean) {
-  CreateCollection(
-    mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+  CreateTransaction(
+    network: CANARY
+    chain: MATRIX
+    transaction: {
+      createCollection: { forceCollapsingSupply: $forceCollapsingSupply }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {'forceCollapsingSupply': False} #Set to true to enforce collapsing supply mint policy
+variables = {'forceCollapsingSupply': False}
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
-	json={'query': query, 'variables': variables},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+response = requests.post(
+    'https://platform.beta.enjin.io/graphql',
+    json={'query': query, 'variables': variables},
+    headers={
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer <YOUR_API_TOKEN>'
+    }
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the collection in real time by listening to the app channel on the WebSocket.
+The response includes a `uuid` you can use to query the transaction's status as it moves through the daemon-signing → broadcast → finalization lifecycle.
 
-## 5. Approve Platform Requests
+:::info Signing happens automatically
+Once a request is created — whether through the dashboard or the API — the Wallet Daemon (or the [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you specified in the `Signing Account` field) picks it up, signs it, and broadcasts it to the chain. There is no manual approval step. The transaction will move from `PENDING` → `BROADCAST` → `FINALIZED` as it's processed.
+:::
 
-Once a Platform request is created, all that remains is to approve it, which will sign the transaction and broadcast it to the Enjin Blockchain
+## 6. Working with the Dashboard
 
-Transaction requests are displayed in the "**[Transactions](https://platform.canary.enjin.io/transactions)**" menu.
+A couple of dashboard patterns are worth knowing before you start managing existing collections and tokens.
 
-![Pending create collection txn on Enjin Platform](/img/getting-started/pending-create-collection-txn.png)
+### Finding existing tokens {#finding-tokens}
 
+The dashboard does not have a top-level **Tokens** page. Tokens are always viewed inside the collection they belong to:
 
-Since this transaction is a <GlossaryTerm id="mutation" />, you will need to sign the transaction using your Wallet.
+1. In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
+2. Click the collection that contains the token you want to manage.
+3. The collection page lists every token in the collection. Click the **3 vertical dots** (**⋮**) on a token's row to open its action menu — **Mint**, **Transfer**, **Attributes**, **Burn**, **Freeze / Thaw**, and so on.
 
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+![Collection page with the per-token actions menu open](/img/getting-started/v3-collection-tokens-list.png)
 
-![Approving the create collection txn on Enjin Platform](/img/getting-started/approving-create-collection-txn.gif)
+### Batching transactions {#batching-transactions}
 
-And that's it! The transaction is then broadcasted to the Enjin Blockchain, and once approved, it will be included in a <GlossaryTerm id="block" />.
+The dashboard can group several actions into a single on-chain transaction. Every batchable action form has a **+ Add to Batch** button next to its primary submit button:
 
-## 6. Receive Transaction Information
+![Set Attribute form showing the Set Attribute, + Add to Batch, and Cancel buttons](/img/getting-started/v3-form-add-to-batch.png)
 
-There are 3 ways to receive the transaction status and information:
+Clicking **+ Add to Batch** queues the action instead of submitting it. Repeat for each action you want to bundle.
+
+When you're ready to submit, open the **Batch Queue** panel from the bottom-right corner of the dashboard. The panel lists every queued action with a **Remove** link, lets you pick a **Signing Account** (defaults to the Wallet Daemon), and submits the whole list as a single `CreateBatchTransaction` when you click **Submit Batch**:
+
+![Batch Queue panel with two queued actions and the Submit Batch button](/img/getting-started/v3-batch-queue.png)
+
+A successful submit produces a single transaction `uuid` on the [Transactions](https://platform.beta.enjin.io/transactions) page — the same shape any other transaction uses, just with multiple actions packed into it.
+
+:::tip Programmatic equivalent
+The API equivalent of the Batch Queue is the `CreateBatchTransaction` mutation — it takes a `transactions: [TransactionInput!]!` list where each entry is one of the same discriminator inputs you'd pass to `CreateTransaction`.
+:::
+
+## 7. Receive Transaction Information
+
+There are two ways to receive the transaction status and information:
 
 - [Receive Transaction Information Using the Platform User Interface](#receive-transaction-information-using-the-platform-user-interface)
 - [Receive Transaction Information Using the Enjin API / SDKs](#receive-transaction-information-using-the-enjin-api--sdks)
-- [Receive Transaction Information by Listening to Platform Websocket Events](#receive-transaction-information-by-listening-to-platform-websocket-events)
+
+For real-time, push-based notifications, see [WebSocket Events](/03-api-reference/03-websocket-events.md) — planned, not yet available.
 
 ### Receive Transaction Information Using the Platform User Interface
 
-To check the transaction status, head over to the [Transactions](https://platform.canary.enjin.io/transactions) page locate the transaction and click on the button to it's right to show more details.
-Once the transactions approves on-chain, the transaction will get updated with the `FINALIZED` state and the transaction events will be displayed.
-In the events, we can find useful information, such as the newly created collection ID.
+To check the transaction status, head over to the [Transactions](https://platform.beta.enjin.io/transactions) page. Each row shows the transaction's `UUID`, `Action` (e.g. `MultiTokens.create_collection`), `State`, and `Extrinsic Hash` once it has been broadcast.
 
-![How to find your newly created collection ID](/img/getting-started/find-newly-created-collection-id.gif)
+![Transactions page showing a finalized create_collection transaction](/img/getting-started/v3-transactions-page.png)
+
+Once the state reaches `FINALIZED`, the transaction has been included on-chain. The events it emitted — for example, the new **collection ID** after a collection-creation transaction — can be read via the flow described in [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 ### Receive Transaction Information Using the Enjin API & SDKs
 
-To receive the transaction information programmatically, You can use the `GetTransaction` query and set the `id` to the ID received in the `CreateCollection` mutation.
-But for this example, we're going to use the `GetPendingEvents` query, which returns all of the events emitted to your platform account.
-
-:::info This query might return items in multiple pages using Connections
-To learn how to use GraphQL cursors for pagination, head to [Using the API --> Pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination).
-:::
+To receive transaction information programmatically, use the `GetTransaction` query. Pass the `uuid` returned by `CreateTransaction` and request whichever fields you need — `state`, `extrinsicHash`, `action`, and so on.
 
 **Query:**
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-query GetPendingEvents{
-  GetPendingEvents{
-    edges{
-      node{
-        name
-        data
-      }
-    }
+query GetTransactionStatus($uuid: String!) {
+  GetTransaction(
+    network: CANARY
+    chain: MATRIX
+    uuid: $uuid
+  ) {
+    uuid
+    action
+    state
+    extrinsicHash
+    createdAt
+    updatedAt
   }
+}
+```
+
+**Variables:**
+
+```json
+{
+  "uuid": "12f22f91-82df-4b60-a90c-bf72b508a17c"
 }
 ```
   </TabItem>
   <TabItem value="curl" label="cURL">
-```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+```bash
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query": "query GetPendingEvents { GetPendingEvents { edges { node { name data } } } }"}'
-```
-  </TabItem>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using System.Text.Json;
-using Enjin.Platform.Sdk;
-
-var filterInputArray = new StringFilterInput[]
-{
-    new StringFilterInput()
-        .SetType(FilterType.And)
-        .SetFilter("collection;2000"),
-};
-
-// Setup the query
-var getPendingEvents = new GetPendingEvents()
-    .SetChannelFilters(filterInputArray);
-
-// Define and assign the return data fragment to the query
-var pendingEventsFragment = new ConnectionFragment<PendingEventFragment>()
-    .WithEdges(new EdgeFragment<PendingEventFragment>()
-        .WithNode(new PendingEventFragment()
-            .WithId()
-            .WithUuid()
-            .WithName()
-            .WithSent()
-            .WithChannels()
-            .WithData()
-        )
-    );
-
-getPendingEvents.Fragment(pendingEventsFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendGetPendingEvents(getPendingEvents);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cplusplus
-
+-H 'Authorization: Bearer <YOUR_API_TOKEN>' \
+-d '{"query":"query { GetTransaction(network: CANARY, chain: MATRIX, uuid: \"12f22f91-82df-4b60-a90c-bf72b508a17c\") { uuid action state extrinsicHash } }"}'
 ```
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <YOUR_API_TOKEN>'
+  },
   body: JSON.stringify({
     query: `
-      query GetPendingEvents{
-        GetPendingEvents{
-          edges{
-            node{
-              name
-              data
-            }
-          }
+      query GetTransactionStatus($uuid: String!) {
+        GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) {
+          uuid
+          action
+          state
+          extrinsicHash
         }
       }
     `,
+    variables: { uuid: '12f22f91-82df-4b60-a90c-bf72b508a17c' }
   }),
 })
 .then(response => response.json())
@@ -460,21 +378,23 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    query GetPendingEvents{
-      GetPendingEvents{
-        edges{
-          node{
-            name
-            data
-          }
-        }
+    query GetTransactionStatus($uuid: String!) {
+      GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) {
+        uuid
+        action
+        state
+        extrinsicHash
       }
     }
   `,
+  variables: { uuid: '12f22f91-82df-4b60-a90c-bf72b508a17c' }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer <YOUR_API_TOKEN>'
+  }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -485,21 +405,25 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-  query GetPendingEvents{
-    GetPendingEvents{
-      edges{
-        node{
-          name
-          data
-        }
-      }
-    }
+query GetTransactionStatus($uuid: String!) {
+  GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) {
+    uuid
+    action
+    state
+    extrinsicHash
   }
+}
 '''
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
-	json={'query': query},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+variables = {'uuid': '12f22f91-82df-4b60-a90c-bf72b508a17c'}
+
+response = requests.post(
+    'https://platform.beta.enjin.io/graphql',
+    json={'query': query, 'variables': variables},
+    headers={
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer <YOUR_API_TOKEN>'
+    }
 )
 print(response.json())
 ```
@@ -511,77 +435,23 @@ print(response.json())
 ```json
 {
   "data": {
-    "GetPendingEvents": {
-      "edges": [
-        {
-          "node": {
-            "name": "platform:transaction-created",
-            "data": {
-              "id": 1648,
-              "state": "PENDING",
-              "method": "CreateCollection",
-              "idempotencyKey": "00e32324-acfa-4ddb-8b7d-6dd8d0b4f694"
-            }
-          }
-        },
-        {
-          "node": {
-            "name": "platform:transaction-updated",
-            "data": {
-              "id": 1648,
-              "state": "BROADCAST",
-              "method": "CreateCollection",
-              "result": null,
-              "transactionId": null,
-              "idempotencyKey": "00e32324-acfa-4ddb-8b7d-6dd8d0b4f694",
-              "transactionHash": "0xeb2510094c53317e19ca188b5ba8a21b81f36f4bc1be09e079b46ee7b9bce754"
-            }
-          }
-        },
-        {
-          "node": {
-            "name": "platform:collection-created",
-            "data": {
-              "owner": "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
-              "collectionId": "38224",
-              "idempotencyKey": "00e32324-acfa-4ddb-8b7d-6dd8d0b4f694"
-            }
-          }
-        },
-        {
-          "node": {
-            "name": "platform:transaction-updated",
-            "data": {
-              "id": 1648,
-              "state": "FINALIZED",
-              "method": "CreateCollection",
-              "result": "EXTRINSIC_SUCCESS",
-              "transactionId": "1404095-2",
-              "idempotencyKey": "00e32324-acfa-4ddb-8b7d-6dd8d0b4f694",
-              "transactionHash": "0xeb2510094c53317e19ca188b5ba8a21b81f36f4bc1be09e079b46ee7b9bce754"
-        }
-      ]
+    "GetTransaction": {
+      "uuid": "12f22f91-82df-4b60-a90c-bf72b508a17c",
+      "action": "MultiTokens.create_collection",
+      "state": "FINALIZED",
+      "extrinsicHash": "0xd43b83...014b1365",
+      "createdAt": "2026-05-07T16:36:33Z",
+      "updatedAt": "2026-05-07T16:36:51Z"
     }
   }
 }
 ```
 
-The first event with `PENDING` state was emitted when the `CreateCollection` platform request was created.
-The second event with `BROADCAST` state was emitted when the transaction was signed and broadcasted to the Enjin Blockchain.
-The third event was emitted when the collection was created on-chain, and has the `collectionId` in it's data.
-The forth and final event with `FINALIZED` state was emitted when the platform request was finalized.
+A `state` of `FINALIZED` means the transaction has been included in a finalized block. To list multiple transactions instead of fetching one by UUID, use the cursor-paginated `GetTransactions` query — see [Pagination](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#pagination) for the response shape.
 
 :::info Note
-For the full list of platform states, check the [Enjin API --> Important Arguments](/03-api-reference/04-important-arguments.md#state) page.
+For the full list of platform states, check the [Enjin API → Important Arguments](/03-api-reference/04-important-arguments.md#state) page.
 :::
-
-:::tip Acknowledging Events
-To remove the pending events from the queue after fetching them, set the `acknowledgeEvents` parameter to true
-:::
-
-### Receive Transaction Information by Listening to Platform Websocket Events
-
-You can also subscribe for events via Websocket. for more information, check out the [Websocket Events](/05-enjin-platform/03-working-with-events.md)
 
 :::tip What's Next?
 Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).

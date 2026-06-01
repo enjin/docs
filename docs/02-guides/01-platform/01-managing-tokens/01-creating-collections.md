@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and 6.25 ENJ for <GlossaryTerm id="storage_deposit" />s.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
@@ -23,50 +23,52 @@ On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="colle
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.canary.enjin.io/create/collection)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.beta.enjin.io/create/collection)**" button.
 
-![Creating a collection](/img/guides/managing-tokens/create-collection.gif)
+From here, you can configure the collection's supply rules, royalties, accepted royalty currencies, and attributes.
 
-From here, you can customize your collection's Mint Policy, Market Policy, Explicit Currencies (on option to delegate a token for <GlossaryTerm id="royalties" />), and Attributes.
-
-- **[Mint Policy](/03-api-reference/04-important-arguments.md#mintpolicy) -** The rules pertaining to token supply and number of tokens available to be minted in the future.
-- **[Market Policy](/03-api-reference/04-important-arguments.md#marketpolicy) -** Determines the rules which tokens in this collection must follow when interacting with the on-chain marketplace.
+- **[Royalties](/03-api-reference/04-important-arguments.md#marketpolicy) -** Configure a beneficiary and percentage for marketplace sales of tokens in this collection.
 - **[Explicit Royalty Currencies](/03-api-reference/04-important-arguments.md#explicitroyaltycurrencies) -** Choose which currencies are required to pay marketplace royalties for the tokens in this collection.
+- **[Max Token Count / Max Token Supply](/03-api-reference/04-important-arguments.md#mintpolicy) -** Optional caps on how many distinct tokens, and how much supply per token, this collection allows.
+- **Force Collapsing Supply -** When enabled, burning a token reduces its max supply (burned tokens cannot be re-minted). Leave disabled for the standard behavior.
 - **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Add details to your collection using key-value pairs. Standard keys like `name` and `description` allow applications to display your content correctly. You can also use the `URI` to link to a JSON file hosting your metadata. For more information, see the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
 
 :::info Learn more about the arguments
 For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
 :::
 
-Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
+Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/collection-created-banner.png').default} width="600" alt="Collection created banner that appears after creating a transaction request" />
-</p>
-
-![Pending create collection transaction](/img/guides/managing-tokens/pending-create-collection-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 Once you've created a collection you're ready to start [creating tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
 
 ## Option B. Using the Enjin API & SDKs
 
-The `CreateCollection` mutation is used to create a new on-chain collection.
+Every on-chain action goes through the single `CreateTransaction` mutation. The action itself is selected by which field you set on the `transaction` input — for collections, that's `createCollection`.
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation CreateCollection {
-  CreateCollection(mintPolicy: { forceCollapsingSupply: false }) #Set to true to enforce collapsing supply mint policy
-  {
-    id
-    method
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      createCollection: {
+        forceCollapsingSupply: false  # set to true to enforce collapsing supply
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -74,10 +76,10 @@ mutation CreateCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation CreateCollection($forceCollapsingSupply: Boolean) {\r\n  CreateCollection(\r\n    mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"forceCollapsingSupply":false}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation CreateCollection($forceCollapsingSupply: Boolean!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { createCollection: { forceCollapsingSupply: $forceCollapsingSupply } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"forceCollapsingSupply":false}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -99,7 +101,7 @@ createCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -140,7 +142,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -182,23 +184,25 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation CreateCollection($forceCollapsingSupply: Boolean) {
-        CreateCollection(
-          mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+      mutation CreateCollection($forceCollapsingSupply: Boolean!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: { createCollection: { forceCollapsingSupply: $forceCollapsingSupply } }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      forceCollapsingSupply: false //Set to true to enforce collapsing supply mint policy
+      forceCollapsingSupply: false // set to true to enforce collapsing supply
     }
   }),
 })
@@ -210,23 +214,25 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation CreateCollection($forceCollapsingSupply: Boolean) {
-      CreateCollection(
-        mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+    mutation CreateCollection($forceCollapsingSupply: Boolean!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: { createCollection: { forceCollapsingSupply: $forceCollapsingSupply } }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    forceCollapsingSupply: false //Set to true to enforce collapsing supply mint policy
+    forceCollapsingSupply: false // set to true to enforce collapsing supply
   }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN' }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -237,34 +243,39 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation CreateCollection($forceCollapsingSupply: Boolean) {
-  CreateCollection(
-    mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }
+mutation CreateCollection($forceCollapsingSupply: Boolean!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: { createCollection: { forceCollapsingSupply: $forceCollapsingSupply } }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {'forceCollapsingSupply': False} #Set to true to enforce collapsing supply mint policy
+variables = {'forceCollapsingSupply': False}  # set to true to enforce collapsing supply
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
+The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.create_collection`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
+
+Once it reaches `FINALIZED`, a `MultiTokens.CollectionCreated` event is emitted containing the new `collection_id` assigned to your collection. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
+
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
-For instance, you'll find settings such as different supply types with the `MintPolicy` argument, enforcing royalties with the `MarketPolicy` argument, or adding metadata with the `AttributeInput` argument.
-:::
 
-A WebSocket event will also be fired so you can pick up the collection in real time by listening to the app channel on the WebSocket.
+In addition to `forceCollapsingSupply`, `createCollection` accepts `maxTokenCount`, `maxTokenSupply`, `royalties`, `explicitRoyaltyCurrencies`, and `attributes`.
+:::
 
 :::tip What's next?
 You've created a collection, now [Fill it with Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md)

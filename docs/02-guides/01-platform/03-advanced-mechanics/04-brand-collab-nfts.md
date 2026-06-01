@@ -76,108 +76,77 @@ By marking the utility of your game on the token’s metadata as "locked," and c
 
 ## Development
 
-Here’s the Query you will need to use:
+Reading the tokens a player holds is done with the `GetAccount` query — see [Reading User Wallets](/02-guides/01-platform/02-managing-users/02-reading-user-wallets.md) for the canonical query shape and response structure.
+
+Each token in the returned `tokens` list carries its `collection.id` and `tokenId`, so identifying brand or multiverse items the player owns is a matter of matching those values against the IDs your game cares about.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-query GetWallet {
-  GetWallet(account:"efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3") {
-// omit “tokenIds” to read all tokens in a collection
-// if you are getting a page after the first put the “endCursor” value into the “after” field
-tokenAccounts (collectionIds:2100 tokenIds:1 after:"" first:100) {
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-      edges{
-        node {
-          balance
-          reservedBalance
-					token{
-            tokenId
-            attributes {
-              key
-              value
-            }
-          }
-        }
-      }
+query ScanForBrandItems {
+  GetAccount(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    address: "efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3"
+  ) {
+    tokens {
+      id          # canonical "<collectionId>-<tokenId>"
+      tokenId
+      collection { id }
+      attributes { key value }
     }
   }
 }
-
 ```
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl -X POST "https://platform.canary.enjin.io/graphql" \
--H "Content-Type: application/json" \
--H "Authorization: enjin_api_key" \
--d '{
-  "query": "query GetWallet { GetWallet(account: \"efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3\") { tokenAccounts(collectionIds: 2100, tokenIds: 1, after: \"\", first: 100) { pageInfo { hasNextPage endCursor } edges { node { balance reservedBalance token { tokenId attributes { key value } } } } } } }"
-}'
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"query ScanForBrandItems($address: String!) {\r\n  GetAccount(network: ENJIN, chain: MATRIX, address: $address) {\r\n    tokens {\r\n      id\r\n      tokenId\r\n      collection { id }\r\n      attributes { key value }\r\n    }\r\n  }\r\n}","variables":{"address":"efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3"}}'
 ```
   </TabItem>
 </Tabs>
 
-Here’s an example of a response you can expect.
+The response includes every token the wallet currently holds. Filter it client-side by `collection.id` (and optionally `tokenId`) to pick out the brand-collab items your game integrates:
 
 ```json
 {
   "data": {
-    "GetWallet": {
-      "tokenAccounts": {
-        // if there are more items to read there will be a guid in the “endCursor” value
-        "pageInfo": {
-          "hasNextPage": false,
-          "endCursor": ""
-        },
-        "edges": [
-          {
-            "node": {
-              "balance": "3",
-              "reservedBalance": "0",
-              "token": {
-                "tokenId": "1",
-			// to read the metadata I should query the url provided as the value for the uri attribute
-                "attributes": [
-                  {
-                    "key": "uri",
-                    "value": "https://etherscapegame.com/crypto/ImperialSovereign.json"
-                  }
-                ]
-              }
+    "GetAccount": {
+      "tokens": [
+        {
+          "id": "2100-1",
+          "tokenId": "1",
+          "collection": { "id": "2100" },
+          "attributes": [
+            {
+              "key": "uri",
+              "value": "https://etherscapegame.com/crypto/ImperialSovereign.json"
             }
-          }
-        ]
-      }
+          ]
+        }
+      ]
     }
   }
 }
-
 ```
+
+To read the external metadata, fetch the URL listed under the token's `uri` attribute.
 
 ## Best Practices
 
 :::tip Tips
 
-- Only pull data from the collections you need. This will improve performance and ensure your backend infrastructure remains scalable.
-- Always read and check the balance. Sometimes, the player may hold the token but the balance is actually zero, for instance, if the token has been burned. These burned tokens should not have in-game utility.
-- Consider whether you want NFTs that are listed on a marketplace to have utility in your game. Items that are listed for sale don't show up in regular token balance and show up in reserved balance instead. If you want them to have utility, you can check the reserved balance and include the reserved supply.
-- Consider if you need to use pagination. Users can have hundreds of tokens, in this situation you will need to read them in multiple calls.
-- If you plan to utilize metadata from on-chain or external sources, it's important to also read the token's attributes. Typically, you'll find a "uri" attribute that points to the external location of this metadata.
-- When accessing external metadata or media, make sure to do so asynchronously and think about storing it in a local cache for faster retrieval.
+- A token appears in a wallet's `tokens` list only while the wallet holds a balance of it, so the list always reflects current holdings — no need to filter out burned tokens.
+- If you plan to utilize metadata from on-chain or external sources, also read the token's `attributes`. Typically you'll find a `uri` attribute that points to the external location of this metadata.
+- When accessing external metadata or media, make the calls asynchronously and consider storing them in a local cache for faster retrieval.
 :::
 
 ### Syncing Tokens
 
-In order to implement any token in game you will need to sync a list of token ids that your player has in their wallet. In the most simple case, you only need to sync tokens from a single collection (likely the main collection associated with your game). However, in multiverse cases, you will now need to sync tokens from multiple collections. There are a couple of options to achieve this.
-
-1. Sync All Tokens
-   The first approach is to sync all the tokens in the players wallet across all collections. This makes the graphQL query very simple. However, with this approach you need to bear in mind that some wallets will have thousands of tokens in them (and could grow to even hundreds of thousands). This means that you can’t rely on syncing all the wallets tokens in a single call. You will need to make sure to implement proper pagination using the GraphQL API’s so that you can read out the tokens in many batches.
-2. Sync Specific Collections Only
-   Another approach is to only sync the collections you care about. This will limit the total number of tokens that you need to sync. In your GraphQL query you can specify a list of collection and token ids in order to narrow down the range. Depending on your case, you may still want to handle pagination of calls if any of the collections you include have a large number of tokens.
+To implement any token in game you'll need to know which token IDs the player holds. `GetAccount.tokens` returns every token across every collection the wallet holds in a single response — filter the list client-side down to the collection IDs your game cares about (for example, the main collection associated with your game plus any brand-collab collections you integrate).
 
 ### Syncing Metadata
 
@@ -199,9 +168,9 @@ Note that if you’re adopting another game’s token, you may not want to use a
 
 ### ERC-1155 Grouped NFTs
 
-There are many tokens that have been migrated from the ERC-1155 version of Enjin. In ERC-1155 there is a concept called “Grouped NFTs” where there is a grouping of NFT tokens that share the same metadata.
+There are many tokens that have been migrated from the ERC-1155 version of Enjin. In ERC-1155 there is a concept called "Grouped NFTs" where a set of NFT tokens share the same metadata.
 
-A popular example of this would be “Oindrasdain” from “The Multiverse” collection. There are many copies of Oindrasdain and they have token ids that look like the following…
+A popular example of this would be "Oindrasdain" from "The Multiverse" collection. There are many copies of Oindrasdain and they have token ids that look like the following…
 
 `107002853660685728488179487227240257220`
 
@@ -216,3 +185,7 @@ Group ID: `5080000000000027`
 Group Index: `00000000000016C4`
 
 All tokens in the collection that share the same group id are intended to be of the same token type and thus should get the same utility. This is similar to how <GlossaryTerm id="multi_unit_token" />s work.
+
+:::tip Token Groups
+For projects starting fresh, the recommended way to group tokens that share metadata or utility is the on-chain **Token Groups** feature, not packing a group ID into the token ID. Many migrated collections (including The Multiverse) have also been organized into on-chain Token Groups, so you can read group membership through the API instead of decoding the 128-bit layout. See [Token Groups mutations](/03-api-reference/02-mutations/07-token-groups-mutations.md) and [Token Groups queries](/03-api-reference/01-queries/07-token-groups-queries.md).
+:::

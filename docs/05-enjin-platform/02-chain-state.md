@@ -26,23 +26,17 @@ Here's an example of a query in the GraphiQL playground, showing the state of co
 
 ```graphql
 query GetCollection {
-  GetCollection(collectionId: 2000) {
+  GetCollection(network: ENJIN, chain: MATRIX, id: 2000) {
     owner {
-      account {
-        address
-      }
+      address
     }
-    maxTokenCount
-    maxTokenSupply
-    forceSingleMint
-    frozen
-    tokens {
-      totalCount
-      edges {
-        node {
-          tokenId
-        }
-      }
+    mintPolicy {
+      maxTokenCount
+      maxTokenSupply
+      forceCollapsingSupply
+    }
+    transferPolicy {
+      isFrozen
     }
   }
 }
@@ -52,17 +46,15 @@ query GetCollection {
   "data": {
     "GetCollection": {
       "owner": {
-        "account": {
-          "address": "efTpCuJYg7jnjA8HxYb9dFKp7eCP7WKKHVoCjqy1Dt7NABds6"
-        }
+        "address": "efTpCuJYg7jnjA8HxYb9dFKp7eCP7WKKHVoCjqy1Dt7NABds6"
       },
-      "maxTokenCount": null,
-      "maxTokenSupply": null,
-      "forceSingleMint": false,
-      "frozen": false,
-      "tokens": {
-        "totalCount": 0,
-        "edges": []
+      "mintPolicy": {
+        "maxTokenCount": 0,
+        "maxTokenSupply": "0",
+        "forceCollapsingSupply": false
+      },
+      "transferPolicy": {
+        "isFrozen": false
       }
     }
   }

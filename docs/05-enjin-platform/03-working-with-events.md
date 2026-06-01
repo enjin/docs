@@ -1,177 +1,26 @@
 ---
 title: "Working with Events"
 slug: "working-with-events"
-description: "Explore how to handle blockchain events within the Enjin platform, enabling real-time updates and interactions in your application."
+description: "How to read on-chain events emitted by transactions on the Enjin Platform."
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+In the blockchain ecosystem, "events" are the on-chain log entries emitted by extrinsics — they're how the chain reports what actually happened: token transfers, collection creation, marketplace listing IDs, balance changes, and so on. Monitoring them is essential for any application that needs to react to state changes — for example, unlocking an in-game item the moment the user receives the corresponding NFT.
 
-In the blockchain ecosystem, "events" refer to important actions or changes within the blockchain network.
+:::warning Coming soon
+Reading the on-chain events emitted by a transaction through the Enjin Platform API is **planned** but **not yet available**. An `events` field will be added to the `Transaction` type so you'll be able to read them alongside `state`, `extrinsicHash`, etc. The exact shape isn't finalized — this page will be updated with response examples once support ships.
 
-This includes things like creating or changing digital assets, transferring balances, and any other actions that alter the chain's state. These events are recorded on the blockchain, providing a transparent and unchangeable history of all activities.
-
-Monitoring and analyzing these events helps users and developers understand the flow of transactions and respond to specific actions or conditions in the network. This is key for decentralized applications and games, enabling automated interactions and improving overall functionality.
-
-:::warning Note on Address Formats in Platform Events
-Please note that all account addresses included in platform events, such as channel names or any addresses within the event payload, are formatted as **public keys**.
-For example, in a "Transfer" event, the "from" account address appears in its public key format.
-If needed, you may use the [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between **SS58-encoded address format** (e.g., "cx...123" for the Canary Matrixchain or "cn...123" for the Canary Relaychain) and public key format.
+Real-time push-based event streaming is also planned — see [WebSocket Events](/03-api-reference/03-websocket-events.md).
 :::
 
-## Using Enjin Platform
+## Reading events today
 
-To view events emitted from a transaction conducted on the platform, you can use the `GetTransaction` query as follows:
+Until the `Transaction.events` field ships, the workflow is:
 
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-query GetTransaction {
-  GetTransaction(id: 40000) {
-    method
-    state
-    result
-    events {
-      edges {
-        node {
-          moduleld
-          eventId
-          params {
-            type
-            value
-          }
-        }
-      }
-    }
-  }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetTransaction": {
-      "method": "BatchTransfer",
-      "state": "FINALIZED",
-      "result": "EXTRINSIC_SUCCESS",
-      "events": {
-        "edges": [
-          {
-            "node": {
-              "moduleId": "Balances",
-              "eventId": "Withdraw",
-              "params": [
-                {
-                  "type": "who",
-                  "value": "f64fda4cb0352aff9394f0cc14495ca8cefffb8c8e9b37de058a1d4d4650c3313"
-                },
-                {
-                  "type": "amount",
-                  "value": "20675071170417823"
-                }
-              ]
-            }
-          },
-          {
-            "node": {
-              "moduleId": "MultiTokens",
-              "eventId": "CollectionAccountCreated",
-              "params": [
-                {
-                  "type": "collection_id",
-                  "value": "2155"
-                },
-                {
-                  "type": "account",
-                  "value": "303049fa4535f21acc5760521c6cc91f01ddf28ebf771da99effbf5c1031416F"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
+1. **Poll for finalization.** Call [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) until `state` is `FINALIZED`. The response also exposes `extrinsicHash` once the transaction has been broadcast.
+2. **Read the events on Subscan.** Open the transaction by its `extrinsicHash` on the [Enjin Matrixchain Subscan explorer](https://matrix.subscan.io/). The **Events** tab there lists every event the extrinsic emitted, including IDs you'll commonly need (new `collection_id`, `token_id`, `listing_id`, etc.).
 
-Our platform broadcasts network events through a `WebSocket` channel, similar to the recent events feature in Polkadot-JS. It's important to note that this channel includes not only network-wide events but also specific events from the Enjin Platform.
+The Enjin dashboard makes this one click — open the [Transactions page](https://platform.beta.enjin.io/transactions), find your transaction, and click its **Extrinsic Hash** link to jump straight to the Subscan event view.
 
-Learn more about [Websocket Events here](/05-enjin-platform/03-working-with-events.md).
-
-![Platform Events](/img/guides/going-open-source/platform-events.png)
-
-Our platform uses WebSockets to transmit real-time events, but since WebSockets can sometimes be unstable, there's a risk of missing events if your system loses connection. To address this, we also cache events in a query called `GetPendingEvents`. The most effective way to stay updated in real time and ensure no events are missed is to always `acknowledge` the events you receive.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-query GetPendingEvents {
-  GetPendingEvents(
-    acknowledgeEvents: false,
-    first: 50
-  ) {
-    edges {
-      node {
-        name
-        data
-      }
-    }
-  }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetPendingEvents": {
-      "edges": [
-        {
-          "node": {
-            "name": "platform:transaction-updated",
-            "data": {
-              "id": 179419,
-              "state": "PROCESSING",
-              "method": "BatchTransfer",
-              "result": null,
-              "transactionId": null,
-              "idempotencyKey": "4eace652-9c9f-4721-bfe3-1be6f7597c32",
-              "transactionHash": null
-            }
-          }
-        },
-        {
-          "node": {
-            "name": "platform:transaction-updated",
-            "data": {
-              "id": 179417,
-              "state": "PROCESSING",
-              "method": "BatchTransfer",
-              "result": null,
-              "transactionId": null,
-              "idempotencyKey": "a3e62297-983e-4a14-81a9-975976302127",
-              "transactionHash": null
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## Using Enjin Console
-
-In the explorer tab, you can find the recent events emitted in the network. Those will appear as soon as they are emitted.
-
-![Viewing events on Enjin Console](/img/guides/going-open-source/enjin-console-events.png)
-
-You can also see the events emitted in a single block by querying the block directly
-
-![Viewing events on Enjin Console](/img/guides/going-open-source/enjin-console-events-2.png)
+:::note Address formats in event payloads
+On-chain events represent account addresses as **hex public keys**, not the SS58-encoded `ef…` / `cx…` strings shown in most platform UIs. Use Subscan's [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between the two.
+:::

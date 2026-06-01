@@ -15,24 +15,32 @@ import TabItem from '@theme/TabItem';
 Collection ownership on the Enjin Blockchain grants specific permissions and control over a collection and its tokens.
 The collection owner is the only account authorized to make changes to the collection or any tokens within it. This includes the exclusive ability to mint new tokens or mint additional supply of existing tokens in the collection.
 
-Transferring collection ownership is done in two steps:
+Transferring collection ownership is a two-step process: the current owner submits a transfer request, and the new owner accepts it.
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 ## Step #1: Sending a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
-To send a transfer ownership request, we use the `MutateCollection` mutation:
+To send a transfer ownership request, use the `mutateCollection` discriminator action on `CreateTransaction` and set the `owner` field to the new owner's address:
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation SendTransferOwnershipRequest {
-  MutateCollection(
-    collectionId: 36105 #Specify the collection ID
-    mutation: {
-      owner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the new owner
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      mutateCollection: {
+        collectionId: 36105
+        owner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -40,10 +48,10 @@ mutation SendTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation SendTransferOwnershipRequest(\r\n  $collection_id: BigInt!\r\n  $new_owner: String\r\n) {\r\n  MutateCollection(\r\n    collectionId: $collection_id\r\n    mutation: { owner: $new_owner }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"new_owner":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { mutateCollection: { collectionId: $collectionId, owner: $newOwner } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"newOwner":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -70,7 +78,7 @@ mutateCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -88,30 +96,31 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation SendTransferOwnershipRequest(
-        $collection_id: BigInt!
-        $new_owner: String
-      ) {
-        MutateCollection(
-          collectionId: $collection_id
-          mutation: {
-            owner: $new_owner
+      mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            mutateCollection: {
+              collectionId: $collectionId
+              owner: $newOwner
+            }
           }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      collection_id: 36105, //Specify the collection ID
-      new_owner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" //Specify the new owner
+      collectionId: 36105,
+      newOwner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
     }
   }),
 })
@@ -123,30 +132,31 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation SendTransferOwnershipRequest(
-      $collection_id: BigInt!
-      $new_owner: String
-    ) {
-      MutateCollection(
-        collectionId: $collection_id
-        mutation: {
-          owner: $new_owner
+    mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          mutateCollection: {
+            collectionId: $collectionId
+            owner: $newOwner
+          }
         }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    collection_id: 36105, //Specify the collection ID
-    new_owner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" //Specify the new owner
+    collectionId: 36105,
+    newOwner: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -157,53 +167,77 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation SendTransferOwnershipRequest(
-  $collection_id: BigInt!
-  $new_owner: String
-) {
-  MutateCollection(
-    collectionId: $collection_id
-    mutation: {
-      owner: $new_owner
+mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      mutateCollection: {
+        collectionId: $collectionId
+        owner: $newOwner
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'new_owner': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f' #Specify the new owner
-
+  'collectionId': 36105,
+  'newOwner': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f'
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-Once the transaction is confirmed, the new owner needs to approve the ownership transfer request, for the collection ownership to be executed
+Once the transaction is confirmed, the new owner needs to approve the ownership transfer request for the collection ownership to actually move.
+
+:::tip Cancelling a pending transfer
+If you need to undo a pending transfer before the new owner has accepted it, submit a `cancelCollectionTransfer` action with the same collection `id`:
+
+```graphql
+mutation CancelTransferOwnershipRequest {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      cancelCollectionTransfer: { id: 36105 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+:::
 
 ## Step #2: Accepting a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
 
-To accept a transfer ownership request, we call the `AcceptCollectionTransfer` mutation from the new collection owner account:
+To accept a transfer ownership request, the new owner calls the `acceptCollectionTransfer` discriminator action with the collection's `id`:
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation AcceptTransferOwnershipRequest {
-  AcceptCollectionTransfer(
-    collectionId: 36105 #Specify the collection ID
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      acceptCollectionTransfer: { id: 36105 }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -211,10 +245,10 @@ mutation AcceptTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation AcceptTransferOwnershipRequest($collection_id: BigInt!) {\r\n  AcceptCollectionTransfer(collectionId: $collection_id) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation AcceptTransferOwnershipRequest($id: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { acceptCollectionTransfer: { id: $id } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"id":36105}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -236,7 +270,7 @@ acceptCollectionTransfer.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -254,26 +288,26 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation AcceptTransferOwnershipRequest(
-        $collection_id: BigInt!
-      ) {
-        AcceptCollectionTransfer(
-          collectionId: $collection_id
+      mutation AcceptTransferOwnershipRequest($id: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            acceptCollectionTransfer: { id: $id }
+          }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105 //Specify the collection ID
-    }
+    variables: { id: 36105 }
   }),
 })
 .then(response => response.json())
@@ -284,25 +318,25 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation AcceptTransferOwnershipRequest(
-      $collection_id: BigInt!
-    ) {
-      AcceptCollectionTransfer(
-        collectionId: $collection_id
+    mutation AcceptTransferOwnershipRequest($id: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          acceptCollectionTransfer: { id: $id }
+        }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105 //Specify the collection ID
-  }
+  variables: { id: 36105 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -313,31 +347,30 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation AcceptTransferOwnershipRequest(
-  $collection_id: BigInt!
-) {
-  AcceptCollectionTransfer(
-    collectionId: $collection_id
+mutation AcceptTransferOwnershipRequest($id: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      acceptCollectionTransfer: { id: $id }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105 #Specify the collection ID
+variables = {'id': 36105}
 
-}
-
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-Once the transaction is confirmed, the collection ownership will be transferred to the new owner.
+Once the transaction is confirmed, the collection ownership will be transferred to the new owner. An event is emitted on `FINALIZED` confirming the change — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.

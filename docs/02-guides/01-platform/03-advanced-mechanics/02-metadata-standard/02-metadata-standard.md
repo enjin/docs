@@ -28,50 +28,62 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 
 There are two ways to set metadata for your tokens:
 
-1. **Off-chain - Hosted JSON File:** Set the collection or token attribute with the key `uri` and the value as a URL to a off-chain hosted JSON file. This file can be hosted either in a centralized manner or on IPFS.
-   The JSON file should contain metadata that follows the structure defined in the metadata standard.  
+1. **Off-chain - Hosted JSON File:** Set the collection or token attribute with the key `uri` and the value as a URL to an off-chain hosted JSON file. This file can be hosted either in a centralized manner or on IPFS.
+   The JSON file should contain metadata that follows the structure defined in the metadata standard.
    Example:
    ```graphql
    mutation SetMetadataUsingJSON {
-       BatchSetAttribute(
-           collectionId: 36105 # Specify the collection ID
-           tokenId: {integer: 0 } # Specify the token ID
+     CreateTransaction(
+       network: ENJIN  # or CANARY for testnet
+       chain: MATRIX
+       transaction: {
+         batchSetTokenAttribute: {
+           collectionId: 36105  # Specify the collection ID
+           tokenId: 0           # Specify the token ID
            attributes: [
-               {
-                   key: "uri"
-                   value: "https://yourhost/metadata.json"  #Link to your hosted JSON file.
-               }
+             {
+               key: "uri"
+               value: "https://yourhost/metadata.json"  # Link to your hosted JSON file
+             }
            ]
-       ) {
-           id
-           method
-           state
-      }
+         }
+       }
+     ) {
+       uuid
+       action
+       state
+     }
    }
    ```
 
-2. **On-chain - Directly Setting Metadata:** Set the metadata directly on-chain using a structure that follows the metadata standard.  
+2. **On-chain - Directly Setting Metadata:** Set the metadata directly on-chain using a structure that follows the metadata standard.
    Example:
    ```graphql
    mutation SetMetadataDirectly {
-       BatchSetAttribute(
-           collectionId: 36105 # Specify the collection ID
-           tokenId: {integer: 0 } # Specify the token ID
+     CreateTransaction(
+       network: ENJIN  # or CANARY for testnet
+       chain: MATRIX
+       transaction: {
+         batchSetTokenAttribute: {
+           collectionId: 36105  # Specify the collection ID
+           tokenId: 0           # Specify the token ID
            attributes: [
-               {
-                   key: "name" #This attribute key defines the token name, following the metadata standard.
-                   value: "Chronicles of the Celestium"  #Token name
-               },
-               {
-                   key: "description" #This attribute key defines the token description, following the metadata standard.
-                   value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse." #Token description
-               }
+             {
+               key: "name"  # This attribute key defines the token name, following the metadata standard
+               value: "Chronicles of the Celestium"
+             },
+             {
+               key: "description"  # Token description, following the metadata standard
+               value: "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."
+             }
            ]
-       ) {
-           id
-           method
-           state
-      }
+         }
+       }
+     ) {
+       uuid
+       action
+       state
+     }
    }
    ```
 

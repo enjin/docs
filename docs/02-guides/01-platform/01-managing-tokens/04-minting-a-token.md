@@ -10,14 +10,10 @@ import TabItem from '@theme/TabItem';
 
 Now that you've got your tokens created, it's time to start minting them into player wallets as they are earned.
 
-We call this "Play-to-Mint," giving players the power to create tokens themselves, which feels more rewarding.
-
-Plus, it keeps your processes more efficient by delivering tokens right to players' wallets without any unnecessary `transfer` transactions.
-
 :::info What you'll need:
 - Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
 If the token has <GlossaryTerm id="enj_infusion" />, each new unit minted will require the same amount of ENJ to be infused.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
 :::
@@ -29,52 +25,53 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
-**Locate the token** you wish to mint, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Mint**" button.
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Mint**".
+Set the recipient and the amount in the corresponding fields, and click on "**Mint Token**".
 
-![Minting a Token](/img/guides/managing-tokens/minting-a-token.gif)
+![The Mint Token form](/img/getting-started/v3-mint-token-form.png)
 
-Set the recipient and the amount in the corresponding fields, and Click on "**Mint**"
+The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/mint-token-form.png').default} alt="Mint Token Form" />
-</p>
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
-
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/mint-token-banner.png').default} width="600" alt="Mint Transaction Request Banner" />
-</p>
-
-![Pending Mint Transaction](/img/guides/managing-tokens/pending-mint-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ## Option B. Using the Enjin API & SDKs
 
-The BatchMint mutation enables you to efficiently create multiple tokens within a single blockchain transaction. This process, known as batch minting, simplifies the minting of multiple tokens, reducing transaction fees and processing time.
+Minting is split into two discriminator actions on `CreateTransaction`:
+
+- `mintToken` — mints to a single recipient (`recipient`, `collectionId`, `tokenId`, `amount`, optional `unitPrice`).
+- `mintTokens` — mints to multiple recipients in one transaction (`collectionId` + a `tokens: [MintTokenEntryInput!]` list where each entry has `recipient`, `tokenId`, `amount`, optional `unitPrice`).
+
+The example below uses `mintTokens` so it scales naturally if you add more recipients to the array.
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation BatchMint {
-  BatchMint(
-    collectionId: "7154" #Specify the collection ID
-    recipients: [
-      {
-        account: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921" #The recipient of the mint
-        mintParams: {
-          amount:1 #Amount to mint
-          tokenId: {integer: 6533} #Token ID to mint
-        }
+mutation MintTokens {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      mintTokens: {
+        collectionId: 7154
+        tokens: [
+          {
+            recipient: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921"
+            tokenId: 6533
+            amount: 1
+          }
+        ]
       }
-    ]
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -82,10 +79,10 @@ mutation BatchMint {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation BatchMint($collection_id: BigInt!) {\r\n  BatchMint(\r\n    collectionId: $collection_id\r\n    recipients: [\r\n      {\r\n        account: \"0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921\"\r\n        mintParams: {\r\n          amount: 1\r\n          tokenId: { integer: 6533 }\r\n        }\r\n      }\r\n    ]\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"collection_id":7154}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      mintTokens: {\r\n        collectionId: $collectionId\r\n        tokens: $tokens\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":7154,"tokens":[{"recipient":"0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921","tokenId":6533,"amount":1}]}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -119,7 +116,7 @@ batchMint.Fragment(batchMintFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -172,7 +169,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -214,34 +211,37 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation BatchMint(
-        $collection_id: BigInt!
-      ) {
-        BatchMint(
-          collectionId: $collection_id
-          recipients: [
-            {
-              account: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921" #The recipient of the mint
-              mintParams: {
-                amount:1 #Amount to mint
-                tokenId: {integer: 6533} #Token ID to mint
-              }
+      mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            mintTokens: {
+              collectionId: $collectionId
+              tokens: $tokens
             }
-          ]
+          }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      collection_id: 7154 //Specify the collection ID
+      collectionId: 7154,
+      tokens: [
+        {
+          recipient: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921",
+          tokenId: 6533,
+          amount: 1
+        }
+      ]
     }
   }),
 })
@@ -253,34 +253,37 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation BatchMint(
-      $collection_id: BigInt!
-    ) {
-      BatchMint(
-        collectionId: $collection_id
-        recipients: [
-          {
-            account: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921" #The recipient of the mint
-            mintParams: {
-              amount:1 #Amount to mint
-              tokenId: {integer: 6533} #Token ID to mint
-            }
+    mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          mintTokens: {
+            collectionId: $collectionId
+            tokens: $tokens
           }
-        ]
+        }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    collection_id: 7154 //Specify the collection ID
+    collectionId: 7154,
+    tokens: [
+      {
+        recipient: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921",
+        tokenId: 6533,
+        amount: 1
+      }
+    ]
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -291,47 +294,52 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation BatchMint(
-  $collection_id: BigInt!
-) {
-  BatchMint(
-    collectionId: $collection_id
-    recipients: [
-      {
-        account: "0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921" #The recipient of the mint
-        mintParams: {
-          amount:1 #Amount to mint
-          tokenId: {integer: 6533} #Token ID to mint
-        }
+mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      mintTokens: {
+        collectionId: $collectionId
+        tokens: $tokens
       }
-    ]
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'collection_id': 7154 #Specify the collection ID
+  'collectionId': 7154,
+  'tokens': [
+    {
+      'recipient': '0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921',
+      'tokenId': 6533,
+      'amount': 1,
+    },
+  ],
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the transfer transaction in real time by listening to the app channel on the WebSocket.
+The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.batch_mint`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
+
+Once it reaches `FINALIZED`, a `MultiTokens.Minted` event is emitted for each recipient with the minted amount — useful when you need to confirm a mint reached a specific player (e.g. before unlocking the corresponding in-game item). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
-For instance, you'll find settings such as the ability to sign using a managed wallet with the `signingAccount` argument, or batch create tokens instead of minting existing ones with the `createParams` argument.
+If you want to create _and_ mint new tokens together, use `createTokens` instead of `mintTokens`. To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
 :::
 
 :::tip You've minted a token!

@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 One such use-case is the implementation of "Soulbound" tokens. A Soulbound token is bound to a specific address and cannot be transferred out of the wallet it's minted on. This feature can be used to create unique gameplay mechanics, loyalty rewards, and more.
 
 :::note
-Freezing only applies to <GlossaryTerm id="melt" />ing and transfers, which also results in marketplace listings being unpurchasable.
+Freezing only applies to transfers, which also results in marketplace listings being unpurchasable.
 Freezing does not suspend token minting.
 :::
 
@@ -34,7 +34,7 @@ A **freeze state** determines whether a token can be transferred and the conditi
 
 :::info What you'll need:
 - Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to freeze.
 :::
@@ -47,57 +47,53 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 ## Option A. Using the Enjin Dashboard
 
 :::tip Applying Freeze/Thaw Actions to Collections and Tokens
-This tutorial illustrates the process of freezing a collection.
-However, the same steps can be applied to freeze or thaw tokens.
-Simply navigate to the corresponding menu for tokens instead of collections, or for thawing instead of freezing.
+This tutorial illustrates the process of freezing a collection. The same flow applies to freezing or thawing a single token — [Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens) and pick **Freeze Token** or **Thaw Token** from its actions menu instead.
 :::
 
 ### Freezing an entire collection
 
-In the Platform menu, navigate to "**[Collections](https://platform.canary.enjin.io/collections)**".
-**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Freeze**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
+**Locate the collection** you wish to freeze, click the **3 vertical dots** (**⋮**) on its row, then click the "**Freeze Collection**" button. In the form that opens up, click on the "**Freeze Collection**" button.
 
-![Freezing a Collection](/img/guides/managing-tokens/freezing-collection.gif)
+![The Freeze Collection form](/img/getting-started/v3-freeze-collection-form.png)
 
-Choose the freeze state, and click on the "**Freeze**" button.
+The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/freeze-collection-form.png').default} alt="Freeze Collection Form" />
-</p>
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
-
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/freeze-collection-banner.png').default} width="600" alt="Freeze Collection Transaction Request Banner" />
-</p>
-
-![Pending Freeze Collection Transaction Request](/img/guides/managing-tokens/pending-freeze-collection-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ## Option B. Using the Enjin API & SDKs
 
-### Freezing a Collection or Token
+Freeze and thaw are split into four discriminator actions on `CreateTransaction`:
 
-By freezing a collection, all tokens within that collection will be frozen, meaning they cannot be burned or transferred out of the wallet they're currently in.
+- `freezeCollection: { collectionId }`
+- `freezeToken: { collectionId, tokenId, state }` — where `state` is `PERMANENT`, `TEMPORARY`, or `NEVER`.
+- `thawCollection: { collectionId }`
+- `thawToken: { collectionId, tokenId, state }`
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 ### Freezing an entire collection
 
-Use the `Freeze` mutation and the `freezeType: COLLECTION` argument to freeze a collection.
+Use the `freezeCollection` action — freezing a collection freezes every token in it.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation FreezeCollection{
-  Freeze(
-    collectionId: 36105 #Specify the collection ID
-    freezeType: COLLECTION #For collection freezing
-  ){
-    id
-    method
+mutation FreezeCollection {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      freezeCollection: { collectionId: 36105 }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -105,10 +101,10 @@ mutation FreezeCollection{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation FreezeCollection($collection_id: BigInt!, $freeze_type: FreezeType!) {\r\n  Freeze(collectionId: $collection_id, freezeType: $freeze_type) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"freeze_type":"COLLECTION"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation FreezeCollection($collectionId: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { freezeCollection: { collectionId: $collectionId } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -131,7 +127,7 @@ freezeCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -167,7 +163,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -208,30 +204,24 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation FreezeCollection
-      (
-        $collection_id: BigInt!
-        $freeze_type: FreezeType!
-      )  {
-        Freeze(
-          collectionId: $collection_id
-          freezeType: $freeze_type
-        ){
-          id
-          method
+      mutation FreezeCollection($collectionId: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: { freezeCollection: { collectionId: $collectionId } }
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      freeze_type: "COLLECTION" //For collection freezing
-    }
+    variables: { collectionId: 36105 }
   }),
 })
 .then(response => response.json())
@@ -242,29 +232,23 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation FreezeCollection
-    (
-      $collection_id: BigInt!
-      $freeze_type: FreezeType!
-    )  {
-      Freeze(
-        collectionId: $collection_id
-        freezeType: $freeze_type
-      ){
-        id
-        method
+    mutation FreezeCollection($collectionId: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: { freezeCollection: { collectionId: $collectionId } }
+      ) {
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    freeze_type: "COLLECTION" //For collection freezing
-  }
+  variables: { collectionId: 36105 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -275,30 +259,24 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation FreezeCollection
-(
-  $collection_id: BigInt!
-  $freeze_type: FreezeType!
-)  {
-  Freeze(
-    collectionId: $collection_id
-    freezeType: $freeze_type
-  ){
-    id
-    method
+mutation FreezeCollection($collectionId: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: { freezeCollection: { collectionId: $collectionId } }
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'freeze_type': "COLLECTION" #For collection freezing
-}
+variables = {'collectionId': 36105}
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -309,20 +287,25 @@ Once the transaction is executed, all tokens within the specified collection wil
 
 ### Freezing a single token
 
-Use the `Freeze` mutation and the `freezeType: TOKEN` argument to freeze a token.
+Use the `freezeToken` action. The `state` field selects the freeze state to apply (`TEMPORARY` for a freeze that can be thawed later, `PERMANENT` for a soulbound-style freeze).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation FreezeToken{
-  Freeze(
-    collectionId: 36105 #Specify the collection ID
-    tokenId:{integer: 0} #Specify the token ID
-    freezeType: TOKEN #For token freezing
-    freezeState: TEMPORARY #Select the freeze state
-  ){
-    id
-    method
+mutation FreezeToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      freezeToken: {
+        collectionId: 36105
+        tokenId: 0
+        state: TEMPORARY  # or PERMANENT for a soulbound freeze
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -330,10 +313,10 @@ mutation FreezeToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation FreezeToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $freeze_type: FreezeType!\r\n  $freeze_state: FreezeStateType\r\n) {\r\n  Freeze(\r\n    collectionId: $collection_id\r\n    tokenId: { integer: $token_id }\r\n    freezeType: $freeze_type\r\n    freezeState: $freeze_state\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":0,"freeze_type":"TOKEN","freeze_state":"TEMPORARY"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation FreezeToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { freezeToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"tokenId":0,"state":"TEMPORARY"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -358,7 +341,7 @@ freezeToken.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -400,7 +383,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -441,37 +424,24 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation FreezeToken
-      (
-        $collection_id: BigInt!
-        $token_id: BigInt!
-        $freeze_type: FreezeType!
-        $freeze_state: FreezeStateType
-
-      ) {
-        Freeze(
-          collectionId: $collection_id
-          tokenId:{integer: $token_id}
-          freezeType: $freeze_type
-          freezeState: $freeze_state
-        ){
-          id
-          method
+      mutation FreezeToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: { freezeToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      token_id: 0, //Specify the token ID
-      freeze_type: "TOKEN", //For token freezing
-      freeze_state: "TEMPORARY" //Select the freeze state
-    }
+    variables: { collectionId: 36105, tokenId: 0, state: "TEMPORARY" }
   }),
 })
 .then(response => response.json())
@@ -482,36 +452,23 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation FreezeToken
-    (
-      $collection_id: BigInt!
-      $token_id: BigInt!
-      $freeze_type: FreezeType!
-      $freeze_state: FreezeStateType
-
-    ) {
-      Freeze(
-        collectionId: $collection_id
-        tokenId:{integer: $token_id}
-        freezeType: $freeze_type
-        freezeState: $freeze_state
-      ){
-        id
-        method
+    mutation FreezeToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: { freezeToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
+      ) {
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 0, //Specify the token ID
-    freeze_type: "TOKEN", //For token freezing
-    freeze_state: "TEMPORARY" //Select the freeze state
-  }
+  variables: { collectionId: 36105, tokenId: 0, state: "TEMPORARY" }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -522,37 +479,24 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation FreezeToken
-(
-  $collection_id: BigInt!
-  $token_id: BigInt!
-  $freeze_type: FreezeType!
-  $freeze_state: FreezeStateType
-
-) {
-  Freeze(
-    collectionId: $collection_id
-    tokenId:{integer: $token_id}
-    freezeType: $freeze_type
-    freezeState: $freeze_state
-  ){
-    id
-    method
+mutation FreezeToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: { freezeToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 0, #Specify the token ID
-  'freeze_type': "TOKEN", #For token freezing
-  'freeze_state': "TEMPORARY" #Select the freeze state
-}
+variables = {'collectionId': 36105, 'tokenId': 0, 'state': 'TEMPORARY'}
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -569,18 +513,21 @@ Thawing a collection means allowing all tokens within that collection to be acti
 
 By thawing a collection, all tokens within that collection will be thawed, meaning they can be burned and transferred out of the wallet they're currently in.
 
-Use the `Thaw` mutation and the `freezeType: COLLECTION` argument to thaw a collection.
+Use the `thawCollection` action.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation ThawCollection{
-  Thaw(
-    collectionId: 36105 #Specify the collection ID
-    freezeType: COLLECTION #For collection thawing
-  ){
-    id
-    method
+mutation ThawCollection {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      thawCollection: { collectionId: 36105 }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -588,10 +535,10 @@ mutation ThawCollection{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation ThawCollection($collection_id: BigInt!, $freeze_type: FreezeType!) {\r\n  Thaw(collectionId: $collection_id, freezeType: $freeze_type) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"freeze_type":"COLLECTION"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation ThawCollection($collectionId: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { thawCollection: { collectionId: $collectionId } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -614,7 +561,7 @@ thawCollection.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -650,7 +597,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -691,30 +638,24 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation ThawCollection
-      (
-        $collection_id: BigInt!
-        $freeze_type: FreezeType!
-      ) {
-        Thaw(
-          collectionId: $collection_id
-          freezeType: $freeze_type
-        ){
-          id
-          method
+      mutation ThawCollection($collectionId: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: { thawCollection: { collectionId: $collectionId } }
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      freeze_type: "COLLECTION" //For collection thawing
-    }
+    variables: { collectionId: 36105 }
   }),
 })
 .then(response => response.json())
@@ -725,29 +666,23 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation ThawCollection
-    (
-      $collection_id: BigInt!
-      $freeze_type: FreezeType!
-    ) {
-      Thaw(
-        collectionId: $collection_id
-        freezeType: $freeze_type
-      ){
-        id
-        method
+    mutation ThawCollection($collectionId: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: { thawCollection: { collectionId: $collectionId } }
+      ) {
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    freeze_type: "COLLECTION" //For collection thawing
-  }
+  variables: { collectionId: 36105 }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -758,30 +693,24 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation ThawCollection
-(
-  $collection_id: BigInt!
-  $freeze_type: FreezeType!
-) {
-  Thaw(
-    collectionId: $collection_id
-    freezeType: $freeze_type
-  ){
-    id
-    method
+mutation ThawCollection($collectionId: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: { thawCollection: { collectionId: $collectionId } }
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'freeze_type': "COLLECTION" #For collection thawing
-}
+variables = {'collectionId': 36105}
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -792,19 +721,25 @@ Once the transaction is executed, all tokens within the specified collection wil
 
 ### Thawing a single token
 
-Use the `Thaw` mutation and the `freezeType: TOKEN` argument to thaw a token.
+Use the `thawToken` action. The `state` field is the post-thaw freeze state for the token (usually `TEMPORARY` when lifting a temporary freeze).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation ThawToken{
-  Thaw(
-    collectionId: 36105 #Specify the collection ID
-    tokenId:{integer: 0} #Specify the token ID
-    freezeType: TOKEN #For token thawing
+mutation ThawToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      thawToken: {
+        collectionId: 36105
+        tokenId: 0
+        state: TEMPORARY
+      }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -812,10 +747,10 @@ mutation ThawToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation ThawToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $freeze_type: FreezeType!\r\n) {\r\n  Thaw(\r\n    collectionId: $collection_id\r\n    tokenId: { integer: $token_id }\r\n    freezeType: $freeze_type\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":0,"freeze_type":"TOKEN"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation ThawToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { thawToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"tokenId":0,"state":"TEMPORARY"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -839,7 +774,7 @@ thawToken.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -880,7 +815,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -922,33 +857,24 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation ThawToken
-      (
-        $collection_id: BigInt!
-        $token_id: BigInt!
-        $freeze_type: FreezeType!
-      ) {
-        Thaw(
-          collectionId: $collection_id
-          tokenId:{integer: $token_id}
-          freezeType: $freeze_type
+      mutation ThawToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: { thawToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
-    variables: {
-      collection_id: 36105, //Specify the collection ID
-      token_id: 0, //Specify the token ID
-      freeze_type: "TOKEN" //For token thawing
-    }
+    variables: { collectionId: 36105, tokenId: 0, state: "TEMPORARY" }
   }),
 })
 .then(response => response.json())
@@ -959,32 +885,23 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation ThawToken
-    (
-      $collection_id: BigInt!
-      $token_id: BigInt!
-      $freeze_type: FreezeType!
-    ) {
-      Thaw(
-        collectionId: $collection_id
-        tokenId:{integer: $token_id}
-        freezeType: $freeze_type
+    mutation ThawToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: { thawToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
-  variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 0, //Specify the token ID
-    freeze_type: "TOKEN" //For token thawing
-  }
+  variables: { collectionId: 36105, tokenId: 0, state: "TEMPORARY" }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -995,33 +912,24 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation ThawToken
-(
-  $collection_id: BigInt!
-  $token_id: BigInt!
-  $freeze_type: FreezeType!
-) {
-  Thaw(
-    collectionId: $collection_id
-    tokenId:{integer: $token_id}
-    freezeType: $freeze_type
+mutation ThawToken($collectionId: BigInt!, $tokenId: BigInt!, $state: FreezeState!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: { thawToken: { collectionId: $collectionId, tokenId: $tokenId, state: $state } }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
-variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 0, #Specify the token ID
-  'freeze_type': "TOKEN" #For token thawing
-}
+variables = {'collectionId': 36105, 'tokenId': 0, 'state': 'TEMPORARY'}
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -1030,13 +938,15 @@ print(response.json())
 
 Once the transaction is executed, the specified token will be thawed.
 
+For each of these actions, an event is emitted once the transaction reaches `FINALIZED` — useful as a confirmation signal. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
+
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
-For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
+To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
 :::
 
 :::tip Need to send a transaction request to user's wallet?
 This can be done using Enjin Platform API & WalletConnect!
-To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-using-wallet-connect.md).
 :::

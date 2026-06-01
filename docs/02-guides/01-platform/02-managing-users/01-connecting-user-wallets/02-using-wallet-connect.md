@@ -23,7 +23,7 @@ The `polkadot-onboard` sample repository used in this guide is **no longer maint
 - Node.js 18+ and yarn installed
 - A mobile device with [Enjin Wallet app](https://enjin.io/wallet) installed
 - A Canary wallet with at least 6.5 ENJ in it to cover for <GlossaryTerm id="storage_deposit" /> and <GlossaryTerm id="transaction_fees" />.
-You can obtain cENJ for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md) (Canary).
 :::
 
@@ -111,7 +111,7 @@ At `examples/react-next/pages/api`, there's two endpoints we'll be using:
 - `send.tsx` which broadcasts the transaction request to the blockchain using Enjin Platform API.
 
 First, we need to insert our Enjin platform API key to be able to interact with it.
-If you haven't created an api key yet, you can do so in https://platform.canary.enjin.io/settings.
+If you haven't created an api key yet, you can do so in https://platform.beta.enjin.io/settings.
 
 In both `examples/react-next/pages/api/transaction.tsx` and `examples/react-next/pages/api/send.tsx` files, replace `your-api-key` with your api key (note, there's three different api key fields that needs to be updated).
 
@@ -129,7 +129,7 @@ yarn start:react-next
 ```
 
 Now that the project is authenticated with the Enjin Platform, we can go ahead and press the "**Submit Transaction with Platform**" button.
-A `CreateCollection` request will be sent to your wallet, and once confirmed, the transaction will be signed and broadcasted to the blockchain.
+A collection creation request will be sent to your wallet, and once confirmed, the transaction will be signed and broadcasted to the blockchain.
 Now it's time to break it down and understand how it works:
 
 ### Step #1: Constructing the transaction call
@@ -138,65 +138,66 @@ We are constructing the transaction using the `transaction.tsx` endpoint.
 First, we make a query to the user's address to get its nonce:
 
 ```javascript
-  const walletResponse = await fetch('https://platform.canary.enjin.io/graphql', {
+  const walletResponse = await fetch('https://platform.beta.enjin.io/graphql', {
     method: 'POST',
     mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'my-auth-key',
+      'Authorization': 'Bearer my-auth-key',
     },
     body: JSON.stringify({
-      query: `query GetWallet($account: String!) {
-        GetWallet(account: $account) {
+      query: `query GetAccount($address: String!) {
+        GetAccount(network: CANARY, chain: MATRIX, address: $address) {
             nonce
         }
     }`,
       variables: {
-        account: req.query.address
+        address: req.query.address
       }
     })
   });
 ```
 
-Once we get the nonce, we prepare the `CreateCollection` transaction call using Enjin Platform API.
-You can use any other mutation Enjin Platform API offers, but for this example we're using CreateCollection.
+Next, we prepare the transaction call using the Enjin Platform API.
+Every on-chain action is created through the `CreateTransaction` mutation — the action is selected by which field you set on its `transaction` input. For this example we're creating a collection.
 
 ```javascript
-  const response = await fetch('https://platform.canary.enjin.io/graphql', {
+  const response = await fetch('https://platform.beta.enjin.io/graphql', {
     method: 'POST',
     mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'my-auth-key',
+      'Authorization': 'Bearer my-auth-key',
     },
     body: JSON.stringify({
-      query: `mutation CreateCollection($nonce: Int!, $signingAccount: String!) {
-        CreateCollection(
-            mintPolicy: { forceSingleMint: false },
-            signingAccount: $signingAccount
+      query: `mutation CreateTransaction($signerAccount: String!) {
+        CreateTransaction(
+            network: CANARY,
+            chain: MATRIX,
+            signerAccount: $signerAccount,
+            transaction: { createCollection: {} }
         ) {
-            id
-            signingPayloadJson(nonce: $nonce)
+            uuid
+            encodedData
         }
     }`,
       variables: {
-        signingAccount: req.query.address,
-        nonce: nonce
+        signerAccount: req.query.address
       }
     })
   });
 ```
 
-We are also passing the `signingAccount`. This is necessary so your daemon doesn't sign the transaction.
-In the mutation response, we're asking for the `id` and `signingPayloadJson`, which we will use in the next step.
+We are also passing the `signerAccount`. This is necessary so your daemon doesn't sign the transaction.
+In the mutation response, we're asking for the `uuid` and `encodedData`, which we will use in the next step.
 
 ### Step #2: Sending the Transaction Request to user's wallet
 
 With the payload in hand we pass that to our WalletConnect signer and ask it to sign. In the example project, this is done at: `examples/react-next/components/AccountBox.tsx`
 
 ```javascript
-const txId = data?.data?.CreateCollection?.id;
-const payload = data?.data?.CreateCollection?.signingPayloadJson;
+const uuid = data?.data?.CreateTransaction?.uuid;
+const payload = data?.data?.CreateTransaction?.encodedData;
 const { signature } = await signer?.signPayload(payload)
 ```
 
@@ -204,33 +205,32 @@ The above will trigger the Transaction Request dialog you saw previously, asking
 
 ### Step #3: Broadcasting the signed transaction
 
-Finally, we received the `txId`, `signature`, and `payload` from the user's wallet.
-We can now broadcast the signed transaction to the blockchain using the Enjin Platform API `SendTransaction` mutation.
+Finally, we have the transaction's `uuid` and the signed extrinsic returned by the user's wallet.
+We can now submit the signed transaction to the blockchain using the Enjin Platform API `SignTransaction` mutation.
 This is done at: `examples/react-next/pages/api/send.tsx`
 
 ```javascript
-  const response = await fetch('https://platform.canary.enjin.io/graphql', {
+  const response = await fetch('https://platform.beta.enjin.io/graphql', {
     method: 'POST',
     mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'my-auth-key',
+      'Authorization': 'Bearer my-auth-key',
     },
     body: JSON.stringify({
-      query: `mutation SendTransaction($id: Int!, $signingPayloadJson: Object!, $signature: String!) {
-        SendTransaction(id: $id, signingPayloadJson: $signingPayloadJson, signature: $signature)
+      query: `mutation SignTransaction($uuid: String!, $signedExtrinsic: String!) {
+        SignTransaction(uuid: $uuid, signedExtrinsic: $signedExtrinsic)
     }`,
       variables: {
-        id: Number.parseInt(req.query.id),
-        signingPayloadJson: JSON.parse(req.query.signingPayloadJson),
-        signature: req.query.signature
+        uuid: req.query.uuid,
+        signedExtrinsic: req.query.signedExtrinsic
       }
     })
   });
 ```
 
 The Enjin Platform will broadcast the transaction to the blockchain and keep track of it.
-You can see the transaction status in Enjin Platform: https://platform.canary.enjin.io/transactions
+You can see the transaction status in Enjin Platform: https://platform.beta.enjin.io/transactions
 
 ***
 

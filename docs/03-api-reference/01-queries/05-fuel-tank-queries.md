@@ -7,14 +7,12 @@ description: "Query the Enjin API for fuel tanks data, which helps cover transac
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
-🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
+:::tip GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
 
-:::tip Fuel Tanks Endpoints
-- **Testnet:** `http://platform.canary.enjin.io/graphql/fuel-tanks`
-- **Mainnet:** `http://platform.enjin.io/graphql/fuel-tanks`
+:::warning Fuel Tank API is being updated
+The Fuel Tank API is currently being rebuilt — the queries on this page are out of date and **will not work against the current Enjin Platform API**. Refer back to this page once support lands.
 :::
 
 This is a detailed reference guide that explains the most commonly used operations.

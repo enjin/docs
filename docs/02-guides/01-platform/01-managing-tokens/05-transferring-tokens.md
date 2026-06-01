@@ -16,7 +16,7 @@ You will need to transfer tokens for:
 
 :::info What you'll need:
 - Some [ Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" /> and a deposit of 0.01 ENJ is required for the <GlossaryTerm id="token_account_deposit" />, for each new token holder.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) and a [Token](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) to mint.
 :::
@@ -28,57 +28,57 @@ You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://fa
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.canary.enjin.io/tokens)**".
-**Locate the token** you wish to transfer, click the **3 vertical dots** (**⋮**) to it's right, then click the "**Transfer**" button.
-
-![Transferring Token](/img/guides/managing-tokens/transferring-token.gif)
+[Locate the token in the dashboard](/01-getting-started/04-using-the-enjin-platform.md#finding-tokens), click the **3 vertical dots** (**⋮**), then click "**Transfer**".
 
 :::info Need to perform multiple transfers?
-Click on the "**Batch**" button, followed by "**Batch Transfer**".
+The Transfer form has a **+ Add to Batch** button — queue several transfers and submit them as a single batched transaction. See [Batching transactions](/01-getting-started/04-using-the-enjin-platform.md#batching-transactions) for the full flow.
 :::
 
-Fill in the recipient, amount, and other optional arguments in the corresponding fields.
-Once you're satisfied with the options, click on the "**Transfer**" button at the bottom right corner to create the request.
+Fill in the recipient and amount in the corresponding fields.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/transfer-token-form.png').default} alt="Transfer Token Form" />
-</p>
+![The Transfer Token form](/img/getting-started/v3-transfer-token-form.png)
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/transfer-token-banner.png').default} width="600" alt="Transfer Token Transaction Banner" />
-</p>
+Once you're satisfied with the options, click the "**Transfer**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-![Pending Transfer Transaction](/img/guides/managing-tokens/pending-transfer-txn.png)
-Clicking "**View**" on the notification will take you to your Transactions List.
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
-
-If you're looking to distribute tokens to your community or players, but don't have their account addresses, don't worry! Our solution is Enjin Beam.
-Proceed to the [Distributing Tokens via QR](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md) tutorial to learn more.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 ## Option B. Using the Enjin API & SDKs
 
+Transfers are split into three discriminator actions on `CreateTransaction`:
+
+- `transferToken` — transfer a specific token between accounts.
+- `transferEnj` — transfer ENJ (or cENJ on Canary) between accounts.
+- `batchTransfer` — transfer multiple tokens from one collection to multiple recipients in a single transaction.
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
+
 ### Transferring an asset
 
-`SimpleTransferToken` mutation simplifies the process of transferring a specific token from one wallet to another. It is a straightforward way to facilitate token transfers without the need for complex intermediary steps.
+Use the `transferToken` action to move a specific token from the signing account to another wallet.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation TransferToken{
-  SimpleTransferToken(
-    collectionId: 36105 #Specify the collection ID
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the recipent address
-    params: {
-      tokenId: {integer: 0} #Specify the token ID
-      amount: 1 #Choose the transfer amount
+mutation TransferToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      transferToken: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
+        collectionId: 36105
+        tokenId: 0
+        amount: 1
+      }
     }
-  ){
-    id
-    method
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -86,10 +86,10 @@ mutation TransferToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation TransferToken(\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt!\r\n  $recipient: String!\r\n  $amount: BigInt!\r\n) {\r\n  SimpleTransferToken(\r\n    collectionId: $collection_id\r\n    recipient: $recipient\r\n    params: { tokenId: { integer: $token_id }, amount: $amount }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"collection_id":36105,"token_id":0,"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":1}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      transferToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":36105,"tokenId":0,"amount":1}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -119,7 +119,7 @@ simpleTransferToken.Fragment(simpleTransferTokenFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -165,7 +165,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -208,36 +208,35 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation TransferToken(
-        $collection_id: BigInt!
-        $token_id: BigInt!
-        $recipient: String!
-        $amount: BigInt!
-      ) {
-        SimpleTransferToken(
-          collectionId: $collection_id
-          recipient: $recipient
-          params: {
-            tokenId: {integer: $token_id}
-            amount: $amount
+      mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            transferToken: {
+              recipient: $recipient
+              collectionId: $collectionId
+              tokenId: $tokenId
+              amount: $amount
+            }
           }
-        ){
-          id
-          method
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      collection_id: 36105, //Specify the collection ID
-      token_id: 0, //Specify the token ID
-      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-      amount: 1 //Choose the transfer amount
+      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+      collectionId: 36105,
+      tokenId: 0,
+      amount: 1
     }
   }),
 })
@@ -249,36 +248,35 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation TransferToken(
-      $collection_id: BigInt!
-      $token_id: BigInt!
-      $recipient: String!
-      $amount: BigInt!
-    ) {
-      SimpleTransferToken(
-        collectionId: $collection_id
-        recipient: $recipient
-        params: {
-          tokenId: {integer: $token_id}
-          amount: $amount
+    mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          transferToken: {
+            recipient: $recipient
+            collectionId: $collectionId
+            tokenId: $tokenId
+            amount: $amount
+          }
         }
-      ){
-        id
-        method
+      ) {
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    collection_id: 36105, //Specify the collection ID
-    token_id: 0, //Specify the token ID
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-    amount: 1 //Choose the transfer amount
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+    collectionId: 36105,
+    tokenId: 0,
+    amount: 1
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -289,37 +287,36 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation TransferToken(
-  $collection_id: BigInt!
-  $token_id: BigInt!
-  $recipient: String!
-  $amount: BigInt!
-) {
-  SimpleTransferToken(
-    collectionId: $collection_id
-    recipient: $recipient
-    params: {
-      tokenId: {integer: $token_id}
-      amount: $amount
+mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      transferToken: {
+        recipient: $recipient
+        collectionId: $collectionId
+        tokenId: $tokenId
+        amount: $amount
+      }
     }
-  ){
-    id
-    method
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'collection_id': 36105, #Specify the collection ID
-  'token_id': 0, #Specify the token ID
-  'recipient': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", #Specify the recipent address
-  'amount': 1 #Choose the transfer amount
+  'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f',
+  'collectionId': 36105,
+  'tokenId': 0,
+  'amount': 1,
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
@@ -328,18 +325,24 @@ print(response.json())
 
 ### Transferring ENJ token
 
-To send ENJ / CENJ tokens from one wallet to another, use the `TransferAllowDeath` mutation, or the `TransferKeepAlive` if you want to make sure the account doesn't get reaped ([Read more about account reaping](https://support.enjin.io/hc/en-gb/articles/16297132519569-What-is-the-Existential-Deposit)):
+To send ENJ (or cENJ on the Canary network) from one wallet to another, use the `transferEnj` action.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation TransferENJTokens {
-  TransferKeepAlive(
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #Specify the recipent address
-    amount: 5000000000000000000 #Specify the amount of tokens to transfer
+mutation TransferEnj {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      transferEnj: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
+        amount: 5000000000000000000  # 5 ENJ in base units (5 * 10^18)
+      }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -347,10 +350,10 @@ mutation TransferENJTokens {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation TransferENJTokens(\r\n  $recipient: String!\r\n  $amount: BigInt!\r\n  $keep_alive: Boolean\r\n) {\r\n  TransferBalance(\r\n    recipient: $recipient\r\n    amount: $amount\r\n    keepAlive: $keep_alive\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":1,"keep_alive":true}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation TransferEnj($recipient: String!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      transferEnj: {\r\n        recipient: $recipient\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":"5000000000000000000"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -373,7 +376,7 @@ transferKeepAlive.Fragment(transferKeepAliveFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -391,28 +394,31 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation TransferKeepAlive(
-        $recipient: String!
-        $amount: BigInt!
-      ) {
-        TransferBalance(
-          recipient: $recipient
-          amount: $amount
-        ){
-          id
-          method
+      mutation TransferEnj($recipient: String!, $amount: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            transferEnj: {
+              recipient: $recipient
+              amount: $amount
+            }
+          }
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-      amount: 1 //Specify the amount of tokens to transfer
+      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+      amount: "5000000000000000000"
     }
   }),
 })
@@ -424,28 +430,31 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation TransferKeepAlive(
-        $recipient: String!
-        $amount: BigInt!
-      ) {
-        TransferBalance(
-          recipient: $recipient
-          amount: $amount
-        ){
-          id
-          method
-          state
+    mutation TransferEnj($recipient: String!, $amount: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          transferEnj: {
+            recipient: $recipient
+            amount: $amount
+          }
         }
+      ) {
+        uuid
+        action
+        state
       }
+    }
   `,
   variables: {
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-    amount: 1 //Specify the amount of tokens to transfer
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+    amount: "5000000000000000000"
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -456,73 +465,64 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation TransferKeepAlive(
-  $recipient: String!
-  $amount: BigInt!
-) {
-  TransferBalance(
-    recipient: $recipient
-    amount: $amount
-  ){
-    id
-    method
+mutation TransferEnj($recipient: String!, $amount: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      transferEnj: {
+        recipient: $recipient
+        amount: $amount
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'recipient': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", #Specify the recipent address
-  'amount': 1 #Specify the amount of tokens to transfer
-
+  'recipient': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+  'amount': "5000000000000000000",
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-:::info **Key Arguments**
+:::info Key arguments
 - **Calculating the `amount`**
   - The Platform accepts ENJ values in the **base unit** (integers), not decimal ENJ amounts. To calculate the correct input, **multiply your desired ENJ amount by 10^18** (1 quintillion).
   - **Formula:** `Desired ENJ` \* `1,000,000,000,000,000,000`
   - **Example:** To transfer **5 ENJ**, input `5000000000000000000`.
-- **Using `keepAlive`**
-  - Set to `true` to prevent the account from being removed (reaped) if the balance drops below the minimum requirement.
-  - [Learn more about the keepAlive argument here](/03-api-reference/04-important-arguments.md#keepalive)
+- **`keepAlive` flag** — `transferEnj` does not expose a `keepAlive` flag. If you need to send your full balance, send slightly less than the full balance to avoid reaping the source account. [Read more about account reaping](https://support.enjin.io/hc/en-gb/articles/16297132519569-What-is-the-Existential-Deposit).
 :::
 
 ### Batch Transferring ENJ token
 
-To send ENJ / CENJ tokens from one wallet to multiple addresses or in multiple transactions, we use the `BatchTransferBalance` mutation
+To send ENJ to multiple addresses in a single on-chain transaction, use `CreateBatchTransaction` with one `transferEnj` entry per recipient.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation BatchSendENJ{
-  BatchTransferBalance(
-    recipients: [
-      {
-        account: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", #Specify the recipent address
-        transferBalanceParams: {
-          value: 5000000000000000000 #Specify the amount of tokens to transfer
-        }
-      },
-      {
-        account: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", #Specify the recipent address
-        transferBalanceParams: {
-          value: 15250000000000000000 #Specify the amount of tokens to transfer
-          keepAlive: true #Set to true if you want to make sure the account doesn't get reaped
-        }
-      },
+mutation BatchTransferEnj {
+  CreateBatchTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transactions: [
+      { transferEnj: { recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", amount: 5000000000000000000 } }
+      { transferEnj: { recipient: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", amount: 15250000000000000000 } }
     ]
-  ){
-    id
-    transactionId
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -530,10 +530,10 @@ mutation BatchSendENJ{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation BatchSendENJ($recipients: [TransferRecipient!]!) {\r\n  BatchTransferBalance(recipients: $recipients) {\r\n    id\r\n    transactionId\r\n    state\r\n  }\r\n}\r\n","variables":{"recipients":[{"account":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","transferBalanceParams":{"value":5000000000000000000}},{"account":"cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","transferBalanceParams":{"value":15250000000000000000,"keepAlive":true}}]}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation BatchTransferEnj($transactions: [TransactionInput!]!) {\r\n  CreateBatchTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transactions: $transactions\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"transactions":[{"transferEnj":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":"5000000000000000000"}},{"transferEnj":{"recipient":"cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","amount":"15250000000000000000"}}]}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -573,7 +573,7 @@ batchTransferBalance.Fragment(transferBalanceFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -591,34 +591,27 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation BatchSendENJ($recipients: [TransferRecipient!]!){
-        BatchTransferBalance(
-          recipients: $recipients
-        ){
-          id
-          transactionId
+      mutation BatchTransferEnj($transactions: [TransactionInput!]!) {
+        CreateBatchTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transactions: $transactions
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-  		recipients:[
-        {
-          account: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-          transferBalanceParams: { value: 5000000000000000000 } //Specify the amount of tokens to transfer
-        },
-        {
-          account: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", //Specify the recipent address
-          transferBalanceParams: {
-            value: 15250000000000000000, //Specify the amount of tokens to transfer
-            keepAlive: true //Set to true if you want to make sure the account doesn't get reaped
-          }
-        }
+      transactions: [
+        { transferEnj: { recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", amount: "5000000000000000000" } },
+        { transferEnj: { recipient: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", amount: "15250000000000000000" } }
       ]
     }
   }),
@@ -631,35 +624,28 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation BatchSendENJ($recipients: [TransferRecipient!]!){
-        BatchTransferBalance(
-          recipients: $recipients
-        ){
-          id
-          transactionId
-          state
-        }
+    mutation BatchTransferEnj($transactions: [TransactionInput!]!) {
+      CreateBatchTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transactions: $transactions
+      ) {
+        uuid
+        action
+        state
       }
+    }
   `,
   variables: {
-    recipients:[
-      {
-        account: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", //Specify the recipent address
-        transferBalanceParams: { value: 5000000000000000000 } //Specify the amount of tokens to transfer
-      },
-      {
-        account: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", //Specify the recipent address
-        transferBalanceParams: {
-          value: 15250000000000000000, //Specify the amount of tokens to transfer
-          keepAlive: true //Set to true if you want to make sure the account doesn't get reaped
-        }
-      }
+    transactions: [
+      { transferEnj: { recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", amount: "5000000000000000000" } },
+      { transferEnj: { recipient: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", amount: "15250000000000000000" } }
     ]
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -670,55 +656,48 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation BatchSendENJ($recipients: [TransferRecipient!]!){
-  BatchTransferBalance(
-    recipients: $recipients
-  ){
-    id
-    transactionId
+mutation BatchTransferEnj($transactions: [TransactionInput!]!) {
+  CreateBatchTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transactions: $transactions
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'recipients':[
-    {
-      'account': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", #Specify the recipent address
-      'transferBalanceParams': { 'value': 5000000000000000000 } #Specify the amount of tokens to transfer
-    },
-    {
-      'account': "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", #Specify the recipent address
-      'transferBalanceParams': {
-        'value': 15250000000000000000, #Specify the amount of tokens to transfer
-        'keepAlive': True #Set to true if you want to make sure the account doesn't get reaped
-      }
-    }
-  ]
+  'transactions': [
+    {'transferEnj': {'recipient': "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", 'amount': "5000000000000000000"}},
+    {'transferEnj': {'recipient': "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu", 'amount': "15250000000000000000"}},
+  ],
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the transfer transaction in real time by listening to the app channel on the WebSocket.
+:::tip Batched token transfers
+To transfer multiple tokens **from a single collection** to multiple recipients in one transaction, use the `batchTransfer` discriminator action: `{ collectionId, recipients: [{ account, tokenId, amount }] }`.
+:::
 
 :::tip Need to send a transaction request to user's wallet?
 This can be done using Enjin Platform API & WalletConnect!
-To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-using-wallet-connect.md).
+To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-using-wallet-connect.md).
 :::
+
+Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` event (for token transfers) or `Balances.Transfer` event (for ENJ transfers) is emitted with the sender, recipient, and amount — useful for reacting to inbound transfers in real time (e.g. unlocking an in-game item the moment a player receives the corresponding NFT). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
-For instance, you'll find settings such as `continueOnFailure` to skip data that would cause the whole batch to fail, or the ability to sign using a managed wallet with the `signingAccount` argument.
-:::
 
-:::What's next?
-Distribute tokens to your players, even if they don't have wallets!
-Proceed to the [Distributing Tokens via QR](/02-guides/01-platform/01-managing-tokens/06-create-qr-drops.md) tutorial to learn more.
+To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction` / `CreateBatchTransaction`.
 :::

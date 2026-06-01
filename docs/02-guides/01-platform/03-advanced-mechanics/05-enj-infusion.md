@@ -35,8 +35,29 @@ By integrating ENJ Infusion, creators and developers can provide enhanced value 
 
 ## Creating a Token with Infused ENJ
 
-To create a token with Infused ENJ, proceed with the instructions on the [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) page, but make sure to specify the amount of ENJ to infuse into the token, in the “Infuse ENJ” section.
-If you are using the `CreateToken` mutation, insert the infusion amount in the `params: infusion` parameter.
+To create a token with Infused ENJ, follow the [Creating Tokens](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md) guide and set the **Infuse ENJ** amount on the token creation form.
+
+When creating the token through the API, set the `infusion` field on the `createToken` action of `CreateTransaction`:
+
+```graphql
+mutation {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"
+        collectionId: 3298
+        tokenId: 1
+        initialSupply: 1
+        listingForbidden: false
+        infusion: 5000000000000000000  # 5 ENJ in base units
+        anyoneCanInfuse: false
+      }
+    }
+  ) { uuid action state }
+}
+```
 
 :::warning Calculating the infusion amount
 The Platform accepts infusion values in the **base unit** (integers), not decimal ENJ amounts. To calculate the correct input, **multiply your desired ENJ amount by 10^18** (1 quintillion).
@@ -46,20 +67,29 @@ The Platform accepts infusion values in the **base unit** (integers), not decima
 
 ### Anyone Can Infuse
 
-By default, ENJ infusion is restricted only to the collection owner
+By default, ENJ infusion is restricted to the collection owner. Setting `anyoneCanInfuse: true` lets any account add ENJ infusion to the token.
 
-At any time, as well as at the time of creating the token, the collection owner can select to to allow anyone to add ENJ infusion to the token.
-This can be done with the `CreateToken` mutation by setting the `params: anyoneCanInfuse` parameter to `true`.
-If the token is already created, the `anyoneCanInfuse` state can be adjusted via the `MutateToken` mutation, with the `mutation: anyoneCanInfuse` parameter.
+This can be set at token creation via the `createToken` action above, or toggled on an existing token with the `mutateToken` action:
 
-:::warning **Feature Availability Notice**
-Currently, the `anyoneCanInfuse` state can only be configured at the time of creating the token. The option to adjust the infusion permission for an existing token via a mutation will be added later on. We will update the documentation once this feature is available.
-In the meantime, if you wish to adjust infusion permission of an existing token now, please use the Enjin Console at [console.enjin.io](https://console.enjin.io).
-:::
+```graphql
+mutation {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      mutateToken: {
+        collectionId: 3298
+        tokenId: 1
+        anyoneCanInfuse: true
+      }
+    }
+  ) { uuid action state }
+}
+```
 
-## Infusing ENJ to existing token
+## Infusing ENJ to an existing token
 
-To add ENJ infusion to a token that already exists, use the `Infuse` mutation:
+To add ENJ infusion to a token that already exists, use the `infuseToken` action on `CreateTransaction`:
 
 :::warning Calculating the infusion amount
 The Platform accepts infusion values in the **base unit** (integers), not decimal ENJ amounts. To calculate the correct input, **multiply your desired ENJ amount by 10^18** (1 quintillion).
@@ -67,17 +97,27 @@ The Platform accepts infusion values in the **base unit** (integers), not decima
   - **Example:** To infuse a token with **5 ENJ**, input `5000000000000000000`.
 :::
 
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
+
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation Infuse{
-  Infuse(
-    collectionId: 3298 #Specify the collection ID
-    tokenId: {integer: 1} #Specify the token ID
-    amount: 5000000000000000000 #Specify the amount of ENJ to infuse
-  ){
-    id
-    method
+mutation InfuseToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      infuseToken: {
+        collectionId: 3298
+        tokenId: 1
+        amount: 5000000000000000000  # 5 ENJ in base units
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
@@ -85,10 +125,10 @@ mutation Infuse{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation Infuse(\r\n  $collection_id: BigInt!\r\n  $token_id: EncodableTokenIdInput!\r\n  $amount: BigInt!\r\n) {\r\n  Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"collection_id":3298,"token_id":{"integer":1},"amount":5000000000000000000}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation InfuseToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      infuseToken: {\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":3298,"tokenId":1,"amount":"5000000000000000000"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -112,7 +152,7 @@ infuse.Fragment(transactionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -130,27 +170,33 @@ Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
-      mutation Infuse(
-        $collection_id: BigInt!
-        $token_id: EncodableTokenIdInput!
-        $amount: BigInt!
-      ) {
-        Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {
-          id
-          method
+      mutation InfuseToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            infuseToken: {
+              collectionId: $collectionId
+              tokenId: $tokenId
+              amount: $amount
+            }
+          }
+        ) {
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      collection_id: 3298, //Specify the collection ID
-      token_id: {integer: 1}, //Specify the token ID
-      amount: 5000000000000000000 //Specify the amount of ENJ to infuse
+      collectionId: 3298,
+      tokenId: 1,
+      amount: "5000000000000000000"
     }
   }),
 })
@@ -162,27 +208,33 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation Infuse(
-      $collection_id: BigInt!
-      $token_id: EncodableTokenIdInput!
-      $amount: BigInt!
-    ) {
-      Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {
-        id
-        method
+    mutation InfuseToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          infuseToken: {
+            collectionId: $collectionId
+            tokenId: $tokenId
+            amount: $amount
+          }
+        }
+      ) {
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-    collection_id: 3298, //Specify the collection ID
-    token_id: {integer: 1}, //Specify the token ID
-    amount: 5000000000000000000 //Specify the amount of ENJ to infuse
+    collectionId: 3298,
+    tokenId: 1,
+    amount: "5000000000000000000"
   }
 }, {
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'}
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'}
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -193,32 +245,44 @@ axios.post('https://platform.canary.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation Infuse(
-  $collection_id: BigInt!
-  $token_id: EncodableTokenIdInput!
-  $amount: BigInt!
-) {
-  Infuse(collectionId: $collection_id, tokenId: $token_id, amount: $amount) {
-    id
-    method
+mutation InfuseToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      infuseToken: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        amount: $amount
+      }
+    }
+  ) {
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'collection_id': 3298, #Specify the collection ID
-  'token_id': {'integer': 1}, #Specify the token ID
-  'amount': 5000000000000000000 #Specify the amount of ENJ to infuse
+  'collectionId': 3298,
+  'tokenId': 1,
+  'amount': "5000000000000000000"
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
   json={'query': query, 'variables': variables},
-  headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-Note that you are only allowed to Infuse existing token if you are the collection owner, or if the token's `anyoneCanInfuse` state is set to `True`.
+You can only infuse ENJ into an existing token if you are the collection owner, or if the token's `anyoneCanInfuse` state is set to `true`.
+
+:::tip Batched infusions
+To infuse ENJ across multiple tokens in a single on-chain transaction, use the `infuseTokens` (plural) discriminator action. See the [Tokens mutations reference](/03-api-reference/02-mutations/03-tokens-mutations.md) for its input shape.
+:::
+
+Once an infusion transaction reaches `FINALIZED`, a `MultiTokens.Infused` event is emitted with the collection ID, token ID, account, and amount infused. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.

@@ -134,22 +134,28 @@ Finally, let's tell your collection where to find these new metadata files. You'
 
 1.  The `value` you need to set is your **`<JSON-CID>`** from the last step, followed by the `/{id}.json` placeholder.
       * **Example Value:** `ipfs://bafy...xyz/{id}.json` (Replace `bafy...xyz` with your actual `<JSON-CID>`).
-2.  Set this attribute using the `BatchSetAttribute` mutation. You can copy/paste the example below into the [graphiql playground](https://platform.enjin.io/graphiql), and change the values.
+2.  Set this attribute using the `batchSetCollectionAttribute` action on `CreateTransaction`. You can copy/paste the example below into the [GraphiQL playground](https://platform.beta.enjin.io/graphiql) and change the values.
 
 ```graphql
 mutation SetDynamicMetadataURI {
-  BatchSetAttribute(
-    collectionId: 8143 # 👈 Change this to your Collection ID
-    # We're not setting a tokenId, so this applies to the whole collection
-    attributes: [
-      {
-        key: "uri"
-        # 👇 Change this to your JSON folder's CID + the {id} placeholder
-        value: "ipfs://bafy...xyz/{id}.json" 
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      batchSetCollectionAttribute: {
+        id: 8143  # 👈 Change this to your Collection ID
+        attributes: [
+          {
+            key: "uri"
+            # 👇 Change this to your JSON folder's CID + the {id} placeholder
+            value: "ipfs://bafy...xyz/{id}.json"
+          }
+        ]
       }
-    ]
+    }
   ) {
-    id
+    uuid
+    action
     state
   }
 }

@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to process transactions and at least 0.01 ENJ for the <GlossaryTerm id="token_account_deposit" />.
-You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 - A [Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md) to place the tokens in.
 :::
@@ -33,60 +33,63 @@ Before minting the Mainnet versions of your Tokens, that will be used in your li
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Tokens](https://platform.enjin.io/tokens)**". Then, click the "**[Create Token](https://platform.enjin.io/create/token)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**" and click the collection you want to mint the token into. From the collection page, click the "**Create Token**" button.
 
-![Creating Token](/img/guides/managing-tokens/creating-token.gif)
+From here, you can configure the token's basic settings, supply cap, royalty behavior, and attributes.
 
-From here, you can customize your collection's Mint Policy, Market Policy, and Attributes.
-
-- **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, and the recipient in the corresponding fields.
+- **Create Token Section -** Basic token options. Make sure to select the Collection ID you wish to mint the token in, the token ID, the initial supply, and the recipient in the corresponding fields.
   Make sure to check out the [TokenID Structure Best Practices](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md).
-- **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required).
-  - The **[Infinite](/03-api-reference/04-important-arguments.md#infinite)** supply type is the most flexible. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply.
-  - The **[Fixed](/03-api-reference/04-important-arguments.md#supply)** supply type offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined max supply. Burned tokens can be re-minted, ensuring the total supply remains constant.
-  - The **[Collapsing](/03-api-reference/04-important-arguments.md#collapsing_supply)** supply type is the most strict. This supply type allows the collection owner to mint new tokens as long as the circulating supply does not exceed the max supply. However, burning tokens reduces the max supply, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
-- **[Token Royalty Settings](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token.
+- **[Cap](/03-api-reference/04-important-arguments.md#cap) -** The token cap (if required). There are two cap modes — leave the cap field unset for an unlimited supply.
+  - **Unlimited supply (no cap)** is the default. With this model, there is no limit to how many tokens can be minted or be in circulation. The collection owner can always mint additional units, making it ideal for use cases that require an ever-expanding token supply. To pick this option, simply omit the cap field in the API, or select the Infinite cap type option in the dashboard form.
+  - The **[SUPPLY](/03-api-reference/04-important-arguments.md#supply)** cap mode offers a balanced approach between flexibility and control. This model allows the collection owner to mint new tokens as long as the circulating supply does not exceed the predetermined `supply` value. Burned tokens can be re-minted, ensuring the total supply remains constant.
+  - The **[COLLAPSING_SUPPLY](/03-api-reference/04-important-arguments.md#collapsing_supply)** cap mode is the most strict. This cap allows the collection owner to mint new tokens as long as the circulating supply does not exceed the `supply` value. However, burning tokens reduces the cap, meaning burned tokens cannot be re-minted. This ensures a non-increasing supply, suitable for use cases that require strict control over the token's total amount in circulation.
+- **[Royalty Behavior](/03-api-reference/04-important-arguments.md#hasroyalty) -** Configures royalties for each marketplace sale of this token. Royalties are expressed via the `behavior` field on the token — set `behavior: { type: HAS_ROYALTY, royalties: [...] }`.
 - **[Attributes](/03-api-reference/04-important-arguments.md#attributes) -** Add details to your token using key-value pairs. Standard keys like `name` and `description` allow applications to display your content correctly. You can also use the `URI` to link to a JSON file hosting your metadata. For more information, see the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md) page.
 
 :::info Learn more about the arguments
 For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
 :::
 
-Once you're satisfied with the options, click on the "**Create**" button at the bottom right corner to create the request.
+Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
 
-The Transaction Request will then appear in the "**Transactions**" menu.
+Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
-<p align="center">
-  <img src={require('/img/guides/managing-tokens/create-token-banner.png').default} width="600" alt="Create Token Transaction Request Banner" />
-</p>
-
-![Pending Create Token Transaction](/img/guides/managing-tokens/pending-create-token-txn.png)
-
-Since this request requires a <GlossaryTerm id="transaction" />, it'll need to be signed with your Wallet.
-
-- If a **Wallet Daemon is running and configured**, the transaction request will be **signed automatically**.
-- If **a wallet is connected** such as the Enjin Wallet or Polkadot.js, the transaction must be **signed manually** by clicking the "**Sign**" button and **approving the signature request** in your wallet.
+- By default, transactions are signed automatically by the **Wallet Daemon**.
+- To sign with a different account, expand **Transaction Options → Signing Account** on the form and provide a [Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) address.
 
 Once your token is created, lets give it a new look by [Adding Metadata](/02-guides/01-platform/01-managing-tokens/03-adding-metadata.md)
 
 ## Option B. Using the Enjin API & SDKs
 
-CreateToken mutation enables you to create a new token within an existing collection. This operation is essential for introducing new digital assets, and it allows you to define various attributes and characteristics for the newly created token.
+All on-chain actions go through the single `CreateTransaction` mutation. For creating a token, set the `createToken` field on the `transaction` input. `tokenId` is a flat `BigInt` scalar, and `cap` is optional — omit it to create a token with unlimited supply.
+
+:::warning SDKs are not yet available
+The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation CreateToken{
-  CreateToken(
-    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f" #The recipient of the initial supply
-    collectionId: 2406 #Set the collection ID
-    params:{
-      tokenId: {integer: 0} #Set the token ID
-      initialSupply: 1 #Mint initial supply
-      cap: {type: INFINITE}} #Define supply type
+mutation CreateToken {
+  CreateTransaction(
+    network: ENJIN  # or CANARY for testnet
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"  # recipient of the initial supply
+        collectionId: 2406         # collection to mint into
+        tokenId: 1                 # the new token ID
+        initialSupply: 1           # initial supply to mint
+        listingForbidden: false    # set true to disallow marketplace listings
+        infusion: 0                # ENJ infused per unit (use BigInt base units)
+        anyoneCanInfuse: false
+        # cap: omitted for unlimited supply
+        # for a finite cap, use: cap: { type: SUPPLY, supply: 100 }
+      }
+    }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
@@ -94,10 +97,10 @@ mutation CreateToken{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.canary.enjin.io/graphql' \
+curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: enjin_api_key' \
--d '{"query":"mutation CreateToken(\r\n  $recipient: String!\r\n  $collection_id: BigInt!\r\n  $token_id: BigInt\r\n  $initial_supply: BigInt\r\n  $cap: TokenMintCapType!\r\n) {\r\n  CreateToken(\r\n    recipient: $recipient\r\n    collectionId: $collection_id\r\n    params: {\r\n      tokenId: { integer: $token_id }\r\n      initialSupply: $initial_supply\r\n      cap: { type: $cap }\r\n    }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collection_id":91829,"token_id":0,"initial_supply":1,"cap":"INFINITE"}}'
+-H 'Authorization: Bearer YOUR_API_TOKEN' \
+-d '{"query":"mutation CreateToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $initialSupply: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      createToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        initialSupply: $initialSupply\r\n        listingForbidden: false\r\n        infusion: 0\r\n        anyoneCanInfuse: false\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":2406,"tokenId":1,"initialSupply":1}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -107,7 +110,7 @@ using Enjin.Platform.Sdk;
 
 // Define the token parameters
 var tokenParams = new CreateTokenParams()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0)) //Set the token ID
+    .SetTokenId(new EncodableTokenIdInput().SetInteger(1)) //Set the token ID
     .SetInitialSupply(1) //Mint initial supply
     .SetCap(new TokenMintCap().SetType(TokenMintCapType.Infinite)); //Define supply type
 
@@ -127,7 +130,7 @@ createToken.Fragment(createTokenFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.canary.enjin.io")
+    .SetBaseAddress("https://platform.beta.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -152,7 +155,7 @@ int main() {
     shared_ptr<CreateTokenParams> tokenParams = make_shared<CreateTokenParams>();
 
     shared_ptr tokenId = make_shared<EncodableTokenIdInput>();
-    tokenId->SetInteger(make_shared<SerializableString>("0"));
+    tokenId->SetInteger(make_shared<SerializableString>("1"));
 
     shared_ptr<TokenMintCap> tokenMintCap = make_shared<TokenMintCap>();
     tokenMintCap->SetType(TokenMintCapType::Infinite);
@@ -179,7 +182,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.canary.enjin.io")
+            .SetBaseAddress("https://platform.beta.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -221,39 +224,43 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.canary.enjin.io/graphql', {
+fetch('https://platform.beta.enjin.io/graphql', {
   method: 'POST',
-  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
     query: `
       mutation CreateToken(
         $recipient: String!
-        $collection_id: BigInt!
-        $token_id: BigInt
-        $initial_supply: BigInt
-        $cap: TokenMintCapType!
+        $collectionId: BigInt!
+        $tokenId: BigInt!
+        $initialSupply: BigInt!
       ) {
-        CreateToken(
-          recipient: $recipient
-          collectionId: $collection_id
-          params: {
-            tokenId: { integer: $token_id }
-            initialSupply: $initial_supply
-            cap: { type: $cap }
+        CreateTransaction(
+          network: ENJIN
+          chain: MATRIX
+          transaction: {
+            createToken: {
+              recipient: $recipient
+              collectionId: $collectionId
+              tokenId: $tokenId
+              initialSupply: $initialSupply
+              listingForbidden: false
+              infusion: 0
+              anyoneCanInfuse: false
+            }
           }
         ) {
-          id
-          method
+          uuid
+          action
           state
         }
       }
     `,
     variables: {
-      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",  //The recipient of the initial supply
-      collection_id: 2406, //Specify the collection ID
-      token_id: 0, //Specify the token ID
-      initial_supply: 1, //Mint initial supply
-      cap: "INFINITE" //Define supply type
+      recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+      collectionId: 2406,
+      tokenId: 1,
+      initialSupply: 1
     }
   }),
 })
@@ -265,39 +272,43 @@ fetch('https://platform.canary.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.canary.enjin.io/graphql', {
+axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
     mutation CreateToken(
       $recipient: String!
-      $collection_id: BigInt!
-      $token_id: BigInt
-      $initial_supply: BigInt
-      $cap: TokenMintCapType!
+      $collectionId: BigInt!
+      $tokenId: BigInt!
+      $initialSupply: BigInt!
     ) {
-      CreateToken(
-        recipient: $recipient
-        collectionId: $collection_id
-        params: {
-          tokenId: { integer: $token_id }
-          initialSupply: $initial_supply
-          cap: { type: $cap }
+      CreateTransaction(
+        network: ENJIN
+        chain: MATRIX
+        transaction: {
+          createToken: {
+            recipient: $recipient
+            collectionId: $collectionId
+            tokenId: $tokenId
+            initialSupply: $initialSupply
+            listingForbidden: false
+            infusion: 0
+            anyoneCanInfuse: false
+          }
         }
       ) {
-        id
-        method
+        uuid
+        action
         state
       }
     }
   `,
   variables: {
-		recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",  //The recipient of the initial supply
-    collection_id: 2406, //Specify the collection ID
-    token_id: 0, //Specify the token ID
-    initial_supply: 1, //Mint initial supply
-    cap: "INFINITE" //Define supply type
+    recipient: "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+    collectionId: 2406,
+    tokenId: 1,
+    initialSupply: 1
   }
 }, {
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here' }
+  headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN' }
 })
 .then(response => console.log(response.data))
 .catch(error => console.error(error));
@@ -310,45 +321,51 @@ import requests
 query = '''
 mutation CreateToken(
   $recipient: String!
-  $collection_id: BigInt!
-  $token_id: BigInt
-  $initial_supply: BigInt
-  $cap: TokenMintCapType!
+  $collectionId: BigInt!
+  $tokenId: BigInt!
+  $initialSupply: BigInt!
 ) {
-  CreateToken(
-    recipient: $recipient
-    collectionId: $collection_id
-    params: {
-      tokenId: { integer: $token_id }
-      initialSupply: $initial_supply
-      cap: { type: $cap }
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: $recipient
+        collectionId: $collectionId
+        tokenId: $tokenId
+        initialSupply: $initialSupply
+        listingForbidden: false
+        infusion: 0
+        anyoneCanInfuse: false
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 '''
 
 variables = {
-  'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f', #The recipient of the initial supply
-  'collection_id': 2406, #Specify the collection ID
-  'token_id': 0, #Specify the token ID
-  'initial_supply': 1, #Mint initial supply
-  'cap': 'INFINITE' #Define supply type
+  'recipient': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f',
+  'collectionId': 2406,
+  'tokenId': 1,
+  'initialSupply': 1,
 }
 
-response = requests.post('https://platform.canary.enjin.io/graphql',
+response = requests.post('https://platform.beta.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
-	headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
+	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
 print(response.json())
 ```
   </TabItem>
 </Tabs>
 
-A WebSocket event will also be fired so you can pick up the changes in real-time by listening to the app channel on the WebSocket.
+The response includes the transaction's `uuid`, `action` (e.g. `MultiTokens.create_token`), and `state` (`PENDING` → `BROADCAST` → `FINALIZED`). Use `GetTransaction(network, chain, uuid: "<returned-uuid>")` to poll the current state.
+
+Once it reaches `FINALIZED`, an event is emitted confirming the new token was created. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
 
 :::tip
 For Token ID management, head to [Best Practices > TokenID Structure](/02-guides/01-platform/03-advanced-mechanics/01-tokenid-structure.md)
@@ -356,7 +373,8 @@ For Token ID management, head to [Best Practices > TokenID Structure](/02-guides
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
-For instance, you'll find settings such as adding attributes/royalties/supply type and much more with the `CreateTokenParams` argument, or the ability to sign using a managed wallet with the `signingAccount` argument.
+
+In addition to the fields shown above, `createToken` accepts `cap`, `behavior` (currency / royalty configuration), `attributes`, and `groups` (token-group membership). To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
 :::
 
 :::tip What's next?

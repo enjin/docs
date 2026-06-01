@@ -1,227 +1,49 @@
 ---
 title: "Marketplace"
 slug: "marketplace"
-description: "Query the Enjin API for marketplace data, including listing information, token trades, and transaction details."
+description: "Query the Enjin API for marketplace listings."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
-🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
+:::tip GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
 
-:::tip Marketplace Endpoints
-- **Testnet:** `http://platform.canary.enjin.io/graphql/marketplace`
-- **Mainnet:** `http://platform.enjin.io/graphql/marketplace`
-:::
-
-This is a detailed reference guide that explains the most commonly used operations.
-
-## GetBid
-
-The `GetBid` query allows you to retrieve detailed information about a specific bid placed on a market listing. It's a valuable tool for querying bid-related data, including bid price, bidder details, and the associated market listing.
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-query GetBid {
-  GetBid(id: 1) {
-    id
-    price
-    height
-    bidder {
-      account {
-        publicKey
-        address
-      }
-    }
-    listing {
-      listingId
-    }
-  }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetBid": {
-      "id": 1,
-      "price": "1000000000000000000",
-      "height": 239058,
-      "bidder": {
-        "account": {
-          "publicKey": "0xb4664455021025f4944c1bc4af8a2830317f0765dc624778345dea09e89a526a",
-          "address": "cxNW84hdDPEr8rU8oUbqNDaCmVX6SxH86mFufTf6HiNbZhi2F"
-        }
-      },
-      "listing": {
-        "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"
-      }
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## GetBids
-
-The `GetBids` query is used to retrieve a list of bids for one or more market listings based on specified listing IDs. Unlike the `GetBid` query, which retrieves details of a single bid, `GetBids` can return multiple bids and includes pagination information.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-query GetBids {
-  GetBids(listingIds: ["0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"]) {
-    totalCount
-    pageInfo {
-      startCursor
-      endCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    edges {
-      node {
-        id
-        price
-        height
-        bidder {
-          account {
-            publicKey
-            address
-          }
-        }
-        listing {
-          listingId
-        }
-      }
-    }
-  }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetBids": {
-      "totalCount": 1,
-      "pageInfo": {
-        "startCursor": "",
-        "endCursor": "",
-        "hasPreviousPage": false,
-        "hasNextPage": false
-      },
-      "edges": [
-        {
-          "node": {
-            "id": 1,
-            "price": "1000000000000000000",
-            "height": 239058,
-            "bidder": {
-              "account": {
-                "publicKey": "0xb4664455021025f4944c1bc4af8a2830317f0765dc624778345dea09e89a526a",
-                "address": "cxNW84hdDPEr8rU8oUbqNDaCmVX6SxH86mFufTf6HiNbZhi2F"
-              }
-            },
-            "listing": {
-              "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
+The Enjin Platform marketplace exposes two read queries: `GetListing` for a single listing by id, and `GetListings` for a paginated list scoped to a collection. To act on a listing (place a bid, fill, cancel, finalize an auction, etc.) use [Marketplace Mutations](/03-api-reference/02-mutations/06-marketplace-mutations.md).
 
 ## GetListing
 
-The `GetListing` query allows you to retrieve detailed information about a single market listing using its unique listing ID. This query provides a comprehensive overview of the listing's attributes, its state, sales history, bid history, and more.
+Returns a single listing by its `id` (the hex listing id returned when the listing was created).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetListing {
-  GetListing(listingId: "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20") {
-    listingId
-    makeAssetId {
-      collectionId
+  GetListing(
+    network: ENJIN
+    chain: MATRIX
+    id: "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d"
+  ) {
+    id
+    seller {
+      address
+    }
+    makeAsset {
+      id
       tokenId
     }
-    takeAssetId {
-      collectionId
+    takeAsset {
+      id
       tokenId
     }
     amount
     price
     minTakeValue
-    feeSide
-    creationBlock
-    deposit
-    salt
-    state {
-      ... on FixedPriceState {
-        amountFilled
-        type
-      }
-      ... on AuctionState {
-        type
-      }
-    }
-    data {
-      ... on FixedPriceData {
-        type
-      }
-      ... on AuctionData {
-        type
-        startBlock
-        endBlock
-      }
-    }
-    seller {
-      account {
-        publicKey
-        address
-      }
-    }
-    sales {
-      edges {
-        node {
-          amount
-          price
-          bidder {
-            account {
-              publicKey
-              address
-            }
-          }
-        }
-      }
-    }
-    bids {
-      edges {
-        node {
-          price
-          bidder {
-            account {
-              publicKey
-              address
-            }
-          }
-          height
-        }
-      }
-    }
-    states {
-      state
-      height
-    }
+    isActive
+    highestPrice
+    type
   }
 }
 ```
@@ -231,60 +53,16 @@ query GetListing {
 {
   "data": {
     "GetListing": {
-      "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20",
-      "makeAssetId": {
-        "collectionId": "4919",
-        "tokenId": "0"
-      },
-      "takeAssetId": {
-        "collectionId": "0",
-        "tokenId": "0"
-      },
-      "amount": "1",
-      "price": "1000000000000000000",
-      "minTakeValue": "975000000000000000",
-      "feeSide": "TAKE_FEE",
-      "creationBlock": 239058,
-      "deposit": "2025700000000000000",
-      "salt": "73616c74313233",
-      "state": {
-        "amountFilled": null,
-        "type": "FIXED_PRICE"
-      },
-      "data": {
-        "type": "FIXED_PRICE"
-      },
-      "seller": {
-        "account": {
-          "publicKey": "0x087c3fdc6566230578362759d99e42ed300f5560c305262843b2c61aa2f1d11e",
-          "address": "cxJciMkfdBqR8C9ftA8qmgzP9bAQNzMzXZmwUDZ2qW5mFVgvm"
-        }
-      },
-      "sales": {
-        "edges": []
-      },
-      "bids": {
-        "edges": [
-          {
-            "node": {
-              "price": "1000000000000000000",
-              "bidder": {
-                "account": {
-                  "publicKey": "0xb4664455021025f4944c1bc4af8a2830317f0765dc624778345dea09e89a526a",
-                  "address": "cxNW84hdDPEr8rU8oUbqNDaCmVX6SxH86mFufTf6HiNbZhi2F"
-                }
-              },
-              "height": 239058
-            }
-          }
-        ]
-      },
-      "states": [
-        {
-          "state": "ACTIVE",
-          "height": 239058
-        }
-      ]
+      "id": "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d",
+      "seller": { "address": "efS3yL43XUmqwU2ovUZjjdzfo4eQk5dR7pbUf4dUFxPxqKh2V" },
+      "makeAsset": { "id": "2967-106338239662793367710728619925308440576", "tokenId": "106338239662793367710728619925308440576" },
+      "takeAsset": null,
+      "amount": "2",
+      "price": "620000000000000000000",
+      "minTakeValue": "1209000000000000000000",
+      "isActive": true,
+      "highestPrice": "620000000000000000000",
+      "type": "FIXED_PRICE"
     }
   }
 }
@@ -292,101 +70,37 @@ query GetListing {
   </TabItem>
 </Tabs>
 
+Field notes:
+
+- `makeAsset` is the token being sold; `takeAsset` is the asset that fills the listing. When `takeAsset` is `null`, the listing is denominated in ENJ.
+- `highestPrice` is `null` for fixed-price listings; for auctions it's the current top bid.
+- `type` is the listing kind — `FIXED_PRICE`, `AUCTION`, or `OFFER`.
+
 ## GetListings
 
-The `GetListings` query is used to retrieve information about multiple market listings from the Enjin Blockchain marketplace. Unlike the `GetListing` query, which fetches data for a single listing, `GetListings` is designed to handle multiple listings at once, making it suitable for scenarios where you need to fetch details for multiple listings in a single request.
+Returns a paginated list of listings scoped to a single `collectionId`. Pagination is offset-based (`limit` + `page`). Optionally filter to specific `tokenIds`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 query GetListings {
   GetListings(
-    listingIds: ["0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"]
+    network: ENJIN
+    chain: MATRIX
+    collectionId: 2967
+    limit: 15
+    page: 1
   ) {
-    totalCount
-    pageInfo {
-      startCursor
-      endCursor
-      hasPreviousPage
-      hasNextPage
+    id
+    seller {
+      address
     }
-    edges {
-      node {
-        listingId
-        makeAssetId {
-          collectionId
-          tokenId
-        }
-        takeAssetId {
-          collectionId
-          tokenId
-        }
-        amount
-        price
-        minTakeValue
-        feeSide
-        creationBlock
-        deposit
-        salt
-        state {
-          ... on FixedPriceState {
-            amountFilled
-            type
-          }
-          ... on AuctionState {
-            type
-          }
-        }
-        data {
-          ... on FixedPriceData {
-            type
-          }
-          ... on AuctionData {
-            type
-            startBlock
-            endBlock
-          }
-        }
-        seller {
-          account {
-            publicKey
-            address
-          }
-        }
-        sales {
-          edges {
-            node {
-              amount
-              price
-              bidder {
-                account {
-                  publicKey
-                  address
-                }
-              }
-            }
-          }
-        }
-        bids {
-          edges {
-            node {
-              price
-              bidder {
-                account {
-                  publicKey
-                  address
-                }
-              }
-              height
-            }
-          }
-        }
-        states {
-          state
-          height
-        }
-      }
+    makeAsset {
+      tokenId
     }
+    amount
+    price
+    isActive
   }
 }
 ```
@@ -395,199 +109,44 @@ query GetListings {
 ```json
 {
   "data": {
-    "GetListings": {
-      "totalCount": 1,
-      "pageInfo": {
-        "startCursor": "",
-        "endCursor": "",
-        "hasPreviousPage": false,
-        "hasNextPage": false
+    "GetListings": [
+      {
+        "id": "2cabb4256b0806c68e53104769e3ba7382b6f10e37df7bceb74a6119f601bf3d",
+        "seller": { "address": "efS3yL43XUmqwU2ovUZjjdzfo4eQk5dR7pbUf4dUFxPxqKh2V" },
+        "makeAsset": { "tokenId": "106338239662793367710728619925308440576" },
+        "amount": "2",
+        "price": "620000000000000000000",
+        "isActive": true
       },
-      "edges": [
-        {
-          "node": {
-            "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20",
-            "makeAssetId": {
-              "collectionId": "4919",
-              "tokenId": "0"
-            },
-            "takeAssetId": {
-              "collectionId": "0",
-              "tokenId": "0"
-            },
-            "amount": "1",
-            "price": "1000000000000000000",
-            "minTakeValue": "975000000000000000",
-            "feeSide": "TAKE_FEE",
-            "creationBlock": 239058,
-            "deposit": "2025700000000000000",
-            "salt": "73616c74313233",
-            "state": {
-              "amountFilled": null,
-              "type": "FIXED_PRICE"
-            },
-            "data": {
-              "type": "FIXED_PRICE"
-            },
-            "seller": {
-              "account": {
-                "publicKey": "0x087c3fdc6566230578362759d99e42ed300f5560c305262843b2c61aa2f1d11e",
-                "address": "cxJciMkfdBqR8C9ftA8qmgzP9bAQNzMzXZmwUDZ2qW5mFVgvm"
-              }
-            },
-            "sales": {
-              "edges": []
-            },
-            "bids": {
-              "edges": [
-                {
-                  "node": {
-                    "price": "1000000000000000000",
-                    "bidder": {
-                      "account": {
-                        "publicKey": "0xb4664455021025f4944c1bc4af8a2830317f0765dc624778345dea09e89a526a",
-                        "address": "cxNW84hdDPEr8rU8oUbqNDaCmVX6SxH86mFufTf6HiNbZhi2F"
-                      }
-                    },
-                    "height": 239058
-                  }
-                }
-              ]
-            },
-            "states": [
-              {
-                "state": "ACTIVE",
-                "height": 239058
-              }
-            ]
-          }
-        }
-      ]
-    }
+      {
+        "id": "41fbe28706d544a1afc39d894723d98d8e7922a6be77a8545af23ec2fb998341",
+        "seller": { "address": "efTwg56JrsGcDomiouuTfPybQuRNYX53XBHe6JrgxMvdDtkFw" },
+        "makeAsset": { "tokenId": "107002853660685728525072975374659359309" },
+        "amount": "1",
+        "price": "77000000000000000000",
+        "isActive": true
+      }
+    ]
   }
 }
 ```
   </TabItem>
 </Tabs>
 
-## GetSale
+### Filtering to specific token ids
 
-The `GetSale` query is used to retrieve details about a specific sale transaction that has occurred on the Enjin Blockchain marketplace. This query requires the sale ID as input and returns information about the sale, including the sale ID, price, quantity, bidder information, and the associated market listing.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
 ```graphql
-query GetSale {
-  GetSale(id: 1) {
+query GetListings {
+  GetListings(
+    network: ENJIN
+    chain: MATRIX
+    collectionId: 2967
+    tokenIds: [106338239662793367710728619925308440576, 107002853660685728525072975374659359309]
+    limit: 15
+    page: 1
+  ) {
     id
     price
-    amount
-    bidder {
-      account {
-        publicKey
-        address
-      }
-    }
-    listing {
-      listingId
-    }
   }
 }
 ```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetSale": {
-      "id": 1,
-      "price": "1000000",
-      "amount": "1",
-      "bidder": {
-        "account": {
-          "publicKey": "0x6a03b1a3d40d7e344dfb27157931b14b59fe2ff11d7352353321fe400e956802",
-          "address": "cxLpbEojWougf2cE6onB6PuK9SsfmKqNJKNo9tTsqirxFbuN5"
-        }
-      },
-      "listing": {
-        "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"
-      }
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## GetSales
-
-The `GetSales` query is used to retrieve information about completed sale transactions that have occurred on a marketplace. This query allows you to fetch details of multiple sales associated with specific market listings.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-query GetSales {
-  GetSales(listingIds: ["0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"]) {
-    totalCount
-    pageInfo {
-      startCursor
-      endCursor
-      hasPreviousPage
-      hasNextPage
-    }
-    edges {
-      node {
-        id
-        price
-        amount
-        bidder {
-          account {
-            publicKey
-            address
-          }
-        }
-        listing {
-          listingId
-        }
-      }
-    }
-  }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "GetSales": {
-      "totalCount": 1,
-      "pageInfo": {
-        "startCursor": "",
-        "endCursor": "",
-        "hasPreviousPage": false,
-        "hasNextPage": false
-      },
-      "edges": [
-        {
-          "node": {
-            "id": 1,
-            "price": "1000000",
-            "amount": "1",
-            "bidder": {
-              "account": {
-                "publicKey": "0x6a03b1a3d40d7e344dfb27157931b14b59fe2ff11d7352353321fe400e956802",
-                "address": "cxLpbEojWougf2cE6onB6PuK9SsfmKqNJKNo9tTsqirxFbuN5"
-              }
-            },
-            "listing": {
-              "listingId": "0x101d16dc0fa25d77a92bcb6cde34e8ad1e85d96cd6a4a78eb68acc4f82d37f20"
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>

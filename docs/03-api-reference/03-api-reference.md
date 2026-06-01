@@ -2,92 +2,66 @@
 title: "API Reference"
 slug: "/api-reference"
 ---
-The Enjin API provides a robust GraphQL interface for interacting with the Enjin Platform. This guide will demonstrate how to explore available queries and mutations using the GraphiQL Playground.
 
-## Exploring the GraphiQL Playground
+This section is a per-resource reference for the Enjin Platform GraphQL API. Each page focuses on one resource family (accounts, collections, tokens, transactions, marketplace listings, fuel tanks, token groups, nomination pools) and walks through the queries and mutations available for it.
 
-The GraphiQL Playground is an interactive environment where developers can explore the full range of API functionalities and build queries/mutations. Here’s how you can navigate and utilize this tool effectively.
-
-### Accessing the GraphiQL Playground
-
-You can access the GraphiQL Playground for both Testnet and Mainnet environments:
-
-- **Testnet**: [Core Operations](https://platform.canary.enjin.io/graphiql)
-- **Mainnet**: [Core Operations](https://platform.enjin.io/graphiql)
-
-### Navigating the Documentation Explorer
-
-#### Step 1: Open the Documentation Explorer
-
-- Start by opening the GraphiQL Playground and click the `Show Documentation Explorer` button located at the top left. This will display a panel listing all available queries, mutations, and types.
-
-![Show Documentation Explorer](/img/getting-started/show-documentation-explorer.gif)
-
-#### Step 2: Search for a Specific Mutation
-
-- In the Documentation Explorer, you can use the search input to find a specific mutation. For example, to find the "CreateToken" mutation, type "Create" into the search bar. This helps narrow down the list to relevant operations.
-
-![Search mutations or queries](/img/getting-started/search.gif)
-
-:::tip Tip: quick Access to Documentation
-If you already have a query or mutation in your builder, you can quickly open its documentation page by clicking on it while holding the `Ctrl` button. This will navigate you directly to its details in the Documentation Explorer.
+:::tip GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
 
-#### Step 3: Explore the Mutation Details
+## How this section is organised
 
-- Click on the "CreateToken" mutation to view detailed information about it. You will see:
-  - **Overview**: A description of what the mutation does.
-  - **Return Type**: The type of data it returns, such as a "transaction".
-  - **Arguments**: A list of arguments it accepts, with descriptions and data types.
+- **Queries** — read on-chain and platform state: [transactions](/03-api-reference/01-queries/01-transactions-queries.md), [collections](/03-api-reference/01-queries/02-collections-queries.md), [tokens](/03-api-reference/01-queries/03-tokens-queries.md), [accounts](/03-api-reference/01-queries/04-wallets-queries.md), [fuel tanks](/03-api-reference/01-queries/05-fuel-tank-queries.md), [marketplace](/03-api-reference/01-queries/06-marketplace-queries.md), [token groups](/03-api-reference/01-queries/07-token-groups-queries.md), [nomination pools](/03-api-reference/01-queries/08-nomination-pool-queries.md).
+- **Mutations** — submit on-chain actions and manage platform-side resources: [transactions](/03-api-reference/02-mutations/01-transaction-mutations.md), [collections](/03-api-reference/02-mutations/02-collections-mutations.md), [tokens](/03-api-reference/02-mutations/03-tokens-mutations.md), [wallets](/03-api-reference/02-mutations/04-wallets-mutations.md), [fuel tanks](/03-api-reference/02-mutations/05-fuel-tanks-mutations.md), [marketplace](/03-api-reference/02-mutations/06-marketplace-mutations.md), [token groups](/03-api-reference/02-mutations/07-token-groups-mutations.md), [nomination pools](/03-api-reference/02-mutations/08-nomination-pool-mutations.md).
+- [**Important Arguments**](/03-api-reference/04-important-arguments.md) — a glossary of recurring argument types and enum values (`network`, `chain`, `state`, `cap`, etc.) used throughout the API.
 
-![Explore mutation, query, or type](/img/getting-started/explore-mutation-query-type.gif)
+If you're new to GraphQL or to the Enjin API, start with [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) and the [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) primer — they cover authentication, the playground, and operation structure.
 
-### Understanding Arguments and Types
+## Two top-level shapes worth knowing
 
-#### Example: Creating a Token with Initial Supply of 10
+Two things are common to almost every example in this reference and worth understanding before you read them.
 
-- For instance, if you want to create a token with an initial supply of 10, you will need to focus on the `params` argument. This argument is of type "CreateTokenParams", a complex type.
+### 1. `network` and `chain` arguments
 
-<p align="center">
-  <img src={require('/img/getting-started/arg-explore-example.png').default} alt="Example of exploring an argument" />
-</p>
+Every operation that touches the blockchain takes a `network` and a `chain` argument:
 
-- Click on `CreateTokenParams` to explore its fields:
-  - **tokenId**: Of type "EncodableTokenIdInput", which specifies the token identifier.
-  - **initialSupply**: Of type "BigInt", which you would set to 10.
-  - **cap**: Of type "TokenMintCap", which may define the maximum supply (optional).
+- `network: ENJIN` (mainnet) or `network: CANARY` (testnet).
+- `chain: MATRIX` (Matrixchain — collections, tokens, marketplace) or `chain: RELAY` (Relaychain — staking, governance).
 
-<p align="center">
-  <img src={require('/img/getting-started/exploring-complex-type.png').default} alt="Example of exploring a complex type argument" />
-</p>
+A single endpoint serves both networks and both chains; you select which to target on each request.
 
-#### Constructing Your Mutation
+### 2. `CreateTransaction` — one mutation for every on-chain action
 
-- Using the information from the Documentation Explorer, you can construct a mutation to create a token. Here is an example:
+Almost every on-chain action — creating a collection, minting tokens, transferring, listing on the marketplace, bonding to a nomination pool — is submitted through the single `CreateTransaction` mutation. The specific action is selected by which field is set on the `transaction` input.
+
+For example, creating a token looks like this:
 
 ```graphql
 mutation {
-  CreateToken(
-    recipient: "efRecipientAddress"
-    collectionId: "12345"
-    params: {
-      tokenId: { integer: 1 }
-      initialSupply: 10
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      createToken: {
+        recipient: "efRecipientAddress"
+        collectionId: 12345
+        tokenId: 1
+        initialSupply: 10
+        listingForbidden: false
+        infusion: 0
+        anyoneCanInfuse: false
+      }
     }
   ) {
-    id
-    method
+    uuid
+    action
     state
   }
 }
 ```
 
-- This mutation creates a new token with an initial supply of 10 in the specified collection. Adjust the parameters as needed for your application.
+The same mutation handles `mintToken`, `transferToken`, `createCollection`, `createListing`, and ~40 other actions — see [Transaction Mutations](/03-api-reference/02-mutations/01-transaction-mutations.md) for the full surface and [Important Arguments](/03-api-reference/04-important-arguments.md) for the shapes returned.
 
-:::tip Not sure how to construct the query/mutation?
-Check out our [GraphQL Query Builder Guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#graphiql-playground) for detailed instructions on building queries and mutations.
+:::tip Not sure how to construct an operation?
+The [GraphQL Query Builder](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md#graphiql-playground) section walks through using the GraphiQL Explorer to build queries and mutations interactively.
 :::
-
-#### Conclusion
-
-By using the Documentation Explorer in the GraphiQL Playground, you can efficiently navigate and understand the Enjin API's queries, mutations, and field types.

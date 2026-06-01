@@ -8,82 +8,95 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
 ## Introduction to the Enjin API
 
-The Enjin API is a set of programmatic interfaces that allow developers to interact with the Enjin Platform from their own applications. Built using <GlossaryTerm id="graphql" />,  it enables clients to request exactly the data they need in a flexible and efficient way. Unlike traditional RESTful APIs, which require multiple endpoints for different data requirements, GraphQL enables more efficient data retrieval through a single endpoint. This flexibility reduces the number of network requests and optimizes performance, making it particularly advantageous for applications that require efficient data handling, such as blockchain and NFT platforms.
+The Enjin API is a set of programmatic interfaces that allow developers to interact with the Enjin Platform from their own applications. Built using <GlossaryTerm id="graphql" />, it enables clients to request exactly the data they need in a flexible and efficient way. Unlike traditional RESTful APIs, which require multiple endpoints for different data requirements, GraphQL enables more efficient data retrieval through a single endpoint. This flexibility reduces the number of network requests and optimizes performance, making it particularly advantageous for applications that require efficient data handling, such as blockchain and NFT platforms.
 
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) to pay for <GlossaryTerm id="transaction_fees" />.
-- You can obtain cENJ (Canary ENJ) for testing from the [Canary faucet](https://faucet.canary.enjin.io/).
+- You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 - An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
 :::
 
 :::tip New to GraphQL?
 If you're more familiar with REST APIs, it's important to understand that our API uses GraphQL - a flexible and powerful query language for APIs. GraphQL works quite differently from REST, and knowing how to structure your queries and handle responses is essential for successful integration.\
-We recommend reviewing our [How to Use GraphQL guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md)  to get started quickly and effectively.
+We recommend reviewing our [How to Use GraphQL guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) to get started quickly and effectively.
 :::
+
 ## Authentication
 
-Access tokens assume a pivotal role in facilitating your application's interaction with the Enjin Platform API.
-These tokens serve a dual purpose:
+API tokens are used to authenticate your application's requests to the Enjin Platform. They serve a dual purpose:
 
-- They grant your application access to the platform.
-- They allow for automatic request approval and signing using the Wallet Daemon.
+- They grant your application access to authenticated operations (mutations).
+- They allow the Wallet Daemon to fetch and sign transactions on your behalf.
 
 To make authenticated calls to the Enjin Platform:
 
-1. login or create an account in the [Testnet Enjin Platform Cloud](https://platform.canary.enjin.io).
-2. Create an API token if you haven't already.
-3. When making HTTP requests to the GraphQL endpoints, include your API token in the request headers using the `Authorization` field:
+1. Log in to the [Enjin Platform Cloud](https://platform.beta.enjin.io/).
+2. Open your [account settings](https://platform.beta.enjin.io/settings) and create an API token if you haven't already.
+3. Include the token in the `Authorization` header of your HTTP requests, prefixed with `Bearer`:
 
 ```
-"Authorization": "<API Token Here>"
+Authorization: Bearer <YOUR_API_TOKEN>
 ```
 
-4. _(Optional)_ To automate requests made from the Enjin Platform using a wallet daemon, you need to configure your daemon with the API token.
-   For more details head over to [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md)
+4. _(Optional)_ To automate signing of transactions you create through the API, configure a Wallet Daemon with your API token.
+   For more details head over to [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
 
-## Endpoints & Queries
+## Endpoint & Queries
 
 Every data transfer strictly adheres to the HTTP/1.1 standard, with HTTPS encryption mandatory for all endpoints to ensure secure communication.
 
-The Enjin API primarily utilizes GraphQL, meaning you'll be sending POST HTTP requests to specific endpoints with your GraphQL queries and mutations. This allows you to interact with the Enjin blockchain in a flexible and efficient manner.
+The Enjin API uses GraphQL, meaning you'll be sending POST HTTP requests to a single endpoint with your GraphQL queries and mutations. This allows you to interact with the Enjin blockchain in a flexible and efficient manner.
 
 :::tip SDKs for Streamlined Development
 For developers looking for a more integrated experience, Enjin also provides official **Software Development Kits (SDKs)** for various programming languages. These SDKs wrap the underlying GraphQL API, offering convenient methods and abstractions to streamline development. You can find more information and links to the available SDKs on our [Software Development Kits (SDKs) page](/02-guides/01-platform/04-software-development-kit/04-software-development-kit.md).
 :::
 
-### Overview of GraphQL Endpoints
+### GraphQL Endpoint
 
-The Enjin API is structured around four distinct GraphQL endpoints, each designed to handle specific sets of queries and mutations. This segmentation allows for efficient and organized interactions tailored to different functional areas within the Enjin ecosystem:
+The Enjin Platform serves all queries and mutations from a **single GraphQL endpoint**:
 
-1. **Core Operations:** This endpoint handles fundamental blockchain operations such as creating collections, minting and transferring <GlossaryTerm id="multitoken" />s, freezing, and burning <GlossaryTerm id="multitoken" />s . It provides the essential tools for managing and interacting with <GlossaryTerm id="nft" />s on the Enjin Blockchain.
-
-2. **Marketplace:** Focused on marketplace activities, this endpoint encompasses operations like listing tokens for sale, purchasing tokens, and bidding on auctions. It facilitates seamless transactions and interactions within the Enjin Marketplace.
-
-3. **Beam:** The Beam endpoint manages operations related to the Beam system, which is used for distributing tokens claimable via QR codes. This feature is particularly useful for promotional activities and engaging user experiences.
-
-4. **Fuel Tanks:** This endpoint is dedicated to the Fuel Tank system, which allows for subsidizing transaction fees. It supports operations that manage and configure fuel tanks, enabling cost-effective transactions on the blockchain.
-
-GraphQL queries and mutations are executed by sending POST HTTP requests to the corresponding endpoint:
-
-:::note GraphQL Endpoints
-### Testnet:
-- **Core Operations** `https://platform.canary.enjin.io/graphql`
-- **Marketplace** `https://platform.canary.enjin.io/graphql/marketplace`
-- **Beam** `https://platform.canary.enjin.io/graphql/beam`
-- **Fuel Tanks** `https://platform.canary.enjin.io/graphql/fuel-tanks`
-### Mainnet:
-- **Core Operations** `https://platform.enjin.io/graphql`
-- **Marketplace** `https://platform.enjin.io/graphql/marketplace`
-- **Beam** `https://platform.enjin.io/graphql/beam`
-- **Fuel Tanks** `https://platform.enjin.io/graphql/fuel-tanks`
+:::note GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
-Here is an example of an HTTP cURL post request to create a collection on the Canary blockchain, with the API Token provided:
 
+A single endpoint covers Core operations (collections, tokens, transfers, attributes), Marketplace, Fuel Tanks, and Nomination Pools.
+
+### Selecting a Network and Chain
+
+The Enjin Platform is chain-agnostic — the network and chain you want to operate on are passed as **arguments** on each query or mutation rather than being baked into the endpoint URL.
+
+Most operations accept two enum arguments:
+
+| Argument  | Values             | Description |
+|-----------|--------------------|-------------|
+| `network` | `ENJIN`, `CANARY`  | The network to target. `ENJIN` is mainnet, `CANARY` is the testnet. |
+| `chain`   | `MATRIX`, `RELAY`  | Which chain on the selected network. `MATRIX` is the Matrixchain (where collections, tokens, and the marketplace live). `RELAY` is the Relaychain. |
+
+Both default to `ENJIN` / `MATRIX` (mainnet Matrixchain) when omitted.
+
+```graphql
+query GetEnjinMatrixBalance {
+  GetAccount(
+    network: ENJIN
+    chain: MATRIX
+    address: "efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr"
+  ) {
+    balance
+  }
+}
 ```
-curl --location --request POST 'https://platform.canary.enjin.io/graphql' \
+
+To run the same query on the Canary testnet, change `network: ENJIN` to `network: CANARY`.
+
+### Example Request
+
+Here is an example of an HTTP cURL request to fetch an account's balance from the Canary Matrixchain, with an API token provided:
+
+```bash
+curl --location --request POST 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
--H 'Authorization: Insert your API token here' \
--d '{"query":"mutation CreateCollection($forceCollapsingSupply: Boolean) {\r\n  CreateCollection(\r\n    mintPolicy: { forceCollapsingSupply: $forceCollapsingSupply }\r\n  ) {\r\n    id\r\n    method\r\n    state\r\n  }\r\n}\r\n","variables":{"forceCollapsingSupply":false}}'
+-H 'Authorization: Bearer <YOUR_API_TOKEN>' \
+-d '{"query":"query { GetAccount(network: CANARY, chain: MATRIX, address: \"efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr\") { balance } }"}'
 ```
 
 ## API Reference
@@ -96,3 +109,4 @@ For a comprehensive guide on exploring and utilizing GraphQL queries and mutatio
 - New to GraphQL? Learn how to structure queries and mutations in our [How to Use GraphQL guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md).
 - To automate signing requests, continue to the [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) page.
 - Or, If you're ready to start building... [Create a Collection](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
+:::

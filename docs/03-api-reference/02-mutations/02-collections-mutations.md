@@ -1,153 +1,55 @@
 ---
 title: "Collections"
 slug: "collections"
-description: "Perform collections mutations in the Enjin API to manage your blockchain collections, including creating, modifying, and updating assets."
+description: "Create, mutate, freeze, transfer, and destroy on-chain collections via CreateTransaction."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::info Please note: This is an introductory reference
-For the most up-to-date information, refer to the [API Reference](/03-api-reference/03-api-reference.md).\
-🚧 The information provided in this section cannot be programmatically updated and may be subject to inconsistencies over time.
+:::tip GraphQL Endpoint
+`https://platform.beta.enjin.io/graphql`
 :::
 
-:::tip Core Endpoints
-- **Testnet:** `http://platform.canary.enjin.io/graphql`
-- **Mainnet:** `http://platform.enjin.io/graphql`
-:::
+All collection-level actions are submitted through [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction), with the action selected by the field set on the `transaction` input. Each section below shows the discriminator and its expected fields.
 
-This is a detailed reference guide that explains the most commonly used operations.
+The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection. Once a transaction reaches `FINALIZED`, the on-chain event(s) it emitted can be read via the flow described in [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
-## CreateCollection
+## createCollection
 
-The `CreateCollection` mutation is used to create a new on-chain collection. A collection serves as a grouping of on-chain assets, typically non-fungible tokens (NFTs), that share common properties or belong to the same set.
+Creates a new on-chain collection. Most fields are optional — the example below shows everything; a minimal call is just `transaction: { createCollection: {} }`.
+
+The new collection's `id` is assigned by the chain — once the transaction finalizes, a `MultiTokens.CollectionCreated` event is emitted containing it.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation CreateCollection {
-    CreateCollection{
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-        idempotencyKey
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "CreateCollection": {
-      "id": 14058,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "CreateCollection",
-      "state": "PENDING",
-      "encodedData": "0x2800000001000000",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      },
-      "idempotencyKey": "ef403ad0-7b6c-4020-8ef1-01b1dc6f4513"
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## ApproveCollection
-
-The `ApproveCollection` mutation is used to authorize another account (referred to as the "operator") to transfer tokens from a specific collection account. This operation is common in scenarios involving Non-Fungible Tokens (NFTs) or tokenized assets, where token management may need to be delegated without transferring ownership of the tokens.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-mutation ApproveCollection {
-    ApproveCollection(
-        collectionId: "7154"
-        operator: "0x965bcdbb46614cbd79869e2eb568825f6c038cbdf9085edb1b164607d3738fa6"
-        expiration: 445100
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "ApproveCollection": {
-      "id": 13819,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "ApproveCollection",
-      "state": "PENDING",
-      "encodedData": "0x280fc96f965bcdbb46614cbd79869e2eb568825f6c038cbdf9085edb1b164607d3738fa601acca0600",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      createCollection: {
+        forceCollapsingSupply: false
+        maxTokenCount: 1000
+        maxTokenSupply: 100
+        royalties: [
+          { address: "efRoyaltyBeneficiary", percentage: 5.0 }
+        ]
+        attributes: [
+          { key: "name", value: "The Multiverse" }
+          { key: "uri",  value: "https://example.com/metadata/collection.json" }
+        ]
+        explicitRoyaltyCurrencies: [
+          { collectionId: 0, tokenId: 0 }
+        ]
       }
     }
+  ) {
+    uuid
+    action
+    state
   }
-}
-```
-  </TabItem>
-</Tabs>
-
-## UnapproveCollection
-
-The `UnapproveCollection` mutation is used to revoke previously granted permissions for a specific account (referred to as the "operator") to transfer items from a collection owned by the sender's account. This operation is essential for enhancing the security and control of digital assets, ensuring that the owner of a collection can manage who has the authority to move or transfer items from their collection.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-mutation UnapproveCollection{
-    UnapproveCollection(
-        collectionId: "6305"
-        operator: "0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d"
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
 }
 ```
   </TabItem>
@@ -155,19 +57,10 @@ mutation UnapproveCollection{
 ```json
 {
   "data": {
-    "UnapproveCollection": {
-      "id": 14078,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "UnapproveCollection",
-      "state": "PENDING",
-      "encodedData": "0x28108562d43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      }
+    "CreateTransaction": {
+      "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
+      "action": "MultiTokens.create_collection",
+      "state": "PENDING"
     }
   }
 }
@@ -175,192 +68,34 @@ mutation UnapproveCollection{
   </TabItem>
 </Tabs>
 
-## MutateCollection
+## mutateCollection
 
-The `MutateCollection` mutation is utilized to modify the default settings of an existing collection. This mutation allows you to make changes to various parameters of a collection, such as adjusting royalty settings. It is particularly valuable when you need to alter how royalties are distributed for the assets within a specific collection.
+Updates a collection's mutable fields — owner, royalties, royalty-currency whitelist, and attributes.
+
+Setting `owner` initiates an ownership transfer: the collection enters a pending state until the new owner calls [`acceptCollectionTransfer`](#acceptcollectiontransfer) (or the current owner calls [`cancelCollectionTransfer`](#cancelcollectiontransfer) to abort).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation MutateCollection {
-    MutateCollection(
-        collectionId: "10943"
-        mutation: {
-          royalty: {
-            beneficiary:"0x50a1ba0a184c9aca3a2ac7d427e96a676fe988454b4b56a62dd6622e843e890d"
-            percentage: 50
-          }
-        }
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "MutateCollection": {
-      "id": 14066,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "MutateCollection",
-      "state": "PENDING",
-      "encodedData": "0x2802fdaa00010150a1ba0a184c9aca3a2ac7d427e96a676fe988454b4b56a62dd6622e843e890d0294357700",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      mutateCollection: {
+        collectionId: 10943
+        royalties: [
+          { address: "efNewBeneficiaryAddress", percentage: 7.5 }
+        ]
+        attributes: [
+          { key: "description", value: "Updated description" }
+        ]
       }
     }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## Burn
-
-The `Burn` mutation is used to permanently delete a specified amount of tokens from a collection. This operation is irreversible and results in the removal of tokens from circulation. When tokens are burned, the reserved value associated with them is often returned to the issuer's account.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-mutation Burn {
-    Burn(
-        collectionId: "7154"
-        params: {
-          tokenId: {integer:6533}
-            amount:1
-            keepAlive:false
-        }
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "Burn": {
-      "id": 14055,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "Burn",
-      "state": "PENDING",
-      "encodedData": "0x2805c96f1566040000",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      }
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## DestroyCollection
-
-The `DestroyCollection` mutation is used to permanently delete an existing collection. This operation is irreversible and removes the entire collection, including all associated tokens and their reserved values.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-mutation DestroyCollection{
-    DestroyCollection(collectionId: 10942) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "DestroyCollection": {
-      "id": 14062,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "DestroyCollection",
-      "state": "PENDING",
-      "encodedData": "0x2801f9aa",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      }
-    }
-  }
-}
-```
-  </TabItem>
-</Tabs>
-
-## Freeze
-
-The `Freeze` mutation is used to temporarily halt token transfers on a collection, token, collection account, or token account. Freezing temporarily prevents token transfers from taking place, which also results in marketplace listings being unpurchaseable.
-
-<Tabs>
-  <TabItem value="graphql" label="GraphQL">
-```graphql
-mutation Freeze {
-  Freeze(
-    freezeType: COLLECTION
-    collectionId: "10943"
   ) {
-    id
-    transactionId
-    transactionHash
-    method
+    uuid
+    action
     state
-    encodedData
-    wallet {
-      account {
-        publicKey
-        address
-      }
-    }
   }
 }
 ```
@@ -369,19 +104,10 @@ mutation Freeze {
 ```json
 {
   "data": {
-    "Freeze": {
-      "id": 14064,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "Freeze",
-      "state": "PENDING",
-      "encodedData": "0x2807fdaa00",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      }
+    "CreateTransaction": {
+      "uuid": "f02b8fef-8c0e-4f3f-9430-1cf6c2c20a23",
+      "action": "MultiTokens.mutate_collection",
+      "state": "PENDING"
     }
   }
 }
@@ -389,105 +115,225 @@ mutation Freeze {
   </TabItem>
 </Tabs>
 
-## SetCollectionAttribute
+## acceptCollectionTransfer
 
-The `SetCollectionAttribute` mutation allows you to assign a new attribute or update an existing attribute's value within a collection.
+Called by the recipient of a pending collection transfer (set up via `mutateCollection.owner`) to complete the transfer.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation AcceptCollectionTransfer {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      acceptCollectionTransfer: { id: 10943 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## cancelCollectionTransfer
+
+Called by the current owner before a pending collection transfer is accepted, to abort it.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CancelCollectionTransfer {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      cancelCollectionTransfer: { id: 10943 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## destroyCollection
+
+Permanently destroys a collection. The collection must be empty (no tokens) and the deposit is returned to the owner.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation DestroyCollection {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      destroyCollection: { id: 10942 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## freezeCollection / thawCollection
+
+Freeze or thaw an entire collection — while frozen, no tokens in the collection can be transferred, listed, or otherwise mutated.
+
+<Tabs>
+  <TabItem value="freeze" label="freezeCollection">
+```graphql
+mutation FreezeCollection {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      freezeCollection: { collectionId: 10943 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+  <TabItem value="thaw" label="thawCollection">
+```graphql
+mutation ThawCollection {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      thawCollection: { collectionId: 10943 }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+To freeze or thaw an individual token within a collection, use `freezeToken` / `thawToken` — see [Tokens Mutations](/03-api-reference/02-mutations/03-tokens-mutations.md).
+
+## setCollectionAttribute
+
+Set or update a single key/value attribute on a collection.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation SetCollectionAttribute {
-    SetCollectionAttribute(
-        collectionId: "4741"
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      setCollectionAttribute: {
+        collectionId: 4741
         key: "test"
         value: "Hello"
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
-    }
-}
-```
-  </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "SetCollectionAttribute": {
-      "id": 14072,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "SetCollectionAttribute",
-      "state": "PENDING",
-      "encodedData": "0x2809154a0010746573741448656c6c6f",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
       }
     }
+  ) {
+    uuid
+    action
+    state
   }
 }
 ```
   </TabItem>
 </Tabs>
 
-## RemoveCollectionAttribute
+## batchSetCollectionAttribute
 
-The `RemoveCollectionAttribute` mutation is designed to remove a specific attribute from an entire collection of tokens. Attributes typically represent metadata associated with the tokens, such as name, color, size, or any other descriptive information.
+Set multiple attributes on a collection in a single transaction. The collection id field is named `id` here (not `collectionId`).
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation BatchSetCollectionAttribute {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      batchSetCollectionAttribute: {
+        id: 4741
+        attributes: [
+          { key: "name",        value: "My Collection" }
+          { key: "description", value: "A great collection" }
+          { key: "uri",         value: "https://example.com/metadata/collection.json" }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## removeCollectionAttribute
+
+Remove a single attribute from a collection.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
 mutation RemoveCollectionAttribute {
-    RemoveCollectionAttribute(
-        collectionId: "4741"
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      removeCollectionAttribute: {
+        id: 4741
         key: "name"
-    ) {
-        id
-        transactionId
-        transactionHash
-        method
-        state
-        encodedData
-        wallet {
-            account {
-                publicKey
-                address
-            }
-        }
+      }
     }
+  ) {
+    uuid
+    action
+    state
+  }
 }
 ```
   </TabItem>
-  <TabItem value="response" label="Response">
-```json
-{
-  "data": {
-    "RemoveCollectionAttribute": {
-      "id": 14070,
-      "transactionId": null,
-      "transactionHash": null,
-      "method": "RemoveCollectionAttribute",
-      "state": "PENDING",
-      "encodedData": "0x280a154a00106e616d65",
-      "wallet": {
-        "account": {
-          "publicKey": "0x68b427dda4f3894613e113b570d5878f3eee981196133e308c0a82584cf2e160",
-          "address": "cxLnsZcpE1xETr7TQrMCCsRYpSfpHPUpJUFAfiZdZvU6Ccy4B"
-        }
-      }
+</Tabs>
+
+## removeAllCollectionAttributes
+
+Remove every attribute from a collection in one transaction.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation RemoveAllCollectionAttributes {
+  CreateTransaction(
+    network: ENJIN
+    chain: MATRIX
+    transaction: {
+      removeAllCollectionAttributes: { id: 4741 }
     }
+  ) {
+    uuid
+    action
+    state
   }
 }
 ```

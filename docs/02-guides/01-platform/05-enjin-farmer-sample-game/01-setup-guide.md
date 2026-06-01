@@ -29,8 +29,8 @@ Before you begin, make sure you have the following installed:
   - ✅ **Unity Hub** with **Unity Editor version `6000.0.24f1`**.
   - ✅ **Node.js** (which includes `npm`).
   - ✅ **Git** for cloning the repositories.
-  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.canary.enjin.io/).
-  - ✅ Some cENJ tokens (can be aquired from the [cENJ Faucet](https://faucet.canary.enjin.io/))
+  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
+  - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI)
 
 -----
 
@@ -60,15 +60,15 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 ### Enjin Platform
 
-1. Log in to your [Enjin Platform](https://platform.canary.enjin.io/) account.
-2. Head over to your [account settings page](https://platform.canary.enjin.io/settings).
+1. Log in to your [Enjin Platform](https://platform.beta.enjin.io/) account.
+2. Head over to your [account settings page](https://platform.beta.enjin.io/settings).
 3. Navigate to the **Daemon Wallet** section and create a new API Token.
 4. Copy the **API Token**; you will need this in the next step.
 
 ### Wallet Daemon
 
 1. Run the Wallet Daemon executable you downloaded.
-2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](https://docs.enjin.io/getting-started/using-wallet-daemon#wallet-daemon-executable).
+2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
 3. Select the Enjin Platform Canary in the network dropdown menu, and run the Wallet Daemon.
 4. Once configured and running, the Wallet Daemon UI will display a wallet address. **Copy this wallet address** for the next step.
 
@@ -169,7 +169,7 @@ You're all set up and ready to play.
 </p>
 :::warning cENJ funds are required
 New managed wallet have no funds. To melt or transfer tokens out of a managed wallet, you'll need to fund it with some cENJ, or set up a fuel tank.
-To receive cENJ funds for testing, use the [cENJ faucet](https://faucet.canary.enjin.io/)
+To receive cENJ funds for testing, use the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 :::
 
 :::info Understanding the code
