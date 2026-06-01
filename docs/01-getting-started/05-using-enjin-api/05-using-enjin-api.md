@@ -38,10 +38,6 @@ To make authenticated calls to the Enjin Platform:
 Authorization: Bearer <YOUR_API_TOKEN>
 ```
 
-:::note
-Read-only queries (e.g. `GetAccount`, `GetToken`, `GetCollection`) are publicly accessible and do not require an API token. Mutations and account-scoped queries do.
-:::
-
 4. _(Optional)_ To automate signing of transactions you create through the API, configure a Wallet Daemon with your API token.
    For more details head over to [Using the Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md).
 
