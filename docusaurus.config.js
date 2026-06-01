@@ -46,19 +46,6 @@ const config = {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: './sidebars.js',
           editUrl: 'https://github.com/enjin/docs/tree/master/',
-          lastVersion: '2.x',
-          includeCurrentVersion: true,
-          versions: {
-            current: {
-              label: 'v3 (Beta)',
-              path: 'v3',
-              banner: 'unreleased',
-            },
-            '2.x': {
-              label: 'v2',
-              path: '',
-            },
-          },
         },
         blog: false,
         theme: {
@@ -104,10 +91,6 @@ const config = {
           {href: 'https://enjin.io/changelog', label: 'Changelog', position: 'left'},
           {href: '/tools', label: 'Tools', position: 'left'},
 
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-          },
           {
             href: 'https://console.enjin.io',
             label: 'Blockchain Console',

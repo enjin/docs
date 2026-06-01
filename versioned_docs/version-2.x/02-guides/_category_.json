@@ -1,7 +1,0 @@
-{
-  "label": "Integration Guides",
-  "link": {
-    "type": "generated-index",
-    "description": "Integrate with Enjin's platform and blockchain technologies. Find guides on managing tokens, integrating users, running nodes, and using the SDK."
-  }
-}

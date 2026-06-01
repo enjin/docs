@@ -15,4 +15,5 @@ yarn-error.log*
 # v3 documentation migration working files (not for upstream)
 v3-*.md
 v3-*.json
+summary.md
 build-test/
