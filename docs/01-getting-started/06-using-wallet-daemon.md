@@ -90,7 +90,7 @@ docker run --name enjin-wallet-daemon \
   --env KEY_PASS=your-unique-key-password \
   --env PLATFORM_KEY=your-platform-api-token \
   --volume "$PWD:/wallet" \
-  enjin/wallet-daemon:v3.0.5
+  enjin/wallet-daemon:v3.0.6
 ```
 
 Follow logs:
@@ -102,7 +102,7 @@ docker logs -f enjin-wallet-daemon
 Update the container:
 
 ```bash
-docker pull enjin/wallet-daemon:v3.0.5
+docker pull enjin/wallet-daemon:v3.0.6
 docker stop enjin-wallet-daemon
 docker rm enjin-wallet-daemon
 ```
@@ -133,7 +133,7 @@ aws cloudformation create-stack \
   --capabilities CAPABILITY_IAM \
   --parameters \
     ParameterKey=PlatformApiToken,ParameterValue="$PLATFORM_TOKEN" \
-    ParameterKey=WalletDaemonImage,ParameterValue=enjin/wallet-daemon:v3.0.5
+    ParameterKey=WalletDaemonImage,ParameterValue=enjin/wallet-daemon:v3.0.6
 
 unset PLATFORM_TOKEN
 ```
