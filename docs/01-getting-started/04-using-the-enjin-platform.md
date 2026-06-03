@@ -111,7 +111,7 @@ On any transaction form — whether a guided flow or the transaction builder —
 
 The popup gives you everything needed to reproduce the request programmatically:
 
-- **URL** — the GraphQL endpoint the request is sent to (`POST https://platform.beta.enjin.io/graphql`).
+- **URL** — the GraphQL endpoint the request is sent to (`https://platform.beta.enjin.io/graphql`).
 - **Request** — the GraphQL mutation, including its variable definitions.
 - **Variables** — the JSON variable values for this specific transaction.
 
