@@ -101,6 +101,26 @@ Once you're satisfied with the options, click the "**Create**" button at the bot
 
 Click **View Transaction** to jump straight to the Transactions page and watch it move from `PENDING` → `BROADCAST` → `FINALIZED` as the daemon signs and the chain finalizes it.
 
+### From the Dashboard to the API: View the GraphQL Request {#view-graphql-request}
+
+Everything the dashboard does is just a GraphQL request under the hood. Any transaction you can build in the UI can show you the exact mutation it would send — so you can prototype an action visually, then lift the request straight into your app integration instead of writing it from scratch.
+
+On any transaction form — whether a guided flow or the transaction builder — click the **dropdown caret (▾)** next to the **Create** (or **+ Add to Batch**) button and choose **View GraphQL Request**.
+
+![The Create Token button with its dropdown open, showing the View GraphQL Request option](/img/getting-started/v3-view-graphql-request-button.png)
+
+The popup gives you everything needed to reproduce the request programmatically:
+
+- **URL** — the GraphQL endpoint the request is sent to (`POST https://platform.beta.enjin.io/graphql`).
+- **Request** — the GraphQL mutation, including its variable definitions.
+- **Variables** — the JSON variable values for this specific transaction.
+
+Each block has its own **Copy** button. The **Copy** button's dropdown also offers **Copy as cURL**, and you can **Execute** the request directly from the popup to run it without leaving the page.
+
+![The View GraphQL Request popup showing the URL, the mutation, and its variables](/img/getting-started/v3-view-graphql-request-popup.png)
+
+This works for both single and batch transactions. Copy the **Request** and **Variables** to build the same mutation in your own code — see [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) for how to send it.
+
 ### Option B. Using the Enjin API & SDKs
 
 To create a Platform request programmatically, use the <GlossaryTerm id="graphql" /> API, or one of the <GlossaryTerm id="sdk" />s.

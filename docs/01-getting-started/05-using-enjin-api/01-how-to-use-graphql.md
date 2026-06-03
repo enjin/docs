@@ -20,7 +20,7 @@ To illustrate the differences between GraphQL and RESTful API calls, let's consi
 In a typical RESTful API, you might have an endpoint like `/mintToken` with a POST request that includes the necessary data in the request body. This might look something like:
 
 ```http
-POST https://platform.beta.enjin.io/api/mintToken
+POST https://example.com/api/mint-token
 Content-Type: application/json
 
 {

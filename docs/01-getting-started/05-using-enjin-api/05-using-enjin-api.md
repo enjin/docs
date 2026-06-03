@@ -21,6 +21,10 @@ If you're more familiar with REST APIs, it's important to understand that our AP
 We recommend reviewing our [How to Use GraphQL guide](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) to get started quickly and effectively.
 :::
 
+:::tip Don't write mutations from scratch
+Anything you can do in the Platform dashboard can reveal its exact GraphQL request. Build the action in the UI, then use **View GraphQL Request** to copy the mutation and variables straight into your app. See [From the Dashboard to the API](/01-getting-started/04-using-the-enjin-platform.md#view-graphql-request).
+:::
+
 ## Authentication
 
 API tokens are used to authenticate your application's requests to the Enjin Platform. They serve a dual purpose:
