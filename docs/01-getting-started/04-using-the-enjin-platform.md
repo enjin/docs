@@ -117,6 +117,10 @@ The popup gives you everything needed to reproduce the request programmatically:
 
 Each block has its own **Copy** button. The **Copy** button's dropdown also offers **Copy as cURL**, and you can **Execute** the request directly from the popup to run it without leaving the page.
 
+:::note
+**Copy as cURL** doesn't include your API token — the copied command has a `<YOUR_TOKEN>` placeholder. Replace it with a valid API token generated under **Settings → API Tokens** before running the request.
+:::
+
 ![The View GraphQL Request popup showing the URL, the mutation, and its variables](/img/getting-started/v3-view-graphql-request-popup.png)
 
 This works for both single and batch transactions. Copy the **Request** and **Variables** to build the same mutation in your own code — see [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) for how to send it.
