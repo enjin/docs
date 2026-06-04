@@ -33,7 +33,7 @@ By default, items live **hot**: they're earned, bought, and used entirely off-ch
 *Cold inventory* is just a friendlier, player-facing name for the player's on-chain wallet — a managed wallet you create for them, or a self-custodial wallet they connect. *Hot inventory* is not a wallet at all; it's rows in your own database.
 :::
 
-One rule keeps the whole scheme honest: **a unit is either hot or cold, never both.** Moving an item across the boundary destroys it on one side as it's created on the other. As a result, the on-chain supply of a token always equals "the number of units currently held cold" — the hot units have no on-chain existence.
+One rule keeps the whole scheme honest: **a unit is either hot or cold, never both.** Moving an item between the two inventories removes it from one and recreates it in the other. As a result, the on-chain supply of a token always equals "the number of units currently held cold" — the hot units have no on-chain existence.
 
 ## Deciding what goes where
 
@@ -69,7 +69,7 @@ The lifecycle of a mintable item:
 - **Move to hot** ("bring it in to use") → melt (burn) the token from the cold wallet, and — once the transaction is finalized — credit the hot ledger.
 - **Use from hot** → an off-chain decrement. Instant.
 
-The key insight: the on-chain transaction happens at the **move**, not at the **use**. A player moves a stack of 50 potions to hot once (a single melt), then consumes them instantly for the rest of the session. You pay the latency once, at the boundary — and you hide it behind a **cooldown**, the same "item is recharging" feedback players already understand. Use a <GlossaryTerm id="multi_unit_token" /> for stackable consumables so an entire stack crosses the boundary in one transaction.
+The key insight: the on-chain transaction happens at the **move**, not at the **use**. A player moves a stack of 50 potions to hot once (a single melt), then consumes them instantly for the rest of the session. You pay the latency once, when the item moves between inventories — and you hide it behind a **cooldown**, the same "item is recharging" feedback players already understand. Use a <GlossaryTerm id="multi_unit_token" /> for stackable consumables so an entire stack moves in one transaction.
 
 :::note Naming the move for players
 This guide calls it "moving" an item between inventories. In your game's UI, call it whatever fits — many games use something like "teleport" or "warp." If you use **teleport**, be aware it's unrelated to Enjin's **ENJ teleport** (which moves ENJ between the Matrixchain and Relaychain); choose wording that won't confuse players who also hold ENJ.
@@ -77,13 +77,9 @@ This guide calls it "moving" an item between inventories. In your game's UI, cal
 
 ## Worked example on the Enjin Platform
 
-### Cold inventory: one wallet per player
+### Cold inventory: the player's wallet
 
-Each player gets a single on-chain wallet that acts as their cold inventory — either a [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you create for them (`CreateManagedWallet(externalId: "player-115")`), or a self-custodial wallet they [connect with WalletConnect](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-using-wallet-connect.md).
-
-:::tip One wallet per player, not two
-You don't need separate "hot" and "cold" wallets. The hot inventory is rows in your own database; the cold inventory is the player's single on-chain wallet. A second on-chain wallet would just add a second slow account — it wouldn't make anything instant.
-:::
+Each player gets an on-chain wallet that acts as their cold inventory — either a [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you create for them (`CreateManagedWallet(externalId: "player-115")`), or a self-custodial wallet they [link to your application](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md#step-1--linking-a-players-wallet).
 
 ### Hot inventory: your database
 
@@ -127,7 +123,7 @@ query ConfirmMove {
 
 See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full finalization-and-events workflow. (Real-time push events that remove the need to poll are [planned](/03-api-reference/03-websocket-events.md).)
 
-For a **self-custodial** cold wallet, your server can't sign the melt — the player approves it in their own wallet via WalletConnect instead.
+For a **self-custodial** cold wallet, your server can't sign the melt — instead, the player approves it in their own Enjin Wallet app via a [wallet request](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md).
 
 ### Move to cold — mint to the cold wallet
 
@@ -156,11 +152,7 @@ mutation MoveToCold {
 
 ### Move several items at once
 
-If a player crosses the boundary with several different item types at once — a "withdraw everything to my wallet" button, say — bundle the actions into a single [`CreateBatchTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md) so they settle atomically with one fee instead of many.
-
-:::info Items stay hot between sessions
-There's no need to push unused items back to cold when a player logs off. The hot inventory *is* their everyday inventory and persists across sessions. Crossing to cold is always something the player chooses to do — to trade or self-custody an item — never an automatic step.
-:::
+If a player moves several different item types between inventories at once — a "withdraw everything to my wallet" button, say — bundle the actions into a single [`CreateBatchTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md) so they settle atomically with one fee instead of many.
 
 ### Cover the fees
 
@@ -171,7 +163,7 @@ Moving to hot melts a token from the player's wallet, which needs ENJ to pay <Gl
 - **Never credit the hot inventory before the melt is `FINALIZED`.** If you credit early and the transaction reverts, the player ends up with the item in *both* inventories — a double-spend. Treat finalization as the only signal that the move succeeded.
 - **Don't try to "optimistically" consume a cold item.** Letting a player use or open a cold item *before* its melt finalizes is exploitable: in the gap, they can transfer or sell that same token and keep both the item and its result. This is especially dangerous with self-custodial wallets, where the player — not your server — holds the keys. The model itself is the defense: an item must be **hot**, under your server's control, before it can be used instantly. Don't shortcut around it.
 - **Don't use Collapsing Supply for mintable items.** Burning a collapsing-supply token permanently lowers its maximum supply, so you couldn't mint it back the next time the player moves it to cold. Mintable hot/cold items need a normal supply cap.
-- **The hot ledger is production-critical data.** Items that are hot were burned on-chain — they exist *only* in your database. Back it up and treat it as the source of truth it is. This is also the trade-off to be honest about: while an item is hot, the player is trusting your custody, exactly as they would in a web2 game. Cold is where they hold it themselves.
+- **The hot ledger is production-critical data.** Items that are hot were burned on-chain — they exist *only* in your database. Back it up and treat it as the source of truth it is. This is also the trade-off to weigh: while an item is hot, the player is trusting your custody, exactly as they would in a web2 game; cold is where they hold it themselves.
 - **Make every move idempotent.** A double-submitted "move to hot" must not melt twice. Key each move by a unique request ID and ignore duplicates.
 - **Wait for finalization, not just block inclusion.** A transaction that's included can still be reverted by a reorg. Only act on `FINALIZED`.
 
