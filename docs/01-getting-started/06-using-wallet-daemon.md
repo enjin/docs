@@ -12,8 +12,6 @@ The Enjin Wallet Daemon is an outbound-only signer for Enjin Platform transactio
 
 ## How the Wallet Daemon Works
 
-![A diagram of the wallet daemon](/img/getting-started/wallet-daemon-diagram.png)
-
 1. **Send a mutation -** Your application calls `CreateTransaction` on the Enjin Platform API. The API encodes the corresponding extrinsic, stores it with a `PENDING` state, and returns a transaction `uuid`.
 2. **Poll for pending transactions -** The wallet daemon repeatedly polls the Enjin Platform API. It does not need inbound network access, so the machine holding your <GlossaryTerm id="private_key" /> should not expose public ports.
 3. **Sign and broadcast -** The daemon signs each pending transaction with your private key and sends the signed payload back to the platform.
@@ -47,7 +45,6 @@ The same security principles apply to every path:
 |-------|-------------|
 | `PLATFORM_KEY` | Enjin Platform API token. |
 | `KEY_PASS` | Password used to encrypt and decrypt `wallet.seed`. |
-| `SEED_PATH` | Path to the directory or file where the daemon should create or read `wallet.seed`. |
 
 :::danger Back up both wallet components
 The encrypted `wallet.seed` file is not enough by itself. You also need the matching `KEY_PASS`. Losing either value can make the wallet unrecoverable.
