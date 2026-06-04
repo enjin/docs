@@ -14,10 +14,6 @@ Real-time games are full of **atomic actions** — things that have to resolve *
 
 On-chain, every state change is a <GlossaryTerm id="transaction" /> that has to be included in a block and then finalized. That takes seconds, not milliseconds. Put a consumable's on-chain <GlossaryTerm id="burn" /> on the critical path of combat and the game becomes unplayable.
 
-:::warning A managed wallet doesn't fix this
-It's tempting to think a second, platform-controlled wallet makes actions instant. It doesn't. A [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) is a **real on-chain account** — the platform simply custodies its keys and signs on its behalf. Consuming a token from a managed wallet is still an on-chain transaction with the same finalization latency as any other. Moving an item between two wallets changes *who signs* and *where it lives*, not *whether the action touches the chain*.
-:::
-
 The fix isn't to make the chain faster — it's to keep real-time actions **off** the chain entirely, and use the chain only for what it's uniquely good at: **ownership and settlement.**
 
 ## The model: hot and cold inventories
