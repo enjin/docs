@@ -1,172 +1,200 @@
 ---
 title: "Using the Wallet Daemon"
 slug: "using-wallet-daemon"
-description: "Get started with the Enjin Wallet Daemon, an automated tool for managing blockchain transactions and assets securely and efficiently."
+description: "Run the Enjin Wallet Daemon with a binary, Docker, Rust, or AWS CloudFormation."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-The Enjin Wallet Daemon provides a streamlined process for signing blockchain transactions, enabling seamless and efficient transactions between your game and the blockchain. This tool creates a persistent bridge between your game and the blockchain, ensuring a fluid gaming experience for players.
-
-In the Enjin Platform context, the Wallet Daemon is a utility tool that manages a blockchain wallet address associated with an Enjin Blockchain account. When a transaction is initiated on the Enjin Platform, the Wallet Daemon receives the transaction, signs it, and sends it back to the platform. This ensures secure and efficient transaction processing for Enjin Platform users.
+The Enjin Wallet Daemon is an outbound-only signer for Enjin Platform transactions. Your application creates transactions through the Enjin Platform API, the daemon polls for pending work, signs the encoded transactions with your wallet, and returns the signatures to the platform for broadcast.
 
 ![A diagram of the Enjin Platform ](/img/getting-started/enjin-platform-diagram.png)
 
-The diagram above provides insight into the interaction between the Enjin Wallet Daemon and the Enjin Platform. This illustrates how the Wallet Daemon can communicate with the API in both directions, automatically signing and broadcasting transactions to the blockchain. This helps developers better understand how the two components work together seamlessly to provide a streamlined experience.
-
 ## How the Wallet Daemon Works
 
-![A diagram of the wallet daemon](/img/getting-started/wallet-daemon-diagram.png)
-
-The diagram above depicts the various stages involved in creating a new collection on the Enjin Matrixchain via the Enjin Platform API.
-
-1. **Send a mutation -** Your application calls `CreateTransaction` (with the `createCollection` discriminator) on the Enjin Platform API. The API encodes the corresponding extrinsic, stores it in its database with a `PENDING` state, and returns a transaction `uuid`.
-2. **Wallet daemon requests pending transactions -** The wallet daemon repeatedly polls the Enjin Platform API for transactions to sign. This polling model — rather than the daemon accepting incoming connections — means the machine holding your <GlossaryTerm id="private_key" /> never needs to expose an open port.
-3. **Sign and broadcast the transaction -** After receiving the pending transaction, the wallet daemon signs it with your private key and broadcasts it to the Enjin Matrixchain.
-4. **Enjin Matrixchain processes the transaction -** If everything is valid, the Matrixchain processes the extrinsic, and the new collection is created.
-5. **Enjin Platform API monitors the chain -** The Enjin Platform API watches the chain to detect when your transaction is finalized and updates the transaction record accordingly.
-6. **Read the result -** Poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) for the final `state` and `extrinsicHash`. To read the on-chain events the transaction emitted (the new `collection_id`, for example), see [Working with Events](/05-enjin-platform/03-working-with-events.md).
-
-***
-
-## Setup
-
-:::note Code repository
-The code repository can be found at https://github.com/enjin/wallet-daemon/
-:::
-
-It is recommended that the Enjin Wallet Daemon is installed and ran in isolation. This means running it on a dedicated server. The daemon itself is incredibly light-weight and does not require any extensive resources.
+1. **Send a mutation -** Your application calls `CreateTransaction` on the Enjin Platform API. The API encodes the corresponding extrinsic, stores it with a `PENDING` state, and returns a transaction `uuid`.
+2. **Poll for pending transactions -** The wallet daemon repeatedly polls the Enjin Platform API. It does not need inbound network access, so the machine holding your <GlossaryTerm id="private_key" /> should not expose public ports.
+3. **Sign and broadcast -** The daemon signs each pending transaction with your private key and sends the signed payload back to the platform.
+4. **Confirm on-chain state -** Enjin Platform monitors the chain and updates the transaction state when the extrinsic is included or finalized.
+5. **Read the result -** Poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) for the final `state` and `extrinsicHash`. To read emitted events, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 :::info Network-agnostic
-The Wallet Daemon is network-agnostic — it does not need to be configured for a specific chain. A single daemon instance signs transactions for all Enjin networks (Enjin Matrixchain, Enjin Relaychain, Canary Matrixchain, and Canary Relaychain). Each chain just maps to a different SS58 address derived from the same wallet, all of which are printed when the daemon starts.
+One daemon instance can sign for Enjin Matrixchain, Enjin Relaychain, Canary Matrixchain, and Canary Relaychain. Each network maps to a different SS58 address derived from the same wallet. The daemon prints these addresses when it starts.
 :::
 
-The recommended way to run the daemon is to [download a prebuilt binary](#download-the-binary) for your operating system. If you'd rather run it inside Docker, see [Running with Docker](#running-with-docker) at the bottom of this page.
+## Runtime Choices
 
-### Download the Binary
+Choose one of these deployment paths:
 
-Download the latest release for your operating system from the [GitHub releases page](https://github.com/enjin/wallet-daemon/releases). Extract the archive — you should end up with a single executable (`wallet-daemon` on Linux/macOS, `wallet-daemon.exe` on Windows).
+- **AWS CloudFormation** - recommended for the simplest hosted production deployment.
+- **Prebuilt binary** - recommended when you already manage your own server.
+- **Docker** - useful for containerized hosts or existing orchestration.
+- **Self-compile with Rust** - useful for auditing, or unsupported platforms.
 
-Place it in a directory of your choosing. From here on, "the daemon directory" refers to wherever you placed the binary.
+The same security principles apply to every path:
 
-### Create the Seed Store
+- Run exactly one daemon per Platform account.
+- Multiple wallets can be derived and used for signing from the master key.
+- Keep `wallet.seed` and `KEY_PASS` backed up separately.
+- Do not rotate `KEY_PASS` for an existing `wallet.seed` (changing `KEY_PASS` not currently supported).
+- Do not expose inbound network access to the daemon host.
 
-Inside the daemon directory, create a `store` subdirectory. The daemon will write its encrypted wallet seed there on first launch.
+## Required Values
 
-```bash
-mkdir store
-```
+| Value | Description |
+|-------|-------------|
+| `PLATFORM_KEY` | Enjin Platform API token. |
+| `KEY_PASS` | Password used to encrypt and decrypt `wallet.seed`. |
 
-### Configure the Daemon
-
-The daemon reads its configuration from environment variables. You can either create a `.env` file in the daemon directory (recommended) or pass the variables inline when starting the binary.
-
-| Variable       | Required | Description |
-|----------------|----------|-------------|
-| `PLATFORM_KEY` | Yes      | API token from the Settings page of the [Enjin Platform Cloud](https://platform.beta.enjin.io/settings). |
-| `KEY_PASS`     | Yes (may be empty) | Password used to encrypt the wallet seed. Immutable once chosen. The variable must be set, but the value may be empty — see warning below. |
-| `SEED_PATH`    | Yes      | **Absolute** path to the `store` directory you created above (see warning below). |
-
-:::danger `KEY_PASS` is immutable
-`KEY_PASS` is directly used to derive the wallet private key. Choose something unique and back it up securely — you cannot change it later without losing access to the wallet.
-
-The variable itself must always be present (the daemon panics on startup if `KEY_PASS` is unset entirely). However, the value may be empty (`KEY_PASS=`), in which case the seed is effectively unencrypted at rest — anyone with read access to `wallet.seed` could recover the mnemonic. Only do this if your `store` directory is fully protected by filesystem permissions.
+:::danger Back up both wallet components
+The encrypted `wallet.seed` file is not enough by itself. You also need the matching `KEY_PASS`. Losing either value can make the wallet unrecoverable.
 :::
 
-:::warning `SEED_PATH` must be an absolute path
-When running the standalone binary, `SEED_PATH` must be an **absolute** path to your `store` directory (e.g. `/home/you/wallet-daemon/store` on Linux/macOS, or `C:/Users/you/wallet-daemon/store` on Windows). A relative value such as `store` will fail because the binary resolves relative paths against the build directory baked in at compile time, not your current working directory.
-
-If your path contains spaces, wrap the value in double quotes inside the `.env` file.
+:::danger Do not use an empty `KEY_PASS`
+`KEY_PASS` protects the wallet seed at rest. Use a unique, high-entropy value and store it in a password manager or secret manager.
 :::
 
-#### The `.env` file
+## Download the Binary
 
-Create a `.env` file alongside the binary:
+Download the prebuilt daemon from [https://enj.in/daemon](https://enj.in/daemon), then extract it into a dedicated directory.
 
-```bash
-KEY_PASS=your-unique-password
-PLATFORM_KEY=your-platform-api-token
-SEED_PATH="C:/Users/you/wallet-daemon/store"
-```
+Copy the `.env.example` file to `.env` and fill in the required values:
+ - `KEY_PASS`
+ - `PLATFORM_KEY`
 
-### Start the Daemon
-
-From the daemon directory:
+Start the daemon:
 
 ```bash
 ./wallet-daemon
 ```
 
-(or `.\wallet-daemon.exe` on Windows)
+On Windows:
 
-On the initial launch, a 12-word mnemonic seed is generated and written to `store/wallet.seed`, encrypted with your `KEY_PASS`. The daemon prints the SS58 address for every supported chain on startup, for example:
-
-```
-******************* Enjin Wallet Daemon v3.0.1 *******************
-** Enjin Relaychain   (SS58): enDD...
-** Enjin Matrixchain  (SS58): efRg...
-** Canary Relaychain  (SS58): cnU2...
-** Canary Matrixchain (SS58): cxLx...
+```powershell
+.\wallet-daemon.exe
 ```
 
-If you ever need to import this wallet into another wallet app, the derivation path is:
-`<the-12-words-mnemonic-seed>///<the_key_pass>`
+On first run, the daemon generates a 12-word mnemonic and writes the encrypted seed to `wallet.seed`. It then prints the SS58 address for each supported network.
 
-### Updating the Daemon
+## Docker
 
-Download the latest release from the [GitHub releases page](https://github.com/enjin/wallet-daemon/releases) and replace the existing executable. Your `store/` directory and `.env` configuration remain compatible across versions.
-
-### Importing an Existing Seed
-
-The daemon ships with a built-in `import` command that prompts for a 12-word mnemonic and writes it to `SEED_PATH`, encrypted with your `KEY_PASS`.
-
-:::info Wallet Daemon Encryption
-The seed file is encrypted with the `KEY_PASS` env var. Make sure `KEY_PASS` is set to the password you want to encrypt the seed with — this same value will be required to decrypt and use the wallet on every subsequent run.
-:::
-
-1. Make sure your environment is configured with `KEY_PASS`, `PLATFORM_KEY`, and `SEED_PATH` (see [Configure the Daemon](#configure-the-daemon)).
-2. Stop the daemon if it is currently running.
-3. Run the import command. You will be prompted to type your 12-word mnemonic:
-   ```bash
-   ./wallet-daemon import
-   ```
-   (or `.\wallet-daemon.exe import` on Windows)
-4. Start the daemon again as usual.
-
-### Running with Docker
-
-If you'd prefer to run the daemon inside Docker rather than as a standalone binary, clone the `3.x` branch of the repository (the active development branch) and use the included [`docker-compose.yml`](https://github.com/enjin/wallet-daemon/blob/3.x/docker-compose.yml).
+Run the published Docker image with a persistent seed directory:
 
 ```bash
-git clone --branch 3.x https://github.com/enjin/wallet-daemon.git
+docker run --name enjin-wallet-daemon \
+  --detach \
+  --restart unless-stopped \
+  --env KEY_PASS=your-unique-key-password \
+  --env PLATFORM_KEY=your-platform-api-token \
+  --volume "$PWD:/wallet" \
+  enjin/wallet-daemon:v3.0.6
+```
+
+Follow logs:
+
+```bash
+docker logs -f enjin-wallet-daemon
+```
+
+Update the container:
+
+```bash
+docker pull enjin/wallet-daemon:v3.0.6
+docker stop enjin-wallet-daemon
+docker rm enjin-wallet-daemon
+```
+
+Then run the container again with the same `KEY_PASS`.
+
+## AWS CloudFormation
+
+AWS CloudFormation is the simplest production path for users who do not already manage infrastructure. The template creates an ECS Fargate service, encrypted EFS storage for `wallet.seed`, Secrets Manager secrets for `KEY_PASS` and `PLATFORM_KEY`, and CloudWatch Logs with 30 day retention.
+
+The task runs in public subnets with a public IP so it can resolve and call the Enjin Platform Cloud service. Its security group has no inbound rules.
+
+### Deploy via the AWS Console
+
+[Launch the AWS CloudFormation stack](https://enj.in/wallet-daemon-aws-cf)
+
+The quick link pre-fills the Docker image but does not pre-fill the API token. Enter your Enjin Platform API token in the CloudFormation console.
+
+### Deploy with the AWS CLI
+
+```bash
+read -rsp "Enjin Platform API token: " PLATFORM_TOKEN
+printf "\n"
+
+aws cloudformation create-stack \
+  --stack-name EnjinWalletDaemon \
+  --template-url "https://enjin-iac-templates.s3.us-east-2.amazonaws.com/wallet-daemon.yml" \
+  --capabilities CAPABILITY_IAM \
+  --parameters \
+    ParameterKey=PlatformApiToken,ParameterValue="$PLATFORM_TOKEN" \
+    ParameterKey=WalletDaemonImage,ParameterValue=enjin/wallet-daemon:v3.0.6
+
+unset PLATFORM_TOKEN
+```
+
+Wait for the stack:
+
+```bash
+aws cloudformation wait stack-create-complete --stack-name EnjinWalletDaemon
+```
+
+Open the `CloudWatchLogsUrl` stack output and find the daemon startup logs. The first run creates `wallet.seed` and prints the public wallet addresses.
+
+```bash
+aws cloudformation describe-stacks \
+  --stack-name EnjinWalletDaemon \
+  --query "Stacks[0].Outputs[?OutputKey=='CloudWatchLogsUrl'].OutputValue" \
+  --output text
+```
+
+## Self-Compile with Rust
+
+Install the Rust toolchain, clone the repository, and build the release binary:
+
+```bash
+git clone https://github.com/enjin/wallet-daemon.git
 cd wallet-daemon
+cargo build --release
 ```
 
-Create (or edit) a `.env` file in the repository root with the following values:
+The compiled binary is written to:
 
 ```bash
-KEY_PASS=your-unique-password
-PLATFORM_KEY=your-platform-api-token
-SEED_PATH=/wallet/store
+target/release/wallet-daemon
 ```
 
-`SEED_PATH=/wallet/store` is the absolute path the seed-store volume is mounted at inside the container. Then start the daemon:
+Create a `.env` file as shown in [Download the Binary](#download-the-binary), then run:
 
 ```bash
-docker compose up -d daemon
-docker compose logs -f daemon
+./target/release/wallet-daemon
 ```
 
-To update later, pull the repo, rebuild, and restart:
+## Importing an Existing Seed
+
+The daemon can import an existing 12-word mnemonic and encrypt it into `wallet.seed` with your `KEY_PASS`.
+
+Stop the daemon first, make sure `KEY_PASS`, `PLATFORM_KEY`, and `SEED_PATH` are configured, then run:
 
 ```bash
-git pull
-docker compose build --no-cache
-docker compose up -d daemon
+./wallet-daemon import
 ```
 
-To import an existing seed under Docker, run:
+The command prompts for the mnemonic and writes the encrypted seed file. Start the daemon normally after import.
+
+## Recovering the Mnemonic
+
+If you need to migrate to a wallet app, the daemon can print the decrypted seed. Run this only from a trusted shell:
 
 ```bash
-docker compose run --rm daemon wallet import
+./wallet-daemon print-seed
 ```
+
+## Updating
+
+- **AWS** - update the `WalletDaemonImage` parameter to a new versioned image tag.
+- **Binary** - download a newer release from [https://enj.in/daemon](https://enj.in/daemon), replace the binary, and keep the same `.env` and `wallet.seed` file.
+- **Docker** - pull a newer versioned image tag and restart the container with the same volume and `KEY_PASS`.
+- **Self-compiled** - pull the latest repository changes, rebuild with `cargo build --release`, and restart the daemon.
