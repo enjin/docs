@@ -11,6 +11,10 @@ import TabItem from '@theme/TabItem';
 "Melting" (often called "Burning") refers to the process of decreasing a token's supply and removing it from circulation, or in some cases, even removing the token from the blockchain entirely.
 Melting a token with <GlossaryTerm id="enj_infusion" /> releases the Infused ENJ to the holder.
 
+:::tip Common pattern: hot & cold inventories
+In real-time games, melting can be used to move an item out of a player's on-chain ("cold") inventory so it can be used instantly in an off-chain ("hot") one. See [Hot & Cold Inventories](/02-guides/01-platform/03-advanced-mechanics/07-hot-cold-inventories.md).
+:::
+
 :::info What you'll need:
 - Some [Enjin Coin](/06-enjin-products/02-enjin-coin.md) on Enjin Matrixchain to pay for <GlossaryTerm id="transaction_fees" />.
 You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.

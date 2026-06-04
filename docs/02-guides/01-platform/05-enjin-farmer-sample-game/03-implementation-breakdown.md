@@ -21,6 +21,7 @@ Before you begin, please keep the following in mind:
   * **Demonstration Purpose:** This is a simplified example designed to showcase a basic integration. It is **not suitable for a production environment** as is.
   * **WebSockets:** This implementation does not use [WebSocket events](/03-api-reference/03-websocket-events.md). In a real-world application, WebSockets can simplify the process of listening for transaction finalization and receiving real-time updates, such as when a user receives an NFT from an external source like the marketplace.
   * **Wallet Funding:** New managed wallets are created without any funds. To cover network fees for actions like melting or transferring tokens, you must either fund each wallet individually or use a [Fuel Tank](/02-guides/01-platform/02-managing-users/04-using-fuel-tanks.md) to subsidize transactions for all your users.
+  * **On-chain actions aren't instant:** This sample melts and mints on-chain whenever items change hands, which takes seconds to finalize — fine for a farming demo, but unplayable for real-time action. For a production pattern that keeps item use instant while preserving on-chain ownership, see [Hot & Cold Inventories](/02-guides/01-platform/03-advanced-mechanics/07-hot-cold-inventories.md).
 
 -----
 

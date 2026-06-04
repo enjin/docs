@@ -50,7 +50,7 @@ The transactions a player can sign are the same ones your application's Wallet D
 
 ### Consume an in-game item
 
-Send a request to burn a **Health Potion** NFT the player owns. On `FINALIZED`, your game reads the `MultiTokens.Burned` event, confirms the burn matched the player's wallet and the potion's token id, and restores their HP in-game. The same pattern covers any "consume" action — eat food, drink mana, use a one-shot scroll.
+Send a request to burn a **Health Potion** NFT the player owns. On `FINALIZED`, your game reads the `MultiTokens.Burned` event, confirms the burn matched the player's wallet and the potion's token id, and restores their HP in-game. The same pattern covers any "consume" action — eat food, drink mana, use a one-shot scroll. Because each consume is an on-chain burn that needs the player's approval and a few seconds to finalize, this fits deliberate actions rather than split-second use in fast-paced games. For instant consumption, see [Hot & Cold Inventories](/02-guides/01-platform/03-advanced-mechanics/07-hot-cold-inventories.md).
 
 ### List an item on the marketplace
 
