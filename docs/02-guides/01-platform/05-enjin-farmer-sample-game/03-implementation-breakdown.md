@@ -7,6 +7,10 @@ description: "Dive deep into the code and architecture of the Enjin Farmer sampl
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
+:::warning Built for Enjin Platform v2
+This breakdown and its sample code still target **Enjin Platform v2**. The rest of these docs have moved to **Enjin Platform v3** (currently in beta) — this page will be updated for v3 soon.
+:::
+
 The **Enjin Farmer** sample project demonstrates a basic Enjin Platform integration within a Unity game. It's built with a client-server architecture to ensure security and scalability.
 
 The project consists of two main components:

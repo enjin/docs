@@ -7,6 +7,10 @@ description: "Follow our step-by-step guide to set up a sample Unity game with f
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
+:::warning Built for Enjin Platform v2
+This guide and its sample code still target **Enjin Platform v2**. The rest of these docs have moved to **Enjin Platform v3** (currently in beta) — this page will be updated for v3 soon.
+:::
+
 Welcome! This guide will walk you through setting up and running the Enjin Farm Game, a sample project demonstrating how to integrate Enjin's NFT technology into a Unity game.
 
 In this simple farming game, you'll plant seeds, harvest crops, and collect resources. Some resources are special and will be minted as NFTs directly to your in-game wallet. You can then view these NFTs in your inventory, <GlossaryTerm id="melt" /> them, or transfer them to an external wallet.
