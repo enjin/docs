@@ -111,7 +111,11 @@ dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 The server will now connect to the Enjin Platform, create a new NFT collection for your game (or reuse an existing one), and create the NFT tokens for the in-game resources. This can take a minute or two on first run while it waits for the on-chain transactions to finalize.
 
 :::info **Important**
-The server stores the **Collection ID** it bootstraps in a `state.json` file and reuses it on every restart, so you no longer need to copy it by hand — you'll stamp it onto the game client automatically in [Step 4](#1-stamp-the-collection-id-onto-the-nft-items). When you see `Server listening on http://0.0.0.0:3000` in the logs, the server is ready.
+The server stores the **Collection ID** it bootstraps in a `state.json` file and reuses it on every restart, so you no longer need to copy it by hand — you'll stamp it onto the game client automatically in [Step 4](#1-stamp-the-collection-id-onto-the-nft-items). When you see `Now listening on: http://[::]:3000` (and `Application started`) in the logs, the server is ready.
+:::
+
+:::note Windows firewall prompt
+On Windows, the first time the server starts listening you may get a prompt to allow network access — click **Allow**. You don't need to restart the server afterwards; it keeps running and works right away.
 :::
 
 Keep the server and the Wallet Daemon running in the background.
