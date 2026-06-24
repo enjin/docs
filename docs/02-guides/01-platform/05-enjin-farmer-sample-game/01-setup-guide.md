@@ -89,7 +89,11 @@ Now, let's set up the backend server that powers the game's NFT features.
 :::warning Before you run: .NET SDK + internet
 The server targets .NET 9, so you need the **.NET 9 SDK** (the SDK, not just the runtime). A newer SDK such as .NET 10 also works — it just downloads the .NET 9 build components on first run. Confirm an SDK is installed with `dotnet --list-sdks`; if the command isn't found or lists nothing, install the [.NET 9 SDK](https://dotnet.microsoft.com/download) and open a **new** terminal so your `PATH` picks it up.
 
-The first `dotnet run` restores the server's dependencies — including the [Enjin Platform C# SDK](https://www.nuget.org/packages/Enjin.Platform.Sdk) — from NuGet, so you need internet access. If restore fails with `NU1100: Unable to resolve …`, your machine can't reach the NuGet feed: run `dotnet nuget list source` and make sure `nuget.org` is listed and **enabled**.
+The first `dotnet run` restores the server's dependencies — including the [Enjin Platform C# SDK](https://www.nuget.org/packages/Enjin.Platform.Sdk) — from NuGet, so you need internet access. If restore fails with `NU1100: Unable to resolve …`, your machine has no usable NuGet source. Run `dotnet nuget list source`: if it says `No sources found` (or `nuget.org` is `[Disabled]`), add it with:
+
+```bash
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+```
 :::
 
 1. Navigate into the game server directory you cloned: `cd platform-sample-game-server`.
