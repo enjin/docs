@@ -27,7 +27,7 @@ The project consists of four main components that work together:
 Before you begin, make sure you have the following installed:
 
   - ✅ **Unity Hub** with **Unity Editor version `6000.0.24f1`**.
-  - ✅ The **[.NET 9 SDK](https://dotnet.microsoft.com/download)** for running the game server.
+  - ✅ The **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** for running the game server.
   - ✅ **Git** for cloning the repositories.
   - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
   - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI)
