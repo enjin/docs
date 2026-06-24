@@ -87,7 +87,9 @@ For a detailed guide — including Docker, AWS, importing an existing seed, and 
 Now, let's set up the backend server that powers the game's NFT features.
 
 :::warning Before you run: .NET SDK + internet
-The server targets .NET 9, so you need the **.NET 9 SDK** (the SDK, not just the runtime). A newer SDK such as .NET 10 also works — it just downloads the .NET 9 build components on first run. Confirm an SDK is installed with `dotnet --list-sdks`; if the command isn't found or lists nothing, install the [.NET 9 SDK](https://dotnet.microsoft.com/download) and open a **new** terminal so your `PATH` picks it up.
+The server targets .NET 9, so install the **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** — it provides both the build tools and the .NET 9 runtime the server runs on. After installing, open a **new** terminal and confirm with `dotnet --list-sdks` (you should see a `9.x` entry).
+
+If you only have a newer SDK such as .NET 10, the build will succeed but `dotnet run` fails with `You must install or update .NET … version '9.0.0'`, because the .NET 9 **runtime** is missing. Either install the .NET 9 SDK (simplest), or run on the newer runtime with `dotnet run --roll-forward Major`.
 
 The first `dotnet run` restores the server's dependencies — including the [Enjin Platform C# SDK](https://www.nuget.org/packages/Enjin.Platform.Sdk) — from NuGet, so you need internet access. If restore fails with `NU1100: Unable to resolve …`, your machine has no usable NuGet source. Run `dotnet nuget list source`: if it says `No sources found` (or `nuget.org` is `[Disabled]`), add it with:
 
