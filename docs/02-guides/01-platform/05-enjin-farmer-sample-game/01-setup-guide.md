@@ -50,7 +50,7 @@ First, you need to download the game client, the game server, and the Wallet Dae
     git clone https://github.com/enjin/platform-sample-game-server.git
     ```
 
-3.  **Download the Wallet Daemon:** Download the latest executable for your operating system from the [Wallet Daemon releases page](https://github.com/enjin/wallet-daemon-ui/releases).
+3.  **Download the Wallet Daemon:** Download the prebuilt daemon for your operating system from [https://enj.in/daemon](https://enj.in/daemon) and extract it into a dedicated directory.
 
 -----
 
@@ -67,10 +67,18 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 ### Wallet Daemon
 
-1. Run the Wallet Daemon executable you downloaded.
-2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
-3. Select the Enjin Platform Canary in the network dropdown menu, and run the Wallet Daemon.
-4. Once configured and running, the Wallet Daemon UI will display a wallet address. **Copy this wallet address** for the next step.
+The Wallet Daemon is the signer that approves your game server's transactions. It runs from the command line and is configured with a `.env` file.
+
+1. In the daemon directory you extracted, copy the `.env.example` file to `.env`.
+2. Open `.env` and set the two required values:
+    - `PLATFORM_KEY`: The **API Token** you just copied from the Enjin Platform.
+    - `KEY_PASS`: A unique, high-entropy password used to encrypt the wallet seed. Store it somewhere safe — you'll need it every time the daemon starts.
+3. Start the daemon — `./wallet-daemon` (or `.\wallet-daemon.exe` on Windows). On first run it generates a new wallet, writes the encrypted seed to `wallet.seed`, and prints an SS58 address for each network.
+4. From the printed addresses, **copy the Canary Matrixchain address** — that's the network this sample uses. You'll need it in the next step.
+
+:::tip
+For a detailed guide — including Docker, AWS, importing an existing seed, and backup guidance — see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
+:::
 
 -----
 
@@ -78,14 +86,18 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 Now, let's set up the backend server that powers the game's NFT features.
 
+:::warning You need the .NET 9 SDK
+The server runs on .NET, so the **.NET 9 SDK** (not just the runtime) must be installed. Confirm it by running `dotnet --list-sdks` — you should see a `9.x.x` entry. If the command isn't found or lists nothing, install the [.NET 9 SDK](https://dotnet.microsoft.com/download), then open a **new** terminal so your `PATH` picks it up.
+:::
+
 1. Navigate into the game server directory you cloned: `cd platform-sample-game-server`.
 2. Copy the `appsettings.Sample.json` file and rename the copy to `appsettings.Local.json` (this file is gitignored, so your secrets stay out of version control).
 3. Open `appsettings.Local.json` and fill in the following values:
     - `Jwt.Secret`: A long, random string (32+ characters). This is used for authenticating players.
     - `Enjin.ApiToken`: Paste the **API Token** from your Enjin Platform account.
-    - `Enjin.DaemonWalletAddress`: Paste the wallet address you copied from the Wallet Daemon UI.
+    - `Enjin.DaemonWalletAddress`: Paste the daemon's **Canary Matrixchain** address you copied in the previous step.
 
-   The remaining settings have sensible defaults in `appsettings.json` — `Enjin.ApiUrl` already points to the Canary network (`https://platform.canary.enjin.io/graphql`) and `Server.Port` defaults to `3000`. You can leave them as-is for testing.
+   The remaining settings have sensible defaults in `appsettings.json` (for example, `Server.Port` defaults to `3000`), so you can leave them as-is for testing.
 4. Launch the server for the first time by running `dotnet run`.
 
 The server will now connect to the Enjin Platform, create a new NFT collection for your game (or reuse an existing one), and create the NFT tokens for the in-game resources. This can take a minute or two on first run while it waits for the on-chain transactions to finalize.

@@ -27,7 +27,7 @@ Before you begin, please keep the following in mind:
 
 ## 🖥️ Game Server
 
-The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the Unity client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
+The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the Unity client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
 
 ### Configuration
 
@@ -38,7 +38,6 @@ The server is configured through `appsettings.json` (defaults) plus an `appsetti
 | `Jwt.Secret` | A long, random string used for signing player authentication tokens. |
 | `Enjin.ApiToken` | Your API token obtained from the Enjin Platform. |
 | `Enjin.DaemonWalletAddress` | The SS58 address of your <GlossaryTerm id="wallet_daemon" />. This wallet owns the collection, mints the resource tokens, and funds new player wallets. |
-| `Enjin.ApiUrl` | The Enjin Platform API URL. Defaults to `https://platform.canary.enjin.io/graphql` (Canary). Switch to the production endpoint when you ship. |
 | `Enjin.Network` / `Enjin.Chain` | The target network and chain. Defaults to `Canary` / `Matrix`. |
 | `Server.Port` | The port the server listens on. Defaults to `3000` (the Unity client expects `3000`). |
 | `Enjin.CollectionName` | Used to find or reuse an existing collection so a new one isn't created on every run. |
@@ -46,13 +45,13 @@ The server is configured through `appsettings.json` (defaults) plus an `appsetti
 | `Enjin.Ss58Prefix` | The prefix used to encode wallet public keys into addresses. `9030` = Canary Matrixchain, `1110` = Enjin Mainnet Matrixchain. |
 | `Enjin.DripEnjEnabled` / `Enjin.DripEnjAmount` | Whether to auto-fund each new managed wallet, and how much (default `1` ENJ). |
 
-The strongly-typed config classes live in [`Services/Options.cs`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/Options.cs), and all the defaults are in [`appsettings.json`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/appsettings.json).
+The strongly-typed config classes live in [`Services/Options.cs`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/Options.cs), and all the defaults are in [`appsettings.json`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/appsettings.json).
 
 ### Server Initialization & Collection Setup
 
-On startup — before serving any requests — the server runs [`PrepareCollectionAsync`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L80) to make sure the collection and resource tokens exist.
+On startup — before serving any requests — the server runs [`PrepareCollectionAsync`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L75) to make sure the collection and resource tokens exist.
 
-1.  **Reuse or create the collection:** If no collection ID is stored yet, the server first [queries `GetCollections`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L142) for one owned by the daemon wallet whose `name` attribute matches `Enjin.CollectionName` — this avoids creating duplicates if local state was lost. If none exists, it [creates one](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L170).
+1.  **Reuse or create the collection:** If no collection ID is stored yet, the server first [queries `GetCollections`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L137) for one owned by the daemon wallet whose `name` attribute matches `Enjin.CollectionName` — this avoids creating duplicates if local state was lost. If none exists, it [creates one](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L165).
 
     In v3, every on-chain mutation goes through a single **`CreateTransaction`** mutation: you populate a `TransactionInput` with one of its method fields (`CreateCollection`, `CreateToken`, `MintToken`, `BurnToken`, `TransferToken`, …) and submit it. Collection creation looks like this:
     ```csharp
@@ -71,7 +70,7 @@ On startup — before serving any requests — the server runs [`PrepareCollecti
     var submitted = await CreateTransactionAsync(transaction, signerExternalId: null, ct);
     await WaitForFinalizationAsync(submitted.Uuid!, "collection creation", ct);
     ```
-    [`CreateTransactionAsync`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L587) builds the mutation with the SDK's query builders and sends it. The <GlossaryTerm id="wallet_daemon" /> picks the transaction up and signs it automatically:
+    [`CreateTransactionAsync`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L582) builds the mutation with the SDK's query builders and sends it. The <GlossaryTerm id="wallet_daemon" /> picks the transaction up and signs it automatically:
     ```csharp
     var mutation = new MutationQueryBuilder().WithCreateTransaction(
         new TransactionQueryBuilder().WithUuid().WithState(),
@@ -82,9 +81,9 @@ On startup — before serving any requests — the server runs [`PrepareCollecti
     var resp = await _client.SendMutation(mutation);
     ```
 
-2.  **Wait for finalization:** `CreateTransaction` returns a transaction UUID. The server then [polls `GetTransaction`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L613) by that UUID until `State` is `FINALIZED` (it throws if the transaction ends up `FAILED`, `ABANDONED`, or `TIMEOUT`). Since v3 doesn't surface a transaction's emitted events, the new collection's ID is recovered by re-querying `GetCollections` and matching on the `name` attribute.
+2.  **Wait for finalization:** `CreateTransaction` returns a transaction UUID. The server then [polls `GetTransaction`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L608) by that UUID until `State` is `FINALIZED` (it throws if the transaction ends up `FAILED`, `ABANDONED`, or `TIMEOUT`). Since v3 doesn't surface a transaction's emitted events, the new collection's ID is recovered by re-querying `GetCollections` and matching on the `name` attribute.
 
-3.  **Create resource tokens:** For each entry in `Enjin.ResourceTokens`, the server [checks whether the token already exists](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L205) with a `GetToken` query and, if not, [creates it](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L224) with a `CreateToken` input.
+3.  **Create resource tokens:** For each entry in `Enjin.ResourceTokens`, the server [checks whether the token already exists](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L200) with a `GetToken` query and, if not, [creates it](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L219) with a `CreateToken` input.
 
 4.  **Persist:** The resolved collection ID is written to `state.json` so subsequent runs reuse it instead of re-creating anything.
 
@@ -92,24 +91,24 @@ After this, the server starts listening and logs the collection ID and `Server l
 
 ### Managed Wallets & Addresses
 
-Each player gets one [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md), keyed by their email as the `externalId`. The server [ensures it exists](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L279) by calling the `CreateManagedWallet` mutation; because the platform provisions wallets asynchronously, the server then polls `GetManagedWallet` until the wallet is queryable. The platform returns the wallet's **public key** as hex, which the server [SS58-encodes locally](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L387) (using `Enjin.Ss58Prefix`) into the address used as a mint recipient and holder. Each new wallet is also [dripped a little ENJ](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L318) from the daemon so it can pay transaction fees.
+Each player gets one [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md), keyed by their email as the `externalId`. The server [ensures it exists](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L274) by calling the `CreateManagedWallet` mutation; because the platform provisions wallets asynchronously, the server then polls `GetManagedWallet` until the wallet is queryable. The platform returns the wallet's **public key** as hex, which the server [SS58-encodes locally](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L382) (using `Enjin.Ss58Prefix`) into the address used as a mint recipient and holder. Each new wallet is also [dripped a little ENJ](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L313) from the daemon so it can pay transaction fees.
 
 ### API Endpoints
 
-The server exposes several endpoints to handle game actions. The `wallet` and `token` route groups require a valid JWT (`.RequireAuthorization()`, backed by the [JWT bearer configuration in `Program.cs`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Program.cs#L70)). Each protected handler reads the player's `email` claim and uses it as the `externalId` when talking to the platform.
+The server exposes several endpoints to handle game actions. The `wallet` and `token` route groups require a valid JWT (`.RequireAuthorization()`, backed by the [JWT bearer configuration in `Program.cs`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs#L70)). Each protected handler reads the player's `email` claim and uses it as the `externalId` when talking to the platform.
 
 #### Authentication
 
-  * [`GET /api/auth/health-check`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/AuthEndpoints.cs#L16): A simple endpoint to verify that the server is online.
-  * [`POST /api/auth/register`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/AuthEndpoints.cs#L23): Registers a new player **or** logs in an existing one (the client uses this single endpoint for both), returning a JWT. On first registration it also [provisions the player's managed wallet](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/AuthEndpoints.cs#L45) and drips it some cENJ, using the player's [email address as the unique `externalId`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/AuthService.cs#L29).
+  * [`GET /api/auth/health-check`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/AuthEndpoints.cs#L16): A simple endpoint to verify that the server is online.
+  * [`POST /api/auth/register`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/AuthEndpoints.cs#L23): Registers a new player **or** logs in an existing one (the client uses this single endpoint for both), returning a JWT. On first registration it also [provisions the player's managed wallet](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/AuthEndpoints.cs#L45) and drips it some cENJ, using the player's [email address as the unique `externalId`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/AuthService.cs#L29).
 
 #### Wallet Management
 
-  * [`GET /api/wallet/get-tokens`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/WalletEndpoints.cs#L16): Retrieves the player's managed wallet and the resource-token balances it holds. It [looks up the wallet](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L400) via `GetManagedWallet`, then queries `GetToken` for each resource token and filters the holder list down to the player's address.
+  * [`GET /api/wallet/get-tokens`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/WalletEndpoints.cs#L16): Retrieves the player's managed wallet and the resource-token balances it holds. It [looks up the wallet](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L395) via `GetManagedWallet`, then queries `GetToken` for each resource token and filters the holder list down to the player's address.
 
 #### Token Actions
 
-  * [`POST /api/token/mint`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/TokenEndpoints.cs#L14): Mints a token into the player's managed wallet via [`MintTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L512). The daemon signs it.
+  * [`POST /api/token/mint`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/TokenEndpoints.cs#L14): Mints a token into the player's managed wallet via [`MintTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L507). The daemon signs it.
     ```csharp
     var input = new TransactionInput
     {
@@ -122,7 +121,7 @@ The server exposes several endpoints to handle game actions. The `wallet` and `t
         },
     };
     ```
-  * [`POST /api/token/melt`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/TokenEndpoints.cs#L36): Melts (burns) a token from the player's wallet via [`MeltTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L532). Since the burn must come from the player's managed wallet, the call passes the player's email as `signerExternalId` so the daemon signs on that wallet's behalf. ([Learn more about managed wallets here](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md))
+  * [`POST /api/token/melt`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/TokenEndpoints.cs#L36): Melts (burns) a token from the player's wallet via [`MeltTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L527). Since the burn must come from the player's managed wallet, the call passes the player's email as `signerExternalId` so the daemon signs on that wallet's behalf. ([Learn more about managed wallets here](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md))
     ```csharp
     var input = new TransactionInput
     {
@@ -134,7 +133,7 @@ The server exposes several endpoints to handle game actions. The `wallet` and `t
         },
     };
     ```
-  * [`POST /api/token/transfer`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/TokenEndpoints.cs#L57): Transfers a token from the player's managed wallet to another SS58 address via [`TransferTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Services/EnjinService.cs#L551), again signed via the player's `signerExternalId`.
+  * [`POST /api/token/transfer`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/TokenEndpoints.cs#L57): Transfers a token from the player's managed wallet to another SS58 address via [`TransferTokenAsync`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Services/EnjinService.cs#L546), again signed via the player's `signerExternalId`.
     ```csharp
     var input = new TransactionInput
     {
@@ -150,7 +149,7 @@ The server exposes several endpoints to handle game actions. The `wallet` and `t
 
 #### Setup
 
-  * [`GET /api/setup/collection-id`](https://github.com/enjin/platform-sample-game-server/blob/5cb7ba89c3c0fcfe73b481ceacf5035b9b480ca8/Endpoints/SetupEndpoints.cs#L26): Returns the collection ID the server bootstrapped. This is called once by the Unity Editor's "Stamp Collection ID" menu (see [Setup Guide → Step 4](/02-guides/01-platform/05-enjin-farmer-sample-game/01-setup-guide.md#1-stamp-the-collection-id-onto-the-nft-items)) to write the ID onto the client's NFT item assets; the running game never calls it.
+  * [`GET /api/setup/collection-id`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/SetupEndpoints.cs#L26): Returns the collection ID the server bootstrapped. This is called once by the Unity Editor's "Stamp Collection ID" menu (see [Setup Guide → Step 4](/02-guides/01-platform/05-enjin-farmer-sample-game/01-setup-guide.md#1-stamp-the-collection-id-onto-the-nft-items)) to write the ID onto the client's NFT item assets; the running game never calls it.
 
 -----
 
