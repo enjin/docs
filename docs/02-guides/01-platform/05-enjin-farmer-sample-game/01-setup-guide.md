@@ -16,7 +16,7 @@ In this simple farming game, you'll plant seeds, harvest crops, and collect reso
 The project consists of four main components that work together:
 
   - **[Game Client (Unity)](https://github.com/enjin/platform-sample-game-client-unity):** The game itself, where you play and interact with items.
-  - **[Game Server (Node.js)](https://github.com/enjin/platform-sample-game-server):** A backend API that the game client communicates with to handle all NFT-related actions like minting and transferring.
+  - **[Game Server (.NET)](https://github.com/enjin/platform-sample-game-server):** A backend API, built on the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk), that the game client communicates with to handle all NFT-related actions like minting and transferring.
   - **<GlossaryTerm id="enjin_platform" />:** The cloud-based service that provides the core NFT infrastructure.
   - **Wallet Daemon:** A secure application that manages a wallet on behalf of the game to automatically sign and approve transactions.
 
@@ -27,7 +27,7 @@ The project consists of four main components that work together:
 Before you begin, make sure you have the following installed:
 
   - ✅ **Unity Hub** with **Unity Editor version `6000.0.24f1`**.
-  - ✅ **Node.js** (which includes `npm`).
+  - ✅ The **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** for running the game server.
   - ✅ **Git** for cloning the repositories.
   - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
   - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI)
@@ -50,7 +50,7 @@ First, you need to download the game client, the game server, and the Wallet Dae
     git clone https://github.com/enjin/platform-sample-game-server.git
     ```
 
-3.  **Download the Wallet Daemon:** Download the latest executable for your operating system from the [Wallet Daemon releases page](https://github.com/enjin/wallet-daemon-ui/releases).
+3.  **Download the Wallet Daemon:** Download the prebuilt daemon for your operating system from [https://enj.in/daemon](https://enj.in/daemon) and extract it into a dedicated directory.
 
 -----
 
@@ -67,10 +67,18 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 ### Wallet Daemon
 
-1. Run the Wallet Daemon executable you downloaded.
-2. Follow the on-screen instructions to configure it, and enter the **API Token** you just copied from the Enjin Platform into the Settings → Canary Matrixchain input field. For a detailed guide, see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
-3. Select the Enjin Platform Canary in the network dropdown menu, and run the Wallet Daemon.
-4. Once configured and running, the Wallet Daemon UI will display a wallet address. **Copy this wallet address** for the next step.
+The Wallet Daemon is the signer that approves your game server's transactions. It runs from the command line and is configured with a `.env` file.
+
+1. In the daemon directory you extracted, copy the `.env.example` file to `.env`.
+2. Open `.env` and set the two required values:
+    - `PLATFORM_KEY`: The **API Token** you just copied from the Enjin Platform.
+    - `KEY_PASS`: A unique, high-entropy password used to encrypt the wallet seed. Store it somewhere safe — you'll need it every time the daemon starts.
+3. Start the daemon — `./wallet-daemon` (or `.\wallet-daemon.exe` on Windows). On first run it generates a new wallet, writes the encrypted seed to `wallet.seed`, and prints an SS58 address for each network.
+4. From the printed addresses, **copy the Canary Matrixchain address** — that's the network this sample uses. You'll need it in the next step.
+
+:::tip
+For a detailed guide — including Docker, AWS, importing an existing seed, and backup guidance — see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
+:::
 
 -----
 
@@ -78,22 +86,36 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 Now, let's set up the backend server that powers the game's NFT features.
 
-1. Navigate into the game server directory you cloned: `cd platform-sample-game-server`.
-2. Duplicate the `.env.example` file and rename the copy to `.env`.
-3. Open the `.env` file and fill in the following variables:
-    - `PORT=3000` (You can change this if port 3000 is already in use).
-    - `JWT_SECRET`: Generate another secure, random string. This is used for authenticating players.
-    - `ENJIN_API_URL`: Keep the default `https://platform.canary.enjin.io/graphql` for testing on the Canary network.
-    - `ENJIN_API_KEY`: Paste the **API Key Token** from your Enjin Platform account.
-    - `DAEMON_WALLET_ADDRESS`: Paste the wallet address you copied from the Wallet Daemon UI.
-    - `ENJIN_COLLECTION_ID`: Leave this blank for now.
-4. Install the server dependencies by running `npm install`.
-5. Launch the server for the first time by running `npm run dev`.
+:::warning Before you run: .NET SDK + internet
+The server targets .NET 9, so install the **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** — it provides both the build tools and the .NET 9 runtime the server runs on. After installing, open a **new** terminal and confirm with `dotnet --list-sdks` (you should see a `9.x` entry).
 
-The server will now connect to the Enjin Platform, create a new NFT collection for your game, and create the NFT tokens for the in-game resources.
+If you only have a newer SDK such as .NET 10, the build will succeed but `dotnet run` fails with `You must install or update .NET … version '9.0.0'`, because the .NET 9 **runtime** is missing. Either install the .NET 9 SDK (simplest), or run on the newer runtime with `dotnet run --roll-forward Major`.
+
+The first `dotnet run` restores the server's dependencies — including the [Enjin Platform C# SDK](https://www.nuget.org/packages/Enjin.Platform.Sdk) — from NuGet, so you need internet access. If restore fails with `NU1100: Unable to resolve …`, your machine has no usable NuGet source. Run `dotnet nuget list source`: if it says `No sources found` (or `nuget.org` is `[Disabled]`), add it with:
+
+```bash
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+```
+:::
+
+1. Navigate into the game server directory you cloned: `cd platform-sample-game-server`.
+2. Copy the `appsettings.Sample.json` file and rename the copy to `appsettings.Local.json` (this file is gitignored, so your secrets stay out of version control).
+3. Open `appsettings.Local.json` and fill in the following values:
+    - `Jwt.Secret`: A long, random string (32+ characters). This is used for authenticating players.
+    - `Enjin.ApiToken`: Paste the **API Token** from your Enjin Platform account.
+    - `Enjin.DaemonWalletAddress`: Paste the daemon's **Canary Matrixchain** address you copied in the previous step.
+
+   The remaining settings have sensible defaults in `appsettings.json` (for example, `Server.Port` defaults to `3000`), so you can leave them as-is for testing.
+4. Launch the server for the first time by running `dotnet run`.
+
+The server will now connect to the Enjin Platform, create a new NFT collection for your game (or reuse an existing one), and create the NFT tokens for the in-game resources. This can take a minute or two on first run while it waits for the on-chain transactions to finalize.
 
 :::info **Important**
-Watch the terminal logs. Once the setup is complete, the server will log the new **Collection ID**. It will look something like this: `Collection and resource tokens are ready. Using collection ID: XXXXXX`. **Copy this Collection ID** and save it. You'll need it to configure the game client.
+The server stores the **Collection ID** it bootstraps in a `state.json` file and reuses it on every restart, so you no longer need to copy it by hand — you'll stamp it onto the game client automatically in [Step 4](#1-stamp-the-collection-id-onto-the-nft-items). When you see `Now listening on: http://[::]:3000` (and `Application started`) in the logs, the server is ready.
+:::
+
+:::note Windows firewall prompt
+On Windows, the first time the server starts listening you may get a prompt to allow network access — click **Allow**. You don't need to restart the server afterwards; it keeps running and works right away.
 :::
 
 Keep the server and the Wallet Daemon running in the background.
@@ -109,18 +131,17 @@ It's time to set up the Unity project and connect it to your game server.
 3. Open the project.
 4. Once the project is open in the Unity Editor, you need to configure two things.
 
-#### 1. Configure the NFT Items
+#### 1. Stamp the Collection ID onto the NFT Items
 
-  - In the `Project` window, navigate to `Assets/Enjin Integration/Scripts/Data/Items`.
-  - You will see three `Enjin Item` assets: `GemGreen`, `GoldCoin`, and `GoldCoinBlue`.
-  <p align="center">
-    <img src={require('/img/guides/enjin-farmer-sample-game/configure-items-1.png').default} width="400"/>
-  </p>
-  - Click on **each one** of these items.
-  - In the `Inspector` window for each item, find the **Collection Id** field and paste the `Collection ID` you saved from the game server's terminal log.
-  <p align="center">
-    <img src={require('/img/guides/enjin-farmer-sample-game/configure-items-2.png').default} width="400"/>
-  </p>
+The game's three `Enjin Item` assets (`GemGreen`, `GoldCoin`, and `GoldCoinBlue`, found in `Assets/Enjin Integration/Scripts/Data/Items`) each need to know the on-chain **Collection ID** the server created. Rather than paste it by hand, the project ships an Editor menu that fetches it from your running server and stamps it onto all three assets for you.
+
+  - Make sure your game server (from Step 3) is still running.
+  - In the Unity Editor menu bar, select **Enjin → Stamp Collection ID onto EnjinItem Assets**.
+  - Confirm the prompt. The Editor calls the server's `/api/setup/collection-id` endpoint and writes the returned ID onto every `EnjinItem` asset.
+
+:::note
+Run this once after the server's first launch. You only need to run it again if the canary state ever resets and the server creates a new collection.
+:::
 
 #### 2. Configure the connection to the Game Server
 
@@ -150,7 +171,7 @@ You're all set up and ready to play.
   <img src={require('/img/guides/enjin-farmer-sample-game/connection-success.png').default} width="500"/>
 </p>
   :::warning
-  If you see an error, double-check that your server is running and that the `Host` and `App Key` in the `EnjinManager` are correct.
+  If you see an error, double-check that your server is running and that the `Host` in the `EnjinManager` is correct.
   :::
 5. In the game, click the **Menu** button (top-right), then **Login**.
 <p align="center">
@@ -167,9 +188,9 @@ You're all set up and ready to play.
 <p align="center">
   <img src={require('/img/guides/enjin-farmer-sample-game/backpack.png').default} width="400"/>
 </p>
-:::warning cENJ funds are required
-New managed wallet have no funds. To melt or transfer tokens out of a managed wallet, you'll need to fund it with some cENJ, or set up a fuel tank.
-To receive cENJ funds for testing, use the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
+:::warning Keep your daemon wallet funded
+New managed wallets start empty, so the server automatically drips a little cENJ (1 ENJ by default) from your **daemon wallet** to each new player wallet so it can pay the fees for melting and transferring. This means the daemon wallet itself needs cENJ — to create the collection, mint tokens, and fund new players.
+To top up the daemon wallet for testing, use the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
 :::
 
 :::info Understanding the code
