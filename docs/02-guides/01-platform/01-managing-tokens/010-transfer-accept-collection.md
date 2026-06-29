@@ -17,8 +17,8 @@ The collection owner is the only account authorized to make changes to the colle
 
 Transferring collection ownership is a two-step process: the current owner submits a transfer request, and the new owner accepts it.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ## Step #1: Sending a transfer ownership request with the [Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md)
@@ -56,37 +56,32 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Set up the collection mutation input.
-var collectionMutationInput = new CollectionMutationInput()
-    .SetOwner("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"); // Set the new owner account of the collection.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Set up the mutation
-var mutateCollection = new MutateCollection()
-    .SetCollectionId(36105) // Specify the collection ID.
-    .SetMutation(collectionMutationInput); // Specify the mutation input.
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+// Initiating a collection-ownership transfer is done via the mutateCollection
+// action by setting the new owner's address on the Owner field.
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            MutateCollection = new MutateCollectionInput
+            {
+                CollectionId = 36105,
+                Owner = "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", // the new owner
+            },
+        });
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-mutateCollection.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendMutateCollection(mutateCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -253,32 +248,29 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Set up the mutation
-var acceptCollectionTransfer = new AcceptCollectionTransfer()
-    .SetCollectionId(36105); // Specify the collection ID.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            AcceptCollectionTransfer = new AcceptCollectionTransferInput
+            {
+                Id = 36105, // the collection id
+            },
+        });
 
-acceptCollectionTransfer.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendAcceptCollectionTransfer(acceptCollectionTransfer);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

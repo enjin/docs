@@ -70,7 +70,7 @@ The `ILogger` interface uses log levels to communicate the type of message being
 
 ## Platform Client Logging
 
-To setup logging for the `PlatformClient` we may pass an `ILogger` instance to its builder as shown below:
+To set up logging for the `PlatformClient`, pass an `ILogger` instance to its constructor as shown below:
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -79,8 +79,7 @@ using Enjin.Platform.Sdk;
 
 ILogger logger = /* Instantiate class implementing ILogger */
 
-// Using a PlatformClient builder
-builder.SetLogger(logger);
+using var client = new PlatformClient(logger: logger);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -108,7 +107,7 @@ The SDK also offers HTTP logging options for its built-in platform client. There
 | Headers      | Logs HTTP headers in addition to topical information.                  |
 | Body         | Logs the full request/response.                                        |
 
-To enable HTTP traffic logging, we must provide an `ILogger` instance and our desired HTTP log level when building the client as shown below:
+To enable HTTP traffic logging, provide an `ILogger` instance and your desired HTTP log level when constructing the client as shown below:
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -116,11 +115,9 @@ To enable HTTP traffic logging, we must provide an `ILogger` instance and our de
 using Enjin.Platform.Sdk;
 
 ILogger logger = /* Instantiate class implementing ILogger */
-HttpLogLevel level = /* Choose a HTTP log level */
+HttpLogLevel level = HttpLogLevel.Body; // Choose a HTTP log level
 
-// Using a PlatformClient builder
-builder.SetLogger(logger)
-       .SetHttpLogLevel(level);
+using var client = new PlatformClient(logger: logger, httpLogLevel: level);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -136,35 +133,6 @@ HttpLogLevel level = /* Choose a HTTP log level */
 // Using a PlatformClient builder
 builder.SetLogger(logger)
     .SetHttpLogLevel(level);
-```
-  </TabItem>
-</Tabs>
-
-### Event Service Logging
-
-To setup logging for the `PusherEventService` we may pass an `ILogger` instance to its builder as shown below:
-
-<Tabs>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using Enjin.Platform.Sdk;
-
-ILogger logger = /* Instantiate class implementing ILogger */
-
-// Using a PusherEventService builder
-builder.SetLogger(logger);
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cpp
-#include "EnjinPlatformSdk/ILogger.hpp"
-
-using namespace enjin::platform::sdk;
-
-LoggerPtr logger = /* Make pointer containing ILogger implementation */
-
-// Using a PusherEventService builder
-builder.SetLogger(logger);
 ```
   </TabItem>
 </Tabs>

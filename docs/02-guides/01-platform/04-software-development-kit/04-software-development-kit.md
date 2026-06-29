@@ -4,17 +4,17 @@ slug: "../software-development-kit"
 description: "Get started with the Enjin SDK, offering comprehensive developer tools to integrate blockchain technology into your apps and games with ease."
 ---
 
-:::warning SDKs are not yet available
-The C# and C++ SDK content on this page is out of date and **will not work against the current Enjin Platform API**. This page will be updated once new SDKs are published. Until then, see [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) and the [API Reference](/03-api-reference/03-api-reference.md) for the current API shapes.
+:::info C++ SDK coming soon
+The C++ examples throughout this section target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 The Enjin Platform SDKs provide an API for communicating with the Enjin Platform.
 
-The Enjin Platform SDKs provide a framework that developers can use on their desired programming language as it allows games and apps to interact with the Enjin API without the need of building a bridge between your application and our API requests, the Enjin SDKs facilitate the usage of listening and processing of events emitted by the Enjin Platform, which helps us deliver a better user experience in our application and eliminate unnecessary API requests we would otherwise make to the Enjin Platform.
+The Enjin Platform SDKs give developers a native, strongly-typed way to interact with the Enjin Platform's GraphQL API in their language of choice, without having to hand-write queries or build a bridge between your application and our API. This lets games and apps query on-chain data and submit transactions directly, with the request building, sending, and response handling all handled for you.
 
 ## SDK Libraries
 
-| Library | Link                                                                       |
-| :------ | :------------------------------------------------------------------------- |
-| C#      | [/enjin/platform-csharp-sdk](https://github.com/enjin/platform-csharp-sdk) |
-| C++     | [/enjin/platform-cpp-sdk](https://github.com/enjin/platform-cpp-sdk)       |
+| Library | Package                                                                                                | Source                                                                     |
+| :------ | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
+| C#      | [Enjin.Platform.Sdk on NuGet](https://www.nuget.org/packages/Enjin.Platform.Sdk)                       | [/enjin/platform-csharp-sdk](https://github.com/enjin/platform-csharp-sdk) |
+| C++     | _Coming soon_                                                                                          | [/enjin/platform-cpp-sdk](https://github.com/enjin/platform-cpp-sdk)       |

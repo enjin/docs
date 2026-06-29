@@ -26,8 +26,8 @@ For example, if a user has a particular token in their wallet, they might gain a
 
 Wallet data is read with the `GetAccount` query. It takes the `network` and `chain` to look up, along with the wallet's `address`.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ### Fetching a wallet's Enjin Coin balance
@@ -56,33 +56,24 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the query
-var getWallet = new GetWallet()
-    .SetAccount("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f");
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the query
-var walletFragment = new WalletFragment()
-    .WithBalances(new BalancesFragment()
-        .WithFree()
-        .WithReserved()
-    );
+// Build the GetAccount query, selecting the wallet's ENJ balance
+var query = new QueryQueryBuilder()
+    .WithGetAccount(
+        new AccountQueryBuilder().WithBalance(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        address: "efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr");
 
-getWallet.Fragment(walletFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendGetWallet(getWallet);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the query and read the result
+var response = await client.SendQuery(query);
+Console.WriteLine(response.Result.Data?.GetAccount?.Balance);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -273,46 +264,34 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the query
-var getWallet = new GetWallet()
-    .SetAccount("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f");
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the query
-var walletFragment = new WalletFragment()
-    .WithTokenAccounts(new ConnectionFragment<TokenAccountFragment>()
-        .WithEdges(new EdgeFragment<TokenAccountFragment>()
-            .WithNode(new TokenAccountFragment()
-                .WithBalance()
-                .WithToken(new TokenFragment()
-                    .WithTokenId()
-                    .WithCollection(new CollectionFragment()
-                        .WithCollectionId()
-                    )
-                    .WithAttributes(new AttributeFragment()
-                        .WithKey()
-                        .WithValue()
-                    )
-                )
-            )
-        )
-    );
+// Build the GetAccount query, selecting the tokens the wallet holds.
+// Each held token is an AccountToken (its balance) wrapping the Token itself.
+var query = new QueryQueryBuilder()
+    .WithGetAccount(
+        new AccountQueryBuilder()
+            .WithTokens(
+                new AccountTokenQueryBuilder()
+                    .WithBalance()
+                    .WithToken(new TokenQueryBuilder()
+                        .WithId()
+                        .WithTokenId()
+                        .WithCollection(new CollectionQueryBuilder().WithId())
+                        .WithAttributes(new AttributeQueryBuilder().WithKey().WithValue())),
+                limit: 100),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        address: "efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr");
 
-getWallet.Fragment(walletFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendGetWallet(getWallet);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the query; the wallet's current holdings are on the returned account
+var response = await client.SendQuery(query);
+var account = response.Result.Data?.GetAccount;
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

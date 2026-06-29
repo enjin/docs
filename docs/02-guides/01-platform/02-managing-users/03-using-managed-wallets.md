@@ -34,8 +34,8 @@ You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/
 
 ---
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ## Creating a Managed Wallet {#creating-a-managed-wallet}
@@ -64,24 +64,20 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var createWallet = new CreateWallet()
-    .SetExternalId("player_1_id");
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
+// Provision a managed wallet keyed by your own unique externalId
+var mutation = new MutationQueryBuilder()
+    .WithCreateManagedWallet(externalId: "docs-example-player");
 
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendCreateWallet(createWallet);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the mutation; the result is true once the wallet is being provisioned
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateManagedWallet);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -236,31 +232,24 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the query
-var getWallet = new GetWallet()
-    .SetExternalId("player_1_id");
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the query
-var walletFragment = new WalletFragment()
-    .WithAccount(new AccountFragment()
-        .WithAddress()
-        .WithPublicKey()
-    );
+// Look the managed wallet up by its externalId and read its on-chain public key
+var query = new QueryQueryBuilder()
+    .WithGetManagedWallet(
+        new ManagedWalletQueryBuilder().WithPublicKey().WithExternalId(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        externalId: "docs-example-player");
 
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendGetWallet(getWallet);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendQuery(query);
+var wallet = response.Result.Data?.GetManagedWallet;
+Console.WriteLine(wallet?.PublicKey);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -449,45 +438,32 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Create the list of recipients for the batch mint
-var recipients = new List<MintRecipient>()
-{
-    new MintRecipient()
-        .SetAccount("cxMkGKAmD73fGoFVaKj5HNmeLRHpTFDf5oQMp2dsqKJ8uZ3tT")
-        .SetMintParams(new MintTokenParams()
-            .SetAmount(1)
-            .SetTokenId(new EncodableTokenIdInput().SetInteger(6533)
-            )
-        )
-};
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Setup the mutation
-var batchMint = new BatchMint()
-    .SetCollectionId(7154)
-    .SetRecipients(recipients.ToArray());
+// Mint a token straight into the managed wallet by setting it as the recipient
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            MintToken = new MintTokenInput
+            {
+                Recipient = "0xded3c8f0296f5ee023f07aa5617fc261bd5991c4474ee775a16ec35c1d1a1e3a", // the managed wallet's public key
+                CollectionId = 36105,
+                TokenId = 1,
+                Amount = 1,
+            },
+        });
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-batchMint.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBatchMint(batchMint);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -715,45 +691,34 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Create the array of recipients for the batch transfer
-var recipients = new List<TransferRecipient>()
-{
-    new TransferRecipient()
-        .SetAccount("cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ") // The recipient of the transfer
-        .SetSimpleParams(new SimpleTransferParams()
-            .SetTokenId(new EncodableTokenIdInput().SetInteger(6533))
-            .SetAmount(1)
-        )
-};
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Setup the mutation
-var batchTransfer = new BatchTransfer()
-    .SetCollectionId(7154)
-    .SetSigningAccount("cxMkGKAmD73fGoFVaKj5HNmeLRHpTFDf5oQMp2dsqKJ8uZ3tT") // Add your signing account address (the Managed wallet account address from the GetWallet query)
-    .SetRecipients(recipients.ToArray());
+// Transfer a token out of the managed wallet. signerExternalId makes the
+// platform sign with that managed wallet instead of the Wallet Daemon.
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            TransferToken = new TransferTokenInput
+            {
+                Recipient = "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ", // the recipient of the transfer
+                CollectionId = 36105,
+                TokenId = 1,
+                Amount = 1,
+            },
+        },
+        signerExternalId: "docs-example-player"); // the managed wallet that signs
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-batchTransfer.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBatchTransfer(batchTransfer);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

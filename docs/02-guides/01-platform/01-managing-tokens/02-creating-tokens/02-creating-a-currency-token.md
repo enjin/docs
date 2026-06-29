@@ -68,8 +68,8 @@ Once your token is created, lets give it a new look by [Adding Metadata](/02-gui
 
 To create a currency token, use the standard `createToken` action with the `behavior` field set to `{ type: IS_CURRENCY, name, symbol, decimalCount }`. The rest of the input (recipient, collectionId, tokenId, initialSupply, etc.) follows the same shape as a regular [token create](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md#option-b-using-the-enjin-api--sdks).
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 <Tabs>
@@ -114,47 +114,43 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Define the token metadata input
-var tokenMetadata = new TokenMetadataInput()
-    .SetName("Token Name") // Set the token name
-    .SetSymbol("TKN") // Set the token symbol
-    .SetDecimalCount(18); // Set the decimal count
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define the token parameters
-var tokenParams = new CreateTokenParams()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(1)) //Set the token ID
-    .SetInitialSupply(1) //Mint initial supply
-    .SetCap(new TokenMintCap().SetType(TokenMintCapType.Infinite)) //Define supply type
-    .SetMetadata(tokenMetadata); //Set the token metadata
+// Build the CreateTransaction mutation, selecting createToken as the action
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateToken = new CreateTokenInput
+            {
+                Recipient = "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f", // recipient of the initial supply
+                CollectionId = 2406,      // collection to mint into
+                TokenId = 1,              // the new token ID
+                InitialSupply = 1,        // initial supply to mint
+                ListingForbidden = false,
+                Infusion = 0,
+                AnyoneCanInfuse = false,
+                Behavior = new TokenBehaviorInput // makes this token a currency
+                {
+                    Type = TokenBehaviorType.IsCurrency,
+                    Name = "Gold Coins",
+                    Symbol = "GOLD",
+                    DecimalCount = 2,
+                },
+            },
+        });
 
-// Set up the mutation
-var createToken = new CreateToken()
-    .SetRecipient("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f") //The recipient of the initial supply
-    .SetCollectionId(2406) //Set the collection ID
-    .SetParams(tokenParams); //Set the previously defined token params
-
-// Define and assign the return data fragment to the mutation
-var createTokenFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-createToken.Fragment(createTokenFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendCreateToken(createToken);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the mutation; poll GetTransaction by uuid to track its on-chain state
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

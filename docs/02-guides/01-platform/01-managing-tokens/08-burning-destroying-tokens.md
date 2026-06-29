@@ -82,8 +82,8 @@ Since this request requires a <GlossaryTerm id="transaction" />, it must be sign
 
 Burning is the `burnToken` discriminator action on `CreateTransaction`. The same action handles both "melt some supply" and "destroy the token entirely" — set `removeTokenStorage: true` to destroy.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ### Melting token's supply
@@ -121,38 +121,32 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Set up the burn params
-var burnParams = new BurnParamsInput()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0)) // Set the token id.
-    .SetAmount(1); // Set the amount to burn.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Set up the mutation
-var burn = new Burn()
-    .SetCollectionId(68844) // Set the collection id.
-    .SetParams(burnParams); // Set the burn params.
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            BurnToken = new BurnTokenInput
+            {
+                CollectionId = 68844,
+                TokenId = 0,
+                Amount = 1,
+                RemoveTokenStorage = false, // set true to also destroy the token (see below)
+            },
+        });
 
-// Define and assign the return data fragment to the mutation
-var burnFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-burn.Fragment(burnFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBurn(burn);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -309,39 +303,32 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Set up the burn params
-var burnParams = new BurnParamsInput()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0)) // Set the token id.
-    .SetAmount(1) // Set the amount to burn.
-    .SetRemoveTokenStorage(true); // Set whether the token storage will be removed if no tokens are left.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Set up the mutation
-var burn = new Burn()
-    .SetCollectionId(68844) // Set the collection id.
-    .SetParams(burnParams); // Set the burn params.
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            BurnToken = new BurnTokenInput
+            {
+                CollectionId = 68844,
+                TokenId = 0,
+                Amount = 1,
+                RemoveTokenStorage = true, // also destroy the token
+            },
+        });
 
-// Define and assign the return data fragment to the mutation
-var burnFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-burn.Fragment(burnFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBurn(burn);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -495,32 +482,29 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Set up the mutation
-var destroyCollection = new DestroyCollection()
-    .SetCollectionId(68844); // Set the collection id.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var destrotCollectionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            DestroyCollection = new DestroyCollectionInput
+            {
+                Id = 68844, // the collection id
+            },
+        });
 
-destroyCollection.Fragment(destrotCollectionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendDestroyCollection(destroyCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

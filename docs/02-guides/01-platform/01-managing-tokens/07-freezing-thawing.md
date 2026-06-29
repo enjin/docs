@@ -73,8 +73,8 @@ Freeze and thaw are split into four discriminator actions on `CreateTransaction`
 - `thawCollection: { collectionId }`
 - `thawToken: { collectionId, tokenId, state }`
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ### Freezing an entire collection
@@ -109,33 +109,29 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var freezeCollection = new Freeze()
-    .SetCollectionId(36105)
-    .SetFreezeType(FreezeType.Collection);
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (freezeCollection action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            FreezeCollection = new FreezeCollectionInput
+            {
+                CollectionId = 36105,
+            },
+        });
 
-freezeCollection.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendFreeze(freezeCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -321,35 +317,31 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var freezeToken = new Freeze()
-    .SetCollectionId(36105)
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0))
-    .SetFreezeType(FreezeType.Token)
-    .SetFreezeState(FreezeState.Temporary);
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (freezeToken action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            FreezeToken = new FreezeTokenInput
+            {
+                CollectionId = 36105,
+                TokenId = 0,
+                State = FreezeState.Temporary, // or FreezeState.Permanent for a soulbound freeze
+            },
+        });
 
-freezeToken.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendFreeze(freezeToken);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -543,33 +535,29 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var thawCollection = new Thaw()
-    .SetCollectionId(36105)
-    .SetFreezeType(FreezeType.Collection);
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (thawCollection action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            ThawCollection = new ThawCollectionInput
+            {
+                CollectionId = 36105,
+            },
+        });
 
-thawCollection.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendThaw(thawCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -755,34 +743,31 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var thawToken = new Thaw()
-    .SetCollectionId(36105)
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0))
-    .SetFreezeType(FreezeType.Token);
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (thawToken action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            ThawToken = new ThawTokenInput
+            {
+                CollectionId = 36105,
+                TokenId = 0,
+                State = FreezeState.Temporary,
+            },
+        });
 
-thawToken.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendThaw(thawToken);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

@@ -53,8 +53,8 @@ Transfers are split into three discriminator actions on `CreateTransaction`:
 - `transferEnj` — transfer ENJ (or cENJ on Canary) between accounts.
 - `batchTransfer` — transfer multiple tokens from one collection to multiple recipients in a single transaction.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 ### Transferring an asset
@@ -94,40 +94,32 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Define the simple transfer parameters
-var simpleTransferParams = new SimpleTransferParams()
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0))
-    .SetAmount(1);
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
+// Build the CreateTransaction mutation (transferToken action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            TransferToken = new TransferTokenInput
+            {
+                Recipient = "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+                CollectionId = 36105,
+                TokenId = 0,
+                Amount = 1,
+            },
+        });
 
-// Setup the mutation
-var simpleTransferToken = new SimpleTransferToken()
-  	.SetRecipient("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f")
-    .SetCollectionId(36105)
-    .SetParams(simpleTransferParams);
-
-// Define and assign the return data fragment to the mutation
-var simpleTransferTokenFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-simpleTransferToken.Fragment(simpleTransferTokenFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendSimpleTransferToken(simpleTransferToken);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -358,33 +350,31 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
+using System.Numerics;
 using Enjin.Platform.Sdk;
 
-// Set up the mutation
-var transferKeepAlive = new TransferKeepAlive()
-    .SetRecipient("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f") //The recipient of the initial supply
-    .SetAmount(5000000000000000000); //The amount of tokens to transfer
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transferKeepAliveFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (transferEnj action on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            TransferEnj = new TransferEnjInput
+            {
+                Recipient = "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+                Amount = BigInteger.Parse("5000000000000000000"), // 5 ENJ in base units (5 * 10^18)
+            },
+        });
 
-transferKeepAlive.Fragment(transferKeepAliveFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendTransferKeepAlive(transferKeepAlive);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -538,50 +528,46 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
+using System.Collections.Generic;
+using System.Numerics;
 using Enjin.Platform.Sdk;
 
-// Set up the transfers for the batch
-var transferBalanceParams1 = new TransferBalanceParams()
-    .SetValue(5000000000000000000); //The amount of tokens to transfer
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-var transferBalanceParams2 = new TransferBalanceParams()
-    .SetValue(5000000000000000000) //The amount of tokens to transfer
-    .SetKeepAlive(true); //Whether the transaction will be kept from failing if the balance drops below the minimum requirement
-
-var transferRecipients = new[]
+// One TransactionInput per recipient, each with a transferEnj action
+var transactions = new List<TransactionInput>
 {
-    new TransferRecipient()
-        .SetAccount("cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f")
-        .SetTransferBalanceParams(transferBalanceParams1),
-    new TransferRecipient()
-        .SetAccount("cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu")
-        .SetTransferBalanceParams(transferBalanceParams2)
+    new TransactionInput
+    {
+        TransferEnj = new TransferEnjInput
+        {
+            Recipient = "cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f",
+            Amount = BigInteger.Parse("5000000000000000000"), // 5 ENJ
+        },
+    },
+    new TransactionInput
+    {
+        TransferEnj = new TransferEnjInput
+        {
+            Recipient = "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu",
+            Amount = BigInteger.Parse("15250000000000000000"), // 15.25 ENJ
+        },
+    },
 };
 
-// Set up the mutation
-var batchTransferBalance = new BatchTransferBalance()
-    .SetRecipients(transferRecipients);
+// Build the CreateBatchTransaction mutation
+var mutation = new MutationQueryBuilder()
+    .WithCreateBatchTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transactions: transactions);
 
-// Define and assign the return data fragment to the mutation
-var transferBalanceFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-batchTransferBalance.Fragment(transferBalanceFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBatchTransferBalance(batchTransferBalance);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateBatchTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

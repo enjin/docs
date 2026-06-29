@@ -101,8 +101,8 @@ Batched attributes are split into two discriminator actions on `CreateTransactio
 
 The example below sets three attributes on a token. To target the collection itself, swap `batchSetTokenAttribute` for `batchSetCollectionAttribute` and replace the `collectionId` / `tokenId` pair with a single `id` field equal to the collection ID.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 <Tabs>
@@ -144,48 +144,44 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
+using System.Collections.Generic;
 using Enjin.Platform.Sdk;
 
-//Define attributes to set
-var attributes = new List<AttributeInput>
-{
-    new AttributeInput()
-        .SetKey("name") //Provide an attribute name
-        .SetValue("Chronicles of the Celestium"), //Provide an attribute value
-    new AttributeInput()
-        .SetKey("description") //Provide an attribute name
-        .SetValue("An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."), //Provide an attribute value
-    new AttributeInput()
-        .SetKey("uri") //Provide an attribute name
-        .SetValue("https://yourhost/metadata.json") //Provide an attribute value
-};
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Setup the mutation
-var batchSetAttribute = new BatchSetAttribute()
-    .SetCollectionId(36105) //Specify the collection ID
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(0)) //Specify the token ID. If you wish to add collection metadata, omit this line entirely.
-    .SetAttributes(attributes.ToArray());  //Set the previously defined attributes as an array
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet — match the GraphQL tab
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            // To target the collection itself, use BatchSetCollectionAttribute
+            // with an Id instead (omit TokenId).
+            BatchSetTokenAttribute = new BatchSetTokenAttributeInput
+            {
+                CollectionId = 36105,
+                TokenId = 0,
+                Attributes = new List<AttributeInput>
+                {
+                    new AttributeInput { Key = "name", Value = "Chronicles of the Celestium" },
+                    new AttributeInput
+                    {
+                        Key = "description",
+                        Value = "An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse.",
+                    },
+                    new AttributeInput { Key = "uri", Value = "https://yourhost/metadata.json" },
+                },
+            },
+        });
 
-// Define and assign the return data fragment to the mutation
-var batchSetAttributeFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
-
-batchSetAttribute.Fragment(batchSetAttributeFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendBatchSetAttribute(batchSetAttribute);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the mutation; poll GetTransaction by uuid to track its on-chain state
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
