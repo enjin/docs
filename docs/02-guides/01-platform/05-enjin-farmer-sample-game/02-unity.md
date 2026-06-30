@@ -42,7 +42,7 @@ It's time to set up the Unity project and connect it to your game server.
 
 The game's three `Enjin Item` assets (`GemGreen`, `GoldCoin`, and `GoldCoinBlue`, found in `Assets/Enjin Integration/Scripts/Data/Items`) each need to know the on-chain **Collection ID** the server created. Rather than paste it by hand, the project ships an Editor menu that fetches it from your running server and stamps it onto all three assets for you.
 
-  - Make sure your game server (from Step 3) is still running.
+  - Make sure your game server is still running.
   - In the Unity Editor menu bar, select **Enjin → Stamp Collection ID onto EnjinItem Assets**.
   - Confirm the prompt. The Editor calls the server's `/api/setup/collection-id` endpoint and writes the returned ID onto every `EnjinItem` asset.
 
