@@ -123,11 +123,6 @@ Once this association (or "link") is established, you can:
 ### Implementation
 
 A native wallet linking flow is currently in development. Once it ships, this section will document the end-to-end implementation. In the meantime, you can have users share their wallet address directly (for example, by pasting it into a form) and use that address in the steps below.
-
-:::info Reference
-The [Sending Wallet Requests](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md) page will become the full in-depth guide once the flow ships.
-:::
-
 ## 5. Send a Token to a User
 
 ### Why Send Tokens?
