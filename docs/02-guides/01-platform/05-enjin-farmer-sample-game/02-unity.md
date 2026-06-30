@@ -25,6 +25,8 @@ In addition to the [shared prerequisites](/02-guides/01-platform/05-enjin-farmer
 
 ## Step 1: Set Up the Unity Client
 
+It's time to set up the Unity project and connect it to your game server.
+
 1.  **Clone the Game Client:**
 
     ```bash
@@ -109,8 +111,6 @@ Happy farming!
 ## Implementation Breakdown
 
 The Unity client handles gameplay and offloads all blockchain operations to the game server. The server side — collection bootstrap, managed wallets, and the API endpoints the client calls — is documented on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#server-implementation-breakdown) page.
-
-The Unity game is the client-facing part of the project. It focuses on gameplay and user experience while offloading all sensitive blockchain operations to the game server.
 
 ### Core Components
 
