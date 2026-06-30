@@ -10,14 +10,14 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 This page covers the **Godot** client for the Enjin Farmer sample game.
 
 :::info Set up the server first
-This page assumes the game server, Enjin Platform, and Wallet Daemon are already running. If not, complete the [Overview & Server Setup](/02-guides/01-platform/05-enjin-farmer-sample-game/overview) page first, then come back here.
+This page assumes the game server, Enjin Platform, and Wallet Daemon are already running. If not, complete the [Overview & Server Setup](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md) page first, then come back here.
 :::
 
 -----
 
 ## Prerequisites
 
-In addition to the [shared prerequisites](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#prerequisites), the Godot client needs:
+In addition to the [shared prerequisites](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#prerequisites), the Godot client needs:
 
   - ✅ **[Godot 4.4+](https://godotengine.org/download)** (the standard build — the client needs no .NET; only the server does).
 
@@ -91,7 +91,7 @@ New managed wallets start empty, so the server automatically drips a little cENJ
 :::
 
 :::info Understanding the code
-To learn how the Godot client and game server work under the hood, see the [Implementation Breakdown](#implementation-breakdown) below (server-side details live on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#server-implementation-breakdown) page).
+To learn how the Godot client and game server work under the hood, see the [Implementation Breakdown](#implementation-breakdown) below (server-side details live on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#server-implementation-breakdown) page).
 :::
 
 Happy farming!
@@ -100,7 +100,7 @@ Happy farming!
 
 ## Implementation Breakdown
 
-The Godot client handles gameplay and offloads all blockchain operations to the game server. The server side — collection bootstrap, managed wallets, and the API endpoints the client calls — is documented on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#server-implementation-breakdown) page.
+The Godot client handles gameplay and offloads all blockchain operations to the game server. The server side — collection bootstrap, managed wallets, and the API endpoints the client calls — is documented on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#server-implementation-breakdown) page.
 
 ### Core Components
 

@@ -10,14 +10,14 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 This page covers the **Unity** client for the Enjin Farmer sample game.
 
 :::info Set up the server first
-This page assumes the game server, Enjin Platform, and Wallet Daemon are already running. If not, complete the [Overview & Server Setup](/02-guides/01-platform/05-enjin-farmer-sample-game/overview) page first, then come back here.
+This page assumes the game server, Enjin Platform, and Wallet Daemon are already running. If not, complete the [Overview & Server Setup](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md) page first, then come back here.
 :::
 
 -----
 
 ## Prerequisites
 
-In addition to the [shared prerequisites](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#prerequisites), the Unity client needs:
+In addition to the [shared prerequisites](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#prerequisites), the Unity client needs:
 
   - ✅ **Unity Hub** with **Unity Editor version `6000.0.24f1`**.
 
@@ -101,7 +101,7 @@ To top up the daemon wallet for testing, use the [built-in Canary faucet](/01-ge
 :::
 
 :::info Understanding the code
-To learn how the Unity client and game server work under the hood, see the [Implementation Breakdown](#implementation-breakdown) below (server-side details live on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#server-implementation-breakdown) page).
+To learn how the Unity client and game server work under the hood, see the [Implementation Breakdown](#implementation-breakdown) below (server-side details live on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#server-implementation-breakdown) page).
 :::
 
 Happy farming!
@@ -110,7 +110,7 @@ Happy farming!
 
 ## Implementation Breakdown
 
-The Unity client handles gameplay and offloads all blockchain operations to the game server. The server side — collection bootstrap, managed wallets, and the API endpoints the client calls — is documented on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/overview#server-implementation-breakdown) page.
+The Unity client handles gameplay and offloads all blockchain operations to the game server. The server side — collection bootstrap, managed wallets, and the API endpoints the client calls — is documented on the [Overview](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#server-implementation-breakdown) page.
 
 ### Core Components
 

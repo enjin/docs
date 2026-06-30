@@ -11,8 +11,8 @@ Welcome! The **Enjin Farmer** is a sample farming game that shows how to integra
 
 The sample comes in **two flavors that share the same backend**:
 
-- 🟦 **[Unity client](/02-guides/01-platform/05-enjin-farmer-sample-game/unity)** — built with Unity.
-- 🟧 **[Godot client](/02-guides/01-platform/05-enjin-farmer-sample-game/godot)** — built with Godot.
+- 🟦 **[Unity client](/02-guides/01-platform/05-enjin-farmer-sample-game/02-unity.md)** — built with Unity.
+- 🟧 **[Godot client](/02-guides/01-platform/05-enjin-farmer-sample-game/03-godot.md)** — built with Godot.
 
 Both talk to the **same .NET game server**, so this page covers everything common to both: the architecture, prerequisites, and how to stand up the server, Enjin Platform, and Wallet Daemon. Once the server is running, head to the page for your engine to set up and run the client.
 
@@ -265,5 +265,5 @@ The server exposes several endpoints to handle game actions. The `wallet` and `t
 
 The server, Enjin Platform, and Wallet Daemon are now configured. Keep the **server** and the **Wallet Daemon** running, then continue to the page for your engine:
 
-  - 🟦 **[Set up the Unity client →](/02-guides/01-platform/05-enjin-farmer-sample-game/unity)**
-  - 🟧 **[Set up the Godot client →](/02-guides/01-platform/05-enjin-farmer-sample-game/godot)**
+  - 🟦 **[Set up the Unity client →](/02-guides/01-platform/05-enjin-farmer-sample-game/02-unity.md)**
+  - 🟧 **[Set up the Godot client →](/02-guides/01-platform/05-enjin-farmer-sample-game/03-godot.md)**
