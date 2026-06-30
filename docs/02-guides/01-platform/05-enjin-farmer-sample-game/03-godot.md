@@ -63,16 +63,17 @@ The client's server URL is defined by the `host` variable in [`scripts/enjin/api
 
 You're all set up and ready to play.
 
-1. With the project open in the Godot Editor, press **F5** (Run Project). The game boots to a loader, then the main menu.
-2. The client runs a health check against the server on startup. If it fails, double-check that your server is running and that the `host` value matches your server URL.
-<!-- TODO: replace with Godot screenshot -->
+1. With the project open in the Godot Editor, press **F5** (Run Project). On startup the client runs a health check against the server. Watch the editor's **Output** panel — you should see `[EnjinApiService] Health check OK against http://localhost:3000`. If it fails, double-check that your server is running and that the `host` value matches your server URL.
 <p align="center">
-  <img src={require('/img/guides/enjin-farmer-sample-game/connection-success.png').default} width="500"/>
+  <img src={require('/img/guides/enjin-farmer-sample-game/godot/godot-health-check.png').default} width="600"/>
 </p>
-3. From the main menu, **register / log in** with an email and password. This registers a new player and creates a managed wallet for them on the Enjin Platform.
-<!-- TODO: replace with Godot screenshot -->
+2. On the **Happy Harvest** main menu, enter an **Email** and **Password**, then click **Register / Login**. This registers a new player (or logs in an existing one) and creates a managed wallet for them on the Enjin Platform.
 <p align="center">
-  <img src={require('/img/guides/enjin-farmer-sample-game/menu-button.png').default} width="500"/>
+  <img src={require('/img/guides/enjin-farmer-sample-game/godot/godot-main-menu.png').default} width="500"/>
+</p>
+3. Once the managed wallet is ready, the menu shows **"Logged in - tokens enabled."** Click **Start** to enter the farm.
+<p align="center">
+  <img src={require('/img/guides/enjin-farmer-sample-game/godot/godot-logged-in.png').default} width="500"/>
 </p>
 4. Move your character and **till the soil**. Tilling has a chance to reveal a resource item.
 <!-- TODO: replace with Godot screenshot -->
