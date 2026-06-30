@@ -135,7 +135,7 @@ Keep the server and the Wallet Daemon running in the background.
 
 ## Server Implementation Breakdown
 
-The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the Unity client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
+The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the game client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
 
 ### Configuration
 
@@ -147,9 +147,9 @@ The server is configured through `appsettings.json` (defaults) plus an `appsetti
 | `Enjin.ApiToken` | Your API token obtained from the Enjin Platform. |
 | `Enjin.DaemonWalletAddress` | The SS58 address of your <GlossaryTerm id="wallet_daemon" />. This wallet owns the collection, mints the resource tokens, and funds new player wallets. |
 | `Enjin.Network` / `Enjin.Chain` | The target network and chain. Defaults to `Canary` / `Matrix`. |
-| `Server.Port` | The port the server listens on. Defaults to `3000` (the Unity client expects `3000`). |
+| `Server.Port` | The port the server listens on. Defaults to `3000` (both the Unity and Godot clients default to `3000`). |
 | `Enjin.CollectionName` | Used to find or reuse an existing collection so a new one isn't created on every run. |
-| `Enjin.ResourceTokens` | The resource tokens to create (Gold Coin, Gold Coin (Blue), Green Gem). The Unity client ships matching `EnjinItem` assets for token IDs `1`, `2`, and `3`. |
+| `Enjin.ResourceTokens` | The resource tokens to create (Gold Coin, Gold Coin (Blue), Green Gem). Both the Unity and Godot clients ship matching item assets for token IDs `1`, `2`, and `3`. |
 | `Enjin.Ss58Prefix` | The prefix used to encode wallet public keys into addresses. `9030` = Canary Matrixchain, `1110` = Enjin Mainnet Matrixchain. |
 | `Enjin.DripEnjEnabled` / `Enjin.DripEnjAmount` | Whether to auto-fund each new managed wallet, and how much (default `1` ENJ). |
 
