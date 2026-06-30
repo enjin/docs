@@ -76,15 +76,13 @@ You're all set up and ready to play.
   <img src={require('/img/guides/enjin-farmer-sample-game/godot/godot-logged-in.png').default} width="500"/>
 </p>
 4. Move your character and **till the soil**. Tilling has a chance to reveal a resource item.
-<!-- TODO: replace with Godot screenshot -->
 <p align="center">
   <img src={require('/img/guides/enjin-farmer-sample-game/harvesting.png').default} width="400"/>
 </p>
 5. Collect the revealed item. This tells the game server to **mint** that item as an NFT to your player's wallet.
-6. Press **B** to open the **backpack**. It displays your live on-chain wallet balances. From here you can **Melt** an NFT to destroy it, or enter a recipient address and **Transfer** it.
-<!-- TODO: replace with Godot screenshot -->
+6. Press **B** to open the **backpack**. It displays your live on-chain wallet balances, keyed to your managed wallet address. From here you can **Melt** an NFT to destroy it, or enter a recipient address and **Transfer** it.
 <p align="center">
-  <img src={require('/img/guides/enjin-farmer-sample-game/backpack.png').default} width="400"/>
+  <img src={require('/img/guides/enjin-farmer-sample-game/godot/godot-backpack.png').default} width="600"/>
 </p>
 
 :::warning Keep your daemon wallet funded
