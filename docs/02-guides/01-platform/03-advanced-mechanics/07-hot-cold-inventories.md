@@ -79,7 +79,7 @@ This guide calls it "moving" an item between inventories. In your game's UI, cal
 
 ### Cold inventory: the player's wallet
 
-Each player gets an on-chain wallet that acts as their cold inventory — either a [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you create for them (`CreateManagedWallet(externalId: "player-115")`), or a self-custodial wallet they [link to your application](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md#step-1--linking-a-players-wallet).
+Each player gets an on-chain wallet that acts as their cold inventory — either a [managed wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md) you create for them (`CreateManagedWallet(externalId: "player-115")`), or a self-custodial wallet they link to your application.
 
 ### Hot inventory: your database
 
@@ -123,7 +123,7 @@ query ConfirmMove {
 
 See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full finalization-and-events workflow. (Real-time push events that remove the need to poll are [planned](/03-api-reference/03-websocket-events.md).)
 
-For a **self-custodial** cold wallet, your server can't sign the melt — instead, the player approves it in their own Enjin Wallet app via a [wallet request](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md).
+For a **self-custodial** cold wallet, your server can't sign the melt — instead, the player approves it in their own Enjin Wallet app via a wallet request.
 
 ### Move to cold — mint to the cold wallet
 

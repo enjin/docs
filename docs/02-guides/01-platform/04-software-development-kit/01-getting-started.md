@@ -1,39 +1,62 @@
 ---
 title: "Getting Started"
 slug: "getting-started"
-description: "Learn how to get started with the Enjin SDK, your first step toward building powerful blockchain-based applications and games."
+description: "Learn how to get started with the Enjin Platform C# SDK, your first step toward building powerful blockchain-based applications and games."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::warning SDKs are not yet available
-The C# and C++ SDK content on this page is out of date and **will not work against the current Enjin Platform API**. This page will be updated once new SDKs are published. Until then, see [How to Use GraphQL](/01-getting-started/05-using-enjin-api/01-how-to-use-graphql.md) and the [API Reference](/03-api-reference/03-api-reference.md) for the current API shapes.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
-To have the SDK connect with the Enjin Platform we must use its platform clients and event services. As a starter, we will look over how to set up these clients.
+To communicate with the Enjin Platform from C#, you use the SDK's `PlatformClient`. This page covers installing the SDK and setting up an authenticated client.
 
 :::warning Please always make sure to integrate authentication endpoints via secure backend servers.
-Direct integration of the SDKs into game clients, which can be decompiled, is strictly not recommended due to potential security risks and exposure of your keys.
+Direct integration of the SDK into game clients, which can be decompiled, is strictly not recommended due to potential security risks and exposure of your keys.
 :::
 
-## Platform Clients
+## Installing the SDK
 
-For communicating with the platform's GraphQL API, the SDK defines an `IPlatformClient` interface that works with GraphQL objects for sending requests and receiving responses from the platform.
+### C#
+
+The C# SDK is published to NuGet as a single package, [`Enjin.Platform.Sdk`](https://www.nuget.org/packages/Enjin.Platform.Sdk). It targets .NET Standard 2.1 (compatible with .NET 5.0+, Unity 2021.3 LTS+, and Godot 4.0+).
+
+Install it with the .NET CLI:
+
+```bash
+dotnet add package Enjin.Platform.Sdk
+```
+
+Or add it to your project file:
+
+```xml
+<PackageReference Include="Enjin.Platform.Sdk" Version="3.0.2" />
+```
+
+:::note
+In v3 the SDK is a single package. The old v2 sub-packages (`Enjin.Platform.Sdk.Beam`, `.FuelTanks`, `.Marketplace`) have been consolidated into `Enjin.Platform.Sdk`, and everything lives under the single `Enjin.Platform.Sdk` namespace.
+:::
+
+### C++
+
+An updated C++ SDK for the current Enjin Platform is on the way. Installation instructions will be added here once it's released — in the meantime, you can track the [C++ SDK repository](https://github.com/enjin/platform-cpp-sdk).
+
+## Platform Client
+
+For communicating with the platform's GraphQL API, the SDK defines an `IPlatformClient` interface. The built-in `PlatformClient` class implements it and handles building, sending, and deserializing requests for you.
 
 ### Creating the Client
 
-The built-in `PlatformClient` class, which implements `IPlatformClient`, utilizes a builder pattern for instantiating new instances. When using this builder, one of the essential inputs we must set is the base address of the platform we will be using.
+Constructing a `PlatformClient` with no arguments connects to the Enjin Platform using the SDK's built-in endpoint — you don't need to specify a URL. You choose which network to work against (Enjin Mainnet or the Canary testnet) per request via the `network` argument, covered in [GraphQL Requests](/02-guides/01-platform/04-software-development-kit/02-graphql-requests.md), so the same client serves both.
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
 using Enjin.Platform.Sdk;
 
-IPlatformClient client = PlatformClient
-    .Builder()
-    .SetBaseAddress("https://<platform-host>")
-    .Build();
+using var client = new PlatformClient();
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
@@ -51,9 +74,25 @@ unique_ptr<PlatformClient> client = PlatformClient::Builder()
   </TabItem>
 </Tabs>
 
+The constructor also accepts optional parameters — including a custom base-address `Uri` (only needed for a self-hosted platform instance), a user agent, an `ILogger` implementation, and an `HttpLogLevel` for logging HTTP traffic:
+
+<Tabs>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using Enjin.Platform.Sdk;
+
+ILogger logger = /* your ILogger implementation */;
+
+using var client = new PlatformClient(
+    logger: logger,
+    httpLogLevel: HttpLogLevel.Body);
+```
+  </TabItem>
+</Tabs>
+
 ### Authenticating the Client
 
-Once we have our client instance we may now authenticate it using an authentication token for our platform.
+Once you have a client instance, authenticate it with your platform authentication token:
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -70,7 +109,7 @@ client->Auth("<platform-authentication-token>");
 
 ### Disposing of the Client
 
-When we no longer need our platform client, we may dispose of it to free up any system resources it may be using with the appropriate method as shown:
+`PlatformClient` implements `IDisposable`. When you no longer need it, dispose of it to free up its underlying resources. The `using var` declaration above does this automatically when the client goes out of scope; you can also dispose of it explicitly:
 
 <Tabs>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -88,125 +127,10 @@ client.reset();
   </TabItem>
 </Tabs>
 
-## Event Services
+## Next Steps
 
-The platform broadcasts events that we may respond to or gather information from. For interfacing with an event broadcasting service the SDK offers the `IEventService` interface. Whether we decide to use a free, paid, self-hosted, or any such framework as the driver for broadcasting platform events, the `IEventService` interface defines what operations we may use for working with it.
+With an authenticated client you can start sending requests. See [GraphQL Requests](/02-guides/01-platform/04-software-development-kit/02-graphql-requests.md) to learn how to build queries and mutations, select the fields you want back, and handle responses.
 
-### Creating the Service
-
-The default framework used by the Enjin Platform Cloud and platforms using the Enjin Platform - Starter Template for broadcasting cloud events is [Pusher Channels](https://pusher.com/channels). To work with this framework the SDK has its own `PusherEventService` which implements `IEventService` and serves as an abstraction between us and Pusher for subscribing and listening for events and is a useful tool for those just getting started.
-
-Our builder for the `PusherEventService` typically expects two attributes to be set before building with a third optional attribute for encryption. The two essential attributes are:
-
-- The application key
-- The hostname of our platform
-
-:::info
-If our application key is not valid, then we may expect a 404 error when connecting our event service.
+:::tip Real-time events
+The Enjin Platform doesn't yet expose real-time WebSocket events. Until it does, the pattern for tracking a submitted transaction is to poll the `GetTransaction` query by its UUID until it reaches a final state — see the [Enjin Farmer implementation breakdown](/02-guides/01-platform/05-enjin-farmer-sample-game/03-implementation-breakdown.md) for a worked example.
 :::
-
-The other optional attribute we may set is the encryption status. This will determine which protocol our service will connect with (`wss` or `ws`). If we do not set this attribute, then our builder will default to the `WebSocket Secured` protocol on building.
-
-An example of building this event service can be seen below:
-
-<Tabs>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using Enjin.Platform.Sdk;
-
-IEventService service = PusherEventService
-    .Builder()
-    .SetKey("websocket")
-    .SetHost("<platform-host>")
-    .SetEncrypted(true) // Defaults to true if not set
-    .Build();
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cpp
-#include "EnjinPlatformSdk/PusherEventService.hpp"
-#include <memory>
-
-using namespace enjin::platform::sdk;
-using namespace std;
-
-unique_ptr<PusherEventService> service = PusherEventService::Builder()
-    .SetKey("websocket")
-    .SetHost("<platform-host>")
-    .SetEncrypted(true) // Defaults to true if not set
-    .Build();
-```
-  </TabItem>
-</Tabs>
-
-:::tip
-If you wish to change the key (websocket), you can do so in the platform config files.
-:::
-
-::: note
-For developers who opt to utilize Pusher's own Channels service for broadcasting events, then instead of `SetHost()` we may use the builder's `SetCluster()` method to connect our event service to the appropriate Pusher cluster.
-:::
-
-### Managing the Connection
-
-Before we can use our event service, we must connect it to the designated server host through its ConnectAsync method as shown below:
-
-<Tabs>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using System.Threading.Tasks;
-
-Task task = service.ConnectAsync();
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cpp
-#include <future>
-
-using namespace std;
-
-future<void> fut = service->ConnectAsync();
-```
-  </TabItem>
-</Tabs>
-
-To disconnect the service from the server, we make a call to its DisconnectAsync method.
-
-<Tabs>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-using System.Threading.Tasks;
-
-Task task = service.DisconnectAsync();
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cpp
-#include <future>
-
-using namespace std;
-
-future<void> fut = service->DisconnectAsync();
-```
-  </TabItem>
-</Tabs>
-
-## Disposing of the Service
-
-When we no longer need our event service, we may dispose of it to free up any system resources it may be using with the appropriate method as shown:
-
-<Tabs>
-  <TabItem value="csharp-sdk" label="c# SDK">
-```csharp
-service.Dispose();
-```
-  </TabItem>
-  <TabItem value="cplusplus-sdk" label="C++ SDK">
-```cpp
-// We may reset the pointer or allow the class destructor to handle
-// this when our event service goes out-of-scope.
-
-service.reset();
-```
-  </TabItem>
-</Tabs>

@@ -53,7 +53,7 @@ You are also welcome to design your own 3D or 2D models to better suit your game
 
 To add utility to Multiverse Items, your game will need to:
 
-1. [Link player wallets to your game](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/01-sending-wallet-requests.md).
+1. Link player wallets to your game.
 2. [Read the inventory from player wallets](/02-guides/01-platform/02-managing-users/02-reading-user-wallets.md).
 3. Validate ownership of the [Multiverse Items](#the-multiverse-collection).
 4. Provide an in-game benefit for each Multiverse Item.

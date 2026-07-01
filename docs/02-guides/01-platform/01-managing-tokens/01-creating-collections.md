@@ -50,8 +50,8 @@ Once you've created a collection you're ready to start [creating tokens](/02-gui
 
 Every on-chain action goes through the single `CreateTransaction` mutation. The action itself is selected by which field you set on the `transaction` input — for collections, that's `createCollection`.
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 <Tabs>
@@ -84,32 +84,30 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
 using Enjin.Platform.Sdk;
 
-// Setup the mutation
-var createCollection = new CreateCollection()
-    .SetMintPolicy(new MintPolicy().SetForceCollapsingSupply(false)); //Set to true to enforce collapsing supply mint policy
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation, selecting createCollection as the action
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateCollection = new CreateCollectionInput
+            {
+                ForceCollapsingSupply = false, // set to true to enforce collapsing supply
+            },
+        });
 
-createCollection.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendCreateCollection(createCollection);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the mutation; poll GetTransaction by uuid to track its on-chain state
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">

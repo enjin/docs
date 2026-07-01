@@ -97,8 +97,8 @@ The Platform accepts infusion values in the **base unit** (integers), not decima
   - **Example:** To infuse a token with **5 ENJ**, input `5000000000000000000`.
 :::
 
-:::warning SDKs are not yet available
-The C# and C++ SDK examples below are out of date and **will not work against the current Enjin Platform API**. This section will be updated once new SDKs are published. Until then, use the GraphQL, cURL, Javascript, Node.js, or Python examples.
+:::info C++ SDK coming soon
+The C++ examples on this page target an older version of the Enjin Platform and won't work against the current API. An updated C++ SDK is on the way — for now, use the C# SDK or the GraphQL examples.
 :::
 
 <Tabs>
@@ -133,34 +133,33 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
 ```csharp
-using System.Text.Json;
+using System;
+using System.Numerics;
 using Enjin.Platform.Sdk;
 
-// Set up the mutation
-var infuse = new Infuse()
-    .SetCollectionId(3298) // Specify the collection ID.
-    .SetTokenId(new EncodableTokenIdInput().SetInteger(1)) // Specify the token ID.
-    .SetAmount(5000000000000000000); // Specify the amount of ENJ to infuse.
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-// Define and assign the return data fragment to the mutation
-var transactionFragment = new TransactionFragment()
-    .WithId()
-    .WithMethod()
-    .WithState();
+// Build the CreateTransaction mutation (one action set on TransactionInput)
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Enjin, // or Network.Canary for testnet — match the GraphQL tab
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            InfuseToken = new InfuseTokenInput
+            {
+                CollectionId = 3298,
+                TokenId = 1,
+                Amount = BigInteger.Parse("5000000000000000000"), // 5 ENJ in base units
+            },
+        });
 
-infuse.Fragment(transactionFragment);
-
-// Create and auth a client to send the request to the platform
-var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
-    .Build();
-client.Auth("Your_Platform_Token_Here");
-
-// Send the request and write the output to the console.
-// Only the fields that were requested in the fragment will be filled in,
-// other fields which weren't requested in the fragment will be set to null.
-var response = await client.SendInfuse(infuse);
-Console.WriteLine(JsonSerializer.Serialize(response.Result.Data));
+// Send the mutation; poll GetTransaction by uuid to track its on-chain state
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
 ```
   </TabItem>
   <TabItem value="cplusplus-sdk" label="C++ SDK">
