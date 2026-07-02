@@ -1,18 +1,31 @@
 ---
-title: "Enjin Farmer: Implementation Breakdown"
-sidebar_label: "Implementation Breakdown"
-slug: "implementation-breakdown"
-description: "Dive deep into the code and architecture of the Enjin Farmer sample game. This technical breakdown explains the implementation flow, from the Unity client to the .NET game server. Understand the key Enjin Platform C# SDK calls used to mint, transfer, and manage NFTs in your game."
+title: "Enjin Farmer: Overview & Server Setup"
+sidebar_label: "Overview & Server Setup"
+slug: "overview"
+description: "Overview of the Enjin Farmer sample game — a hands-on Enjin NFT integration available for both Unity and Godot — plus full setup for the shared .NET game server, Enjin Platform, and Wallet Daemon."
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
 
-The **Enjin Farmer** sample project demonstrates a basic Enjin Platform integration within a Unity game. It's built with a client-server architecture to ensure security and scalability.
+Welcome! The **Enjin Farmer** is a sample farming game that shows how to integrate Enjin's NFT technology into a real game. You plant seeds, harvest crops, and collect resources — some of which are minted as NFTs directly to your in-game wallet. You can then view those NFTs in your inventory, <GlossaryTerm id="melt" /> them, or transfer them to an external wallet.
 
-The project consists of two main components:
+The sample comes in **two flavors that share the same backend**:
 
-  * **🎮 Unity Game (Client):** The front-end game that players interact with. It handles gameplay, visuals, and user input, communicating with the game server to perform blockchain actions.
-  * **🖥️ Game Server (Backend):** A .NET application that manages all Enjin Platform logic using the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It securely handles wallet creation, token minting, and other on-chain operations on behalf of the players.
+- 🟦 **[Unity client](/02-guides/01-platform/05-enjin-farmer-sample-game/02-unity.md)** — built with Unity.
+- 🟧 **[Godot client](/02-guides/01-platform/05-enjin-farmer-sample-game/03-godot.md)** — built with Godot.
+
+Both talk to the **same .NET game server**, so this page covers everything common to both: the architecture, prerequisites, and how to stand up the server, Enjin Platform, and Wallet Daemon. Once the server is running, head to the page for your engine to set up and run the client.
+
+### System Architecture
+
+The project consists of four main components that work together:
+
+  - **Game Client ([Unity](https://github.com/enjin/platform-sample-game-client-unity) or [Godot](https://github.com/enjin/platform-sample-game-client-godot)):** The game itself, where you play and interact with items.
+  - **[Game Server (.NET)](https://github.com/enjin/platform-sample-game-server):** A backend API, built on the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk), that the game client communicates with to handle all NFT-related actions like minting and transferring.
+  - **<GlossaryTerm id="enjin_platform" />:** The cloud-based service that provides the core NFT infrastructure.
+  - **Wallet Daemon:** A secure application that manages a wallet on behalf of the game to automatically sign and approve transactions.
+
+-----
 
 ### 💡 Important Considerations
 
@@ -25,9 +38,104 @@ Before you begin, please keep the following in mind:
 
 -----
 
-## 🖥️ Game Server
+## Prerequisites
 
-The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the Unity client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
+Before you begin, make sure you have the following. These are the requirements for the **shared server**; each engine page lists the extra tooling its client needs (Unity Hub, or the Godot editor).
+
+  - ✅ The **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** for running the game server.
+  - ✅ **Git** for cloning the repositories.
+  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
+  - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI).
+
+-----
+
+## Step 1: Download the Server & Wallet Daemon
+
+1.  **Clone the Game Server:** Open a terminal and run:
+
+    ```bash
+    git clone https://github.com/enjin/platform-sample-game-server.git
+    ```
+
+2.  **Download the Wallet Daemon:** Download the prebuilt daemon for your operating system from [https://enj.in/daemon](https://enj.in/daemon) and extract it into a dedicated directory.
+
+:::note
+You'll clone your engine's **game client** (Unity or Godot) on its own setup page, after the server is running.
+:::
+
+-----
+
+## Step 2: Configure Enjin Services
+
+Next, you'll set up your Enjin Platform account and the Wallet Daemon.
+
+### Enjin Platform
+
+1. Log in to your [Enjin Platform](https://platform.beta.enjin.io/) account.
+2. Head over to your [account settings page](https://platform.beta.enjin.io/settings).
+3. Navigate to the **Daemon Wallet** section and create a new API Token.
+4. Copy the **API Token**; you will need this in the next step.
+
+### Wallet Daemon
+
+The Wallet Daemon is the signer that approves your game server's transactions. It runs from the command line and is configured with a `.env` file.
+
+1. In the daemon directory you extracted, copy the `.env.example` file to `.env`.
+2. Open `.env` and set the two required values:
+    - `PLATFORM_KEY`: The **API Token** you just copied from the Enjin Platform.
+    - `KEY_PASS`: A unique, high-entropy password used to encrypt the wallet seed. Store it somewhere safe — you'll need it every time the daemon starts.
+3. Start the daemon — `./wallet-daemon` (or `.\wallet-daemon.exe` on Windows). On first run it generates a new wallet, writes the encrypted seed to `wallet.seed`, and prints an SS58 address for each network.
+4. From the printed addresses, **copy the Canary Matrixchain address** — that's the network this sample uses. You'll need it in the next step.
+
+:::tip
+For a detailed guide — including Docker, AWS, importing an existing seed, and backup guidance — see the [Wallet Daemon documentation](/01-getting-started/06-using-wallet-daemon.md).
+:::
+
+-----
+
+## Step 3: Configure and Run the Game Server
+
+Now, let's set up the backend server that powers the game's NFT features.
+
+:::warning Before you run: .NET SDK + internet
+The server targets .NET 9, so install the **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** — it provides both the build tools and the .NET 9 runtime the server runs on. After installing, open a **new** terminal and confirm with `dotnet --list-sdks` (you should see a `9.x` entry).
+
+If you only have a newer SDK such as .NET 10, the build will succeed but `dotnet run` fails with `You must install or update .NET … version '9.0.0'`, because the .NET 9 **runtime** is missing. Either install the .NET 9 SDK (simplest), or run on the newer runtime with `dotnet run --roll-forward Major`.
+
+The first `dotnet run` restores the server's dependencies — including the [Enjin Platform C# SDK](https://www.nuget.org/packages/Enjin.Platform.Sdk) — from NuGet, so you need internet access. If restore fails with `NU1100: Unable to resolve …`, your machine has no usable NuGet source. Run `dotnet nuget list source`: if it says `No sources found` (or `nuget.org` is `[Disabled]`), add it with:
+
+```bash
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+```
+:::
+
+1. Navigate into the game server directory you cloned: `cd platform-sample-game-server`.
+2. Copy the `appsettings.Sample.json` file and rename the copy to `appsettings.Local.json` (this file is gitignored, so your secrets stay out of version control).
+3. Open `appsettings.Local.json` and fill in the following values:
+    - `Jwt.Secret`: A long, random string (32+ characters). This is used for authenticating players.
+    - `Enjin.ApiToken`: Paste the **API Token** from your Enjin Platform account.
+    - `Enjin.DaemonWalletAddress`: Paste the daemon's **Canary Matrixchain** address you copied in the previous step.
+
+   The remaining settings have sensible defaults in `appsettings.json` (for example, `Server.Port` defaults to `3000`), so you can leave them as-is for testing.
+4. Launch the server for the first time by running `dotnet run`.
+
+The server will now connect to the Enjin Platform, create a new NFT collection for your game (or reuse an existing one), and create the NFT tokens for the in-game resources. This can take a minute or two on first run while it waits for the on-chain transactions to finalize.
+
+:::info **Important**
+The server stores the **Collection ID** it bootstraps in a `state.json` file and reuses it on every restart, so you no longer need to copy it by hand — you'll stamp it onto the game client automatically when you set up your engine's client. When you see `Now listening on: http://[::]:3000` (and `Application started`) in the logs, the server is ready.
+:::
+
+:::note Windows firewall prompt
+On Windows, the first time the server starts listening you may get a prompt to allow network access — click **Allow**. You don't need to restart the server afterwards; it keeps running and works right away.
+:::
+
+Keep the server and the Wallet Daemon running in the background.
+
+-----
+
+## Server Implementation Breakdown
+
+The game server is a .NET 9 minimal-API application that talks to the Enjin Platform through the [Enjin Platform C# SDK](https://github.com/enjin/platform-csharp-sdk). It serves as the secure bridge between the game client and the platform — it holds the Enjin Platform API token, which the game client never sees. The main entry point is the [`Program.cs` file](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Program.cs), where the host, dependency injection, JWT authentication, and on-chain bootstrap are wired up.
 
 ### Configuration
 
@@ -39,9 +147,9 @@ The server is configured through `appsettings.json` (defaults) plus an `appsetti
 | `Enjin.ApiToken` | Your API token obtained from the Enjin Platform. |
 | `Enjin.DaemonWalletAddress` | The SS58 address of your <GlossaryTerm id="wallet_daemon" />. This wallet owns the collection, mints the resource tokens, and funds new player wallets. |
 | `Enjin.Network` / `Enjin.Chain` | The target network and chain. Defaults to `Canary` / `Matrix`. |
-| `Server.Port` | The port the server listens on. Defaults to `3000` (the Unity client expects `3000`). |
+| `Server.Port` | The port the server listens on. Defaults to `3000` (both the Unity and Godot clients default to `3000`). |
 | `Enjin.CollectionName` | Used to find or reuse an existing collection so a new one isn't created on every run. |
-| `Enjin.ResourceTokens` | The resource tokens to create (Gold Coin, Gold Coin (Blue), Green Gem). The Unity client ships matching `EnjinItem` assets for token IDs `1`, `2`, and `3`. |
+| `Enjin.ResourceTokens` | The resource tokens to create (Gold Coin, Gold Coin (Blue), Green Gem). Both the Unity and Godot clients ship matching item assets for token IDs `1`, `2`, and `3`. |
 | `Enjin.Ss58Prefix` | The prefix used to encode wallet public keys into addresses. `9030` = Canary Matrixchain, `1110` = Enjin Mainnet Matrixchain. |
 | `Enjin.DripEnjEnabled` / `Enjin.DripEnjAmount` | Whether to auto-fund each new managed wallet, and how much (default `1` ENJ). |
 
@@ -149,53 +257,13 @@ The server exposes several endpoints to handle game actions. The `wallet` and `t
 
 #### Setup
 
-  * [`GET /api/setup/collection-id`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/SetupEndpoints.cs#L26): Returns the collection ID the server bootstrapped. This is called once by the Unity Editor's "Stamp Collection ID" menu (see [Setup Guide → Step 4](/02-guides/01-platform/05-enjin-farmer-sample-game/01-setup-guide.md#1-stamp-the-collection-id-onto-the-nft-items)) to write the ID onto the client's NFT item assets; the running game never calls it.
+  * [`GET /api/setup/collection-id`](https://github.com/enjin/platform-sample-game-server/blob/64949d25394526ef478b81c06a5d1e36375e455e/Endpoints/SetupEndpoints.cs#L26): Returns the collection ID the server bootstrapped. This is called once by the engine client's "Stamp Collection ID" tool to write the ID onto the client's NFT item assets; the running game never calls it.
 
 -----
 
-## 🎮 Unity Game
+## Next: set up your client
 
-The Unity game is the client-facing part of the project. It focuses on gameplay and user experience while offloading all sensitive blockchain operations to the game server.
+The server, Enjin Platform, and Wallet Daemon are now configured. Keep the **server** and the **Wallet Daemon** running, then continue to the page for your engine:
 
-### Core Components
-
-The Enjin integration is managed by a few key scripts and a central prefab:
-
-  * **`EnjinManager.prefab`**: The heart of the integration. This prefab is added to the `Farm_Outdoor` scene and configures the **Host URL** (e.g., `http://localhost:3000`) in the Inspector to connect to your game server.
-  * **[`EnjinManager.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs)**: A singleton controller that manages the player's session (auth token, wallet data) and exposes high-level methods like `MintToken()` for other game scripts to use.
-  * **[`EnjinApiService.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs)**: Handles all REST API communication with the game server using Unity's `UnityWebRequest`.
-  * **[`EnjinItem.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Data/EnjinItem.cs)**: A `ScriptableObject` that represents the data of a blockchain item, such as its display name and its corresponding on-chain token ID.
-  * **[`StampCollectionIdMenu.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Editor/StampCollectionIdMenu.cs)**: An Editor utility that adds the **Enjin → Stamp Collection ID onto EnjinItem Assets** menu. It calls the server's `/api/setup/collection-id` endpoint and writes the returned ID onto every `EnjinItem` asset, so you don't have to paste it by hand.
-  * **UI Scripts** ([`BackpackUI.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackUI.cs), [`BackpackItemController.cs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackItemController.cs)): Scripts that manage the UI for viewing and interacting with the player's NFT inventory.
-
-### Initial Setup & Player Authentication
-
-1.  **Health Check**: On launch, the client [calls the `/api/auth/health-check` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L43) to ensure the server is available.
-2.  **Login/Register**: From the login screen, the player [clicks "Login"](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/HappyHarvest/Common/UI/SettingMenu/Script/SettingMenu.cs#L129), which calls the [`EnjinManager.Instance.RegisterAndLogin()` method](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L174).
-3.  **API Request**: This triggers `EnjinApiService` to [send a POST request to the `/api/auth/register` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L72).
-4.  **Store Auth Token**: The server responds with a JWT authentication token. The client [saves this token locally using `PlayerPrefs`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L208) and [loads it on subsequent launches](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L219) for a seamless experience.
-
-### In-Game NFT Interactions
-
-All blockchain actions are initiated by the client but securely executed by the server.
-
-#### Harvesting and Minting Tokens
-
-When a player [harvests a crop with the Hoe tool](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/HappyHarvest/Scripts/Items/Hoe.cs#L18), they have a chance to find a resource token.
-
-1.  An `EnjinToken` GameObject [appears on the harvested tile](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L262).
-2.  When the player collects this GameObject, its [`InteractedWith()` method](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Gameplay/EnjinToken.cs#L21) is triggered.
-3.  This calls [`EnjinItem.Collect()`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Data/EnjinItem.cs#L37), which in turn calls `EnjinManager.Instance.MintToken()`.
-4.  `EnjinManager` then uses `EnjinApiService` to [send a request to the `/api/token/mint` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L97).
-
-#### Viewing the Wallet (Backpack UI)
-
-1.  Clicking the backpack icon opens the inventory screen, managed by `BackpackUI.cs`.
-2.  The UI [calls `EnjinManager.Instance.GetManagedWalletTokens()`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackUI.cs#L117), which [sends a request to the `/api/wallet/get-tokens` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L205).
-3.  The `BackpackUI` then [populates the view with the returned tokens](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackUI.cs#L80).
-4.  The `BackpackUI` also [subscribes to the `EnjinManager.Instance.OnWalletUpdated` event](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackUI.cs#L46) to automatically refresh the inventory after a token is [minted](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L116), [melted](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L132), or [transferred](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L148).
-
-#### Melting and Transferring Tokens
-
-  * **Melting**: The player [clicks "Melt" in the backpack](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackItemController.cs#L53). This flows through [`EnjinManager.MeltToken()`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L125) and sends a request to the [`/api/token/melt` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L126).
-  * **Transferring**: The player [clicks "Send"](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/UI/BackpackItemController.cs#L75), which flows through [`EnjinManager.TransferToken()`](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/Core/EnjinManager.cs#L141) and sends a request to the [`/api/token/transfer` endpoint](https://github.com/enjin/platform-sample-game-client-unity/blob/9101b08a7f7ea2a4685c315cfb55864a6be43a25/Assets/Enjin%20Integration/Scripts/API/EnjinApiService.cs#L155).
+  - 🟦 **[Set up the Unity client →](/02-guides/01-platform/05-enjin-farmer-sample-game/02-unity.md)**
+  - 🟧 **[Set up the Godot client →](/02-guides/01-platform/05-enjin-farmer-sample-game/03-godot.md)**

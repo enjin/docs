@@ -132,5 +132,5 @@ client.reset();
 With an authenticated client you can start sending requests. See [GraphQL Requests](/02-guides/01-platform/04-software-development-kit/02-graphql-requests.md) to learn how to build queries and mutations, select the fields you want back, and handle responses.
 
 :::tip Real-time events
-The Enjin Platform doesn't yet expose real-time WebSocket events. Until it does, the pattern for tracking a submitted transaction is to poll the `GetTransaction` query by its UUID until it reaches a final state — see the [Enjin Farmer implementation breakdown](/02-guides/01-platform/05-enjin-farmer-sample-game/03-implementation-breakdown.md) for a worked example.
+The Enjin Platform doesn't yet expose real-time WebSocket events. Until it does, the pattern for tracking a submitted transaction is to poll the `GetTransaction` query by its UUID until it reaches a final state — see the [Enjin Farmer server implementation breakdown](/02-guides/01-platform/05-enjin-farmer-sample-game/01-overview.md#server-implementation-breakdown) for a worked example.
 :::
