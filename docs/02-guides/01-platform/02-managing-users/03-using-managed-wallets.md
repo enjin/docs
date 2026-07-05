@@ -17,7 +17,7 @@ Here's how the typical flow works:
 1. **[Managed Wallet Creation](#creating-a-managed-wallet):** When a new user starts using your application, you initiate the creation of a managed wallet for them, and assign the user's internal ID from your database to the newly created managed wallet. This ensures a consistent link between the user and their wallet.
 2. **[Asset Management](#minting-tokens-to-a-managed-wallet):** As the user earns or deposits digital assets within your application, these assets are automatically stored in their managed wallet.
 3. **[In-App Transactions](#signing-transactions):** Any actions the user performs within your application that involve their wallet (e.g., spending tokens, participating in in-game economies) are executed directly on their managed wallet.
-4. **[User Withdrawal (Optional)](#transferring-tokens-from-managed-wallets):** If a user decides they want to take full control of their assets, you can facilitate the transfer of all funds from their managed wallet to their own self-custodial wallet.
+4. **[Graduating to Self-Custody (Optional)](#sweeping-a-managed-wallet):** If a user decides they want to take full control of their assets, a single [sweep](#sweeping-a-managed-wallet) moves every token and all their ENJ from their managed wallet to their own self-custodial wallet.
 
 This process ensures that users can interact with blockchain assets seamlessly within your application without needing to understand the underlying complexities of blockchain technology or operating his own crypto wallet.
 
@@ -904,6 +904,109 @@ print(response.json())
 Make sure `signerExternalId` (or `signerAccount`) is set to the managed wallet that holds the token being transferred.
 
 Whether you're minting into a managed wallet or transferring out of one, the on-chain transaction emits the usual events on `FINALIZED` (e.g. `MultiTokens.Minted`, `MultiTokens.Transferred`) — with the managed wallet's address as the signer. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read them.
+
+## Sweeping a Managed Wallet {#sweeping-a-managed-wallet}
+
+Managed wallets make onboarding effortless: a player can start earning tokens and ENJ from their very first session, without ever setting up a wallet or learning anything about crypto. When that player later decides they're ready to take full ownership of what they've earned and move to a self-custodial wallet, you don't have to shuttle each asset out by hand.
+
+The `SweepManagedWallet` mutation empties a managed wallet in a single call, sending **all** of its transferable tokens *and* its ENJ to a recipient address. That turns "graduating" to self-custody into a one-click step for the player.
+
+Set the managed wallet as the signer (with `signerExternalId`, or `signerAccount` for its public key) and the player's self-custodial wallet as the `recipient`:
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation SweepManagedWallet {
+  SweepManagedWallet(
+    network: CANARY
+    chain: MATRIX
+    signerExternalId: "docs-example-player" #The managed wallet to empty
+    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+  )
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation SweepManagedWallet {\r\n  SweepManagedWallet(\r\n    network: CANARY\r\n    chain: MATRIX\r\n    signerExternalId: \"docs-example-player\"\r\n    recipient: \"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ\"\r\n  )\r\n}","variables":{}}'
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation SweepManagedWallet {
+        SweepManagedWallet(
+          network: CANARY
+          chain: MATRIX
+          signerExternalId: "docs-example-player" #The managed wallet to empty
+          recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+        )
+      }
+    `
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
+
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation SweepManagedWallet {
+      SweepManagedWallet(
+        network: CANARY
+        chain: MATRIX
+        signerExternalId: "docs-example-player" #The managed wallet to empty
+        recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+      )
+    }
+  `
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
+
+query = '''
+mutation SweepManagedWallet {
+  SweepManagedWallet(
+    network: CANARY
+    chain: MATRIX
+    signerExternalId: "docs-example-player"
+    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+  )
+}
+'''
+
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
+
+A successful call returns `true`.
+
+:::note Runs in the background
+The sweep is processed asynchronously and is **rate-limited to once per hour, per wallet**. The returned `true` confirms the sweep was accepted — not that every asset has arrived yet. Watch for the usual on-chain events (`MultiTokens.Transferred`, `Balances.Transfer`) to know when each transfer finalizes. See [Working with Events](/05-enjin-platform/03-working-with-events.md).
+:::
 
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.

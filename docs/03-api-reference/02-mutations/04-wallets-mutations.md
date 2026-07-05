@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 `https://platform.beta.enjin.io/graphql`
 :::
 
-The Enjin Platform has one wallet-related mutation: `CreateManagedWallet`. Managed wallets are keypairs derived from the Wallet Daemon's seed plus an `externalId` you control — they let your application create signing accounts on demand without managing private keys.
+The Enjin Platform has two wallet-related mutations: `CreateManagedWallet` and `SweepManagedWallet`. Managed wallets are keypairs derived from the Wallet Daemon's seed plus an `externalId` you control — they let your application create signing accounts on demand without managing private keys.
 
 For end-user wallets connected via WalletConnect, there's no mutation here — the user's wallet already exists on chain. To submit transactions signed by an end-user wallet, see `CreateTransaction(..., signerAddress: <user-address>)` followed by `SignTransaction(uuid:, signedExtrinsic:)` on the [Transactions](/03-api-reference/02-mutations/01-transaction-mutations.md) page.
 
@@ -36,6 +36,36 @@ mutation CreateManagedWallet {
 {
   "data": {
     "CreateManagedWallet": true
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## SweepManagedWallet
+
+Transfers **all** transferable tokens and ENJ out of a managed wallet to a single `recipient` in one call — the simplest way to migrate a player to a self-custodial wallet. Identify the wallet to empty with `signerExternalId` (or `signerAccount` for its public key); the work runs asynchronously and is rate-limited to once per hour per wallet. Returns `true` once the sweep is accepted.
+
+See [Sweeping a Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#sweeping-a-managed-wallet) for the full walkthrough.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation SweepManagedWallet {
+  SweepManagedWallet(
+    network: ENJIN
+    chain: MATRIX
+    signerExternalId: "e73f9f38-6832-4822-922b-b9225245ba24"
+    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+  )
+}
+```
+  </TabItem>
+  <TabItem value="response" label="Response">
+```json
+{
+  "data": {
+    "SweepManagedWallet": true
   }
 }
 ```
