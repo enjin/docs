@@ -112,12 +112,12 @@ To do this, set the `hidden` attribute to `"true"` on-chain.
 <Tabs>
   <TabItem value="token" label="Token">
 ```graphql
-mutation HideToken {
+mutation HideToken($collectionId: BigInt!, $tokenId: BigInt!) {
   CreateTransaction(
     transaction: {
       setTokenAttribute: {
-        collectionId: 36105
-        tokenId: 115
+        collectionId: $collectionId
+        tokenId: $tokenId
         key: "hidden"
         value: "true"
       }
