@@ -3,6 +3,10 @@ title: "Metadata Example"
 slug: "metadata-example"
 description: "View detailed examples of how to implement metadata within your blockchain tokens, following Enjin’s guidelines for token structure and data representation."
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 In this page we will create JSON formatted metadata for a collection and a token, following the [Metadata Standard](/02-guides/01-platform/03-advanced-mechanics/02-metadata-standard/02-metadata-standard.md).
 
 You may set the collection/token `uri` on-chain attribute to a resource containing the collection's/token's metadata in JSON format, or set each individual metadata with an on-chain attribute, using the metadata type as the attribute key.
@@ -98,6 +102,104 @@ Ensure you use the correct casing when defining attributes to avoid errors.
 - `external_url`: A link to the token's website or a website with information on the token.
 - `keywords`: A list of keywords relevant to this token. Used to help find this token in search queries.
   - In the NFT.io Marketplace, keywords also act as tags.
+
+## Hiding a Token or Collection
+
+Sometimes it becomes necessary to hide a token or collection from public view — for example, when preparing a token that should only go live at a later date. A hidden token or collection is left out of public lists, search results, and profile pages.
+
+To do this, set the `hidden` attribute to `"true"` on-chain.
+
+<Tabs>
+  <TabItem value="token" label="Token">
+```graphql
+mutation HideToken($collectionId: BigInt!, $tokenId: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      setTokenAttribute: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        key: "hidden"
+        value: "true"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+  <TabItem value="collection" label="Collection">
+```graphql
+mutation HideCollection($id: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      setCollectionAttribute: {
+        collectionId: $id
+        key: "hidden"
+        value: "true"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+Each client that consumes the token or collection is responsible for respecting this attribute. Some clients may not honour the request to hide the token or collection.
+
+:::note
+This attribute must be set on-chain. It will not function if set as part of off-chain metadata.
+:::
+
+## Unhiding a Token or Collection
+
+To make a hidden token or collection public again, simply remove the `hidden` attribute. (You could instead set its value back to `"false"`, but deleting the attribute is the cleanest approach.)
+
+<Tabs>
+  <TabItem value="token" label="Token">
+```graphql
+mutation UnhideToken($collectionId: BigInt!, $tokenId: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      removeTokenAttribute: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        key: "hidden"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+  <TabItem value="collection" label="Collection">
+```graphql
+mutation UnhideCollection($id: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      removeCollectionAttribute: {
+        id: $id
+        key: "hidden"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
 
 :::info Need more information?
 For a comprehensive document on the metadata structure, please head over to the [Universal Off-Chain Token Metadata Standard](https://github.com/enjin/universal-metadata-standard/blob/uotm-standard-wip/README.md) page.
