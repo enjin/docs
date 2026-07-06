@@ -25,7 +25,7 @@ A tank decides which transactions it pays for using a set of rules. When a trans
 :::
 
 :::tip Prefer a UI?
-Fuel tanks can also be created and configured visually in the [Enjin Blockchain Console](https://console.enjin.io/) (**Network → Fuel tanks**). This page uses the Platform API so the setup is scriptable and reproducible.
+Fuel tanks can also be created and configured visually in the [Enjin Platform UI](https://platform.beta.enjin.io/fuel-tanks). This page uses the Platform API so the setup is scriptable and reproducible.
 :::
 
 ## Cover transaction fees for your players {#recommended-setup}
@@ -270,7 +270,7 @@ The Require Signature rule must point at the address your Platform [Wallet Daemo
 
 ### 2. Fund the tank {#fund-tank}
 
-A tank can only pay fees while it holds ENJ. [Send ENJ](/02-guides/01-platform/01-managing-tokens/05-transferring-tokens.md#transferring-enj-token) to the tank's address (returned by the create call, and shown in the Fuel tanks list in the Console). On Canary, top it up with cENJ from the [faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet).
+A tank can only pay fees while it holds ENJ. [Send ENJ](/02-guides/01-platform/01-managing-tokens/05-transferring-tokens.md#transferring-enj-token) to the tank's address (returned by the create call, and shown on the [Fuel Tanks page](https://platform.beta.enjin.io/fuel-tanks) in the Platform UI). On Canary, top it up with cENJ from the [faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet).
 
 ### 3. Dispatch transactions through the tank {#dispatch-through-tank}
 
