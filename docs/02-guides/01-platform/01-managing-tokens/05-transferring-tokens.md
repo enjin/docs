@@ -685,5 +685,5 @@ Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` eve
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
-To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction` / `CreateBatchTransaction`.
+To sign with a managed wallet instead of the Wallet Daemon, set `signerAddress` on `CreateTransaction` / `CreateBatchTransaction`.
 :::

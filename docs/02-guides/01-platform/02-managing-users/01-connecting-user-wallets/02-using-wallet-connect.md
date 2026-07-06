@@ -170,11 +170,11 @@ Every on-chain action is created through the `CreateTransaction` mutation — th
       'Authorization': 'Bearer my-auth-key',
     },
     body: JSON.stringify({
-      query: `mutation CreateTransaction($signerAccount: String!) {
+      query: `mutation CreateTransaction($signerAddress: String!) {
         CreateTransaction(
             network: CANARY,
             chain: MATRIX,
-            signerAccount: $signerAccount,
+            signerAddress: $signerAddress,
             transaction: { createCollection: {} }
         ) {
             uuid
@@ -182,13 +182,13 @@ Every on-chain action is created through the `CreateTransaction` mutation — th
         }
     }`,
       variables: {
-        signerAccount: req.query.address
+        signerAddress: req.query.address
       }
     })
   });
 ```
 
-We are also passing the `signerAccount`. This is necessary so your daemon doesn't sign the transaction.
+We are also passing the `signerAddress`. This is necessary so your daemon doesn't sign the transaction.
 In the mutation response, we're asking for the `uuid` and `encodedData`, which we will use in the next step.
 
 ### Step #2: Sending the Transaction Request to user's wallet
