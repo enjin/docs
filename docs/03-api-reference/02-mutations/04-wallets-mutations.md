@@ -51,13 +51,24 @@ See [Sweeping a Managed Wallet](/02-guides/01-platform/02-managing-users/03-usin
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation SweepManagedWallet {
+mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
   SweepManagedWallet(
-    network: ENJIN
-    chain: MATRIX
-    signerExternalId: "e73f9f38-6832-4822-922b-b9225245ba24"
-    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+    network: $network
+    chain: $chain
+    signerExternalId: $signerExternalId
+    recipient: $recipient
   )
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "ENJIN",
+  "chain": "MATRIX",
+  "signerExternalId": "e73f9f38-6832-4822-922b-b9225245ba24",
+  "recipient": "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
 }
 ```
   </TabItem>

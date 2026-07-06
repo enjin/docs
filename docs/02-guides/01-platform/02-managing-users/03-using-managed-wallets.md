@@ -916,13 +916,24 @@ Set the managed wallet as the signer (with `signerExternalId`, or `signerAccount
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation SweepManagedWallet {
+mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
   SweepManagedWallet(
-    network: CANARY
-    chain: MATRIX
-    signerExternalId: "docs-example-player" #The managed wallet to empty
-    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+    network: $network
+    chain: $chain
+    signerExternalId: $signerExternalId
+    recipient: $recipient
   )
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "signerExternalId": "docs-example-player",
+  "recipient": "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
 }
 ```
   </TabItem>
@@ -931,7 +942,7 @@ mutation SweepManagedWallet {
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
--d '{"query":"mutation SweepManagedWallet {\r\n  SweepManagedWallet(\r\n    network: CANARY\r\n    chain: MATRIX\r\n    signerExternalId: \"docs-example-player\"\r\n    recipient: \"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ\"\r\n  )\r\n}","variables":{}}'
+-d '{"query":"mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {\r\n  SweepManagedWallet(network: $network, chain: $chain, signerExternalId: $signerExternalId, recipient: $recipient)\r\n}","variables":{"network":"CANARY","chain":"MATRIX","signerExternalId":"docs-example-player","recipient":"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"}}'
 ```
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -941,15 +952,21 @@ fetch('https://platform.beta.enjin.io/graphql', {
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
     query: `
-      mutation SweepManagedWallet {
+      mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
         SweepManagedWallet(
-          network: CANARY
-          chain: MATRIX
-          signerExternalId: "docs-example-player" #The managed wallet to empty
-          recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+          network: $network
+          chain: $chain
+          signerExternalId: $signerExternalId
+          recipient: $recipient
         )
       }
-    `
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      signerExternalId: "docs-example-player", // the managed wallet to empty
+      recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" // the player's self-custodial wallet
+    }
   }),
 })
 .then(response => response.json())
@@ -962,15 +979,21 @@ const axios = require('axios');
 
 axios.post('https://platform.beta.enjin.io/graphql', {
   query: `
-    mutation SweepManagedWallet {
+    mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
       SweepManagedWallet(
-        network: CANARY
-        chain: MATRIX
-        signerExternalId: "docs-example-player" #The managed wallet to empty
-        recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The player's self-custodial wallet
+        network: $network
+        chain: $chain
+        signerExternalId: $signerExternalId
+        recipient: $recipient
       )
     }
-  `
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    signerExternalId: "docs-example-player", // the managed wallet to empty
+    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" // the player's self-custodial wallet
+  }
 }, {
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
 })
@@ -983,18 +1006,25 @@ axios.post('https://platform.beta.enjin.io/graphql', {
 import requests
 
 query = '''
-mutation SweepManagedWallet {
+mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
   SweepManagedWallet(
-    network: CANARY
-    chain: MATRIX
-    signerExternalId: "docs-example-player"
-    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+    network: $network
+    chain: $chain
+    signerExternalId: $signerExternalId
+    recipient: $recipient
   )
 }
 '''
 
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'signerExternalId': 'docs-example-player',
+  'recipient': 'cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ'
+}
+
 response = requests.post('https://platform.beta.enjin.io/graphql',
-  json={'query': query},
+  json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
 print(response.json())
@@ -1003,6 +1033,13 @@ print(response.json())
 </Tabs>
 
 A successful call returns `true`.
+
+:::warning The wallet's fees must be covered
+Sweeping submits on-chain transfers signed by the managed wallet, so those transaction fees have to be paid somehow. Make sure **one** of the following holds, or the sweep will fail with no way to pay for gas:
+
+- The managed wallet holds enough **ENJ** to cover the sweep's fees, **or**
+- its fees are covered by a **fuel tank** that permits the managed wallet to dispatch — for example a [Require Signature tank pointed at your Wallet Daemon address](/02-guides/01-platform/02-managing-users/04-using-fuel-tanks.md#recommended-setup). Managed wallets are signed by the Wallet Daemon, so such a tank covers their transactions.
+:::
 
 :::note Runs in the background
 The sweep is processed asynchronously and is **rate-limited to once per hour, per wallet**. The returned `true` confirms the sweep was accepted — not that every asset has arrived yet. Watch for the usual on-chain events (`MultiTokens.Transferred`, `Balances.Transfer`) to know when each transfer finalizes. See [Working with Events](/05-enjin-platform/03-working-with-events.md).
