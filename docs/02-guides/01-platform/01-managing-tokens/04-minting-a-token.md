@@ -336,7 +336,7 @@ Once it reaches `FINALIZED`, a `MultiTokens.Minted` event is emitted for each re
 :::info Explore More Arguments
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
-If you want to create _and_ mint new tokens together, use `createTokens` instead of `mintTokens`. To sign with a managed wallet instead of the Wallet Daemon, set `signerAccount` on `CreateTransaction`.
+If you want to create _and_ mint new tokens together, use `createTokens` instead of `mintTokens`. To sign with a managed wallet instead of the Wallet Daemon, set `signerAddress` on `CreateTransaction`.
 :::
 
 :::tip You've minted a token!

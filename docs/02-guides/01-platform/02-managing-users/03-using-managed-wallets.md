@@ -649,7 +649,7 @@ By default, every transaction the Enjin Platform creates is signed by your [Wall
 Both `CreateTransaction` and `CreateBatchTransaction` accept two optional arguments for this:
 
 - **`signerExternalId`** — the managed wallet's `externalId`. This is the most direct option, as you don't need to look the wallet's public key up first.
-- **`signerAccount`** — the managed wallet's public key, as returned by [`GetManagedWallet`](#finding-a-managed-wallet).
+- **`signerAddress`** — the managed wallet's public key, as returned by [`GetManagedWallet`](#finding-a-managed-wallet).
 
 Set either one, and the platform signs that transaction with the corresponding managed wallet instead of the Wallet Daemon. Because these arguments live on `CreateTransaction` itself, **any** on-chain action — a transfer, a listing, an attribute change, anything you set on the `transaction` input — can be performed as a managed wallet.
 
@@ -901,7 +901,7 @@ print(response.json())
   </TabItem>
 </Tabs>
 
-Make sure `signerExternalId` (or `signerAccount`) is set to the managed wallet that holds the token being transferred.
+Make sure `signerExternalId` (or `signerAddress`) is set to the managed wallet that holds the token being transferred.
 
 Whether you're minting into a managed wallet or transferring out of one, the on-chain transaction emits the usual events on `FINALIZED` (e.g. `MultiTokens.Minted`, `MultiTokens.Transferred`) — with the managed wallet's address as the signer. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read them.
 
