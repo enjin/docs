@@ -132,11 +132,11 @@ mutation HideToken($collectionId: BigInt!, $tokenId: BigInt!) {
   </TabItem>
   <TabItem value="collection" label="Collection">
 ```graphql
-mutation HideCollection {
+mutation HideCollection($id: BigInt!) {
   CreateTransaction(
     transaction: {
       setCollectionAttribute: {
-        collectionId: 36105
+        collectionId: $id
         key: "hidden"
         value: "true"
       }
