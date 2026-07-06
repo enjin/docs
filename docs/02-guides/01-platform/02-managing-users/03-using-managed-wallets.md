@@ -911,7 +911,7 @@ Managed wallets make onboarding effortless: a player can start earning tokens an
 
 The `SweepManagedWallet` mutation empties a managed wallet in a single call, sending **all** of its transferable tokens *and* its ENJ to a recipient address. That turns "graduating" to self-custody into a one-click step for the player.
 
-Set the managed wallet as the signer (with `signerExternalId`, or `signerAccount` for its public key) and the player's self-custodial wallet as the `recipient`:
+Set the managed wallet as the signer (with `signerExternalId`, or `signerAddress` for its public key) and the player's self-custodial wallet as the `recipient`:
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

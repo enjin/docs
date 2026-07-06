@@ -44,7 +44,7 @@ mutation CreateManagedWallet {
 
 ## SweepManagedWallet
 
-Transfers **all** transferable tokens and ENJ out of a managed wallet to a single `recipient` in one call — the simplest way to migrate a player to a self-custodial wallet. Identify the wallet to empty with `signerExternalId` (or `signerAccount` for its public key); the work runs asynchronously and is rate-limited to once per hour per wallet. Returns `true` once the sweep is accepted.
+Transfers **all** transferable tokens and ENJ out of a managed wallet to a single `recipient` in one call — the simplest way to migrate a player to a self-custodial wallet. Identify the wallet to empty with `signerExternalId` (or `signerAddress` for its public key); the work runs asynchronously and is rate-limited to once per hour per wallet. Returns `true` once the sweep is accepted.
 
 See [Sweeping a Managed Wallet](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#sweeping-a-managed-wallet) for the full walkthrough.
 
