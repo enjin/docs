@@ -157,6 +157,50 @@ Each client that consumes the token or collection is responsible for respecting 
 This attribute must be set on-chain. It will not function if set as part of off-chain metadata.
 :::
 
+## Unhiding a Token or Collection
+
+To make a hidden token or collection public again, simply remove the `hidden` attribute. (You could instead set its value back to `"false"`, but deleting the attribute is the cleanest approach.)
+
+<Tabs>
+  <TabItem value="token" label="Token">
+```graphql
+mutation UnhideToken($collectionId: BigInt!, $tokenId: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      removeTokenAttribute: {
+        collectionId: $collectionId
+        tokenId: $tokenId
+        key: "hidden"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+  <TabItem value="collection" label="Collection">
+```graphql
+mutation UnhideCollection($id: BigInt!) {
+  CreateTransaction(
+    transaction: {
+      removeCollectionAttribute: {
+        id: $id
+        key: "hidden"
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
 :::info Need more information?
 For a comprehensive document on the metadata structure, please head over to the [Universal Off-Chain Token Metadata Standard](https://github.com/enjin/universal-metadata-standard/blob/uotm-standard-wip/README.md) page.
 :::
