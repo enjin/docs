@@ -143,6 +143,10 @@ On `CreateTransaction` / `CreateBatchTransaction`, the address of a Substrate pr
 
 On `CreateTransaction` / `CreateBatchTransaction`, the address of an existing fuel tank to dispatch the transaction through. The tank pays the transaction's fees rather than the signer.
 
+## fuelTankRuleSetId
+
+On `CreateTransaction` / `CreateBatchTransaction`, the ID of the tank rule set the dispatch is evaluated against when a `fuelTank` is set. Defaults to `0`. Set it to target a specific rule set on a tank that has more than one.
+
 ## signature
 
 A cryptographic signature produced by the holder of an account's private key. Used by:
