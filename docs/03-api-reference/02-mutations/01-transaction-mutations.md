@@ -74,7 +74,7 @@ Useful additional arguments:
 
 ## CreateBatchTransaction
 
-The batched form of `CreateTransaction`. Pass a list of `TransactionInput` items in `transactions:` and the platform submits them as a single batched extrinsic.
+The batched form of `CreateTransaction`. Pass a list of `TransactionInput` items in `transactions:` and the platform submits them as a single batched extrinsic. `batchMode` controls what happens if one of the calls fails.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -83,6 +83,7 @@ mutation CreateBatchTransaction {
   CreateBatchTransaction(
     network: ENJIN
     chain: MATRIX
+    batchMode: ALL_OR_NOTHING  # optional; this is the default
     transactions: [
       { transferToken: { recipient: "efAlice", collectionId: 12345, tokenId: 1, amount: 5 } }
       { transferToken: { recipient: "efBob",   collectionId: 12345, tokenId: 1, amount: 3 } }
@@ -111,7 +112,15 @@ mutation CreateBatchTransaction {
   </TabItem>
 </Tabs>
 
-`CreateBatchTransaction` accepts the same auxiliary arguments as `CreateTransaction` (`signerAddress`, `signerExternalId`, `idempotencyKey`, `proxyAddress`, `fuelTank`).
+`CreateBatchTransaction` accepts the same auxiliary arguments as `CreateTransaction` (`signerAddress`, `signerExternalId`, `idempotencyKey`, `proxyAddress`, `fuelTank`), plus:
+
+- `batchMode: BatchTransactionModeEnum` — how the batch behaves when one of its calls fails. Defaults to `ALL_OR_NOTHING`.
+  - `ALL_OR_NOTHING` (default) — atomic; any failure reverts the entire batch (`Utility.batch_all`).
+  - `HALT_ON_ERROR` — runs in order and stops at the first failure, keeping the calls that already executed (`Utility.batch`).
+  - `CONTINUE_ON_ERROR` — runs every call and skips the ones that fail (`Utility.force_batch`).
+- `fuelTankRuleSetId: Int` — when dispatching through a `fuelTank`, the rule set to apply. Defaults to `0`.
+
+See the [Batching Transactions](/02-guides/01-platform/03-advanced-mechanics/08-batching-transactions.md) guide for worked examples of each mode.
 
 ## SignTransaction
 
