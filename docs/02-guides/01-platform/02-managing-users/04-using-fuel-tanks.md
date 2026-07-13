@@ -491,6 +491,8 @@ A tank decides what to pay for, and for whom, through two kinds of rules: **disp
 
 A tank can have one or more **rule sets**, each a group of individual dispatch rules. A dispatched call must satisfy a rule set to be paid for. Each rule set has its own ID, so you can grant different callers different access by giving them different rule sets.
 
+When you dispatch through the tank, `fuelTankRuleSetId` chooses which rule set the call is evaluated against. It defaults to `0`, so a tank with a single rule set needs nothing extra; set it to another rule set's ID to dispatch against that one instead.
+
 Available dispatch rules:
 
 - **`Whitelisted Callers`**: Subsidize <GlossaryTerm id="transaction" />s dispatched from specific <GlossaryTerm id="wallet_account" />s.

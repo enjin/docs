@@ -686,4 +686,6 @@ Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` eve
 For a comprehensive view of all available arguments for queries and mutations, please refer to our [API Reference](/03-api-reference/03-api-reference.md). This resource will guide you on how to use the GraphiQL Playground to explore the full structure and functionality of our API.
 
 To sign with a managed wallet instead of the Wallet Daemon, set `signerAddress` on `CreateTransaction` / `CreateBatchTransaction`.
+
+To move a managed wallet's **entire** balance out in one call — every token and all its ENJ, e.g. when migrating a player to a self-custodial wallet — use [`SweepManagedWallet`](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#sweeping-a-managed-wallet) instead of assembling the transfers yourself.
 :::
