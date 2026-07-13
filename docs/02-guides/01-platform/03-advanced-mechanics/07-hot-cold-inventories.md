@@ -152,7 +152,9 @@ mutation MoveToCold {
 
 ### Move several items at once
 
-If a player moves several different item types between inventories at once — a "withdraw everything to my wallet" button, say — bundle the actions into a single [`CreateBatchTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md) so they settle atomically with one fee instead of many.
+If a player moves several different item types between inventories at once — bringing a whole loadout to hot at the start of a session, say — bundle the actions into a single [`CreateBatchTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md) so they settle atomically with one fee instead of many.
+
+To empty a managed wallet completely — for instance when a player graduates their cold inventory to a self-custodial wallet — you don't need a batch at all: a single [`SweepManagedWallet`](/02-guides/01-platform/02-managing-users/03-using-managed-wallets.md#sweeping-a-managed-wallet) transfers every token and all their ENJ out in one call.
 
 ### Cover the fees
 
