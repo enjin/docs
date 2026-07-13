@@ -5,6 +5,8 @@ description: "Use a fuel tank to pay transaction fees on your players' behalf, s
 ---
 
 import GlossaryTerm from '@site/src/components/GlossaryTerm';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 A <GlossaryTerm id="fuel_tank" /> is an on-chain pool of <GlossaryTerm id="enjin_coin" /> (ENJ) that pays <GlossaryTerm id="transaction_fees" /> — and, optionally, <GlossaryTerm id="storage_deposit" />s — on behalf of other accounts. With a fuel tank, your players can transact without ever holding ENJ or worrying about gas.
 
@@ -18,13 +20,12 @@ A tank decides which transactions it pays for using a set of rules. When a trans
 - The tank's rules allow this particular transaction.
 
 :::info What you'll need
-- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md).
+- An [Enjin Platform Account](/01-getting-started/04-using-the-enjin-platform.md) with an API token, used to authenticate the requests below.
 - Some ENJ on Enjin / Canary Matrixchain to fund the tank. You can get cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI.
-- The [Enjin Blockchain Console](https://console.enjin.io/) — tanks are created and configured there.
 :::
 
-:::info Where tanks are created
-Fuel tanks are created and configured in the [Enjin Blockchain Console](https://console.enjin.io/) for now. **Dispatching** through a tank already works from the Platform API today (see [Dispatching through a fuel tank](#dispatching)). Tank creation and management is being added to the Enjin Platform — this page will be updated when it lands.
+:::tip Prefer a UI?
+Fuel tanks can also be created and configured visually in the [Enjin Platform UI](https://platform.beta.enjin.io/fuel-tanks). This page uses the Platform API so the setup is scriptable and reproducible.
 :::
 
 ## Cover transaction fees for your players {#recommended-setup}
@@ -43,54 +44,247 @@ Most games onboard players with [managed wallets](/02-guides/01-platform/02-mana
 
 Then you fund the tank with ENJ. The rest of this section walks through it.
 
-### 1. Open the Fuel Tanks section {#open-fuel-tanks}
+### 1. Create the tank {#create-tank}
 
-Head to the [Enjin Blockchain Console](https://console.enjin.io/) and make sure the network/chain selector in the top-left corner is set to the chain you want (for testing, use Canary Matrixchain).
+Fuel tanks are created on-chain, so you create one by dispatching the `createFuelTank` action through `CreateTransaction`. The call below builds the tank described above: user account management on (with the tank reserving the account-creation deposit), coverage policy **Fees and Deposit**, and one rule set with **Require account** enabled and a single **Require Signature** rule pointing at your Wallet Daemon address.
 
-![The network and chain selector in the top-left of the Enjin Blockchain Console](/img/guides/managing-users/v3-console-network-chain-selector.png)
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CreateManagedWalletFuelTank($network: Network!, $chain: Chain!, $name: String!, $daemonAddress: String!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES_AND_DEPOSIT
+        userAccountManagement: { tankReservesAccountCreationDeposit: true }
+        ruleSets: [
+          {
+            id: 0
+            requireAccount: true
+            rules: [{ requireSignature: $daemonAddress }]
+          }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
 
-In the top bar, open **Network → Fuel tanks**.
+Variables:
 
-![The Network menu open, with Fuel tanks highlighted](/img/guides/managing-users/v3-console-network-fuel-tanks-menu.png)
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "name": "My Game Fuel Tank",
+  "daemonAddress": "INSERT_WALLET_DAEMON_ADDRESS"
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation CreateManagedWalletFuelTank($network: Network!, $chain: Chain!, $name: String!, $daemonAddress: String!) {\r\n  CreateTransaction(network: $network, chain: $chain, transaction: { createFuelTank: { name: $name, coveragePolicy: FEES_AND_DEPOSIT, userAccountManagement: { tankReservesAccountCreationDeposit: true }, ruleSets: [{ id: 0, requireAccount: true, rules: [{ requireSignature: $daemonAddress }] }] } }) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"network":"CANARY","chain":"MATRIX","name":"My Game Fuel Tank","daemonAddress":"INSERT_WALLET_DAEMON_ADDRESS"}}'
+```
+  </TabItem>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using System;
+using Enjin.Platform.Sdk;
 
-### 2. Create and configure the tank {#create-tank}
+// Create and authenticate the client
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
 
-On the Fuel tanks page, click **Create fuel tank** in the top-right.
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateFuelTank = new CreateFuelTankInput
+            {
+                Name = "My Game Fuel Tank",
+                CoveragePolicy = CoveragePolicy.FeesAndDeposit,
+                UserAccountManagement = new UserAccountManagementInput
+                {
+                    TankReservesAccountCreationDeposit = true,
+                },
+                RuleSets = new[]
+                {
+                    new RuleSetEntryInput
+                    {
+                        Id = 0,
+                        RequireAccount = true,
+                        Rules = new[]
+                        {
+                            new DispatchRuleInput { RequireSignature = "INSERT_WALLET_DAEMON_ADDRESS" },
+                        },
+                    },
+                },
+            },
+        });
 
-![The Fuel tanks overview page with the Create fuel tank button](/img/guides/managing-users/v3-console-create-fuel-tank-button.png)
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation CreateManagedWalletFuelTank($network: Network!, $chain: Chain!, $name: String!, $daemonAddress: String!) {
+        CreateTransaction(
+          network: $network
+          chain: $chain
+          transaction: {
+            createFuelTank: {
+              name: $name
+              coveragePolicy: FEES_AND_DEPOSIT
+              userAccountManagement: { tankReservesAccountCreationDeposit: true }
+              ruleSets: [
+                { id: 0, requireAccount: true, rules: [{ requireSignature: $daemonAddress }] }
+              ]
+            }
+          }
+        ) {
+          uuid
+          action
+          state
+        }
+      }
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      name: "My Game Fuel Tank",
+      daemonAddress: "INSERT_WALLET_DAEMON_ADDRESS"
+    }
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
 
-Fill out the form:
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation CreateManagedWalletFuelTank($network: Network!, $chain: Chain!, $name: String!, $daemonAddress: String!) {
+      CreateTransaction(
+        network: $network
+        chain: $chain
+        transaction: {
+          createFuelTank: {
+            name: $name
+            coveragePolicy: FEES_AND_DEPOSIT
+            userAccountManagement: { tankReservesAccountCreationDeposit: true }
+            ruleSets: [
+              { id: 0, requireAccount: true, rules: [{ requireSignature: $daemonAddress }] }
+            ]
+          }
+        }
+      ) {
+        uuid
+        action
+        state
+      }
+    }
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    name: "My Game Fuel Tank",
+    daemonAddress: "INSERT_WALLET_DAEMON_ADDRESS"
+  }
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
 
-- **Using the selected address** — the account that owns and funds the tank. Switch it with the account selector if needed.
-- **Name** — a unique name for the tank.
-- **User account management** — turn the **include option** on, and have the tank reserve the account-creation deposit so players are added automatically without paying anything up front.
-- **Coverage policy** — select **Fees and Deposit**.
-- **Account rules** — leave empty for this setup.
-- **Dispatch rules** — click **Add rule set**, enable **Require account**, then add a **Require signature** rule and set its account to your **Wallet Daemon** address.
+query = '''
+mutation CreateManagedWalletFuelTank($network: Network!, $chain: Chain!, $name: String!, $daemonAddress: String!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES_AND_DEPOSIT
+        userAccountManagement: { tankReservesAccountCreationDeposit: true }
+        ruleSets: [
+          { id: 0, requireAccount: true, rules: [{ requireSignature: $daemonAddress }] }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+'''
 
-![The Create fuel tank form, showing the name, user account management, coverage policy, account rules, and dispatch rules fields](/img/guides/managing-users/v3-console-create-fuel-tank-form.png)
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'name': 'My Game Fuel Tank',
+  'daemonAddress': 'INSERT_WALLET_DAEMON_ADDRESS'
+}
 
-Click **Create fuel tank** and sign the transaction. Once it is on-chain, the new tank appears in the Fuel tanks list with its own address.
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query, 'variables': variables},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
+
+Sign the returned transaction — the Wallet Daemon does this for you. Once it reaches `FINALIZED`, the tank exists on-chain with its own address, which you'll need in order to fund it and dispatch through it.
 
 :::tip Finding your daemon wallet address
 The Require Signature rule must point at the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with — that's what lets the platform authorize dispatches through this tank automatically. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.beta.enjin.io/settings), where you can copy it directly.
 :::
 
-### 3. Fund the tank {#fund-tank}
+### 2. Fund the tank {#fund-tank}
 
-A tank can only pay fees while it holds ENJ. Send ENJ to the tank's address (shown in the Fuel tanks list). On Canary, top it up with cENJ from the [faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet). The list's **funds** column shows the current balance.
+A tank can only pay fees while it holds ENJ. [Send ENJ](/02-guides/01-platform/01-managing-tokens/05-transferring-tokens.md#transferring-enj-token) to the tank's address (returned by the create call, and shown on the [Fuel Tanks page](https://platform.beta.enjin.io/fuel-tanks) in the Platform UI). On Canary, top it up with cENJ from the [faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet).
 
-### 4. Dispatch transactions through the tank {#dispatch-through-tank}
+### 3. Dispatch transactions through the tank {#dispatch-through-tank}
 
 Now any action you perform on a player's behalf can be paid for by the tank. Sign the transaction as the player's managed wallet with `signerExternalId`, and add `fuelTank` set to your tank's address:
 
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
 ```graphql
-mutation DispatchThroughTank {
+mutation DispatchThroughTank($network: Network!, $chain: Chain!, $signerExternalId: String, $fuelTank: String) {
   CreateTransaction(
-    network: CANARY
-    chain: MATRIX
-    signerExternalId: "docs-example-player" #The managed wallet performing the action
-    fuelTank: "INSERT_FUEL_TANK_ADDRESS" #Your fuel tank's address, from the Fuel tanks list
+    network: $network
+    chain: $chain
+    signerExternalId: $signerExternalId
+    fuelTank: $fuelTank
     transaction: {
       transferToken: {
         recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ" #The recipient of the transfer
@@ -107,6 +301,178 @@ mutation DispatchThroughTank {
 }
 ```
 
+Variables:
+
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "signerExternalId": "docs-example-player",
+  "fuelTank": "INSERT_FUEL_TANK_ADDRESS"
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation DispatchThroughTank($network: Network!, $chain: Chain!, $signerExternalId: String, $fuelTank: String) {\r\n  CreateTransaction(network: $network, chain: $chain, signerExternalId: $signerExternalId, fuelTank: $fuelTank, transaction: { transferToken: { recipient: \"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ\", collectionId: 36105, tokenId: 1, amount: 1 } }) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"network":"CANARY","chain":"MATRIX","signerExternalId":"docs-example-player","fuelTank":"INSERT_FUEL_TANK_ADDRESS"}}'
+```
+  </TabItem>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using System;
+using Enjin.Platform.Sdk;
+
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
+
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            TransferToken = new TransferTokenInput
+            {
+                Recipient = "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+                CollectionId = 36105,
+                TokenId = 1,
+                Amount = 1,
+            },
+        },
+        signerExternalId: "docs-example-player", // the player's managed wallet
+        fuelTank: "INSERT_FUEL_TANK_ADDRESS");    // your tank's address
+
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation DispatchThroughTank($network: Network!, $chain: Chain!, $signerExternalId: String, $fuelTank: String) {
+        CreateTransaction(
+          network: $network
+          chain: $chain
+          signerExternalId: $signerExternalId
+          fuelTank: $fuelTank
+          transaction: {
+            transferToken: {
+              recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+              collectionId: 36105
+              tokenId: 1
+              amount: 1
+            }
+          }
+        ) {
+          uuid
+          action
+          state
+        }
+      }
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      signerExternalId: "docs-example-player", // the player's managed wallet
+      fuelTank: "INSERT_FUEL_TANK_ADDRESS"     // your tank's address
+    }
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
+
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation DispatchThroughTank($network: Network!, $chain: Chain!, $signerExternalId: String, $fuelTank: String) {
+      CreateTransaction(
+        network: $network
+        chain: $chain
+        signerExternalId: $signerExternalId
+        fuelTank: $fuelTank
+        transaction: {
+          transferToken: {
+            recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+            collectionId: 36105
+            tokenId: 1
+            amount: 1
+          }
+        }
+      ) {
+        uuid
+        action
+        state
+      }
+    }
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    signerExternalId: "docs-example-player",
+    fuelTank: "INSERT_FUEL_TANK_ADDRESS"
+  }
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
+
+query = '''
+mutation DispatchThroughTank($network: Network!, $chain: Chain!, $signerExternalId: String, $fuelTank: String) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    signerExternalId: $signerExternalId
+    fuelTank: $fuelTank
+    transaction: {
+      transferToken: {
+        recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"
+        collectionId: 36105
+        tokenId: 1
+        amount: 1
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+'''
+
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'signerExternalId': 'docs-example-player',
+  'fuelTank': 'INSERT_FUEL_TANK_ADDRESS'
+}
+
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query, 'variables': variables},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
+
 The player's managed wallet signs the action, and the tank covers the fee and any storage deposit. Because the tank's Require Signature rule points at your daemon wallet, the platform attaches the required signature for you — there is nothing extra to sign.
 
 Once the transaction reaches `FINALIZED`, the chain emits the usual events for the action (here, `MultiTokens.Transferred`). See [Working with Events](/05-enjin-platform/03-working-with-events.md).
@@ -119,7 +485,7 @@ A dispatch succeeds only if the signing account is allowed by the tank's rules a
 
 ## How fuel tanks work {#how-fuel-tanks-work}
 
-A tank decides what to pay for, and for whom, through two kinds of rules: **dispatch rules**, evaluated on every call, and **account rules**, evaluated when an account is added to the tank. Both are configured on the create-tank form in the Console.
+A tank decides what to pay for, and for whom, through two kinds of rules: **dispatch rules**, evaluated on every call, and **account rules**, evaluated when an account is added to the tank. Both are set when you create the tank (see [Create the tank](#create-tank)).
 
 ### Dispatch rules and rule sets
 
@@ -169,4 +535,659 @@ The coverage policy controls what the tank pays for:
 
 ## Other configurations {#other-configurations}
 
-The recommended setup is one combination of these rules, but they can be mixed for more targeted tanks — for example, a tank that only pays for batch transfers within a single collection, or one that caps each player at a fixed budget per month. Configure any of these on the create-tank form in the Console. For the complete rule reference, see the [Fuel Tank pallet](/04-enjin-blockchain/03-enjin-matrixchain/02-fuel-tank-pallet.md) documentation.
+The recommended setup above is one combination of rules. By mixing the [dispatch rules](#how-fuel-tanks-work) you can build tanks for many other use cases. Each is created the same way — dispatch `createFuelTank` through `CreateTransaction`, changing only the `ruleSets`/`accountRules`. For the complete rule reference, see the [Fuel Tank pallet](/04-enjin-blockchain/03-enjin-matrixchain/02-fuel-tank-pallet.md) documentation.
+
+### Subsidize token transfers for a collection
+
+Pays fees only for **transfer** calls involving tokens from a single collection — a good fit for a game that wants to cover its players' item transfers and nothing else. It combines the **Permitted Extrinsics** and **Whitelisted Collections** dispatch rules.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CreateCollectionTransferTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES
+        ruleSets: [
+          {
+            id: 0
+            requireAccount: false
+            rules: [
+              {
+                permittedExtrinsics: [BATCH_TRANSFER] # only subsidize transfers
+                whitelistedCollections: [$collectionId] # only for this collection
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "name": "Collection Token Transfers",
+  "collectionId": 36105
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation CreateCollectionTransferTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {\r\n  CreateTransaction(network: $network, chain: $chain, transaction: { createFuelTank: { name: $name, coveragePolicy: FEES, ruleSets: [{ id: 0, requireAccount: false, rules: [{ permittedExtrinsics: [BATCH_TRANSFER], whitelistedCollections: [$collectionId] }] }] } }) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"network":"CANARY","chain":"MATRIX","name":"Collection Token Transfers","collectionId":36105}}'
+```
+  </TabItem>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using System;
+using Enjin.Platform.Sdk;
+
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
+
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateFuelTank = new CreateFuelTankInput
+            {
+                Name = "Collection Token Transfers",
+                CoveragePolicy = CoveragePolicy.Fees,
+                RuleSets = new[]
+                {
+                    new RuleSetEntryInput
+                    {
+                        Id = 0,
+                        RequireAccount = false,
+                        Rules = new[]
+                        {
+                            new DispatchRuleInput
+                            {
+                                PermittedExtrinsics = new[] { FuelTankPermittedMethod.BatchTransfer },
+                                WhitelistedCollections = new[] { 36105 },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation CreateCollectionTransferTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+        CreateTransaction(
+          network: $network
+          chain: $chain
+          transaction: {
+            createFuelTank: {
+              name: $name
+              coveragePolicy: FEES
+              ruleSets: [
+                { id: 0, requireAccount: false, rules: [{ permittedExtrinsics: [BATCH_TRANSFER], whitelistedCollections: [$collectionId] }] }
+              ]
+            }
+          }
+        ) {
+          uuid
+          action
+          state
+        }
+      }
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      name: "Collection Token Transfers",
+      collectionId: 36105
+    }
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
+
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation CreateCollectionTransferTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+      CreateTransaction(
+        network: $network
+        chain: $chain
+        transaction: {
+          createFuelTank: {
+            name: $name
+            coveragePolicy: FEES
+            ruleSets: [
+              { id: 0, requireAccount: false, rules: [{ permittedExtrinsics: [BATCH_TRANSFER], whitelistedCollections: [$collectionId] }] }
+            ]
+          }
+        }
+      ) {
+        uuid
+        action
+        state
+      }
+    }
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    name: "Collection Token Transfers",
+    collectionId: 36105
+  }
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
+
+query = '''
+mutation CreateCollectionTransferTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES
+        ruleSets: [
+          { id: 0, requireAccount: false, rules: [{ permittedExtrinsics: [BATCH_TRANSFER], whitelistedCollections: [$collectionId] }] }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+'''
+
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'name': 'Collection Token Transfers',
+  'collectionId': 36105
+}
+
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query, 'variables': variables},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
+
+### Subsidize any transaction involving a collection's tokens
+
+Broader than the previous example: pays fees for **any** call involving tokens from a given collection (transfers, listings, burns, and so on), using just the **Whitelisted Collections** dispatch rule.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CreateCollectionTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES_AND_DEPOSIT
+        ruleSets: [
+          {
+            id: 0
+            requireAccount: false
+            rules: [{ whitelistedCollections: [$collectionId] }]
+          }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "name": "Whole Collection",
+  "collectionId": 36105
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation CreateCollectionTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {\r\n  CreateTransaction(network: $network, chain: $chain, transaction: { createFuelTank: { name: $name, coveragePolicy: FEES_AND_DEPOSIT, ruleSets: [{ id: 0, requireAccount: false, rules: [{ whitelistedCollections: [$collectionId] }] }] } }) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"network":"CANARY","chain":"MATRIX","name":"Whole Collection","collectionId":36105}}'
+```
+  </TabItem>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using System;
+using Enjin.Platform.Sdk;
+
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
+
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateFuelTank = new CreateFuelTankInput
+            {
+                Name = "Whole Collection",
+                CoveragePolicy = CoveragePolicy.FeesAndDeposit,
+                RuleSets = new[]
+                {
+                    new RuleSetEntryInput
+                    {
+                        Id = 0,
+                        RequireAccount = false,
+                        Rules = new[]
+                        {
+                            new DispatchRuleInput { WhitelistedCollections = new[] { 36105 } },
+                        },
+                    },
+                },
+            },
+        });
+
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation CreateCollectionTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+        CreateTransaction(
+          network: $network
+          chain: $chain
+          transaction: {
+            createFuelTank: {
+              name: $name
+              coveragePolicy: FEES_AND_DEPOSIT
+              ruleSets: [
+                { id: 0, requireAccount: false, rules: [{ whitelistedCollections: [$collectionId] }] }
+              ]
+            }
+          }
+        ) {
+          uuid
+          action
+          state
+        }
+      }
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      name: "Whole Collection",
+      collectionId: 36105
+    }
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
+
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation CreateCollectionTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+      CreateTransaction(
+        network: $network
+        chain: $chain
+        transaction: {
+          createFuelTank: {
+            name: $name
+            coveragePolicy: FEES_AND_DEPOSIT
+            ruleSets: [
+              { id: 0, requireAccount: false, rules: [{ whitelistedCollections: [$collectionId] }] }
+            ]
+          }
+        }
+      ) {
+        uuid
+        action
+        state
+      }
+    }
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    name: "Whole Collection",
+    collectionId: 36105
+  }
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
+
+query = '''
+mutation CreateCollectionTank($network: Network!, $chain: Chain!, $name: String!, $collectionId: BigInt!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES_AND_DEPOSIT
+        ruleSets: [
+          { id: 0, requireAccount: false, rules: [{ whitelistedCollections: [$collectionId] }] }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+'''
+
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'name': 'Whole Collection',
+  'collectionId': 36105
+}
+
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query, 'variables': variables},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
+
+### Subsidize all transactions for whitelisted accounts, with a budget
+
+Covers **all** transactions, but only for a fixed list of accounts, and caps how much fuel each account can spend per period. It pairs a **Whitelisted Callers** account rule (who may join the tank) with **Require account** and a **User Fuel Budget** dispatch rule.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CreateWhitelistedBudgetTank($network: Network!, $chain: Chain!, $name: String!, $account: String!, $budgetAmount: BigInt!, $resetPeriod: Int!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES
+        accountRules: { whitelistedCallers: [$account] } # only these accounts may join the tank
+        ruleSets: [
+          {
+            id: 0
+            requireAccount: true # caller must be a user account in the tank
+            rules: [{ userFuelBudget: { amount: $budgetAmount, resetPeriod: $resetPeriod } }]
+          }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "CANARY",
+  "chain": "MATRIX",
+  "name": "Whitelisted Accounts With Budget",
+  "account": "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu",
+  "budgetAmount": 5000000000000000000,
+  "resetPeriod": 432000
+}
+```
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+```
+curl --location 'https://platform.beta.enjin.io/graphql' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer enjin_api_key' \
+-d '{"query":"mutation CreateWhitelistedBudgetTank($network: Network!, $chain: Chain!, $name: String!, $account: String!, $budgetAmount: BigInt!, $resetPeriod: Int!) {\r\n  CreateTransaction(network: $network, chain: $chain, transaction: { createFuelTank: { name: $name, coveragePolicy: FEES, accountRules: { whitelistedCallers: [$account] }, ruleSets: [{ id: 0, requireAccount: true, rules: [{ userFuelBudget: { amount: $budgetAmount, resetPeriod: $resetPeriod } }] }] } }) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"network":"CANARY","chain":"MATRIX","name":"Whitelisted Accounts With Budget","account":"cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","budgetAmount":5000000000000000000,"resetPeriod":432000}}'
+```
+  </TabItem>
+  <TabItem value="csharp-sdk" label="c# SDK">
+```csharp
+using System;
+using Enjin.Platform.Sdk;
+
+using var client = new PlatformClient();
+client.Auth("<your-platform-token>");
+
+var mutation = new MutationQueryBuilder()
+    .WithCreateTransaction(
+        new TransactionQueryBuilder().WithUuid().WithState(),
+        network: Network.Canary,
+        chain: Chain.Matrix,
+        transaction: new TransactionInput
+        {
+            CreateFuelTank = new CreateFuelTankInput
+            {
+                Name = "Whitelisted Accounts With Budget",
+                CoveragePolicy = CoveragePolicy.Fees,
+                AccountRules = new AccountRuleInput
+                {
+                    WhitelistedCallers = new[] { "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu" },
+                },
+                RuleSets = new[]
+                {
+                    new RuleSetEntryInput
+                    {
+                        Id = 0,
+                        RequireAccount = true,
+                        Rules = new[]
+                        {
+                            new DispatchRuleInput
+                            {
+                                UserFuelBudget = new FuelBudgetRuleInput { Amount = 5000000000000000000, ResetPeriod = 432000 },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+
+var response = await client.SendMutation(mutation);
+Console.WriteLine(response.Result.Data?.CreateTransaction?.Uuid);
+```
+  </TabItem>
+  <TabItem value="js" label="Javascript">
+```javascript
+fetch('https://platform.beta.enjin.io/graphql', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
+  body: JSON.stringify({
+    query: `
+      mutation CreateWhitelistedBudgetTank($network: Network!, $chain: Chain!, $name: String!, $account: String!, $budgetAmount: BigInt!, $resetPeriod: Int!) {
+        CreateTransaction(
+          network: $network
+          chain: $chain
+          transaction: {
+            createFuelTank: {
+              name: $name
+              coveragePolicy: FEES
+              accountRules: { whitelistedCallers: [$account] }
+              ruleSets: [
+                { id: 0, requireAccount: true, rules: [{ userFuelBudget: { amount: $budgetAmount, resetPeriod: $resetPeriod } }] }
+              ]
+            }
+          }
+        ) {
+          uuid
+          action
+          state
+        }
+      }
+    `,
+    variables: {
+      network: "CANARY",
+      chain: "MATRIX",
+      name: "Whitelisted Accounts With Budget",
+      account: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu",
+      budgetAmount: 5000000000000000000,
+      resetPeriod: 432000
+    }
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data));
+```
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+```javascript
+const axios = require('axios');
+
+axios.post('https://platform.beta.enjin.io/graphql', {
+  query: `
+    mutation CreateWhitelistedBudgetTank($network: Network!, $chain: Chain!, $name: String!, $account: String!, $budgetAmount: BigInt!, $resetPeriod: Int!) {
+      CreateTransaction(
+        network: $network
+        chain: $chain
+        transaction: {
+          createFuelTank: {
+            name: $name
+            coveragePolicy: FEES
+            accountRules: { whitelistedCallers: [$account] }
+            ruleSets: [
+              { id: 0, requireAccount: true, rules: [{ userFuelBudget: { amount: $budgetAmount, resetPeriod: $resetPeriod } }] }
+            ]
+          }
+        }
+      ) {
+        uuid
+        action
+        state
+      }
+    }
+  `,
+  variables: {
+    network: "CANARY",
+    chain: "MATRIX",
+    name: "Whitelisted Accounts With Budget",
+    account: "cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu",
+    budgetAmount: 5000000000000000000,
+    resetPeriod: 432000
+  }
+}, {
+  headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
+})
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
+```
+  </TabItem>
+  <TabItem value="python" label="Python">
+```python
+import requests
+
+query = '''
+mutation CreateWhitelistedBudgetTank($network: Network!, $chain: Chain!, $name: String!, $account: String!, $budgetAmount: BigInt!, $resetPeriod: Int!) {
+  CreateTransaction(
+    network: $network
+    chain: $chain
+    transaction: {
+      createFuelTank: {
+        name: $name
+        coveragePolicy: FEES
+        accountRules: { whitelistedCallers: [$account] }
+        ruleSets: [
+          { id: 0, requireAccount: true, rules: [{ userFuelBudget: { amount: $budgetAmount, resetPeriod: $resetPeriod } }] }
+        ]
+      }
+    }
+  ) {
+    uuid
+    action
+    state
+  }
+}
+'''
+
+variables = {
+  'network': 'CANARY',
+  'chain': 'MATRIX',
+  'name': 'Whitelisted Accounts With Budget',
+  'account': 'cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu',
+  'budgetAmount': 5000000000000000000,
+  'resetPeriod': 432000
+}
+
+response = requests.post('https://platform.beta.enjin.io/graphql',
+  json={'query': query, 'variables': variables},
+  headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
+)
+print(response.json())
+```
+  </TabItem>
+</Tabs>
