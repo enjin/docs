@@ -34,7 +34,7 @@ A client-supplied key that prevents the same operation from being submitted twic
 
 ## extrinsicHash
 
-The cryptographic hash of the signed extrinsic, populated once a transaction is broadcast to the chain. Use it to look up the transaction on a block explorer like Subscan, or to filter transactions via `GetTransactions(extrinsicHashes: [...])`.
+The cryptographic hash of the signed extrinsic, populated once a transaction is broadcast to the chain. It's accepted as a lookup argument on `GetTransaction(extrinsicHash:)` / `GetTransactions(extrinsicHashes: [...])` and on `GetExtrinsic(hash:)`. On the `Transaction` type it's read through the `extrinsic` object — `extrinsic { hash }` — alongside the extrinsic's on-chain outcome and [emitted events](/05-enjin-platform/03-working-with-events.md).
 
 ## externalId
 
@@ -122,7 +122,7 @@ The lifecycle state of a transaction, returned on the `Transaction` type. Possib
 
 - **`PENDING`** — the transaction has been created on the platform and is awaiting signing/broadcast.
 - **`BROADCAST`** — the signed transaction has been submitted to the blockchain.
-- **`FINALIZED`** — the transaction has been included in a block. Check the on-chain extrinsic outcome (e.g. on Subscan) to confirm success vs. failure.
+- **`FINALIZED`** — the transaction has been included in a block. Check `extrinsic { success }` to confirm the on-chain outcome, and `extrinsic { events }` for what it emitted — see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 - **`FAILED`** — the transaction was rejected by the blockchain.
 - **`ABANDONED`** — the platform couldn't sign or send the transaction (typically encoding issues or insufficient funds).
 - **`TIMEOUT`** — the transaction was broadcast but not finalized within the timeout window.

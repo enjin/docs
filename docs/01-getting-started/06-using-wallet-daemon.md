@@ -16,7 +16,7 @@ The Enjin Wallet Daemon is an outbound-only signer for Enjin Platform transactio
 2. **Poll for pending transactions -** The wallet daemon repeatedly polls the Enjin Platform API. It does not need inbound network access, so the machine holding your <GlossaryTerm id="private_key" /> should not expose public ports.
 3. **Sign and broadcast -** The daemon signs each pending transaction with your private key and sends the signed payload back to the platform.
 4. **Confirm on-chain state -** Enjin Platform monitors the chain and updates the transaction state when the extrinsic is included or finalized.
-5. **Read the result -** Poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) for the final `state` and `extrinsicHash`. To read emitted events, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
+5. **Read the result -** Poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) for the final `state` and the `extrinsic` object (hash, on-chain outcome). To read emitted events, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
 
 :::info Network-agnostic
 One daemon instance can sign for Enjin Matrixchain, Enjin Relaychain, Canary Matrixchain, and Canary Relaychain. Each network maps to a different SS58 address derived from the same wallet. The daemon prints these addresses when it starts.

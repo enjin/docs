@@ -38,7 +38,7 @@ And would traditionally return all of the available data related to the call, li
   "data": {
     "MintToken": {
       "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
-      "extrinsicHash": null,
+      "extrinsic": null,
       "action": "MultiTokens.mint",
       "state": "PENDING",
       "encodedData": "...",

@@ -333,7 +333,7 @@ Once the state reaches `FINALIZED`, the transaction has been included on-chain. 
 
 ### Receive Transaction Information Using the Enjin API & SDKs
 
-To receive transaction information programmatically, use the `GetTransaction` query. Pass the `uuid` returned by `CreateTransaction` and request whichever fields you need — `state`, `extrinsicHash`, `action`, and so on.
+To receive transaction information programmatically, use the `GetTransaction` query. Pass the `uuid` returned by `CreateTransaction` and request whichever fields you need — `state`, `action`, the `extrinsic` object (hash, on-chain outcome, emitted events), and so on.
 
 **Query:**
 
@@ -349,7 +349,9 @@ query GetTransactionStatus($uuid: String!) {
     uuid
     action
     state
-    extrinsicHash
+    extrinsic {
+      hash
+    }
     createdAt
     updatedAt
   }
@@ -369,7 +371,7 @@ query GetTransactionStatus($uuid: String!) {
 curl --location 'https://platform.beta.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <YOUR_API_TOKEN>' \
--d '{"query":"query { GetTransaction(network: CANARY, chain: MATRIX, uuid: \"12f22f91-82df-4b60-a90c-bf72b508a17c\") { uuid action state extrinsicHash } }"}'
+-d '{"query":"query { GetTransaction(network: CANARY, chain: MATRIX, uuid: \"12f22f91-82df-4b60-a90c-bf72b508a17c\") { uuid action state extrinsic { hash } } }"}'
 ```
   </TabItem>
   <TabItem value="js" label="Javascript">
@@ -387,7 +389,9 @@ fetch('https://platform.beta.enjin.io/graphql', {
           uuid
           action
           state
-          extrinsicHash
+          extrinsic {
+            hash
+          }
         }
       }
     `,
@@ -409,7 +413,9 @@ axios.post('https://platform.beta.enjin.io/graphql', {
         uuid
         action
         state
-        extrinsicHash
+        extrinsic {
+          hash
+        }
       }
     }
   `,
@@ -434,7 +440,9 @@ query GetTransactionStatus($uuid: String!) {
     uuid
     action
     state
-    extrinsicHash
+    extrinsic {
+      hash
+    }
   }
 }
 '''
@@ -463,7 +471,9 @@ print(response.json())
       "uuid": "12f22f91-82df-4b60-a90c-bf72b508a17c",
       "action": "MultiTokens.create_collection",
       "state": "FINALIZED",
-      "extrinsicHash": "0xd43b83...014b1365",
+      "extrinsic": {
+        "hash": "0xd43b83...014b1365"
+      },
       "createdAt": "2026-05-07T16:36:33Z",
       "updatedAt": "2026-05-07T16:36:51Z"
     }
