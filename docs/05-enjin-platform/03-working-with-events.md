@@ -230,7 +230,7 @@ Polling `GetTransactionEvents` (the query above) with that `uuid` eventually ret
             "data": []
           },
           {
-            "id": "0011955161-4471c-000003",
+            "id": "1234567-3",
             "name": "MultiTokens Collection Created",
             "collectionId": "124587",
             "tokenId": null,
