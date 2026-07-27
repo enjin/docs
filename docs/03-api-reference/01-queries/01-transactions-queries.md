@@ -277,7 +277,7 @@ query GetExtrinsic {
       "block": { "number": 402865 },
       "events": [
         {
-          "id": "0000402865-f0b3c-000004",
+          "id": "1234567-2",
           "name": "MultiTokens Minted",
           "collectionId": "12345",
           "tokenId": "12345-1",
