@@ -223,7 +223,7 @@ Polling `GetTransactionEvents` (the query above) with that `uuid` eventually ret
         "success": true,
         "events": [
           {
-            "id": "0011955161-4471c-000004",
+            "id": "1234567-2",
             "name": "MultiTokens Attribute Set",
             "collectionId": "124587",
             "tokenId": null,
