@@ -10,7 +10,7 @@ The Enjin Platform is **chain-agnostic** — a single dashboard and API endpoint
 
 1. **Build and test on Canary** <GlossaryTerm id="testnet" /> — the fast, free environment for testing Enjin's tools.
    1. Download the [Enjin Wallet](https://enj.in/wallet).
-   2. Create an [Enjin Platform account](https://platform.beta.enjin.io).
+   2. Create an [Enjin Platform account](https://platform.enjin.io).
    3. With the network selector set to **Canary**, get some cENJ to test with from the [built-in faucet](/getting-started/using-the-enjin-platform#canary-faucet).
 2. **Move to Enjin mainnet** once your integration works end-to-end.
    1. Get some [ENJ](https://enjin.io/enjin-coin) to cover fees and storage deposits.
@@ -22,10 +22,10 @@ These tools are the same on both networks — switch between Canary and Enjin us
 
 | Tool                   | Description                                                                                                                                                                             |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Enjin Platform Cloud](https://platform.beta.enjin.io)   | The plug-and-play Web3-integration platform, enabling you to launch a full-scale valuable economy with ease.                                                                            |
-| [API Key & Settings](https://platform.beta.enjin.io/settings)     | Enjin Platform settings where you can generate your API Key, authenticate your wallet account, and more.                                                                                |
-| [API Endpoint](https://platform.beta.enjin.io/graphql)           | Use this to interact with the Enjin Platform API: `https://platform.beta.enjin.io/graphql`                                                                                              |
-| [API Playground](https://platform.beta.enjin.io/graphiql)         | An easy-to-use interface where you can run queries and mutations powered by Enjin’s GraphQL API.                                                                                        |
+| [Enjin Platform Cloud](https://platform.enjin.io)   | The plug-and-play Web3-integration platform, enabling you to launch a full-scale valuable economy with ease.                                                                            |
+| [API Key & Settings](https://platform.enjin.io/settings)     | Enjin Platform settings where you can generate your API Key, authenticate your wallet account, and more.                                                                                |
+| [API Endpoint](https://platform.enjin.io/graphql)           | Use this to interact with the Enjin Platform API: `https://platform.enjin.io/graphql`                                                                                              |
+| [API Playground](https://platform.enjin.io/graphiql)         | An easy-to-use interface where you can run queries and mutations powered by Enjin’s GraphQL API.                                                                                        |
 | [Enjin Wallet](https://enj.in/wallet)           | A powerful cross-chain wallet that allows you to sign transactions and manage your assets on both mainnet and testnet.                                                                  |
 | [Built-in Canary Faucet](/getting-started/using-the-enjin-platform#canary-faucet)            | The Platform's built-in faucet drops 250 cENJ to your Wallet Daemon's wallet — switch the network selector to Canary and click the faucet icon.                                          |
 

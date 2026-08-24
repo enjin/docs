@@ -44,7 +44,7 @@ Before you begin, make sure you have the following. These are the requirements f
 
   - ✅ The **[.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)** for running the game server.
   - ✅ **Git** for cloning the repositories.
-  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.beta.enjin.io/).
+  - ✅ An **Enjin Platform account**. If you don't have one, you can create it [here](https://platform.enjin.io/).
   - ✅ Some cENJ tokens (can be acquired from the [built-in Canary faucet](/01-getting-started/04-using-the-enjin-platform.md#canary-faucet) in the Platform UI).
 
 -----
@@ -71,8 +71,8 @@ Next, you'll set up your Enjin Platform account and the Wallet Daemon.
 
 ### Enjin Platform
 
-1. Log in to your [Enjin Platform](https://platform.beta.enjin.io/) account.
-2. Head over to your [account settings page](https://platform.beta.enjin.io/settings).
+1. Log in to your [Enjin Platform](https://platform.enjin.io/) account.
+2. Head over to your [account settings page](https://platform.enjin.io/settings).
 3. Navigate to the **Daemon Wallet** section and create a new API Token.
 4. Copy the **API Token**; you will need this in the next step.
 

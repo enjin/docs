@@ -33,7 +33,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](/
 
 Insert the amount of tokens to melt, and click on the "**Burn Token**" button.
 
-The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -67,11 +67,11 @@ To destroy a token, follow the above instructions for Melting a token, but make 
   - If the collection has some tokens, you can follow the above guide [Destroying a token and removing it from the Blockchain](#destroying-a-token-and-removing-it-from-the-blockchain) for each of the tokens in the collection, to destroy them all.
 :::
 
-In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**", **locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click "**Destroy Collection**".
+In the Platform menu, navigate to "**[Collections](https://platform.enjin.io/collections)**", **locate the collection** you wish to destroy, click the **3 vertical dots** (**⋮**) on its row, then click "**Destroy Collection**".
 
 Confirm by clicking the "**Destroy Collection**" button.
 
-A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -113,7 +113,7 @@ mutation BurnToken {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { burnToken: { collectionId: $collectionId, tokenId: $tokenId, amount: $amount, removeTokenStorage: false } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":68844,"tokenId":0,"amount":1}}'
@@ -156,7 +156,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -191,7 +191,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
       CreateTransaction(
@@ -247,7 +247,7 @@ mutation BurnToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) 
 
 variables = {'collectionId': 68844, 'tokenId': 0, 'amount': 1}
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -295,7 +295,7 @@ mutation DestroyToken {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { burnToken: { collectionId: $collectionId, tokenId: $tokenId, amount: $amount, removeTokenStorage: true } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":68844,"tokenId":0,"amount":1}}'
@@ -338,7 +338,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -373,7 +373,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
       CreateTransaction(
@@ -429,7 +429,7 @@ mutation DestroyToken($collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt
 
 variables = {'collectionId': 68844, 'tokenId': 0, 'amount': 1}
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -474,7 +474,7 @@ mutation DestroyCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation DestroyCollection($id: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { destroyCollection: { id: $id } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"id":68844}}'
@@ -514,7 +514,7 @@ Snippet In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -544,7 +544,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation DestroyCollection($id: BigInt!) {
       CreateTransaction(
@@ -590,7 +590,7 @@ mutation DestroyCollection($id: BigInt!) {
 
 variables = {'id': 68844}
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

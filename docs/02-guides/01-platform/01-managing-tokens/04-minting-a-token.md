@@ -30,7 +30,7 @@ Set the recipient and the amount in the corresponding fields, and click on "**Mi
 
 ![The Mint Token form](/img/getting-started/v3-mint-token-form.png)
 
-The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+The Transaction Request will then appear in the "**Transactions**" menu. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -79,7 +79,7 @@ mutation MintTokens {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      mintTokens: {\r\n        collectionId: $collectionId\r\n        tokens: $tokens\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":7154,"tokens":[{"recipient":"0xaa89f9099742a928051c41eadba188ad4e863539ff96f16722ae7850271c2921","tokenId":6533,"amount":1}]}}'
@@ -166,7 +166,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -208,7 +208,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -250,7 +250,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation MintTokens($collectionId: BigInt!, $tokens: [MintTokenEntryInput!]!) {
       CreateTransaction(
@@ -320,7 +320,7 @@ variables = {
   ],
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

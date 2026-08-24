@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 A `Token` is an individual asset (fungible or non-fungible) inside a [collection](/03-api-reference/01-queries/02-collections-queries.md). Tokens carry their supply, cap, attributes, metadata, behavior (currency / royalty), and any token-group memberships.

@@ -56,7 +56,7 @@ query FetchingTokenHolders{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query FetchingTokenHolders($collection_id: BigInt!, $token_id: BigInt!) {\r\n  GetToken(collectionId: $collection_id, tokenId: { integer: $token_id }) {\r\n    accounts {\r\n      edges {\r\n        node {\r\n          balance\r\n          wallet {\r\n            account {\r\n              address\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}","variables":{"collection_id":36105,"token_id":0}}'
@@ -91,7 +91,7 @@ getToken.Fragment(tokenFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
+    .SetBaseAddress("https://platform.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -141,7 +141,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -182,7 +182,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -225,7 +225,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query FetchingTokenHolders
     (
@@ -297,7 +297,7 @@ variables = {
   'token_id': 0 #Specify the token ID
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -380,7 +380,7 @@ query FetchingCollectionHolders{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: enjin_api_key' \
 -d '{"query":"query FetchingCollectionHolders($collection_id: BigInt!) {\r\n  GetCollection(collectionId: $collection_id) {\r\n    accounts {\r\n      edges {\r\n        node {\r\n          accountCount\r\n          wallet {\r\n            account {\r\n              address\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}","variables":{"collection_id":36105}}'
@@ -414,7 +414,7 @@ getCollection.Fragment(collectionFragment);
 
 // Create and auth a client to send the request to the platform
 var client = PlatformClient.Builder()
-    .SetBaseAddress("https://platform.beta.enjin.io")
+    .SetBaseAddress("https://platform.enjin.io")
     .Build();
 client.Auth("Your_Platform_Token_Here");
 
@@ -464,7 +464,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -505,7 +505,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -543,7 +543,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query FetchingCollectionHolders
     (
@@ -605,7 +605,7 @@ variables = {
   'collection_id': 36105 #Specify the collection ID
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Your_Platform_Token_Here'}
 )
@@ -661,7 +661,7 @@ For a comprehensive view of all available arguments for queries and mutations, p
 
 The `GetToken`, `GetTokens`, `GetCollection`, and `GetCollections` queries are limited only to collections and tokens that were created via the auth-ed Enjin Platform account. To use these queries with collections / tokens created externally (via a different Enjin Platform account / [NFT.io](https://nft.io) / [Enjin Console](https://console.enjin.io) / etc.) the collection must be "Tracked" first, or the query response will return an error.
 
-To track a collection, head over to the collections page on Enjin Platform: https://platform.beta.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
+To track a collection, head over to the collections page on Enjin Platform: https://platform.enjin.io/collections, click on the "Track" button, insert the collection ID of the collection you want to track and click "Track".
 
 ![Track Collection](/img/guides/managing-tokens/track-collection.png)
 

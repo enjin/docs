@@ -48,7 +48,7 @@ mutation SendTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { mutateCollection: { collectionId: $collectionId, owner: $newOwner } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"newOwner":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f"}}'
@@ -91,7 +91,7 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -127,7 +127,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation SendTransferOwnershipRequest($collectionId: BigInt!, $newOwner: String!) {
       CreateTransaction(
@@ -185,7 +185,7 @@ variables = {
   'newOwner': 'cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f'
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -240,7 +240,7 @@ mutation AcceptTransferOwnershipRequest {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation AcceptTransferOwnershipRequest($id: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { acceptCollectionTransfer: { id: $id } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"id":36105}}'
@@ -280,7 +280,7 @@ Work in progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -310,7 +310,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation AcceptTransferOwnershipRequest($id: BigInt!) {
       CreateTransaction(
@@ -356,7 +356,7 @@ mutation AcceptTransferOwnershipRequest($id: BigInt!) {
 
 variables = {'id': 36105}
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

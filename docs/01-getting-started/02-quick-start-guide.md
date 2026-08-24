@@ -28,7 +28,7 @@ The Enjin Platform is your central hub for managing blockchain projects, collect
 
 ### Steps to Create an Account:
 
-1.  Navigate to the Enjin Platform: https://platform.beta.enjin.io/
+1.  Navigate to the Enjin Platform: https://platform.enjin.io/
 2.  Click on the "Create an account" button.
 3.  Fill in your account credentials and click on the "Register" button.
 4.  Verify your email address by clicking the link sent to your inbox.
@@ -42,7 +42,7 @@ Every on-chain action you initiate through the Platform — creating a collectio
 
 ### Steps to Set Up:
 
-1. On the [Account Settings](https://platform.beta.enjin.io/settings) page, click **Create API Token** and copy the new token somewhere safe.
+1. On the [Account Settings](https://platform.enjin.io/settings) page, click **Create API Token** and copy the new token somewhere safe.
 2. Follow the [Wallet Daemon Setup guide](/01-getting-started/06-using-wallet-daemon.md) to download, configure, and run the daemon. It will use the API token from step 1 to know which Platform account to sign for.
 
 Once the daemon is running and connected, every transaction you submit from this Platform account is signed automatically.
@@ -80,18 +80,18 @@ You can interact with the Enjin Platform and initiate blockchain requests in sev
 :::
 
 1.  **Create Collection:**
-    -   In the Platform menu, navigate to **[Collections](https://platform.beta.enjin.io/collections)** and click the "**Create Collection**" button.
+    -   In the Platform menu, navigate to **[Collections](https://platform.enjin.io/collections)** and click the "**Create Collection**" button.
     -   Customize your collection — you can specify its Mint Policy, Royalties, Explicit Royalty Currencies, and Attributes.
     To learn more about collection configuration, see the [Create Collections guide](/02-guides/01-platform/01-managing-tokens/01-creating-collections.md).
-    -   Click **Create** to submit. The Wallet Daemon signs and broadcasts the transaction automatically — watch it move from `PENDING` → `BROADCAST` → `FINALIZED` on the [Transactions page](https://platform.beta.enjin.io/transactions).
-    -   Once finalized, the new collection appears on the [Collections page](https://platform.beta.enjin.io/collections) with its assigned `id`. Keep that id handy for the next step.
+    -   Click **Create** to submit. The Wallet Daemon signs and broadcasts the transaction automatically — watch it move from `PENDING` → `BROADCAST` → `FINALIZED` on the [Transactions page](https://platform.enjin.io/transactions).
+    -   Once finalized, the new collection appears on the [Collections page](https://platform.enjin.io/collections) with its assigned `id`. Keep that id handy for the next step.
     ![A collection with the collection ID next to it](/img/getting-started/v3-collection-card.png)
 2.  **Create Token:**
-    -   Open the [Collections page](https://platform.beta.enjin.io/collections), click the collection you just created, then click the "**Create Token**" button at the top of the collection's page.
+    -   Open the [Collections page](https://platform.enjin.io/collections), click the collection you just created, then click the "**Create Token**" button at the top of the collection's page.
     -   Customize your token — Token ID, initial supply, cap, royalty behavior, and attributes.
     To learn more about token configuration, see the [Create Tokens guide](/02-guides/01-platform/01-managing-tokens/02-creating-tokens/02-creating-tokens.md).
-    -   In the **Recipient** input field, paste the <GlossaryTerm id="address" /> of the wallet that should receive the token's initial supply. To send the supply to your own daemon's wallet, copy its address from the [Settings page](https://platform.beta.enjin.io/settings).
-    -   Click **Create** to submit. The Wallet Daemon signs and broadcasts the transaction automatically; track it on the [Transactions page](https://platform.beta.enjin.io/transactions).
+    -   In the **Recipient** input field, paste the <GlossaryTerm id="address" /> of the wallet that should receive the token's initial supply. To send the supply to your own daemon's wallet, copy its address from the [Settings page](https://platform.enjin.io/settings).
+    -   Click **Create** to submit. The Wallet Daemon signs and broadcasts the transaction automatically; track it on the [Transactions page](https://platform.enjin.io/transactions).
 
 :::tip Programmatic Creation
 You can also create collections and tokens using the API or SDKs.
@@ -136,7 +136,7 @@ This is a core interaction — transferring an NFT from your project's wallet (o
 
 Sending a token uses the same `CreateTransaction` mutation as the rest of the Platform, with the `transferToken` field set on the `transaction` input. You'll need the recipient's address, the collection id, the token id, and the amount.
 
-Run the following from the [Enjin Platform GraphiQL Playground](https://platform.beta.enjin.io/graphiql) — or from your own GraphQL client (in which case add `Authorization: Bearer <YOUR_API_TOKEN>` to your request headers):
+Run the following from the [Enjin Platform GraphiQL Playground](https://platform.enjin.io/graphiql) — or from your own GraphQL client (in which case add `Authorization: Bearer <YOUR_API_TOKEN>` to your request headers):
 
 ```graphql
 mutation TransferToken {
@@ -159,7 +159,7 @@ mutation TransferToken {
 }
 ```
 
-The Wallet Daemon signs and broadcasts automatically. The response includes the transaction's `uuid` — use it to poll status with `GetTransaction(network: CANARY, chain: MATRIX, uuid: "<returned-uuid>")` or watch the row on the [Transactions page](https://platform.beta.enjin.io/transactions).
+The Wallet Daemon signs and broadcasts automatically. The response includes the transaction's `uuid` — use it to poll status with `GetTransaction(network: CANARY, chain: MATRIX, uuid: "<returned-uuid>")` or watch the row on the [Transactions page](https://platform.enjin.io/transactions).
 
 Once finalized, the transfer event is emitted with the recipient and amount — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
 
@@ -179,7 +179,7 @@ Once you know a user's wallet address, you'll often need to check which tokens t
 
 ### Implementation (GraphQL Example):
 
-Use the `GetAccount` query to read an address's holdings. Run this from the [GraphiQL Playground](https://platform.beta.enjin.io/graphiql) or your own GraphQL client:
+Use the `GetAccount` query to read an address's holdings. Run this from the [GraphiQL Playground](https://platform.enjin.io/graphiql) or your own GraphQL client:
 
 ```graphql
 query FetchingWalletTokens {
@@ -220,7 +220,7 @@ Congratulations! You've covered the basics of setting up your project on the Enj
 
 :::warning **Ready for Production?**
 Remember, this guide used the **Canary testnet** for development and testing. When you are ready to launch your application live, you will need to:
-1.  Switch the network selector to **Enjin (mainnet)** in the [Enjin Platform Cloud](https://platform.beta.enjin.io/).
+1.  Switch the network selector to **Enjin (mainnet)** in the [Enjin Platform Cloud](https://platform.enjin.io/).
 2.  Update your application's API calls or SDKs to target [**mainnet**](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#selecting-a-network-and-chain) by passing `network: ENJIN` on each query and mutation.
 :::
 

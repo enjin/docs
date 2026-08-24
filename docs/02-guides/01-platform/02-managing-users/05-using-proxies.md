@@ -56,7 +56,7 @@ Fill out the form:
 Click **Submit Transaction** and sign with the owner account. This reserves a refundable <GlossaryTerm id="storage_deposit" /> of about 0.5 ENJ. Once it's on-chain, your daemon can act for the owner account.
 
 :::tip Finding your daemon wallet address
-The **delegate** must be the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.beta.enjin.io/settings), where you can copy it directly.
+The **delegate** must be the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.enjin.io/settings), where you can copy it directly.
 :::
 
 ### 2. Dispatch actions through the proxy {#dispatch-as-owner}

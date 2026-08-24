@@ -85,7 +85,7 @@ Type in the "**Key**" that you wish to add, and its "**Value**" in the correspon
 
 ![The Set Attribute form](/img/getting-started/v3-set-attribute-form.png)
 
-Once you're satisfied with the options, click the "**Set Attribute**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Set Attribute**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -136,7 +136,7 @@ mutation BatchSetTokenAttribute {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      batchSetTokenAttribute: {\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        attributes: $attributes\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"collectionId":36105,"tokenId":0,"attributes":[{"key":"name","value":"Chronicles of the Celestium"},{"key":"description","value":"An epic saga where players assume the roles of intrepid tradesmiths, shaping destinies with fire and will across the star-woven expanses of the multiverse."},{"key":"uri","value":"https://yourhost/metadata.json"}]}}'
@@ -236,7 +236,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -278,7 +278,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -320,7 +320,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation BatchSetTokenAttribute($collectionId: BigInt!, $tokenId: BigInt!, $attributes: [AttributeInput!]!) {
       CreateTransaction(
@@ -390,7 +390,7 @@ variables = {
   ],
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
 	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

@@ -1,22 +1,23 @@
 ---
 title: "Wallets"
 slug: "wallets"
-description: "Read on-chain accounts, managed wallets, and verify signed messages via the Enjin API."
+description: "Read on-chain accounts, managed wallets, linked wallets, and verify signed messages via the Enjin API."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
-The Enjin Platform exposes two complementary read surfaces for wallets:
+The Enjin Platform exposes three complementary read surfaces for wallets:
 
 - **`GetAccount` / `GetAccounts`** — read any on-chain account by address (ENJ balance, held tokens, nonce).
 - **`GetManagedWallet` / `GetManagedWallets`** — read platform-managed wallets (the keypairs your application creates via `CreateManagedWallet`).
+- **`GetLinkedWallet`** — read a user wallet linked to your account via the [wallet linking flow](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) (`CreateLinkingCode`).
 
-`VerifyMessage` lets you cryptographically verify that a given signature belongs to a given address — useful for signed-message ownership proofs in WalletConnect-style flows.
+`VerifyMessage` lets you cryptographically verify that a given signature belongs to a given address — useful for signed-message ownership proofs in custom signing flows.
 
 ## GetAccount
 
@@ -203,6 +204,47 @@ query GetManagedWallets {
 ```
   </TabItem>
 </Tabs>
+
+## GetLinkedWallet
+
+Returns a wallet that a user has linked to your Enjin Platform account by approving a [linking code](/03-api-reference/02-mutations/04-wallets-mutations.md#createlinkingcode) in their Enjin Wallet app. Look it up by the `idempotencyKey` you set when creating the linking code, or by the wallet's `address` (the two arguments are mutually exclusive).
+
+Returns `null` when no linked wallet matches — the user hasn't approved the linking code yet, or they've since disconnected your application from their Enjin Wallet app. See [Sending Wallet Requests](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) for the full flow.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+query GetLinkedWallet($idempotencyKey: String) {
+  GetLinkedWallet(idempotencyKey: $idempotencyKey) {
+    publicKey
+    idempotencyKey
+  }
+}
+```
+
+Variables:
+
+```json
+{
+  "idempotencyKey": "player-123"
+}
+```
+  </TabItem>
+  <TabItem value="response" label="Response">
+```json
+{
+  "data": {
+    "GetLinkedWallet": {
+      "publicKey": "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e",
+      "idempotencyKey": "player-123"
+    }
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+Pass the returned `publicKey` as `signerAddress` on [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction) to send a transaction request to the user's Enjin Wallet app.
 
 ## VerifyMessage
 

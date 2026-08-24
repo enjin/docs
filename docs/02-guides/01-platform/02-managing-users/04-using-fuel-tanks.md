@@ -73,7 +73,7 @@ Fill out the form:
 Click **Create fuel tank** and sign the transaction. Once it is on-chain, the new tank appears in the Fuel tanks list with its own address.
 
 :::tip Finding your daemon wallet address
-The Require Signature rule must point at the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with — that's what lets the platform authorize dispatches through this tank automatically. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.beta.enjin.io/settings), where you can copy it directly.
+The Require Signature rule must point at the address your Platform [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) signs with — that's what lets the platform authorize dispatches through this tank automatically. The quickest way to find it is the **Daemon address** field on your [Platform settings page](https://platform.enjin.io/settings), where you can copy it directly.
 :::
 
 ### 3. Fund the tank {#fund-tank}

@@ -19,7 +19,7 @@ Until the `Transaction.events` field ships, the workflow is:
 1. **Poll for finalization.** Call [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) until `state` is `FINALIZED`. The response also exposes `extrinsicHash` once the transaction has been broadcast.
 2. **Read the events on Subscan.** Open the transaction by its `extrinsicHash` on the [Enjin Matrixchain Subscan explorer](https://matrix.subscan.io/). The **Events** tab there lists every event the extrinsic emitted, including IDs you'll commonly need (new `collection_id`, `token_id`, `listing_id`, etc.).
 
-The Enjin dashboard makes this one click — open the [Transactions page](https://platform.beta.enjin.io/transactions), find your transaction, and click its **Extrinsic Hash** link to jump straight to the Subscan event view.
+The Enjin dashboard makes this one click — open the [Transactions page](https://platform.enjin.io/transactions), find your transaction, and click its **Extrinsic Hash** link to jump straight to the Subscan event view.
 
 :::note Address formats in event payloads
 On-chain events represent account addresses as **hex public keys**, not the SS58-encoded `ef…` / `cx…` strings shown in most platform UIs. Use Subscan's [Account Format Transform tool](https://matrix.subscan.io/tools/format_transform) to convert between the two.
