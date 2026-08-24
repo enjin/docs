@@ -38,7 +38,7 @@ Fill in the recipient and amount in the corresponding fields.
 
 ![The Transfer Token form](/img/getting-started/v3-transfer-token-form.png)
 
-Once you're satisfied with the options, click the "**Transfer**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Transfer**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -86,7 +86,7 @@ mutation TransferToken {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      transferToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","collectionId":36105,"tokenId":0,"amount":1}}'
@@ -157,7 +157,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -200,7 +200,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -240,7 +240,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation TransferToken($recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {
       CreateTransaction(
@@ -306,7 +306,7 @@ variables = {
   'amount': 1,
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -342,7 +342,7 @@ mutation TransferEnj {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation TransferEnj($recipient: String!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: {\r\n      transferEnj: {\r\n        recipient: $recipient\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":"5000000000000000000"}}'
@@ -384,7 +384,7 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -420,7 +420,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation TransferEnj($recipient: String!, $amount: BigInt!) {
       CreateTransaction(
@@ -478,7 +478,7 @@ variables = {
   'amount': "5000000000000000000",
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -520,7 +520,7 @@ mutation BatchTransferEnj {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation BatchTransferEnj($transactions: [TransactionInput!]!) {\r\n  CreateBatchTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transactions: $transactions\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"transactions":[{"transferEnj":{"recipient":"cxLU94nRz1en6gHnXnYPyTdtcZZ9dqBasexvexjArj4V1Qr8f","amount":"5000000000000000000"}},{"transferEnj":{"recipient":"cxKy7aqhQTtoJYUjpebxFK2ooKhcvQ2FQj3FePrXhDhd9nLfu","amount":"15250000000000000000"}}]}}'
@@ -577,7 +577,7 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -610,7 +610,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation BatchTransferEnj($transactions: [TransactionInput!]!) {
       CreateBatchTransaction(
@@ -662,7 +662,7 @@ variables = {
   ],
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )
@@ -676,8 +676,8 @@ To transfer multiple tokens **from a single collection** to multiple recipients 
 :::
 
 :::tip Need to send a transaction request to user's wallet?
-This can be done using Enjin Platform API & WalletConnect!
-To learn more, check out the [Using WalletConnect page](/02-guides/01-platform/02-managing-users/01-connecting-user-wallets/02-using-wallet-connect.md).
+The Enjin Platform can deliver any transaction straight to a user's Enjin Wallet app for approval.
+To learn more, check out the [Sending Wallet Requests page](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md).
 :::
 
 Once a transfer transaction reaches `FINALIZED`, a `MultiTokens.Transferred` event (for token transfers) or `Balances.Transfer` event (for ENJ transfers) is emitted with the sender, recipient, and amount — useful for reacting to inbound transfers in real time (e.g. unlocking an in-game item the moment a player receives the corresponding NFT). See [Working with Events](/05-enjin-platform/03-working-with-events.md) for how to read it.
