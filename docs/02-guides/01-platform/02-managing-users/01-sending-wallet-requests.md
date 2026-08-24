@@ -8,12 +8,12 @@ import GlossaryTerm from '@site/src/components/GlossaryTerm';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Some in-game actions need the **player** to sign a transaction with their own wallet — transferring an item they own, listing loot on the marketplace, or burning a consumable. The Enjin Platform lets you send these transaction requests **directly to your users' <GlossaryTerm id="enjin_wallet_app" />**: the request pops up in their app, they approve it, and the platform signs and broadcasts it — no WalletConnect or other third-party tooling involved.
+Some in-game actions need the **player** to sign a transaction with their own wallet — transferring an item they own, listing loot on the marketplace, or burning a consumable. The Enjin Platform lets you send these transaction requests **directly to your users' <GlossaryTerm id="enjin_wallet_app" />**: the request pops up in their app, their wallet signs it when they approve, and the platform broadcasts it on-chain — no third-party tooling involved.
 
 Here's how the typical flow works:
 
 1. **[Set up your developer profile](#setting-up-your-developer-profile):** A one-time step. Your name, image, and description are shown to users in the Enjin Wallet whenever they link or receive a request from you.
-2. **[Link the user's wallet](#linking-a-users-wallet):** Generate a linking code, show it to the user as a QR code (or the code itself), and they approve the connection in their Enjin Wallet app. This happens once per user.
+2. **[Link the user's wallet](#linking-a-users-wallet):** Generate a linking code, show the user its QR code, and they approve the connection by scanning it with their Enjin Wallet app. This happens once per user.
 3. **[Send transaction requests](#sending-a-transaction-request):** Create any transaction with the linked wallet as the signer. The user receives it in their Enjin Wallet app and approves or rejects it.
 4. **[Track the request](#tracking-the-request):** Poll the transaction's state to react once the user approves and the transaction finalizes on-chain.
 
@@ -45,11 +45,11 @@ Until your developer profile is completed, linking-related requests are rejected
 
 ## Linking a User's Wallet {#linking-a-users-wallet}
 
-To send requests to a user's Enjin Wallet app, the user must first **link their wallet** to your Enjin Platform account. Linking is consent-based: you generate a short-lived linking code, the user scans it (or types it) in their Enjin Wallet app, picks the account they want to link, and approves the connection. The link persists until the user disconnects your application from their wallet app, so this step happens only once per user.
+To send requests to a user's Enjin Wallet app, the user must first **link their wallet** to your Enjin Platform account. Linking is consent-based: you generate a short-lived linking code, the user scans its QR code with their Enjin Wallet app, picks the account they want to link, and approves the connection. The link persists until the user disconnects your application from their wallet app, so this step happens only once per user.
 
 ### Step 1: Create a linking code
 
-Run the `CreateLinkingCode` mutation. Pass an `idempotencyKey` that identifies the user in **your** system (such as a player ID from your database) — you'll use the same key later to look up which wallet address the user linked. If you omit it, the platform generates one for you and returns it.
+Run the `CreateLinkingCode` mutation. You can pass an `idempotencyKey` of your choosing, or omit it and the platform generates one for you — either way, it's the key you'll use afterwards to look up which wallet address the user linked, so store it against the user's record in your database. Each key identifies **one linking code** and can never be reused: if a code expires before the user scans it, create the next code with a fresh key (for example, your player ID plus an attempt counter or timestamp).
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -57,7 +57,6 @@ Run the `CreateLinkingCode` mutation. Pass an `idempotencyKey` that identifies t
 mutation CreateLinkingCode($idempotencyKey: String) {
   CreateLinkingCode(idempotencyKey: $idempotencyKey) {
     idempotencyKey
-    code
     qr
     url
     expires
@@ -78,7 +77,7 @@ Variables:
 curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer Your_Platform_Token_Here' \
--d '{"query":"mutation CreateLinkingCode($idempotencyKey: String) {\r\n  CreateLinkingCode(idempotencyKey: $idempotencyKey) {\r\n    idempotencyKey\r\n    code\r\n    qr\r\n    url\r\n    expires\r\n  }\r\n}","variables":{"idempotencyKey":"player-123"}}'
+-d '{"query":"mutation CreateLinkingCode($idempotencyKey: String) {\r\n  CreateLinkingCode(idempotencyKey: $idempotencyKey) {\r\n    idempotencyKey\r\n    qr\r\n    url\r\n    expires\r\n  }\r\n}","variables":{"idempotencyKey":"player-123"}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -90,12 +89,11 @@ using Enjin.Platform.Sdk;
 using var client = new PlatformClient();
 client.Auth("<your-platform-token>");
 
-// Create a linking code keyed by your own player/user ID
+// Create a linking code; store the key to look up the linked wallet later
 var mutation = new MutationQueryBuilder()
     .WithCreateLinkingCode(
         new LinkingCodeQueryBuilder()
             .WithIdempotencyKey()
-            .WithCode()
             .WithQr()
             .WithUrl()
             .WithExpires(),
@@ -115,7 +113,6 @@ fetch('https://platform.enjin.io/graphql', {
       mutation CreateLinkingCode($idempotencyKey: String) {
         CreateLinkingCode(idempotencyKey: $idempotencyKey) {
           idempotencyKey
-          code
           qr
           url
           expires
@@ -123,7 +120,7 @@ fetch('https://platform.enjin.io/graphql', {
       }
     `,
     variables: {
-      idempotencyKey: "player-123" //Your internal ID for this user
+      idempotencyKey: "player-123" //Unique, single-use key for this linking code
     }
   }),
 })
@@ -140,7 +137,6 @@ axios.post('https://platform.enjin.io/graphql', {
     mutation CreateLinkingCode($idempotencyKey: String) {
       CreateLinkingCode(idempotencyKey: $idempotencyKey) {
         idempotencyKey
-        code
         qr
         url
         expires
@@ -148,7 +144,7 @@ axios.post('https://platform.enjin.io/graphql', {
     }
   `,
   variables: {
-    idempotencyKey: "player-123" //Your internal ID for this user
+    idempotencyKey: "player-123" //Unique, single-use key for this linking code
   }
 }, {
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
@@ -165,7 +161,6 @@ query = '''
 mutation CreateLinkingCode($idempotencyKey: String) {
   CreateLinkingCode(idempotencyKey: $idempotencyKey) {
     idempotencyKey
-    code
     qr
     url
     expires
@@ -174,7 +169,7 @@ mutation CreateLinkingCode($idempotencyKey: String) {
 '''
 
 variables = {
-  'idempotencyKey': "player-123" #Your internal ID for this user
+  'idempotencyKey': "player-123" #Unique, single-use key for this linking code
 }
 
 response = requests.post('https://platform.enjin.io/graphql',
@@ -193,7 +188,6 @@ print(response.json())
   "data": {
     "CreateLinkingCode": {
       "idempotencyKey": "player-123",
-      "code": "32723192",
       "qr": "https://platform.enjin.io/qrcode/aHR0cHM6Ly9wbGF0Zm9ybS5lbmppbi5pby9saW5rLzMyNzIzMTky",
       "url": "https://platform.enjin.io/link/32723192",
       "expires": "2026-08-24T15:36:12Z"
@@ -205,14 +199,13 @@ print(response.json())
 Present the response to the user in whichever form fits your application:
 
 - **`qr`** — a ready-to-display QR code image. Show it in your game/app for the user to scan with their Enjin Wallet app. This is the most common option for desktop and console.
-- **`code`** — a short code the user can type manually in their Enjin Wallet app.
 - **`url`** — a link that opens the linking flow directly. Useful when your application runs on the same mobile device as the Enjin Wallet app.
 
-Linking codes are **short-lived** (see the `expires` field). If a code expires before the user completes the flow, simply create a new one.
+Linking codes are **short-lived** (see the `expires` field). If a code expires before the user completes the flow, simply create a new one with a fresh `idempotencyKey`.
 
 ### Step 2: The user approves in their Enjin Wallet app
 
-When the user scans the QR code (or enters the code) in their Enjin Wallet app, they see your **developer profile** — the image, name, and description you configured earlier — along with a prompt to pick which account to link. Once they approve, their wallet is linked to your Enjin Platform account.
+When the user scans the QR code with their Enjin Wallet app, they see your **developer profile** — the image, name, and description you configured earlier — along with a prompt to pick which account to link. Once they approve, their wallet is linked to your Enjin Platform account.
 
 The user stays in control: they can disconnect your application from their Enjin Wallet app at any time, which removes the link and stops any further requests from reaching them.
 
@@ -283,7 +276,7 @@ fetch('https://platform.enjin.io/graphql', {
       }
     `,
     variables: {
-      idempotencyKey: "player-123" //Your internal ID for this user
+      idempotencyKey: "player-123" //The key used when creating the linking code
     }
   }),
 })
@@ -305,7 +298,7 @@ axios.post('https://platform.enjin.io/graphql', {
     }
   `,
   variables: {
-    idempotencyKey: "player-123" //Your internal ID for this user
+    idempotencyKey: "player-123" //The key used when creating the linking code
   }
 }, {
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'}
@@ -328,7 +321,7 @@ query GetLinkedWallet($idempotencyKey: String) {
 '''
 
 variables = {
-  'idempotencyKey': "player-123" #Your internal ID for this user
+  'idempotencyKey': "player-123" #The key used when creating the linking code
 }
 
 response = requests.post('https://platform.enjin.io/graphql',
@@ -363,7 +356,7 @@ print(response.json())
 }
 ```
 
-Store the returned `publicKey` against the user's record in your database — it identifies the wallet the user linked, and it's the address you'll target with transaction requests. You can also call `GetLinkedWallet` with an `address` argument instead of `idempotencyKey` to check whether a specific wallet address is linked to your account.
+Store the returned `publicKey` against the user's record in your database — it identifies the wallet the user linked, and it's the account you'll target with transaction requests. The hex public key and the SS58-encoded address (`ef...`) are two representations of the same account, and address arguments like `signerAddress` accept either form. You can also call `GetLinkedWallet` with an `address` argument instead of `idempotencyKey` to check whether a specific wallet address is linked to your account.
 
 :::note Polling the link state
 There's no push notification for link state yet, so poll `GetLinkedWallet` (e.g. every few seconds while your "link your wallet" screen is open) until it returns data. A `null` response after a successful link means the user has since **disconnected** your application from their wallet app — treat the wallet as unlinked and offer to link again.
@@ -414,8 +407,8 @@ Variables:
 
 ```json
 {
-  "signerAddress": "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e",
-  "recipient": "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+  "signerAddress": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y",
+  "recipient": "efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW",
   "collectionId": 36105,
   "tokenId": 1,
   "amount": 1
@@ -427,7 +420,7 @@ Variables:
 curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer Your_Platform_Token_Here' \
--d '{"query":"mutation RequestTokenTransfer($signerAddress: String, $recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    signerAddress: $signerAddress\r\n    transaction: {\r\n      transferToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    state\r\n  }\r\n}","variables":{"signerAddress":"0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e","recipient":"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ","collectionId":36105,"tokenId":1,"amount":1}}'
+-d '{"query":"mutation RequestTokenTransfer($signerAddress: String, $recipient: String!, $collectionId: BigInt!, $tokenId: BigInt!, $amount: BigInt!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    signerAddress: $signerAddress\r\n    transaction: {\r\n      transferToken: {\r\n        recipient: $recipient\r\n        collectionId: $collectionId\r\n        tokenId: $tokenId\r\n        amount: $amount\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    state\r\n  }\r\n}","variables":{"signerAddress":"efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y","recipient":"efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW","collectionId":36105,"tokenId":1,"amount":1}}'
 ```
   </TabItem>
   <TabItem value="csharp-sdk" label="c# SDK">
@@ -445,12 +438,12 @@ var mutation = new MutationQueryBuilder()
         new TransactionQueryBuilder().WithUuid().WithState(),
         network: Network.Enjin, // or Network.Canary for testnet
         chain: Chain.Matrix,
-        signerAddress: "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e", // the linked wallet
+        signerAddress: "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y", // the linked wallet
         transaction: new TransactionInput
         {
             TransferToken = new TransferTokenInput
             {
-                Recipient = "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+                Recipient = "efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW",
                 CollectionId = 36105,
                 TokenId = 1,
                 Amount = 1,
@@ -488,8 +481,8 @@ fetch('https://platform.enjin.io/graphql', {
       }
     `,
     variables: {
-      signerAddress: "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e", //The linked wallet
-      recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+      signerAddress: "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y", //The linked wallet
+      recipient: "efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW",
       collectionId: 36105,
       tokenId: 1,
       amount: 1
@@ -526,8 +519,8 @@ axios.post('https://platform.enjin.io/graphql', {
     }
   `,
   variables: {
-    signerAddress: "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e", //The linked wallet
-    recipient: "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+    signerAddress: "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y", //The linked wallet
+    recipient: "efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW",
     collectionId: 36105,
     tokenId: 1,
     amount: 1
@@ -565,8 +558,8 @@ mutation RequestTokenTransfer($signerAddress: String, $recipient: String!, $coll
 '''
 
 variables = {
-  'signerAddress': "0x5a6aae294416f3e875d9a8975658905002cfd3e5e64105d76296c4b0adbfd77e", #The linked wallet
-  'recipient': "cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ",
+  'signerAddress': "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y", #The linked wallet
+  'recipient': "efRP7f5aFWWobNiNxcWGNxhY1RdRXZ4kScvwuFdD4bsBHEUZW",
   'collectionId': 36105,
   'tokenId': 1,
   'amount': 1
@@ -595,10 +588,6 @@ print(response.json())
 ```
 
 The user now receives the request in their Enjin Wallet app, where they can review exactly what they're being asked to sign — presented under your developer profile — and approve or reject it.
-
-:::note The platform validates before delivering
-The transaction is validated when you create it. For example, if the signer doesn't hold the token you're asking them to transfer, `CreateTransaction` returns a validation error instead of creating the request.
-:::
 
 ### Anything you can sign, they can sign
 

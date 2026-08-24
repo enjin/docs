@@ -85,9 +85,9 @@ Variables:
 
 ## CreateLinkingCode
 
-Creates a short-lived linking code that a user can scan (as a QR code) or enter in their Enjin Wallet app to link their wallet to your Enjin Platform account — authorizing you to send transaction requests to their app. Requires a completed [Developer Profile](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md#setting-up-your-developer-profile).
+Creates a short-lived linking code that a user scans (as a QR code) with their Enjin Wallet app to link their wallet to your Enjin Platform account — authorizing you to send transaction requests to their app. Requires a completed [Developer Profile](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md#setting-up-your-developer-profile).
 
-Pass an `idempotencyKey` that identifies the user in your system (it's optional — the platform generates one otherwise); once the user approves, look up the linked wallet with [`GetLinkedWallet`](/03-api-reference/01-queries/04-wallets-queries.md#getlinkedwallet) using the same key. See [Sending Wallet Requests](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) for the full walkthrough.
+You can pass your own `idempotencyKey` or let the platform generate one; once the user approves, look up the linked wallet with [`GetLinkedWallet`](/03-api-reference/01-queries/04-wallets-queries.md#getlinkedwallet) using the same key. Each key identifies one linking code and can never be reused — if a code expires unused, create the next one with a fresh key. See [Sending Wallet Requests](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) for the full walkthrough.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -95,7 +95,6 @@ Pass an `idempotencyKey` that identifies the user in your system (it's optional 
 mutation CreateLinkingCode($idempotencyKey: String) {
   CreateLinkingCode(idempotencyKey: $idempotencyKey) {
     idempotencyKey
-    code
     qr
     url
     expires
@@ -117,7 +116,6 @@ Variables:
   "data": {
     "CreateLinkingCode": {
       "idempotencyKey": "player-123",
-      "code": "32723192",
       "qr": "https://platform.enjin.io/qrcode/aHR0cHM6Ly9wbGF0Zm9ybS5lbmppbi5pby9saW5rLzMyNzIzMTky",
       "url": "https://platform.enjin.io/link/32723192",
       "expires": "2026-08-24T15:36:12Z"
@@ -128,7 +126,6 @@ Variables:
   </TabItem>
 </Tabs>
 
-- `code` — the code the user can type manually in their Enjin Wallet app.
 - `qr` — a renderable QR code image of the linking link, ready to display to the user.
 - `url` — the linking link itself, for when your application runs on the same device as the Enjin Wallet app.
 - `expires` — when the code stops working; create a new one if it expires before the user finishes linking.
