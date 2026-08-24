@@ -65,4 +65,4 @@ The Enjin Platform is fully hosted, so there's nothing to install, deploy, or ma
 
 Each project runs in its own isolated context on Enjin's infrastructure, with your API token scoping access. Signing stays under your control: a [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md) that you run holds your private keys and signs transactions before submitting them through the platform — keys never leave your environment.
 
-[Create an account](https://platform.beta.enjin.io/register) to get started.
+[Create an account](https://platform.enjin.io/register) to get started.

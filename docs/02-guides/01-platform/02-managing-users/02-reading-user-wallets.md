@@ -48,7 +48,7 @@ query FetchWalletBalance{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"query FetchWalletBalance($address: String!) {\r\n  GetAccount(network: ENJIN, chain: MATRIX, address: $address) {\r\n    balance\r\n  }\r\n}","variables":{"address":"efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr"}}'
@@ -102,7 +102,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -143,7 +143,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -167,7 +167,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query FetchWalletBalance($address: String!) {
       GetAccount(network: ENJIN, chain: MATRIX, address: $address) {
@@ -201,7 +201,7 @@ variables = {
   'address': "efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr" #Specify the account address
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
@@ -256,7 +256,7 @@ query FetchWalletTokens{
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"query FetchWalletTokens($address: String!) {\r\n  GetAccount(network: ENJIN, chain: MATRIX, address: $address) {\r\n    tokens {\r\n      id\r\n      tokenId\r\n      collection {\r\n        id\r\n      }\r\n      attributes {\r\n        key\r\n        value\r\n      }\r\n    }\r\n  }\r\n}","variables":{"address":"efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr"}}'
@@ -338,7 +338,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -379,7 +379,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -413,7 +413,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query FetchWalletTokens($address: String!) {
       GetAccount(network: ENJIN, chain: MATRIX, address: $address) {
@@ -467,7 +467,7 @@ variables = {
   'address': "efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr" #Specify the account address
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )

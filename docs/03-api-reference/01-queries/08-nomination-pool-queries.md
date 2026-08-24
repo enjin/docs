@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 Nomination pools live on the **Relaychain** — pass `chain: RELAY` on every query in this section. They let many small ENJ holders pool their stake under a single nominator, sharing rewards proportionally. To bond into a pool or unbond, see [Nomination Pool Mutations](/03-api-reference/02-mutations/08-nomination-pool-mutations.md).

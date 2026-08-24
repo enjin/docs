@@ -6,7 +6,7 @@ slug: "/api-reference"
 This section is a per-resource reference for the Enjin Platform GraphQL API. Each page focuses on one resource family (accounts, collections, tokens, transactions, marketplace listings, fuel tanks, token groups, nomination pools) and walks through the queries and mutations available for it.
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 ## How this section is organised

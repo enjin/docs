@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 :::warning Fuel Tank API is being updated
