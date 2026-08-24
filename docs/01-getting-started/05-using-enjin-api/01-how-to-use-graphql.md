@@ -57,7 +57,7 @@ In GraphQL:
 - `Queries` are used to retrieve data, similar to a `GET` request in REST.
 - `Mutations` are used to create or modify data, similar to `POST`, `PUT`, or `DELETE` requests in REST.
 
-Here's how the same RESTful request would look in GraphQL, sent as an HTTP POST request to the Enjin Platform GraphQL endpoint at `https://platform.beta.enjin.io/graphql`:
+Here's how the same RESTful request would look in GraphQL, sent as an HTTP POST request to the Enjin Platform GraphQL endpoint at `https://platform.enjin.io/graphql`:
 
 ```graphql
 mutation MintToken {
@@ -96,7 +96,7 @@ The <GlossaryTerm id="graphiql_playground" /> serves three purposes:
 
 ### Step 1: Open the GraphiQL Playground
 
-Open the [Enjin Platform GraphiQL Playground](https://platform.beta.enjin.io/graphiql) in your browser. The Enjin API now serves all queries and mutations from a single endpoint, so there is one playground covering Core operations, Marketplace, Fuel Tanks, and Nomination Pools.
+Open the [Enjin Platform GraphiQL Playground](https://platform.enjin.io/graphiql) in your browser. The Enjin API now serves all queries and mutations from a single endpoint, so there is one playground covering Core operations, Marketplace, Fuel Tanks, and Nomination Pools.
 
 :::info GraphiQL Playground:
 The link above opens a graphical interface for exploring and testing operations directly from a web browser. To execute GraphQL requests programmatically from your application, send POST requests to the actual GraphQL endpoint instead — see [Using the Enjin API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md#graphql-endpoint).

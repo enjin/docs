@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 Nomination pools live on the **Relaychain** — pass `chain: RELAY` on every mutation in this section. To read pool state, see [Nomination Pool Queries](/03-api-reference/01-queries/08-nomination-pool-queries.md).

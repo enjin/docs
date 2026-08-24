@@ -101,7 +101,7 @@ query ScanForBrandItems {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"query ScanForBrandItems($address: String!) {\r\n  GetAccount(network: ENJIN, chain: MATRIX, address: $address) {\r\n    tokens {\r\n      id\r\n      tokenId\r\n      collection { id }\r\n      attributes { key value }\r\n    }\r\n  }\r\n}","variables":{"address":"efUVQhs3Q1ih9RKn1ukpb45p2Zomu5jvopsQE6n5LtW52FJH3"}}'

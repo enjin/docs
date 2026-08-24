@@ -55,7 +55,7 @@ mutation CraftItem($signerExternalId: String!, $transactions: [TransactionInput!
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation CraftItem($signerExternalId: String!, $transactions: [TransactionInput!]!) {\r\n  CreateBatchTransaction(\r\n    network: CANARY\r\n    chain: MATRIX\r\n    signerExternalId: $signerExternalId\r\n    transactions: $transactions\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"signerExternalId":"docs-example-player","transactions":[{"burnToken":{"collectionId":36105,"tokenId":1,"amount":3}},{"burnToken":{"collectionId":36105,"tokenId":2,"amount":2}},{"burnToken":{"collectionId":36105,"tokenId":3,"amount":1}}]}}'
@@ -100,7 +100,7 @@ Work In Progress
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -136,7 +136,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation CraftItem($signerExternalId: String!, $transactions: [TransactionInput!]!) {
       CreateBatchTransaction(
@@ -194,7 +194,7 @@ variables = {
   ],
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

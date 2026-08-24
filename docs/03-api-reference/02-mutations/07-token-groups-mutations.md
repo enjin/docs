@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 A token group is an on-chain bucket of tokens within a single collection — see [Token Groups Queries](/03-api-reference/01-queries/07-token-groups-queries.md) for the read side. All token-group actions are submitted through [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction), with the action selected by the field set on the `transaction` input. The response shape is always a `Transaction` — the examples below all return the standard `{ uuid, action, state }` selection.

@@ -1,14 +1,14 @@
 ---
 title: "Transactions"
 slug: "transactions"
-description: "Submit on-chain actions through the Enjin Platform's transaction mutations: CreateTransaction, CreateBatchTransaction, SignTransaction, RefreshMetadata."
+description: "Submit on-chain actions through the Enjin Platform's transaction mutations: CreateTransaction, CreateBatchTransaction, SignTransaction, CancelTransaction, RefreshMetadata."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 The Enjin Platform exposes a small number of root-level mutations. Almost every on-chain action — creating a collection, minting, transferring, listing, burning, freezing, bonding to a nomination pool, managing token groups — is funnelled through the single `CreateTransaction` mutation, with the action selected by which field is set on the `transaction` input.
@@ -68,8 +68,8 @@ mutation CreateTransaction {
 
 Useful additional arguments:
 
-- `idempotencyKey: String` — pass the same key on a retried request to avoid creating a duplicate transaction.
-- `signerAddress: String` — sign with a specific account instead of the Wallet Daemon (e.g. a Managed Wallet's public key, or an external user address for client-side signing).
+- `idempotencyKey: String` — a unique key for the transaction, protecting against accidental duplicates: creating another transaction with a key that was already used returns a validation error.
+- `signerAddress: String` — sign with a specific account instead of the Wallet Daemon: a Managed Wallet's public key, a [linked user wallet](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) (the request is delivered to the user's Enjin Wallet app for approval), or an external address for custom client-side signing.
 - `signerExternalId: String` — same as `signerAddress` but resolved from a Managed Wallet's `externalId`.
 - `proxyAddress: String` — wrap the call in `proxy.proxy` so it executes on behalf of a proxied account.
 - `fuelTank: String` — dispatch through a fuel tank's address; the tank pays the transaction fees.
@@ -126,7 +126,9 @@ See the [Batching Transactions](/02-guides/01-platform/03-advanced-mechanics/08-
 
 ## SignTransaction
 
-Submits the signed extrinsic for a transaction that was created with an external `signerAddress`. Use this when you want a user's wallet (e.g. through WalletConnect) — rather than the Wallet Daemon — to sign on-chain actions.
+Submits the signed extrinsic for a transaction that was created with an external `signerAddress`. Use this for custom client-side signing integrations (e.g. a browser extension) where you collect the signature yourself.
+
+You don't need this mutation when the signer is a wallet [linked via the Enjin Wallet app](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) — in that flow the request is delivered to the user's app, and the platform receives the signature and broadcasts automatically once the user approves.
 
 The typical flow is:
 
@@ -161,6 +163,43 @@ mutation SignTransaction {
       "extrinsic": {
         "hash": "0xa1b2c3..."
       }
+    }
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+## CancelTransaction
+
+Cancels a transaction that hasn't been signed yet (its `state` is still `PENDING`), marking it `ABANDONED`. Useful for withdrawing a [wallet request](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) the user hasn't approved yet — for example, when the in-game offer that triggered it expires.
+
+<Tabs>
+  <TabItem value="graphql" label="GraphQL">
+```graphql
+mutation CancelTransaction($uuid: String!) {
+  CancelTransaction(uuid: $uuid) {
+    uuid
+    state
+  }
+}
+```
+
+Variables:
+
+```json
+{
+  "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1"
+}
+```
+  </TabItem>
+  <TabItem value="response" label="Response">
+```json
+{
+  "data": {
+    "CancelTransaction": {
+      "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
+      "state": "ABANDONED"
     }
   }
 }

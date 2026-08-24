@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 A **token group** is an on-chain set of tokens within a single collection. Each token can belong to zero or more groups; each group can hold many tokens. Groups make it easier to organise large collections in marketplaces and games — for example, the `Epochrome Sword` group inside Enjin's `The Multiverse` collection bundles every Epochrome Sword variant together so games can grant in-game utility to anyone holding any one of them.

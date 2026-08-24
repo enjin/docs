@@ -80,7 +80,7 @@ query GetTransactionEvents($uuid: String!) {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```bash
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <YOUR_API_TOKEN>' \
 -d '{"query":"query GetTransactionEvents($uuid: String!) { GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) { state extrinsic { hash success events { id name collectionId tokenId data } } } }","variables":{"uuid":"06303d39-6ba9-4c81-8500-55bcca9e9512"}}'
@@ -88,7 +88,7 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query GetTransactionEvents($uuid: String!) {
       GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) {
@@ -180,7 +180,7 @@ query GetTransactionEvents($uuid: String!) {
 variables = {'uuid': '06303d39-6ba9-4c81-8500-55bcca9e9512'}
 
 response = requests.post(
-    'https://platform.beta.enjin.io/graphql',
+    'https://platform.enjin.io/graphql',
     json={'query': query, 'variables': variables},
     headers={
         'Content-Type': 'application/json',
@@ -258,7 +258,7 @@ Events hang off the extrinsic, so any query that returns an `Extrinsic` returns 
 - [`GetExtrinsic(hash:)`](/03-api-reference/01-queries/01-transactions-queries.md#getextrinsic) — when you have an extrinsic hash rather than a platform transaction `uuid`.
 - [`GetBlock` / `GetBlocks`](/03-api-reference/01-queries/01-transactions-queries.md#getblock) — read every extrinsic (and its events) in a given block.
 
-You can also follow your transactions in the [Platform UI](https://platform.beta.enjin.io/transactions): the Transactions page shows each transaction's state and extrinsic hash as it moves on-chain.
+You can also follow your transactions in the [Platform UI](https://platform.enjin.io/transactions): the Transactions page shows each transaction's state and extrinsic hash as it moves on-chain.
 
 :::info Real-time event streaming
 Push-based event delivery (WebSockets), which removes the need to poll, is planned but not yet available — see [WebSocket Events](/03-api-reference/03-websocket-events.md).

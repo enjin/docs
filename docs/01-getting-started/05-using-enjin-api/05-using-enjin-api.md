@@ -34,8 +34,8 @@ API tokens are used to authenticate your application's requests to the Enjin Pla
 
 To make authenticated calls to the Enjin Platform:
 
-1. Log in to the [Enjin Platform Cloud](https://platform.beta.enjin.io/).
-2. Open your [account settings](https://platform.beta.enjin.io/settings) and create an API token if you haven't already.
+1. Log in to the [Enjin Platform Cloud](https://platform.enjin.io/).
+2. Open your [account settings](https://platform.enjin.io/settings) and create an API token if you haven't already.
 3. Include the token in the `Authorization` header of your HTTP requests, prefixed with `Bearer`:
 
 ```
@@ -60,7 +60,7 @@ For developers looking for a more integrated experience, Enjin also provides off
 The Enjin Platform serves all queries and mutations from a **single GraphQL endpoint**:
 
 :::note GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 A single endpoint covers Core operations (collections, tokens, transfers, attributes), Marketplace, Fuel Tanks, and Nomination Pools.
@@ -97,7 +97,7 @@ To run the same query on the Canary testnet, change `network: ENJIN` to `network
 Here is an example of an HTTP cURL request to fetch an account's balance from the Canary Matrixchain, with an API token provided:
 
 ```bash
-curl --location --request POST 'https://platform.beta.enjin.io/graphql' \
+curl --location --request POST 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <YOUR_API_TOKEN>' \
 -d '{"query":"query { GetAccount(network: CANARY, chain: MATRIX, address: \"efQh8FzLm6oH3dmTU3HWqGrtm6Xcuu1WG33N2Ka9fzo5MFFAr\") { balance } }"}'

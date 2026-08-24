@@ -15,7 +15,7 @@ You can obtain cENJ (Canary ENJ) for testing from the [built-in Canary faucet](#
 
 ## 1. Set Up an <GlossaryTerm id="enjin_platform" /> Account
 
-To get started, go ahead and create an account on the [Enjin Platform Cloud](https://platform.beta.enjin.io/) and **verify your email address.**
+To get started, go ahead and create an account on the [Enjin Platform Cloud](https://platform.enjin.io/) and **verify your email address.**
 
 The Enjin Platform is chain-agnostic — a single dashboard covers both networks. Use the **network selector in the top-right corner** of the platform UI to switch between **Canary** (testnet) and **Enjin** (mainnet). We recommend starting on Canary while you build and test.
 
@@ -26,7 +26,7 @@ The Enjin Platform is chain-agnostic — a single dashboard covers both networks
 
 ## 2. Set Up an API Token
 
-Once your account is created, create a new API token by clicking the "**Create API Token**" button on the [Account Settings](https://platform.beta.enjin.io/settings) page.  
+Once your account is created, create a new API token by clicking the "**Create API Token**" button on the [Account Settings](https://platform.enjin.io/settings) page.  
 Copy and save that token somewhere safe — you'll need it to configure your <GlossaryTerm id="wallet_daemon" /> and to authenticate API requests.
 
 :::tip Note
@@ -83,7 +83,7 @@ However, if you need to make a Platform request programmatically, you can do tha
 
 ### Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**" and click the "**Create Collection**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.enjin.io/collections)**" and click the "**Create Collection**" button.
 
 ![Create collection form on Enjin Platform](/img/getting-started/v3-create-collection-form.png)
 
@@ -111,7 +111,7 @@ On any transaction form — whether a guided flow or the transaction builder —
 
 The popup gives you everything needed to reproduce the request programmatically:
 
-- **URL** — the GraphQL endpoint the request is sent to (`https://platform.beta.enjin.io/graphql`).
+- **URL** — the GraphQL endpoint the request is sent to (`https://platform.enjin.io/graphql`).
 - **Request** — the GraphQL mutation, including its variable definitions.
 - **Variables** — the JSON variable values for this specific transaction.
 
@@ -135,7 +135,7 @@ For a step-by-step walkthrough of the endpoint, authentication, and the `network
 :::
 
 :::tip Test your requests in the GraphiQL Playground
-[Open the Enjin Platform GraphiQL Playground](https://platform.beta.enjin.io/graphiql)
+[Open the Enjin Platform GraphiQL Playground](https://platform.enjin.io/graphiql)
 :::
 
 :::tip Authentication
@@ -169,7 +169,7 @@ mutation CreateCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```bash
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <YOUR_API_TOKEN>' \
 -d '{"query":"mutation { CreateTransaction(network: CANARY, chain: MATRIX, transaction: { createCollection: { forceCollapsingSupply: false } }) { uuid action state } }"}'
@@ -177,7 +177,7 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -212,7 +212,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation CreateCollection($forceCollapsingSupply: Boolean) {
       CreateTransaction(
@@ -264,7 +264,7 @@ mutation CreateCollection($forceCollapsingSupply: Boolean) {
 variables = {'forceCollapsingSupply': False}
 
 response = requests.post(
-    'https://platform.beta.enjin.io/graphql',
+    'https://platform.enjin.io/graphql',
     json={'query': query, 'variables': variables},
     headers={
         'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ A couple of dashboard patterns are worth knowing before you start managing exist
 
 The dashboard does not have a top-level **Tokens** page. Tokens are always viewed inside the collection they belong to:
 
-1. In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**".
+1. In the Platform menu, navigate to "**[Collections](https://platform.enjin.io/collections)**".
 2. Click the collection that contains the token you want to manage.
 3. The collection page lists every token in the collection. Click the **3 vertical dots** (**⋮**) on a token's row to open its action menu — **Mint**, **Transfer**, **Attributes**, **Burn**, **Freeze / Thaw**, and so on.
 
@@ -308,7 +308,7 @@ When you're ready to submit, open the **Batch Queue** panel from the bottom-righ
 
 ![Batch Queue panel with two queued actions and the Submit Batch button](/img/getting-started/v3-batch-queue.png)
 
-A successful submit produces a single transaction `uuid` on the [Transactions](https://platform.beta.enjin.io/transactions) page — the same shape any other transaction uses, just with multiple actions packed into it.
+A successful submit produces a single transaction `uuid` on the [Transactions](https://platform.enjin.io/transactions) page — the same shape any other transaction uses, just with multiple actions packed into it.
 
 :::tip Programmatic equivalent
 The API equivalent of the Batch Queue is the `CreateBatchTransaction` mutation — it takes a `transactions: [TransactionInput!]!` list where each entry is one of the same discriminator inputs you'd pass to `CreateTransaction`.
@@ -325,7 +325,7 @@ For real-time, push-based notifications, see [WebSocket Events](/03-api-referenc
 
 ### Receive Transaction Information Using the Platform User Interface
 
-To check the transaction status, head over to the [Transactions](https://platform.beta.enjin.io/transactions) page. Each row shows the transaction's `UUID`, `Action` (e.g. `MultiTokens.create_collection`), `State`, and `Extrinsic Hash` once it has been broadcast.
+To check the transaction status, head over to the [Transactions](https://platform.enjin.io/transactions) page. Each row shows the transaction's `UUID`, `Action` (e.g. `MultiTokens.create_collection`), `State`, and `Extrinsic Hash` once it has been broadcast.
 
 ![Transactions page showing a finalized create_collection transaction](/img/getting-started/v3-transactions-page.png)
 
@@ -368,7 +368,7 @@ query GetTransactionStatus($uuid: String!) {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```bash
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <YOUR_API_TOKEN>' \
 -d '{"query":"query { GetTransaction(network: CANARY, chain: MATRIX, uuid: \"12f22f91-82df-4b60-a90c-bf72b508a17c\") { uuid action state extrinsic { hash } } }"}'
@@ -376,7 +376,7 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -406,7 +406,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query GetTransactionStatus($uuid: String!) {
       GetTransaction(network: CANARY, chain: MATRIX, uuid: $uuid) {
@@ -450,7 +450,7 @@ query GetTransactionStatus($uuid: String!) {
 variables = {'uuid': '12f22f91-82df-4b60-a90c-bf72b508a17c'}
 
 response = requests.post(
-    'https://platform.beta.enjin.io/graphql',
+    'https://platform.enjin.io/graphql',
     json={'query': query, 'variables': variables},
     headers={
         'Content-Type': 'application/json',

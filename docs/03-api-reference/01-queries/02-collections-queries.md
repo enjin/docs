@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 `Collection` is the parent resource for a set of related tokens. A collection carries its mint, market, and transfer policies, its on-chain attributes, and any token groups defined within it. Individual tokens within a collection are read separately via [`GetTokens`](/03-api-reference/01-queries/03-tokens-queries.md#gettokens).

@@ -23,7 +23,7 @@ On Enjin Blockchain, every token must be placed inside a <GlossaryTerm id="colle
 
 ## Option A. Using the Enjin Dashboard
 
-In the Platform menu, navigate to "**[Collections](https://platform.beta.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.beta.enjin.io/create/collection)**" button.
+In the Platform menu, navigate to "**[Collections](https://platform.enjin.io/collections)**". Then, click the "**[Create Collection](https://platform.enjin.io/create/collection)**" button.
 
 From here, you can configure the collection's supply rules, royalties, accepted royalty currencies, and attributes.
 
@@ -37,7 +37,7 @@ From here, you can configure the collection's supply rules, royalties, accepted 
 For a comprehensive view and detail of all available arguments please refer to our [API Reference](/03-api-reference/03-api-reference.md).
 :::
 
-Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.beta.enjin.io/transactions) page.
+Once you're satisfied with the options, click the "**Create**" button to submit the request. A **Transaction Submitted** modal appears with the new transaction's UUID and a **View Transaction** button that opens its row on the [Transactions](https://platform.enjin.io/transactions) page.
 
 Since this request requires a <GlossaryTerm id="transaction" />, it must be signed before it broadcasts.
 
@@ -76,7 +76,7 @@ mutation CreateCollection {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer YOUR_API_TOKEN' \
 -d '{"query":"mutation CreateCollection($forceCollapsingSupply: Boolean!) {\r\n  CreateTransaction(\r\n    network: ENJIN\r\n    chain: MATRIX\r\n    transaction: { createCollection: { forceCollapsingSupply: $forceCollapsingSupply } }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{"forceCollapsingSupply":false}}'
@@ -140,7 +140,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -182,7 +182,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Bearer YOUR_API_TOKEN'},
   body: JSON.stringify({
@@ -212,7 +212,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation CreateCollection($forceCollapsingSupply: Boolean!) {
       CreateTransaction(
@@ -256,7 +256,7 @@ mutation CreateCollection($forceCollapsingSupply: Boolean!) {
 
 variables = {'forceCollapsingSupply': False}  # set to true to enforce collapsing supply
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
 	json={'query': query, 'variables': variables},
 	headers={'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_TOKEN'}
 )

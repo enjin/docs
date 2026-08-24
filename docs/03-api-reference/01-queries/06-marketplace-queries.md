@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 The Enjin Platform marketplace exposes two read queries: `GetListing` for a single listing by id, and `GetListings` for a paginated list scoped to a collection. To act on a listing (place a bid, fill, cancel, finalize an auction, etc.) use [Marketplace Mutations](/03-api-reference/02-mutations/06-marketplace-mutations.md).

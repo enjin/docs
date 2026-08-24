@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::tip GraphQL Endpoint
-`https://platform.beta.enjin.io/graphql`
+`https://platform.enjin.io/graphql`
 :::
 
 Use these queries to look up the state of transactions you've submitted (`GetTransaction` / `GetTransactions`) and to read the underlying blocks and extrinsics they ended up in (`GetBlock` / `GetBlocks`, `GetExtrinsic` / `GetExtrinsics`) — including the on-chain [events](/05-enjin-platform/03-working-with-events.md) each extrinsic emitted.

@@ -56,7 +56,7 @@ mutation CreateManagedWallet {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"mutation CreateManagedWallet($externalId: String!) {\r\n  CreateManagedWallet(externalId: $externalId)\r\n}","variables":{"externalId":"docs-example-player"}}'
@@ -96,7 +96,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -137,7 +137,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -159,7 +159,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation CreateManagedWallet($externalId: String!) {
       CreateManagedWallet(externalId: $externalId)
@@ -189,7 +189,7 @@ variables = {
   'externalId': "docs-example-player" #Replace this with a unique ID
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
@@ -224,7 +224,7 @@ query GetManagedWallet {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"query GetManagedWallet($externalId: String!) {\r\n  GetManagedWallet(network: CANARY, chain: MATRIX, externalId: $externalId) {\r\n    publicKey\r\n    externalId\r\n  }\r\n}","variables":{"externalId":"docs-example-player"}}'
@@ -277,7 +277,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -318,7 +318,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -343,7 +343,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     query GetManagedWallet($externalId: String!) {
       GetManagedWallet(network: CANARY, chain: MATRIX, externalId: $externalId) {
@@ -379,7 +379,7 @@ variables = {
   'externalId': "docs-example-player" #Specify the managed wallet's unique ID
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
@@ -430,7 +430,7 @@ mutation MintToManagedWallet {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"mutation MintToManagedWallet {\r\n  CreateTransaction(\r\n    network: CANARY\r\n    chain: MATRIX\r\n    transaction: {\r\n      mintToken: {\r\n        recipient: \"0xded3c8f0296f5ee023f07aa5617fc261bd5991c4474ee775a16ec35c1d1a1e3a\"\r\n        collectionId: 36105\r\n        tokenId: 1\r\n        amount: 1\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{}}'
@@ -505,7 +505,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -546,7 +546,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -580,7 +580,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation MintToManagedWallet {
       CreateTransaction(
@@ -633,7 +633,7 @@ mutation MintToManagedWallet {
 }
 '''
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
@@ -683,7 +683,7 @@ mutation TransferFromManagedWallet {
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"mutation TransferFromManagedWallet {\r\n  CreateTransaction(\r\n    network: CANARY\r\n    chain: MATRIX\r\n    signerExternalId: \"docs-example-player\"\r\n    transaction: {\r\n      transferToken: {\r\n        recipient: \"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ\"\r\n        collectionId: 36105\r\n        tokenId: 1\r\n        amount: 1\r\n      }\r\n    }\r\n  ) {\r\n    uuid\r\n    action\r\n    state\r\n  }\r\n}","variables":{}}'
@@ -761,7 +761,7 @@ int main() {
 
     // Create and auth a client to send the request to the platform
     unique_ptr<PlatformClient> client = PlatformClient::Builder()
-            .SetBaseAddress("https://platform.beta.enjin.io")
+            .SetBaseAddress("https://platform.enjin.io")
             .Build();
     client->Auth("Your_Platform_Token_Here");
 
@@ -802,7 +802,7 @@ int main() {
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -837,7 +837,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation TransferFromManagedWallet {
       CreateTransaction(
@@ -892,7 +892,7 @@ mutation TransferFromManagedWallet {
 }
 '''
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
@@ -939,7 +939,7 @@ Variables:
   </TabItem>
   <TabItem value="curl" label="cURL">
 ```
-curl --location 'https://platform.beta.enjin.io/graphql' \
+curl --location 'https://platform.enjin.io/graphql' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer enjin_api_key' \
 -d '{"query":"mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {\r\n  SweepManagedWallet(network: $network, chain: $chain, signerExternalId: $signerExternalId, recipient: $recipient)\r\n}","variables":{"network":"CANARY","chain":"MATRIX","signerExternalId":"docs-example-player","recipient":"cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ"}}'
@@ -947,7 +947,7 @@ curl --location 'https://platform.beta.enjin.io/graphql' \
   </TabItem>
   <TabItem value="js" label="Javascript">
 ```javascript
-fetch('https://platform.beta.enjin.io/graphql', {
+fetch('https://platform.enjin.io/graphql', {
   method: 'POST',
   headers: {'Content-Type': 'application/json','Authorization': 'Your_Platform_Token_Here'},
   body: JSON.stringify({
@@ -977,7 +977,7 @@ fetch('https://platform.beta.enjin.io/graphql', {
 ```javascript
 const axios = require('axios');
 
-axios.post('https://platform.beta.enjin.io/graphql', {
+axios.post('https://platform.enjin.io/graphql', {
   query: `
     mutation SweepManagedWallet($network: Network!, $chain: Chain!, $signerExternalId: String, $recipient: String!) {
       SweepManagedWallet(
@@ -1023,7 +1023,7 @@ variables = {
   'recipient': 'cxLf6yvvtscKrHRfKDphnzsT3eoRY45VbJvqXKub5pmj5mdbQ'
 }
 
-response = requests.post('https://platform.beta.enjin.io/graphql',
+response = requests.post('https://platform.enjin.io/graphql',
   json={'query': query, 'variables': variables},
   headers={'Content-Type': 'application/json', 'Authorization': 'Bearer Your_Platform_Token_Here'}
 )
