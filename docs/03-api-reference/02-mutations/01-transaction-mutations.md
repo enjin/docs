@@ -66,7 +66,7 @@ mutation CreateTransaction {
 
 Useful additional arguments:
 
-- `idempotencyKey: String` — pass the same key on a retried request to avoid creating a duplicate transaction.
+- `idempotencyKey: String` — a unique key for the transaction, protecting against accidental duplicates: creating another transaction with a key that was already used returns a validation error.
 - `signerAddress: String` — sign with a specific account instead of the Wallet Daemon: a Managed Wallet's public key, a [linked user wallet](/02-guides/01-platform/02-managing-users/01-sending-wallet-requests.md) (the request is delivered to the user's Enjin Wallet app for approval), or an external address for custom client-side signing.
 - `signerExternalId: String` — same as `signerAddress` but resolved from a Managed Wallet's `externalId`.
 - `proxyAddress: String` — wrap the call in `proxy.proxy` so it executes on behalf of a proxied account.
