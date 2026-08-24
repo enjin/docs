@@ -41,7 +41,7 @@ A few things to know about the fields:
 
 The flow after submitting any [`CreateTransaction`](/03-api-reference/02-mutations/01-transaction-mutations.md#createtransaction) mutation is:
 
-1. **Poll** [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) until `state` is `FINALIZED`. While the transaction is still `PENDING` or awaiting inclusion in a block, `extrinsic` is `null`.
+1. **Wait** for the transaction to reach `FINALIZED` — either poll [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction), or subscribe to the [`TransactionStateChanged`](/03-api-reference/03-websocket-events.md#transactionstatechanged) WebSocket event to be notified the moment the state changes. While the transaction is still `PENDING` or awaiting inclusion in a block, `extrinsic` is `null`.
 2. **Check** `extrinsic.success` to confirm the on-chain outcome (a failed extrinsic emits no events).
 3. **Read** `extrinsic.events` and pick out the ones you care about by `name`.
 
@@ -260,6 +260,6 @@ Events hang off the extrinsic, so any query that returns an `Extrinsic` returns 
 
 You can also follow your transactions in the [Platform UI](https://platform.enjin.io/transactions): the Transactions page shows each transaction's state and extrinsic hash as it moves on-chain.
 
-:::info Real-time event streaming
-Push-based event delivery (WebSockets), which removes the need to poll, is planned but not yet available — see [WebSocket Events](/03-api-reference/03-websocket-events.md).
+:::tip Skip the polling
+The platform pushes `TransactionStateChanged` and other events to your application over WebSocket in real time, removing the need to poll — see [WebSocket Events](/03-api-reference/03-websocket-events.md) for the full reference.
 :::
