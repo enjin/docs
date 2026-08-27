@@ -321,7 +321,7 @@ There are two ways to receive the transaction status and information:
 - [Receive Transaction Information Using the Platform User Interface](#receive-transaction-information-using-the-platform-user-interface)
 - [Receive Transaction Information Using the Enjin API / SDKs](#receive-transaction-information-using-the-enjin-api--sdks)
 
-For real-time, push-based notifications, see [WebSocket Events](/03-api-reference/03-websocket-events.md) — planned, not yet available.
+You can also receive real-time, push-based notifications over WebSocket instead of polling — see [WebSocket Events](/03-api-reference/03-websocket-events.md).
 
 ### Receive Transaction Information Using the Platform User Interface
 

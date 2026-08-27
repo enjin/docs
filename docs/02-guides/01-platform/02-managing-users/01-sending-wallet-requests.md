@@ -211,7 +211,7 @@ The user stays in control: they can disconnect your application from their Enjin
 
 ### Step 3: Confirm the link
 
-Run the `GetLinkedWallet` query with the same `idempotencyKey` you used when creating the linking code. Once the user has approved, it returns the linked wallet; until then (or if the user has disconnected), it returns `null`.
+Run the `GetLinkedWallet` query with the same `idempotencyKey` you used when creating the linking code. Once the user has approved, it returns the linked wallet; until then (or if the user has disconnected), it returns `null`. To catch the approval the moment it happens instead of checking repeatedly, subscribe to the [`WalletLinked`](/03-api-reference/03-websocket-events.md#walletlinked) WebSocket event — it fires with this same `idempotencyKey` and the linked wallet's `publicKey`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -358,8 +358,8 @@ print(response.json())
 
 Store the returned `publicKey` against the user's record in your database — it identifies the wallet the user linked, and it's the account you'll target with transaction requests. The hex public key and the SS58-encoded address (`ef...`) are two representations of the same account, and address arguments like `signerAddress` accept either form. You can also call `GetLinkedWallet` with an `address` argument instead of `idempotencyKey` to check whether a specific wallet address is linked to your account.
 
-:::note Polling the link state
-There's no push notification for link state yet, so poll `GetLinkedWallet` (e.g. every few seconds while your "link your wallet" screen is open) until it returns data. A `null` response after a successful link means the user has since **disconnected** your application from their wallet app — treat the wallet as unlinked and offer to link again.
+:::note Watching the link state
+If you poll rather than subscribe to `WalletLinked`, query `GetLinkedWallet` every few seconds while your "link your wallet" screen is open. Either way, there's no event for the user later **disconnecting** your application from their wallet app, so a `null` `GetLinkedWallet` response after a successful link means exactly that — treat the wallet as unlinked and offer to link again.
 :::
 
 ## Verifying Wallet Ownership {#verifying-wallet-ownership}
@@ -747,8 +747,8 @@ The `state` moves through:
 
 If the user rejects the request or never responds, the transaction won't proceed. You can also withdraw a request that's still `PENDING` at any time with the [`CancelTransaction(uuid:)`](/03-api-reference/02-mutations/01-transaction-mutations.md#canceltransaction) mutation — for example, when the in-game offer that triggered it expires — which marks the transaction `ABANDONED`.
 
-:::note Polling the transaction state
-Real-time push notifications for transaction state aren't covered in the docs yet, so poll `GetTransaction` while a request is outstanding, the same way you polled `GetLinkedWallet` during linking.
+:::note Watching the transaction state
+Subscribe to the [`TransactionStateChanged`](/03-api-reference/03-websocket-events.md#transactionstatechanged) WebSocket event to be notified of each state change in real time, or poll `GetTransaction` while a request is outstanding.
 :::
 
 :::info Explore More Arguments

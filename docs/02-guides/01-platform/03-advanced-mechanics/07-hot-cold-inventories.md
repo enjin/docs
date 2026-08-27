@@ -121,7 +121,7 @@ query ConfirmMove {
 }
 ```
 
-See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full finalization-and-events workflow. (Real-time push events that remove the need to poll are [planned](/03-api-reference/03-websocket-events.md).)
+See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full finalization-and-events workflow, or subscribe to real-time [WebSocket events](/03-api-reference/03-websocket-events.md) to remove the need to poll.
 
 For a **self-custodial** cold wallet, your server can't sign the melt — instead, the player approves it in their own Enjin Wallet app via a wallet request.
 
