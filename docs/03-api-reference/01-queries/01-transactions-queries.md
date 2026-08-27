@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 `https://platform.enjin.io/graphql`
 :::
 
-Use these queries to look up the state of transactions you've submitted (`GetTransaction` / `GetTransactions`) and to read the underlying blocks and extrinsics they ended up in (`GetBlock` / `GetBlocks`, `GetExtrinsic` / `GetExtrinsics`).
+Use these queries to look up the state of transactions you've submitted (`GetTransaction` / `GetTransactions`) and to read the underlying blocks and extrinsics they ended up in (`GetBlock` / `GetBlocks`, `GetExtrinsic` / `GetExtrinsics`) — including the on-chain [events](/05-enjin-platform/03-working-with-events.md) each extrinsic emitted.
 
 ## GetTransaction
 
@@ -32,7 +32,11 @@ query GetTransaction {
     action
     state
     encodedData
-    extrinsicHash
+    extrinsic {
+      id
+      hash
+      success
+    }
     createdAt
     updatedAt
   }
@@ -49,7 +53,11 @@ query GetTransaction {
       "action": "MultiTokens.create_collection",
       "state": "FINALIZED",
       "encodedData": "0x280dc56f04985e66eaff2d50e6635942b20efb5690191c5da56adc3a2720e64b8bf534d050...",
-      "extrinsicHash": "0xbafe459e8248b802f3aef98d2e4a695bbb238899edf40519b082366e3ff8b98f",
+      "extrinsic": {
+        "id": "402865-2",
+        "hash": "0xbafe459e8248b802f3aef98d2e4a695bbb238899edf40519b082366e3ff8b98f",
+        "success": true
+      },
       "createdAt": "2026-05-13T05:20:52+00:00",
       "updatedAt": "2026-05-13T05:21:26+00:00"
     }
@@ -60,6 +68,8 @@ query GetTransaction {
 </Tabs>
 
 See [the state argument](/03-api-reference/04-important-arguments.md#state) for the full list of transaction states.
+
+The `extrinsic` object is `null` until the transaction has been included in a block and indexed by the platform. Once populated, it exposes the extrinsic's `id` (`blockNumber-index`), `hash`, on-chain `success` flag, `pallet` / `method`, `signer`, containing `block`, and the `events` it emitted — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for reading event payloads.
 
 ## GetTransactions
 
@@ -78,7 +88,9 @@ query GetTransactions {
       uuid
       action
       state
-      extrinsicHash
+      extrinsic {
+        hash
+      }
       createdAt
     }
     perPage
@@ -98,14 +110,14 @@ query GetTransactions {
           "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
           "action": "MultiTokens.create_collection",
           "state": "FINALIZED",
-          "extrinsicHash": "0xbafe459e...",
+          "extrinsic": { "hash": "0xbafe459e..." },
           "createdAt": "2026-05-13T05:20:52+00:00"
         },
         {
           "uuid": "b80aed52-3171-50b3-a4d0-87366b771b02",
           "action": "MultiTokens.mint",
           "state": "BROADCAST",
-          "extrinsicHash": "0x12ab34cd...",
+          "extrinsic": null,
           "createdAt": "2026-05-13T05:24:11+00:00"
         }
       ],
@@ -134,10 +146,14 @@ query GetBlock {
   ) {
     number
     hash
-    validator {
-      address
-    }
+    validator
     createdAt
+    extrinsics {
+      id
+      pallet
+      method
+      success
+    }
   }
 }
 ```
@@ -149,8 +165,16 @@ query GetBlock {
     "GetBlock": {
       "number": 402865,
       "hash": "0xf0b3cee1c36a99e24aaef7da06aec2ecd79a599c19ad4ae6fb4b40b3e497a322",
-      "validator": { "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y" },
-      "createdAt": "2026-05-13T05:20:48+00:00"
+      "validator": "0x60820310ea5b09bef944c50a7f3ae82166304dd637263b1ba7e0fa0bab1f3f7b",
+      "createdAt": "2026-05-13T05:20:48+00:00",
+      "extrinsics": [
+        {
+          "id": "402865-2",
+          "pallet": "MultiTokens",
+          "method": "mint",
+          "success": true
+        }
+      ]
     }
   }
 }
@@ -158,13 +182,11 @@ query GetBlock {
   </TabItem>
 </Tabs>
 
-:::warning GetBlock is currently unavailable
-`GetBlock` is temporarily disabled — every call returns an `Internal server error`. The platform team is aware of the issue and a fix is planned. For event-level lookups in the meantime, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
-:::
+`validator` is the block validator's public key (hex). Each entry in `extrinsics` also exposes the [events](/05-enjin-platform/03-working-with-events.md) it emitted — see [GetExtrinsic](#getextrinsic) below for the full extrinsic shape.
 
 ## GetBlocks
 
-Returns a list of blocks. Filter by `ids` (block numbers) or `hashes`.
+Returns a list of blocks. Pass `ids` (block numbers) or `hashes` — one of the two is required.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -204,13 +226,9 @@ query GetBlocks {
   </TabItem>
 </Tabs>
 
-:::warning Block.extrinsics and Block.events return null
-The `extrinsics` and `events` sub-fields on `Block` are defined in the schema but currently return `null` on every request. For event-level lookups in the meantime, see [Working with Events](/05-enjin-platform/03-working-with-events.md).
-:::
-
 ## GetExtrinsic
 
-Returns a single extrinsic by `hash`.
+Returns a single extrinsic by `hash`, including the on-chain events it emitted — useful when you have an extrinsic hash (e.g. from a block explorer or an external system) rather than a platform transaction `uuid`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">
@@ -233,6 +251,13 @@ query GetExtrinsic {
     block {
       number
     }
+    events {
+      id
+      name
+      collectionId
+      tokenId
+      data
+    }
   }
 }
 ```
@@ -249,7 +274,16 @@ query GetExtrinsic {
       "success": true,
       "nonce": 132,
       "signer": { "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y" },
-      "block": { "number": 402865 }
+      "block": { "number": 402865 },
+      "events": [
+        {
+          "id": "1234567-2",
+          "name": "MultiTokens Minted",
+          "collectionId": "12345",
+          "tokenId": "12345-1",
+          "data": { "amount": "1" }
+        }
+      ]
     }
   }
 }
@@ -257,13 +291,11 @@ query GetExtrinsic {
   </TabItem>
 </Tabs>
 
-:::warning GetExtrinsic and GetExtrinsics are currently unavailable
-Both queries are temporarily disabled and return `Internal server error`. Use the Subscan workaround described above until the platform fix lands.
-:::
+See [Working with Events](/05-enjin-platform/03-working-with-events.md) for what each `Event` field carries.
 
 ## GetExtrinsics
 
-Returns a list of extrinsics by `hashes`. Same temporary outage as `GetExtrinsic`.
+Returns a list of extrinsics by `hashes`.
 
 <Tabs>
   <TabItem value="graphql" label="GraphQL">

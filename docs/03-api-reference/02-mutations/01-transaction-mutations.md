@@ -43,7 +43,9 @@ mutation CreateTransaction {
     uuid
     action
     state
-    extrinsicHash
+    extrinsic {
+      hash
+    }
   }
 }
 ```
@@ -56,7 +58,7 @@ mutation CreateTransaction {
       "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
       "action": "MultiTokens.create_token",
       "state": "PENDING",
-      "extrinsicHash": null
+      "extrinsic": null
     }
   }
 }
@@ -144,7 +146,9 @@ mutation SignTransaction {
   ) {
     uuid
     state
-    extrinsicHash
+    extrinsic {
+      hash
+    }
   }
 }
 ```
@@ -156,7 +160,9 @@ mutation SignTransaction {
     "SignTransaction": {
       "uuid": "a90ded41-4262-40a2-95c0-98255b660bf1",
       "state": "BROADCAST",
-      "extrinsicHash": "0xa1b2c3..."
+      "extrinsic": {
+        "hash": "0xa1b2c3..."
+      }
     }
   }
 }
