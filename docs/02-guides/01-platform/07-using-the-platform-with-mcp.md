@@ -7,7 +7,7 @@ description: "Connect an AI agent to the Enjin Platform through its built-in MCP
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Enjin Platform ships a built-in **MCP (Model Context Protocol) server**. Any MCP-aware AI client — Claude Code, Claude Desktop, Cursor, and others — can connect to it and let an AI agent query your Platform data, resolve Enjin addresses, and, if you allow it, submit transactions on your behalf.
+The Enjin Platform ships a built-in **MCP (Model Context Protocol) server**. Connect it to your AI client of choice — Claude, ChatGPT, Cursor, Grok, VS Code, or any other MCP-aware agent — and the agent can work with your Enjin Platform account the same way you do through the API: inspect your collections, tokens, wallets, and transactions, and, with Write access, submit transactions to mint, transfer, and otherwise manage your project's assets.
 
 :::warning Experimental
 The MCP server is an experimental feature. Tool names, capabilities, and limits may change without notice.
@@ -27,17 +27,17 @@ Opening `https://platform.enjin.io/mcp` in a browser returns `405 Method Not All
 
 ## What your agent can do
 
-Once connected, the agent gets three tools:
+The MCP server exposes the full [Platform API](/03-api-reference/03-api-reference.md), so an agent can help with anything you would otherwise do through the Platform UI or GraphQL. For example:
 
-- **Query the Platform API** — run any GraphQL query from the [Platform API](/03-api-reference/03-api-reference.md): balances, collections, tokens, transactions, fuel tanks, and more.
-- **Resolve addresses** — turn an SS58 address or `0x` public key into its network, chain, and public key.
-- **Submit mutations** *(Write access only)* — create transactions and managed wallets through the Platform. Transactions are still signed by your [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md), exactly as they are for any other Platform request.
+- **Explore and monitor your project** — look up collections, tokens, balances, transactions, fuel tanks, and marketplace listings, and answer questions about your project's on-chain state in plain language.
+- **Maintain your project** *(Write access only)* — mint and transfer tokens, update metadata, run batch operations, create managed wallets, and other actions that go through `CreateTransaction`. Transactions are still signed by your [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md), exactly as they are for any other Platform request.
+- **Work with addresses** — resolve SS58 addresses and public keys across the Enjin and Canary networks.
 
 See the [reference](#reference) at the bottom of this page for the full list of tools, resources, and prompts.
 
 ## Step 1: Add the server to your MCP client
 
-Add `https://platform.enjin.io/mcp` as a **remote HTTP** MCP server. Pick your client below:
+Add `https://platform.enjin.io/mcp` as a **remote HTTP** MCP server. Pick your client below — if yours is not listed, the **Other clients** tab covers the general case.
 
 <Tabs>
   <TabItem value="claude-code" label="Claude Code">
@@ -59,6 +59,16 @@ Then, inside Claude Code, run `/mcp`, select **enjin-platform**, and choose **Au
 4. Click **Add**, then **Connect**.
 
   </TabItem>
+  <TabItem value="chatgpt" label="ChatGPT">
+
+Custom MCP servers require **Developer mode**, available on paid ChatGPT plans (web app):
+
+1. Open **Settings → Security and login** and turn on **Developer mode**.
+2. Open **Settings → Connectors** (also called **Apps** in some versions), click **Create**, and enter a name and the URL `https://platform.enjin.io/mcp`. Leave authentication set to **OAuth**.
+3. Click **Create**, then complete the login in the browser window that opens.
+4. In a chat, enable the connector from the **+** (tools) menu so the agent can use it.
+
+  </TabItem>
   <TabItem value="cursor" label="Cursor">
 
 Add the server to your `mcp.json` (project-level `.cursor/mcp.json` or the global one):
@@ -76,9 +86,39 @@ Add the server to your `mcp.json` (project-level `.cursor/mcp.json` or the globa
 Then open **Settings → MCP** and click **Connect** next to `enjin-platform`.
 
   </TabItem>
+  <TabItem value="vscode" label="VS Code">
+
+Add the server to `.vscode/mcp.json` (project) or your user `mcp.json`:
+
+```json
+{
+  "servers": {
+    "enjin-platform": {
+      "type": "http",
+      "url": "https://platform.enjin.io/mcp"
+    }
+  }
+}
+```
+
+Click **Start** on the server entry (or the CodeLens above it) and complete the login when prompted.
+
+  </TabItem>
+  <TabItem value="codex" label="Codex CLI">
+
+Run this in your terminal:
+
+```bash
+codex mcp add enjin-platform --url https://platform.enjin.io/mcp
+codex mcp login enjin-platform
+```
+
+The second command opens your browser to complete the login.
+
+  </TabItem>
   <TabItem value="other" label="Other clients">
 
-Any client that supports **remote MCP servers over Streamable HTTP with OAuth** can connect. You only need the URL:
+Any client that supports **remote MCP servers over Streamable HTTP with OAuth** can connect — for example Grok (**grok.com → Connectors**), Gemini CLI, or Windsurf. You only need the URL:
 
 ```
 https://platform.enjin.io/mcp
