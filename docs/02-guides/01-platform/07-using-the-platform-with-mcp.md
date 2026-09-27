@@ -31,7 +31,6 @@ The MCP server exposes the full [Platform API](/03-api-reference/03-api-referenc
 
 - **Explore and monitor your project** — look up collections, tokens, balances, transactions, fuel tanks, and marketplace listings, and answer questions about your project's on-chain state in plain language.
 - **Maintain your project** *(Write access only)* — mint and transfer tokens, update metadata, run batch operations, create managed wallets, and other actions that go through `CreateTransaction`. Transactions are still signed by your [Wallet Daemon](/01-getting-started/06-using-wallet-daemon.md), exactly as they are for any other Platform request.
-- **Work with addresses** — resolve SS58 addresses and public keys across the Enjin and Canary networks.
 
 See the [reference](#reference) at the bottom of this page for the full list of tools, resources, and prompts.
 
@@ -170,7 +169,7 @@ Ask your agent something the Platform can answer. For example:
 
 > What is the ENJ balance of `efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y` on Enjin Matrixchain?
 
-The agent will resolve the address, then run a query like this through the Platform:
+The agent will run a query like this through the Platform:
 
 ```graphql
 query GetAccount($network: Network!, $chain: Chain!, $address: String!) {
