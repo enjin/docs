@@ -322,7 +322,7 @@ Token lending lets a holder temporarily transfer an NFT to another account with 
 
 ### Enabling Lending
 
-Each token has an `is_lendable` flag that controls whether it can be lent. It defaults to `true` for new and existing tokens, and only the collection owner can change it, either at creation time via `CreateToken` or later using the `mutate_token` extrinsic. Games that don't want their items to be lent should set it to `false`.
+Each token has an `is_lendable` flag that controls whether it can be lent. It defaults to `true` for new and existing tokens, and only the collection owner can change it, either at creation time via `CreateToken` or later using the `mutate_token` extrinsic. Collection owners who don't want their tokens to be lent should set it to `false`.
 
 ### Lending a Token
 
