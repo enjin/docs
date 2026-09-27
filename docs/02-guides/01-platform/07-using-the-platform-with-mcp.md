@@ -15,13 +15,11 @@ The MCP server is an experimental feature. Tool names, capabilities, and limits 
 
 ## Quick facts
 
-| | |
-|---|---|
-| **Server URL** | `https://platform.enjin.io/mcp` |
-| **Transport** | Streamable HTTP (remote server — nothing to install locally) |
-| **Authentication** | OAuth 2.1 with PKCE. Your MCP client opens a browser login; no client ID, secret, or API token is needed |
-| **Scope** | `mcp:use` |
-| **Requirements** | An [Enjin Platform](https://platform.enjin.io/) account |
+- **Server URL:** `https://platform.enjin.io/mcp`
+- **Transport:** Streamable HTTP (remote server — nothing to install locally)
+- **Authentication:** OAuth 2.1 with PKCE. Your MCP client opens a browser login; no client ID, secret, or API token is needed
+- **Scope:** `mcp:use`
+- **Requirements:** An [Enjin Platform](https://platform.enjin.io/) account
 
 :::info The URL is an API endpoint, not a web page
 Opening `https://platform.enjin.io/mcp` in a browser returns `405 Method Not Allowed`. Add it to an MCP client instead — see the steps below.
