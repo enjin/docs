@@ -145,10 +145,7 @@ Leave any token, header, or client-ID fields empty — the client discovers the 
 
 When your client connects for the first time, it opens your browser on the Platform's **Authorize MCP Client** page. Log in if prompted. The page shows the client name, its redirect URI, and the requested scope.
 
-<!-- TODO(screenshot): capture the Authorize MCP Client page (Read/Write selector visible), save as
-     static/img/guides/platform-mcp/authorize-mcp-client.png, then replace this comment with:
 ![Authorize MCP Client page on the Enjin Platform](/img/guides/platform-mcp/authorize-mcp-client.png)
--->
 
 Choose the access level for this client:
 
@@ -198,7 +195,7 @@ The agent cannot introspect the Platform's GraphQL schema over MCP. If it needs 
 
 ## Managing connections
 
-Every authorized client appears under **Settings → MCP Connections** on the Platform, with its access level and when it was created and last used.
+Every authorized client appears under **Settings → MCP Connections** on the Platform, with its access level, signing restrictions, and when it was created and last used.
 
 ![MCP Connections card in Platform settings](/img/guides/platform-mcp/mcp-connections.png)
 
