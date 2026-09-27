@@ -133,15 +133,21 @@ Ask your agent something the Platform can answer. For example:
 The agent will resolve the address, then run a query like this through the Platform:
 
 ```graphql
-query GetAccount {
-  GetAccount(
-    network: ENJIN
-    chain: MATRIX
-    address: "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y"
-  ) {
+query GetAccount($network: Network!, $chain: Chain!, $address: String!) {
+  GetAccount(network: $network, chain: $chain, address: $address) {
     address
     balance
   }
+}
+```
+
+Variables:
+
+```json
+{
+  "network": "ENJIN",
+  "chain": "MATRIX",
+  "address": "efRC9jw5LeZFqmaWBBDxZRTyaLP9dLAqixy32tSnqW9wCsb6y"
 }
 ```
 
