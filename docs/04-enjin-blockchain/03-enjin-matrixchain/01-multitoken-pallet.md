@@ -153,7 +153,7 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 - ENJ Infusion:
   - Infusion: The amount of ENJ to infuse to each unit. (More info in the [#ENJ Infusion](#enj-infusion) section below)
   - Anyone Can Infuse: Whether anyone will be able to add infusion to this token, or only the collection owner.
-- Ephemeral Expiration: The block number at which the token is automatically destroyed. Leave as `None` for a regular, permanent token. This setting is immutable and requires the token to be an NFT. (More info in the [#Ephemeral Tokens](#ephemeral-tokens) section below)
+- Ephemeral Expiration: The block number at which the token is scheduled to be destroyed. Leave as `None` for a regular, permanent token. This setting is immutable and requires the token to be an NFT. (More info in the [#Ephemeral Tokens](#ephemeral-tokens) section below)
 - Is Lendable: Whether holders of this token are allowed to lend it. Defaults to `true`, and can be changed later on using the `MutateToken` extrinsic. (More info in the [#Token Lending](#token-lending) section below)
 - Mint Rate Limit: An optional `period` (in blocks) and `max` amount that caps how many units of this token can be minted within any rolling period. (More info in the [#Mint Rate Limit](#mint-rate-limit) section below)
 
@@ -302,7 +302,9 @@ If `token_id` is `None`, it removes all attributes of the collection. If `token_
 
 ## Ephemeral Tokens
 
-An ephemeral token is a short-lived NFT. When it is created, an expiration block is set, and once the chain reaches that block the token is automatically and irreversibly destroyed, no matter who holds it at the time.
+An ephemeral token is a short-lived NFT. When it is created, an expiration block is set, and once the chain reaches that block the token is scheduled to be automatically and irreversibly destroyed, no matter who holds it at the time.
+
+One example of a use-case of ephemeral tokens is a time-limited holiday event wherein the cleanup of all token related to that event happens predictably and automatically. 
 
 Ephemeral tokens are created with the regular `mint` extrinsic by setting the `ephemeral_expiration` field of `CreateToken` to a future block number. The following rules apply:
 
