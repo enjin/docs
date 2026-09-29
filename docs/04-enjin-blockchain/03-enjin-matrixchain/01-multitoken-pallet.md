@@ -42,6 +42,9 @@ Token grouping is currently implemented at the blockchain level. While users can
 - **Approval -** Required for an operator to use an account
 - **Freeze/Thaw -** If a collection, token, or account is frozen, it cannot transfer tokens
 - **Descriptor -** Used to create something. For example, a CollectionDescriptor creates a Collection.
+- **Ephemeral Token -** An NFT with a fixed expiration block, after which it is automatically destroyed. See [#Ephemeral Tokens](#ephemeral-tokens).
+- **Loan -** A temporary transfer of an NFT to a borrower, automatically returned to the lender at an expiration block. See [#Token Lending](#token-lending).
+- **Mint Rate Limit -** A cap on how many units may be minted within a rolling period, set per collection or per token. See [#Mint Rate Limit](#mint-rate-limit).
 
 ## Collections
 
@@ -150,6 +153,9 @@ To create an NFT, set the cap: `supply`/`collapsing supply` to `1`.
 - ENJ Infusion:
   - Infusion: The amount of ENJ to infuse to each unit. (More info in the [#ENJ Infusion](#enj-infusion) section below)
   - Anyone Can Infuse: Whether anyone will be able to add infusion to this token, or only the collection owner.
+- Ephemeral Expiration: The block number at which the token is scheduled to be destroyed. Leave as `None` for a regular, permanent token. This setting is immutable and requires the token to be an NFT. (More info in the [#Ephemeral Tokens](#ephemeral-tokens) section below)
+- Is Lendable: Whether holders of this token are allowed to lend it. Defaults to `true`, and can be changed later on using the `MutateToken` extrinsic. (More info in the [#Token Lending](#token-lending) section below)
+- Mint Rate Limit: An optional `period` (in blocks) and `max` amount that caps how many units of this token can be minted within any rolling period. (More info in the [#Mint Rate Limit](#mint-rate-limit) section below)
 
 ![](/img/components/enjin-matrixchain/9.png)
 
@@ -293,6 +299,97 @@ Removes all attributes from the given `collection_id` or `token_id`.
 If `token_id` is `None`, it removes all attributes of the collection. If `token_id` is `Some`, it removes all attributes of the token. `attributeCount` must match the number of attributes set in the collection/token, or the transaction will fail.
 
 ![](/img/components/enjin-matrixchain/23.png)
+
+## Ephemeral Tokens
+
+An ephemeral token is a short-lived NFT. When it is created, an expiration block is set, and once the chain reaches that block the token is scheduled to be automatically and irreversibly destroyed, no matter who holds it at the time.
+
+One example of a use-case of ephemeral tokens is a time-limited holiday event wherein the cleanup of all token related to that event happens predictably and automatically. 
+
+Ephemeral tokens are created with the regular `mint` extrinsic by setting the `ephemeral_expiration` field of `CreateToken` to a future block number. The following rules apply:
+
+- The ephemeral nature and the expiration block are **immutable**. A regular token cannot become ephemeral, an ephemeral token cannot become permanent, and its expiration cannot be extended. Make sure the token's metadata makes its short-lived nature clear to holders.
+- The token must be an NFT, i.e. created with a supply cap of `Supply(1)` or `CollapsingSupply(1)`. Multi-unit tokens cannot be ephemeral.
+- The expiration block must be in the future. A limited number of tokens may share the same expiration block, so if the call fails with `EphemeralScheduleFull`, choose a nearby block instead.
+
+Until the expiration block is reached, an ephemeral token behaves like any other NFT: it can be transferred, listed on the marketplace (subject to the marketplace and the token's `listing_forbidden` setting), lent, and burned. Burning it early simply destroys it ahead of schedule.
+
+Once the expiration block is reached, the token can no longer be transferred and is queued for destruction. Destruction runs automatically during idle block time, in chunks, so a large batch of tokens expiring on the same block may take a few blocks to clear. Anyone can speed this up by calling the permissionless `cleanup_expired_ephemeral` extrinsic, which is fee-free when it destroys at least one token.
+
+If destroying a token fails, an `EphemeralCleanupFailed` event is emitted and the token is set aside to be retried automatically during idle block time. Anyone can also retry it directly with the permissionless `retry_failed_ephemeral_cleanup` extrinsic, which is fee-free when the token is destroyed.
+
+Destruction removes the token and its attributes from storage and emits an `EphemeralTokenDestroyed` event. Expiration overrides any hold on the token, so if it is listed on the marketplace at that time, the listing's hold is released and the token is destroyed regardless. If a token had also been lent, destruction takes precedence: the token is destroyed instead of being returned to the lender.
+
+## Token Lending
+
+Token lending lets a holder temporarily transfer an NFT to another account with a guarantee that it comes back. The lender sets an expiration block, the token moves to the borrower, and at the expiration block the chain automatically returns it to the lender.
+
+### Enabling Lending
+
+Each token has an `is_lendable` flag that controls whether it can be lent. It defaults to `false` for new and existing tokens, and only the collection owner can change it, either at creation time via `CreateToken` or later using the `mutate_token` extrinsic. Collection owners who want to enable tokens to be lent should set it to `true`.
+
+### Lending a Token
+
+Any holder of a lendable NFT can lend it using the `lend` extrinsic, which takes the `collection_id`, `token_id`, the `borrower` account, and the `expiration` block at which the token is returned. The following rules apply:
+
+- Only NFTs with a supply cap of `Supply(1)` or `CollapsingSupply(1)` can be lent. Multi-unit tokens cannot be lent.
+- The token must not already be lent, and the expiration block must be in the future. A limited number of loans may come due on the same block, so if the call fails with `LoanScheduleFull`, choose a nearby block instead.
+- The token moves to the borrower through a regular transfer, so it must not be frozen or listed on the marketplace, and the borrower must be a different account from the lender. The lender pays the borrower's <GlossaryTerm id="token_account_deposit" />.
+
+A successful call emits a `TokenLent` event.
+
+### While a Token is Lent
+
+The borrower holds the token but with restrictions in place to protect the lender:
+
+- A lent token **cannot be listed** on the marketplace.
+- A lent token **cannot be burned**.
+- A lent token **can only be transferred back to the lender**. This return transfer supersedes freeze and transferability restrictions, so the token can always find its way back.
+
+The borrower can end the loan early by transferring the token back to the lender, which clears the loan and emits a `TokenReturned` event. The lender cannot claw the token back before the expiration block.
+
+### Extending a Loan
+
+The lender can push the expiration further out using the `extend_loan` extrinsic with a `new_expiration` that is strictly later than the current one. The same per-block limit applies to `new_expiration`. A loan can only be extended before its current expiration block is reached, and it can never be shortened. Extending emits a `LoanExtended` event.
+
+### Automatic Return
+
+When the expiration block is reached, the token is automatically returned to the lender during idle block time and a `TokenReturned` event is emitted. As with ephemeral tokens, returns are processed in chunks, and anyone can call the permissionless, fee-free `process_expired_loans` extrinsic to speed the process up. If an automatic return fails, a `LoanReturnFailed` event is emitted and the return is retried automatically during idle block time. Anyone can also retry it with the permissionless `retry_failed_loan_return` extrinsic, which is fee-free when the return succeeds.
+
+If a token is both ephemeral and lent, and its ephemeral expiration comes first, it is destroyed rather than returned. See [#Ephemeral Tokens](#ephemeral-tokens) above.
+
+## Mint Rate Limit
+
+A token's supply cap governs *how many* units can ever exist. A mint rate limit is an independent, optional policy that governs *how fast* units can be minted. The two can be combined freely: a token may have either, both, or neither, and tokens without a rate limit mint exactly as before.
+
+Rate limits protect both the collection owner and their community. If the owner's key is compromised, an attacker cannot mint an unlimited number of tokens, and the delay on loosening a limit (described below) gives the owner time to react. Rate limits also act as a trust layer, giving holders a provable, on-chain guarantee of how quickly a token's supply can grow.
+
+### Scopes
+
+A rate limit can be set at two scopes, and a mint must satisfy both when both are set:
+
+- **Collection scope** limits the aggregate number of units minted across the collection when new tokens are created. Minting additional units of an existing token is not counted at this scope.
+- **Token scope** limits the number of units minted for a single token, whether through `CreateToken` or `Mint`.
+
+### Parameters
+
+A rate limit is defined by two values:
+
+- `period`: the length of the window, in blocks (a block is produced roughly every 6 seconds, so 14,400 blocks is about 24 hours).
+- `max`: the maximum number of units that may be minted within one period.
+
+Both values must be greater than zero. The limit is enforced over a rolling window: any mint, including a `batch_mint`, that would push the total minted within the trailing `period` blocks above `max` is rejected with `MintRateLimitExceeded`. There is no fixed reset point. The window is tracked in eight equal sub-slots, and allowance is restored one sub-slot at a time as earlier mints age out, so a mint can keep counting against the limit for up to one-eighth of a `period` beyond the window. Burning units does **not** restore allowance, as the limit measures minting velocity, not net supply.
+
+### Setting and Changing a Limit
+
+A token-scope limit can be set at creation time through the `mint_rate_limit` field of `CreateToken`. Otherwise, the collection owner uses the `set_mint_rate_limit` extrinsic, passing the `collection_id`, an optional `token_id` (`None` targets the collection scope), and the new `limit` (`None` removes it). What happens next depends on the direction of the change:
+
+- **Tightening** takes effect immediately. A change counts as tightening when `max` is not raised and `period` is not shortened, for example adding a limit where none existed, lowering `max`, or lengthening `period`. A `MintRateLimitUpdated` event is emitted.
+- **Loosening** is delayed. Raising `max`, shortening `period`, mixed changes, and removing the limit altogether are scheduled to take effect after a delay of 43,200 blocks (about 72 hours). A `MintRateLimitChangeScheduled` event is emitted with the `effective_block`, and the current limit stays enforced until then. Submitting another change while one is pending replaces it and restarts the delay.
+
+The delay exists so that a compromised owner key cannot instantly loosen a limit and drain a token economy. It provides a window in which a pending loosening can be detected on-chain and stopped: the collection owner can call `cancel_mint_rate_limit_change` at any time before the effective block to discard the pending change, which applies immediately and emits a `MintRateLimitChangeCancelled` event.
+
+Every rate limit change emits an event, so off-chain monitors can track a collection's minting policy without inspecting chain storage directly.
 
 ## ENJ Infusion
 
