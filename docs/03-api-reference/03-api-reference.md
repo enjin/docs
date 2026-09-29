@@ -9,6 +9,10 @@ This section is a per-resource reference for the Enjin Platform GraphQL API. Eac
 `https://platform.enjin.io/graphql`
 :::
 
+:::tip Using an AI agent?
+The same API is available to AI agents through the Platform's built-in MCP server — see [Using the Enjin Platform with MCP](/02-guides/01-platform/07-using-the-platform-with-mcp.md).
+:::
+
 ## How this section is organised
 
 - **Queries** — read on-chain and platform state: [transactions](/03-api-reference/01-queries/01-transactions-queries.md), [collections](/03-api-reference/01-queries/02-collections-queries.md), [tokens](/03-api-reference/01-queries/03-tokens-queries.md), [accounts](/03-api-reference/01-queries/04-wallets-queries.md), [fuel tanks](/03-api-reference/01-queries/05-fuel-tank-queries.md), [marketplace](/03-api-reference/01-queries/06-marketplace-queries.md), [token groups](/03-api-reference/01-queries/07-token-groups-queries.md), [nomination pools](/03-api-reference/01-queries/08-nomination-pool-queries.md).

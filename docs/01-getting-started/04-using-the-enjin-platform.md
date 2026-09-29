@@ -489,4 +489,6 @@ For the full list of platform states, check the [Enjin API → Important Argumen
 
 :::tip What's Next?
 Learn how to [Use the API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md).
+
+Working with an AI agent? Connect it to the Platform's built-in MCP server — see [Using the Enjin Platform with MCP](/02-guides/01-platform/07-using-the-platform-with-mcp.md).
 :::
