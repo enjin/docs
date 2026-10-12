@@ -72,6 +72,9 @@ Multiverse Items are organized into on-chain **Token Groups** (one group per ite
 | [Aeonclipse Key](https://nft.io/asset/2967-106338239662793274425543839176105918464)         | —   | 106338239662793274425543839176105918464 | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
 | [Archspire](https://nft.io/asset/2967-106338239662793273447866403269499682816)              | —   | 106338239662793273447866403269499682816 | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
 | [Tramyarus Quarter](https://nft.io/asset/2967-106338239662793367710728619925308440576/)     | —   | 106338239662793367710728619925308440576 | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
+| [Eternal Embers](https://nft.io/asset/2967-8)                                               | —   | 8                                       | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
+| [Seafoam Amulet](https://nft.io/asset/2967-10)                                              | —   | 10                                      | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
+| [Windstruck Tome](https://nft.io/asset/2967-12)                                             | —   | 12                                      | N/A (<GlossaryTerm id="multi_unit_token" />/Stackable Tokens) |
 | [Epochrome Sword](https://nft.io/collection/the-multiverse/groups/694)                      | 694 | 107002853660685728525072975374659354625 | 107002853660685728543519719448368906239                       |
 | [Forgehammer](https://nft.io/collection/the-multiverse/groups/696)                          | 696 | 107002853660685728543519719448368906241 | 107002853660685728561966463522078457855                       |
 | [Shadowsong](https://nft.io/collection/the-multiverse/groups/697)                           | 697 | 107002853660685728617306695743207112705 | 107002853660685728635753439816916664319                       |
