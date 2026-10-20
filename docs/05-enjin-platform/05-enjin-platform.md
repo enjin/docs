@@ -28,7 +28,7 @@ Our [GraphQL API](/01-getting-started/05-using-enjin-api/05-using-enjin-api.md) 
 
 - **Queries** for reading blockchain state — accounts, tokens, collections, marketplace listings, nomination pools, and transactions.
 - **Mutations** for building and broadcasting transactions. All on-chain actions go through a single `CreateTransaction` mutation, with the specific action selected via the `transaction` input (e.g. `createCollection`, `mintToken`, `transferToken`).
-- **Events** for real-time updates — subscribe to receive on-chain events as they fire, instead of polling. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the current event-reading flow.
+- **Events** through WebSocket subscriptions and **Event Inbox** — receive notifications in real time, poll for on-chain notifications when convenient, or recover missed deliveries after a disconnect. Use delivery UUIDs to deduplicate and acknowledge processed inbox notifications. See [Working with Events](/05-enjin-platform/03-working-with-events.md) for the full workflow.
 
 ### Wallet Daemon
 

@@ -323,6 +323,8 @@ There are two ways to receive the transaction status and information:
 
 You can also receive real-time, push-based notifications over WebSocket instead of polling — see [WebSocket Events](/03-api-reference/03-websocket-events.md).
 
+For on-chain notifications such as transfers, [Event Inbox](/05-enjin-platform/03-working-with-events.md#event-inbox) lets you poll when convenient or recover notifications missed during a WebSocket outage. Process and acknowledge pending deliveries within the 14-day retention window.
+
 ### Receive Transaction Information Using the Platform User Interface
 
 To check the transaction status, head over to the [Transactions](https://platform.enjin.io/transactions) page. Each row shows the transaction's `UUID`, `Action` (e.g. `MultiTokens.create_collection`), `State`, and `Extrinsic Hash` once it has been broadcast.
