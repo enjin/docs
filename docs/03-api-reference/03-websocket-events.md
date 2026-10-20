@@ -1,15 +1,17 @@
 ---
 title: "WebSocket Events"
 slug: "websocket-events"
-description: "Subscribe to real-time Enjin Platform events over WebSocket using the Pusher protocol."
+description: "Subscribe to Enjin Platform notifications over Pusher, and use Event Inbox to recover missed on-chain notifications."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you submit a transaction, there are two ways to find out what happened to it. You can keep asking the API ("is it finalized yet?") — that's **polling**, and it works, but it wastes requests and adds delay. Or the platform can tell *you* the moment something happens — a transaction changing state, a managed wallet being created, a user linking their wallet. That's what this page covers.
+The Enjin Platform can notify your application when something changes — an on-chain transfer, a transaction changing state, a managed wallet being created, or a user linking their wallet. This page covers receiving those notifications in real time.
 
 These notifications are delivered over a **WebSocket** — a connection your application opens once and keeps open, so the server can send it messages at any time. The Enjin Platform sends them through [Pusher](https://pusher.com/), a widely-used message-delivery service with a [documented protocol](https://pusher.com/docs/channels/library_auth_reference/pusher-websockets-protocol/) and official client libraries for most languages.
+
+For eligible [on-chain notifications](#on-chain-notifications), **Event Inbox** provides a second delivery option: poll [`GetPendingEvents`](/03-api-reference/01-queries/09-event-inbox-queries.md#getpendingevents) at a time that suits your application, or use it alongside WebSocket to recover missed notifications. The event names and notification data match across both transports, and a shared delivery `uuid` lets you deduplicate them. See [Working with Events](/05-enjin-platform/03-working-with-events.md#event-inbox) for the complete workflow.
 
 :::info You don't need a Pusher account
 Pusher is just the delivery mechanism. You connect using Enjin's public app key below and authenticate with your regular Enjin Platform API token — there's nothing to sign up for or configure on Pusher's side.
@@ -24,6 +26,8 @@ Your account's events are broadcast on a **channel** — a named stream you subs
 3. **Subscribe** to the returned `channel`, presenting the `auth` signature. From this moment, events arrive over the open connection as they happen.
 
 The `auth` signature is tied to the `socket_id` it was issued for, and every new connection gets a new `socket_id` — so if the connection drops and you reconnect, you repeat steps 2 and 3.
+
+Reconnecting restores live delivery. To recover on-chain notifications missed during the outage, drain Event Inbox after the subscription succeeds and acknowledge each successfully processed delivery. Notifications remain available for 14 days from dispatch; receiving them over WebSocket does not automatically acknowledge them.
 
 If that sounds like a lot of bookkeeping: it mostly isn't yours to do. A first-party Pusher library (like [pusher-js](https://github.com/pusher/pusher-js)) handles the connection, the re-authentication on reconnect, and the keepalive for you — you just tell it how to call the mutation. That's the recommended setup, and the quick start below is exactly that. Only if no Pusher library exists for your stack do you need to speak the protocol yourself — see [Subscribing over a raw WebSocket](#subscribing-over-a-raw-websocket).
 
@@ -102,7 +106,7 @@ ManagedWalletCreated {
 }
 ```
 
-The full list of events you can receive is in the [Platform events](#platform-events) reference below.
+See [On-chain notifications](#on-chain-notifications) for events also available through Event Inbox, and [Platform events](#platform-events) for lifecycle notifications.
 
 :::warning Keep your API token server-side
 `AuthenticatePusherSocket` requires your platform API token, so the socket should be opened from your backend (or the mutation proxied through it) — never ship the token to a browser or game client.
@@ -244,7 +248,7 @@ Response:
 
 ## Subscribing over a raw WebSocket {#subscribing-over-a-raw-websocket}
 
-If a first-party Pusher library isn't available for your stack, you can speak the protocol directly — it's the same three steps from [How it works](#how-it-works), done by hand. Note that the `data` field of every Pusher protocol frame is a JSON-*encoded string*, so it needs a second parse.
+If a first-party Pusher library isn't available for your stack, you can speak the protocol directly — it's the same three steps from [How it works](#how-it-works), done by hand. In the incoming messages shown below, `data` is a JSON-*encoded string*, so it needs a second parse.
 
 1. Connect to `wss://ws-us2.pusher.com/app/8ab7ab8c519e8f59b635?protocol=7`. The server sends:
 
@@ -271,15 +275,62 @@ If a first-party Pusher library isn't available for your stack, you can speak th
 
    ```json
    {
-     "event": "TransactionStateChanged",
-     "channel": "private-user.b1acd213-2b27-406e-a21b-02307b52eca0",
-     "data": "{\"uuid\":\"0af09287-30ff-43c9-a13d-75ad1ea714c3\",\"state\":\"FINALIZED\"}"
+     "event": "BalancesTransfer",
+     "data": "{\"network\":\"ENJIN\",\"chain\":\"RELAY\",\"uuid\":\"f2342ed4-3504-4f81-b4b5-315635283652\",\"publicKey\":\"0xa7208d10c6622f3f7eca1551de8355fde9de577dbb308d38994ace561738a51f\"}",
+     "channel": "private-user.b1acd213-2b27-406e-a21b-02307b52eca0"
    }
    ```
 
 Your client is also responsible for keepalive: if the connection is quiet for longer than the `activity_timeout` reported in `pusher:connection_established`, send `{"event":"pusher:ping","data":{}}` and expect a `pusher:pong` back (the server may likewise ping you). And remember that a reconnect is a new socket — repeat the authenticate-and-subscribe handshake every time.
 
+## On-chain notifications {#on-chain-notifications}
+
+These notifications are delivered through both Pusher and Event Inbox for eligible wallets and collections associated with your account. Each delivery includes a UUID that is shared across the two transports. Use it to deduplicate processing and pass it to [`AcknowledgeEvents`](/03-api-reference/02-mutations/09-event-inbox-mutations.md#acknowledgeevents) after processing succeeds.
+
+All Pusher payloads in this group contain `network`, `chain`, `uuid`, and `publicKey`. Addresses are public keys (`0x...`). Additional fields depend on the event:
+
+| Event | Change | Additional payload fields |
+| --- | --- | --- |
+| `BalancesTransfer` | ENJ is transferred | None |
+| `MultiTokensTransferred` | Tokens are transferred | `id`: full token ID (`collectionId-tokenId`) |
+| `MultiTokensMinted` | Tokens are minted | `id`: full token ID |
+| `MultiTokensBurned` | Tokens are burned | `id`: full token ID |
+| `MarketplaceListingCreated` | A marketplace listing is created | `tokenId`: full token ID; `listingId`: listing ID |
+| `MarketplaceListingFilled` | A marketplace listing is filled | `tokenId`: full token ID; `listingId`: listing ID |
+| `MarketplaceListingCancelled` | A marketplace listing is cancelled or removed under its minimum | `tokenId`: full token ID; `listingId`: listing ID |
+| `NominationPoolsBond` | An account bonds into a nomination pool | `id`: pool ID |
+| `NominationPoolsUnbond` | An account initiates unbonding from a nomination pool | `id`: pool ID |
+
+For example, a Pusher client library delivers this decoded `BalancesTransfer` payload:
+
+```json
+{
+  "network": "ENJIN",
+  "chain": "RELAY",
+  "uuid": "f2342ed4-3504-4f81-b4b5-315635283652",
+  "publicKey": "0xa7208d10c6622f3f7eca1551de8355fde9de577dbb308d38994ace561738a51f"
+}
+```
+
+The same notification returned by `GetPendingEvents(network: ENJIN, chain: RELAY)` has this shape:
+
+```json
+{
+  "uuid": "f2342ed4-3504-4f81-b4b5-315635283652",
+  "event": "BalancesTransfer",
+  "payload": {
+    "network": "ENJIN",
+    "chain": "RELAY",
+    "publicKey": "0xa7208d10c6622f3f7eca1551de8355fde9de577dbb308d38994ace561738a51f"
+  }
+}
+```
+
+The inbox returns the delivery UUID separately from `payload`. Its `event` is the exact Pusher name, without the dots or spaces used for on-chain event logs. These notifications identify what changed; query the relevant account, token, listing, or pool for its current state.
+
 ## Platform events
+
+The following lifecycle notifications are delivered over WebSocket and are separate from the on-chain notifications retained in Event Inbox. In `TransactionCreated` and `TransactionStateChanged`, `uuid` identifies the **transaction** for `GetTransaction`, rather than an inbox delivery to acknowledge.
 
 Event payloads are deliberately lightweight: they carry just enough to tell you *what* changed, and you fetch whatever else you need with a follow-up GraphQL query. For example, when `TransactionStateChanged` reports `FINALIZED`, query [`GetTransaction(uuid:)`](/03-api-reference/01-queries/01-transactions-queries.md#gettransaction) to read the on-chain outcome and emitted events — see [Working with Events](/05-enjin-platform/03-working-with-events.md) for that flow.
 
